@@ -1,0 +1,23 @@
+.page {
+  background-color: #fef6e4;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.notFound {
+  text-align: center;
+  padding: 60px;
+}

@@ -1,0 +1,48 @@
+.page {
+  background-color: #fef6e4;
+  min-height: 100vh;
+  padding: 40px 24px 60px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.title {
+  font-family: Arial;
+  font-size: 30px;
+  font-weight: bolder;
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  font-family: Arial;
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.section {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.sectionLabel {
+  font-weight: bold;
+  font-size: 15px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.btnGroup {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
+}
+
+.comingSoon {
+  text-align: center;
+  font-size: 15px;
+  color: #888;
+  margin-top: 20px;
+}
