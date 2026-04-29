@@ -1,0 +1,40 @@
+.page {
+  background-color: #fef6e4;
+  min-height: 100vh;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 40px 24px 60px;
+}
+
+.title {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 30px;
+  font-weight: bolder;
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.subtext {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  text-align: center;
+  color: rgb(40, 40, 40);
+  margin-bottom: 30px;
+}
+
+.subtitle {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(40, 40, 40);
+  margin-top: 28px;
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.btnGroup {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
+}

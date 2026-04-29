@@ -1,0 +1,82 @@
+.container {
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.selectLabel {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.buttonGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.content {
+  border-top: 2px solid #333;
+  padding-top: 20px;
+}
+
+.chapterTitle {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.verse {
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.verseNumber {
+  font-weight: bold;
+  color: #666;
+  margin-right: 8px;
+}
+
+.langToggle {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.langBtn {
+  padding: 8px 18px;
+  border: 2px solid #333;
+  border-radius: 20px;
+  background: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.15s;
+}
+
+.langBtn:hover {
+  background: #f0f0f0;
+}
+
+.langActive {
+  background: rgb(3, 0, 56);
+  color: white;
+  border-color: rgb(3, 0, 56);
+}
+
+.loading {
+  text-align: center;
+  font-style: italic;
+  color: #666;
+  padding: 40px;
+}
+
+.error {
+  text-align: center;
+  color: #d32f2f;
+  padding: 40px;
+}
