@@ -6,6 +6,7 @@ import Ketuvim from './pages/Ketuvim';
 import BookPage from './pages/BookPage';
 import Quiz from './pages/Quiz';
 import Summaries from './pages/Summaries';
+import Notes from './pages/Notes';  
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
         <Route path="/book/:bookId" element={<BookPage />} />
         <Route path="/quiz" element={<Quiz />} />
         <Route path="/summaries" element={<Summaries />} />
+        <Route path="/notes" element={<Notes />} />  {/* ADD THIS */}
       </Routes>
     </BrowserRouter>
   );

@@ -31,7 +31,7 @@ export default function Home() {
         <div className={styles.card}>
           <strong>Helpful Notes</strong>
           <div className={styles.btnRow}>
-            <button className="nav-btn" onClick={() => navigate('/summaries')}>Helpful Notes</button>
+          <button className="nav-btn" onClick={() => navigate('/notes')}>Helpful Notes</button>
           </div>
         </div>
       </div>
