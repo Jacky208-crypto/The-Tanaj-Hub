@@ -6824,7 +6824,7 @@ export const quizzes = {
             optionsSp: ['Shadraj, Meshaj y Abed-nego', 'Daniel', 'El Sumo Sacerdote', 'Los príncipes de Babilonia'],
             optionsHe: ['שדרך, מישך ועבד נגו', 'דניאל', 'הכהן הגדול', 'שרי בבל'],
             correct: 'Shadraj, Meshaj y Abed-nego',
-            correctSp: 'Jananía, Mishael y Azaryá ',
+            correctSp: 'Shadraj, Meshaj y Abed-nego ',
             correctHe: 'שדרך, מישך ועבד נגו'
           },
           {
