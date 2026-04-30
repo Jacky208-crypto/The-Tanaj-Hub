@@ -23,10 +23,10 @@ export default function QuizPlayer({ quiz, onBack }) {
   const [flashOption, setFlashOption] = useState(null);
   const [language, setLanguage] = useState('english');
   const [sessionKey, setSessionKey] = useState(0);
-  const [wrongAnswer, setWrongAnswer] = useState(null); // NEW
+  const [wrongAnswer, setWrongAnswer] = useState(null);
 
   const questions = useMemo(
-    () => shuffleAndPick(quiz.questions, 5),
+    () => shuffleAndPick(quiz.questions, 10),
     [quiz, sessionKey]
   );
 
@@ -58,16 +58,16 @@ export default function QuizPlayer({ quiz, onBack }) {
       setScore((s) => s + 1);
       setWrongAnswer(null);
     } else {
-      setWrongAnswer(getCorrect(current)); // NEW - save correct answer
+      setWrongAnswer(getCorrect(current));
     }
     setFlash(isCorrect ? 'correct' : 'incorrect');
     setFlashOption(option);
     setTimeout(() => {
       setFlash(null);
       setFlashOption(null);
-      setWrongAnswer(null); // NEW - clear after moving on
+      setWrongAnswer(null);
       setIndex((i) => i + 1);
-    }, 2000); // increased to 2s so they can read the correct answer
+    }, 2000);
   };
 
   const restart = () => {
@@ -81,26 +81,28 @@ export default function QuizPlayer({ quiz, onBack }) {
 
   return (
     <div className={styles.wrapper}>
-      <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginBottom: '1rem' }}>
-        {['english', 'spanish', 'hebrew'].map(lang => (
-          <button
-            key={lang}
-            onClick={() => setLanguage(lang)}
-            style={{
-              padding: '0.3rem 1rem',
-              borderRadius: '20px',
-              border: 'none',
-              cursor: 'pointer',
-              background: language === lang ? '#4a90e2' : '#eee',
-              color: language === lang ? 'white' : 'black',
-            }}
-          >
-            {lang === 'english' ? 'English' : lang === 'spanish' ? 'Español' : 'עברית'}
-          </button>
-        ))}
-      </div>
-
       <div className={styles.card}>
+
+        {/* Language Toggle - at the top inside the card */}
+        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginBottom: '1.5rem' }}>
+          {['english', 'spanish', 'hebrew'].map(lang => (
+            <button
+              key={lang}
+              onClick={() => setLanguage(lang)}
+              style={{
+                padding: '0.3rem 1rem',
+                borderRadius: '20px',
+                border: 'none',
+                cursor: 'pointer',
+                background: language === lang ? '#4a90e2' : '#eee',
+                color: language === lang ? 'white' : 'black',
+              }}
+            >
+              {lang === 'english' ? 'English' : lang === 'spanish' ? 'Español' : 'עברית'}
+            </button>
+          ))}
+        </div>
+
         {finished ? (
           <>
             <p className={styles.question}>Quiz Finished! 🎉</p>
@@ -145,7 +147,6 @@ export default function QuizPlayer({ quiz, onBack }) {
               })}
             </div>
 
-            {/* NEW - show correct answer on wrong */}
             {wrongAnswer && (
               <p style={{
                 marginTop: '1rem',
