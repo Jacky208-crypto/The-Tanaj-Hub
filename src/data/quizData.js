@@ -6397,5 +6397,476 @@ export const quizzes = {
           }
         ]
 
+      },
+      iyov: {
+        label: 'Iyov',
+        description: 'Study the key points of the Book of Iyov with this simple quiz! Explore the profound themes of suffering, faith, and divine justice as you test your knowledge of the story of Job and his trials. Discover the timeless lessons and insights that this book offers about human resilience and the nature of God.',
+        questions: [
+          {
+            question: 'About whom was it said: "And his sons used to go and hold a feast in their houses"?',
+            questionSp: '¿Sobre quién se dijo: "Y sus hijos solían ofrecer banquetes en sus casas"?',
+            questionHe: '"והלכו בניו ועשו משתה בית איש יומו" — על מי נאמר?',
+            options: ['About Iyov\'s sons', 'About Daniel\'s sons', 'About Shmuel\'s sons', 'About the sons of the prophets'],
+            optionsSp: ['Sobre los hijos de Iyov', 'Sobre los hijos de Daniel', 'Sobre los hijos de Shmuel', 'Sobre los hijos de los profetas'],
+            optionsHe: ['על בני איוב', 'על בני דניאל', 'על בני שמואל', 'על בני הנביאים'],
+            correct: 'About Iyov\'s sons',
+            correctSp: 'Sobre los hijos de Iyov',
+            correctHe: 'על בני איוב'
+          },
+          {
+            question: 'Who said to whom: "Have you not blessed the work of his hands... but put forth Your hand now and touch all that he has"?',
+            questionSp: '¿Quién le dijo a quién: "Has bendecido el trabajo de sus manos... pero extiende Tu mano y toca todo lo que tiene"?',
+            questionHe: '"מעשה ידיו ברכת... ואולם שלח נא ידך וגע בכל אשר לו"',
+            options: ['Satan to God', 'Iyov to God', 'Elifaz to Iyov', 'Iyov\'s wife to Iyov'],
+            optionsSp: ['Satan a Hashem', 'Iyov a Dios', 'Elifaz a Iyov', 'La esposa de Iyov a Iyov'],
+            optionsHe: ['השטן אל ה\'', 'איוב אל ה\'', 'אליפז אל איוב', 'אשת איוב אל איוב'],
+            correct: 'Satan to God',
+            correctSp: 'Satan a Hashem',
+            correctHe: 'השטן אל ה\''
+          },
+          {
+            question: 'Who said: "Naked came I out of my mother\'s womb, and naked shall I return thither"?',
+            questionSp: '¿Quién dijo: "Desnudo salí del vientre de mi madre y desnudo tornaré allá"?',
+            questionHe: '"ערום יצתי מבטן אמי וערם אשוב שמה"',
+            options: ['Iyov', 'Yirmiyahu', 'Shlomo', 'Shmuel'],
+            optionsSp: ['Iyov', 'Yirmiyahu', 'Shlomo', 'Shmuel'],
+            optionsHe: ['איוב', 'ירמיהו', 'שלמה', 'שמואל'],
+            correct: 'Iyov',
+            correctSp: 'Iyov',
+            correctHe: 'איוב'
+          },
+          {
+            question: 'Who told who: "Behold, he is in your hand; only spare his life"?',
+            questionSp: '¿Quién le dijo a quien: "A tu disposición está, pero cuida su vida"?',
+            questionHe: '"הנו בידך אך את נפשו שמור"',
+            options: ['God to Satan', 'Iyov to Satan', 'An angel to Satan', 'A messenger to Iyov'],
+            optionsSp: ['Hashem a Satan', 'Iyov a Satan', 'Un ángel a Satan', 'Un mensajero a Iyov'],
+            optionsHe: ['ה\' אל השטן', 'איוב אל השטן', 'מלאך אל השטן', 'מלאך אל איוב'],
+            correct: 'God to Satan',
+            correctSp: 'Hashem a Satan',
+            correctHe: 'ה\' אל השטן'
+          },
+          {
+            question: 'Who said: "All that a man has will he give for his life"?',
+            questionSp: '¿Quién dijo: "Todo lo que el hombre posee, lo dará gustoso por su vida"?',
+            questionHe: '"וכל אשר לאיש יתן בעד נפשו"',
+            options: ['Satan', 'Iyov', 'Elifaz', 'Bildad'],
+            optionsSp: ['Satanás', 'Iyov', 'Elifaz', 'Bildad'],
+            optionsHe: ['השטן', 'איוב', 'אליפז', 'בלדד'],
+            correct: 'Satan',
+            correctSp: 'Satanás',
+            correctHe: 'השטן'
+          },
+          {
+            question: 'Who said to Iyov: "Will you be offended if one ventures a word with you? But who can keep from speaking?"',
+            questionSp: '¿Quién le dijo a Iyov: "¿Te enfadarías si te dirigiéramos la palabra? Pero ¿quién puede abstenerse de hablar?"?',
+            questionHe: '"הנסה דבר אליך תלאה ועצור במלין מי יוכל"',
+            options: ['Elifaz', 'Bildad', 'Tzofar', 'Elihu'],
+            optionsSp: ['Elifaz', 'Bildad', 'Tzofar', 'Elihu'],
+            optionsHe: ['אליפז', 'בלדד', 'צופר', 'אליהו'],
+            correct: 'Elifaz',
+            correctSp: 'Elifaz',
+            correctHe: 'אליפז'
+          },
+          {
+            question: 'Who said: "For wrath kills the foolish man, and envy slays the silly one"?',
+            questionSp: '¿Quién dijo: "Por cuanto la ira mata al insensato, y la envidia carcome al simple"?',
+            questionHe: '"כי לאויל יהרג כעש ופותה תמית קנאה"',
+            options: ['Elifaz', 'Tzofar', 'Iyov', 'Solomon'],
+            optionsSp: ['Elifaz', 'Tzofar', 'Iyov', 'Salomón'],
+            optionsHe: ['אליפז', 'צופר', 'איוב', 'שלמה'],
+            correct: 'Elifaz',
+            correctSp: 'Elifaz',
+            correctHe: 'אליפז'
+          },
+          {
+            question: 'Who said to Iyov: "If you would seek God earnestly and make your supplication to the Almighty..."?',
+            questionSp: '¿Quién le dijo a Iyov: "Si tú recurres a Dios anhelosamente e imploras al Todopoderoso..."?',
+            questionHe: '"אם אתה תשחר אל אל ואל שדי תתחנן"',
+            options: ['Bildad', 'Elifaz', 'Tzofar', 'Elihu'],
+            optionsSp: ['Bildad', 'Elifaz', 'Tzofar', 'Elihu'],
+            optionsHe: ['בלדד', 'אליפז', 'צופר', 'אליהו'],
+            correct: 'Bildad',
+            correctSp: 'Bildad',
+            correctHe: 'בלדד'
+          },
+          {
+            question: 'Who said: "Oh, that God would speak, and open His lips against you... God exacts of you less than your iniquity deserves"?',
+            questionSp: '¿Quién dijo: "Mas ojalá que Dios hablara y abriera sus labios contigo... Dios te castiga menos de lo que tu iniquidad merece"?',
+            questionHe: '"ואולם מי יתן אלוה דבר ויפתח שפתיו עמך... כי ישה לך אלוה מעוונך"',
+            options: ['Tzofar', 'Elifaz', 'Bildad', 'Satan'],
+            optionsSp: ['Tzofar', 'Elifaz', 'Bildad', 'Satanás'],
+            optionsHe: ['צופר', 'אליפז', 'בלדד', 'השטן'],
+            correct: 'Tzofar',
+            correctSp: 'Tzofar',
+            correctHe: 'צופר'
+          },
+          {
+            question: 'Who said to God: "Therefore I abhor myself, and repent in dust and ashes"?',
+            questionSp: '¿Quién le dijo a Dios: "Por tanto me retracto de mis palabras y me arrepiento, al ver que soy polvo y cenizas"?',
+            questionHe: '"על כן אמאס ונחמתי על עפר ואפר"',
+            options: ['Iyov', 'Isaiah', 'Jeremiah', 'Abraham'],
+            optionsSp: ['Iyov', 'Yeshayahu', 'Yirmiyahu', 'Abraham'],
+            optionsHe: ['איוב', 'ישעיהו', 'ירמיהו', 'אברהם'],
+            correct: 'Iyov',
+            correctSp: 'Iyov',
+            correctHe: 'איוב'
+          },
+          {
+            question: 'Who gave to whom "an inheritance among their brothers"?',
+            questionSp: '¿Quién le dio a quién "herencia como a sus hermanos"?',
+            questionHe: '"ויתן להם אביהם נחלה בתוך אחיהם" — מי נתן למי?',
+            options: ['Iyov to his daughters', 'Yaakov to Dina', 'Shlomo to his daughters', 'Elifaz to his heirs'],
+            optionsSp: ['Iyov a sus hijas', 'Yaakov a Dina', 'Shlomo a sus hijas', 'Elifaz a sus herederos'],
+            optionsHe: ['איוב לבנותיו', 'יעקב לדינה', 'שלמה לבנותיו', 'אליפז ליורשיו'],
+            correct: 'Iyov to his daughters',
+            correctSp: 'Iyov a sus hijas',
+            correctHe: 'איוב לבנותיו'
+          }
+        ]
+      },
+      rut: {
+        label: 'Rut',
+        description: 'Study the key points of the Book of Rut with this simple quiz! Dive into the story of loyalty, love, and redemption as you test your knowledge of the characters and events in the Book of Ruth. Discover the timeless lessons about kindness, faith, and the power of human connection that this book offers.',
+        questions: [
+          {
+            question: 'Who said to whom: "Go, return each of you to her mother\'s house"?',
+            questionSp: '¿Quién le dijo a quién: "Andad, volveos cada cual a la casa de su madre"?',
+            questionHe: '"לכנה שבנה אשה לבית אמה"',
+            options: ['Naomi to Ruth and Orpah', 'Ruth to Naomi', 'Boaz to his servants', 'Orpah to Naomi'],
+            optionsSp: ['Noemí a Rut y Orpa', 'Rut a Noemí', 'Boaz a sus siervos', 'Orpa a Noemí'],
+            optionsHe: ['נעמי לרות וערפה', 'רות לנעמי', 'בועז לנעריו', 'ערפה לנעמי'],
+            correct: 'Naomi to Ruth and Orpah',
+            correctSp: 'Noemí a Rut y Orpa',
+            correctHe: 'נעמי לרות וערפה'
+          },
+          {
+            question: 'Who said: "No, but we will return with you to your people"?',
+            questionSp: '¿Quién diji: "No, sino que volveremos contigo a tu pueblo"?',
+            questionHe: '"כי אתך נשוב לעמך"',
+            options: ['Ruth and Orpah', 'The women of Bethlehem', 'Boaz', 'The reapers'],
+            optionsSp: ['Rut y Orpa', 'Las mujeres de Belén', 'Boaz', 'Los segadores'],
+            optionsHe: ['רות וערפה', 'בנות בית לחם', 'בועז', 'הקוצרים'],
+            correct: 'Ruth and Orpah',
+            correctSp: 'Rut y Orpa',
+            correctHe: 'רות וערפה'
+          },
+          {
+            question: 'Who said: "For the hand of the Lord has gone out against me"?',
+            questionSp: '¿Quién dijo: "Pero la mano del Eterno fue contra mí"?',
+            questionHe: '"כי יצאה בי יד ה\'"',
+            options: ['Naomi', 'Ruth', 'Boaz', 'Elimelech'],
+            optionsSp: ['Noemí', 'Rut', 'Boaz', 'Elimelej'],
+            optionsHe: ['נעמי', 'רות', 'בועז', 'אלימלך'],
+            correct: 'Naomi',
+            correctSp: 'Noemí',
+            correctHe: 'נעמי'
+          },
+          {
+            question: 'Who said: "Where you go I will go, and where you lodge I will lodge. Your people shall be my people, and your God my God"?',
+            questionSp: '¿Quién dijo: "Donde quiera que tú vayas, iré yo... Tu pueblo será mi pueblo y tu Dios será mi Dios"?',
+            questionHe: '"כי אל אשר תלכי אלך ובאשר תליני אלין עמך עמי ואלהיך אלהי"',
+            options: ['Ruth', 'Orpah', 'Boaz', 'The kinsman'],
+            optionsSp: ['Rut', 'Orpa', 'Boaz', 'El pariente cercano'],
+            optionsHe: ['רות', 'ערפה', 'בועז', 'הגואל'],
+            correct: 'Ruth',
+            correctSp: 'Rut',
+            correctHe: 'רות'
+          },
+          {
+            question: 'Who said to whom about whom: "She has continued from morning until now"?',
+            questionSp: '¿Quién le dijo a quien sobre quien: "Trabajó sin descanso desde la mañana hasta ahora"?',
+            questionHe: '"ותבוא ותעמוד מאז הבוקר ועד עתה"',
+            options: ['The servant in charge of the reapers to Boaz about Rut', 'The servant in charge of the reapers to the kinsman about Rut', 'Rut to Boaz about Naomi', 'Naomi to the kinsman about Rut'],
+            optionsSp: ['El siervo encargado de los segadores a Boaz sobre Rut', 'El siervo encargado de los segadores al pariente cercano sobre Rut', 'Rut a Boaz sobre Naomi', 'Naomi al pariente cercano sobre Rut'],
+            optionsHe: ['העבד הממונה על הקוצרים אל בועז בנוגע לרות', 'העבד הממונה על הקוצרים אל קרוב המשפחה בנוגע לרות', 'רות אל בועז בנוגע לנעמי', 'נעמי לקרוב המשפחה בנוגע לרות'],
+            correct: 'The servant in charge of the reapers to Boaz about Rut',
+            correctSp: 'El siervo encargado de los segadores a Boaz sobre Rut',
+            correctHe: 'העבד הממונה על הקוצרים אל בועז בנוגע לרות'
+          },
+          {
+            question: 'Who said to quien: "Have you not heard, my daughter?"',
+            questionSp: '¿Quién le dijo a quien: "¿No oyes, hija mía?"?',
+            questionHe: '"הלוא שמעת בתי"',
+            options: ['Boaz to Rut', 'The daughter of Paro to Miriam', 'Yaakov to Dina', 'Naomi to Rut'],
+            optionsSp: ['Boaz a Rut', 'La hija de Paro a Miriam', 'Yaakov a Dina', 'Naomi a Rut'],
+            optionsHe: ['בועז לרות', 'בת פארו למרים', 'יעקב לדינה', 'נעמי לרות'],
+            correct: 'Boaz to Rut',
+            correctSp: 'Boaz a Rut',
+            correctHe: 'בועז לרות'
+          },
+          {
+            question: 'Who said: "The Lord recompense your work, and a full reward be given you of the Lord God of Israel"?',
+            questionSp: '¿Quién dijo: "Que recompense el Eterno tu obra, y que la recompensa sea completa por parte del Eterno"?',
+            questionHe: '"ישלם ה\' פעלך ותהי משכורתך שלמה מעם ה\' אלהי ישראל"',
+            options: ['Boaz', 'Naomi', 'The elders', 'The women of the town'],
+            optionsSp: ['Boaz', 'Noemí', 'Los ancianos', 'Las mujeres del pueblo'],
+            optionsHe: ['בועז', 'נעמי', 'הזקנים', 'הנשים'],
+            correct: 'Boaz',
+            correctSp: 'Boaz',
+            correctHe: 'בועז'
+          },
+          {
+            question: 'Who said to quien: "Blessed be he who took notice of you"?',
+            questionSp: '¿Quién le dijo a quien: "Bendito sea el que reparó en ti"?',
+            questionHe: '"יהי מכירך ברוך"',
+            options: ['Naomi to Rut', 'Boaz to Rut', 'Ishai to David', 'Shmuel to Shaul'],
+            optionsSp: ['Noemí a Rut', 'Boaz a Rut', 'Ishai a David', 'Shmuel a Shaul'],
+            optionsHe: ['נעמי לרות', 'בועז לרות', 'ישי לדוד', 'שמואל לשאול'],
+            correct: 'Naomi to Rut',
+            correctSp: 'Noemí a Rut',
+            correctHe: 'נעמי לרות'
+          },
+          {
+            question: 'Who said about Boaz: "He has not left off his kindness to the living and to the dead"?',
+            questionSp: '¿Quién dijo sobre Boaz: "No dejó de ser benevolente tanto hacia los vivos como hacia los muertos"?',
+            questionHe: '"אשר לא עזב חסדו את החיים ואת המתים"',
+            options: ['Naomi', 'Ruth', 'The kinsman', 'The elders'],
+            optionsSp: ['Noemí', 'Rut', 'El pariente', 'Los ancianos'],
+            optionsHe: ['נעמי', 'רות', 'הגואל', 'הזקנים'],
+            correct: 'Naomi',
+            correctSp: 'Noemí',
+            correctHe: 'נעמי'
+          },
+          {
+            question: 'Who said to quien: "Lie down until the morning"?',
+            questionSp: '¿Quién le dijo a quien: "Duérmete pues hasta la madrugada"?',
+            questionHe: '"ליני עד הבוקר"',
+            options: ['Boaz to Rut', 'Naomi to Rut', 'Rajab to the spies', 'Shmuel to Shaul'],
+            optionsSp: ['Boaz a Rut', 'Noemí a Rut', 'Rajab a los espias', 'Shmuel a Shaul'],
+            optionsHe: ['בועז לרות', 'נעמי לרות', 'רחב למרגלים', 'שמואל לשאול'],
+            correct: 'Boaz to Rut',
+            correctSp: 'Boaz a Rut',
+            correctHe: 'בועז לרות'
+          },
+          {
+            question: 'About whom was it said: "The two who built the house of Israel"?',
+            questionSp: '¿Sobre quiénes se dijo: "Las dos que edificaron la casa de Israel"?',
+            questionHe: '"כשרחל וכלאה אשר בנו שתיהם את בית ישראל"',
+            options: ['Rachel and Leah', 'Ruth and Naomi', 'Sarah and Rebecca', 'Miriam and Deborah'],
+            optionsSp: ['Rajel y Lea', 'Rut y Noemí', 'Sara y Rivka', 'Miriam y Débora'],
+            optionsHe: ['רחל ולאה', 'רות ונעמי', 'שרה ורבקה', 'מרים ודבורה'],
+            correct: 'Rachel and Leah',
+            correctSp: 'Rajel y Lea',
+            correctHe: 'רחל ולאה'
+          }
+        ]
+      },
+      ester: {  
+        label: 'Ester',
+        description: 'Study the key points of the Book of Ester with this simple quiz! Explore the themes of courage, identity, and divine providence as you test your knowledge of the story of Esther and her role in saving the Jewish people. Discover the timeless lessons about bravery, faith, and the power of standing up for what is right that this book offers.',
+        questions: [
+          {
+            question: 'Whose actions were described as: "Showing the riches of his glorious kingdom and the honor of his excellent majesty for many days"?',
+            questionSp: '¿De quién se dice que: "Mostró las riquezas de su glorioso reino y la magnificencia de su poderío durante muchos días"?',
+            questionHe: '"בהראותו את עושר כבוד מלכותו ואת יקר תפארת גדולתו ימים רבים"',
+            options: ['Ajashverosh', 'Nebuchadnezzar', 'Darius', 'Solomon'],
+            optionsSp: ['Ajashverosh', 'Nabucodonosor', 'Darío', 'Salomón'],
+            optionsHe: ['אחשורוש', 'נבוכדנצר', 'דריווש', 'שלמה'],
+            correct: 'Ajashverosh',
+            correctSp: 'Ajashverosh',
+            correctHe: 'אחשורוש'
+          },
+          {
+            question: 'Of whom was it reported to the king: "She has not performed the command of the king"?',
+            questionSp: '¿Sobre quién se reportó: "No ha hecho lo que dispuso el rey"?',
+            questionHe: '"על אשר לא עשתה את מאמר המלך אחשורוש"',
+            options: ['Vashti', 'Esther', 'Zeresh', 'The Queen of Sheba'],
+            optionsSp: ['Vashti', 'Esther', 'Zeresh', 'La Reina de Saba'],
+            optionsHe: ['ושתי', 'אסתר', 'זרש', 'מלכת שבא'],
+            correct: 'Vashti',
+            correctSp: 'Vashti',
+            correctHe: 'ושתי'
+          },
+          {
+            question: 'Who warned the king that a certain defiance would lead to: "Great indignation and contempt"?',
+            questionSp: '¿Quién advirtió que cierta acción causaría: "Gran indignación y desprecio"?',
+            questionHe: '"וכדי בזיון וקצף"',
+            options: ['Memujan to Ajashverosh', 'Haman to Ajashverosh', 'Harbona to Ajashverosh', 'Hagai to Esther'],
+            optionsSp: ['Memuján a Ajashverosh', 'Amán a Ajashverosh', 'Jarboná a Ajashverosh', 'Hagai a Esther'],
+            optionsHe: ['ממוכן אל אחשורוש', 'המן אל אחשורוש', 'חרבונה אל אחשורוש', 'הגי אל אסתר'],
+            correct: 'Memujan to Ajashverosh',
+            correctSp: 'Memuján a Ajashverosh',
+            correctHe: 'ממוכן אל אחשורוש'
+          },
+          {
+            question: 'Who got assigned: "Seven choice maidservants from the king’s palace to serve her"?',
+            questionSp: '¿A quién le asignaron: "Siete doncellas de la casa real para que le sirvieran"?',
+            questionHe: '"ואת שבע הנערות הראויות לתת לה מבית המלך"',
+            options: ['To Esther', 'To Vashti', 'To the concubines', 'To Zeresh'],
+            optionsSp: ['A Esther', 'A Vashti', 'A las concubinas', 'A Zeresh'],
+            optionsHe: ['לאסתר', 'לושתי', 'לפילגשים', 'לזרש'],
+            correct: 'To Esther',
+            correctSp: 'A Esther',
+            correctHe: 'לאסתר'
+          },
+          {
+            question: 'Who "plotted to lay hands on the king" in a fit of rage?',
+            questionSp: '¿Quiénes, en un arranque de ira, "planearon matar al rey"?',
+            questionHe: '"קצף בגתן ותרש... ויבקשו לשלוח יד במלך"',
+            options: ['Bigtan and Teresh', 'Haman and his sons', 'The princes of Persia', 'The king’s guard'],
+            optionsSp: ['Bigtán y Teresh', 'Amán y sus hijos', 'Los príncipes de Persia', 'La guardia del rey'],
+            optionsHe: ['בגתן ותרש', 'המן ובניו', 'שרי פרס', 'שומרי המלך'],
+            correct: 'Bigtan and Teresh',
+            correctSp: 'Bigtán y Teresh',
+            correctHe: 'בגתן ותרש'
+          },
+          {
+            question: 'Who demanded to know: "Why do you transgress the king’s commandment?"',
+            questionSp: '¿Quiénes cuestionaron: "¿Por qué desobedeces la orden del rey?"?',
+            questionHe: '"מדוע אתה עובר את מצוות המלך"',
+            options: ['The king’s servants to Mordecai', 'Haman to Mordecai', 'The guards to Esther', 'Bigthan to Teresh'],
+            optionsSp: ['Los siervos del rey a Mordejai', 'Amán a Mordejai', 'Los guardias a Esther', 'Bigtán a Teresh'],
+            optionsHe: ['עבדי המלך אל מרדכי', 'המן אל מרדכי', 'השומרים אל אסתר', 'בגתן אל תרש'],
+            correct: 'The king’s servants to Mordecai',
+            correctSp: 'Los siervos del rey a Mordejai',
+            correctHe: 'עבדי המלך אל מרדכי'
+          },
+          {
+            question: 'Who offered: "I will pay ten thousand talents of silver into the hands of those who have charge of the business"?',
+            questionSp: '¿Quién ofreció: "Yo pagaré diez mil talentos de plata en las manos de quien están a cargo del tesoro real"?',
+            questionHe: '"ועשרת אלפים כיכר כסף אשקול על ידי עושי המלאכה"',
+            options: ['Haman to Ajashverosh', 'Mordecai to the king', 'Memujan to the princes', 'Esther to the king'],
+            optionsSp: ['Amán a Ajashverosh', 'Mordejai al rey', 'Memuján a los príncipes', 'Esther al rey'],
+            optionsHe: ['המן אל אחשורוש', 'מרדכי אל המלך', 'ממוכן אל השרים', 'אסתר אל המלך'],
+            correct: 'Haman to Ajashverosh',
+            correctSp: 'Amán a Ajashverosh',
+            correctHe: 'המן אל אחשורוש'
+          },
+          {
+            question: 'Who issued the chilling warning: "Do not think in your heart that you will escape in the king’s house"?',
+            questionSp: '¿Quién lanzó la advertencia: "No creas dentro de tu alma que has de escapar en la casa del rey"?',
+            questionHe: '"אל תדמי בנפשך להמלט בית המלך"',
+            options: ['Mordecai to Esther', 'Haman to Esther', 'Hagai to Esther', 'The messengers to Esther'],
+            optionsSp: ['Mordejai a Esther', 'Amán a Esther', 'Hagai a Esther', 'Los mensajeros a Esther'],
+            optionsHe: ['מרדכי אל אסתר', 'המן אל אסתר', 'הגי אל אסתר', 'הרצים אל אסתר'],
+            correct: 'Mordecai to Esther',
+            correctSp: 'Mordejai a Esther',
+            correctHe: 'מרדכי אל אסתר'
+          },
+          {
+            question: 'Who asked in the middle of the night: "What honor and distinction has been bestowed on Mordecai for this?"',
+            questionSp: '¿Quién preguntó: "¿Qué honor y qué distinción se le dio a Mordejai por esto?"?',
+            questionHe: '"מה נעשה יקר וגדולה למרדכי על זה"',
+            options: ['Ajashverosh to his servants', 'Haman to Ajashverosh', 'Esther to the king', 'Mordecai to Hagai'],
+            optionsSp: ['Ajashverosh a sus siervos', 'Amán a Ajashverosh', 'Esther al rey', 'Mordejai a Hagai'],
+            optionsHe: ['אחשורוש אל עבדיו', 'המן אל אחשורוש', 'אסתר אל המלך', 'מרדכי אל הגי'],
+            correct: 'Ajashverosh to his servants',
+            correctSp: 'Ajashverosh a sus siervos',
+            correctHe: 'אחשורוש על מרדכי'
+          },
+          {
+            question: 'Who was told: "You will not prevail against him, but will surely fall before him"?',
+            questionSp: '¿A quién le dijeron: "No prevalecerás contra él sino que de seguro caerás ante él"?',
+            questionHe: '"לא תוכל לו כי נפול תפול לפניו"',
+            options: ['Haman (by Zeresh and his friends)', 'Bigtan (by Teresh)', 'Ajashverosh (by Memujan)', 'The enemies of the Jews'],
+            optionsSp: ['Amán (por Zeresh y sus amigos)', 'Bigtán (por Teresh)', 'Ajashverosh (por Memuján)', 'Los enemigos de los judíos'],
+            optionsHe: ['המן (  זרש ואוהביו)', 'בגתן (על ידי תרש)', 'אחשורוש (על ידי ממוכן)', 'אויבי היהודים'],
+            correct: 'Haman (by Zeresh and his friends)',
+            correctSp: 'Amán (por Zeresh y sus amigos)',
+            correctHe: 'המן (זרש ואוהביו)'
+          },
+          {
+            question: 'Who pleaded for their life by saying: "The adversary is not worthy of the king’s loss"?',
+            questionSp: '¿Quién suplicó por su vida diciendo: "Porque el enemigo no es digno de que el rey se perjudique"?',
+            questionHe: '"כי אין הצר שווה בנזק המלך"',
+            options: ['Esther to Ajashverosh', 'Haman to Esther', 'Mordecai to the king', 'Vashti to the king'],
+            optionsSp: ['Esther a Ajashverosh', 'Amán a Esther', 'Mordejai al rey', 'Vashti al rey'],
+            optionsHe: ['אסתר אל אחשורוש', 'המן אל אסתר', 'מרדכי אל המלך', 'ושתי אל המלך'],
+            correct: 'Esther to Ajashverosh',
+            correctSp: 'Esther a Ajashverosh',
+            correctHe: 'אסתר אל אחשורוש'
+          },
+          {
+            question: 'Fill in the blank: "Write now with respect to the ___ as you please."',
+            questionSp: 'Completa el espacio: "Escribid ahora con respecto a los ___ como bien os parece".',
+            questionHe: '"ואתם כתבו על ה___ כטוב בעיניכם"',
+            options: ['Jews', 'Princes', 'Provinces', 'Enemies'],
+            optionsSp: ['Judíos', 'Príncipes', 'Provincias', 'Enemigos'],
+            optionsHe: ['יהודים', 'שרים', 'מדינות', 'אויבים'],
+            correct: 'Jews',
+            correctSp: 'Judíos',
+            correctHe: 'יהודים'
+          },
+          {
+            question: 'Who was seen "seeking the good of his people and speaking peace to all his seed"?',
+            questionSp: '¿De quién se dice que "buscaba el bien de su pueblo y hablaba paz a toda su simiente"?',
+            questionHe: '"דורש טוב לעמו ודובר שלום לכל זרעו"',
+            options: ['Mordecai', 'Ajashverosh', 'Nehemiah', 'Daniel'],
+            optionsSp: ['Mordejai', 'Ajashverosh', 'Nehemías', 'Daniel'],
+            optionsHe: ['מרדכי', 'אחשורוש', 'נחמיה', 'דניאל'],
+            correct: 'Mordecai',
+            correctSp: 'Mordejai',
+            correctHe: 'מרדכי'
+          }
+        ]
+      },
+      daniel: {  
+        label: 'Daniel',
+        description: 'Study the key points of the Book of Daniel with this simple quiz! Explore the themes of faith, courage, and divine intervention as you test your knowledge of the story of Daniel and his experiences in the Babylonian exile. Discover the timeless lessons about resilience, trust in God, and the power of standing firm in one\'s beliefs that this book offers.',
+        questions: [
+          {
+            question: 'In which book does it say: "Until the day breathes and the shadows flee"?',
+            questionSp: '¿En qué libro sale: "Cuando refresque el día y declinen las sombras de la tarde"?',
+            questionHe: '"עד שיפוח היום ונסו הצללים"',
+            options: ['Tehilim', 'Mishle', 'Kohelet', 'Shir Hashirim'],
+            optionsSp: ['Tehilim', 'Mishle', 'Kohelet', 'Shir Hashirim'],
+            optionsHe: ['תהילים', 'משלי', 'קהלת', 'שיר השירים'],
+            correct: 'Shir Hashirim',
+            correctSp: 'Shir Hashirim',
+            correctHe: 'שיר השירים'
+          }
+        ]
+      },
+      ezra: {
+        label: 'Ezra',
+        description: 'Study the key points of the Books of Ezra with this simple quiz! Explore the themes of leadership, community rebuilding, and spiritual renewal as you test your knowledge of the events and characters in these books. Discover the timeless lessons about resilience, faith, and the power of collective effort that these books offer.',
+        questions: [
+          {
+            question: 'In which book does it say: "Until the day breathes and the shadows flee"?',
+            questionSp: '¿En qué libro sale: "Cuando refresque el día y declinen las sombras de la tarde"?',
+            questionHe: '"עד שיפוח היום ונסו הצללים"',
+            options: ['Tehilim', 'Mishle', 'Kohelet', 'Shir Hashirim'],
+            optionsSp: ['Tehilim', 'Mishle', 'Kohelet', 'Shir Hashirim'],
+            optionsHe: ['תהילים', 'משלי', 'קהלת', 'שיר השירים'],
+            correct: 'Shir Hashirim',
+            correctSp: 'Shir Hashirim',
+            correctHe: 'שיר השירים'
+          }
+        ]
+      },
+      nehemia: {
+        label: 'Nehemia',
+        description: 'Study the key points of the Books of Nehemiah with this simple quiz! Explore the themes of leadership, community rebuilding, and spiritual renewal as you test your knowledge of the events and characters in these books. Discover the timeless lessons about resilience, faith, and the power of collective effort that these books offer.',
+        questions: [
+          {
+            question: 'In which book does it say: "Until the day breathes and the shadows flee"?',
+            questionSp: '¿En qué libro sale: "Cuando refresque el día y declinen las sombras de la tarde"?',
+            questionHe: '"עד שיפוח היום ונסו הצללים"',
+            options: ['Tehilim', 'Mishle', 'Kohelet', 'Shir Hashirim'],
+            optionsSp: ['Tehilim', 'Mishle', 'Kohelet', 'Shir Hashirim'],
+            optionsHe: ['תהילים', 'משלי', 'קהלת', 'שיר השירים'],
+            correct: 'Shir Hashirim',
+            correctSp: 'Shir Hashirim',
+            correctHe: 'שיר השירים'
+          }
+        ]
+      },
+      divreHayamim: {
+        label: 'Divre Hayamim',
+        description: 'Study the key points of the Books of Divre Hayamim with this simple quiz! Explore the themes of history, kingship, and divine providence as you test your knowledge of the events and characters in these books. Discover the timeless lessons about leadership, faith, and the consequences of human actions that these books offer.',
+        questions: [
+          {
+            question: 'In which book does it say: "Until the day breathes and the shadows flee"?',
+            questionSp: '¿En qué libro sale: "Cuando refresque el día y declinen las sombras de la tarde"?',
+            questionHe: '"עד שיפוח היום ונסו הצללים"',
+            options: ['Tehilim', 'Mishle', 'Kohelet', 'Shir Hashirim'],
+            optionsSp: ['Tehilim', 'Mishle', 'Kohelet', 'Shir Hashirim'],
+            optionsHe: ['תהילים', 'משלי', 'קהלת', 'שיר השירים'],
+            correct: 'Shir Hashirim',
+            correctSp: 'Shir Hashirim',
+            correctHe: 'שיר השירים'
+          }
+        ]
       }
 };
