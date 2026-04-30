@@ -7023,7 +7023,7 @@ export const quizzes = {
             optionsSp: ['Nehemías', 'Ezra', 'Daniel', 'David'],
             optionsHe: ['נחמיה', 'עזרא', 'דניאל', 'דוד'],
             correct: 'Nehemiah',
-            correctSp: 'Nehemías a Dios (H\')',
+            correctSp: 'Nehemías',
             correctHe: 'נחמיה'
           },
           {
