@@ -4,7 +4,7 @@ import { quizzes } from '../data/quizData';
 import QuizPlayer from '../components/QuizPlayer';
 import styles from './Quiz.module.css';
 
-const BOOKS_WITH_QUIZZES = ['bereshit', 'shemot', 'vaikra', 'bamidbar', 'devarim', 'yehoshua', 'shoftim', 'shmuelAlef', 'shmuelBet', 'melajimAlef', 'melajimBet', 'neviimAjaronim' 
+const BOOKS_WITH_QUIZZES = ['bereshit', 'shemot', 'vaikra', 'bamidbar', 'devarim', 'yehoshua', 'shoftim', 'shmuelAlef', 'shmuelBet', 'melajimAlef', 'melajimBet', 'neviimAjaronim', 'ketuvimPoetry'
 
 ];
 

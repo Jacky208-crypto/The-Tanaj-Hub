@@ -6203,5 +6203,199 @@ export const quizzes = {
           correctHe: 'מלאכי'
         }
         ]
+      },
+      ketuvimPoetry: {
+        label: 'Ketuvim Poetry',
+        description: 'Study the key points of the Poetry books in Ketuvim(Tehilim, Shir Hashrim, Mishle, Kohelet, Eja) with this simple quiz! Integrate yourself into the poetic verses that show the beauty of the Hebrew language and the depth of the human experience. Test your knowledge of the poetic expressions, metaphors, and themes found in these books, and discover the timeless wisdom they offer.',
+        questions: [
+          {
+            question: 'In which book does it say: "When the hay is removed and the tender grass appears... the lambs will be for your clothing"?',
+            questionSp: '¿En qué libro sale: "Cuando se recoja el heno y aparezca la tierna hierba... las ovejas serán para tus vestidos y las cabras el precio por un campo"?',
+            questionHe: 'באיזה ספר כתוב: "גלה חציר ונראה דשא... כבשים ללבושך ומחיר שדה עתודים"?',
+            options: ['Proverbs', 'Psalms', 'Job', 'Ecclesiastes'],
+            optionsSp: ['Mishle', 'Tehilim', 'Iyov', 'Kohelet'],
+            optionsHe: ['משלי', 'תהילים', 'איוב', 'קהלת'],
+            correct: 'Proverbs',
+            correctSp: 'Mishle',
+            correctHe: 'משלי'
+          },
+          {
+            question: 'In which book does it say: "I made great works, I built houses, I planted vineyards for myself; I made gardens and orchards"?',
+            questionSp: '¿En qué libro sale: "Me hice grandes obras, me construí casas, planté para mí viñedos; hice para mí huertos y jardines"?',
+            questionHe: 'באיזה ספר כתוב: "הגדלתי מעשי בניתי לי בתים נטעתי לי כרמים עשיתי לי גנות ופרדסים"?',
+            options: ['Ecclesiastes', 'Proverbs', 'Tehilim', 'Song of Songs'],
+            optionsSp: ['Kohelet', 'Mishle', 'Tehilim', 'Shir Hashirim'],
+            optionsHe: ['קהלת', 'משלי', 'נחמיה', 'שיר השירים'],
+            correct: 'Ecclesiastes',
+            correctSp: 'Kohelet',
+            correctHe: 'קהלת'
+          },
+          {
+            question: 'In which book does it say: "To everything there is a season... a time to plant and a time to pluck up what is planted"?',
+            questionSp: '¿En qué libro sale: "Para cada cosa hay una sazón oportuna... tiempo de plantar y de arrancar lo plantado"?',
+            questionHe: 'באיזה ספר כתוב: "לכל זמן ועת לכל חפץ... עת לטעת ועת לעקור נטוע"?',
+            options: ['Ecclesiastes', 'Isaiah', 'Jeremiah', 'Amos'],
+            optionsSp: ['Kohelet', 'Yeshayahu', 'Yirmiyahu', 'Amos'],
+            optionsHe: ['קהלת', 'ישעיהו', 'ירמיהו', 'עמוס'],
+            correct: 'Ecclesiastes',
+            correctSp: 'Kohelet',
+            correctHe: 'קהלת'
+          },
+          {
+            question: 'In which book does it say: "If she is a wall, we will build upon her a battlement of silver"?',
+            questionSp: '¿En qué libro sale: "Si ella fuera un muro, construiríamos sobre ella una torrecilla de plata"?',
+            questionHe: 'באיזה ספר כתוב : "אם חומה היא נבנה עליה טירת כסף"?',
+            options: ['Song of Songs', 'Proverbs', 'Ruth', 'Lamentations'],
+            optionsSp: ['Shir Hashirim', 'Mishle', 'Rut', 'Eja'],
+            optionsHe: ['שיר השירים', 'משלי', 'רות', 'איכה'],
+            correct: 'Song of Songs',
+            correctSp: 'Shir Hashirim',
+            correctHe: 'שיר השירים'
+          },
+          {
+            question: 'In which book does it say: "Your neck is like the tower of David, built for an armory, whereon hang a thousand shields"?',
+            questionSp: '¿En qué libro sale: "Tu cuello es como la torre de David construida con roquetas, de donde penden 1000 escudos"?',
+            questionHe: 'באיזה ספר כתוב: "כמגדל דויד צווארך בנוי לתלפיות אלף המגן תלוי עליו"?',
+            options: ['Song of Songs', 'Psalms', 'Eja', 'Isaiah'],
+            optionsSp: ['Shir Hashirim', 'Tehilim', 'Eja', 'Yeshayahu'],
+            optionsHe: ['שיר השירים', 'תהילים', 'אכה', 'ישעיהו'],
+            correct: 'Song of Songs',
+            correctSp: 'Shir Hashirim',
+            correctHe: 'שיר השירים'
+          },
+          {
+            question: 'In which book does it say: "He has built against me, and surrounded me with bitterness and woe"?',
+            questionSp: '¿En qué libro sale: "Edificó contra mí y me rodeó de amarguras y de congojas"?',
+            questionHe: 'באיזה ספר כתוב: "בנה עלי ויקף ראש ותלאה"?',
+            options: ['Lamentations', 'Job', 'Jeremiah', 'Psalms'],
+            optionsSp: ['Eja', 'Iyov', 'Yirmiyahu', 'Tehilim'],
+            optionsHe: ['איכה', 'איוב', 'ירמיהו', 'תהילים'],
+            correct: 'Lamentations',
+            correctSp: 'Eja',
+            correctHe: 'איכה'
+          },
+          {
+            question: 'In which book does it say: "He stood with His right hand as an adversary"?',
+            questionSp: '¿En qué libro sale: "Se plantó con Su diestra como un adversario"?',
+            questionHe: 'באיזה ספר כתוב: "נצב ימינו כצר"?',
+            options: ['Lamentations', 'Isaiah', 'Amos', 'Habakkuk'],
+            optionsSp: ['Eja', 'Yeshayahu', 'Amos', 'Habakuk'],
+            optionsHe: ['איכה', 'ישעיהו', 'עמוס', 'חבקוק'],
+            correct: 'Lamentations',
+            correctSp: 'Eja',
+            correctHe: 'איכה'
+          },
+          {
+            question: 'In which book does it say: "There He broke the arrows of the bow, the shield, and the sword, and the battle"?',
+            questionSp: '¿En qué libro sale: "Allí rompió las saetas del arco, el escudo, y la espada, y la batalla"?',
+            questionHe: '"שמה שבר רשפי קשת מגן וחרב ומלחמה סלה"',
+            options: ['Tehilim', 'Kohelet', 'Shir Hashirim', 'Eja'],
+            optionsSp: ['Tehilim', 'Kohelet', 'Shir Hashirim', 'Eja'],
+            optionsHe: ['תהילים', 'קהלת', 'שיר השירים', 'איכה'],
+            correct: 'Tehilim',
+            correctSp: 'Tehilim',
+            correctHe: 'תהילים'
+          },
+          {
+            question: 'In which book does it say: "Let me see your face, let me hear your voice; for your voice is sweet, and your face is lovely"?',
+            questionSp: '¿En qué libro sale: "Déjame ver tu rostro, déjame oír tu voz, porque dulce es tu voz y agraciado es tu rostro"?',
+            questionHe: '"הראיני את מראייך השמיעיני את קולך כי קולך ערב ומראייך נאוה"',
+            options: ['Tehilim', 'Kohelet', 'Shir Hashirim', 'Eja'],
+            optionsSp: ['Tehilim',  'Kohelet', 'Shir Hashirim', 'Eja'],
+            optionsHe: ['תהילים', 'קהלת', 'שיר השירים', 'איכה'],
+            correct: 'Shir Hashirim',
+            correctSp: 'Shir Hashirim',
+            correctHe: 'שיר השירים'
+          },
+          {
+            question: 'In which book does it say: "They gave their most precious possessions in exchange for food to relieve the soul"?',
+            questionSp: '¿En qué libro sale: "Dieron sus más valiosas pertenencias a cambio de alimentos para aliviar el alma"?',
+            questionHe: '"נתנו מחמדיהם באוכל להשיב נפש"',
+            options: ['Tehilim', 'Mishle', 'Shir Hashirim', 'Eja'],
+            optionsSp: ['Tehilim', 'Mishle', 'Shir Hashirim', 'Eja'],
+            optionsHe: ['תהילים', 'משלי', 'שיר השירים', 'איכה'],
+            correct: 'Eja',
+            correctSp: 'Eja',
+            correctHe: 'איכה'
+          },
+          {
+            question: 'In which book does it say: "But to the sinner He gives the task of gathering and heaping up to give to him who is good before God"?',
+            questionSp: '¿En qué libro sale: "Pero al pecador le asigna la tarea de recoger y amontonar para dárselo al que es bueno a los ojos de Dios"?',
+            questionHe: '"ולחוטא נתן עניין לאסוף ולכנוס לתת לטוב לפני האלוהים"',
+            options: ['Tehilim', 'Mishle', 'Kohelet', 'Eja'],
+            optionsSp: ['Tehilim', 'Mishle', 'Kohelet', 'Eja'],
+            optionsHe: ['תהילים', 'משלי', 'קהלת', 'איכה'],
+            correct: 'Kohelet',
+            correctSp: 'Kohelet',
+            correctHe: 'קהלת'
+          },
+          {
+            question: 'In which book does it say: "Because of the transgressions of a land, many are its princes"?',
+            questionSp: '¿En qué libro sale: "A causa de las transgresiones de una tierra, muchos son sus gobernantes"?',
+            questionHe: '"בפשע ארץ רבים שריה"',
+            options: ['Tehilim', 'Mishle', 'Kohelet',  'Eja'],
+            optionsSp: ['Tehilim', 'Mishle', 'Kohelet',  'Eja'],
+            optionsHe: ['תהילים', 'משלי', 'קהלת', 'איכה'],
+            correct: 'Mishle',
+            correctSp: 'Mishle',
+            correctHe: 'משלי'
+          },
+          {
+            question: 'In which book does it say: "For they have no pangs in their death; their body is vigorous"?',
+            questionSp: '¿En qué libro sale: "Porque no sufren en su muerte. Su cuerpo (se mantiene) vigoroso"?',
+            questionHe: '"כי אין חרצובות למותם ובריא אולם"',
+            options: ['Tehilim', 'Kohelet', 'Shir Hashirim', 'Eja'],
+            optionsSp: ['Tehilim',  'Kohelet', 'Shir Hashirim', 'Eja'],
+            optionsHe: ['תהילים', 'קהלת', 'שיר השירים', 'איכה'],
+            correct: 'Tehilim',
+            correctSp: 'Tehilim',
+            correctHe: 'תהילים'
+          },
+          {
+            question: 'In which book does it say: "The eye is not satisfied with seeing, nor the ear filled with hearing"?',
+            questionSp: '¿En qué libro sale: "El ojo no se satisface con ver, ni el oído se harta de oír"?',
+            questionHe: '"לא תשבע עין לראות ולא תימלא אוזן משמוע"',
+            options: ['Tehilim', 'Mishle', 'Kohelet',  'Eja'],
+            optionsSp: ['Tehilim', 'Mishle', 'Kohelet', 'Eja'],
+            optionsHe: ['תהילים', 'משלי', 'קהלת',  'איכה'],
+            correct: 'Kohelet',
+            correctSp: 'Kohelet',
+            correctHe: 'קהלת'
+          },
+          {
+            question: 'In which book does it say: "All her friends have dealt treacherously with her"?',
+            questionSp: '¿En qué libro sale: "Todos sus amigos se comportaron traicioneramente con ella"?',
+            questionHe: '"כל רעיה בגדו בה"',
+            options: ['Tehilim', 'Kohelet', 'Shir Hashirim', 'Eja'],
+            optionsSp: ['Tehilim',  'Kohelet', 'Shir Hashirim', 'Eja'],
+            optionsHe: ['תהילים', 'קהלת', 'שיר השירים', 'איכה'],
+            correct: 'Eja',
+            correctSp: 'Eja',
+            correctHe: 'איכה'
+          },
+          {
+            question: 'In which book does it say: "When the wicked rise, men hide themselves; but when they perish, the righteous increase"?',
+            questionSp: '¿En qué libro sale: "Cuando los inicuos se levantan la gente se oculta, pero cuando perecen, aumentan los justos"?',
+            questionHe: '"בקום רשעים יסתר אדם ובאובדם ירבו צדיקים"',
+            options: ['Tehilim', 'Mishle', 'Kohelet',  'Eja'],
+            optionsSp: ['Tehilim', 'Mishle', 'Kohelet', 'Eja'],
+            optionsHe: ['תהילים', 'משלי', 'קהלת',  'איכה'],
+            correct: 'Mishle',
+            correctSp: 'Mishle',
+            correctHe: 'משלי'
+          },
+          {
+            question: 'In which book does it say: "Until the day breathes and the shadows flee"?',
+            questionSp: '¿En qué libro sale: "Cuando refresque el día y declinen las sombras de la tarde"?',
+            questionHe: '"עד שיפוח היום ונסו הצללים"',
+            options: ['Tehilim', 'Mishle', 'Kohelet', 'Shir Hashirim'],
+            optionsSp: ['Tehilim', 'Mishle', 'Kohelet', 'Shir Hashirim'],
+            optionsHe: ['תהילים', 'משלי', 'קהלת', 'שיר השירים'],
+            correct: 'Shir Hashirim',
+            correctSp: 'Shir Hashirim',
+            correctHe: 'שיר השירים'
+          }
+        ]
+
       }
 };
