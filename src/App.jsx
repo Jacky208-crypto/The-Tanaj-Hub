@@ -22,6 +22,7 @@ export default function App() {
         <Route path="/summaries" element={<Summaries />} />
         <Route path="/notes" element={<Notes />} />  {/* ADD THIS */}
       </Routes>
+      <Analytics />
     </BrowserRouter>
   );
 }
