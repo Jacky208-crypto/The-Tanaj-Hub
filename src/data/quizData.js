@@ -943,6 +943,28 @@ export const quizzes = {
         correctSp: 'Er y Onan',
         correctHe: 'ער ואונן',
       },
+      {
+        question: 'Where did Yitzchak go immediately after leaving Gerar?',
+        questionSp: '¿A dónde fue Itzjak inmediatamente después de salir de Gerar?',
+        questionHe: 'לאן הלך איציק מיד לאחר שעזב את גרר?',
+        options: ['The Valley of Gerar', 'Beer-sheba', 'Hebron', 'Rehoboth'],
+        optionsSp: ['El Valle de Gerar', 'Beersheva', 'Hebrón', 'Rehovot'],
+        optionsHe: ['נחל גרר', 'באר שבע', 'חברון', 'רחובות'],
+        correct: 'The Valley of Gerar',
+        correctSp: 'El Valle de Gerar',
+        correctHe: 'נחל גרר'
+      },
+      {
+        question: 'Who says to their father: "My father" (Avi)?',
+        questionSp: '¿Quién le dice a su padre "Padre mío" (Avi)?',
+        questionHe: 'מי אומר לאביו "אבי"?',
+        options: ['Jacob to Isaac', 'Esau to Isaac', 'Joseph to Jacob', 'Isaac to Abraham'],
+        optionsSp: ['Yaakov a Itzjak', 'Esav a Itzjak', 'Yosef a Yaakov', 'Itzjak a Avraham'],
+        optionsHe: ['יעקב אל יצחק', 'עשו אל יצחק', 'יוסף אל יעקב', 'יצחק אל אברהם'],
+        correct: 'Jacob to Isaac',
+        correctSp: 'Yaakov a Itzjak',
+        correctHe: 'יעקב אל יצחק'
+      }
     ],
   },
   shemot: {
@@ -2150,6 +2172,17 @@ export const quizzes = {
           correctSp: 'Las 2 1/2 tribus',
           correctHe: 'שני וחצי השבטים',
         },
+        {
+          question: 'What was described as "the great river" in Sefer Yehoshua?',
+          questionSp: '¿Qué fue descrito como "el gran río" en el libro de Yehoshua?',
+          questionHe: 'מה מתואר כ"הנהר הגדול" בספר יהושע?',
+          options: ['Euphrates', 'Jordan', 'Nile', 'Tigris'],
+          optionsSp: ['Éufrates (Perat)', 'Jordán', 'Nilo', 'Tigris (Chiddekel)'],
+          optionsHe: ['פרת', 'ירדן', 'נילוס', 'חדקל'],
+          correct: 'Euphrates',
+          correctSp: 'Éufrates (Perat)',
+          correctHe: 'פרת'
+        }
       ]
     },
     shoftim: {
@@ -3339,6 +3372,17 @@ export const quizzes = {
             correct: 'Shaul',
             correctSp: 'Shaul',
             correctHe: 'שאול',
+          },
+          {
+            question: 'What was Saul’s family name?',
+            questionSp: '¿Cuál era el nombre de la familia de Shaul?',
+            questionHe: 'מה היה שם משפחתו של שאול?',
+            options: ['Matri', 'Abiezer', 'Korite', 'Perezite'],
+            optionsSp: ['Matri', 'Abiezer', 'Korajita', 'Perezita'],
+            optionsHe: ['מטרי', 'אביעזר', 'קרחי', 'פרצי'],
+            correct: 'Matri',
+            correctSp: 'Matri',
+            correctHe: 'מטרי'
           },
           {
             question: '"You will not be punished for this" — who said this and to whom?',
@@ -5025,6 +5069,17 @@ export const quizzes = {
           correctHe: 'איזבל לאחאב',
         },
         {
+          question: 'Who was the daughter of the king of the Sidonians?',
+          questionSp: '¿Quién era la hija del rey de los Sidonios?',
+          questionHe: 'מי הייתה בת מלך צידונים?',
+          options: ['Jezebel', 'Athaliah', 'Delilah', 'Vashti'],
+          optionsSp: ['Izevel', 'Atalía', 'Dalila', 'Vashti'],
+          optionsHe: ['איזבל', 'עתליה', 'דלילה', 'ושתי'],
+          correct: 'Jezebel',
+          correctSp: 'Izevel',
+          correctHe: 'איזבל'
+        },
+        {
           question: '"Why then are we sitting still?" — who said this and to whom?',
           questionSp: '"¿Cómo es que estamos tranquilos?" — ¿quién le dijo a quién?',
           questionHe: '"מַה אֲנַחְנוּ יֹשְׁבִים" — מי אמר למי?',
@@ -6115,6 +6170,17 @@ export const quizzes = {
           correctHe: 'חגי'
         },
         {
+          question: 'In which two prophets is the phrase "wolves of the evening" mentioned?',
+          questionSp: '¿En qué dos profetas se menciona "lobos del anochecer"?',
+          questionHe: 'באילו שני נביאים מוזכר הביטוי "זאבי ערב"?',
+          options: ['Zephaniah and Habakkuk', 'Isaiah and Jeremiah', 'Ezekiel and Daniel', 'Amos and Hosea'],
+          optionsSp: ['Tzephania y Chavakuk', 'Yeshayahu y Yirmiyahu', 'Yejezkel y Daniel', 'Amós y Hoshea'],
+          optionsHe: ['צפניה וחבקוק', 'ישעיהו וירמיהו', 'יחזקאל ודניאל', 'עמוס והושע'],
+          correct: 'Zephaniah and Habakkuk',
+          correctSp: 'Tzephania y Chavakuk',
+          correctHe: 'צפניה וחבקוק'
+        },
+        {
           question: 'Who said: "Because My House lies waste, while each of you runs to his own house"?',
           questionSp: '"¿Quién dijo: Por cuanto Mi Casa sigue desolada, cada uno de vosotros se afana por construir la suya"?',
           questionHe: '"יען ביתי אשר הוא חרב ואתם רצים איש לביתו"',
@@ -6903,7 +6969,29 @@ export const quizzes = {
             correct: 'Daniel to Darius',
             correctSp: 'Daniel a Daryavesh',
             correctHe: 'דניאל אל דריווש'
-          }
+          },
+          {
+            question: 'What was described as "the great river" in Daniel?',
+            questionSp: '¿Qué fue descrito como "el gran río" en el libro de Daniel?',
+            questionHe: 'מה מתואר כ"הנהר הגדול" בספר דניאל?',
+            options: ['Tigris (Chiddekel)', 'Euphrates', 'Ulai', 'Jordan'],
+            optionsSp: ['Chiddekel (Tigris)', 'Éufrates', 'Ulai', 'Jordán'],
+            optionsHe: ['חדקל', 'פרת', 'אולי', 'ירדן'],
+            correct: 'Tigris (Chiddekel)',
+            correctSp: 'Chiddekel (Tigris)',
+            correctHe: 'חדקל'
+          },
+          {
+            question: 'Which place name is the same word used to describe an angel’s appearance?',
+            questionSp: '¿Que nombre de un lugar es la misma palabra que se usa para describir la apariencia de un hombre/ángel?',
+            questionHe: 'איזה שם של מקום הוא אותה מילה המתארת מראה של איש/מלאך?',
+            options: ['Tarshish', 'Ophir', 'Sheba', 'Cush'],
+            optionsSp: ['Tarshish', 'Ofir', 'Sheba', 'Cush'],
+            optionsHe: ['תרשיש', 'אופיר', 'שבא', 'כוש'],
+            correct: 'Tarshish',
+            correctSp: 'Tarshish',
+            correctHe: 'תרשיש'
+          },
         ]
       },
       ezra: {
