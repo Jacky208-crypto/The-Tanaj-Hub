@@ -7457,19 +7457,19 @@ export const quizzes = {
             options: ['Ahab  ', 'Solomon ', 'David ', 'Hezekiah '],
             optionsSp: ['Ajab  ', 'Shlomó ', 'David ', 'Jizkiyahu '],
             optionsHe: ['אחאב ', 'שלמה ', 'דוד ', 'חזקיהו '],
-            correct: 'Ahab ',
-            correctSp: 'Ajab ',
-            correctHe: 'אחאב '
+            correct: 'Ahab',
+            correctSp: 'Ajab',
+            correctHe: 'אחאב'
           },
           {
             question: 'Who asked: "Is there not here a prophet of the Lord besides, that we might enquire of him?"',
             questionSp: '¿Quién preguntó: "¿No hay aquí además un profeta de H\' para que podamos consultarle?"?',
             questionHe: '"האין פה נביא לה\' עוד ונדרשה מאותו"',
             options: ['Jehoshaphat', 'Obadiah', 'Micaiah', 'Elijah'],
-            optionsSp: ['Yehoshafat ', 'Ovadyá', 'Mijayehu', 'Eliyahu'],
+            optionsSp: ['Yehoshafat', 'Ovadyá', 'Mijayehu', 'Eliyahu'],
             optionsHe: ['יהושפט', 'עובדיה', 'מיכיהו', 'אליהו'],
             correct: 'Jehoshaphat',
-            correctSp: 'Yehoshafat ',
+            correctSp: 'Yehoshafat',
             correctHe: 'יהושפט'
           },
           {
@@ -7518,4 +7518,34 @@ export const quizzes = {
           }
         ]
       }
+};
+export const allBooksQuiz = {
+  label: 'All Books',
+  labelSp: 'Todos los libros',
+  labelHe: 'כל הספרים',
+  description: 'Test your knowledge across the entire Tanach!',
+  descriptionSp: '¡Pon a prueba tu conocimiento de todo el Tanaj!',
+  descriptionHe: '!בחן את הידע שלך על כל התנ״ך',
+  questions: [
+    ...quizzes.bereshit.questions,
+    ...quizzes.shemot.questions,
+    ...quizzes.vaikra.questions,
+    ...quizzes.bamidbar.questions,
+    ...quizzes.devarim.questions,
+    ...quizzes.yehoshua.questions,
+    ...quizzes.shoftim.questions,
+    ...quizzes.shmuelAlef.questions,
+    ...quizzes.shmuelBet.questions,
+    ...quizzes.melajimAlef.questions,
+    ...quizzes.melajimBet.questions,
+    ...quizzes.neviimAjaronim.questions,
+    ...quizzes.ketuvimPoetry.questions,
+    ...quizzes.iyov.questions,
+    ...quizzes.rut.questions,
+    ...quizzes.ester.questions,
+    ...quizzes.daniel.questions,
+    ...quizzes.ezra.questions,
+    ...quizzes.nehemia.questions,
+    ...quizzes.divreHayamim.questions,
+  ]
 };

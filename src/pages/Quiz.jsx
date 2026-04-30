@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { quizzes } from '../data/quizData';
 import QuizPlayer from '../components/QuizPlayer';
 import styles from './Quiz.module.css';
+import { quizzes, allBooksQuiz } from '../data/quizData';
 
 const BOOKS_WITH_QUIZZES = ['bereshit', 'shemot', 'vaikra', 'bamidbar', 'devarim', 'yehoshua', 'shoftim', 'shmuelAlef', 'shmuelBet', 'melajimAlef', 'melajimBet', 'neviimAjaronim', 'ketuvimPoetry', 'iyov', 'rut', 'ester', 'daniel', 'ezra', 'nehemia', 'divreHayamim'];
 
@@ -13,7 +13,7 @@ export default function Quiz() {
   if (activeQuiz) {
     return (
       <QuizPlayer
-        quiz={quizzes[activeQuiz]}
+        quiz={activeQuiz === 'all' ? allBooksQuiz : quizzes[activeQuiz]}
         onBack={() => setActiveQuiz(null)}
       />
     );
@@ -28,6 +28,16 @@ export default function Quiz() {
 
       <h2 className={styles.subtitle}>Our Quizzes</h2>
       <div className={styles.cardGrid}>
+        {/* All Books card */}
+        <div className={styles.card}>
+          <p className={styles.cardTitle}>{allBooksQuiz.label}</p>
+          <p className={styles.cardText}>{allBooksQuiz.description}</p>
+          <button className={styles.goBtn} onClick={() => setActiveQuiz('all')}>
+            GO!
+          </button>
+        </div>
+
+        {/* Individual book quizzes */}
         {BOOKS_WITH_QUIZZES.map((key) => {
           const q = quizzes[key];
           return (
