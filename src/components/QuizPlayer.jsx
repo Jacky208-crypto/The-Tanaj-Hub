@@ -6,7 +6,6 @@ function shuffleAndPick(arr, n) {
   const picked = shuffled.slice(0, n);
 
   return picked.map(q => {
-    // zip options together so they stay in sync across languages
     const indices = [0, 1, 2, 3].sort(() => Math.random() - 0.5);
     return {
       ...q,
@@ -24,6 +23,7 @@ export default function QuizPlayer({ quiz, onBack }) {
   const [flashOption, setFlashOption] = useState(null);
   const [language, setLanguage] = useState('english');
   const [sessionKey, setSessionKey] = useState(0);
+  const [wrongAnswer, setWrongAnswer] = useState(null); // NEW
 
   const questions = useMemo(
     () => shuffleAndPick(quiz.questions, 5),
@@ -54,14 +54,20 @@ export default function QuizPlayer({ quiz, onBack }) {
   const handleAnswer = (option) => {
     if (flash) return;
     const isCorrect = option === getCorrect(current);
-    if (isCorrect) setScore((s) => s + 1);
+    if (isCorrect) {
+      setScore((s) => s + 1);
+      setWrongAnswer(null);
+    } else {
+      setWrongAnswer(getCorrect(current)); // NEW - save correct answer
+    }
     setFlash(isCorrect ? 'correct' : 'incorrect');
     setFlashOption(option);
     setTimeout(() => {
       setFlash(null);
       setFlashOption(null);
+      setWrongAnswer(null); // NEW - clear after moving on
       setIndex((i) => i + 1);
-    }, 600);
+    }, 2000); // increased to 2s so they can read the correct answer
   };
 
   const restart = () => {
@@ -69,12 +75,12 @@ export default function QuizPlayer({ quiz, onBack }) {
     setScore(0);
     setFlash(null);
     setFlashOption(null);
-    setSessionKey((k) => k + 1); // triggers new random 10 questions
+    setWrongAnswer(null);
+    setSessionKey((k) => k + 1);
   };
 
   return (
     <div className={styles.wrapper}>
-      {/* Language Toggle */}
       <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginBottom: '1rem' }}>
         {['english', 'spanish', 'hebrew'].map(lang => (
           <button
@@ -138,6 +144,20 @@ export default function QuizPlayer({ quiz, onBack }) {
                 );
               })}
             </div>
+
+            {/* NEW - show correct answer on wrong */}
+            {wrongAnswer && (
+              <p style={{
+                marginTop: '1rem',
+                color: '#e74c3c',
+                fontWeight: 'bold',
+                textAlign: 'center',
+                direction: language === 'hebrew' ? 'rtl' : 'ltr'
+              }}>
+                ✗ Correct answer: {wrongAnswer}
+              </p>
+            )}
+
             <p className={styles.score}>
               Question {index + 1} / {questions.length} — Correct: {score}
             </p>
