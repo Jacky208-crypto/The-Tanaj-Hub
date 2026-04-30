@@ -992,7 +992,7 @@ export const quizzes = {
         correct: 'Pesach',
         correctSp: 'Pesaj',
         correctHe: 'פסח',
-      },
+      },  
       {
         question: 'Who was it said about: "And he set up twelve pillars for the twelve tribes of Israel"',
         questionSp: '¿Sobre quién se dijo: "Puso doce pilares por las doce tribus de Israel"?',
