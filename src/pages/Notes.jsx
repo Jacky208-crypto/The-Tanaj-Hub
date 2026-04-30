@@ -546,21 +546,75 @@ const NOTES = [
       }
     ]
   },
-  /*{
-    topic: "i",
+  {
+    topic: "Important Places",
     entries: [
       {
-        title: "i",
-        summary: "i",
-        summarySp: "i"
+        title: "Places to know:",
+        summary: `- UR CASDIM: The birthplace of Terah.
+        - HARAN: Abraham traveled to Haran.
+        - BETHEL AND AI: Abraham pitched his tents between Bethel and Ai; Joshua’s ambush force positioned themselves between Bethel and Ai.
+        - PENUEL: The tower of Penuel—its inhabitants refused to provide food to Gideon and his men.
+        - ZORAH AND ESHTAOL: Manoah was from Zorah; the Spirit of the Lord began to stir Samson between Zorah and Eshtaol.
+        - PENIEL: Jacob named the place where he crossed the river Peniel.
+        - PADAN ARAM: Laban was an Aramean from Padan Aram.
+        - SHECHEM: Joseph went to look for his brothers in Shechem; Jotham spoke to the people of Shechem (on Mount Gerizim); Abimelech sowed salt over Shechem.
+        - DOTHAN: Joseph’s brothers were in Dothan; Elisha was in Dothan.
+        - KARKOR: Zebah and Zalmunna were there with their armies (15,000 men).
+        - SUCCOTH: Jacob went to Succoth after meeting Esau; the Children of Israel traveled from Rameses to Succoth; the people of Succoth refused to provide food to Gideon, and Gideon told them he would tear their flesh with the thorns and thistles of the wilderness.
+        - TABOR (Mount Tabor): Deborah and Barak; "What were the men like whom you killed at Tabor?" Gideon asked Zebah and Zalmunna.
+        - RAMESES: Pithom and Rameses—store cities built for Pharaoh; the Children of Israel traveled from Rameses to Succoth.
+        - ETAM: The Children of Israel traveled from Rameses to Succoth, and from Succoth to Etam. After killing the Philistines, Samson went down and lived in a cleft of the rock at Etam. - LEHI: The Philistines advanced upon Lehi (against Judah—specifically, against Samson).
+        - KADESH: It was situated between Kadesh and Bered, near Beer-lahai-roi; Miriam died in Kadesh.
+        - HESHBON: The Children of Israel conquered Heshbon from Sihon; furthermore, in the "Song of the Well," it is recounted that Heshbon was utterly destroyed, as far as Dibon.
+        - HEBRON (also known as Kiryat Arba): Named "Arba" after the four giants—Ahiman, Sheshai, and Talmai, the sons of Anak; the city was given to Caleb son of Jephunneh.
+        - ZIKLAG: The city where David resided while he was with Achish, the King of Gath.
+        - GATH: When the Ark was brought to Gath, God afflicted the inhabitants with hemorrhoids; Goliath also hailed from the city of Gath.
+        - GAZA: Samson was taken to Gaza and imprisoned there.
+        - ASHKELON: Samson killed thirty men in Ashkelon.
+        - EKRON: The hand of God weighed heavily upon the city while the Ark was kept there.
+        - BETHLEHEM: Rachel is buried there.
+        - ALLON BACHUT: Deborah, the nursemaid of Rebecca, is buried there.
+        - AVEL MITZRAIM: The place where the Egyptians mourned for Jacob; it was given this name because they exclaimed, "This is a grievous mourning for the Egyptians!"
+        - HORMAH: The place where the inhabitants of Arad (a Canaanite king) were defeated; it was also the site where the Children of Israel were routed when they attempted to enter the Land of Israel—despite having been forbidden to do so—and were pursued and slaughtered by the Amalekites and others as far back as Hormah.
+        - BET SHEMESH: The place where the Philistines deposited the Ark, leaving it at the house of Joshua, near a large stone.
+        - HELKAT HATZURIM: The site of the battle between twelve of Abner's men and twelve of Joab's men.
+        - KARKOR: The encampment of the army of the "Children of the East" (the southerners) during Gideon's war against Midian; their forces numbered 120,000 men. A vast number perished by the sword, and only 15,000 survived—those who were with Zebah and Zalmunna in Karkor (at the time Gideon was pursuing Zebah and Zalmunna to kill them).
+        - OFRA: Gideon’s hometown. The Angel "sat beneath the terebinth tree that was in Ofra," and Gideon placed the Ephod he had fashioned in Ofra.`,
+        summarySp: `- UR CASDIM:  tierra natal de Teraj
+        - JARAN: Abraham fue a Jaran 
+        - BETEL Y HAAY: Abraham plantó sus tiendas entre BetEl y Haay , Yehoshua la emboscada se pusieron entre BetEl y Haay
+        - PNUEL: La torre de Pnuel no le quisieron dar comida a Guidon y sus gentes y Guidon 
+        - TZORA Y ESHTAOL: Manoaj era de Tzora… , El Ruaj de H empezó a Impulsarle a Shimshon entre Tzora y Eshtaol
+        - PENIEL: Jacob el lugar que cruzo el rio lo llamo PeniEl
+        - PADAN ARAM : Laban era Sirio de Padan Aram 
+        - SHEJEM: Joseph fue a buscar a sus hermanos en Shejem, Yotam le dijo a la gente de Shejem (en el monte Guerizim) Abimelej echo sal en Shejem
+        - DOTAN : Hermanos de Joseph estaban en Dotan , Elisha estaba en Dotan
+        - CARCOR: Zebaj y Ztalmuna estaban ahí con sus ejércitos (15,000 hombres) 
+        - SUCOT : Jacob fue a Sucot después que vio a Esav , Benei Israel fueron de Ramses a Sucot, la gente de Sucot no le querían dar comida a Guidon Guidon le dijo que iba a arrancar su carne con las espinas y abrojos del Desierto
+        - TABOR - Har Tabor Deborah y Barak , Como era los hombres que mataste en Tabor que le dice Guidon a Zebaj y Tzalmuna
+        - RAMSES - Pitom y Ramses ciudades de almacenamiento para Paro , Benei Israel fuero de Ramses a Sucot 
+        - ETAM : Benei Israel fuero de Ramses a Sucot y de Sucot a Etam . Shimshon después de haber matado a los Plishtim bajo y vivió en una hendidura en la roca de Etam. 
+        - LEJI: los Plishtim se desplazaron en Leji (VS Yehuda osea VS Shimshon)
+        - CADESH : Estaba entre Cadesh Y Bered Beer Lajay Roy , Miriam  se murió en Cadesh 
+        - JESHBON- Benei Israel conquistaron Jeshbon de Sijon , también en el Cántico del pozo que Jeshon fue exterminada hasta Divon
+        - HEBRON( AKA Kriat Arba) : Arba por los 4 Gigantes Ajiman Sheshay y Talmay Benei Anak, le fue dada a Caleb Ben Yefune 
+        - TZICLAG: Ciudad de David cuando estaba con Ajish el Rey de Gat 
+        - GAT: cuando llevaron el Aron a Gat, Hashem los castigo con hemorroides y Goliat era de la ciudad de Gat 
+        - GAZA: llevan a Shimshon a Gaza a la prision
+        - ASHKELON:  Shimshon mató a los 30 hombres en Ashkelon
+        - EKRON: La mano de H' era muy pesada alli cuando tenian el aron
+        - BETLEJEM : ahí está enterrada Rajel 
+        - ALON BAJUT : ahí está enterrada Deborah la nodriza de Rivka 
+        - AVEL MITZRAIM: lugar donde lloraron los egipcios a Jacob de llamó así porque dijieron “llanto muy doloroso es este de los egipcios “
+        - JORMA : Lugar que mataron a los de Arad Rey de Cnaan , también ahí exterminaron a los de Benei Israel cuando quisieron entrar cuando ya habían dicho que no entren a Eretz Israel los de Amalek y otros más los exterminaron hasta Jorma 
+        - BET SHEMESH: donde los Pelishtim dejaron el Aron, en la casa de Yehoshua donde había una piedra grande  
+        - JELKAT HATZURIM: Ahí peliaron 12 VS 12 los de abner VS los de Yoab 
+        - KARKOR : El ejército de Benei Kedem ( los del sur) en lo de Guidon VS Midian en la guerra de ellos eran 120,000 y se murieron muchísimos por la espada y solo sobraron 15,000 que eran los que estaban con Zebaj y Zalmuna en Karkor (cuando Guidon estaba buscando a Zebaj y Zalmuna para matarlos) 
+        - OFRA: Hometown de Guidon , El Malaj “Se sentó debajo del here into que estaba en Ofra” , Guidon puso el Efod que hizo en Ofra `
       },
-      {
-        title: "i",
-        summary: "i",
-        summarySp: "i"
-      }
     ]
-  }*/
+  }
 ];
 
 export default function Notes() {
