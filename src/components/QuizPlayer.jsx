@@ -1,5 +1,21 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import styles from './QuizPlayer.module.css';
+
+function shuffleAndPick(arr, n) {
+  const shuffled = [...arr].sort(() => Math.random() - 0.5);
+  const picked = shuffled.slice(0, n);
+
+  return picked.map(q => {
+    // zip options together so they stay in sync across languages
+    const indices = [0, 1, 2, 3].sort(() => Math.random() - 0.5);
+    return {
+      ...q,
+      options: indices.map(i => q.options[i]),
+      optionsSp: q.optionsSp ? indices.map(i => q.optionsSp[i]) : undefined,
+      optionsHe: q.optionsHe ? indices.map(i => q.optionsHe[i]) : undefined,
+    };
+  });
+}
 
 export default function QuizPlayer({ quiz, onBack }) {
   const [index, setIndex] = useState(0);
@@ -7,8 +23,15 @@ export default function QuizPlayer({ quiz, onBack }) {
   const [flash, setFlash] = useState(null);
   const [flashOption, setFlashOption] = useState(null);
   const [language, setLanguage] = useState('english');
+  const [sessionKey, setSessionKey] = useState(0);
 
-  const finished = index >= quiz.questions.length;
+  const questions = useMemo(
+    () => shuffleAndPick(quiz.questions, 5),
+    [quiz, sessionKey]
+  );
+
+  const finished = index >= questions.length;
+  const current = questions[index];
 
   const getQuestion = (q) => {
     if (language === 'spanish' && q.questionSp) return q.questionSp;
@@ -30,7 +53,6 @@ export default function QuizPlayer({ quiz, onBack }) {
 
   const handleAnswer = (option) => {
     if (flash) return;
-    const current = quiz.questions[index];
     const isCorrect = option === getCorrect(current);
     if (isCorrect) setScore((s) => s + 1);
     setFlash(isCorrect ? 'correct' : 'incorrect');
@@ -47,9 +69,8 @@ export default function QuizPlayer({ quiz, onBack }) {
     setScore(0);
     setFlash(null);
     setFlashOption(null);
+    setSessionKey((k) => k + 1); // triggers new random 10 questions
   };
-
-  const current = quiz.questions[index];
 
   return (
     <div className={styles.wrapper}>
@@ -77,20 +98,33 @@ export default function QuizPlayer({ quiz, onBack }) {
         {finished ? (
           <>
             <p className={styles.question}>Quiz Finished! 🎉</p>
-            <p className={styles.score}>Final Score: {score} / {quiz.questions.length}</p>
-            <button className={styles.restartBtn} onClick={restart}>Play Again</button>
-            {onBack && <button className={styles.backLink} onClick={onBack}>← Back to Quizzes</button>}
+            <p className={styles.score}>
+              Final Score: {score} / {questions.length}
+            </p>
+            <button className={styles.restartBtn} onClick={restart}>
+              Play Again
+            </button>
+            {onBack && (
+              <button className={styles.backLink} onClick={onBack}>
+                ← Back to Quizzes
+              </button>
+            )}
           </>
         ) : (
           <>
-            <p className={styles.question} style={{ direction: language === 'hebrew' ? 'rtl' : 'ltr' }}>
+            <p
+              className={styles.question}
+              style={{ direction: language === 'hebrew' ? 'rtl' : 'ltr' }}
+            >
               {getQuestion(current)}
             </p>
             <div className={styles.options}>
               {getOptions(current).map((opt) => {
                 let cls = styles.optionBtn;
                 if (flashOption === opt) {
-                  cls += flash === 'correct' ? ` ${styles.correct}` : ` ${styles.incorrect}`;
+                  cls += flash === 'correct'
+                    ? ` ${styles.correct}`
+                    : ` ${styles.incorrect}`;
                 }
                 return (
                   <button
@@ -104,7 +138,9 @@ export default function QuizPlayer({ quiz, onBack }) {
                 );
               })}
             </div>
-            <p className={styles.score}>Correct Answers: {score}</p>
+            <p className={styles.score}>
+              Question {index + 1} / {questions.length} — Correct: {score}
+            </p>
           </>
         )}
       </div>

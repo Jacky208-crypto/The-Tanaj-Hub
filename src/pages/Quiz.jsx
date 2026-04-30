@@ -4,7 +4,9 @@ import { quizzes } from '../data/quizData';
 import QuizPlayer from '../components/QuizPlayer';
 import styles from './Quiz.module.css';
 
-const BOOKS_WITH_QUIZZES = ['bereshit', 'shemot', 'bamidbar'];
+const BOOKS_WITH_QUIZZES = ['bereshit', 'shemot', 'vaikra', 'bamidbar', 'devarim', 'yehoshua', 'shoftim', 'shmuelAlef', 'shmuelBet', 'melajimAlef', 'melajimBet', 'neviimAjaronim' 
+
+];
 
 export default function Quiz() {
   const navigate = useNavigate();
