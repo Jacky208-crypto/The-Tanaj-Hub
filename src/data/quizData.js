@@ -989,9 +989,9 @@ export const quizzes = {
         options: ["Pesach", "Shavuot", "Sukkot", "All the festivals"],
         optionsSp: ["Pesaj", "Shavuot", "Sucot", "Todas las festividades"],
         optionsHe: ["פסח", "שבועות", "סוכות", "כל הרגלים"],
-        correct: 'All the festivals',
-        correctSp: 'Todas las festividades',
-        correctHe: 'כל הרגלים',
+        correct: 'Pesach',
+        correctSp: 'Pesaj',
+        correctHe: 'פסח',
       },
       {
         question: 'Who was it said about: "And he set up twelve pillars for the twelve tribes of Israel"',
