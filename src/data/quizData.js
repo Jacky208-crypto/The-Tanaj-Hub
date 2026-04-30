@@ -5082,7 +5082,7 @@ export const quizzes = {
           optionsSp: ['Yehoram sobre Ben Hadad', 'Saúl sobre David', 'Ajaz sobre Tiglat Pileser', 'Tzidkiyahu sobre Nabucodonosor'],
           optionsHe: ['יהורם על בן הדד', 'שאול על דוד', 'אחז על תגלת פלאסר', 'צדקיהו על נבוכדנצר'],
           correct: 'Jehoram about Ben Hadad',
-          correctSp: 'Yehoram a Ben Hadad con naaman',
+          correctSp: 'Yehoram a Ben Hadad',
           correctHe: 'יהורם על בן הדד'
         },
         {
@@ -5974,7 +5974,7 @@ export const quizzes = {
         {
           question: 'To whom was it said: "Who said: These are the men that devise iniquity, and that give wicked counsel in this city... prophesy against them"?',
           questionSp: '¿A quién se le dijo: "Estos son los hombres que traman iniquidad y que dan mal consejo en esta ciudad... profetiza pues contra ellos"?',
-          questionHe: '"בן אדם אלה האנשים החושבים אוון והיעצים עצת רע בעיר הזאת... הנבא עליהם" — למי נאמר?',
+          questionHe: '"  אלה האנשים החושבים אוון והיעצים עצת רע בעיר הזאת... הנבא עליהם" — למי נאמר?',
           options: ['Ezekiel', 'Jeremiah', 'Daniel', 'Amos'],
           optionsSp: ['Yejezkel', 'Yirmiyahu', 'Daniel', 'Amos'],
           optionsHe: ['יחזקאל', 'ירמיהו', 'דניאל', 'עמוס'],
@@ -6542,7 +6542,7 @@ export const quizzes = {
           },
           {
             question: 'Who said: "No, but we will return with you to your people"?',
-            questionSp: '¿Quién diji: "No, sino que volveremos contigo a tu pueblo"?',
+            questionSp: '¿Quién dijo: "No, sino que volveremos contigo a tu pueblo"?',
             questionHe: '"כי אתך נשוב לעמך"',
             options: ['Ruth and Orpah', 'The women of Bethlehem', 'Boaz', 'The reapers'],
             optionsSp: ['Rut y Orpa', 'Las mujeres de Belén', 'Boaz', 'Los segadores'],
@@ -6620,7 +6620,7 @@ export const quizzes = {
           {
             question: 'Who said about Boaz: "He has not left off his kindness to the living and to the dead"?',
             questionSp: '¿Quién dijo sobre Boaz: "No dejó de ser benevolente tanto hacia los vivos como hacia los muertos"?',
-            questionHe: '"אשר לא עזב חסדו את החיים ואת המתים"',
+            questionHe: ' מי דיבר על בועז? "אשר לא עזב חסדו את החיים ואת המתים"',
             options: ['Naomi', 'Ruth', 'The kinsman', 'The elders'],
             optionsSp: ['Noemí', 'Rut', 'El pariente', 'Los ancianos'],
             optionsHe: ['נעמי', 'רות', 'הגואל', 'הזקנים'],
@@ -6703,7 +6703,7 @@ export const quizzes = {
           {
             question: 'Who "plotted to lay hands on the king" in a fit of rage?',
             questionSp: '¿Quiénes, en un arranque de ira, "planearon matar al rey"?',
-            questionHe: '"קצף בגתן ותרש... ויבקשו לשלוח יד במלך"',
+            questionHe: 'מי, בהתקף זעם, "תכנן להרוג את המלך"?',
             options: ['Bigtan and Teresh', 'Haman and his sons', 'The princes of Persia', 'The king’s guard'],
             optionsSp: ['Bigtán y Teresh', 'Amán y sus hijos', 'Los príncipes de Persia', 'La guardia del rey'],
             optionsHe: ['בגתן ותרש', 'המן ובניו', 'שרי פרס', 'שומרי המלך'],
@@ -6806,15 +6806,103 @@ export const quizzes = {
         description: 'Study the key points of the Book of Daniel with this simple quiz! Explore the themes of faith, courage, and divine intervention as you test your knowledge of the story of Daniel and his experiences in the Babylonian exile. Discover the timeless lessons about resilience, trust in God, and the power of standing firm in one\'s beliefs that this book offers.',
         questions: [
           {
-            question: 'In which book does it say: "Until the day breathes and the shadows flee"?',
-            questionSp: '¿En qué libro sale: "Cuando refresque el día y declinen las sombras de la tarde"?',
-            questionHe: '"עד שיפוח היום ונסו הצללים"',
-            options: ['Tehilim', 'Mishle', 'Kohelet', 'Shir Hashirim'],
-            optionsSp: ['Tehilim', 'Mishle', 'Kohelet', 'Shir Hashirim'],
-            optionsHe: ['תהילים', 'משלי', 'קהלת', 'שיר השירים'],
-            correct: 'Shir Hashirim',
-            correctSp: 'Shir Hashirim',
-            correctHe: 'שיר השירים'
+            question: 'Who was challenged with the question: "Who is the god that shall deliver you out of my hands?"',
+            questionSp: '¿A quiénes se les desafió con la pregunta: "¿Quién es el dios que os librará de mis manos?"?',
+            questionHe: '"ומן הוא אלה די ישיזבנכון מן ידי"',
+            options: ['Hananiah, Mishael, and Azariah', 'Daniel', 'The Chaldean wise men', 'The Jewish exiles'],
+            optionsSp: ['Jananía, Mishael y Azaryá', 'Daniel', 'Los sabios caldeos', 'Los exiliados de Judá'],
+            optionsHe: ['חנניה, מישאל ועזריה', 'דניאל', 'חכמי כשדים', 'גלות יהודה'],
+            correct: 'Hananiah, Mishael, and Azariah',
+            correctSp: 'Jananía, Mishael y Azaryá',
+            correctHe: 'חנניה, מישאל ועזריה'
+          },
+          {
+            question: 'Who boldly replied: "We have no need to answer you in this matter"?',
+            questionSp: '¿Quiénes respondieron audazmente: "No tenemos necesidad de contestarte sobre este asunto"?',
+            questionHe: '"לא חשחין אנחנא על דנא פתגם להתיבותך"',
+            options: ['Shadrach, Meshach, and Abed-nego', 'Daniel', 'The High Priest', 'The princes of Babylon'],
+            optionsSp: ['Shadraj, Meshaj y Abed-nego', 'Daniel', 'El Sumo Sacerdote', 'Los príncipes de Babilonia'],
+            optionsHe: ['שדרך, מישך ועבד נגו', 'דניאל', 'הכהן הגדול', 'שרי בבל'],
+            correct: 'Shadraj, Meshaj y Abed-nego',
+            correctSp: 'Jananía, Mishael y Azaryá ',
+            correctHe: 'שדרך, מישך ועבד נגו'
+          },
+          {
+            question: 'About whom was it said: "And the appearance of the fourth is like a son of the gods"?',
+            questionSp: '¿Sobre quién se dijo: "Y la apariencia del cuarto es como la de un hijo de los Dioses"?',
+            questionHe: '"ורוה די רביעיה דמה לבר אלהין"',
+            options: ['An angel in the furnace', 'Daniel in the den', 'Gabriel', 'Michael'],
+            optionsSp: ['Un ángel en el horno', 'Daniel en el foso', 'Gabriel', 'Miguel'],
+            optionsHe: ['מלאך בכבשן האש', 'דניאל בגוב האריות', 'גבריאל', 'מיכאל'],
+            correct: 'An angel in the furnace',
+            correctSp: 'Un ángel en el horno',
+            correctHe: 'מלאך בכבשן האש'
+          },
+          {
+            question: 'Who was so terrified that "the joints of his loins were loosed, and his knees smote one against another"?',
+            questionSp: '¿Quién se aterró tanto que "se le aflojaron las coyunturas de sus lomos y sus rodillas se golpeaban entre sí"?',
+            questionHe: '"וקטרי חרצה משתרין וארכבתה דא לדא נקשן"',
+            options: ['Belshazzar', 'Nebuchadnezzar', 'Darius', 'The Queen Mother'],
+            optionsSp: ['Belshatzar', 'Nebujadnetzar', 'Daryavesh', 'La Reina'],
+            optionsHe: ['בלשאצר', 'נבוכדנצר', 'דריווש', 'המלכה'],
+            correct: 'Belshazzar',
+            correctSp: 'Belshatzar',
+            correctHe: 'בלשאצר'
+          },
+          {
+            question: 'Who advised the trembling king: "Let not your thoughts terrify you, nor let your countenance be changed"?',
+            questionSp: '¿Quién aconsejó al tembloroso rey: "No te aterren tus pensamientos, ni se altere tu semblante"?',
+            questionHe: '"אל יבהלוך רעיוניך וזיווך אל ישתנו"',
+            options: ['The Queen to Belshazzar', 'Daniel to Nebuchadnezzar', 'Daniel to Belshazzar', 'Esther to Ajashverosh'],
+            optionsSp: ['La Reina a Belshatzar', 'Daniel a Nebujadnetzar', 'Daniel a Belshatzar', 'Esther a Ajashverosh'],
+            optionsHe: ['המלכה אל בלשאצר', 'דניאל אל נבוכדנצר', 'דניאל לבלשאצר', 'אסתר אל אחשורוש'],
+            correct: 'The Queen to Belshazzar',
+            correctSp: 'La Reina a Belshatzar',
+            correctHe: 'המלכה אל בלשאצר'
+          },
+          {
+            question: 'Who said: "Keep your gifts for yourself, and give your rewards to another"?',
+            questionSp: '¿Quién dijo: "Guarda tus obsequios para ti y dale tus premios a otros"?',
+            questionHe: '"מתנתך לך להוין ונבזביתך לאחר הב"',
+            options: ['Daniel to Belshazzar', 'Elisha to Naaman', 'Samuel to Saul', 'Abraham to the King of Sodom'],
+            optionsSp: ['Daniel a Belshatzar', 'Eliseo a Naamán', 'Samuel a Saúl', 'Abraham al rey de Sodoma'],
+            optionsHe: ['דניאל אל בלשאצר', 'אלישע אל נעמן', 'שמואל אל שאול', 'אברהם אל מלך סדום'],
+            correct: 'Daniel to Belshazzar',
+            correctSp: 'Daniel a Belshatzar',
+            correctHe: 'דניאל אל בלשאצר'
+          },
+          {
+            question: 'Of whom was it written: "Forasmuch as he was faithful, neither was there any error or fault found in him"?',
+            questionSp: '¿De quién se escribió: "Así como era fiel al rey, no se le hallaba error o falta"?',
+            questionHe: '"וכל שלו ושחיתה לא השתכחת עלוהי"',
+            options: ['Daniel', 'Joseph', 'Mordecai', 'Nehemiah'],
+            optionsSp: ['Daniel', 'Yosef', 'Mordejai', 'Nehemías'],
+            optionsHe: ['דניאל', 'יוסף', 'מרדכי', 'נחמיה'],
+            correct: 'Daniel',
+            correctSp: 'Daniel',
+            correctHe: 'דניאל'
+          },
+          {
+            question: 'About which king was it said: "No instrument of music was brought before him: and his sleep went from him"?',
+            questionSp: '¿De qué rey se dice: "Nada le entretenía y su sueño huyó de él"?',
+            questionHe: '"ודחון לא הנעל קדמוהי ושנתה נדת עלוהי"',
+            options: ['Darius', 'Nebuchadnezzar', 'Belshazzar', 'Ahasuerus'],
+            optionsSp: ['Daryavesh', 'Nebujadnetzar', 'Belshatzar', 'Ajashverosh'],
+            optionsHe: ['דריווש', 'נבוכדנצר', 'בלשאצר', 'אחשורוש'],
+            correct: 'Darius',
+            correctSp: 'Daryavesh',
+            correctHe: 'דריווש'
+          },
+          {
+            question: 'Who declared: "Before you, O king, have I done no hurt"?',
+            questionSp: '¿Quién declaró: "Por cuanto no te he causado perjuicio alguno (ante ti, oh rey)"?',
+            questionHe: '"ואף קדמך מלכא חבולה לא עבדת"',
+            options: ['Daniel to Darius', 'David to Saul', 'Mephibosheth to David', 'Joseph to his brothers'],
+            optionsSp: ['Daniel a Daryavesh', 'David a Saúl', 'Mefiboshet a David', 'Yosef a sus hermanos'],
+            optionsHe: ['דניאל אל דריווש', 'דוד אל שאול', 'מפיבשת אל דוד', 'יוסף אל אחיו'],
+            correct: 'Daniel to Darius',
+            correctSp: 'Daniel a Daryavesh',
+            correctHe: 'דניאל אל דריווש'
           }
         ]
       },
@@ -6823,15 +6911,92 @@ export const quizzes = {
         description: 'Study the key points of the Books of Ezra with this simple quiz! Explore the themes of leadership, community rebuilding, and spiritual renewal as you test your knowledge of the events and characters in these books. Discover the timeless lessons about resilience, faith, and the power of collective effort that these books offer.',
         questions: [
           {
-            question: 'In which book does it say: "Until the day breathes and the shadows flee"?',
-            questionSp: '¿En qué libro sale: "Cuando refresque el día y declinen las sombras de la tarde"?',
-            questionHe: '"עד שיפוח היום ונסו הצללים"',
-            options: ['Tehilim', 'Mishle', 'Kohelet', 'Shir Hashirim'],
-            optionsSp: ['Tehilim', 'Mishle', 'Kohelet', 'Shir Hashirim'],
-            optionsHe: ['תהילים', 'משלי', 'קהלת', 'שיר השירים'],
-            correct: 'Shir Hashirim',
-            correctSp: 'Shir Hashirim',
-            correctHe: 'שיר השירים'
+            question: 'Who issued the proclamation: "All the kingdoms of the earth has the Lord given me"?',
+            questionSp: '¿Quién proclamó: "Todos los reinos de la tierra me los ha dado el Eterno"?',
+            questionHe: '"כל ממלכות הארץ נתן לי ה\'"',
+            options: ['Cyrus (Coresh)', 'Darius', 'Artaxerxes', 'Nebuchadnezzar'],
+            optionsSp: ['Coresh (Ciro)', 'Daryavesh', 'Artajshasta', 'Nebujadnetzar'],
+            optionsHe: ['כורש', 'דריווש', 'ארתחששתא', 'נבוכדנצר'],
+            correct: 'Cyrus (Coresh)',
+            correctSp: 'Coresh (Ciro)',
+            correctHe: 'כורש'
+          },
+          {
+            question: 'Regarding the returning exiles, who decreed: "Let the men of his place help him with silver, gold, goods, and beasts"?',
+            questionSp: '¿Quién decretó sobre los exiliados: "Que le ayuden sus vecinos con plata, oro, mercancías y bestias"?',
+            questionHe: '"ינשאוהו אנשי מקומו בכסף ובזהב וברכוש ובבהמה"',
+            options: ['Cyrus', 'Ezra', 'Zerubbabel', 'Nehemiah'],
+            optionsSp: ['Coresh', 'Ezra', 'Zorobabel', 'Nehemías'],
+            optionsHe: ['כורש', 'עזרא', 'זרובבל', 'נחמיה'],
+            correct: 'Cyrus',
+            correctSp: 'Coresh',
+            correctHe: 'כורש'
+          },
+          {
+            question: 'Who built the altar to offer burnt offerings "as it is written in the Law of Moses the man of God"?',
+            questionSp: '¿Quiénes construyeron el altar para ofrecer holocaustos "conforme a lo escrito en la ley de Moshé, hombre de Dios"?',
+            questionHe: '"ויבנו את מזבח אלהי ישראל להעלות עליו עלות ככתוב בתורת משה איש האלהים"',
+            options: ['Jeshua, Zerubbabel, and their brothers', 'Ezra and the Levites', 'Nehemiah and the builders', 'The prophets Haggai and Zechariah'],
+            optionsSp: ['Yeshua, Zorobabel y sus hermanos', 'Ezra y los Levitas', 'Nehemías y los constructores', 'Los profetas Jagai y Zejaryá'],
+            optionsHe: ['ישוע זרובבל ואחיהם', 'עזרא והלויים', 'נחמיה והבונים', 'חגי וזכריה'],
+            correct: 'Jeshua, Zerubbabel, and their brothers',
+            correctSp: 'Yeshua, Zorobabel y sus hermanos',
+            correctHe: 'ישוע זרובבל ואחיהם'
+          },
+          {
+            question: 'In what moment could the people "not discern the noise of the shout of joy from the noise of the weeping"?',
+            questionSp: '¿En qué momento "la gente no podía discernir entre la voz de los gritos de alegría y la voz del llanto del pueblo"?',
+            questionHe: '"אין העם מכירים קול תרועת השמחה לקול בכי העם"',
+            options: ['At the foundation of the Temple', 'At the reading of the Law', 'At the dedication of the wall', 'At the departure from Babylon'],
+            optionsSp: ['En la colocación de los cimientos del Templo', 'En la lectura de la Ley', 'En la dedicación de la muralla', 'En la salida de Babilonia'],
+            optionsHe: ['ביסוד ההיכל', 'בקריאת התורה', 'בחנוכת החומה', 'בצאתם מבבל'],
+            correct: 'At the foundation of the Temple',
+            correctSp: 'En la colocación de los cimientos del Templo',
+            correctHe: 'ביסוד ההיכל'
+          },
+          {
+            question: 'Who reported to Ezra: "The hand of the princes and rulers has been chief in this trespass"?',
+            questionSp: '¿Quiénes le dijeron a Ezra: "La mano de los príncipes y de los altos dignatarios ha sido la primera en esta infidelidad"?',
+            questionHe: '"ויד השרים והסגנים הייתה במעל הזה ראשונה"',
+            options: ['The princes (ministers)', 'The Levites', 'The prophets', 'The people of the land'],
+            optionsSp: ['Los príncipes (ministros)', 'Los Levitas', 'Los profetas', 'La gente de la tierra'],
+            optionsHe: ['השרים', 'הלווים', 'הנביאים', 'עם הארץ'],
+            correct: 'The princes (ministers)',
+            correctSp: 'Los príncipes(ministros)',
+            correctHe: 'השרים'
+          },
+          {
+            question: 'Who said: "Then were assembled to me every one that trembled at the words of the God of Israel"?',
+            questionSp: '¿Quien dijo: "Se reunieron junto a mí todos los que temblaban ante las palabras del Dios de Israel"?',
+            questionHe: '"ואלי יאספו כל חרד בדברי אלהי ישראל"',
+            options: ['Yehoshua ben Yehotzadac', 'Zerubabel ben Shealtiel', 'Ezra', 'Nehemia'],
+            optionsSp: ['Yehoshua ben Yehotzadac', 'Zerubabel ben Shealtiel', 'Ezra', 'Nehemia'],
+            optionsHe: ['יהושע בן יהוצדק', 'זרובבל בן שאלתיאל', 'עזרא', 'נחמיה'],
+            correct: 'Ezra',
+            correctSp: 'Ezra',
+            correctHe: 'עזרא'
+          },
+          {
+            question: 'Who prayed: "I am ashamed and blush to lift up my face to You, my God"?',
+            questionSp: '¿Quién oró: "Estoy avergonzado de presentar mi rostro ante Ti"?',
+            questionHe: '"אלהי בשתי ונכלמתי להרים אלהי פני אליך"',
+            options: ['Ezra', 'Nehemiah', 'Daniel', 'Jeremiah'],
+            optionsSp: ['Ezra', 'Nehemías', 'Daniel', 'Yirmiyahu'],
+            optionsHe: ['עזרא', 'נחמיה', 'דניאל', 'ירמיהו'],
+            correct: 'Ezra',
+            correctSp: 'Ezra ',
+            correctHe: 'עזרא'
+          },
+          {
+            question: 'Who told who: "Arise; for this matter belongs to you: we also will be with you: be of good courage, and do it"?',
+            questionSp: '¿Quién le dijo a quien: "Levántate, pues se trata de un asunto tuyo y estamos contigo. Sé fuerte y pon manos a la obra"?',
+            questionHe: '"קום כי עליך הדבר ואנחנו עמך חזק ועשה"',
+            options: ['Shechaniah to Ezra', 'Shecaniah to Nehemia', 'Zejaria to Ezra', 'Haggai to Ezra'],
+            optionsSp: ['Shejanyá a Ezra', 'Shejania a Nehemia', 'Zejaria a Ezra', 'Jagai a Ezra'],
+            optionsHe: ['שכניה לעזרא', 'שכניה לנחמיה', 'זכריה לעזרא', 'חגי לעזרא'],
+            correct: 'Shechaniah to Ezra',
+            correctSp: 'Shejanyá a Ezra',
+            correctHe: 'שכניה לעזרא'
           }
         ]
       },
@@ -6840,15 +7005,125 @@ export const quizzes = {
         description: 'Study the key points of the Books of Nehemiah with this simple quiz! Explore the themes of leadership, community rebuilding, and spiritual renewal as you test your knowledge of the events and characters in these books. Discover the timeless lessons about resilience, faith, and the power of collective effort that these books offer.',
         questions: [
           {
-            question: 'In which book does it say: "Until the day breathes and the shadows flee"?',
-            questionSp: '¿En qué libro sale: "Cuando refresque el día y declinen las sombras de la tarde"?',
-            questionHe: '"עד שיפוח היום ונסו הצללים"',
-            options: ['Tehilim', 'Mishle', 'Kohelet', 'Shir Hashirim'],
-            optionsSp: ['Tehilim', 'Mishle', 'Kohelet', 'Shir Hashirim'],
-            optionsHe: ['תהילים', 'משלי', 'קהלת', 'שיר השירים'],
-            correct: 'Shir Hashirim',
-            correctSp: 'Shir Hashirim',
-            correctHe: 'שיר השירים'
+            question: 'Who reported the dire situation: "The remnant that are left of the captivity there in the province are in great affliction and reproach"?',
+            questionSp: '¿Quién reportó la situación: "El resto de los que quedaron del cautiverio en la provincia están en gran aflicción y oprobio"?',
+            questionHe: '"הנשארים אשר נשארו מן השבי שם במדינה ברעה גדולה ובחרפה"',
+            options: ['Hanani to Nehemiah', 'Zerubbabel to Ezra', 'Haggai to the people', 'Sanballat to Tobiah'],
+            optionsSp: ['Jananí a Nehemías', 'Zorobabel a Ezra', 'Jagai al pueblo', 'Sanbalat a Tobías'],
+            optionsHe: ['חנני אל נחמיה', 'זרובבל אל עזרא', 'חגי אל העם', 'סנבלט אל טוביה'],
+            correct: 'Hanani to Nehemiah',
+            correctSp: 'Jananí a Nehemías',
+            correctHe: 'חנני אל נחמיה'
+          },
+          {
+            question: 'Who prayed: "I beseech thee, O Lord God of heaven... I and my father\'s house have sinned"?',
+            questionSp: '¿Quién oró: "Te ruego, oh Eterno, Dios del cielo... yo y mi casa paterna hemos pecado"?',
+            questionHe: '"אנא ה\' אלהי השמים... ואני ובית אבי חטאנו"',
+            options: ['Nehemiah', 'Ezra', 'Daniel', 'David'],
+            optionsSp: ['Nehemías', 'Ezra', 'Daniel', 'David'],
+            optionsHe: ['נחמיה', 'עזרא', 'דניאל', 'דוד'],
+            correct: 'Nehemiah',
+            correctSp: 'Nehemías a Dios (H\')',
+            correctHe: 'נחמיה'
+          },
+          {
+            question: 'Who was identified as "the keeper of the king\'s forest"?',
+            questionSp: '¿Quién fue identificado como "el guardián del bosque del rey"?',
+            questionHe: 'מי זוהה כשומר יער המלך"?',
+            options: ['Asaph', 'Artabanus', 'Arioch', 'Memujan'],
+            optionsSp: ['Asaf', 'Artabán', 'Arioj', 'Memuján'],
+            optionsHe: ['אסף', 'ארטבנוס', 'אריוך', 'ממוכן'],
+            correct: 'Asaph',
+            correctSp: 'Asaf',
+            correctHe: 'אסף'
+          },
+          {
+            question: 'Who went out by night to inspect the walls, noting: "Neither was there any beast with me, save the beast that I rode upon"?',
+            questionSp: '¿Quién salió de noche e inspeccionó los muros diciendo: "Tampoco había bestia alguna conmigo, salvo el animal en que cabalgaba"?',
+            questionHe: '"ובהמה אין עמי כי אם הבהמה אשר אני רוכב בה"',
+            options: ['Nehemiah', 'Zerubbabel', 'Ezra', 'Joshua'],
+            optionsSp: ['Nehemías', 'Zorobabel', 'Ezra', 'Yehoshúa'],
+            optionsHe: ['נחמיה', 'זרובבל', 'עזרא', 'יהושע'],
+            correct: 'Nehemiah',
+            correctSp: 'Nehemías',
+            correctHe: 'נחמיה'
+          },
+          {
+            question: 'Who complained: "The strength of the bearers of burdens is decayed, and there is much rubbish"?',
+            questionSp: '¿Quién se quejó: "Desfallecen ya las fuerzas de los cargadores y los escombros son muchos"?',
+            questionHe: '"כשל כח הסבל והעפר הרבה"',
+            options: ['The men of Judah to Nehemiah', 'The builders to Zerubbabel', 'The servants to Sanballat', 'The Levites to Ezra'],
+            optionsSp: ['Judá a Nehemías', 'Los constructores a Zorobabel', 'Los siervos a Sanbalat', 'Los Levitas a Ezra'],
+            optionsHe: ['יהודה אל נחמיה', 'הבונים אל זרובבל', 'העבדים אל סנבלט', 'הלווים אל עזרא'],
+            correct: 'The men of Judah to Nehemiah',
+            correctSp: 'Judá a Nehemías',
+            correctHe: 'יהודה אל נחמיה'
+          },
+          {
+            question: 'Who stood upon a pulpit of wood and "was above all the people"?',
+            questionSp: '¿Quién estaba en un púlpito de madera y "estaba situado más arriba que toda la gente"?',
+            questionHe: '"כי מעל כל העם היה"',
+            options: ['Ezra', 'Nehemiah', 'Hilkiah', 'Aaron'],
+            optionsSp: ['Ezra', 'Nehemías', 'Jilkiyá', 'Aharón'],
+            optionsHe: ['עזרא', 'נחמיה', 'חלקיה', 'אהרן'],
+            correct: 'Ezra',
+            correctSp: 'Ezra',
+            correctHe: 'עזרא'
+          },
+          {
+            question: 'Who addressed the weeping people saying: "This day is holy unto the Lord your God; mourn not, nor weep"?',
+            questionSp: '¿Quiénes dijeron al pueblo: "Este día es sagrado para el Eterno vuestro Dios. No os lamentéis ni lloréis"?',
+            questionHe: '"היום קדש הוא לה\' אלהיכם אל תתאבלו ואל תבכו"',
+            options: ['Ezra and Nehemiah', 'Moses and Aaron', 'Haggai and Zechariah', 'The High Priest'],
+            optionsSp: ['Ezra y Nehemías', 'Moshé y Aharón', 'Jagai y Zejaryá', 'El Sumo Sacerdote'],
+            optionsHe: ['עזרא ונחמיה', 'משה ואהרן', 'חגי וזכריה', 'הכהן הגדול'],
+            correct: 'Ezra and Nehemiah',
+            correctSp: 'Ezra y Nehemías',
+            correctHe: 'עזרא ונחמיה'
+          },
+          {
+            question: 'About which celebration was it said: "For since the days of Jeshua the son of Nun... had not the children of Israel done so"?',
+            questionSp: '¿Sobre qué celebración se dijo: "Cosa que no habían hecho los hijos de Israel desde los días de Yehoshúa bin Nun"?',
+            questionHe: '"כי לא עשו מימי ישוע בן נון... כן בני ישראל"',
+            options: ['Sukkot', 'Passover', 'Shavuot', 'Purim'],
+            optionsSp: ['Sucot', 'Pésaj', 'Shavuot', 'Purim'],
+            optionsHe: ['סוכות', 'פסח', 'שבועות', 'פורים'],
+            correct: 'Sukkot',
+            correctSp: 'Sucot',
+            correctHe: 'סוכות'
+          },
+          {
+            question: 'Who proclaimed: "But You are a God ready to pardon, gracious and merciful, slow to anger"?',
+            questionSp: '¿Quién proclamó: "Pero Tú eres un Dios presto al perdón, pleno de misericordia, lento en ira"?',
+            questionHe: '"ואתה אלוה סליחות חנון ורחום ארך אפים"',
+            options: ['The Levites in their prayer', 'Nehemiah in his petition', 'Ezra in his sermon', 'The people in their oath'],
+            optionsSp: ['Los Levitas en su oración', 'Nehemías en su petición', 'Ezra en su sermón', 'El pueblo en su juramento'],
+            optionsHe: ['הלווים', 'נחמיה', 'עזרא', 'העם'],
+            correct: 'The Levites in their prayer',
+            correctSp: 'Los Levitas en su oración',
+            correctHe: 'הלווים'
+          },
+          {
+            question: 'Who was excluded because "they met not the children of Israel with bread and with water"?',
+            questionSp: '¿Quiénes fueron excluidos porque "no brindaron pan ni agua"?',
+            questionHe: '"על אשר לא קדמו את בני ישראל בלחם ובמים"',
+            options: ['Ammon and Moab', 'Edom and Amalek', 'Egypt and Assyria', 'The Samaritans'],
+            optionsSp: ['Amón y Moab', 'Edom y Amalek', 'Egipto y Asiria', 'Los Samaritanos'],
+            optionsHe: ['עמון ומואב', 'אדום ועמלק', 'מצרים ואשור', 'השומרונים'],
+            correct: 'Ammon and Moab',
+            correctSp: 'Amón y Moab',
+            correctHe: 'עמון ומואב'
+          },
+          {
+            question: 'Who threatened the merchants: "Why lodge you about the wall? if you do so again, I will lay hands on you"?',
+            questionSp: '¿Quién amenazó a los vendedores: "¿Por qué os quedáis junto a la muralla? Si lo hacéis de nuevo, os echaré mano"?',
+            questionHe: '"מדוע אתם לנים נגד החומה אם תשנו יד אשלח בכם"',
+            options: ['Nehemiah', 'Ezra', 'The Temple Guard', 'The Governor of Samaria'],
+            optionsSp: ['Nehemías', 'Ezra', 'La guardia del Templo', 'El gobernador de Samaria'],
+            optionsHe: ['נחמיה', 'עזרא', 'שומר ההיכל', 'פחת שומרון'],
+            correct: 'Nehemiah',
+            correctSp: 'Nehemías',
+            correctHe: 'נחמיה'
           }
         ]
       },
@@ -6857,15 +7132,389 @@ export const quizzes = {
         description: 'Study the key points of the Books of Divre Hayamim with this simple quiz! Explore the themes of history, kingship, and divine providence as you test your knowledge of the events and characters in these books. Discover the timeless lessons about leadership, faith, and the consequences of human actions that these books offer.',
         questions: [
           {
-            question: 'In which book does it say: "Until the day breathes and the shadows flee"?',
-            questionSp: '¿En qué libro sale: "Cuando refresque el día y declinen las sombras de la tarde"?',
-            questionHe: '"עד שיפוח היום ונסו הצללים"',
-            options: ['Tehilim', 'Mishle', 'Kohelet', 'Shir Hashirim'],
-            optionsSp: ['Tehilim', 'Mishle', 'Kohelet', 'Shir Hashirim'],
-            optionsHe: ['תהילים', 'משלי', 'קהלת', 'שיר השירים'],
-            correct: 'Shir Hashirim',
-            correctSp: 'Shir Hashirim',
-            correctHe: 'שיר השירים'
+            question: 'Who said: "Thine, O Lord, is the greatness, and the power, and the glory, and the victory, and the majesty"?',
+            questionSp: '¿Quién dijo: "Tuya es, oh Eterno, la grandeza, el poder, la gloria, la victoria y la majestad porque todo cuanto hay en el cielo y en la tierra es Tuyo"?',
+            questionHe: '"לך ה\' הגדולה והגבורה והתפארת והנצח וההוד כי כל בשמים ובארץ לך"',
+            options: ['David', 'Solomon', 'Jehoshaphat', 'Hezekiah'],
+            optionsSp: ['David', 'Shlomó', 'Yehoshafat', 'Jizkiyahu'],
+            optionsHe: ['דוד', 'שלמה', 'יהושפט', 'חזקיהו'],
+            correct: 'David',
+            correctSp: 'David',
+            correctHe: 'דוד'
+          },
+          {
+            question: 'To which mountain did Abijah (Aviya) ascend to address Jeroboam and Israel?',
+            questionSp: '¿A qué monte se subió Aviya, rey de Yehudá, para dirigirse a Yerobaam?',
+            questionHe: 'לאיזה הר עלה אביה מלך יהודה כדי לפנות לירובעם?',
+            options: ['Mount Zemaraim', 'Mount Sinai', 'Mount Gerizim', 'Mount Carmel'],
+            optionsSp: ['Monte Tzemaraim', 'Monte Sinaí', 'Monte Guerizim', 'Monte Carmelo'],
+            optionsHe: ['הר צמרים', 'הר סיני', 'הר גריזים', 'הר כרמל'],
+            correct: 'Mount Zemaraim',
+            correctSp: 'Monte Tzemaraim',
+            correctHe: 'הר צמרים'
+          },
+          {
+            question: 'How many of the chosen men of Israel fell slain in the war between Abijah and Jeroboam?',
+            questionSp: '¿Cuánta gente de Israel murió en la guerra entre Aviya y Yerobaam?',
+            questionHe: 'כמה אנשים מישראל מתו במלחמה בין אביה לירבעם?',
+            options: ['500,000', '400,000', '100,000', '300,000'],
+            optionsSp: ['500,000', '400,000', '100,000', '300,000'],
+            optionsHe: ['500,000', '400,000', '100,000', '300,000'],
+            correct: '500,000',
+            correctSp: '500,000',
+            correctHe: '500,000'
+          },
+          {
+            question: 'During whose reign did the people enter into a covenant to seek the Lord with all their heart and soul?',
+            questionSp: '¿En el tiempo de reinado de quién "Entraron en el pacto que buscarían a H\', el Dios de sus padres, con todo su corazón y toda su alma"?',
+            questionHe: '"ויבאו בברית לדרוש את ה\' אלהי אבותיהם בכל לבבם ובכל נפשם"',
+            options: ['Asa', 'Jehoshaphat', 'Josiah', 'Hezekiah'],
+            optionsSp: ['Asa', 'Yehoshafat', 'Yoshiyahu', 'Jizkiyahu'],
+            optionsHe: ['אסא', 'יהושפט', 'יאשיהו', 'חזקיהו'],
+            correct: 'Asa',
+            correctSp: 'Asa',
+            correctHe: 'אסא'
+          },
+          {
+            question: 'Who did Asa hire to strike the cities of Israel, including Ijon, Dan, and Abel-maim?',
+            questionSp: '¿A quién envió Asa contra las ciudades de Israel, hiriendo a Iyón, Dan y Abel Mayim?',
+            questionHe: 'את מי שלח אסא על ערי ישראל, ויכא את עיון, את דן ואת אבל מים?',
+            options: ['Ben-hadad', 'Zerah', 'Hadadezer', 'Rezin'],
+            optionsSp: ['Ben Hadad', 'Zeraj', 'Hadadezer', 'Retzín'],
+            optionsHe: ['בן הדד', 'זרח', 'הדדעזר', 'רצין'],
+            correct: 'Ben-hadad',
+            correctSp: 'Ben Hadad',
+            correctHe: 'בן הדד'
+          },
+          {
+            question: 'Which of Jehoshaphat’s commanders "willingly offered himself unto the Lord"?',
+            questionSp: '¿Sobre cuál de los guerreros de Yehoshafat se dijo que "se ofreció voluntariamente ante Hashem"?',
+            questionHe: 'על איזה מלוחמיו של יהושפט נאמר שהוא "התנדב לפני השם"?',
+            options: ['Amasiah son of Zichri', 'Adna', 'Jehohanan', 'Eliada'],
+            optionsSp: ['Amasyá ben Zijrí', 'Adna', 'Yehojanán', 'Eliadá'],
+            optionsHe: ['עמסיה בן זכרי', 'עדנה', 'יהוחנן', 'אלידע'],
+            correct: 'Amasiah son of Zichri',
+            correctSp: 'Amasyá ben Zijrí',
+            correctHe: 'עמסיה בן זכרי'
+          },
+          {
+            question: 'Who rebuked Jehoshaphat saying: "Shouldest thou help the ungodly, and love them that hate the Lord?"',
+            questionSp: '¿Quién le dijo a Yehoshafat: "¿Debes tú ayudar a los malvados y amar a los que odian a H\'?"?',
+            questionHe: '"הלרשע לעזר ולשנאי ה\' תאהב"',
+            options: ['Jehu son of Hanani', 'Micaiah', 'Elijah', 'Eliezer son of Dodavahu'],
+            optionsSp: ['Yehú ben Jananí', 'Mijayehu', 'Eliyahu', 'Eliezer ben Dodavahu'],
+            optionsHe: ['יהוא בן חנני', 'מיכיהו', 'אליהו', 'אליעזר בן דודוהו'],
+            correct: 'Jehu son of Hanani',
+            correctSp: 'Yehú ben Jananí',
+            correctHe: 'יהוא בן חנני'
+          },
+          {
+            question: 'Who said to the judges: "Take heed what ye do: for ye judge not for man, but for the Lord"?',
+            questionSp: '¿Quién dijo a los jueces: "Considerad lo que hacéis, porque no juzgáis por parte de un hombre, sino por parte de H\'"?',
+            questionHe: '"ראו מה אתם עשים כי לא לאדם תשפטו כי לה\'"',
+            options: ['Jehoshaphat', 'Ezra', 'Solomon', 'Samuel'],
+            optionsSp: ['Yehoshafat', 'Ezra', 'Shlomó', 'Samuel'],
+            optionsHe: ['יהושפט', 'עזרא', 'שלמה', 'שמואל'],
+            correct: 'Jehoshaphat',
+            correctSp: 'Yehoshafat',
+            correctHe: 'יהושפט'
+          },
+          {
+            question: 'What was the place called where the people assembled on the fourth day to bless the Lord after the victory?',
+            questionSp: '¿Cómo se llamó el lugar donde se reunieron al cuarto día para bendecir a H\'?',
+            questionHe: 'מה היה שמו של המקום בו התאספו ביום הרביעי לברך את ה?',
+            options: ['The Valley of Berakah', 'The Valley of Jehoshaphat', 'The Valley of Salt', 'The Valley of Elah'],
+            optionsSp: ['El Valle de la Berajá', 'El Valle de Yehoshafat', 'El Valle de la Sal', 'El Valle de Elah'],
+            optionsHe: ['עמק ברכה', 'עמק יהושפט', 'גיא המלח', 'עמק האלה'],
+            correct: 'The Valley of Berakah',
+            correctSp: 'El Valle de la Berajá',
+            correctHe: 'עמק ברכה'
+          },
+          {
+            question: 'Who prophesied: "the Lord hath broken thy works"?',
+            questionSp: '¿Quién profetizó: "Hashem ha hecho una brecha en tus trabajos"?',
+            questionHe: '"כהתחברך עם אחזיהו פרץ ה\' את מעשיך"',
+            options: ['Eliezer son of Dodavahu', 'Jehu son of Hanani', 'Jahaziel', 'Hanani the seer'],
+            optionsSp: ['Eliezer ben Dodavahu', 'Yehú ben Jananí', 'Yajaziel', 'Jananí el vidente'],
+            optionsHe: ['אליעזר בן דודוהו', 'יהוא בן חנני', 'יחזיאל', 'חנני הראה'],
+            correct: 'Eliezer son of Dodavahu',
+            correctSp: 'Eliezer ben Dodavahu',
+            correctHe: 'אליעזר בן דודוהו'
+          },
+          {
+            question: 'Whose death is described as: "And he died in a good old age, full of days, riches, and honour"?',
+            questionSp: '¿De quién se dice: "Y murió a edad avanzada, saciado de días, riquezas y honores"?',
+            questionHe: '"וימת בשיבה טובה שבע ימים עשר וכבוד"',
+            options: ['David', 'Solomon', 'Hezekiah', 'Jehoshaphat'],
+            optionsSp: ['David', 'Shlomó', 'Jizkiyahu', 'Yehoshafat'],
+            optionsHe: ['דוד', 'שלמה', 'חזקיהו', 'יהושפט'],
+            correct: 'David',
+            correctSp: 'David',
+            correctHe: 'דוד'
+          },
+          {
+            question: 'Who pursued Jeroboam and took cities such as Bethel, Jeshanah, and Ephraim with their villages?',
+            questionSp: '¿Quién persiguió a Yerobaam y le tomó ciudades como Bet-El, Yeshaná y Efraím?',
+            questionHe: '"וירדוף אביה אחרי ירבעם וילכד ממנו ערים את בית אל"',
+            options: ['Abijah', 'Asa', 'Rehoboam', 'Baasha'],
+            optionsSp: ['Aviyá', 'Asa', 'Rejavam', 'Baashá'],
+            optionsHe: ['אביה', 'אסא', 'רחבעם', 'בעשא'],
+            correct: 'Abijah',
+            correctSp: 'Aviyá',
+            correctHe: 'אביה'
+          },
+          {
+            question: 'Which king exhorted Judah: "Let us build these cities... because we have sought the Lord our God"?',
+            questionSp: '¿Qué rey dijo a Yehudá: "Construyamos estas ciudades... porque hemos buscado a H\' nuestro Dios y Él nos ha dado paz"?',
+            questionHe: '"נבנה את הערים האלה... כי דרשנו את ה\' אלהינו"',
+            options: ['Asa', 'Jehoshaphat', 'Uzziah', 'Jotham'],
+            optionsSp: ['Asa', 'Yehoshafat', 'Uziyahu', 'Yotam'],
+            optionsHe: ['אסא', 'יהושפט', 'עזיהו', 'יותם'],
+            correct: 'Asa',
+            correctSp: 'Asa',
+            correctHe: 'אסא'
+          },
+          {
+            question: 'About which army was it said: "They were destroyed before the Lord, and before His host," leaving not one alive?',
+            questionSp: '¿Sobre qué ejército se dijo: "Fueron destruidos ante H\' y ante Su ejército", de modo que no quedó uno vivo?',
+            questionHe: '"ויפלו כושים עד אין להם מחיה כי נשברו לפני ה\' ולפני מחנהו"',
+            options: ['The Ethiopians (Cushim)', 'The Syrians', 'The Moabites', 'The Philistines'],
+            optionsSp: ['Los Cushim', 'Los Sirios', 'Los Moabitas', 'Los Filisteos'],
+            optionsHe: ['כושים', 'ארם', 'מואב', 'פלשתים'],
+            correct: 'The Ethiopians (Cushim)',
+            correctSp: 'Los Cushim',
+            correctHe: 'כושים'
+          },
+          {
+            question: 'Who became angry with Hanani the seer and put him in prison because of his rebuke?',
+            questionSp: '¿Quién se airó contra el vidente Jananí e hizo que lo llevaran a prisión?',
+            questionHe: 'מי זעם על חנני הרואה והשליכו לכלא?',
+            options: ['Asa', 'Ahab', 'Rehoboam', 'Joash'],
+            optionsSp: ['Asa', 'Ajab', 'Rejavam', 'Yoash'],
+            optionsHe: ['אסא', 'אחאב', 'רחבעם', 'יואש'],
+            correct: 'Asa',
+            correctSp: 'Asa',
+            correctHe: 'אסא'
+          },
+          {
+            question: 'How many mighty men of valor did Adna command under King Jehoshaphat?',
+            questionSp: '¿Cuántos hombres valientes tenía Adna, guerrero a las órdenes de Yehoshafat?',
+            questionHe: 'כמה גברים אמיצים היו לאדנה, לוחם תחת פיקודו של יהושפט?',
+            options: ['300,000', '200,000', '280,000', '1,000,000'],
+            optionsSp: ['300,000', '200,000', '280,000', '1,000,000'],
+            optionsHe: ['300,000', '200,000', '280,000', '1,000,000'],
+            correct: '300,000',
+            correctSp: '300,000',
+            correctHe: '300,000'
+          },
+          {
+            question: 'Who urged Micaiah (Mijayehu): "Let your word be like one of theirs, and speak that which is good"?',
+            questionSp: '¿Quién le dijo a Mijayehu: "Te ruego pues que sea tu palabra como la de ellos y hables lo bueno"?',
+            questionHe: '"יהי נא דברך כאחד מהם ודברת טוב"',
+            options: ['The messenger', 'Ahab', 'Jehoshaphat', 'Zedekiah son of Chenaanah'],
+            optionsSp: ['El mensajero', 'Ajab', 'Yehoshafat', 'Tzidkiyahu ben Kenaaná'],
+            optionsHe: ['המלאך', 'אחאב', 'יהושפט', 'צדקיהו בן כנענה'],
+            correct: 'The messenger',
+            correctSp: 'El mensajer',
+            correctHe: 'המלאך'
+          },
+          {
+            question: 'Who cried out in battle, and "the Lord helped him; and God moved them to depart from him"?',
+            questionSp: '¿Quién clamó en la batalla y H\' le ayudó, induciendo a los enemigos a apartarse de él?',
+            questionHe: '"ויזעק יהושפט וה\' עזרו ויסיתם אלהים ממנו"',
+            options: ['Jehoshaphat', 'Ahab', 'Josiah', 'Abijah'],
+            optionsSp: ['Yehoshafat', 'Ajab', 'Yoshiyahu', 'Aviyá'],
+            optionsHe: ['יהושפט', 'אחאב', 'יאשיהו', 'אביה'],
+            correct: 'Jehoshaphat',
+            correctSp: 'Yehoshafat',
+            correctHe: 'יהושפט'
+          },
+          {
+            question: 'Who asked in prayer: "Art not Thou our God, who didst drive out the inhabitants of this land before Thy people Israel?"',
+            questionSp: '¿Quién dijo en oración: "¿No arrojaste Tú, oh Dios nuestro... los moradores de la tierra?"?',
+            questionHe: '"הלא אתה אלהינו הורשת את ישבי הארץ הזאת"',
+            options: ['Jehoshaphat', 'Solomon', 'Hezekiah', 'Ezra'],
+            optionsSp: ['Yehoshafat', 'Shlomó', 'Jizkiyahu', 'Ezra'],
+            optionsHe: ['יהושפט', 'שלמה', 'חזקיהו', 'עזרא'],
+            correct: 'Jehoshaphat',
+            correctSp: 'Yehoshafat',
+            correctHe: 'יהושפט'
+          },
+          {
+            question: 'Who gave the encouraging prophecy: "Fear not... to morrow go out against them: for the Lord will be with you"?',
+            questionSp: '¿Quién profetizó: "No temáis, ni os arredréis. Salid mañana contra ellos, porque H\' está con vosotros"?',
+            questionHe: '"אל תיראו ואל תחתו... מחר צאו לפניהם וה\' עמכם"',
+            options: ['Jahaziel son of Zechariah', 'Eliezer', 'Micaiah', 'Jehu son of Hanani'],
+            optionsSp: ['Yajaziel ben Zejaryá', 'Eliezer', 'Mijayehu', 'Yehú ben Jananí'],
+            optionsHe: ['יחזיאל בן זכריהו', 'אליעזר', 'מיכיהו', 'יהוא בן חנני'],
+            correct: 'Jahaziel son of Zechariah',
+            correctSp: 'Yajaziel ben Zejaryá',
+            correctHe: 'יחזיאל בן זכריהו'
+          },
+          {
+            question: 'About whom was it said: "And they... made — the son of David king the second time"?',
+            questionSp: '¿Sobre quién se dijo: "Y comieron y bebieron ante el Eterno en aquel día con gran alegría y por segunda vez proclamaron rey a —"?',
+            questionHe: '"וימליכו שנית לשלמה בן דוד"',
+            options: ['Solomon', 'Adonijah', 'Rehoboam', 'Absalom'],
+            optionsSp: ['Shlomó', 'Adoniyá', 'Rejavam', 'Avshalom'],
+            optionsHe: ['שלמה', 'אדוניה', 'רחבעם', 'אבשלום'],
+            correct: 'Solomon',
+            correctSp: 'Shlomó',
+            correctHe: 'שלמה'
+          },
+          {
+            question: 'Who gave gold by weight to whom for the instruments of gold?',
+            questionSp: '¿Quién le dio a quién "oro por peso para los utensilios de oro"?',
+            questionHe: '"לזהב במשקל לזהב לכל כלי עבודה ועבודה"',
+            options: ['David to Solomon', 'Solomon to Hiram', 'The Queen of Sheba to Solomon', 'Cyrus to Ezra'],
+            optionsSp: ['David a Shlomó', 'Shlomó a Jiram', 'La Reina de Saba a Shlomó', 'Ciro a Ezra'],
+            optionsHe: ['דוד לשלמה', 'שלמה לחירם', 'מלכת שבא לשלמה', 'כורש לעזרא'],
+            correct: 'David to Solomon',
+            correctSp: 'David a Shlomó',
+            correctHe: 'דוד לשלמה'
+          },
+          {
+            question: 'Who stood up and said: "Hear me, my brethren, and my people"?',
+            questionSp: '¿Quién dijo: "Escuchadme, oh hermanos míos y pueblo mío"?',
+            questionHe: '"שמעוני אחי ועמי"',
+            options: ['David', 'Solomon', 'Hezekiah', 'Josiah'],
+            optionsSp: ['David', 'Shlomó', 'Jizkiyahu', 'Yoshiyahu'],
+            optionsHe: ['דוד', 'שלמה', 'חזקיהו', 'יאשיהו'],
+            correct: 'David',
+            correctSp: 'David',
+            correctHe: 'דוד'
+          },
+          {
+            question: 'Who warned: "Fight ye not against the Lord God of your fathers; for ye shall not prosper"?',
+            questionSp: '¿Quién dijo: "No peleéis contra H\', el Dios de vuestros padres, porque no prosperaréis"?',
+            questionHe: '"אל תלחמו עם ה\' אלהי אבותיכם כי לא תצליחו"',
+            options: ['Abijah to Jeroboam', 'Asa to Baasha', 'Jehoshaphat to Ahab', 'Azariah to the people'],
+            optionsSp: ['Aviya a Yerobaam y el pueblo', 'Asa a Baashá', 'Yehoshafat a Ajab', 'Azaryá al pueblo'],
+            optionsHe: ['אביה אל ירבעם', 'אסא אל בעשא', 'יהושפט אל אחאב', 'עזריה אל העם'],
+            correct: 'Abijah to Jeroboam',
+            correctSp: 'Aviya a Yerobaam y el pueblo',
+            correctHe: 'אביה אל ירבעם'
+          },
+          {
+            question: 'Which enemy attacked with 300 chariots and an army of a million men?',
+            questionSp: '¿Qué enemigo tenía 300 carros y 1 millón de hombres?',
+            questionHe: 'לאיזה אויב היו 300 מרכבות ומיליון איש?',
+            options: ['Zerah the Ethiopian', 'Ben-hadad', 'Shishak', 'Sennacherib'],
+            optionsSp: ['Zeraj hacushí', 'Ben Hadad', 'Shishak', 'Sanjeriv'],
+            optionsHe: ['זרח הכושי', 'בן הדד', 'שישק', 'סנחריב'],
+            correct: 'Zerah the Ethiopian',
+            correctSp: 'Zeraj hacushí',
+            correctHe: 'זרח הכושי'
+          },
+          {
+            question: 'Who prophesied: "The Lord is with you, while ye be with Him... but if ye forsake Him, He will forsake you"?',
+            questionSp: '¿Quién profetizó: "H\' es con vosotros en tanto que vosotros estéis con Él... pero si Le abandonáis, Él os abandonará"?',
+            questionHe: '"ה\' עמכם בהיותכם עמו... ואם תעזבהו יעזב אתכם"',
+            options: ['Azariah son of Oded', 'Hanani the seer', 'Jehu son of Hanani', 'Jahaziel'],
+            optionsSp: ['Azaryahu ben Oded', 'Jananí el vidente', 'Yehú ben Jananí', 'Yajaziel'],
+            optionsHe: ['עזריהו בן עודד', 'חנני הראה', 'יהוא בן חנני', 'יחזיאל'],
+            correct: 'Azariah son of Oded',
+            correctSp: 'Azaryahu ben Oded',
+            correctHe: 'עזריהו בן עודד'
+          },
+          {
+            question: 'Who removed Maakah from being queen because she made an abominable image for Asherah?',
+            questionSp: '¿Quién le quitó a Maajá su dignidad de reina por haber hecho una imagen abominable para la ashtará?',
+            questionHe: '"וגם את מעכה אמו הסירה מגבירה"',
+            options: ['Asa', 'Jehoshaphat', 'Hezekiah', 'Josiah'],
+            optionsSp: ['Asa', 'Yehoshafat', 'Jizkiyahu', 'Yoshiyahu'],
+            optionsHe: ['אסא', 'יהושפט', 'חזקיהו', 'יאשיהו'],
+            correct: 'Asa',
+            correctSp: 'Asa',
+            correctHe: 'אסא'
+          },
+          {
+            question: 'Who asked Asa: "Were not the Ethiopians and the Lubim a huge army with very many chariots and horsemen?"',
+            questionSp: '¿Quién le dijo a Asa: "¿No eran acaso los cushim y los lubim un gran ejército con carros y jinetes en abundancia?"?',
+            questionHe: '"הלא הכושים והלובים היו לחיל לרוב לרכב ולפרשים"',
+            options: ['Hanani the seer', 'Azariah', 'Jehu', 'Micaiah'],
+            optionsSp: ['Jananí', 'Azaryá', 'Yehú', 'Mijayehu'],
+            optionsHe: ['חנני הראה', 'עזריה בן עודד', 'יהוא', 'מיכיהו'],
+            correct: 'Hanani the seer',
+            correctSp: 'Jananí',
+            correctHe: 'חנני הראה'
+          },
+          {
+            question: 'About which king was it said: "The Lord established the kingdom in his hand; and all Judah brought presents"?',
+            questionSp: '¿Sobre quién se dijo: "H\' consolidó el reino en su mano, y todo Yehudá le trajo presentes"?',
+            questionHe: '"ויכן ה\' את הממלכה בידו ויתנו כל יהודה מנחה"',
+            options: ['Jehoshaphat', 'Solomon', 'Asa', 'Uzziah'],
+            optionsSp: ['Yehoshafat', 'Shlomó', 'Asa', 'Uziyahu'],
+            optionsHe: ['יהושפט', 'שלמה', 'אסא', 'עזיהו'],
+            correct: 'Jehoshaphat',
+            correctSp: 'Yehoshafat',
+            correctHe: 'יהושפט'
+          },
+          {
+            question: 'Who "killed sheep and oxen for him in abundance"?',
+            questionSp: '¿Quién "mató ovejas y bueyes para él en abundancia" ?',
+            questionHe: '"ויזבח לו אחאב צאן ובקר לרוב"',
+            options: ['Ahab  ', 'Solomon ', 'David ', 'Hezekiah '],
+            optionsSp: ['Ajab  ', 'Shlomó ', 'David ', 'Jizkiyahu '],
+            optionsHe: ['אחאב ', 'שלמה ', 'דוד ', 'חזקיהו '],
+            correct: 'Ahab ',
+            correctSp: 'Ajab ',
+            correctHe: 'אחאב '
+          },
+          {
+            question: 'Who asked: "Is there not here a prophet of the Lord besides, that we might enquire of him?"',
+            questionSp: '¿Quién preguntó: "¿No hay aquí además un profeta de H\' para que podamos consultarle?"?',
+            questionHe: '"האין פה נביא לה\' עוד ונדרשה מאותו"',
+            options: ['Jehoshaphat', 'Obadiah', 'Micaiah', 'Elijah'],
+            optionsSp: ['Yehoshafat ', 'Ovadyá', 'Mijayehu', 'Eliyahu'],
+            optionsHe: ['יהושפט', 'עובדיה', 'מיכיהו', 'אליהו'],
+            correct: 'Jehoshaphat',
+            correctSp: 'Yehoshafat ',
+            correctHe: 'יהושפט'
+          },
+          {
+            question: 'Who mockingly asked Micaiah: "Which way went the Spirit of the Lord from me to speak unto thee?"',
+            questionSp: '¿Quién preguntó a Mijayehu: "¿Por dónde fue el espíritu de H\' para hablarte?"?',
+            questionHe: '"אי זה הדרך עבר רוח ה\' מאתי לדבר אתך"',
+            options: ['Zedekiah son of Chenaanah', 'Ahab', 'Jehoshaphat', 'The messenger'],
+            optionsSp: ['Tzidkiyahu ben Cnaana', 'Ajab', 'Yehoshafat', 'El mensajero'],
+            optionsHe: ['צדקיהו בן כנענה', 'אחאב', 'יהושפט', 'המלאך'],
+            correct: 'Zedekiah son of Chenaanah',
+            correctSp: 'Tzidkiyahu ben Cnaana',
+            correctHe: 'צדקיהו בן כנענה'
+          },
+          {
+            question: 'Which king "returned to his house in peace to Jerusalem"?',
+            questionSp: '¿Qué rey "retornó a su casa en paz a Yerushalayim"?',
+            questionHe: '"וישב יהושפט מלך יהודה אל ביתו בשלום לירושלים"',
+            options: ['Jehoshaphat', 'Asa', 'Hezekiah', 'Josiah'],
+            optionsSp: ['Yehoshafat', 'Asa', 'Jizkiyahu', 'Yoshiyahu'],
+            optionsHe: ['יהושפט', 'אסא', 'חזקיהו', 'יאשיהו'],
+            correct: 'Jehoshaphat',
+            correctSp: 'Yehoshafat',
+            correctHe: 'יהושפט'
+          },
+          {
+            question: 'Who rebuked the king: "Shouldest thou help the ungodly, and love them that hate the Lord?"',
+            questionSp: '¿Quién dijo: "¿Debes tú ayudar a los malvados y amar a los que odian a H\'?"?',
+            questionHe: '"הלרשע לעזר ולשנאי ה\' תאהב"',
+            options: ['Jehu son of Hanani to Jehoshaphat', 'Micaiah to Ahab', 'Elijah to Ahaziah', 'Hanani to Asa'],
+            optionsSp: ['Yehú ben Jananí a Yehoshafat', 'Mijayehu a Ajab', 'Eliyahu a Ajazyá', 'Jananí a Asa'],
+            optionsHe: ['יהוא בן חנני אל יהושפט', 'מיכיהו אל אחאב', 'אליהו אל אחזיה', 'חנני אל אסא'],
+            correct: 'Jehu son of Hanani to Jehoshaphat',
+            correctSp: 'Yehú ben Jananí a Yehoshafat',
+            correctHe: 'יהוא בן חנני אל יהושפט'
+          },
+          {
+            question: 'Who was the High Priest (Kohen Gadol) in the time of Jehoshaphat?',
+            questionSp: '¿Quién era el Kohen Gadol en tiempos de Yehoshafat?',
+            questionHe: 'מי היה הכהן הגדול בימי יהושפט?',
+            options: ['Amaryahu', 'Azaryahu', 'Yehoyada', 'Hilkiah'],
+            optionsSp: ['Amaryahu', 'Azaryahu', 'Yehoyada', 'Jilkiyá'],
+            optionsHe: ['אמריהו', 'עזריהו', 'יהוידע', 'חלקיהו'],
+            correct: 'Amaryahu',
+            correctSp: 'Amaryahu',
+            correctHe: 'אמריהו'
           }
         ]
       }
