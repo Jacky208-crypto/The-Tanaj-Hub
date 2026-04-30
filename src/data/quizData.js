@@ -3712,7 +3712,7 @@ export const quizzes = {
         {
           question: '"He administered justice" — who?',
           questionSp: '"Administraba la justicia" — ¿quién?',
-          questionHe: '"וַיְהִי דָוִד עֹשֶׂה מִשְׁפָּט" — מי?',
+          questionHe: '"וַיְהִי עֹשֶׂה מִשְׁפָּט" — מי?',
           options: ['David', 'Shlomo', 'Shaul', 'Yoav'],
           optionsSp: ['David', 'Shlomó', 'Shaul', 'Yoav'],
           optionsHe: ['דוד', 'שלמה', 'שאול', 'יואב'],
@@ -5489,7 +5489,7 @@ export const quizzes = {
           optionsSp: ['Pekaj contra Pekajyahu', 'Yehu contra Yehoram', 'Zimri contra Elah', 'Shalum contra Zejaria'],
           optionsHe: ['פקח על פקחיה', 'יהוא על יהורם', 'זמרי על אלה', 'שלום על זכריה'],
           correct: 'Pekah against Pekahiah',
-          correctSp: 'Pekajyahu(capitan - pekaj)',
+          correctSp: 'Pekaj contra Pekajyahu',
           correctHe: 'פקח על פקחיה'
         },
         {
