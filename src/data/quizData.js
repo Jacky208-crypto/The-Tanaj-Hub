@@ -7050,7 +7050,7 @@ export const quizzes = {
             optionsSp: ['Los príncipes (ministros)', 'Los Levitas', 'Los profetas', 'La gente de la tierra'],
             optionsHe: ['השרים', 'הלווים', 'הנביאים', 'עם הארץ'],
             correct: 'The princes (ministers)',
-            correctSp: 'Los príncipes(ministros)',
+            correctSp: 'Los príncipes (ministros)',
             correctHe: 'השרים'
           },
           {
@@ -7072,7 +7072,7 @@ export const quizzes = {
             optionsSp: ['Ezra', 'Nehemías', 'Daniel', 'Yirmiyahu'],
             optionsHe: ['עזרא', 'נחמיה', 'דניאל', 'ירמיהו'],
             correct: 'Ezra',
-            correctSp: 'Ezra ',
+            correctSp: 'Ezra',
             correctHe: 'עזרא'
           },
           {
