@@ -874,7 +874,7 @@ export const quizzes = {
         optionsSp: ['Un año', 'Dos años', 'Cuarenta días', 'Tres días'],
         optionsHe: ['שנה ', 'שנתיים', 'ארבעים יום', 'שלושה ימים'],
         correct: 'One year',
-        correctSp: 'Un año ',
+        correctSp: 'Un año',
         correctHe: 'שנה ',
       },
       {
