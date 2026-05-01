@@ -20,7 +20,7 @@ export default function Quiz() {
   const [customQuiz, setCustomQuiz] = useState(null);
   const [questionCount, setQuestionCount] = useState(5);
 
-  // 👉 Quiz mode
+  // 👉 QUIZ MODE
   if (mode === 'quiz' && customQuiz) {
     return (
       <QuizPlayer
@@ -34,7 +34,7 @@ export default function Quiz() {
     );
   }
 
-  // 👉 Builder mode
+  // 👉 BUILDER MODE
   if (mode === 'builder') {
     return (
       <div className={styles.page}>
@@ -42,6 +42,12 @@ export default function Quiz() {
 
         <button onClick={() => setMode('menu')}>← Back</button>
 
+        {/* Selected count */}
+        <p style={{ textAlign: 'center', marginTop: '10px' }}>
+          Selected: {selectedBooks.length} book{selectedBooks.length !== 1 && 's'}
+        </p>
+
+        {/* Book selection */}
         <div className={styles.cardGrid}>
           {BOOKS_WITH_QUIZZES.map((key) => {
             const q = quizzes[key];
@@ -69,45 +75,67 @@ export default function Quiz() {
           })}
         </div>
 
-        {/* Question count */}
-        <div style={{ textAlign: 'center', marginTop: '20px' }}>
-          <p>Number of questions:</p>
-          <input
-            type="number"
-            value={questionCount}
-            min={1}
-            max={50}
-            onChange={(e) => setQuestionCount(Number(e.target.value))}
-          />
+        {/* Question count selector */}
+        <div style={{ textAlign: 'center', marginTop: '30px' }}>
+          <p style={{ marginBottom: '10px' }}>Number of questions:</p>
+
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
+            {[5, 10, 15, 20].map((num) => (
+              <button
+                key={num}
+                onClick={() => setQuestionCount(num)}
+                style={{
+                  padding: '0.4rem 1rem',
+                  borderRadius: '20px',
+                  border: 'none',
+                  cursor: 'pointer',
+                  background: questionCount === num ? '#4a90e2' : '#eee',
+                  color: questionCount === num ? 'white' : 'black',
+                  fontWeight: questionCount === num ? 'bold' : 'normal',
+                }}
+              >
+                {num}
+              </button>
+            ))}
+          </div>
         </div>
 
-        <button
-          className={styles.goBtn}
-          style={{ marginTop: '20px' }}
-          onClick={() => {
-            const combinedQuestions = selectedBooks.flatMap(
-              key => quizzes[key].questions
-            );
+        {/* Start button */}
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '30px' }}>
+          <button
+            className={styles.goBtn}
+            disabled={selectedBooks.length === 0}
+            style={{
+              opacity: selectedBooks.length === 0 ? 0.5 : 1,
+              cursor: selectedBooks.length === 0 ? 'not-allowed' : 'pointer',
+              padding: '0.8rem 2rem',
+              fontSize: '1rem',
+            }}
+            onClick={() => {
+              const combinedQuestions = selectedBooks.flatMap(
+                key => quizzes[key].questions
+              );
 
-            if (combinedQuestions.length === 0) return;
+              if (combinedQuestions.length === 0) return;
 
-            setCustomQuiz({
-              label: 'Custom Quiz',
-              description: 'Selected books',
-              questions: combinedQuestions,
-              count: questionCount
-            });
+              setCustomQuiz({
+                label: 'Custom Quiz',
+                description: 'Selected books',
+                questions: combinedQuestions,
+                count: questionCount
+              });
 
-            setMode('quiz');
-          }}
-        >
-          Start Quiz
-        </button>
+              setMode('quiz');
+            }}
+          >
+            Start Quiz
+          </button>
+        </div>
       </div>
     );
   }
 
-  // 👉 Main menu
+  // 👉 MAIN MENU
   return (
     <div className={styles.page}>
       <h1 className={styles.title}>Practice Questions</h1>
@@ -120,7 +148,7 @@ export default function Quiz() {
         ← Home
       </button>
 
-      {/* Create quiz button */}
+      {/* Create custom quiz */}
       <button
         className="nav-btn"
         style={{ display: 'block', margin: '20px auto' }}
