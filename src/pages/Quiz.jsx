@@ -40,7 +40,31 @@ export default function Quiz() {
       <div className={styles.page}>
         <h1 className={styles.title}>Create Quiz</h1>
 
-        <button onClick={() => setMode('menu')}>← Back</button>
+        <div style={{ display: 'flex', justifyContent: 'flex-start', marginBottom: '10px' }}>
+        <button
+          onClick={() => setMode('menu')}
+          style={{
+            background: 'transparent',
+            border: 'none',
+            fontSize: '0.95rem',
+            cursor: 'pointer',
+            color: '#555',
+            padding: '5px 10px',
+            borderRadius: '8px',
+            transition: 'all 0.2s ease'
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.background = '#f0f0f0';
+            e.target.style.color = '#000';
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.background = 'transparent';
+            e.target.style.color = '#555';
+          }}
+        >
+          ← Back
+        </button>
+      </div>
 
         {/* Selected count */}
         <p style={{ textAlign: 'center', marginTop: '10px' }}>
