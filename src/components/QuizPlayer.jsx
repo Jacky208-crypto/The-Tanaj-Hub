@@ -26,7 +26,7 @@ export default function QuizPlayer({ quiz, onBack }) {
   const [wrongAnswer, setWrongAnswer] = useState(null);
 
   const questions = useMemo(
-    () => shuffleAndPick(quiz.questions, 5),
+    () => shuffleAndPick(quiz.questions, quiz.count || 5),
     [quiz, sessionKey]
   );
 
