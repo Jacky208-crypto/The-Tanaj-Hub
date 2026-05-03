@@ -645,6 +645,8 @@ const NOTES = [
         title: "Numbers that appear less than 10 times in Tanach",
         titleSp: "Números que aparecen menos de 10 veces en Tanaj",
         table: {
+          summary: "ft. Akiva Shrier",
+          summarySp: "ft. Akiva Shrier",
           headers: ["Number", "Context"], 
           rows: [
             ["19", "Yehoshua 19 (Yiron, Migdal-el..nineteen cities); Men of David’s servants that fall against Avner’s army (not including Asahel); In the 19th year of Nevuchadnezzar that Nevuzardan burns the Beit Hamikdash."],
