@@ -571,8 +571,8 @@ const NOTES = [
       {
         title: "Places to know (ft. Sarah Harari):",
         titleSp: "Lugares para saber (ft. Sarah Harari): ",
-        summary: `
-        - UR CASDIM: The birthplace of Terah.
+        summary: 
+        `- UR CASDIM: The birthplace of Terah.
         - HARAN: Abraham traveled to Haran.
         - BETHEL AND AI: Abraham pitched his tents between Bethel and Ai; Joshua’s ambush force positioned themselves between Bethel and Ai.
         - PENUEL: The tower of Penuel—its inhabitants refused to provide food to Gideon and his men.
@@ -602,8 +602,8 @@ const NOTES = [
         - HELKAT HATZURIM: The site of the battle between twelve of Abner's men and twelve of Joab's men.
         - KARKOR: The encampment of the army of the "Children of the East" (the southerners) during Gideon's war against Midian; their forces numbered 120,000 men. A vast number perished by the sword, and only 15,000 survived—those who were with Zebah and Zalmunna in Karkor (at the time Gideon was pursuing Zebah and Zalmunna to kill them).
         - OFRA: Gideon’s hometown. The Angel "sat beneath the terebinth tree that was in Ofra," and Gideon placed the Ephod he had fashioned in Ofra.`,
-        summarySp: `ft. Sarah Harari
-        - UR CASDIM:  tierra natal de Teraj
+        summarySp: 
+        `- UR CASDIM:  tierra natal de Teraj
         - JARAN: Abraham fue a Jaran 
         - BETEL Y HAAY: Abraham plantó sus tiendas entre BetEl y Haay , Yehoshua la emboscada se pusieron entre BetEl y Haay
         - PNUEL: La torre de Pnuel no le quisieron dar comida a Guidon y sus gentes y Guidon 
