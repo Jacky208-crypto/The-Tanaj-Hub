@@ -616,6 +616,190 @@ const NOTES = [
         - OFRA: Hometown de Guidon , El Malaj “Se sentó debajo del here into que estaba en Ofra” , Guidon puso el Efod que hizo en Ofra `
       },
     ]
+  },
+  {
+    topic: "Numbers",
+    entries: [
+      {
+        title: "Numbers that appear less than 10 times in Tanach",
+        titleSp: "Números que aparecen menos de 10 veces en Tanaj",
+        table: {
+          headers: ["Number", "Context"], 
+          rows: [
+            ["19", "Yehoshua 19 (Yiron, Migdal-el..nineteen cities); Men of David’s servants that fall against Avner’s army (not including Asahel); In the 19th year of Nevuchadnezzar that Nevuzardan burns the Beit Hamikdash."],
+
+            ["21", "Eat matzot until the 21st day of the first month (Shemot 12:18), Tzidkiyahu is 21 years old when he becomes king, Chaggai encourages the rest of the people to continue building the Temple, The Sar Malchut Paras opposes the man for 21 days (Daniel 10:13)"],
+
+            ["22", "Yehoshua 19 (Umah, Afek, Rechov…22 cities); Yair Hagileadi rules for 22 years, Yeravam reigns 22 years, Achav reigns 22 years, Amon is 22 years old when he becomes king, Achazyahu is 22 when he becomes king, Aviyah has 22 sons"],
+
+            ["23", "Tola ben Puah reigns 23 years; in the 23rd year of Yehoash Yehoachaz reigns; Yehoachaz becomes king at 23 years old; 23rd of Sivan decree (Esther 8:9)"],
+
+            ["24", "Zevach Shalamim cattle; 24 digits of the man killed by Yehonatan; Basha reigns 24 years; multiple events on the 24th day across Tanach (Chaggai, Zecharia, Daniel, Nechemia)"],
+
+            ["25", "Leviim 25+ work in Ohel Moed; Yehoshefat, Amatzia, Yotam, Chizkiyahu, Yehoyakim begin reign at 25; Yechezkel vision of 25 men; Nechemia’s gate finished on 25 Elul"],
+
+            ["26", "Elah son of Baasha begins to reign in the 26th year of Asa"],
+
+            ["27", "27th day of 2nd month earth dries (Noach); Zimri reigns; Azaria begins reign; Yehoyachin freed on 27th"],
+
+            ["28", "Yehu reigns 28 years"],
+
+            ["29", "Nachor is 29 when he begets Terach; Amatzia and Chizkiyahu reign 29 years; 29 knives in Ezra"],
+
+            ["31", "Omri reigns in 31st year of Asa; Yoshiyahu reigns 31 years"],
+
+            ["32", "Reu is 32 when he begets Serug; Ben Hadad has 32 kings; Yehoram begins reign at 32"],
+
+            ["33", "Leah has 33 descendants to Egypt; David reigns 33 years in Jerusalem"],
+
+            ["34", "Ever is 34 when he begets Peleg"],
+
+            ["35", "Arpachshad is 35 when he begets Shelach; Yehoshefat becomes king at 35"],
+
+            ["36", "36 people killed at Ai; Baasha attacks in 36th year of Asa"],
+
+            ["37", "37 giborim of David; Yoash becomes king; Yehoyachin freed in 37th year of exile"],
+
+            ["38", "38 years in desert (Devarim 2:14); Achav and Zecharia begin reigns"],
+
+            ["39", "39th year of Azaria—Shallum and Menachem begin reign"],
+
+            ["41", "Rechavam begins reign at 41; Asa and Yeravam II reign 41 years"],
+
+            ["42", "42 Levite cities; 42 children killed by bears; brothers of Achazia killed"],
+
+            ["45", "45 people in Sodom; Calev lives 45 years after spies; 45 pillars in Shlomo’s structure"],
+
+            ["48", "48 Levite cities including Arei Miklat"],
+
+            ["49", "Counting the Omer"],
+
+            ["52", "Azarya reigns 52 years; Pekach begins reign; Nechemia wall completed in 52 days"],
+
+            ["55", "Menashe reigns 55 years"],
+
+            ["61", "Tribute from donkeys of Midian"],
+
+            ["62", "Darius becomes king at 62; 62 weeks prophecy (Daniel)"],
+
+            ["65", "Multiple figures beget children at 65; prophecy about Efraim"],
+
+            ["66", "66 descendants of Yaakov to Egypt"],
+
+            ["68", "Oved Edom had 68 brothers"],
+
+            ["72", "Tribute from cattle of Midian"],
+
+            ["75", "Avraham leaves Haran at 75"],
+
+            ["77", "Lemech at 77; elders of Succot killed"],
+
+            ["80", "Moshe at 80 before Paroh; Ehud rules 80 years; multiple 80 references"],
+
+            ["83", "Aharon is 83 when he goes to Paroh"],
+
+            ["85", "Calev is 85; Doeg kills 85 kohanim"],
+
+            ["86", "Avraham is 86 when Yishmael is born"],
+
+            ["90", "Enosh begets Keinan; Sarah is 90"],
+
+            ["96", "Reference in Ezra"],
+
+            ["98", "Eli dies at 98"],
+
+            ["99", "Avraham gets brit milah at 99"]
+          ],
+          headersSp: ["Número", "Contexto"],  
+          rowsSp: [
+            ["19", "Yehoshua 19 (Yiron, Migdal-el… diecinueve ciudades); Hombres de los siervos de David que cayeron contra el ejército de Avner (sin incluir a Asahel); En el año 19 de Nevujadnetzar, Nevuzaradán quema el Beit Hamikdash."],
+
+            ["21", "Comer matzot hasta el día 21 del primer mes (Shemot 12:18); Tzidkiyahu tenía 21 años cuando comenzó a reinar; Jagai anima al pueblo a continuar construyendo el Templo; El Sar Maljut Paras se opone durante 21 días (Daniel 10:13)"],
+
+            ["22", "Yehoshua 19 (Umah, Afek, Rejov… 22 ciudades); Yair Haguiladí gobierna 22 años; Yeravam reina 22 años; Ajav reina 22 años; Amón tenía 22 años al comenzar a reinar; Ajazyahu tenía 22; Aviyah tuvo 22 hijos"],
+
+            ["23", "Tola ben Puah reina 23 años; en el año 23 de Yehoash reina Yehoajaz; Yehoajaz comienza a reinar a los 23 años; el 23 de Siván se decreta que los judíos pueden defenderse (Ester 8:9)"],
+
+            ["24", "Zevaj Shelamim de ganado; 24 partes del hombre muerto por Yehonatán; Basha reina 24 años; múltiples eventos en el día 24 (Jagai, Zejaria, Daniel, Nejemia)"],
+
+            ["25", "Leviim de 25 años en adelante sirven en el Ohel Moed; Yehoshafat, Amatzia, Yotam, Jizkiyahu, Yehoyakim comienzan a reinar a los 25; visión de 25 hombres en Yejezkel; la puerta de Nejemia se termina el 25 de Elul"],
+
+            ["26", "Elah hijo de Baasha comienza a reinar en el año 26 de Asa"],
+
+            ["27", "Día 27 del segundo mes la tierra se seca (Noaj); Zimri reina; Azaria comienza a reinar; Yehoyajin es liberado el día 27"],
+
+            ["28", "Yehu reina 28 años"],
+
+            ["29", "Najor tenía 29 años cuando engendra a Teraj; Amatzia y Jizkiyahu reinan 29 años; 29 cuchillos en Ezra"],
+
+            ["31", "Omri comienza a reinar en el año 31 de Asa; Yoshiyahu reina 31 años"],
+
+            ["32", "Reu tenía 32 años cuando engendra a Serug; Ben Hadad tenía 32 reyes con él; Yehoram comienza a reinar a los 32"],
+
+            ["33", "Lea tiene 33 descendientes que van a Egipto; David reina 33 años en Jerusalén"],
+
+            ["34", "Ever tenía 34 años cuando engendra a Peleg"],
+
+            ["35", "Arpajshad tenía 35 años cuando engendra a Shelaj; Yehoshafat comienza a reinar a los 35"],
+
+            ["36", "36 personas mueren en Ai; Baasha ataca en el año 36 de Asa"],
+
+            ["37", "37 guerreros de David; Yoash comienza a reinar; Yehoyajin es elevado en el año 37 del exilio"],
+
+            ["38", "38 años en el desierto (Devarim 2:14); Ajav y Zejaria comienzan a reinar"],
+
+            ["39", "En el año 39 de Azaria, Shalum y Menajem comienzan a reinar"],
+
+            ["41", "Rejavam comienza a reinar a los 41 años; Asa y Yeravam II reinan 41 años"],
+
+            ["42", "42 ciudades levíticas; 42 niños asesinados por osos; hermanos de Ajazia asesinados"],
+
+            ["45", "45 personas en Sodoma; Calev vive 45 años después de los espías; 45 pilares en la estructura de Shlomo"],
+
+            ["48", "48 ciudades levíticas incluyendo Arei Miklat"],
+
+            ["49", "Conteo del Omer"],
+
+            ["52", "Azaria reina 52 años; Pekaj comienza a reinar; el muro de Nejemia se completa en 52 días"],
+
+            ["55", "Menashe reina 55 años"],
+
+            ["61", "Tributo de burros de Midian"],
+
+            ["62", "Dario el Medo se convierte en rey a los 62 años; profecía de las 62 semanas (Daniel)"],
+
+            ["65", "Varias personas engendran a los 65 años; profecía sobre Efraim"],
+
+            ["66", "66 descendientes de Yaakov van a Egipto"],
+
+            ["68", "Oved Edom tenía 68 hermanos"],
+
+            ["72", "Tributo de ganado de Midian"],
+
+            ["75", "Avraham sale de Harán a los 75 años"],
+
+            ["77", "Lemej a los 77; ancianos de Sucot asesinados"],
+
+            ["80", "Moshe tenía 80 años ante Paró; Ehud gobierna 80 años; múltiples referencias al número 80"],
+
+            ["83", "Aharón tenía 83 años cuando va ante Paró"],
+
+            ["85", "Calev tenía 85 años; Doeg mata a 85 cohanim"],
+
+            ["86", "Avraham tenía 86 años cuando nace Yishmael"],
+
+            ["90", "Enosh engendra a Keinan; Sarah tenía 90 años"],
+
+            ["96", "Referencia en Ezra"],
+
+            ["98", "Eli muere a los 98 años"],
+
+            ["99", "Avraham recibe el brit milá a los 99 años"]
+          ]
+          
+        }
+      }
+    ]
   }
 ];
 
