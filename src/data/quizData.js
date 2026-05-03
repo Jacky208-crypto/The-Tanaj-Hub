@@ -6024,7 +6024,7 @@ export const quizzes = {
           optionsHe: [' ברוך בן נריה', ' צדקיהו', ' אחז', ' גיחזי'],
           correct: 'Baruch ben Neriah',
           correctSp: 'Baruj ben Neria',
-          correctHe: ' לברוך בן נריה'
+          correctHe: ' ברוך בן נריה'
         },
         {
           question: 'To whom was it said: "Who said: These are the men that devise iniquity, and that give wicked counsel in this city... prophesy against them"?',
@@ -7002,11 +7002,11 @@ export const quizzes = {
             question: 'Who issued the proclamation: "All the kingdoms of the earth has the Lord given me"?',
             questionSp: '¿Quién proclamó: "Todos los reinos de la tierra me los ha dado el Eterno"?',
             questionHe: '"כל ממלכות הארץ נתן לי ה\'"',
-            options: ['Cyrus (Coresh)', 'Darius', 'Artaxerxes', 'Nebuchadnezzar'],
-            optionsSp: ['Coresh (Ciro)', 'Daryavesh', 'Artajshasta', 'Nebujadnetzar'],
+            options: ['Cyrus', 'Darius', 'Artaxerxes', 'Nebuchadnezzar'],
+            optionsSp: ['Coresh', 'Daryavesh', 'Artajshasta', 'Nebujadnetzar'],
             optionsHe: ['כורש', 'דריווש', 'ארתחששתא', 'נבוכדנצר'],
-            correct: 'Cyrus (Coresh)',
-            correctSp: 'Coresh (Ciro)',
+            correct: 'Cyrus',
+            correctSp: 'Coresh',
             correctHe: 'כורש'
           },
           {
