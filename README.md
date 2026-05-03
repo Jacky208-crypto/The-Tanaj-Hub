@@ -4,7 +4,7 @@
 
 Interactive platform to learn Tanakh with quizzes and summaries.
 
-🔗 Live site: https://the-tanaj-hub.vercel.app
+🔗 Live site: [ Tanaj Hub ](https://the-tanaj-hub.vercel.app)
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
