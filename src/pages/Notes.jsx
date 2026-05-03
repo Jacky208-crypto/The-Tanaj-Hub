@@ -4,9 +4,11 @@ import styles from './Notes.module.css';
 const NOTES = [
   {
     topic: "Important Dates",
+    topicSp: "Fechas Importantes",
     entries: [
       {
         title: "First Month (Nisan)",
+        titleSp: "Primer Mes (Nisan)",
         summary: `Events without a specific date:
         - Hashem says the laws of Pesach Sheni (Numbers 9)
         - Lots are cast to determine when the Jews will be exterminated in the 12th year of Ajashverosh
@@ -27,6 +29,7 @@ const NOTES = [
       },
       {
         title: "Second Month (Iyar/Ziv)",
+        titleSp: "Segundo Mes (Iyar/Ziv)",
         summary: `Events without a specific date:
         - Shlomo begins building the Temple in the year 480 from Yetziat Mitzraim, in Shlomo's fourth year of his reign.
         - Yehoshua, Zerubbabel, and the people begin building the Temple in their second year after arriving in Jerusalem.\n\nMonth 2 Day 14 - Pesach Sheni (Numbers 9)\n\nMonth 2 Day 15 - Israel arrives at Midbar Sinai from Elim\n\nMonth 2 Day 17 - The flood begins, year 600 of Noah\n\nMonth 2 Day 20 - Israel begins walking from Midbar Sin to Midbar Paran\n\nMonth 2 Day 27 - Year 601 of Noaj, the land dries up after the flood`
@@ -42,6 +45,7 @@ const NOTES = [
     },
       {
         title: "Third Month (Sivan)",
+        titleSp: "Tercer Mes (Sivan)",
         summary: `Events without a specific date:
         - In the 15th year of Asa, he gathers all of Israel in Jerusalem and they make a covenant with Hashem.
         - The Israelites arrive at Mount Sinai. \n\n Month 3 Day 23 - The scribes write Mordechai's edict to the Jews (to defend themselves)`
@@ -53,6 +57,7 @@ const NOTES = [
     },
       {
         title: "Fourth Month (Tamuz)",
+        titleSp: "Cuarto Mes (Tamuz)",
         summary: `Month 4, Day 5 - Yejezkel by the Kvar River in the 5th year of Jehoiachin's captivity sees the Merkava. \n\n Month 4, Day 9 - Famine is severe in Jerusalem because of Nebuchadnezzar.`
         ,summarySp: `
         Mes 4 día 5 - Yejzkel junto al rio Kvar en el 5to año del cautiverio de Yehoyajin ve la Merkava
@@ -60,6 +65,7 @@ const NOTES = [
     },
       {
         title: "Fifth Month (Av)",
+        titleSp: "Quinto Mes (Av)",
         summary: `Events without a specific date:
         - Yirmiyahu prophesies until the exile of Yerushalaim in the 5th month
         - The incident of Janania ben Azur, in the 4th year of Tzidkiyahu \n\n Month 5 Day 1 - Aaron dies in the 40th year of Yetziat Mitzraim(Bamidbar 33), Ezra arrives in Jerusalem in the 7th year of Artajshasta(Ezra 7).
@@ -73,6 +79,7 @@ const NOTES = [
     },
       {
         title: "Sixth Month (Elul)",
+        titleSp: "Sexto Mes (Elul)",
         summary: `Month 6, Day 1 - 2nd year of Daryavesh, first prophecy of Haggai
         Month 6, Day 24 - Yehoshua and Zerubbabel work in the Temple (Times of Haggai)
         Month 6, Day 25 - Nehemiah finishes the walls; they took 52 days to build`
@@ -82,6 +89,7 @@ const NOTES = [
       },
       {
         title: "Seventh Month (Tishrei/Etanim)",
+        titleSp: "Septimo Mes (Tishre/Etanim)",
         summary: `Events without a specific date:
         - All the men gather with Shlomo to celebrate and bring the Aron.
         - Janania son of Azur dies in the 4th year of Tzidkiyahu.
@@ -107,6 +115,7 @@ const NOTES = [
     },
       {
         title: "Eighth Month (Jeshvan/Bul)",
+        titleSp: "Octavo Mes (Jeshvan/Bul)",
         summary: `Events without a specific date:
         - Shlomo completes the construction of the Temple in the 11th year of his reign.
         - In the 2nd year of Daryavesh, Zechariah begins prophesying. \n\n Month 8 Day 15 - Date of the invented holiday by Yerobaam ben Nvat`
@@ -118,6 +127,7 @@ const NOTES = [
     },
       {
         title: "Ninth Month (Kislev)",
+        titleSp: "Noveno Mes (Kislev)",
         summary: `Events without a specific date:
         - In the 20th year of Artajshasta, Nehemiah learns of the situation in Jerusalem and prays to Hashem. \n\n 9th month, day 4 - 4th year of Daryavesh; Bethel sends Shaaretzer and Regem Melech to see if she should continue weeping; Zechariah prophesies.
         9th month, day 20 - The reunited captives of Yehuda congregate to analyze the sin of marrying foreign women(Ezra 9)
@@ -131,6 +141,7 @@ const NOTES = [
     },
       {
         title: "Tenth Month (Tevet)",
+        titleSp: "Decimo Mes (Tevet)",
         summary: `Events without a specific date:
         - Ajashverosh takes Esther as wife in the 7th year of his reign. \n\n Month 10, Day 1 - The mountain peaks start to appear after the Mabul; officials begin to analyze the issue of women in Ezra.
         Month 10, Day 10 - Nebuchadnezzar builds earthworks around Jerusalem.`
@@ -143,11 +154,13 @@ const NOTES = [
       },
       {
         title: "Eleventh Month (Shvat)",
+        titleSp: "Undécimo Mes (Shvat)",
         summary: `Month 11, day 24 - 2nd year of Daryavesh, Zechariah sees the horses in the myrtle trees`
        , summarySp: `Mes 11 dia 24 - 2do año de Daryavesh, Zejaria ve los caballos en los mirtos`
     },
       {
         title: "Twelvth Month (Adar)",
+        titleSp: "Duodécimo Mes (Adar)",
         summary: `Month 12, Day 3 - The second Temple is completed in the times of Ezra, 6th year of Daryavesh
         Month 12, Day 13 - Jews kill their enemies in Shushan and outside
         Month 12, Day 14 - Purim, Jews outside Shushan stop killing, in Shushan they continue
@@ -161,9 +174,11 @@ const NOTES = [
   },
   {
     topic: "Israel's trajectory in the desert",
+    topicSp: "Trayectorio de Israel en el desierto",
     entries: [
       {
         title: "Trajectory:",
+        titleSp: "Trayectorio:",
         summary: `Ramses -> Sukkot
         - 15th day of the first month
         - While the Egyptians were burying their firstborns
@@ -444,8 +459,10 @@ const NOTES = [
   },
   {
     topic: "Tables of the Kings",
+    topicSp: "Tablas de Reyes",
     entries: [
-        { title: "Table of the Kings of Yehuda",
+        { title: "Kings of Yehuda",
+        titleSp: "Reyes de Yehuda",
     table: {
       headers: ["#", "King", "Started reigning at age —", "Years he reigned", "Mother", "King of Israel at that time"],
       rows: [
@@ -499,6 +516,7 @@ const NOTES = [
     },
     {
         title: "Kings of Israel",
+        titleSp: "Reyes de Israel",
         table: {
           headers: ["#", "King", "Years he reigned", "King of Yehuda in that time"],
           rows: [
@@ -548,9 +566,11 @@ const NOTES = [
   },
   {
     topic: "Important Places",
+    topicSp: "Lugares Importantes",
     entries: [
       {
         title: "Places to know:",
+        titleSp: "Lugares para saber: ",
         summary: `ft. Sarah Harari
         - UR CASDIM: The birthplace of Terah.
         - HARAN: Abraham traveled to Haran.
@@ -619,6 +639,7 @@ const NOTES = [
   },
   {
     topic: "Numbers",
+    topicSp: "Números",
     entries: [
       {
         title: "Numbers that appear less than 10 times in Tanach",
@@ -804,81 +825,82 @@ const NOTES = [
 ];
 
 export default function Notes() {
-    const [activeTopic, setActiveTopic] = useState(NOTES[0].topic);
-    const [language, setLanguage] = useState('english');
-  
-    const current = NOTES.find(n => n.topic === activeTopic);
-  
-    return (
-      <div className={styles.container}>
-        <h1 className={styles.title}>Helpful Notes</h1>
-  
-        {/* Language Toggle */}
-        <div className={styles.langToggle}>
-          {['english', 'spanish'].map(lang => (
-            <button
-              key={lang}
-              className={`${styles.langBtn} ${language === lang ? styles.langActive : ''}`}
-              onClick={() => setLanguage(lang)}
-            >
-              {lang === 'english' ? 'English' : 'Español'}
-            </button>
-          ))}
-        </div>
-  
-        <div className={styles.topicBar}>
-          {NOTES.map(n => (
-            <button
-              key={n.topic}
-              className={`${styles.topicBtn} ${activeTopic === n.topic ? styles.active : ''}`}
-              onClick={() => setActiveTopic(n.topic)}
-            >
-              {n.topic}
-            </button>
-          ))}
-        </div>
-  
-        <div className={styles.entries}>
-          {current.entries.map((entry, i) => (
-            <div key={i} className={styles.card}>
-              <h2 className={styles.cardTitle}>{entry.title}</h2>
-              {entry.table ? (
-                <div className={styles.tableWrapper}>
-                  <table className={styles.table}>
-                    <thead>
-                      <tr>
-                        {(language === 'spanish' && entry.table.headersSp
-                          ? entry.table.headersSp
-                          : entry.table.headers
-                        ).map((h, j) => (
-                          <th key={j}>{h}</th>
+  const [activeTopic, setActiveTopic] = useState(NOTES[0].topic);
+  const [language, setLanguage] = useState('english');
+  const current = NOTES.find(n => n.topic === activeTopic);
+
+  return (
+    <div className={styles.container}>
+      <h1 className={styles.title}>Helpful Notes</h1>
+
+      {/* Language Toggle */}
+      <div className={styles.langToggle}>
+        {['english', 'spanish'].map(lang => (
+          <button
+            key={lang}
+            className={`${styles.langBtn} ${language === lang ? styles.langActive : ''}`}
+            onClick={() => setLanguage(lang)}
+          >
+            {lang === 'english' ? 'English' : 'Español'}
+          </button>
+        ))}
+      </div>
+
+      <div className={styles.topicBar}>
+        {NOTES.map(n => (
+          <button
+            key={n.topic}
+            className={`${styles.topicBtn} ${activeTopic === n.topic ? styles.active : ''}`}
+            onClick={() => setActiveTopic(n.topic)}
+          >
+            {language === 'spanish' && n.topicSp ? n.topicSp : n.topic}
+          </button>
+        ))}
+      </div>
+
+      <div className={styles.entries}>
+        {current.entries.map((entry, i) => (
+          <div key={i} className={styles.card}>
+            <h2 className={styles.cardTitle}>
+              {language === 'spanish' && entry.titleSp ? entry.titleSp : entry.title}
+            </h2>
+            {entry.table ? (
+              <div className={styles.tableWrapper}>
+                <table className={styles.table}>
+                  <thead>
+                    <tr>
+                      {(language === 'spanish' && entry.table.headersSp
+                        ? entry.table.headersSp
+                        : entry.table.headers
+                      ).map((h, j) => (
+                        <th key={j}>{h}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {(language === 'spanish' && entry.table.rowsSp
+                      ? entry.table.rowsSp
+                      : entry.table.rows
+                    ).map((row, j) => (
+                      <tr key={j}>
+                        {row.map((cell, k) => (
+                          <td key={k}>{cell}</td>
                         ))}
                       </tr>
-                    </thead>
-                    <tbody>
-                      {(language === 'spanish' && entry.table.rowsSp
-                        ? entry.table.rowsSp
-                        : entry.table.rows
-                      ).map((row, j) => (
-                        <tr key={j}>
-                          {row.map((cell, k) => (
-                            <td key={k}>{cell}</td>
-                          ))}
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              ) : (
-                <p className={styles.cardText}>
-                  {language === 'spanish' && entry.summarySp
-                    ? entry.summarySp
-                    : entry.summary}
-                </p>
-              )}
-            </div>
-          ))}
-        </div>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <p className={styles.cardText}>
+                {language === 'spanish' && entry.summarySp
+                  ? entry.summarySp
+                  : entry.summary}
+              </p>
+            )}
+          </div>
+        ))}
       </div>
-    );
-  }
+    </div>
+  );
+}
