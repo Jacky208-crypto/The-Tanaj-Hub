@@ -569,9 +569,9 @@ const NOTES = [
     topicSp: "Lugares Importantes",
     entries: [
       {
-        title: "Places to know:",
-        titleSp: "Lugares para saber: ",
-        summary: `ft. Sarah Harari
+        title: "Places to know (ft. Sarah Harari):",
+        titleSp: "Lugares para saber (ft. Sarah Harari): ",
+        summary: `
         - UR CASDIM: The birthplace of Terah.
         - HARAN: Abraham traveled to Haran.
         - BETHEL AND AI: Abraham pitched his tents between Bethel and Ai; Joshua’s ambush force positioned themselves between Bethel and Ai.
@@ -642,11 +642,11 @@ const NOTES = [
     topicSp: "Números",
     entries: [
       {
-        title: "Numbers that appear less than 10 times in Tanach",
-        titleSp: "Números que aparecen menos de 10 veces en Tanaj",
+        title: `Numbers that appear less than 10 times in Tanach 
+        (ft. Akiva Shrier) `,
+        titleSp: `Números que aparecen menos de 10 veces en Tanaj 
+        (ft. Akiva Shrier)`,
         table: {
-          summary: "ft. Akiva Shrier",
-          summarySp: "ft. Akiva Shrier",
           headers: ["Number", "Context"], 
           rows: [
             ["19", "Yehoshua 19 (Yiron, Migdal-el..nineteen cities); Men of David’s servants that fall against Avner’s army (not including Asahel); In the 19th year of Nevuchadnezzar that Nevuzardan burns the Beit Hamikdash."],
@@ -830,7 +830,7 @@ export default function Notes() {
   const [activeTopic, setActiveTopic] = useState(NOTES[0].topic);
   const [language, setLanguage] = useState('english');
   const current = NOTES.find(n => n.topic === activeTopic);
-
+  console.log('entries:', current.entries.map(e => ({ title: e.title, hasSummary: !!e.summary, hasTable: !!e.table })));
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Helpful Notes</h1>
@@ -892,12 +892,16 @@ export default function Notes() {
                     ))}
                   </tbody>
                 </table>
+
+                {entry.summary && (
+                  <p className={styles.cardText} style={{ marginTop: '1rem', whiteSpace: 'pre-line' }}>
+                    {language === 'spanish' && entry.summarySp ? entry.summarySp : entry.summary}
+                  </p>
+                )}
               </div>
             ) : (
-              <p className={styles.cardText}>
-                {language === 'spanish' && entry.summarySp
-                  ? entry.summarySp
-                  : entry.summary}
+              <p className={styles.cardText} style={{ whiteSpace: 'pre-line' }}>
+                {language === 'spanish' && entry.summarySp ? entry.summarySp : entry.summary}
               </p>
             )}
           </div>
