@@ -7,6 +7,10 @@ export default function Home() {
     <div className={styles.page}>
       <header className={styles.header}>
         <h1 className={styles.title}>The Tanaj Study Hub</h1>
+        <p>
+          The Tanaj Hub is an interactive platform to learn Torah, Neviim, and Ketuvim
+          with quizzes and summaries.
+        </p>
         <p className={styles.subtext}>Study, read, and explore the Tanaj. It mantains and protects the world!</p>
       </header>
 
