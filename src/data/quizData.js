@@ -1143,9 +1143,9 @@ export const quizzes = {
         options: ['The night at Yam Suf', 'The plague of darkness', 'The desert', 'The night in Egypt'],
         optionsSp: ['La noche en Yam Suf', 'La plaga de oscuridad', 'El desierto', 'La noche en Egipto'],
         optionsHe: ['הלילה בים סוף', 'מכת חושך', 'המדבר', 'הלילה במצרים'],
-        correct: 'The plague of darkness',
-        correctSp: 'La plaga de oscuridad',
-        correctHe: 'מכת חושך',
+        correct: 'The night at Yam Suf',
+        correctSp: 'La noche en Yam Suf',
+        correctHe: 'הלילה בים סוף',
       },
       {
         question: 'Who was it said about: "When she could no longer hide him, she took for him a basket of reeds and sealed it with pitch and tar"',
