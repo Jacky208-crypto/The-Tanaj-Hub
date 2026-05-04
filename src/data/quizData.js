@@ -3734,7 +3734,7 @@ export const quizzes = {
         {
           question: '"He had a young son named Micha" — about whom?',
           questionSp: '"Tenía un jovencito que se llamaba Mija" — ¿sobre quién?',
-          questionHe: '"וּלְמְפִיבֹשֶׁת בֵּן קָטָן וּשְׁמוֹ מִיכָא" — על מי נאמר?',
+          questionHe: '" בֵּן קָטָן וּשְׁמוֹ מִיכָא" — על מי נאמר?',
           options: ['Mephiboshet', 'Yonatan', 'David', 'Shaul'],
           optionsSp: ['Mefiboshet', 'Yonatan', 'David', 'Shaul'],
           optionsHe: ['מפיבושת', 'יהונתן', 'דוד', 'שאול'],
@@ -7440,9 +7440,9 @@ export const quizzes = {
             correctHe: 'יחזיאל בן זכריהו'
           },
           {
-            question: 'About whom was it said: "And they... made — the son of David king the second time"?',
+            question: 'About whom was it said: "and they ate and drank in GODs presence on that day with great joy. They again proclaimed ——— king"?',
             questionSp: '¿Sobre quién se dijo: "Y comieron y bebieron ante el Eterno en aquel día con gran alegría y por segunda vez proclamaron rey a —"?',
-            questionHe: '"וימליכו שנית לשלמה בן דוד"',
+            questionHe: '--וַיֹּאכְל֨וּ וַיִּשְׁתּ֜וּ לִפְנֵ֧י יְהֹוָ֛ה בַּיּ֥וֹם הַה֖וּא בְּשִׂמְחָ֣ה גְדוֹלָ֑ה וַיַּמְלִ֤יכוּ שֵׁנִית֙ לִ',
             options: ['Solomon', 'Adonijah', 'Rehoboam', 'Absalom'],
             optionsSp: ['Shlomó', 'Adoniyá', 'Rejavam', 'Avshalom'],
             optionsHe: ['שלמה', 'אדוניה', 'רחבעם', 'אבשלום'],
