@@ -891,7 +891,7 @@ export const quizzes = {
       {
         question: 'Who was it said about: "Yet he did not remember him; he forgot him"?',
         questionSp: '¿Sobre quién se dijo: "Lejos de acordarse, se olvidó de él"?',
-        questionHe: 'על מי נאמר: "ולא זכר שר המשקים את יוסף וישכחהו"?',
+        questionHe: 'על מי נאמר: "ולא זכר ... וישכחהו"?',
         options: ['The cupbearer', 'The baker', 'Potifar', 'Pharaoh'],
         optionsSp: ['El copero', 'El panadero', 'Potifar', 'Faraón'],
         optionsHe: ['המשקה', 'האופה', 'פוטיפר', 'פרעה'],
