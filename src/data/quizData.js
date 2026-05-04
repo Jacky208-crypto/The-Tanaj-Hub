@@ -4915,9 +4915,9 @@ export const quizzes = {
           correctHe: 'עובדיה',
         },
         {
-          question: '"In what have I sinned that you would deliver me to Achav?" — who said this and to whom?',
-          questionSp: '"¿En qué he pecado para que me entregues a Ajab?" — ¿quién le dijo a quién?',
-          questionHe: '"מֶה חָטָאתִי" — מי אמר למי?',
+          question: '"In what have I sinned that you would deliver your servant to the hand of ——?" — who said this and to whom?',
+          questionSp: '"¿En qué he pecado para que tú quieras entregar a tu siervo en mano de ——?" — ¿quién le dijo a quién?',
+          questionHe: '"מֶ֣ה חָטָ֑אתִי כִּֽי־אַתָּ֞ה נֹתֵ֧ן אֶֽת־עַבְדְּךָ֛ בְּיַד־——" — מי אמר למי?',
           options: ['Ovadia to Eliyahu', 'Eliyahu to Ovadia', 'Achav to prophet', 'Servant to king'],
           optionsSp: ['Ovadia a Eliyahu', 'Eliyahu a Ovadia', 'Ajab al profeta', 'Siervo al rey'],
           optionsHe: ['עובדיה לאליהו', 'אליהו לעובדיה', 'אחאב לנביא', 'עבד למלך'],
@@ -5786,7 +5786,7 @@ export const quizzes = {
           optionsSp: ['Yoshiyahu a los kelim de baal', 'Jizkiyahu a los ídolos', 'Yehu a la casa de Baal', 'Asa a los ídolos'],
           optionsHe: ['יאשיהו לכלי הבעל', 'חזקיהו לאלילים', 'יהוא לבית הבעל', 'אסא לאלילים'],
           correct: 'Josiah (vessels of Baal)',
-          correctSp: 'Yoshiyahu a todos los kelim hechos para baal y el sol y la luna y las estrellas',
+          correctSp: 'Yoshiyahu a los kelim de baal',
           correctHe: 'יאשיהו לכלי הבעל'
         },
         {
