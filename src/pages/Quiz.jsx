@@ -1,9 +1,10 @@
-
 import { useNavigate } from 'react-router-dom';
 import QuizPlayer from '../components/QuizPlayer';
 import styles from './Quiz.module.css';
 import { quizzes, allBooksQuiz } from '../data/quizData';
 import { useState, useEffect } from 'react';
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 
 const BOOKS_WITH_QUIZZES = [
   'bereshit', 'shemot', 'vaikra', 'bamidbar', 'devarim',
@@ -16,7 +17,7 @@ const BOOKS_WITH_QUIZZES = [
 export default function Quiz() {
   const navigate = useNavigate();
 
-  const [mode, setMode] = useState('menu'); // menu | builder | quiz
+  const [mode, setMode] = useState('menu');
   const [selectedBooks, setSelectedBooks] = useState([]);
   const [customQuiz, setCustomQuiz] = useState(null);
   const [questionCount, setQuestionCount] = useState(5);
@@ -24,7 +25,7 @@ export default function Quiz() {
   const fetchQuestions = async (bookKeys) => {
     const allQuestions = await Promise.all(
       bookKeys.map(async (key) => {
-        const res = await fetch(`http://localhost:3001/api/questions/${key}`);
+        const res = await fetch(`${API_URL}/api/questions/${key}`);
         const data = await res.json();
         return data.map(q => ({
           question: q.question,
@@ -63,42 +64,39 @@ export default function Quiz() {
         <h1 className={styles.title}>Create Quiz</h1>
 
         <div style={{ display: 'flex', justifyContent: 'flex-start', marginBottom: '10px' }}>
-        <button
-          onClick={() => setMode('menu')}
-          style={{
-            background: 'transparent',
-            border: 'none',
-            fontSize: '0.95rem',
-            cursor: 'pointer',
-            color: '#555',
-            padding: '5px 10px',
-            borderRadius: '8px',
-            transition: 'all 0.2s ease'
-          }}
-          onMouseEnter={(e) => {
-            e.target.style.background = '#f0f0f0';
-            e.target.style.color = '#000';
-          }}
-          onMouseLeave={(e) => {
-            e.target.style.background = 'transparent';
-            e.target.style.color = '#555';
-          }}
-        >
-          ← Back
-        </button>
-      </div>
+          <button
+            onClick={() => setMode('menu')}
+            style={{
+              background: 'transparent',
+              border: 'none',
+              fontSize: '0.95rem',
+              cursor: 'pointer',
+              color: '#555',
+              padding: '5px 10px',
+              borderRadius: '8px',
+              transition: 'all 0.2s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.background = '#f0f0f0';
+              e.target.style.color = '#000';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.background = 'transparent';
+              e.target.style.color = '#555';
+            }}
+          >
+            ← Back
+          </button>
+        </div>
 
-        {/* Selected count */}
         <p style={{ textAlign: 'center', marginTop: '10px' }}>
           Selected: {selectedBooks.length} book{selectedBooks.length !== 1 && 's'}
         </p>
 
-        {/* Book selection */}
         <div className={styles.cardGrid}>
           {BOOKS_WITH_QUIZZES.map((key) => {
             const q = quizzes[key];
             const selected = selectedBooks.includes(key);
-
             return (
               <div
                 key={key}
@@ -121,10 +119,8 @@ export default function Quiz() {
           })}
         </div>
 
-        {/* Question count selector */}
         <div style={{ textAlign: 'center', marginTop: '30px' }}>
           <p style={{ marginBottom: '10px' }}>Number of questions:</p>
-
           <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
             {[5, 10, 15, 20].map((num) => (
               <button
@@ -146,7 +142,6 @@ export default function Quiz() {
           </div>
         </div>
 
-        {/* Start button */}
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: '30px' }}>
           <button
             className={styles.goBtn}
@@ -189,7 +184,6 @@ export default function Quiz() {
         ← Home
       </button>
 
-      {/* Create custom quiz */}
       <button
         className="nav-btn"
         style={{ display: 'block', margin: '20px auto' }}
@@ -201,14 +195,17 @@ export default function Quiz() {
       <h2 className={styles.subtitle}>Our Quizzes</h2>
 
       <div className={styles.cardGrid}>
-        {/* All Books */}
         <div className={styles.card}>
           <p className={styles.cardTitle}>{allBooksQuiz.label}</p>
           <p className={styles.cardText}>{allBooksQuiz.description}</p>
           <button
             className={styles.goBtn}
-            onClick={() => {
-              setCustomQuiz(allBooksQuiz);
+            onClick={async () => {
+              const questions = await fetchQuestions(BOOKS_WITH_QUIZZES);
+              setCustomQuiz({
+                ...allBooksQuiz,
+                questions,
+              });
               setMode('quiz');
             }}
           >
@@ -216,7 +213,6 @@ export default function Quiz() {
           </button>
         </div>
 
-        {/* Individual books */}
         {BOOKS_WITH_QUIZZES.map((key) => {
           const q = quizzes[key];
           return (
