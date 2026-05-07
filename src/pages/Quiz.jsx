@@ -1,4 +1,4 @@
-import { useState } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 import QuizPlayer from '../components/QuizPlayer';
 import styles from './Quiz.module.css';
