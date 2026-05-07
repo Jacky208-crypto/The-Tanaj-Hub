@@ -2,9 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import QuizPlayer from '../components/QuizPlayer';
 import styles from './Quiz.module.css';
 import { quizzes, allBooksQuiz } from '../data/quizData';
-import { useState, useEffect } from 'react';
-
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+import { useState } from 'react';
 
 const BOOKS_WITH_QUIZZES = [
   'bereshit', 'shemot', 'vaikra', 'bamidbar', 'devarim',
@@ -21,27 +19,6 @@ export default function Quiz() {
   const [selectedBooks, setSelectedBooks] = useState([]);
   const [customQuiz, setCustomQuiz] = useState(null);
   const [questionCount, setQuestionCount] = useState(5);
-
-  const fetchQuestions = async (bookKeys) => {
-    const allQuestions = await Promise.all(
-      bookKeys.map(async (key) => {
-        const res = await fetch(`${API_URL}/api/questions/${key}`);
-        const data = await res.json();
-        return data.map(q => ({
-          question: q.question,
-          questionSp: q.question_sp,
-          questionHe: q.question_he,
-          options: q.options,
-          optionsSp: q.options_sp,
-          optionsHe: q.options_he,
-          correct: q.correct,
-          correctSp: q.correct_sp,
-          correctHe: q.correct_he,
-        }));
-      })
-    );
-    return allQuestions.flat();
-  };
 
   // 👉 QUIZ MODE
   if (mode === 'quiz' && customQuiz) {
@@ -152,8 +129,10 @@ export default function Quiz() {
               padding: '0.8rem 2rem',
               fontSize: '1rem',
             }}
-            onClick={async () => {
-              const combinedQuestions = await fetchQuestions(selectedBooks);
+            onClick={() => {
+              const combinedQuestions = selectedBooks.flatMap(
+                key => quizzes[key].questions
+              );
               if (combinedQuestions.length === 0) return;
               setCustomQuiz({
                 label: 'Custom Quiz',
@@ -200,12 +179,8 @@ export default function Quiz() {
           <p className={styles.cardText}>{allBooksQuiz.description}</p>
           <button
             className={styles.goBtn}
-            onClick={async () => {
-              const questions = await fetchQuestions(BOOKS_WITH_QUIZZES);
-              setCustomQuiz({
-                ...allBooksQuiz,
-                questions,
-              });
+            onClick={() => {
+              setCustomQuiz(allBooksQuiz);
               setMode('quiz');
             }}
           >
@@ -221,12 +196,8 @@ export default function Quiz() {
               <p className={styles.cardText}>{q.description}</p>
               <button
                 className={styles.goBtn}
-                onClick={async () => {
-                  const questions = await fetchQuestions([key]);
-                  setCustomQuiz({
-                    ...quizzes[key],
-                    questions,
-                  });
+                onClick={() => {
+                  setCustomQuiz(quizzes[key]);
                   setMode('quiz');
                 }}
               >
