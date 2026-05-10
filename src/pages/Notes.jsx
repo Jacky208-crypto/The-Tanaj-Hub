@@ -847,7 +847,7 @@ export default function Notes() {
           </button>
         ))}
       </div>
-
+ 
       <div className={styles.topicBar}>
         {NOTES.map(n => (
           <button
