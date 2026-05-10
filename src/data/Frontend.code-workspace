@@ -1,0 +1,15 @@
+{
+  "folders": [
+	{
+		"name": "Frontend",
+		"path": "../../../../Desktop/Frontend"
+	},
+	{
+		"name": "tanaj-hub-2",
+		"path": "../.."
+	}
+],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "Frontend"
+  }
+}
