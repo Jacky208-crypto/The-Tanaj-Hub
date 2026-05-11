@@ -13389,6 +13389,105 @@ export const quizzes = {
         correctSp: 'Shavuot',
         correctHe: 'שבועות',
       },
+      {
+        "question": "What was 'Behind the veil that guards the Ark of the Covenant, in the Tabernacle'? ",
+        "questionSp": "¿Qué estaba 'Detrás del velo que guarda el Arca del Pacto, en el Tabernáculo'?",
+        "questionHe": "מה היה 'מאחורי הפרוכת השומרת את ארון הברית, בתוך המשכן'?",
+        "options": ["The lamps", "The Showbread", "The ketoret", "The Ark of the Covenant" ],
+        "optionsSp": ["Las luminarias", "El pan de la proposición", "El incienso", "El Arca del Pacto"],
+        "optionsHe": ["הנרות", "לחם הפנים", "הקטורת", "ארון הברית"],
+        "correct": "The lamps",
+        "correctSp": "Las luminarias",
+        "correctHe": "הנרות"
+      },
+      {
+        "question": "How should the cakes be arranged on the table of pure gold?",
+        "questionSp": "¿Cómo deberían colocarse las tortas en la mesa de oro puro?",
+        "questionHe": "איך צריכות להיות מסודרות העוגות על שולחן הזהב הטהור?",
+        "options": ["In two rows of six cakes each", "In three rows of four cakes each", "In one row of twelve cakes", "In a circle"],
+        "optionsSp": ["En dos filas de seis tortas cada una", "En tres filas de cuatro tortas cada una", "En una fila de doce tortas", "En un círculo"],
+        "optionsHe": ["בשתי שורות של שש עוגות כל אחת", "בשלוש שורות של ארבע עוגות כל אחת", "בשורה אחת של שתים עשרה עוגות", "במעגל"],
+        "correct": "In two rows of six cakes each",
+        "correctSp": "En dos filas de seis tortas cada una",
+        "correctHe": "בשתי שורות של שש עוגות כל אחת"
+      },
+      {
+        "question": "Who told who: You shall pour pure incense upon each row, so that it covers the cakes, to be a fire offering",
+        "questionSp": "¿Quién le dijo a quién: 'Verteras incienso puro sobre cada fila, de modo que cubra las tortas, para ser ofrenda ígnea'?",
+        "questionHe": "מי אמר למי: 'תשפוך קטורת טהורה על כל שורה, כך שתכסה את העוגות, להיות קרבן אש'?",
+        "options": ["H' to Moshe", "H' to Aharon", "Moshe to Aharon", "The elders to Moshe"],
+        "optionsSp": ["H' a Moshe", "H' a Aharon", "Moshe a Aharon", "Los ancianos a Moshe"],
+        "optionsHe": ["ה' למשה", "ה' לאהרן", "משה לאהרן", "הזקנים למשה"],
+        "correct": "H' to Moshe",
+        "correctSp": "H' a Moshe",
+        "correctHe": "ה' למשה"
+      },
+      {
+        "question": "When should the bread be arranged before H'?",
+        "questionSp": "¿Cuándo deberían disponerse las tortas ante H'?",
+        "questionHe": "מתי צריכות להיות מסודרות העוגות לפני ה'?",
+        "options": ["Every Sabbath", "Every day", "Every month", "Every year"],
+        "optionsSp": ["Cada sábado", "Cada día", "Cada mes", "Cada año"],
+        "optionsHe": ["כל שבת", "כל יום", "כל חודש", "כל שנה"],
+        "correct": "Every Sabbath",
+        "correctSp": "Cada sábado",
+        "correctHe": "כל שבת"
+      },
+      {
+        "question": "Who shall eat the Bread of the Presence and where?",
+        "questionSp": "¿Quiénes comerán el pan de la Presencia y dónde?",
+        "questionHe": "מי יאכל את לחם הפנים ואיפה?",
+        "options": ["Aharon and his sons in the holy place", "Only Aharon in the holy of holies", "All the people in the courtyard", "The elders in the Tabernacle"],
+        "optionsSp": ["Aharon y sus hijos en el lugar santo", "Solo Aharon en el lugar santísimo", "Todo el pueblo en el patio", "Los ancianos en el Tabernáculo"],
+        "optionsHe": ["אהרן ובניו במקום הקדוש", "רק אהרן בקדש הקדשים", "כל העם בחצר", "הזקנים במשכן"],
+        "correct": "Aharon and his sons in the holy place",
+        "correctSp": "Aharon y sus hijos en el lugar santo",
+        "correctHe": "אהרן ובניו במקום הקדוש"
+      },
+      {
+        "question": "From what tribe was the son of an Israeli woman and an Egyptian man who fought in the camp?",
+        "questionSp": "¿De qué tribu era el hijo de una mujer israelita y un hombre egipcio que se peleó en el campamento?",
+        "questionHe": "מאיזה שבט היה בן של אישה ישראלית ואיש מצרי שנלחם במחנה?",
+        "options": ["Dan", "Levi", "Judah", "Ephraim"],
+        "optionsSp": ["Dan", "Levi", "Judá", "Efraín"],
+        "optionsHe": ["דן", "לוי", "יהודה", "אפרים"],
+        "correct": "Dan",
+        "correctSp": "Dan",
+        "correctHe": "דן",
+      },
+      {
+        "question": "What did the son of the Israeli woman do that brought him before Moshe?",
+        "questionSp": "¿Qué hizo el hijo de la mujer israelita que lo llevó ante Moshe?",
+        "questionHe": "מה עשה בן האישה הישראלית שהביא אותו לפני משה?",
+        "options": ["He pronounced the Name blaspheming", "He stole from the camp", "He fought with a priest", "He refused to follow the law"],
+        "optionsSp": ["Pronunció el Nombre blasfemando", "Robó del campamento", "Se peleó con un sacerdote", "Se negó a seguir la ley"],
+        "optionsHe": ["הוא הגיד את השם בגידוף", "גנב מהמחנה", "נלחם עם כוהן", "סירב לעקוב אחר החוק"],
+        "correct": "He pronounced the Name blaspheming",
+        "correctSp": "Pronunció el Nombre blasfemando",
+        "correctHe": "הוא הגיד את השם בגידוף"
+      },
+      {
+        "question": "What was done to the one who blasphemed while they inquired into the judgment of H'?",
+        "questionSp": "¿Qué se hizo con el que blasfemó mientras indagaban el juicio de H'?",
+        "questionHe": "מה נעשה לזה שגידף בזמן שהם חקרו את פסק דין ה'?",
+        "options": ["He was taken prisoner", "He was immediately executed", "He was exiled", "He was imprisoned"],
+        "optionsSp": ["Fue tomado prisionero", "Fue ejecutado inmediatamente", "Fue exiliado", "Fue encarcelado"],
+        "optionsHe": ["הוא נלקח כשבוי", "הוא הוצא להורג מיד", "הוא הגורש", "הוא נכלא"],
+        "correct": "He was taken prisoner",
+        "correctSp": "Fue tomado prisionero",
+        "correctHe": "הוא נלקח כשבוי"
+      },
+      {
+        "question": "What was the punishment for the one who blasphemed?",
+        "questionSp": "¿Cuál fue el castigo para el que blasfemó?",
+        "questionHe": "מה היה העונש לזה שגידף?",
+        "options": ["Death by stoning by the entire congregation", "Exile from the camp", "Imprisonment", "Flogging"],
+        "optionsSp": ["Muerte por lapidación por toda la congregación", "Exilio del campamento", "Encarcelamiento", "Azotamiento"],
+        "optionsHe": ["מוות בסקילה על ידי כל הקהל", "גלות מהמחנה", "כלא", "מכות"],
+        "correct": "Death by stoning by the entire congregation",
+        "correctSp": "Muerte por lapidación por toda la congregación",
+        "correctHe": "מוות בסקילה על ידי כל הקהל"
+      }
   ]
   },
   bamidbar: {
