@@ -1,61 +1,81 @@
 import { useState, useCallback, useRef } from 'react';
 import styles from './ChapterReader.module.css';
 
-const LANGUAGES = ['hebrew', 'english'];
+const LANGUAGES = ['hebrew', 'english', 'spanish'];
 const LANG_LABELS = {
   hebrew: 'Hebrew',
-  english: 'English'
+  english: 'English',
+  spanish: 'Español',
 };
 
 function cleanVerse(text, lang) {
   if (!text) return '';
 
   let cleaned = text
-    .replace(/<[^>]+>/g, '')           // strip HTML tags
-    .replace(/&[#a-z0-9]+;/gi, ' ')   // strip HTML entities
-    .replace(/\{[^\}]+\}/g, '')        // strip {footnotes}
-    .replace(/^\d+\./, '');            // strip leading verse numbers
+    .replace(/<[^>]+>/g, '')
+    .replace(/&[#a-z0-9]+;/gi, ' ')
+    .replace(/\{[^\}]+\}/g, '')
+    .replace(/^\d+\./, '');
 
   if (lang === 'english') {
-      cleaned = cleaned
-        .replace(/\bv\.\s*\d+[\d\s;:,cf\.-]*/gi, '')
-        .replace(/\b(cf|see|cp)\.\s*[\d\s;:,v\.-]*/gi, '')
-        .replace(/[a-z]\b(?=\s*(Cf|See|cf|see))/g, '')
-        .replace(/[a-zA-Z](?=Cf\.|See\s)/g, '')
-        .replace(/\b(Cf|cf|See|see|Cp|cp)\.\s*[\w\s\d;:,v\.\-ff]*/g, '')
-        .replace(/\b[a-z]\s+(Num|Lev|Gen|Deut|Exod|Josh|Judg|Sam|Kgs|Isa|Jer|Ezek|Hos|Amos|Ps|Prov|Job|Dan|Ezra|Neh|Chr)\.\s*[\d:.ff\s,]*/g, '')
-        .replace(/\bGreek(\s+and\s+\w+)?\s+(read|reads)[^.]*\./gi, '')
-        .replace(/\bSyriac\s+(read|reads)[^.]*\./gi, '')
-        .replace(/\bHebrew\s+(read|reads)[^.]*\./gi, '')
-        .replace(/\bLXX[^.]*\./gi, '')
-        .replace(/\bsome\s+(mss?|manuscripts?)[^.]*\./gi, '')
-        .replace(/\blit\.\s*[^,;.]*/gi, '')
-        .replace(/\bsee\s+[\d:-]+/gi, '')
-        .replace(/\b[Ee]gyptian for[^.]*\./g, '');
-    }
+    cleaned = cleaned
+      .replace(/\bv\.\s*\d+[\d\s;:,cf\.-]*/gi, '')
+      .replace(/\b(cf|see|cp)\.\s*[\d\s;:,v\.-]*/gi, '')
+      .replace(/[a-z]\b(?=\s*(Cf|See|cf|see))/g, '')
+      .replace(/[a-zA-Z](?=Cf\.|See\s)/g, '')
+      .replace(/\b(Cf|cf|See|see|Cp|cp)\.\s*[\w\s\d;:,v\.\-ff]*/g, '')
+      .replace(/\b[a-z]\s+(Num|Lev|Gen|Deut|Exod|Josh|Judg|Sam|Kgs|Isa|Jer|Ezek|Hos|Amos|Ps|Prov|Job|Dan|Ezra|Neh|Chr)\.\s*[\d:.ff\s,]*/g, '')
+      .replace(/\bGreek(\s+and\s+\w+)?\s+(read|reads)[^.]*\./gi, '')
+      .replace(/\bSyriac\s+(read|reads)[^.]*\./gi, '')
+      .replace(/\bHebrew\s+(read|reads)[^.]*\./gi, '')
+      .replace(/\bLXX[^.]*\./gi, '')
+      .replace(/\bsome\s+(mss?|manuscripts?)[^.]*\./gi, '')
+      .replace(/\blit\.\s*[^,;.]*/gi, '')
+      .replace(/\bsee\s+[\d:-]+/gi, '')
+      .replace(/\b[Ee]gyptian for[^.]*\./g, '');
+  }
+  if (lang === 'spanish') {
+    cleaned = cleaned.replace(/Jehov[áa]/g, 'Hashem');
+  }
 
   return cleaned
-    .replace(/\([^)]*\)/g, '')   // strip (parenthetical notes)
-    .replace(/\[[^\]]*\]/g, '')  // strip [bracketed notes]
+    .replace(/\([^)]*\)/g, '')
+    .replace(/\[[^\]]*\]/g, '')
     .replace(/\s+/g, ' ')
     .trim();
 }
-async function translateToSpanish(verses) {
-  const results = [];
 
-  for (const verse of verses) {
-    try {
-      const res = await fetch(
-        `https://api.mymemory.translated.net/get?q=${encodeURIComponent(verse)}&langpair=en|es`
-      );
-      const data = await res.json();
-      results.push(data.responseData?.translatedText || verse);
-    } catch {
-      results.push(verse);
-    }
-  }
+const SEFARIA_TO_BOLLS_ID = {
+  'Genesis': 1, 'Exodus': 2, 'Leviticus': 3, 'Numbers': 4, 'Deuteronomy': 5,
+  'Joshua': 6, 'Judges': 7, 'Ruth': 8, 'I Samuel': 9, 'II Samuel': 10,
+  'I Kings': 11, 'II Kings': 12, 'I Chronicles': 13, 'II Chronicles': 14,
+  'Ezra': 15, 'Nehemiah': 16, 'Esther': 17, 'Job': 18, 'Psalms': 19,
+  'Proverbs': 20, 'Ecclesiastes': 21, 'Song of Songs': 22, 'Isaiah': 23,
+  'Jeremiah': 24, 'Lamentations': 25, 'Ezekiel': 26, 'Daniel': 27,
+  'Hosea': 28, 'Joel': 29, 'Amos': 30, 'Obadiah': 31, 'Jonah': 32,
+  'Micah': 33, 'Nahum': 34, 'Habakkuk': 35, 'Zephaniah': 36,
+  'Haggai': 37, 'Zechariah': 38, 'Malachi': 39,
+};
 
-  return results;
+async function fetchSpanishFromBolls(sefariaBookName, chapterNum) {
+  const bookId = SEFARIA_TO_BOLLS_ID[sefariaBookName];
+  
+  // ADD THIS:
+  console.log('fetchSpanishFromBolls called with:', sefariaBookName, chapterNum, '→ bookId:', bookId);
+  
+  if (!bookId) throw new Error(`No Spanish mapping for book: ${sefariaBookName}`);
+
+  const url = `https://bolls.life/get-text/RV1960/${bookId}/${chapterNum}/`;
+  console.log('Fetching URL:', url);
+  
+  const res = await fetch(url);
+  console.log('Response status:', res.status);
+  
+  const verses = await res.json();
+  console.log('Verses received:', verses.length, verses[0]);
+
+  if (!verses.length) throw new Error('No verses returned — chapter may be empty.');
+  return verses.map(v => cleanVerse(v.text, 'spanish'));
 }
 
 export default function ChapterReader({ book }) {
@@ -65,8 +85,9 @@ export default function ChapterReader({ book }) {
   const [spanishVerses, setSpanishVerses] = useState([]);
   const [language, setLanguage] = useState('hebrew');
   const [loading, setLoading] = useState(false);
-  const [translating, setTranslating] = useState(false);
+  const [loadingSpanish, setLoadingSpanish] = useState(false);
   const [error, setError] = useState(null);
+  const [spanishError, setSpanishError] = useState(null);
 
   const spanishCache = useRef({});
 
@@ -74,6 +95,7 @@ export default function ChapterReader({ book }) {
     setActiveChapter(chapterNum);
     setLoading(true);
     setError(null);
+    setSpanishError(null);
 
     setHebrewVerses([]);
     setEnglishVerses([]);
@@ -83,18 +105,11 @@ export default function ChapterReader({ book }) {
       const res = await fetch(
         `https://www.sefaria.org/api/texts/${encodeURIComponent(book.sefaria)}.${chapterNum}?commentary=0&context=0&pad=0&ven=Tanakh:%20The%20Holy%20Scriptures,%20published%20by%20JPS`
       );
-
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
-
       const data = await res.json();
 
-      // 🔥 CLEAN EVERYTHING HERE
-      const cleanEnglish = data.text.map(v => cleanVerse(v, 'english'));
-      const cleanHebrew = data.he.map(v => cleanVerse(v, 'hebrew'));
-
-      setHebrewVerses(cleanHebrew);
-      setEnglishVerses(cleanEnglish);
-
+      setEnglishVerses(data.text.map(v => cleanVerse(v, 'english')));
+      setHebrewVerses(data.he.map(v => cleanVerse(v, 'hebrew')));
     } catch (e) {
       setError(e.message);
     } finally {
@@ -104,24 +119,32 @@ export default function ChapterReader({ book }) {
 
   const handleLanguageChange = async (lang) => {
     setLanguage(lang);
-
+  
     if (lang === 'spanish' && activeChapter !== null) {
       const cacheKey = `${book.id}-${activeChapter}`;
-
+  
       if (spanishCache.current[cacheKey]) {
         setSpanishVerses(spanishCache.current[cacheKey]);
         return;
       }
-
-      if (englishVerses.length > 0) {
-        setTranslating(true);
-
-        const translated = await translateToSpanish(englishVerses);
-
-        spanishCache.current[cacheKey] = translated;
-        setSpanishVerses(translated);
-
-        setTranslating(false);
+  
+      setLoadingSpanish(true);
+      setSpanishError(null);
+  
+      try {
+        const verses = await fetchSpanishFromBolls(book.sefaria, activeChapter);
+        
+        console.log('Spanish verses fetched:', verses.length, verses.slice(0, 2));
+        
+        if (!verses.length) throw new Error('No verses returned — chapter may be empty.');
+        
+        spanishCache.current[cacheKey] = verses;
+        setSpanishVerses(verses);
+      } catch (e) {
+        console.error('Spanish fetch error:', e);
+        setSpanishError(e.message);
+      } finally {
+        setLoadingSpanish(false);
       }
     }
   };
@@ -132,6 +155,7 @@ export default function ChapterReader({ book }) {
     setEnglishVerses([]);
     setSpanishVerses([]);
     setError(null);
+    setSpanishError(null);
   };
 
   const currentVerses =
@@ -165,14 +189,11 @@ export default function ChapterReader({ book }) {
             ← Back to Chapter Selection
           </button>
 
-          {/* Language toggle */}
           <div className={styles.langToggle}>
             {LANGUAGES.map((lang) => (
               <button
                 key={lang}
-                className={`${styles.langBtn} ${
-                  language === lang ? styles.langActive : ''
-                }`}
+                className={`${styles.langBtn} ${language === lang ? styles.langActive : ''}`}
                 onClick={() => handleLanguageChange(lang)}
               >
                 {LANG_LABELS[lang]}
@@ -181,40 +202,42 @@ export default function ChapterReader({ book }) {
           </div>
 
           {loading && <p className={styles.loading}>Loading chapter...</p>}
-          {translating && <p className={styles.loading}>Translating to Spanish...</p>}
+          {loadingSpanish && <p className={styles.loading}>Loading Spanish translation...</p>}
 
           {error && (
             <div className={styles.error}>
               <p>Error loading chapter {activeChapter}</p>
               <p>{error}</p>
-              <button
-                className="chapter-btn"
-                onClick={() => loadChapter(activeChapter)}
-              >
+              <button className="chapter-btn" onClick={() => loadChapter(activeChapter)}>
                 Try Again
               </button>
             </div>
           )}
 
-          {!loading && !translating && !error && currentVerses.length > 0 && (
-            <>
-              <h2 className={styles.chapterTitle}>
-                {`פרק ${activeChapter}`}
-              </h2>
+        {language === 'spanish' && spanishError && (
+              <div className={styles.error}>
+                <p>No se pudo cargar la traducción en español.</p>
+                <p style={{ fontSize: '0.85em', opacity: 0.7 }}>{spanishError}</p>
+                <button className="chapter-btn" onClick={() => handleLanguageChange('spanish')}>
+                  Reintentar
+                </button>
+              </div>
+            )}
 
-              {currentVerses.map((verse, i) => (
-                <div key={i} className={styles.verse}>
-                  <span className={styles.verseNumber}>{i + 1}.</span>
+            {!loading && !loadingSpanish && !error && currentVerses.length > 0 && (
+              <>
+                <h2 className={styles.chapterTitle}>{`פרק ${activeChapter}`}</h2>
+                {currentVerses.map((verse, i) => (
+                  <div key={i} className={styles.verse}>
+                    <span className={styles.verseNumber}>{i + 1}.</span>
+                    <span style={{ direction: isRTL ? 'rtl' : 'ltr' }}>{verse}</span>
+                  </div>
+                ))}
+              </>
+            )}
 
-                  <span style={{ direction: isRTL ? 'rtl' : 'ltr' }}>
-                    {verse}
-                  </span>
-                </div>
-              ))}
-            </>
-          )}
-        </div>
-      )}
+          </div>
+        )}
     </div>
   );
 }
