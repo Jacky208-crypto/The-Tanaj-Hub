@@ -6285,7 +6285,7 @@ export const quizzes = {
         optionsSp: ['Sol, luna y once estrellas', 'Siete vacas flacas', 'Tres canastas de pan', 'Una vid con tres sarmientos'],
         optionsHe: ['שמש, ירח ואחד עשר כוכבים', 'שבע פרות דקות', 'שלושה סלי חורי', 'גפן עם שלושה שריגים'],
         correct: 'Sun, moon, and eleven stars',
-        correctSp: 'Estrellas, luna y sol',
+        correctSp: 'Sol, luna y once estrellas',
         correctHe: 'שמש, ירח ואחד עשר כוכבים',
       },
       {
@@ -6813,7 +6813,7 @@ export const quizzes = {
         optionsSp: ['Yehuda a Jira', 'Jira a Yehuda', 'Tamar a Yehuda', 'Yaakov a sus hijos'],
         optionsHe: ['יהודה לחירה', 'חירה ליהודה', 'תמר ליהודה', 'יעקב לבניו'],
         correct: 'Yehuda to Jira',
-        correctSp: 'Yehuda a Jira sobre Tamar',
+        correctSp: 'Yehuda a Jira',
         correctHe: 'יהודה לחירה',
       },
       {
