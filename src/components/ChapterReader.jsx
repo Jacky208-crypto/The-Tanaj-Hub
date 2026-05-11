@@ -36,6 +36,7 @@ function cleanVerse(text, lang) {
   }
   if (lang === 'spanish') {
     cleaned = cleaned.replace(/Jehov[áa]/g, 'Hashem');
+    cleaned = cleaned.replace(/JAH/g, 'Hashem');
   }
 
   return cleaned
