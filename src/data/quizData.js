@@ -9887,17 +9887,6 @@ export const quizzes = {
         correctHe: 'לוט ומשפחתו',
       },
       // LINE: "Pero no os apiadáis de —" Amos sobre Yosef
-      {
-        question: 'Who said, according to Amos, "you showed no compassion" — about whom?',
-        questionSp: '¿Según Amós, quién dijo "no os apiadáis" sobre quién?',
-        questionHe: 'לפי עמוס, מי אמר על מי "לא נחמתם"?',
-        options: ['Amos about those who showed no compassion for Yosef', 'Amos about those who showed no compassion for Moshe', 'Amos about those who showed no compassion for Lot', 'Amos about those who showed no compassion for Avraham'],
-        optionsSp: ['Amós sobre quienes no se apiadaron de Yosef', 'Amós sobre quienes no se apiadaron de Moshe', 'Amós sobre quienes no se apiadaron de Lot', 'Amós sobre quienes no se apiadaron de Avraham'],
-        optionsHe: ['עמוס על אלה שלא חמלו על יוסף', 'עמוס על אלה שלא חמלו על משה', 'עמוס על אלה שלא חמלו על לוט', 'עמוס על אלה שלא חמלו על אברהם'],
-        correct: 'Amos about those who showed no compassion for Yosef',
-        correctSp: 'Amós sobre quienes no se apiadaron de Yosef',
-        correctHe: 'עמוס על אלה שלא חמלו על יוסף',
-      },
       // LINE: "¿Quieres que busque una nodriza?"
       {
         question: 'Who said to whom: "Shall I go and find a wet nurse"?',
@@ -12215,17 +12204,6 @@ export const quizzes = {
         "correct": "Moshe about consecrating the firstborn",
         "correctSp": "Moshe sobre consagrar al primogénito",
         "correctHe": "משה על קדושת הבכור"
-      },
-      {
-        "question": "What should be told to the son about how H' freed Israel?",
-        "questionSp": "¿Qué se debe decir al hijo sobre cómo H' liberó a Israel?",
-        "questionHe": "מה צריך להיות אמור לבן על איך ה' שחרר את ישראל?",
-        "options": ["With a strong hand H' freed us", "With miracles and wonders", "With the blood of the firstborn", "With the plagues"],
-        "optionsSp": ["Con mano vigorosa nos libró H'", "Con milagros y maravillas", "Con la sangre del primogénito", "Con las plagas"],
-        "optionsHe": ["בחוזק יד הוציאנו ה'", "בנסים ובנפלאות", "בדם הבכור", "בעשרת המכות"],
-        "correct": "With a strong hand H' freed us",
-        "correctSp": "Con mano vigorosa nos libró H'",
-        "correctHe": "בחוזק יד הוציאנו ה'"
       },
       {
         "question": "Who told the people: 'Thus it shall be as a sign on your hand and as frontlets between your eyes'?",
@@ -17987,6 +17965,17 @@ export const quizzes = {
       label: 'Neviim Ajaronim',
       description: 'Test your knowledge of the later prophets with these questions about their words and actions.',
       questions: [
+        {
+          question: 'Who said, according to Amos, "you showed no compassion" — about whom?',
+          questionSp: '¿Según Amós, quién dijo "no os apiadáis" sobre quién?',
+          questionHe: 'לפי עמוס, מי אמר על מי "לא נחמתם"?',
+          options: ['Amos about those who showed no compassion for Yosef', 'Amos about those who showed no compassion for Moshe', 'Amos about those who showed no compassion for Lot', 'Amos about those who showed no compassion for Avraham'],
+          optionsSp: ['Amós sobre quienes no se apiadaron de Yosef', 'Amós sobre quienes no se apiadaron de Moshe', 'Amós sobre quienes no se apiadaron de Lot', 'Amós sobre quienes no se apiadaron de Avraham'],
+          optionsHe: ['עמוס על אלה שלא חמלו על יוסף', 'עמוס על אלה שלא חמלו על משה', 'עמוס על אלה שלא חמלו על לוט', 'עמוס על אלה שלא חמלו על אברהם'],
+          correct: 'Amos about those who showed no compassion for Yosef',
+          correctSp: 'Amós sobre quienes no se apiadaron de Yosef',
+          correctHe: 'עמוס על אלה שלא חמלו על יוסף',
+        },
         {
           question: 'Who said: "The bricks have fallen, but we will build with hewn stones; the sycamores are cut down, but we will replace them with cedars."',
           questionSp: 'Quien dijo: "Los ladrillos han caído pero construiremos con piedras debastadas. Los sicómoros fueron cortados pero pondremos cedros en su lugar"',
