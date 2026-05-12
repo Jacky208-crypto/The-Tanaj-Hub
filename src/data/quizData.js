@@ -4639,9 +4639,9 @@ export const quizzes = {
         correctHe: 'המלאכים ליעקב',
       },
       {
-        question: 'How many men did Esav have with him?',
-        questionSp: '¿Con cuántos hombres venía Esav?',
-        questionHe: 'עם כמה אנשים בא עשו?',
+        question: 'How many men did Esav have with him when he encountered Yaakov?',
+        questionSp: '¿Con cuántos hombres venía Esav al encuentro con Yaakov?',
+        questionHe: 'כמה איש היה עם עשו כשהתקלם ביעקב?',
         options: ['400', '300', '100', '1000'],
         optionsSp: ['400', '300', '100', '1000'],
         optionsHe: ['400', '300', '100', '1000'],
@@ -7352,7 +7352,7 @@ export const quizzes = {
         optionsSp: ['Una vid', 'Siete vacas', 'Tres canastas', 'Un río'],
         optionsHe: ['גפן', 'שבע פרות', 'שלושה סלים', 'יאור'],
         correct: 'A vine',
-        correctSp: 'Copero a Yosef (había una vid)',
+        correctSp: 'Una vid',
         correctHe: 'גפן',
       },
       {
