@@ -6571,7 +6571,7 @@ export const quizzes = {
         optionsSp: ['Er, Onan y Shela', 'Peretz, Zeraj y Shela', 'Er, Onan y Peretz', 'Levi, Shimon y Yehuda'],
         optionsHe: ['ער, אונן ושלה', 'פרץ, זרח ושלה', 'ער, אונן ופרץ', 'לוי, שמעון ויהודה'],
         correct: 'Er, Onan, and Shela',
-        correctSp: 'Er, Onan, y Shela',
+        correctSp: 'Er, Onan y Shela',
         correctHe: 'ער, אונן ושלה',
       },
       {
