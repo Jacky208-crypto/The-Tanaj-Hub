@@ -5465,8 +5465,8 @@ export const quizzes = {
       },
       {
         question: 'Who was it said about: "He saw her, took her, lay with her and dishonored her"?',
-        questionSp: '¿Sobre quién se dijo: "La vió y la tomó, yació con ella y la deshonró"? (A Dina)',
-        questionHe: 'על מי נאמר: "וירא אתה... ויקח אתה וישכב אתה ויענה"? (לדינה)',
+        questionSp: '¿Sobre quién se dijo: "La vió y la tomó, yació con ella y la deshonró"?',
+        questionHe: 'על מי נאמר: "וירא אתה... ויקח אתה וישכב אתה ויענה"? ',
         options: ['Shechem', 'Hamor', 'Reuben', 'Amnon'],
         optionsSp: ['Shjem', 'Hamor', 'Reuben', 'Amnón'],
         optionsHe: ['שכם', 'חמור', 'ראובן', 'אמנון'],
