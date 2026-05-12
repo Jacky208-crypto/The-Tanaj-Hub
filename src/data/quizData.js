@@ -5354,17 +5354,6 @@ export const quizzes = {
         correctHe: 'שמשון להוריו',
       },
       {
-        question: 'Where were the sons of Yaakov when they heard the news about Dina?',
-        questionSp: '¿Dónde "Estaban con el ganado..." los hijos de Yaakov?',
-        questionHe: 'איפה היו בני יעקב עם המקנה?',
-        options: ['In the field', 'In Shechem', 'In Hebron', 'In Dotan'],
-        optionsSp: ['En el campo', 'En Shjem', 'En Hebron', 'En Dotan'],
-        optionsHe: ['בשדה', 'בשכם', 'בחברון', 'בדותן'],
-        correct: 'In the field',
-        correctSp: 'En el campo',
-        correctHe: 'בשדה',
-      },
-      {
         question: 'Who was it said about: "They came from the field when they found out; they were furious"?',
         questionSp: '¿Sobre quién se dijo: "Vinieron del campo cuando lo supieron; estaban encolerizados"?',
         questionHe: 'על מי נאמר: "באו מן השדה כמשמעם ויתעצבו..."?',
