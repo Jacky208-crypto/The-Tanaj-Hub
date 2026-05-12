@@ -5519,17 +5519,6 @@ export const quizzes = {
         correctHe: 'בשדה',
       },
       {
-        question: 'Who was it said about: "He remained silent until they returned"?',
-        questionSp: '¿Sobre quién se dijo: "Permaneció en silencio hasta que regresaron" (sus hijos)?',
-        questionHe: 'על מי נאמר: "והחרש עד באם"? (בניו)',
-        options: ['Yaakov', 'Hamor', 'Itzjak', 'Abraham'],
-        optionsSp: ['Yaakov', 'Hamor', 'Itzjak', 'Abraham'],
-        optionsHe: ['יעקב', 'חמור', 'יצחק', 'אברהם'],
-        correct: 'Yaakov',
-        correctSp: 'Yaakov',
-        correctHe: 'יעקב',
-      },
-      {
         question: 'Who was it said about: "They came from the field when they found out; they were furious"?',
         questionSp: '¿Sobre quién se dijo: "Vinieron del campo cuando lo supieron; estaban encolerizados"?',
         questionHe: 'על מי נאמר: "באו מן השדה כמשמעם ויתעצבו..."?',
@@ -5739,9 +5728,9 @@ export const quizzes = {
         correctHe: 'חמור ושכם',
       },
       {
-        question: 'Who was it said about: "They entered the confident city"? (In Shechem, on the third day of the Brit Mila)',
-        questionSp: '¿Sobre quién se dijo: "Entraron en la ciudad confiada"? (En Shjem, al tercer dia del Brit Mila)',
-        questionHe: 'על מי נאמר: "ויבאו על העיר בטח"? (בשכם, ביום השלישי למילה)',
+        question: 'Who was it said about: "They entered the confident city"?',
+        questionSp: '¿Sobre quién se dijo: "Entraron en la ciudad confiada"?',
+        questionHe: 'על מי נאמר: "ויבאו על העיר בטח"? ',
         options: ['Shimon and Levi', 'Reuben and Yehuda', 'Dan and Naftali', 'Gad and Asher'],
         optionsSp: ['Shimon y Levi', 'Reuben y Yehuda', 'Dan y Naftali', 'Gad y Asher'],
         optionsHe: ['שמעון ולוי', 'ראובן ויהודה', 'דן ונפתלי', 'גד ואשר'],
@@ -6450,7 +6439,7 @@ export const quizzes = {
         optionsSp: ['Yehuda a sus hermanos', 'Reuben a sus hermanos', 'Yaakov a sus hijos', 'Levi a Shimon'],
         optionsHe: ['יהודה לאחיו', 'ראובן לאחיו', 'יעקב לבניו', 'לוי לשמעון'],
         correct: 'Yehuda to his brothers',
-        correctSp: 'Yehuda a sus hermanos sobre Yosef',
+        correctSp: 'Yehuda a sus hermanos',
         correctHe: 'יהודה לאחיו',
       },
       {
@@ -6527,7 +6516,7 @@ export const quizzes = {
         optionsSp: ['Yaakov', 'Yitzhak', 'Yehuda', 'Reuben'],
         optionsHe: ['יעקב', 'יצחק', 'יהודה', 'ראובן'],
         correct: 'Yaakov',
-        correctSp: 'Yaakov por Yosef',
+        correctSp: 'Yaakov',
         correctHe: 'יעקב',
       },
       {
@@ -6681,7 +6670,7 @@ export const quizzes = {
         optionsSp: ['Timnat', 'Hebron', 'Quezib', 'Enaim'],
         optionsHe: ['תמנה', 'חברון', 'כזיב', 'עיניים'],
         correct: 'Timnat',
-        correctSp: 'Yehuda a Timnat',
+        correctSp: 'Timnat',
         correctHe: 'תמנה',
       },
       {
