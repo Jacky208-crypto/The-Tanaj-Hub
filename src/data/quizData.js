@@ -7037,17 +7037,6 @@ export const quizzes = {
         correctHe: 'פרעה',
       },
       {
-        question: 'Who was put in prison because it wasn’t decided what to do with him for cutting wood on Shabbat?',
-        questionSp: '¿Quién fue puesto en prisión al no decidirse qué hacer con él por cortar leña en Shabat?',
-        questionHe: 'מי הונח במשמר כי לא פורש מה יעשה לו (מקושש עצים)?',
-        options: ['The wood gatherer (Mekoshesh Etzim)', 'The blasphemer', 'The thief', 'The murderer'],
-        optionsSp: ['El que cortó leña en shabat', 'El blasfemo', 'El ladrón', 'El asesino'],
-        optionsHe: ['מקושש עצים', 'המקלל', 'הגנב', 'הרוצח'],
-        correct: 'The wood gatherer (Mekoshesh Etzim)',
-        correctSp: 'El que corto leña en shabat',
-        correctHe: 'מקושש עצים',
-      },
-      {
         question: 'Who was taken prisoner while inquiring the judgment of God?',
         questionSp: '¿Quién fue tomado prisionero mientras indagaban el juicio a H\'?',
         questionHe: 'מי הונח במשמר עד שיפרש להם על פי ה\' (בן שלומית בת דברי)?',
