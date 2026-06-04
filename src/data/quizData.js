@@ -5024,9 +5024,9 @@ export const quizzes = {
         correctHe: 'משה ואהרן',
       },
       {
-        question: 'Who was it said about: "They prostrated face to the ground and implored"? (Regarding Koraj)',
-        questionSp: '¿Sobre quién se dijo: "Se prosternaron rostro a tierra e imploraron"? (Ante H\' con lo de Koraj)',
-        questionHe: 'על מי נאמר: "ויפלו על פניהם ויאמרו..."? (לגבי קורח)',
+        question: 'Who was it said about: "They prostrated face to the ground and implored"? ',
+        questionSp: '¿Sobre quién se dijo: "Se prosternaron rostro a tierra e imploraron"?',
+        questionHe: 'על מי נאמר: "ויפלו על פניהם ויאמרו..."?',
         options: ['Moshe and Aharon', 'Datan and Aviram', 'Koraj and his followers', 'The elders'],
         optionsSp: ['Moshe y Aharon', 'Datan y Aviram', 'Koraj y sus seguidores', 'Los ancianos'],
         optionsHe: ['משה ואהרן', 'דתן ואבירם', 'קורח ועדתו', 'הזקנים'],
