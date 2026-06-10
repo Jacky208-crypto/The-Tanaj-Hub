@@ -7664,17 +7664,6 @@ export const quizzes = {
         "correctHe": "יוסף לאחיו"
       },
       {
-        "question": "Who was it said about: 'He sent to his father ten donkeys laden with the best things of Egypt and ten female donkeys laden with grain and bread and provisions for his father'",
-        "questionSp": "¿Sobre quién se dijo: 'Yosef le manda a Yaakov 10 asnos cargados con lo mejor de Egipto, 10 asnas con trigo y pan y demas provisiones'?",
-        "questionHe": "על מי נאמר: 'וישלח לאביו עשרה חמורים'?",
-        "options": ["Yosef to Yaakov", "Paro to Yosef", "Yaakov to his sons", "Yehuda to Yosef"],
-        "optionsSp": ["Yosef a Yaakov", "Paro a Yosef", "Yaakov a sus hijos", "Yehuda a Yosef"],
-        "optionsHe": ["יוסף ליעקב", "פרעה ליוסף", "יעקב לבניו", "יהודה ליוסף"],
-        "correct": "Yosef to Yaakov",
-        "correctSp": "Yosef a Yaakov",
-        "correctHe": "יוסף ליעקב"
-      },
-      {
         "question": "Who was it said about: 'His heart became faint, for he did not believe them'",
         "questionSp": "¿Sobre quién se dijo: 'El corazón de — no se inmutó porque él no les creyo'?",
         "questionHe": "על מי נאמר: 'ויפג לבו כי לא האמין להם'?",
