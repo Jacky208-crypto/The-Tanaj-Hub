@@ -12371,17 +12371,6 @@ export const quizzes = {
         correctHe: 'מול ההר', 
       },
       { 
-        question: 'Why did Moshe go up to God at Har Sinai?', 
-        questionSp: '¿Por qué subió Moshe ante Dios en el Har Sinaí?', 
-        questionHe: 'למה עלה משה לפני אלוקים בהר סיני?', 
-        options: ['To bring the tablets', 'Answering God\'s call', 'To pray for the people', 'To receive the Mishkan plans'], 
-        optionsSp: ['Para traer las tablas', 'En respuesta al llamado de Dios', 'Para orar por el pueblo', 'Para recibir los planos del Mishkán'], 
-        optionsHe: ['להביא את הלוחות', 'בתשובה לקריאת אלוקים', 'להתפלל עבור העם', 'לקבל את תוכניות המשכן'], 
-        correct: 'Answering God\'s call', 
-        correctSp: 'En respuesta al llamado de Dios', 
-        correctHe: 'בתשובה לקריאת אלוקים', 
-      },
-      { 
         question: 'Who was H\'s message at Har Sinai addressed to?', 
         questionSp: '¿A quién iba dirigido el mensaje de H\' en el Har Sinaí?', 
         questionHe: 'למי היה מופנה מסר ה\' בהר סיני?', 
