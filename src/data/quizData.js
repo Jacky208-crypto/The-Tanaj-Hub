@@ -6296,7 +6296,7 @@ export const quizzes = {
         optionsSp: ['10 piezas', '20 piezas', '30 piezas', '50 piezas'],
         optionsHe: ['10 כסף', '20 כסף', '30 כסף', '50 כסף'],
         correct: '20 pieces',
-        correctSp: '20 piezas de plata',
+        correctSp: '20 piezas',
         correctHe: '20 כסף',
       },
       {
@@ -6681,7 +6681,7 @@ export const quizzes = {
         optionsSp: ['Mellizos', 'Un solo niño', 'Una sola niña', 'Nada'],
         optionsHe: ['תאומים', 'בן אחד', 'בת אחת', 'כלום'],
         correct: 'Twins',
-        correctSp: 'Habia mellizos en su vientre',
+        correctSp: 'Mellizos',
         correctHe: 'תאומים',
       },
       {
