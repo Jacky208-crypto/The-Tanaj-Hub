@@ -1,10 +1,36 @@
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import styles from './Home.module.css';
 
 export default function Home() {
   const navigate = useNavigate();
+  const { user, signOut, loading } = useAuth();
+
   return (
     <div className={styles.page}>
+      <div className={styles.authBar}>
+        {loading ? null : user ? (
+          <>
+            <span className={styles.welcome}>
+              Hi, {user.user_metadata?.name || user.email}
+            </span>
+            <button className={styles.authBtn} onClick={signOut}>Log out</button>
+          </>
+        ) : (
+          <>
+            <button className={styles.authBtn} onClick={() => navigate('/login')}>
+              Log in
+            </button>
+            <button
+              className={styles.authBtn}
+              onClick={() => navigate('/login', { state: { mode: 'signup' } })}
+            >
+              Sign up
+            </button>
+          </>
+        )}
+      </div>
+
       <header className={styles.header}>
         <h1 className={styles.title}>The Tanaj Study Hub</h1>
         <p className={styles.subtext}>The Tanaj Hub is an interactive platform to learn Torah, Neviim, and Ketuvim
@@ -37,7 +63,7 @@ export default function Home() {
         </div>
       </div>
       <footer style={{ textAlign: 'center', padding: '2rem', color: '#888', fontSize: '0.85rem' }}>
-  Made by Jacky Fnounou 
+  Made by Jacky Fnounou
 </footer>
     </div>
 
