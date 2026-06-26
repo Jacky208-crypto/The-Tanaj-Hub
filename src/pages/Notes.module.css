@@ -123,3 +123,36 @@
     background: #4a90e2;
     color: white;
   }
+/* Icon buttons for editing / deleting personal notes */
+.iconBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  color: #8a94a6;
+  transition: color 0.15s ease, background 0.15s ease, transform 0.1s ease;
+}
+
+.iconBtn svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+.iconBtn:active {
+  transform: scale(0.9);
+}
+
+.editBtn:hover {
+  color: #4a90e2;
+  background: #eaf2fc;
+}
+
+.deleteBtn:hover {
+  color: #e74c3c;
+  background: #fdecea;
+}

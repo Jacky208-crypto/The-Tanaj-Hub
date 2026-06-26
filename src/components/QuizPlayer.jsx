@@ -1,5 +1,7 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import styles from './QuizPlayer.module.css';
+import { useAuth } from '../context/AuthContext';
+import { saveQuizAttempt } from '../lib/supabaseClient';
 
 function shuffleAndPick(arr, n) {
   const shuffled = [...arr].sort(() => Math.random() - 0.5);
@@ -17,6 +19,7 @@ function shuffleAndPick(arr, n) {
 }
 
 export default function QuizPlayer({ quiz, onBack }) {
+  const { user } = useAuth();
   const [index, setIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [flash, setFlash] = useState(null);
@@ -24,6 +27,8 @@ export default function QuizPlayer({ quiz, onBack }) {
   const [language, setLanguage] = useState('english');
   const [sessionKey, setSessionKey] = useState(0);
   const [wrongAnswer, setWrongAnswer] = useState(null);
+  const [saveState, setSaveState] = useState('idle'); // idle | saving | saved | error
+  const savedForSession = useRef(-1);
 
   const questions = useMemo(
     () => shuffleAndPick(quiz.questions, quiz.count || 5),
@@ -32,6 +37,22 @@ export default function QuizPlayer({ quiz, onBack }) {
 
   const finished = index >= questions.length;
   const current = questions[index];
+
+  // When a quiz finishes, save the attempt for logged-in users (once per run).
+  useEffect(() => {
+    if (!finished || questions.length === 0) return;
+    if (!user) return;
+    if (savedForSession.current === sessionKey) return;
+    savedForSession.current = sessionKey;
+    setSaveState('saving');
+    saveQuizAttempt({
+      quizLabel: quiz.label || 'Quiz',
+      score,
+      total: questions.length,
+    })
+      .then(() => setSaveState('saved'))
+      .catch(() => setSaveState('error'));
+  }, [finished, user, sessionKey, quiz.label, score, questions.length]);
 
   const getQuestion = (q) => {
     if (language === 'spanish' && q.questionSp) return q.questionSp;
@@ -76,6 +97,7 @@ export default function QuizPlayer({ quiz, onBack }) {
     setFlash(null);
     setFlashOption(null);
     setWrongAnswer(null);
+    setSaveState('idle');
     setSessionKey((k) => k + 1);
   };
 
@@ -109,6 +131,17 @@ export default function QuizPlayer({ quiz, onBack }) {
             <p className={styles.score}>
               Final Score: {score} / {questions.length}
             </p>
+            {user ? (
+              <p style={{ textAlign: 'center', fontSize: '0.9rem', color: '#666', margin: '0.25rem 0 0.75rem' }}>
+                {saveState === 'saving' && ''}
+                {saveState === 'saved' && ' '}
+                {saveState === 'error' && 'Could not save your score.'}
+              </p>
+            ) : (
+              <p style={{ textAlign: 'center', fontSize: '0.9rem', color: '#666', margin: '0.25rem 0 0.75rem' }}>
+                Log in to save your scores and track progress.
+              </p>
+            )}
             <button className={styles.restartBtn} onClick={restart}>
               Play Again
             </button>

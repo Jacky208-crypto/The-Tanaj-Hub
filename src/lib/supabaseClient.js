@@ -117,6 +117,102 @@ export async function signOut(accessToken) {
   saveSession(null);
 }
 
+// ---- Data layer (PostgREST REST API) ----
+// These read/write per-user rows. Row-Level Security on the tables guarantees
+// each account only ever sees its own data, so we just attach the user's token.
+
+const REST_URL = `${SUPABASE_URL}/rest/v1`;
+
+// Returns { token, userId } for the signed-in user, or null if not logged in.
+function currentAuth() {
+  const session = loadSession();
+  if (!session?.access_token || !session?.user?.id) return null;
+  return { token: session.access_token, userId: session.user.id };
+}
+
+function dataHeaders(token, extra = {}) {
+  return {
+    'Content-Type': 'application/json',
+    apikey: SUPABASE_KEY,
+    Authorization: `Bearer ${token}`,
+    ...extra,
+  };
+}
+
+// ---- Quiz attempts ----
+export async function saveQuizAttempt({ quizLabel, score, total }) {
+  const me = currentAuth();
+  if (!me) return null; // not logged in — nothing to save
+  const res = await fetch(`${REST_URL}/quiz_attempts`, {
+    method: 'POST',
+    headers: dataHeaders(me.token, { Prefer: 'return=representation' }),
+    body: JSON.stringify({
+      user_id: me.userId,
+      quiz_label: quizLabel,
+      score,
+      total,
+    }),
+  });
+  const data = await parse(res);
+  return Array.isArray(data) ? data[0] : data;
+}
+
+export async function getQuizAttempts() {
+  const me = currentAuth();
+  if (!me) return [];
+  const res = await fetch(
+    `${REST_URL}/quiz_attempts?user_id=eq.${me.userId}&order=created_at.desc`,
+    { headers: dataHeaders(me.token) }
+  );
+  return (await parse(res)) || [];
+}
+
+// ---- Personal notes ----
+export async function getUserNotes() {
+  const me = currentAuth();
+  if (!me) return [];
+  const res = await fetch(
+    `${REST_URL}/user_notes?user_id=eq.${me.userId}&order=updated_at.desc`,
+    { headers: dataHeaders(me.token) }
+  );
+  return (await parse(res)) || [];
+}
+
+export async function createUserNote({ title, body }) {
+  const me = currentAuth();
+  if (!me) throw new Error('Please log in to save notes.');
+  const res = await fetch(`${REST_URL}/user_notes`, {
+    method: 'POST',
+    headers: dataHeaders(me.token, { Prefer: 'return=representation' }),
+    body: JSON.stringify({ user_id: me.userId, title, body }),
+  });
+  const data = await parse(res);
+  return Array.isArray(data) ? data[0] : data;
+}
+
+export async function updateUserNote(id, { title, body }) {
+  const me = currentAuth();
+  if (!me) throw new Error('Please log in to save notes.');
+  const res = await fetch(`${REST_URL}/user_notes?id=eq.${id}`, {
+    method: 'PATCH',
+    headers: dataHeaders(me.token, { Prefer: 'return=representation' }),
+    body: JSON.stringify({ title, body, updated_at: new Date().toISOString() }),
+  });
+  const data = await parse(res);
+  return Array.isArray(data) ? data[0] : data;
+}
+
+export async function deleteUserNote(id) {
+  const me = currentAuth();
+  if (!me) throw new Error('Please log in to manage notes.');
+  const res = await fetch(`${REST_URL}/user_notes?id=eq.${id}`, {
+    method: 'DELETE',
+    headers: dataHeaders(me.token),
+  });
+  if (!res.ok) await parse(res); // throws with a useful message
+  return true;
+}
+
 // Restore a valid session on app load, refreshing the token if it's expired.
 export async function restoreSession() {
   const session = loadSession();

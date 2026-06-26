@@ -2,7 +2,9 @@ import { useNavigate } from 'react-router-dom';
 import QuizPlayer from '../components/QuizPlayer';
 import styles from './Quiz.module.css';
 import { quizzes, allBooksQuiz } from '../data/quizData';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useAuth } from '../context/AuthContext';
+import { getQuizAttempts } from '../lib/supabaseClient';
 
 const BOOKS_WITH_QUIZZES = [
   'bereshit', 'shemot', 'vaikra', 'bamidbar', 'devarim',
@@ -14,12 +16,35 @@ const BOOKS_WITH_QUIZZES = [
 
 export default function Quiz() {
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   const [mode, setMode] = useState('menu');
   const [selectedBooks, setSelectedBooks] = useState([]);
   const [customQuiz, setCustomQuiz] = useState(null);
   const [questionCount, setQuestionCount] = useState(5);
+  const [attempts, setAttempts] = useState([]);
 
+  /* Load this account's quiz history whenever we return to the menu.
+  useEffect(() => {
+    if (!user || mode !== 'menu') return;
+    let active = true;
+    getQuizAttempts()
+      .then((rows) => { if (active) setAttempts(rows); })
+      .catch(() => { if (active) setAttempts([]); });
+    return () => { active = false; };
+  }, [user, mode]);
+
+  // Best score (by percentage) per quiz label.
+  const bestByQuiz = attempts.reduce((acc, a) => {
+    const pct = a.total ? a.score / a.total : 0;
+    const prev = acc[a.quiz_label];
+    if (!prev || pct > prev.pct) {
+      acc[a.quiz_label] = { score: a.score, total: a.total, pct };
+    }
+    return acc;
+  }, {});
+  const bestList = Object.entries(bestByQuiz).sort((a, b) => b[1].pct - a[1].pct);
+*/
   // 👉 QUIZ MODE
   if (mode === 'quiz' && customQuiz) {
     return (
@@ -170,6 +195,72 @@ export default function Quiz() {
       >
         Create Custom Quiz
       </button>
+
+      {user && attempts.length > 0 && (
+        <div
+          style={{
+            maxWidth: '640px',
+            margin: '10px auto 30px',
+            background: '#f7f9fc',
+            border: '1px solid #e3e9f2',
+            borderRadius: '12px',
+            padding: '1rem 1.25rem',
+          }}
+        >
+          <h2 className={styles.subtitle} style={{ marginTop: 0 }}>Your Progress</h2>
+          <p style={{ textAlign: 'center', color: '#555', marginTop: 0 }}>
+            {attempts.length} quiz{attempts.length !== 1 && 'zes'} completed
+          </p>
+
+          <h3 style={{ margin: '0.5rem 0 0.25rem', fontSize: '1rem' }}>Best scores</h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+            {bestList.map(([label, b]) => (
+              <div
+                key={label}
+                style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', fontSize: '0.95rem' }}
+              >
+                <span style={{ color: '#333' }}>{label}</span>
+                <strong style={{ color: '#4a90e2' }}>
+                  {b.score}/{b.total} ({Math.round(b.pct * 100)}%)
+                </strong>
+              </div>
+            ))}
+          </div>
+
+          <h3 style={{ margin: '1rem 0 0.25rem', fontSize: '1rem' }}>Recent attempts</h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+            {attempts.slice(0, 5).map((a) => (
+              <div
+                key={a.id}
+                style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', fontSize: '0.9rem', color: '#555' }}
+              >
+                <span>{a.quiz_label}</span>
+                <span>
+                  {a.score}/{a.total}
+                  {a.created_at && (
+                    <span style={{ color: '#999', marginLeft: '8px' }}>
+                      {new Date(a.created_at).toLocaleDateString()}
+                    </span>
+                  )}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {!user && (
+        <p style={{ textAlign: 'center', color: '#777', margin: '0 auto 24px', maxWidth: '520px' }}>
+          <button
+            className={styles.linkInline}
+            onClick={() => navigate('/login', { state: { mode: 'signup' } })}
+            style={{ background: 'none', border: 'none', color: '#4a90e2', cursor: 'pointer', font: 'inherit', textDecoration: 'underline', padding: 0 }}
+          >
+            Sign up
+          </button>{' '}
+          to save your scores and track your progress over time.
+        </p>
+      )}
 
       <h2 className={styles.subtitle}>Our Quizzes</h2>
 
