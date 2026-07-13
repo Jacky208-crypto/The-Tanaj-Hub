@@ -44,6 +44,7 @@ export default function Home() {
             <button className="nav-btn" onClick={() => navigate('/torah')}>Torah</button>
             <button className="nav-btn" onClick={() => navigate('/neviim')}>Neviim</button>
             <button className="nav-btn" onClick={() => navigate('/ketuvim')}>Ketuvim</button>
+            <button className="nav-btn" onClick={() => navigate('/search')}>🔍 Tanaj Search</button>
           </div>
         </div>
       </div>

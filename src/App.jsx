@@ -9,6 +9,7 @@ import BookPage from './pages/BookPage';
 import Quiz from './pages/Quiz';
 import Summaries from './pages/Summaries';
 import Notes from './pages/Notes';
+import Search from './pages/Search';
 import Login from './pages/Login';
 
 
@@ -26,6 +27,7 @@ export default function App() {
             <Route path="/quiz" element={<Quiz />} />
             <Route path="/summaries" element={<Summaries />} />
             <Route path="/notes" element={<Notes />} />
+            <Route path="/search" element={<Search />} />
             <Route path="/login" element={<Login />} />
           </Routes>
         </BrowserRouter>

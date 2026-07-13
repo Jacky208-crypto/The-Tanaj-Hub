@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import styles from './ChapterReader.module.css';
 
 const LANGUAGES = ['hebrew', 'english', 'spanish'];
@@ -79,7 +79,7 @@ async function fetchSpanishFromBolls(sefariaBookName, chapterNum) {
   return verses.map(v => cleanVerse(v.text, 'spanish'));
 }
 
-export default function ChapterReader({ book }) {
+export default function ChapterReader({ book, initialChapter = null }) {
   const [activeChapter, setActiveChapter] = useState(null);
   const [hebrewVerses, setHebrewVerses] = useState([]);
   const [englishVerses, setEnglishVerses] = useState([]);
@@ -117,6 +117,12 @@ export default function ChapterReader({ book }) {
       setLoading(false);
     }
   }, [book]);
+
+  // When arriving from Tanaj Search (/book/:id?chapter=N), open that chapter.
+  useEffect(() => {
+    if (initialChapter) loadChapter(initialChapter);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [book.id, initialChapter]);
 
   const handleLanguageChange = async (lang) => {
     setLanguage(lang);
