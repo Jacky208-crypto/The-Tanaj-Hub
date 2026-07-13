@@ -53,47 +53,60 @@ export default function Search() {
   const [searched, setSearched] = useState(false);
   const [searchedTerm, setSearchedTerm] = useState('');
   const [searchedLang, setSearchedLang] = useState('hebrew');
+  const [searchedWhole, setSearchedWhole] = useState(false);
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState('');
   const [error, setError] = useState(null);
 
   const abortRef = useRef(null);
 
+  const performSearch = useCallback(async (term, lang, whole) => {
+    if (!term) return;
+
+    if (abortRef.current) abortRef.current.abort();
+    const controller = new AbortController();
+    abortRef.current = controller;
+
+    setLoading(true);
+    setProgress('Searching…');
+    setError(null);
+    setResults([]);
+    setTotal(0);
+    setSearched(true);
+    setSearchedTerm(term);
+    setSearchedLang(lang);
+    setSearchedWhole(whole);
+
+    try {
+      const { total: t, results: r } = await searchTanaj(term, lang, {
+        matchWhole: whole,
+        signal: controller.signal,
+        onProgress: setProgress,
+      });
+      setResults(r);
+      setTotal(t);
+    } catch (err) {
+      if (err.name !== 'AbortError') setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
   const runSearch = useCallback(
-    async (e) => {
+    (e) => {
       if (e) e.preventDefault();
-      const term = query.trim();
-      if (!term) return;
-
-      if (abortRef.current) abortRef.current.abort();
-      const controller = new AbortController();
-      abortRef.current = controller;
-
-      setLoading(true);
-      setProgress('Searching…');
-      setError(null);
-      setResults([]);
-      setTotal(0);
-      setSearched(true);
-      setSearchedTerm(term);
-      setSearchedLang(language);
-
-      try {
-        const { total: t, results: r } = await searchTanaj(term, language, {
-          matchWhole,
-          signal: controller.signal,
-          onProgress: setProgress,
-        });
-        setResults(r);
-        setTotal(t);
-      } catch (err) {
-        if (err.name !== 'AbortError') setError(err.message);
-      } finally {
-        setLoading(false);
-      }
+      performSearch(query.trim(), language, matchWhole);
     },
-    [query, language, matchWhole]
+    [performSearch, query, language, matchWhole]
   );
+
+  // Toggling "whole word" re-runs the search so non-whole matches drop out.
+  const handleWholeToggle = (checked) => {
+    setMatchWhole(checked);
+    if (searched && searchedTerm) {
+      performSearch(searchedTerm, searchedLang, checked);
+    }
+  };
 
   const isRTL = searchedLang === 'hebrew';
 
@@ -144,7 +157,7 @@ export default function Search() {
         <input
           type="checkbox"
           checked={matchWhole}
-          onChange={(e) => setMatchWhole(e.target.checked)}
+          onChange={(e) => handleWholeToggle(e.target.checked)}
         />
         Match whole word only
       </label>
@@ -189,7 +202,7 @@ export default function Search() {
                     text={r.text}
                     query={searchedTerm}
                     lang={searchedLang}
-                    matchWhole={matchWhole}
+                    matchWhole={searchedWhole}
                   />
                 </span>
               </button>
