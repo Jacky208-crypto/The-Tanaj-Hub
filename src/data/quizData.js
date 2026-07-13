@@ -9938,17 +9938,6 @@ export const quizzes = {
         correctHe: "ה' למשה",
       },
       // LINE: "Ni siquiera desde que Tú hablas a Tu siervo"
-      {
-        question: 'Who said to whom: "Not even since You have spoken to Your servant am I a man of words"?',
-        questionSp: '¿Quién le dijo a quién: "Ni siquiera desde que Tú hablas a Tu siervo" (aduciendo que no era hombre de palabras)?',
-        questionHe: 'מי אמר למי: "לא איש דברים אנוכי גם מתמול גם משלשום"?',
-        options: ["Moshe to H'", "Aharon to H'", "Moshe to Itro", "Moshe to Aharon"],
-        optionsSp: ["Moshe a H'", "Aharon a H'", "Moshe a Itro", "Moshe a Aharon"],
-        optionsHe: ["משה לה'", "אהרן לה'", "משה ליתרו", "משה לאהרן"],
-        correct: "Moshe to H'",
-        correctSp: "Moshe a H'",
-        correctHe: "משה לה'",
-      },
       // LINE: "Envía Tus mensajes por mano de aquel que has de enviar"
       {
         question: 'Who said to whom: "Please send by the hand of whomever You will send"?',
