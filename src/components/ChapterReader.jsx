@@ -35,8 +35,34 @@ function cleanVerse(text, lang) {
       .replace(/\b[Ee]gyptian for[^.]*\./g, '');
   }
   if (lang === 'spanish') {
-    cleaned = cleaned.replace(/Jehov[áa]/g, 'Hashem');
-    cleaned = cleaned.replace(/JAH/g, 'Hashem');
+    cleaned = cleaned
+      .replace(/Jehov[áa]/g, 'Hashem')
+      .replace(/JAH/g, 'Hashem')
+      .replace(/Ezequiel/g, 'Yejezkel')
+      .replace(/Adán/g, 'Adam')
+      .replace(/Eva/g, 'Javá')
+      .replace(/Abel/g, 'Hebel')
+      .replace(/Enoc/g, 'Janoj')
+      .replace(/Enos/g, 'Enosh')
+      .replace(/Lamec/g, 'Lemej')
+      .replace(/Set/g, 'Shet')
+      .replace(/Noé/g, 'Noaj')
+      .replace(/Isaac/g, 'Itzjak')
+      .replace(/Jacob/g, 'Yaakov')
+      .replace(/José/g, 'Yosef')
+      .replace(/Gosén/g, 'Goshen')
+      .replace(/Moisés/g, 'Moshe')
+      .replace(/Josué/g, 'Yehoshua')
+      .replace(/Aod/g, 'Ehud')
+      .replace(/Isaías/g, 'Yeshayahu')
+      .replace(/Jeremías/g, 'Yirmiyahu')
+      .replace(/Oseas/g, 'Hoshea')
+      .replace(/Abdías/g, 'Ovadiá')
+      .replace(/Miqueas/g, 'Mija')
+      .replace(/Sofonías/g, 'Tzefania')
+      .replace(/Hageo/g, 'Jagai')
+      .replace(/Zacarías/g, 'Zejaria')
+      .replace(/Malaquías/g, 'Malaji')
   }
 
   return cleaned
