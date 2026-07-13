@@ -35,6 +35,10 @@ export function AuthProvider({ children }) {
     return result;
   }, []);
 
+  const signInWithGoogle = useCallback(() => {
+    auth.signInWithGoogle();
+  }, []);
+
   const signOut = useCallback(async () => {
     const session = auth.loadSession();
     await auth.signOut(session?.access_token);
@@ -47,6 +51,7 @@ export function AuthProvider({ children }) {
     isConfigured: auth.isConfigured,
     signIn,
     signUp,
+    signInWithGoogle,
     signOut,
   };
 

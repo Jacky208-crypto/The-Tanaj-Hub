@@ -79,6 +79,52 @@ export async function signUp(email, password, name) {
   return { session: null, user: data?.user ?? data, needsConfirmation: true };
 }
 
+// Redirect the browser to Google via Supabase's OAuth endpoint.
+// Supabase sends the user back to `redirect_to` with the token in the URL hash.
+export function signInWithGoogle() {
+  const redirectTo = window.location.origin;
+  const url =
+    `${AUTH_URL}/authorize?provider=google` +
+    `&redirect_to=${encodeURIComponent(redirectTo)}`;
+  window.location.href = url;
+}
+
+// Fetch the user record for an access token (used after OAuth redirect).
+export async function getUser(accessToken) {
+  const res = await fetch(`${AUTH_URL}/user`, {
+    headers: { ...headers(), Authorization: `Bearer ${accessToken}` },
+  });
+  return parse(res);
+}
+
+// After returning from Google, the token arrives in the URL hash. Parse it,
+// save the session, and clean the hash out of the address bar.
+export async function handleOAuthCallback() {
+  if (!window.location.hash) return null;
+  const params = new URLSearchParams(window.location.hash.slice(1));
+  const accessToken = params.get('access_token');
+  if (!accessToken) return null;
+
+  const session = withExpiry({
+    access_token: accessToken,
+    refresh_token: params.get('refresh_token'),
+    expires_in: Number(params.get('expires_in')) || 3600,
+    token_type: params.get('token_type'),
+  });
+  try {
+    session.user = await getUser(accessToken);
+  } catch {
+    // If the user lookup fails, we still keep the token.
+  }
+  saveSession(session);
+  window.history.replaceState(
+    null,
+    '',
+    window.location.pathname + window.location.search
+  );
+  return session;
+}
+
 export async function signIn(email, password) {
   const res = await fetch(`${AUTH_URL}/token?grant_type=password`, {
     method: 'POST',
@@ -215,6 +261,10 @@ export async function deleteUserNote(id) {
 
 // Restore a valid session on app load, refreshing the token if it's expired.
 export async function restoreSession() {
+  // If we just came back from a Google sign-in, adopt that session first.
+  const oauth = await handleOAuthCallback();
+  if (oauth) return oauth;
+
   const session = loadSession();
   if (!session?.access_token) return null;
 
