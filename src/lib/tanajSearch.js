@@ -16,9 +16,9 @@ import { allBooks } from '../data/books';
 const JPS_VERSION = 'Tanakh: The Holy Scriptures, published by JPS';
 
 export const TRANSLATION_LABELS = {
-  hebrew: 'Hebrew — Miqra according to the Masorah',
-  english: 'English — JPS (Jewish Publication Society)',
-  spanish: 'Español — Reina-Valera 1960',
+  hebrew: 'Hebrew',
+  english: 'English',
+  spanish: 'Español',
 };
 
 // Bolls numeric book ids (Tanakh only), keyed by the Sefaria name in books.js.
