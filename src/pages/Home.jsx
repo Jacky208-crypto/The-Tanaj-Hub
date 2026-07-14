@@ -32,7 +32,7 @@ export default function Home() {
       </div>
 
       <header className={styles.header}>
-        <h1 className={styles.title}>The Tanaj Hub</h1>
+        <h1 className={styles.title}>The Tanaj Study Hub</h1>
         <p className={styles.subtext}> The Tanaj Hub is an interactive platform to learn Tanaj (Torah, Neviim, Ketuvim) with quizzes and summaries. Estudia el Tanaj con lectura, preguntas y apuntes. Un Google para el Tanaj!</p>
       </header>
 
