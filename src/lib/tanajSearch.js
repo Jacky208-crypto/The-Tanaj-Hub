@@ -72,14 +72,72 @@ function cleanVerse(text, lang) {
 }
 
 // Normalise for matching/highlighting: lowercase, and for Hebrew drop vowel
-// points + cantillation marks (U+0591–U+05C7) and the maqaf.
+// points + cantillation marks (U+0591–U+05C7, which also covers the maqaf).
 export function normalizeForMatch(text, lang) {
   if (!text) return '';
   let out = String(text).toLowerCase();
   if (lang === 'hebrew') {
-    out = out.replace(/[֑-ׇ]/g, '').replace(/־/g, ' ');
+    out = out.replace(/[֑-ׇ]/g, '');
   }
   return out;
+}
+
+// Normalise while remembering where each normalised character came from, so a
+// match found in the normalised string can be mapped back to a span of the
+// ORIGINAL text (keeping the reader's vowel points, punctuation, etc.).
+//
+// Returns { norm, map } where norm is the normalised string and map[i] is the
+// index in `src` that norm[i] came from. map has one extra sentinel entry,
+// map[norm.length] === src.length, so an exclusive end index is always valid.
+function normalizeWithMap(src, lang) {
+  const hebrew = lang === 'hebrew';
+  let norm = '';
+  const map = [];
+  for (let i = 0; i < src.length; i++) {
+    const code = src.charCodeAt(i);
+    // Hebrew vowel points, cantillation and the maqaf carry no letter, and the
+    // matcher ignores them — so does the map.
+    if (hebrew && code >= 0x0591 && code <= 0x05c7) continue;
+    const low = src[i].toLowerCase();
+    for (const c of low) {
+      norm += c;
+      map.push(i);
+    }
+  }
+  map.push(src.length);
+  return { norm, map };
+}
+
+const WORD_CHAR = /[\p{L}\p{N}]/u;
+
+// The single source of truth for "does this word appear here": returns every
+// match of `query` in `text` as a { start, stop } span of ORIGINAL indices.
+// Both the search (to decide whether a verse is a result) and the UI (to draw
+// the highlights) go through this, so they can never disagree.
+export function findMatchRanges(text, query, lang, matchWhole) {
+  const src = String(text ?? '');
+  const nq = normalizeForMatch(query, lang);
+  if (!src || !nq) return [];
+
+  const { norm, map } = normalizeWithMap(src, lang);
+  const ranges = [];
+  let from = 0;
+  for (;;) {
+    const idx = norm.indexOf(nq, from);
+    if (idx === -1) break;
+    const end = idx + nq.length;
+    if (matchWhole) {
+      const before = idx > 0 ? norm[idx - 1] : '';
+      const after = end < norm.length ? norm[end] : '';
+      if (WORD_CHAR.test(before) || WORD_CHAR.test(after)) {
+        from = idx + 1; // overlapping partial word — keep scanning past it
+        continue;
+      }
+    }
+    ranges.push({ start: map[idx], stop: map[end] });
+    from = end;
+  }
+  return ranges;
 }
 
 function flatten(seg) {
@@ -137,25 +195,15 @@ async function searchSefaria(term, lang, { matchWhole, signal, onProgress }) {
   );
   if (onProgress) onProgress('Searching…');
 
-  const nq = normalizeForMatch(term, lang);
   const results = [];
 
   for (const book of allBooks) {
     const chapters = bookCache[book.id][lang === 'hebrew' ? 'he' : 'en'];
     chapters.forEach((verses, ci) => {
       verses.forEach((verse, vi) => {
-        const nv = normalizeForMatch(verse, lang);
-        let hit;
-        if (matchWhole) {
-          const re = new RegExp(
-            `(^|[^\\p{L}\\p{N}])${escapeRegExp(nq)}([^\\p{L}\\p{N}]|$)`,
-            'u'
-          );
-          hit = re.test(nv);
-        } else {
-          hit = nv.includes(nq);
-        }
-        if (hit) {
+        // Same predicate the UI highlights with: a verse is a result iff it has
+        // at least one highlightable span.
+        if (findMatchRanges(verse, term, lang, matchWhole).length > 0) {
           results.push({
             key: `${book.id}-${ci + 1}-${vi + 1}`,
             bookId: book.id,
@@ -169,10 +217,6 @@ async function searchSefaria(term, lang, { matchWhole, signal, onProgress }) {
     });
   }
   return { total: results.length, results };
-}
-
-function escapeRegExp(s) {
-  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
 // ---- Spanish (Bolls Reina-Valera 1960) ------------------------------------

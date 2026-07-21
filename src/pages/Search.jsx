@@ -2,7 +2,7 @@ import { useState, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   searchTanaj,
-  normalizeForMatch,
+  findMatchRanges,
   TRANSLATION_LABELS,
 } from '../lib/tanajSearch';
 import styles from './Search.module.css';
@@ -13,32 +13,30 @@ const LANG_LABELS = { hebrew: 'Hebrew', english: 'English', spanish: 'Español' 
 const PLACEHOLDERS = {
   hebrew: 'חפש מילה…  (e.g. ברית)',
   english: 'Search a word…  (e.g. covenant)',
-  spanish: 'Busca una palabra…  (p. ej. pacto)',
+  spanish: 'Busca una palabra…  (ej. pacto)',
 };
 
-// Split a verse into pieces, wrapping the tokens that match the query.
+// Wrap exactly the spans that the search matched. Uses the same
+// findMatchRanges as the search itself, so the highlight can never disagree
+// with why the verse was returned.
 function Highlighted({ text, query, lang, matchWhole }) {
-  const nq = normalizeForMatch(query, lang);
-  if (!nq) return <>{text}</>;
+  const ranges = findMatchRanges(text, query, lang, matchWhole);
+  if (ranges.length === 0) return <>{text}</>;
 
-  const parts = text.split(/(\s+)/);
-  return (
-    <>
-      {parts.map((part, i) => {
-        if (/^\s+$/.test(part)) return part;
-        const bare = part.replace(/[^\p{L}\p{N}'’]/gu, '');
-        const np = normalizeForMatch(bare, lang);
-        const hit = matchWhole ? np === nq : np.length > 0 && np.includes(nq);
-        return hit ? (
-          <mark key={i} className={styles.mark}>
-            {part}
-          </mark>
-        ) : (
-          part
-        );
-      })}
-    </>
-  );
+  const pieces = [];
+  let cursor = 0;
+  ranges.forEach((r, i) => {
+    if (r.start > cursor) pieces.push(text.slice(cursor, r.start));
+    pieces.push(
+      <mark key={i} className={styles.mark}>
+        {text.slice(r.start, r.stop)}
+      </mark>
+    );
+    cursor = r.stop;
+  });
+  if (cursor < text.length) pieces.push(text.slice(cursor));
+
+  return <>{pieces}</>;
 }
 
 export default function Search() {
