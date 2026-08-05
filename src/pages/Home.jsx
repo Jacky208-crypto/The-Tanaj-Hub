@@ -56,6 +56,12 @@ export default function Home() {
           </div>
         </div>
         <div className={styles.card}>
+          <strong>Tanaj Search</strong>
+          <div className={styles.btnRow}>
+            <button className="nav-btn" onClick={() => navigate('/search')}>Tanaj Search</button>
+          </div>
+        </div>
+        <div className={styles.card}>
           <strong>Helpful Notes</strong>
           <div className={styles.btnRow}>
           <button className="nav-btn" onClick={() => navigate('/notes')}>Helpful Notes</button>
