@@ -4,6 +4,8 @@
 // exact; rivers/regions use a representative centroid). `books` link to ids in
 // books.js; `periods` are editorial eras derived from the books each place appears in.
 
+// Add summary of places (what happened in each place)
+// 
 export const PLACE_TYPES = ['city','region','mountain','river','water'];
 export const TIME_PERIODS = ["Patriarchs","Exodus & Wilderness","Conquest & Judges","United Monarchy","Kingdom Era","The Prophets","Return & Second Temple"];
 
@@ -18233,8 +18235,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "zarephath",
-    "name": "Zarephath",
+    "id": "tzarfat",
+    "name": "Tzarfat",
     "lat": 33.46423,
     "lng": 35.29514,
     "type": "city",
