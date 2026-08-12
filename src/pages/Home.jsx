@@ -48,25 +48,33 @@ export default function Home() {
       </div>
 
       <div className={styles.control}>
-        <div className={styles.card}>
-          <strong>Practice Questions</strong>
-          <div className={styles.btnRow}>
-            <button className="nav-btn" onClick={() => navigate('/quiz')}>Practice Questions</button>
+          <div className={styles.card}>
+            <strong>Practice Questions</strong>
+            <div className={styles.btnRow}>
+              <button className="nav-btn" onClick={() => navigate('/quiz')}>Practice Questions</button>
+            </div>
           </div>
-        </div>
-        <div className={styles.card}>
-          <strong>Tanaj Search</strong>
-          <div className={styles.btnRow}>
-            <button className="nav-btn" onClick={() => navigate('/search')}>Tanaj Search</button>
+          
+          <div className={styles.card}>
+            <strong>Helpful Notes</strong>
+            <div className={styles.btnRow}>
+            <button className="nav-btn" onClick={() => navigate('/notes')}>Helpful Notes</button>
+            </div>
           </div>
-        </div>
-        <div className={styles.card}>
-          <strong>Helpful Notes</strong>
-          <div className={styles.btnRow}>
-          <button className="nav-btn" onClick={() => navigate('/notes')}>Helpful Notes</button>
+          <div className={styles.card}>
+            <strong>Tanaj Search</strong>
+            <div className={styles.btnRow}>
+              <button className="nav-btn" onClick={() => navigate('/search')}>Tanaj Search</button>
+            </div>
           </div>
-        </div>
+          <div className={styles.card}>
+            <strong>Places Map</strong>
+            <div className={styles.btnRow}>
+            <button className="nav-btn" onClick={() => navigate('/map')}>Places Map</button>
+            </div>
+          </div>
       </div>
+
       <footer style={{ textAlign: 'center', padding: '2rem', color: '#888', fontSize: '0.85rem' }}>
   Made by Jacky Fnounou
 </footer>
