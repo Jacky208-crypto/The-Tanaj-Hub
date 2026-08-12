@@ -205,7 +205,7 @@ function MapPageInner() {
     <div className={styles.page}>
       <header className={styles.header}>
         <button className="back-btn" onClick={() => navigate('/')}>← Home</button>
-        <h1 className={styles.title}>Tanaj Places Map</h1>
+        <h1 className={styles.title}>Biblical Map</h1>
         <span className={styles.count}>{filtered.length} of {places.length} places</span>
       </header>
 
