@@ -70,7 +70,7 @@ export default function Home() {
           <div className={styles.card}>
             <strong>Biblical Map</strong>
             <div className={styles.btnRow}>
-            <button className="nav-btn" onClick={() => navigate('/map')}> NEW! Biblical Map</button>
+            <button className="nav-btn" onClick={() => navigate('/map')}> Biblical Map</button>
             </div>
           </div>
       </div>
