@@ -9727,8 +9727,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "yarden-1",
-    "name": "Yarden 1",
+    "id": "yarden",
+    "name": "Yarden",
     "lat": 32.35572,
     "lng": 35.56198,
     "type": "water",
