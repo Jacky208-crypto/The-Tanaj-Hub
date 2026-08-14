@@ -16577,8 +16577,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "tarshish-1",
-    "name": "Tarshish 1",
+    "id": "tarshish",
+    "name": "Tarshish",
     "lat": 37.27194,
     "lng": -6.94417,
     "type": "city",
@@ -16588,24 +16588,9 @@ export const places = [
       "yejezkel",
       "yeshayahu",
       "yirmiyahu",
-      "yona"
-    ],
-    "periods": [
-      "Kingdom Era",
-      "The Prophets"
-    ],
-    "aliases": []
-  },
-  {
-    "id": "tarshish-2",
-    "name": "Tarshish 2",
-    "lat": 37.27194,
-    "lng": -6.94417,
-    "type": "city",
-    "books": [
       "melajima",
       "tehilim",
-      "yeshayahu"
+      "yona"
     ],
     "periods": [
       "Kingdom Era",
