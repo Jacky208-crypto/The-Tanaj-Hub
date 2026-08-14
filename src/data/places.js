@@ -60,8 +60,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "abel-beth-maacah",
-    "name": "Abel-beth-maacah",
+    "id": "abel-beit-maakah",
+    "name": "Abel-Beit-Maakah",
     "lat": 33.25805,
     "lng": 35.58101,
     "type": "city",
@@ -84,7 +84,7 @@ export const places = [
   },
   {
     "id": "abel-keramim",
-    "name": "Abel-keramim",
+    "name": "Abel-Keramim",
     "lat": 31.86756,
     "lng": 35.82938,
     "type": "city",
@@ -98,7 +98,7 @@ export const places = [
   },
   {
     "id": "abel-meholah",
-    "name": "Abel-meholah",
+    "name": "Abel-Meholah",
     "lat": 32.3743,
     "lng": 35.56089,
     "type": "city",
@@ -114,7 +114,7 @@ export const places = [
   },
   {
     "id": "abel-mizraim",
-    "name": "Abel-mizraim",
+    "name": "Abel-Mizraim",
     "lat": 31.91489,
     "lng": 35.53045,
     "type": "city",
@@ -127,8 +127,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "abel-shittim",
-    "name": "Abel-shittim",
+    "id": "abel-shitim",
+    "name": "Abel-Shitim",
     "lat": 31.84018,
     "lng": 35.67368,
     "type": "city",
@@ -176,8 +176,8 @@ export const places = [
     ]
   },
   {
-    "id": "accad",
-    "name": "Accad",
+    "id": "akkad",
+    "name": "Akkad",
     "lat": 33.09979,
     "lng": 44.29833,
     "type": "city",
@@ -192,8 +192,8 @@ export const places = [
     ]
   },
   {
-    "id": "acco",
-    "name": "Acco",
+    "id": "akko",
+    "name": "Akko",
     "lat": 32.92111,
     "lng": 35.08833,
     "type": "city",
@@ -209,8 +209,8 @@ export const places = [
     ]
   },
   {
-    "id": "achshaph",
-    "name": "Achshaph",
+    "id": "achshaf",
+    "name": "Achshaf",
     "lat": 32.87276,
     "lng": 35.15133,
     "type": "city",
@@ -306,7 +306,7 @@ export const places = [
   },
   {
     "id": "adami-nekeb",
-    "name": "Adami-nekeb",
+    "name": "Adami-Nekeb",
     "lat": 32.74917,
     "lng": 35.45917,
     "type": "city",
@@ -321,8 +321,8 @@ export const places = [
     ]
   },
   {
-    "id": "addar",
-    "name": "Addar",
+    "id": "adar",
+    "name": "Adar",
     "lat": 30.64979,
     "lng": 34.42222,
     "type": "region",
@@ -337,8 +337,8 @@ export const places = [
     ]
   },
   {
-    "id": "adithaim",
-    "name": "Adithaim",
+    "id": "aditaim",
+    "name": "Aditaim",
     "lat": 31.96332,
     "lng": 34.95176,
     "type": "city",
@@ -383,8 +383,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "adullam",
-    "name": "Adullam",
+    "id": "adulam",
+    "name": "Adulam",
     "lat": 31.65167,
     "lng": 35.00167,
     "type": "city",
@@ -409,8 +409,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "adummim",
-    "name": "Adummim",
+    "id": "adumim",
+    "name": "Adumim",
     "lat": 31.8247,
     "lng": 35.37872,
     "type": "river",
@@ -502,8 +502,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "aiath",
-    "name": "Aiath",
+    "id": "aiat",
+    "name": "Aiat",
     "lat": 31.91694,
     "lng": 35.26111,
     "type": "city",
@@ -516,8 +516,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "aija",
-    "name": "Aija",
+    "id": "aiya",
+    "name": "Aiya",
     "lat": 31.91694,
     "lng": 35.26111,
     "type": "city",
@@ -530,8 +530,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "aijalon-1",
-    "name": "Aijalon 1",
+    "id": "aiyalon-1",
+    "name": "Aiyalon 1",
     "lat": 31.84111,
     "lng": 35.02361,
     "type": "city",
@@ -550,8 +550,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "aijalon-2",
-    "name": "Aijalon 2",
+    "id": "aiyalon-2",
+    "name": "Aiyalon 2",
     "lat": 32.7689,
     "lng": 35.2733,
     "type": "city",
@@ -608,8 +608,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "akrabbim",
-    "name": "Akrabbim",
+    "id": "akrabim",
+    "name": "Akrabim",
     "lat": 30.90674,
     "lng": 35.13165,
     "type": "river",
@@ -630,8 +630,8 @@ export const places = [
     ]
   },
   {
-    "id": "alemeth",
-    "name": "Alemeth",
+    "id": "alemet",
+    "name": "Alemet",
     "lat": 31.8249,
     "lng": 35.2735,
     "type": "city",
@@ -646,8 +646,8 @@ export const places = [
     ]
   },
   {
-    "id": "allammelech",
-    "name": "Allammelech",
+    "id": "alamelech",
+    "name": "Alamelech",
     "lat": 32.77177,
     "lng": 35.15567,
     "type": "city",
@@ -664,8 +664,8 @@ export const places = [
     ]
   },
   {
-    "id": "allon",
-    "name": "Allon",
+    "id": "alon",
+    "name": "Alon",
     "lat": 32.72113,
     "lng": 35.41064,
     "type": "city",
@@ -678,8 +678,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "allon-bacuth",
-    "name": "Allon-bacuth",
+    "id": "alon-bakut",
+    "name": "Alon-Bakut",
     "lat": 31.92292,
     "lng": 35.24139,
     "type": "region",
@@ -710,8 +710,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "almon-diblathaim",
-    "name": "Almon-diblathaim",
+    "id": "almon-diblataim",
+    "name": "Almon-Diblataim",
     "lat": 31.63873,
     "lng": 35.82658,
     "type": "city",
@@ -822,8 +822,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "ammah",
-    "name": "Ammah",
+    "id": "amah",
+    "name": "Amah",
     "lat": 31.8315,
     "lng": 35.27931,
     "type": "region",
@@ -888,8 +888,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "anaharath",
-    "name": "Anaharath",
+    "id": "anaharat",
+    "name": "Anaharat",
     "lat": 32.65345,
     "lng": 35.46614,
     "type": "city",
@@ -916,8 +916,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "anathoth",
-    "name": "Anathoth",
+    "id": "anatot",
+    "name": "Anatot",
     "lat": 31.80752,
     "lng": 35.25758,
     "type": "city",
@@ -999,8 +999,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "aphek-1",
-    "name": "Aphek 1",
+    "id": "afek-1",
+    "name": "Afek 1",
     "lat": 32.8461,
     "lng": 35.1119,
     "type": "city",
@@ -1013,8 +1013,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "aphek-2",
-    "name": "Aphek 2",
+    "id": "afek-2",
+    "name": "Afek 2",
     "lat": 32.105,
     "lng": 34.93042,
     "type": "city",
@@ -1029,8 +1029,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "aphek-3",
-    "name": "Aphek 3",
+    "id": "afek-3",
+    "name": "Afek 3",
     "lat": 32.76667,
     "lng": 35.7,
     "type": "city",
@@ -1044,8 +1044,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "aphek-4",
-    "name": "Aphek 4",
+    "id": "afek-4",
+    "name": "Afek 4",
     "lat": 34.06917,
     "lng": 35.88611,
     "type": "city",
@@ -1058,8 +1058,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "aphekah",
-    "name": "Aphekah",
+    "id": "afekah",
+    "name": "Afekah",
     "lat": 31.4555,
     "lng": 34.9975,
     "type": "city",
@@ -1072,8 +1072,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "aphik",
-    "name": "Aphik",
+    "id": "afik",
+    "name": "Afik",
     "lat": 32.8461,
     "lng": 35.1119,
     "type": "city",
@@ -1226,7 +1226,7 @@ export const places = [
   },
   {
     "id": "aram-naharaim",
-    "name": "Aram-naharaim",
+    "name": "Aram-Naharaim",
     "lat": 36.45589,
     "lng": 39.46389,
     "type": "region",
@@ -1378,8 +1378,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "arubboth",
-    "name": "Arubboth",
+    "id": "arubot",
+    "name": "Arubot",
     "lat": 32.40731,
     "lng": 35.13355,
     "type": "city",
@@ -1535,8 +1535,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "ashtaroth",
-    "name": "Ashtaroth",
+    "id": "ashtarot",
+    "name": "Ashtarot",
     "lat": 32.80417,
     "lng": 36.01583,
     "type": "city",
@@ -1553,8 +1553,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "ashteroth-karnaim",
-    "name": "Ashteroth-karnaim",
+    "id": "ashterot-karnaim",
+    "name": "Ashterot-Karnaim",
     "lat": 32.80417,
     "lng": 36.01583,
     "type": "city",
@@ -1567,8 +1567,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "asshur",
-    "name": "Asshur",
+    "id": "ashur",
+    "name": "Ashur",
     "lat": 35.45667,
     "lng": 43.2625,
     "type": "city",
@@ -1633,8 +1633,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "ataroth-1",
-    "name": "Ataroth 1",
+    "id": "atarot-1",
+    "name": "Atarot 1",
     "lat": 31.5753,
     "lng": 35.66594,
     "type": "city",
@@ -1647,8 +1647,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "ataroth-2",
-    "name": "Ataroth 2",
+    "id": "atarot-2",
+    "name": "Atarot 2",
     "lat": 31.88514,
     "lng": 35.21642,
     "type": "city",
@@ -1661,8 +1661,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "ataroth-3",
-    "name": "Ataroth 3",
+    "id": "atarot-3",
+    "name": "Atarot 3",
     "lat": 32.13993,
     "lng": 35.48497,
     "type": "city",
@@ -1675,8 +1675,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "ataroth-addar",
-    "name": "Ataroth-addar",
+    "id": "atarot-adar",
+    "name": "Atarot-Adar",
     "lat": 31.88514,
     "lng": 35.21642,
     "type": "city",
@@ -1689,8 +1689,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "athach",
-    "name": "Athach",
+    "id": "atach",
+    "name": "Atach",
     "lat": 31.61593,
     "lng": 34.8783,
     "type": "city",
@@ -1705,8 +1705,8 @@ export const places = [
     ]
   },
   {
-    "id": "atharim",
-    "name": "Atharim",
+    "id": "atarim",
+    "name": "Atarim",
     "lat": 31.00408,
     "lng": 34.87507,
     "type": "river",
@@ -1719,8 +1719,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "atroth-beth-joab",
-    "name": "Atroth-beth-joab",
+    "id": "atrot-beit-yoab",
+    "name": "Atrot-Beit-Yoab",
     "lat": 31.70504,
     "lng": 35.20764,
     "type": "region",
@@ -1736,8 +1736,8 @@ export const places = [
     ]
   },
   {
-    "id": "atroth-shophan",
-    "name": "Atroth-shophan",
+    "id": "atrot-shofan",
+    "name": "Atrot-Shofan",
     "lat": 31.59131,
     "lng": 35.68742,
     "type": "city",
@@ -1766,8 +1766,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "avith",
-    "name": "Avith",
+    "id": "avit",
+    "name": "Avit",
     "lat": 30.206,
     "lng": 35.60192,
     "type": "city",
@@ -1782,8 +1782,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "avva",
-    "name": "Avva",
+    "id": "ava",
+    "name": "Ava",
     "lat": 34.68472,
     "lng": 36.69056,
     "type": "city",
@@ -1799,8 +1799,8 @@ export const places = [
     ]
   },
   {
-    "id": "avvim",
-    "name": "Avvim",
+    "id": "avim",
+    "name": "Avim",
     "lat": 31.91694,
     "lng": 35.26111,
     "type": "city",
@@ -1870,8 +1870,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "azmaveth",
-    "name": "Azmaveth",
+    "id": "azmavet",
+    "name": "Azmavet",
     "lat": 31.835,
     "lng": 35.26194,
     "type": "city",
@@ -1903,8 +1903,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "aznoth-tabor",
-    "name": "Aznoth-tabor",
+    "id": "aznot-tabor",
+    "name": "Aznot-Tabor",
     "lat": 32.72722,
     "lng": 35.38444,
     "type": "city",
@@ -1918,7 +1918,7 @@ export const places = [
   },
   {
     "id": "baal-gad",
-    "name": "Baal-gad",
+    "name": "Baal-Gad",
     "lat": 33.38333,
     "lng": 35.68333,
     "type": "city",
@@ -1932,7 +1932,7 @@ export const places = [
   },
   {
     "id": "baal-hamon",
-    "name": "Baal-hamon",
+    "name": "Baal-Hamon",
     "lat": 31.77667,
     "lng": 35.23417,
     "type": "city",
@@ -1946,7 +1946,7 @@ export const places = [
   },
   {
     "id": "baal-hazor",
-    "name": "Baal-hazor",
+    "name": "Baal-Hazor",
     "lat": 31.97861,
     "lng": 35.28611,
     "type": "city",
@@ -1960,7 +1960,7 @@ export const places = [
   },
   {
     "id": "baal-hermon",
-    "name": "Baal-hermon",
+    "name": "Baal-Hermon",
     "lat": 33.4,
     "lng": 35.85,
     "type": "city",
@@ -1974,7 +1974,7 @@ export const places = [
   },
   {
     "id": "baal-meon",
-    "name": "Baal-meon",
+    "name": "Baal-Meon",
     "lat": 31.6795,
     "lng": 35.73532,
     "type": "city",
@@ -1994,7 +1994,7 @@ export const places = [
   },
   {
     "id": "baal-peor",
-    "name": "Baal-peor",
+    "name": "Baal-Peor",
     "lat": 31.77702,
     "lng": 35.7385,
     "type": "city",
@@ -2010,7 +2010,7 @@ export const places = [
   },
   {
     "id": "baal-perazim",
-    "name": "Baal-perazim",
+    "name": "Baal-Perazim",
     "lat": 31.78522,
     "lng": 35.20473,
     "type": "city",
@@ -2026,7 +2026,7 @@ export const places = [
   },
   {
     "id": "baal-shalishah",
-    "name": "Baal-shalishah",
+    "name": "Baal-Shalishah",
     "lat": 32.1525,
     "lng": 35.04417,
     "type": "city",
@@ -2042,7 +2042,7 @@ export const places = [
   },
   {
     "id": "baal-tamar",
-    "name": "Baal-tamar",
+    "name": "Baal-Tamar",
     "lat": 31.82457,
     "lng": 35.23072,
     "type": "region",
@@ -2055,8 +2055,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "baal-zephon",
-    "name": "Baal-zephon",
+    "id": "baal-zefon",
+    "name": "Baal-Zefon",
     "lat": 30.86056,
     "lng": 32.17139,
     "type": "city",
@@ -2100,8 +2100,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "baalath-1",
-    "name": "Baalath 1",
+    "id": "baalat-1",
+    "name": "Baalat 1",
     "lat": 31.83851,
     "lng": 34.78225,
     "type": "city",
@@ -2114,8 +2114,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "baalath-2",
-    "name": "Baalath 2",
+    "id": "baalat-2",
+    "name": "Baalat 2",
     "lat": 31.80896,
     "lng": 35.10378,
     "type": "city",
@@ -2129,8 +2129,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "baalath-beer",
-    "name": "Baalath-beer",
+    "id": "baalat-beer",
+    "name": "Baalat-Beer",
     "lat": 31.14205,
     "lng": 34.91217,
     "type": "city",
@@ -2148,8 +2148,8 @@ export const places = [
     ]
   },
   {
-    "id": "baale-judah",
-    "name": "Baale-judah",
+    "id": "baale-yudah",
+    "name": "Baale-Yudah",
     "lat": 31.80896,
     "lng": 35.10378,
     "type": "city",
@@ -2166,8 +2166,8 @@ export const places = [
     ]
   },
   {
-    "id": "babel",
-    "name": "Babel",
+    "id": "bavel",
+    "name": "Bavel",
     "lat": 32.54333,
     "lng": 44.42222,
     "type": "city",
@@ -2182,8 +2182,8 @@ export const places = [
     ]
   },
   {
-    "id": "babylon-1",
-    "name": "Babylon 1",
+    "id": "bavel-1",
+    "name": "Bavel 1",
     "lat": 32.54333,
     "lng": 44.42222,
     "type": "city",
@@ -2259,8 +2259,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "bamoth",
-    "name": "Bamoth",
+    "id": "bamot",
+    "name": "Bamot",
     "lat": 31.73179,
     "lng": 35.74089,
     "type": "city",
@@ -2273,8 +2273,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "bamoth-baal",
-    "name": "Bamoth-baal",
+    "id": "bamot-baal",
+    "name": "Bamot-Baal",
     "lat": 31.73179,
     "lng": 35.74089,
     "type": "city",
@@ -2321,8 +2321,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "bath-rabbim",
-    "name": "Bath-rabbim",
+    "id": "bat-rabim",
+    "name": "Bat-Rabim",
     "lat": 31.80081,
     "lng": 35.80906,
     "type": "city",
@@ -2337,8 +2337,8 @@ export const places = [
     ]
   },
   {
-    "id": "bealoth-1",
-    "name": "Bealoth 1",
+    "id": "bealot-1",
+    "name": "Bealot 1",
     "lat": 31.78126,
     "lng": 35.05111,
     "type": "region",
@@ -2351,8 +2351,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "bealoth-2",
-    "name": "Bealoth 2",
+    "id": "bealot-2",
+    "name": "Bealot 2",
     "lat": 31.80896,
     "lng": 35.10378,
     "type": "city",
@@ -2396,7 +2396,7 @@ export const places = [
   },
   {
     "id": "beer-elim",
-    "name": "Beer-elim",
+    "name": "Beer-Elim",
     "lat": 31.60254,
     "lng": 35.93442,
     "type": "river",
@@ -2410,7 +2410,7 @@ export const places = [
   },
   {
     "id": "beer-lahai-roi",
-    "name": "Beer-lahai-roi",
+    "name": "Beer-Lahai-Roi",
     "lat": 30.6875,
     "lng": 34.33333,
     "type": "water",
@@ -2425,8 +2425,8 @@ export const places = [
     ]
   },
   {
-    "id": "beeroth",
-    "name": "Beeroth",
+    "id": "beerot",
+    "name": "Beerot",
     "lat": 31.90514,
     "lng": 35.21496,
     "type": "city",
@@ -2446,8 +2446,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "beeroth-bene-jaakan",
-    "name": "Beeroth Bene-jaakan",
+    "id": "beerot-bene-yaakan",
+    "name": "Beerot Bene-Yaakan",
     "lat": 30.79176,
     "lng": 34.47252,
     "type": "city",
@@ -2525,7 +2525,7 @@ export const places = [
   },
   {
     "id": "bene-berak",
-    "name": "Bene-berak",
+    "name": "Bene-Berak",
     "lat": 32.03668,
     "lng": 34.82767,
     "type": "city",
@@ -2538,8 +2538,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "bene-jaakan",
-    "name": "Bene-jaakan",
+    "id": "bene-yaakan",
+    "name": "Bene-Yaakan",
     "lat": 30.79176,
     "lng": 34.47252,
     "type": "city",
@@ -2552,8 +2552,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "benjamin-gate",
-    "name": "Benjamin Gate",
+    "id": "benyamin-gate",
+    "name": "Benyamin Gate",
     "lat": 31.77667,
     "lng": 35.23417,
     "type": "city",
@@ -2598,8 +2598,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "berothah",
-    "name": "Berothah",
+    "id": "berotah",
+    "name": "Berotah",
     "lat": 33.93528,
     "lng": 36.15083,
     "type": "city",
@@ -2614,8 +2614,8 @@ export const places = [
     ]
   },
   {
-    "id": "berothai",
-    "name": "Berothai",
+    "id": "berotai",
+    "name": "Berotai",
     "lat": 33.93528,
     "lng": 36.15083,
     "type": "city",
@@ -2660,8 +2660,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "beth-anath",
-    "name": "Beth-anath",
+    "id": "beit-anat",
+    "name": "Beit-Anat",
     "lat": 33.20028,
     "lng": 35.43306,
     "type": "city",
@@ -2675,8 +2675,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "beth-anoth",
-    "name": "Beth-anoth",
+    "id": "beit-anot",
+    "name": "Beit-Anot",
     "lat": 31.56209,
     "lng": 35.12622,
     "type": "city",
@@ -2689,8 +2689,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "beth-arabah",
-    "name": "Beth-arabah",
+    "id": "beit-arabah",
+    "name": "Beit-Arabah",
     "lat": 31.84578,
     "lng": 35.50172,
     "type": "city",
@@ -2703,8 +2703,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "beth-arbel",
-    "name": "Beth-arbel",
+    "id": "beit-arbel",
+    "name": "Beit-Arbel",
     "lat": 32.55866,
     "lng": 35.84759,
     "type": "city",
@@ -2717,8 +2717,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "beth-ashbea",
-    "name": "Beth-ashbea",
+    "id": "beit-ashbea",
+    "name": "Beit-Ashbea",
     "lat": 31.4558,
     "lng": 34.9098,
     "type": "city",
@@ -2733,8 +2733,8 @@ export const places = [
     ]
   },
   {
-    "id": "beth-aven-1",
-    "name": "Beth-aven 1",
+    "id": "beit-aven-1",
+    "name": "Beit-Aven 1",
     "lat": 31.86921,
     "lng": 35.26807,
     "type": "city",
@@ -2749,8 +2749,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "beth-aven-2",
-    "name": "Beth-aven 2",
+    "id": "beit-aven-2",
+    "name": "Beit-Aven 2",
     "lat": 31.92278,
     "lng": 35.24139,
     "type": "city",
@@ -2763,8 +2763,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "beth-barah",
-    "name": "Beth-barah",
+    "id": "beit-barah",
+    "name": "Beit-Barah",
     "lat": 32.14099,
     "lng": 35.49156,
     "type": "water",
@@ -2777,8 +2777,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "beth-biri",
-    "name": "Beth-biri",
+    "id": "beit-biri",
+    "name": "Beit-Biri",
     "lat": 31.00669,
     "lng": 34.49181,
     "type": "city",
@@ -2793,8 +2793,8 @@ export const places = [
     ]
   },
   {
-    "id": "beth-car",
-    "name": "Beth-car",
+    "id": "beit-kar",
+    "name": "Beit-Kar",
     "lat": 31.895,
     "lng": 35.08361,
     "type": "city",
@@ -2809,8 +2809,8 @@ export const places = [
     ]
   },
   {
-    "id": "beth-dagon-1",
-    "name": "Beth-dagon 1",
+    "id": "beit-dagon-1",
+    "name": "Beit-Dagon 1",
     "lat": 31.98358,
     "lng": 34.80862,
     "type": "city",
@@ -2823,8 +2823,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "beth-dagon-2",
-    "name": "Beth-dagon 2",
+    "id": "beit-dagon-2",
+    "name": "Beit-Dagon 2",
     "lat": 32.75885,
     "lng": 35.09027,
     "type": "city",
@@ -2837,8 +2837,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "beth-diblathaim",
-    "name": "Beth-diblathaim",
+    "id": "beit-diblataim",
+    "name": "Beit-Diblataim",
     "lat": 31.63873,
     "lng": 35.82658,
     "type": "city",
@@ -2851,8 +2851,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "beth-eden",
-    "name": "Beth-eden",
+    "id": "beit-eden",
+    "name": "Beit-Eden",
     "lat": 36.2748,
     "lng": 38.82961,
     "type": "region",
@@ -2867,8 +2867,8 @@ export const places = [
     ]
   },
   {
-    "id": "beth-eked",
-    "name": "Beth-eked",
+    "id": "beit-eked",
+    "name": "Beit-Eked",
     "lat": 32.4697,
     "lng": 35.3563,
     "type": "city",
@@ -2881,8 +2881,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "beth-emek",
-    "name": "Beth-emek",
+    "id": "beit-emek",
+    "name": "Beit-Emek",
     "lat": 32.96583,
     "lng": 35.15194,
     "type": "city",
@@ -2897,8 +2897,8 @@ export const places = [
     ]
   },
   {
-    "id": "beth-ezel",
-    "name": "Beth-ezel",
+    "id": "beit-ezel",
+    "name": "Beit-Ezel",
     "lat": 31.46854,
     "lng": 34.93806,
     "type": "city",
@@ -2913,8 +2913,8 @@ export const places = [
     ]
   },
   {
-    "id": "beth-gader",
-    "name": "Beth-gader",
+    "id": "beit-gader",
+    "name": "Beit-Gader",
     "lat": 31.3821,
     "lng": 34.6065,
     "type": "city",
@@ -2927,8 +2927,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "beth-gamul",
-    "name": "Beth-gamul",
+    "id": "beit-gamul",
+    "name": "Beit-Gamul",
     "lat": 31.4835,
     "lng": 35.89991,
     "type": "city",
@@ -2941,8 +2941,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "beth-gilgal",
-    "name": "Beth-gilgal",
+    "id": "beit-gilgal",
+    "name": "Beit-Gilgal",
     "lat": 31.88188,
     "lng": 35.45997,
     "type": "city",
@@ -2957,8 +2957,8 @@ export const places = [
     ]
   },
   {
-    "id": "beth-haccherem",
-    "name": "Beth-haccherem",
+    "id": "beit-hacherem",
+    "name": "Beit-Hacherem",
     "lat": 31.7399,
     "lng": 35.2169,
     "type": "city",
@@ -2976,8 +2976,8 @@ export const places = [
     ]
   },
   {
-    "id": "beth-haggan",
-    "name": "Beth-haggan",
+    "id": "beit-hagan",
+    "name": "Beit-Hagan",
     "lat": 32.46079,
     "lng": 35.29875,
     "type": "city",
@@ -2992,8 +2992,8 @@ export const places = [
     ]
   },
   {
-    "id": "beth-haram",
-    "name": "Beth-haram",
+    "id": "beit-haram",
+    "name": "Beit-Haram",
     "lat": 31.81926,
     "lng": 35.67188,
     "type": "city",
@@ -3011,8 +3011,8 @@ export const places = [
     ]
   },
   {
-    "id": "beth-hoglah",
-    "name": "Beth-hoglah",
+    "id": "beit-hoglah",
+    "name": "Beit-Hoglah",
     "lat": 31.82038,
     "lng": 35.50116,
     "type": "city",
@@ -3025,8 +3025,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "beth-horon",
-    "name": "Beth-horon",
+    "id": "beit-horon",
+    "name": "Beit-Horon",
     "lat": 31.895,
     "lng": 35.08361,
     "type": "city",
@@ -3044,8 +3044,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "beth-jeshimoth",
-    "name": "Beth-jeshimoth",
+    "id": "beit-yeshimot",
+    "name": "Beit-Yeshimot",
     "lat": 31.78255,
     "lng": 35.62125,
     "type": "city",
@@ -3062,8 +3062,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "beth-le-aphrah",
-    "name": "Beth-le-aphrah",
+    "id": "beit-le-afrah",
+    "name": "Beit-Le-Afrah",
     "lat": 31.55659,
     "lng": 35.03355,
     "type": "city",
@@ -3081,8 +3081,8 @@ export const places = [
     ]
   },
   {
-    "id": "beth-lebaoth",
-    "name": "Beth-lebaoth",
+    "id": "beit-lebaot",
+    "name": "Beit-Lebaot",
     "lat": 31.00669,
     "lng": 34.49181,
     "type": "city",
@@ -3095,8 +3095,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "beth-marcaboth",
-    "name": "Beth-marcaboth",
+    "id": "beit-markabot",
+    "name": "Beit-Markabot",
     "lat": 31.35027,
     "lng": 34.92858,
     "type": "city",
@@ -3113,8 +3113,8 @@ export const places = [
     ]
   },
   {
-    "id": "beth-meon",
-    "name": "Beth-meon",
+    "id": "beit-meon",
+    "name": "Beit-Meon",
     "lat": 31.6795,
     "lng": 35.73532,
     "type": "city",
@@ -3127,8 +3127,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "beth-millo",
-    "name": "Beth-millo",
+    "id": "beit-milo",
+    "name": "Beit-Milo",
     "lat": 32.21361,
     "lng": 35.28194,
     "type": "city",
@@ -3145,8 +3145,8 @@ export const places = [
     ]
   },
   {
-    "id": "beth-nimrah",
-    "name": "Beth-nimrah",
+    "id": "beit-nimrah",
+    "name": "Beit-Nimrah",
     "lat": 31.90911,
     "lng": 35.63872,
     "type": "city",
@@ -3161,8 +3161,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "beth-pazzez",
-    "name": "Beth-pazzez",
+    "id": "beit-pazez",
+    "name": "Beit-Pazez",
     "lat": 32.6804,
     "lng": 35.4863,
     "type": "city",
@@ -3175,8 +3175,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "beth-pelet",
-    "name": "Beth-pelet",
+    "id": "beit-pelet",
+    "name": "Beit-Pelet",
     "lat": 31.30992,
     "lng": 34.9078,
     "type": "city",
@@ -3193,8 +3193,8 @@ export const places = [
     ]
   },
   {
-    "id": "beth-peor",
-    "name": "Beth-peor",
+    "id": "beit-peor",
+    "name": "Beit-Peor",
     "lat": 31.77702,
     "lng": 35.7385,
     "type": "city",
@@ -3209,8 +3209,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "beth-rehob",
-    "name": "Beth-rehob",
+    "id": "beit-rehob",
+    "name": "Beit-Rehob",
     "lat": 33.88951,
     "lng": 36.04811,
     "type": "region",
@@ -3225,8 +3225,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "beth-shan",
-    "name": "Beth-shan",
+    "id": "beit-shan",
+    "name": "Beit-Shan",
     "lat": 32.50361,
     "lng": 35.50306,
     "type": "city",
@@ -3248,8 +3248,8 @@ export const places = [
     ]
   },
   {
-    "id": "beth-shemesh-1",
-    "name": "Beth-shemesh 1",
+    "id": "beit-shemesh-1",
+    "name": "Beit-Shemesh 1",
     "lat": 31.75062,
     "lng": 34.97474,
     "type": "city",
@@ -3269,8 +3269,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "beth-shemesh-2",
-    "name": "Beth-shemesh 2",
+    "id": "beit-shemesh-2",
+    "name": "Beit-Shemesh 2",
     "lat": 32.68776,
     "lng": 35.52524,
     "type": "city",
@@ -3283,8 +3283,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "beth-shemesh-3",
-    "name": "Beth-shemesh 3",
+    "id": "beit-shemesh-3",
+    "name": "Beit-Shemesh 3",
     "lat": 33.04128,
     "lng": 35.33275,
     "type": "city",
@@ -3298,8 +3298,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "beth-shittah",
-    "name": "Beth-shittah",
+    "id": "beit-shitah",
+    "name": "Beit-Shitah",
     "lat": 32.32307,
     "lng": 35.59329,
     "type": "city",
@@ -3315,8 +3315,8 @@ export const places = [
     ]
   },
   {
-    "id": "beth-tappuah",
-    "name": "Beth-tappuah",
+    "id": "beit-tapuah",
+    "name": "Beit-Tapuah",
     "lat": 31.53856,
     "lng": 35.04622,
     "type": "city",
@@ -3329,8 +3329,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "beth-togarmah",
-    "name": "Beth-togarmah",
+    "id": "beit-togarmah",
+    "name": "Beit-Togarmah",
     "lat": 38.7225,
     "lng": 37.2775,
     "type": "city",
@@ -3345,8 +3345,8 @@ export const places = [
     ]
   },
   {
-    "id": "beth-zur",
-    "name": "Beth-zur",
+    "id": "beit-zur",
+    "name": "Beit-Zur",
     "lat": 31.58938,
     "lng": 35.09416,
     "type": "city",
@@ -3364,8 +3364,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "bethel-1",
-    "name": "Bethel 1",
+    "id": "beit-el-1",
+    "name": "Beit-El 1",
     "lat": 31.92278,
     "lng": 35.24139,
     "type": "city",
@@ -3396,8 +3396,8 @@ export const places = [
     ]
   },
   {
-    "id": "bethel-2",
-    "name": "Bethel 2",
+    "id": "beit-el-2",
+    "name": "Beit-El 2",
     "lat": 31.34495,
     "lng": 35.12438,
     "type": "city",
@@ -3412,8 +3412,8 @@ export const places = [
     ]
   },
   {
-    "id": "bethel-3",
-    "name": "Bethel 3",
+    "id": "beit-el-3",
+    "name": "Beit-El 3",
     "lat": 31.92278,
     "lng": 35.24139,
     "type": "city",
@@ -3430,8 +3430,8 @@ export const places = [
     ]
   },
   {
-    "id": "bether-1",
-    "name": "Bether 1",
+    "id": "beter-1",
+    "name": "Beter 1",
     "lat": 31.73073,
     "lng": 35.13556,
     "type": "region",
@@ -3444,8 +3444,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "bethlehem-1",
-    "name": "Bethlehem 1",
+    "id": "beit-lechem-1",
+    "name": "Beit-Lechem 1",
     "lat": 31.70431,
     "lng": 35.20764,
     "type": "city",
@@ -3475,8 +3475,8 @@ export const places = [
     ]
   },
   {
-    "id": "bethlehem-2",
-    "name": "Bethlehem 2",
+    "id": "beit-lechem-2",
+    "name": "Beit-Lechem 2",
     "lat": 32.73481,
     "lng": 35.18556,
     "type": "city",
@@ -3491,8 +3491,8 @@ export const places = [
     ]
   },
   {
-    "id": "bethlehem-3",
-    "name": "Bethlehem 3",
+    "id": "beit-lechem-3",
+    "name": "Beit-Lechem 3",
     "lat": 32.73481,
     "lng": 35.18556,
     "type": "city",
@@ -3507,8 +3507,8 @@ export const places = [
     ]
   },
   {
-    "id": "bethuel",
-    "name": "Bethuel",
+    "id": "betuel",
+    "name": "Betuel",
     "lat": 31.58938,
     "lng": 35.09416,
     "type": "city",
@@ -3521,8 +3521,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "bethul",
-    "name": "Bethul",
+    "id": "betul",
+    "name": "Betul",
     "lat": 31.58938,
     "lng": 35.09416,
     "type": "city",
@@ -3657,7 +3657,7 @@ export const places = [
   },
   {
     "id": "bor-ashan",
-    "name": "Bor-ashan",
+    "name": "Bor-Ashan",
     "lat": 31.28137,
     "lng": 34.7974,
     "type": "city",
@@ -3687,8 +3687,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "bozkath",
-    "name": "Bozkath",
+    "id": "bozkat",
+    "name": "Bozkat",
     "lat": 31.53687,
     "lng": 34.91318,
     "type": "city",
@@ -3752,8 +3752,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "brook-of-egypt",
-    "name": "Brook of Egypt",
+    "id": "brook-of-mitzrayim",
+    "name": "Brook of Mitzrayim",
     "lat": 30.92684,
     "lng": 33.98033,
     "type": "water",
@@ -3830,8 +3830,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "cabbon",
-    "name": "Cabbon",
+    "id": "kabon",
+    "name": "Kabon",
     "lat": 31.35027,
     "lng": 34.92858,
     "type": "city",
@@ -3846,8 +3846,8 @@ export const places = [
     ]
   },
   {
-    "id": "cabul-1",
-    "name": "Cabul 1",
+    "id": "kabul-1",
+    "name": "Kabul 1",
     "lat": 32.86833,
     "lng": 35.21139,
     "type": "city",
@@ -3862,8 +3862,8 @@ export const places = [
     ]
   },
   {
-    "id": "calah",
-    "name": "Calah",
+    "id": "kalah",
+    "name": "Kalah",
     "lat": 36.09806,
     "lng": 43.32889,
     "type": "city",
@@ -3876,8 +3876,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "caleb-ephrathah",
-    "name": "Caleb Ephrathah",
+    "id": "kaleb-efratah",
+    "name": "Kaleb Efratah",
     "lat": 31.70431,
     "lng": 35.20764,
     "type": "city",
@@ -3892,8 +3892,8 @@ export const places = [
     ]
   },
   {
-    "id": "calneh-1",
-    "name": "Calneh 1",
+    "id": "kalneh-1",
+    "name": "Kalneh 1",
     "lat": 32.12611,
     "lng": 45.23083,
     "type": "city",
@@ -3908,8 +3908,8 @@ export const places = [
     ]
   },
   {
-    "id": "calneh-2",
-    "name": "Calneh 2",
+    "id": "kalneh-2",
+    "name": "Kalneh 2",
     "lat": 36.29257,
     "lng": 37.20553,
     "type": "city",
@@ -3956,8 +3956,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "canneh",
-    "name": "Canneh",
+    "id": "kaneh",
+    "name": "Kaneh",
     "lat": 36.29257,
     "lng": 37.20553,
     "type": "city",
@@ -3972,8 +3972,8 @@ export const places = [
     ]
   },
   {
-    "id": "caphtor",
-    "name": "Caphtor",
+    "id": "kaftor",
+    "name": "Kaftor",
     "lat": 35.30051,
     "lng": 24.87574,
     "type": "region",
@@ -3995,8 +3995,8 @@ export const places = [
     ]
   },
   {
-    "id": "carchemish",
-    "name": "Carchemish",
+    "id": "karchemish",
+    "name": "Karchemish",
     "lat": 36.82972,
     "lng": 38.015,
     "type": "city",
@@ -4012,8 +4012,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "carmel-1",
-    "name": "Carmel 1",
+    "id": "karmel-1",
+    "name": "Karmel 1",
     "lat": 31.42288,
     "lng": 35.13295,
     "type": "city",
@@ -4032,8 +4032,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "casiphia",
-    "name": "Casiphia",
+    "id": "kasifia",
+    "name": "Kasifia",
     "lat": 32.49942,
     "lng": 45.01038,
     "type": "region",
@@ -4094,8 +4094,8 @@ export const places = [
     ]
   },
   {
-    "id": "chephar-ammoni",
-    "name": "Chephar-ammoni",
+    "id": "chefar-amoni",
+    "name": "Chefar-Amoni",
     "lat": 31.96609,
     "lng": 35.24758,
     "type": "city",
@@ -4112,8 +4112,8 @@ export const places = [
     ]
   },
   {
-    "id": "chephirah",
-    "name": "Chephirah",
+    "id": "chefirah",
+    "name": "Chefirah",
     "lat": 31.8309,
     "lng": 35.10677,
     "type": "city",
@@ -4131,8 +4131,8 @@ export const places = [
     ]
   },
   {
-    "id": "cherith",
-    "name": "Cherith",
+    "id": "cherit",
+    "name": "Cherit",
     "lat": 32.39919,
     "lng": 35.66923,
     "type": "water",
@@ -4184,8 +4184,8 @@ export const places = [
     ]
   },
   {
-    "id": "chesulloth",
-    "name": "Chesulloth",
+    "id": "chesulot",
+    "name": "Chesulot",
     "lat": 32.68337,
     "lng": 35.32419,
     "type": "city",
@@ -4232,8 +4232,8 @@ export const places = [
     ]
   },
   {
-    "id": "chinnereth",
-    "name": "Chinnereth",
+    "id": "chineret",
+    "name": "Chineret",
     "lat": 32.86944,
     "lng": 35.53833,
     "type": "city",
@@ -4252,8 +4252,8 @@ export const places = [
     ]
   },
   {
-    "id": "chisloth-tabor",
-    "name": "Chisloth-tabor",
+    "id": "chislot-tabor",
+    "name": "Chislot-Tabor",
     "lat": 32.68337,
     "lng": 35.32419,
     "type": "city",
@@ -4390,8 +4390,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "cozeba",
-    "name": "Cozeba",
+    "id": "kozeba",
+    "name": "Kozeba",
     "lat": 31.64207,
     "lng": 34.95302,
     "type": "city",
@@ -4421,8 +4421,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "cun",
-    "name": "Cun",
+    "id": "kun",
+    "name": "Kun",
     "lat": 34.25972,
     "lng": 36.42361,
     "type": "city",
@@ -4438,8 +4438,8 @@ export const places = [
     ]
   },
   {
-    "id": "cuth",
-    "name": "Cuth",
+    "id": "kut",
+    "name": "Kut",
     "lat": 32.76003,
     "lng": 44.61286,
     "type": "city",
@@ -4472,8 +4472,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "dabbesheth",
-    "name": "Dabbesheth",
+    "id": "dabeshet",
+    "name": "Dabeshet",
     "lat": 32.67028,
     "lng": 35.155,
     "type": "city",
@@ -4488,8 +4488,8 @@ export const places = [
     ]
   },
   {
-    "id": "daberath",
-    "name": "Daberath",
+    "id": "daberat",
+    "name": "Daberat",
     "lat": 32.69728,
     "lng": 35.37753,
     "type": "city",
@@ -4504,8 +4504,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "damascus",
-    "name": "Damascus",
+    "id": "dameseq",
+    "name": "Dameseq",
     "lat": 33.51111,
     "lng": 36.30639,
     "type": "city",
@@ -4547,8 +4547,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "dannah",
-    "name": "Dannah",
+    "id": "danah",
+    "name": "Danah",
     "lat": 31.55861,
     "lng": 34.97611,
     "type": "city",
@@ -4768,8 +4768,8 @@ export const places = [
     ]
   },
   {
-    "id": "dophkah",
-    "name": "Dophkah",
+    "id": "dofkah",
+    "name": "Dofkah",
     "lat": 29.03673,
     "lng": 33.45941,
     "type": "city",
@@ -4799,8 +4799,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "dothan",
-    "name": "Dothan",
+    "id": "dotan",
+    "name": "Dotan",
     "lat": 32.41353,
     "lng": 35.23986,
     "type": "city",
@@ -5019,8 +5019,8 @@ export const places = [
     ]
   },
   {
-    "id": "ecbatana",
-    "name": "Ecbatana",
+    "id": "ekbatana",
+    "name": "Ekbatana",
     "lat": 34.8065,
     "lng": 48.51625,
     "type": "city",
@@ -5170,8 +5170,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "eglath-shelishiyah",
-    "name": "Eglath-shelishiyah",
+    "id": "eglat-shelishiyah",
+    "name": "Eglat-Shelishiyah",
     "lat": 31.20994,
     "lng": 35.44922,
     "type": "region",
@@ -5199,8 +5199,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "egypt",
-    "name": "Egypt",
+    "id": "mitzrayim",
+    "name": "Mitzrayim",
     "lat": 28.47113,
     "lng": 32.04806,
     "type": "region",
@@ -5271,8 +5271,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "el-bethel",
-    "name": "El-bethel",
+    "id": "el-beit-el",
+    "name": "El-Beit-El",
     "lat": 31.92278,
     "lng": 35.24139,
     "type": "city",
@@ -5288,7 +5288,7 @@ export const places = [
   },
   {
     "id": "el-paran",
-    "name": "El-paran",
+    "name": "El-Paran",
     "lat": 29.53068,
     "lng": 35,
     "type": "city",
@@ -5322,8 +5322,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "elath",
-    "name": "Elath",
+    "id": "elat",
+    "name": "Elat",
     "lat": 29.53068,
     "lng": 35,
     "type": "city",
@@ -5404,8 +5404,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "ellasar",
-    "name": "Ellasar",
+    "id": "elasar",
+    "name": "Elasar",
     "lat": 37.71472,
     "lng": 41.41306,
     "type": "city",
@@ -5432,8 +5432,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "elonbeth-hanan",
-    "name": "Elonbeth-hanan",
+    "id": "elonbet-hanan",
+    "name": "Elonbet-Hanan",
     "lat": 31.84111,
     "lng": 35.02361,
     "type": "city",
@@ -5495,7 +5495,7 @@ export const places = [
   },
   {
     "id": "emek-keziz",
-    "name": "Emek-keziz",
+    "name": "Emek-Keziz",
     "lat": 31.87245,
     "lng": 35.44456,
     "type": "region",
@@ -5510,8 +5510,8 @@ export const places = [
     ]
   },
   {
-    "id": "en-dor",
-    "name": "En-dor",
+    "id": "ein-dor",
+    "name": "Ein-Dor",
     "lat": 32.64361,
     "lng": 35.39022,
     "type": "city",
@@ -5530,8 +5530,8 @@ export const places = [
     ]
   },
   {
-    "id": "en-gannim-1",
-    "name": "En-gannim 1",
+    "id": "ein-ganim-1",
+    "name": "Ein-Ganim 1",
     "lat": 31.74761,
     "lng": 34.96378,
     "type": "city",
@@ -5544,8 +5544,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "en-gannim-2",
-    "name": "En-gannim 2",
+    "id": "ein-ganim-2",
+    "name": "Ein-Ganim 2",
     "lat": 32.46079,
     "lng": 35.29875,
     "type": "city",
@@ -5558,8 +5558,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "en-haddah",
-    "name": "En-haddah",
+    "id": "ein-hadah",
+    "name": "Ein-Hadah",
     "lat": 32.6804,
     "lng": 35.4863,
     "type": "city",
@@ -5572,8 +5572,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "en-hakkore",
-    "name": "En-hakkore",
+    "id": "ein-hakore",
+    "name": "Ein-Hakore",
     "lat": 31.74894,
     "lng": 35.00101,
     "type": "water",
@@ -5590,8 +5590,8 @@ export const places = [
     ]
   },
   {
-    "id": "en-hazor",
-    "name": "En-hazor",
+    "id": "ein-hazor",
+    "name": "Ein-Hazor",
     "lat": 33.04194,
     "lng": 35.31179,
     "type": "city",
@@ -5604,8 +5604,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "en-rimmon",
-    "name": "En-rimmon",
+    "id": "ein-rimon",
+    "name": "Ein-Rimon",
     "lat": 31.37124,
     "lng": 34.86489,
     "type": "city",
@@ -5618,8 +5618,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "en-rogel",
-    "name": "En-rogel",
+    "id": "ein-rogel",
+    "name": "Ein-Rogel",
     "lat": 31.7672,
     "lng": 35.23598,
     "type": "water",
@@ -5636,8 +5636,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "en-shemesh",
-    "name": "En-shemesh",
+    "id": "ein-shemesh",
+    "name": "Ein-Shemesh",
     "lat": 31.77406,
     "lng": 35.27013,
     "type": "water",
@@ -5650,8 +5650,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "en-tappuah",
-    "name": "En-tappuah",
+    "id": "ein-tapuah",
+    "name": "Ein-Tapuah",
     "lat": 32.10444,
     "lng": 35.23007,
     "type": "water",
@@ -5666,8 +5666,8 @@ export const places = [
     ]
   },
   {
-    "id": "enaim",
-    "name": "Enaim",
+    "id": "einayim",
+    "name": "Einayim",
     "lat": 31.68768,
     "lng": 35.01237,
     "type": "city",
@@ -5682,8 +5682,8 @@ export const places = [
     ]
   },
   {
-    "id": "enam",
-    "name": "Enam",
+    "id": "einam",
+    "name": "Einam",
     "lat": 31.67615,
     "lng": 34.99802,
     "type": "region",
@@ -5696,8 +5696,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "eneglaim",
-    "name": "Eneglaim",
+    "id": "ein-eglaim",
+    "name": "Ein-Eglaim",
     "lat": 31.71444,
     "lng": 35.45333,
     "type": "water",
@@ -5712,8 +5712,8 @@ export const places = [
     ]
   },
   {
-    "id": "engedi",
-    "name": "Engedi",
+    "id": "ein-gedi",
+    "name": "Ein-Gedi",
     "lat": 31.45839,
     "lng": 35.36908,
     "type": "region",
@@ -5735,8 +5735,8 @@ export const places = [
     ]
   },
   {
-    "id": "ephes-dammim",
-    "name": "Ephes-dammim",
+    "id": "efes-damim",
+    "name": "Efes-Damim",
     "lat": 31.68449,
     "lng": 35.05224,
     "type": "city",
@@ -5755,8 +5755,8 @@ export const places = [
     ]
   },
   {
-    "id": "ephraim-1",
-    "name": "Ephraim 1",
+    "id": "efraim-1",
+    "name": "Efraim 1",
     "lat": 31.95444,
     "lng": 35.30028,
     "type": "city",
@@ -5769,8 +5769,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "ephraim-gate",
-    "name": "Ephraim Gate",
+    "id": "efraim-gate",
+    "name": "Efraim Gate",
     "lat": 31.77667,
     "lng": 35.23417,
     "type": "city",
@@ -5788,8 +5788,8 @@ export const places = [
     ]
   },
   {
-    "id": "ephrath",
-    "name": "Ephrath",
+    "id": "efrat",
+    "name": "Efrat",
     "lat": 31.70431,
     "lng": 35.20764,
     "type": "city",
@@ -5802,8 +5802,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "ephrathah",
-    "name": "Ephrathah",
+    "id": "efratah",
+    "name": "Efratah",
     "lat": 31.70431,
     "lng": 35.20764,
     "type": "city",
@@ -5820,8 +5820,8 @@ export const places = [
     ]
   },
   {
-    "id": "ephron-1",
-    "name": "Ephron 1",
+    "id": "efron-1",
+    "name": "Efron 1",
     "lat": 31.95444,
     "lng": 35.30028,
     "type": "city",
@@ -5834,8 +5834,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "ephron-2",
-    "name": "Ephron 2",
+    "id": "efron-2",
+    "name": "Efron 2",
     "lat": 31.95444,
     "lng": 35.30028,
     "type": "city",
@@ -5977,8 +5977,8 @@ export const places = [
     ]
   },
   {
-    "id": "eth-kazin",
-    "name": "Eth-kazin",
+    "id": "et-kazin",
+    "name": "Et-Kazin",
     "lat": 32.74647,
     "lng": 35.33921,
     "type": "city",
@@ -5993,8 +5993,8 @@ export const places = [
     ]
   },
   {
-    "id": "etham",
-    "name": "Etham",
+    "id": "etam",
+    "name": "Etam",
     "lat": 30.5475,
     "lng": 31.96361,
     "type": "city",
@@ -6008,8 +6008,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "ether-1",
-    "name": "Ether 1",
+    "id": "eter-1",
+    "name": "Eter 1",
     "lat": 31.61593,
     "lng": 34.8783,
     "type": "city",
@@ -6022,8 +6022,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "ether-2",
-    "name": "Ether 2",
+    "id": "eter-2",
+    "name": "Eter 2",
     "lat": 31.61593,
     "lng": 34.8783,
     "type": "city",
@@ -6058,8 +6058,8 @@ export const places = [
     ]
   },
   {
-    "id": "euphrates",
-    "name": "Euphrates",
+    "id": "eufrates",
+    "name": "Eufrates",
     "lat": 35.79538,
     "lng": 41.29119,
     "type": "water",
@@ -6128,7 +6128,7 @@ export const places = [
   },
   {
     "id": "ezion-geber",
-    "name": "Ezion-geber",
+    "name": "Ezion-Geber",
     "lat": 29.54718,
     "lng": 34.98026,
     "type": "city",
@@ -6198,8 +6198,8 @@ export const places = [
     ]
   },
   {
-    "id": "galilee-1",
-    "name": "Galilee 1",
+    "id": "galil-1",
+    "name": "Galil 1",
     "lat": 32.8519,
     "lng": 35.38103,
     "type": "region",
@@ -6218,8 +6218,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "galilee-2",
-    "name": "Galilee 2",
+    "id": "galil-2",
+    "name": "Galil 2",
     "lat": 32.8519,
     "lng": 35.38103,
     "type": "region",
@@ -6234,8 +6234,8 @@ export const places = [
     ]
   },
   {
-    "id": "gallim",
-    "name": "Gallim",
+    "id": "galim",
+    "name": "Galim",
     "lat": 31.81544,
     "lng": 35.25078,
     "type": "city",
@@ -6334,8 +6334,8 @@ export const places = [
     ]
   },
   {
-    "id": "gath-1",
-    "name": "Gath 1",
+    "id": "gat-1",
+    "name": "Gat 1",
     "lat": 31.69972,
     "lng": 34.84694,
     "type": "city",
@@ -6360,8 +6360,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "gath-2",
-    "name": "Gath 2",
+    "id": "gat-2",
+    "name": "Gat 2",
     "lat": 31.69972,
     "lng": 34.84694,
     "type": "city",
@@ -6374,8 +6374,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "gath-3",
-    "name": "Gath 3",
+    "id": "gat-3",
+    "name": "Gat 3",
     "lat": 31.69972,
     "lng": 34.84694,
     "type": "city",
@@ -6390,8 +6390,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "gath-hepher",
-    "name": "Gath-hepher",
+    "id": "gat-hefer",
+    "name": "Gat-Hefer",
     "lat": 32.73806,
     "lng": 35.31972,
     "type": "city",
@@ -6406,8 +6406,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "gath-rimmon-1",
-    "name": "Gath-rimmon 1",
+    "id": "gat-rimon-1",
+    "name": "Gat-Rimon 1",
     "lat": 32.0917,
     "lng": 34.8075,
     "type": "city",
@@ -6422,8 +6422,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "gath-rimmon-2",
-    "name": "Gath-rimmon 2",
+    "id": "gat-rimon-2",
+    "name": "Gat-Rimon 2",
     "lat": 32.4462,
     "lng": 35.292,
     "type": "city",
@@ -6467,7 +6467,7 @@ export const places = [
   },
   {
     "id": "ge-harashim",
-    "name": "Ge-harashim",
+    "name": "Ge-Harashim",
     "lat": 31.95073,
     "lng": 34.9,
     "type": "region",
@@ -6667,8 +6667,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "gederoth",
-    "name": "Gederoth",
+    "id": "gederot",
+    "name": "Gederot",
     "lat": 31.82294,
     "lng": 34.77774,
     "type": "city",
@@ -6683,8 +6683,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "gederothaim",
-    "name": "Gederothaim",
+    "id": "gederotaim",
+    "name": "Gederotaim",
     "lat": 31.6889,
     "lng": 34.99612,
     "type": "city",
@@ -6757,8 +6757,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "geliloth",
-    "name": "Geliloth",
+    "id": "gelilot",
+    "name": "Gelilot",
     "lat": 31.79052,
     "lng": 35.32262,
     "type": "city",
@@ -6787,8 +6787,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "geruth-chimham",
-    "name": "Geruth Chimham",
+    "id": "gerut-chimham",
+    "name": "Gerut Chimham",
     "lat": 31.70504,
     "lng": 35.20764,
     "type": "region",
@@ -6856,8 +6856,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "gibbar",
-    "name": "Gibbar",
+    "id": "gibar",
+    "name": "Gibar",
     "lat": 31.84745,
     "lng": 35.18335,
     "type": "city",
@@ -6870,8 +6870,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "gibbethon",
-    "name": "Gibbethon",
+    "id": "gibeton",
+    "name": "Gibeton",
     "lat": 31.85639,
     "lng": 34.86556,
     "type": "city",
@@ -6968,8 +6968,8 @@ export const places = [
     ]
   },
   {
-    "id": "gibeath-elohim",
-    "name": "Gibeath-elohim",
+    "id": "gibeat-elohim",
+    "name": "Gibeat-Elohim",
     "lat": 31.82311,
     "lng": 35.23072,
     "type": "city",
@@ -6984,8 +6984,8 @@ export const places = [
     ]
   },
   {
-    "id": "gibeath-haaraloth",
-    "name": "Gibeath-haaraloth",
+    "id": "gibeat-haaralot",
+    "name": "Gibeat-Haaralot",
     "lat": 31.88261,
     "lng": 35.45997,
     "type": "region",
@@ -7177,8 +7177,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "gittaim",
-    "name": "Gittaim",
+    "id": "gitaim",
+    "name": "Gitaim",
     "lat": 31.90302,
     "lng": 34.88994,
     "type": "city",
@@ -7287,8 +7287,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "gomorrah",
-    "name": "Gomorrah",
+    "id": "gomorah",
+    "name": "Gomorah",
     "lat": 31.15214,
     "lng": 35.42979,
     "type": "region",
@@ -7405,8 +7405,8 @@ export const places = [
     ]
   },
   {
-    "id": "gulloth-mayim",
-    "name": "Gulloth-mayim",
+    "id": "gulot-mayim",
+    "name": "Gulot-Mayim",
     "lat": 31.43282,
     "lng": 35.01485,
     "type": "water",
@@ -7487,8 +7487,8 @@ export const places = [
     ]
   },
   {
-    "id": "hadad-rimmon",
-    "name": "Hadad-rimmon",
+    "id": "hadad-rimon",
+    "name": "Hadad-Rimon",
     "lat": 32.5863,
     "lng": 35.18444,
     "type": "region",
@@ -7549,8 +7549,8 @@ export const places = [
     ]
   },
   {
-    "id": "haeleph",
-    "name": "Haeleph",
+    "id": "haelef",
+    "name": "Haelef",
     "lat": 31.80253,
     "lng": 35.20964,
     "type": "city",
@@ -7565,8 +7565,8 @@ export const places = [
     ]
   },
   {
-    "id": "hakkephirim",
-    "name": "Hakkephirim",
+    "id": "hakefirim",
+    "name": "Hakefirim",
     "lat": 32.02867,
     "lng": 34.86806,
     "type": "region",
@@ -7685,8 +7685,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "hamath-1",
-    "name": "Hamath 1",
+    "id": "hamat-1",
+    "name": "Hamat 1",
     "lat": 35.1365,
     "lng": 36.75,
     "type": "city",
@@ -7710,8 +7710,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "hamath-2",
-    "name": "Hamath 2",
+    "id": "hamat-2",
+    "name": "Hamat 2",
     "lat": 35.1365,
     "lng": 36.75,
     "type": "city",
@@ -7724,8 +7724,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "hamath-zobah",
-    "name": "Hamath-zobah",
+    "id": "hamat-tzobah",
+    "name": "Hamat-Tzobah",
     "lat": 35.1365,
     "lng": 36.75,
     "type": "city",
@@ -7742,8 +7742,8 @@ export const places = [
     ]
   },
   {
-    "id": "hammath-1",
-    "name": "Hammath 1",
+    "id": "hammat-1",
+    "name": "Hammat 1",
     "lat": 32.76637,
     "lng": 35.55055,
     "type": "city",
@@ -7756,8 +7756,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "hammath-2",
-    "name": "Hammath 2",
+    "id": "hammat-2",
+    "name": "Hammat 2",
     "lat": 32.76637,
     "lng": 35.55055,
     "type": "city",
@@ -7772,8 +7772,8 @@ export const places = [
     ]
   },
   {
-    "id": "hammon-1",
-    "name": "Hammon 1",
+    "id": "hamon-1",
+    "name": "Hamon 1",
     "lat": 33.12811,
     "lng": 35.15202,
     "type": "city",
@@ -7786,8 +7786,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "hammon-2",
-    "name": "Hammon 2",
+    "id": "hamon-2",
+    "name": "Hamon 2",
     "lat": 32.76637,
     "lng": 35.55055,
     "type": "city",
@@ -7800,8 +7800,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "hammoth-dor",
-    "name": "Hammoth-dor",
+    "id": "hamot-dor",
+    "name": "Hamot-Dor",
     "lat": 32.76637,
     "lng": 35.55055,
     "type": "city",
@@ -7842,8 +7842,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "hannathon",
-    "name": "Hannathon",
+    "id": "hanaton",
+    "name": "Hanaton",
     "lat": 32.78556,
     "lng": 35.25694,
     "type": "city",
@@ -7856,8 +7856,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "hapharaim",
-    "name": "Hapharaim",
+    "id": "hafaraim",
+    "name": "Hafaraim",
     "lat": 32.60385,
     "lng": 35.44661,
     "type": "city",
@@ -7980,8 +7980,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "harosheth-hagoyim",
-    "name": "Harosheth-hagoyim",
+    "id": "haroshet-hagoyim",
+    "name": "Haroshet-Hagoyim",
     "lat": 32.72806,
     "lng": 35.09667,
     "type": "city",
@@ -8069,8 +8069,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "havvoth-jair",
-    "name": "Havvoth-jair",
+    "id": "havot-yair",
+    "name": "Havot-Yair",
     "lat": 32.67256,
     "lng": 35.81313,
     "type": "region",
@@ -8094,8 +8094,8 @@ export const places = [
     ]
   },
   {
-    "id": "hazar-addar",
-    "name": "Hazar-addar",
+    "id": "hazar-adar",
+    "name": "Hazar-Adar",
     "lat": 30.58338,
     "lng": 34.48408,
     "type": "city",
@@ -8111,7 +8111,7 @@ export const places = [
   },
   {
     "id": "hazar-enan",
-    "name": "Hazar-enan",
+    "name": "Hazar-Enan",
     "lat": 34.22944,
     "lng": 37.24056,
     "type": "city",
@@ -8126,8 +8126,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "hazar-gaddah",
-    "name": "Hazar-gaddah",
+    "id": "hazar-gadah",
+    "name": "Hazar-Gadah",
     "lat": 31.25157,
     "lng": 34.84083,
     "type": "region",
@@ -8141,7 +8141,7 @@ export const places = [
   },
   {
     "id": "hazar-shual",
-    "name": "Hazar-shual",
+    "name": "Hazar-Shual",
     "lat": 31.24617,
     "lng": 34.84083,
     "type": "region",
@@ -8159,7 +8159,7 @@ export const places = [
   },
   {
     "id": "hazar-susah",
-    "name": "Hazar-susah",
+    "name": "Hazar-Susah",
     "lat": 31.3445,
     "lng": 34.9014,
     "type": "city",
@@ -8177,7 +8177,7 @@ export const places = [
   },
   {
     "id": "hazazon-tamar-1",
-    "name": "Hazazon-tamar 1",
+    "name": "Hazazon-Tamar 1",
     "lat": 30.8087,
     "lng": 35.2459,
     "type": "city",
@@ -8193,7 +8193,7 @@ export const places = [
   },
   {
     "id": "hazazon-tamar-2",
-    "name": "Hazazon-tamar 2",
+    "name": "Hazazon-Tamar 2",
     "lat": 31.45839,
     "lng": 35.36908,
     "type": "region",
@@ -8208,8 +8208,8 @@ export const places = [
     ]
   },
   {
-    "id": "hazer-hatticon",
-    "name": "Hazer-hatticon",
+    "id": "hazer-hatikon",
+    "name": "Hazer-Hatikon",
     "lat": 34.22944,
     "lng": 37.24056,
     "type": "city",
@@ -8225,8 +8225,8 @@ export const places = [
     ]
   },
   {
-    "id": "hazeroth",
-    "name": "Hazeroth",
+    "id": "hazerot",
+    "name": "Hazerot",
     "lat": 28.89694,
     "lng": 34.42167,
     "type": "city",
@@ -8316,8 +8316,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "hazor-hadattah",
-    "name": "Hazor-hadattah",
+    "id": "hazor-hadatah",
+    "name": "Hazor-Hadatah",
     "lat": 31.37333,
     "lng": 35.23361,
     "type": "city",
@@ -8418,8 +8418,8 @@ export const places = [
     ]
   },
   {
-    "id": "heleph",
-    "name": "Heleph",
+    "id": "helef",
+    "name": "Helef",
     "lat": 32.72474,
     "lng": 35.41385,
     "type": "city",
@@ -8451,8 +8451,8 @@ export const places = [
     ]
   },
   {
-    "id": "helkath",
-    "name": "Helkath",
+    "id": "helkat",
+    "name": "Helkat",
     "lat": 32.75885,
     "lng": 35.09027,
     "type": "city",
@@ -8465,8 +8465,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "helkath-hazzurim",
-    "name": "Helkath-hazzurim",
+    "id": "helkat-hazurim",
+    "name": "Helkat-Hazurim",
     "lat": 31.84752,
     "lng": 35.18335,
     "type": "region",
@@ -8500,8 +8500,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "hepher",
-    "name": "Hepher",
+    "id": "hefer",
+    "name": "Hefer",
     "lat": 32.44285,
     "lng": 35.21767,
     "type": "city",
@@ -8534,8 +8534,8 @@ export const places = [
     ]
   },
   {
-    "id": "hereth",
-    "name": "Hereth",
+    "id": "heret",
+    "name": "Heret",
     "lat": 31.61411,
     "lng": 35.04313,
     "type": "city",
@@ -8592,8 +8592,8 @@ export const places = [
     ]
   },
   {
-    "id": "hethlon",
-    "name": "Hethlon",
+    "id": "hetlon",
+    "name": "Hetlon",
     "lat": 34.60306,
     "lng": 36.13361,
     "type": "city",
@@ -8683,8 +8683,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "hor-haggidgad",
-    "name": "Hor-haggidgad",
+    "id": "hor-hagidgad",
+    "name": "Hor-Hagidgad",
     "lat": 30.22232,
     "lng": 34.81225,
     "type": "river",
@@ -8939,8 +8939,8 @@ export const places = [
     ]
   },
   {
-    "id": "ijon",
-    "name": "Ijon",
+    "id": "iyon",
+    "name": "Iyon",
     "lat": 33.34528,
     "lng": 35.59,
     "type": "city",
@@ -8969,8 +8969,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "iphtah",
-    "name": "Iphtah",
+    "id": "iftah",
+    "name": "Iftah",
     "lat": 31.57459,
     "lng": 35.01244,
     "type": "city",
@@ -8987,7 +8987,7 @@ export const places = [
   },
   {
     "id": "ir-moab",
-    "name": "Ir-moab",
+    "name": "Ir-Moab",
     "lat": 31.35991,
     "lng": 35.78276,
     "type": "city",
@@ -9001,7 +9001,7 @@ export const places = [
   },
   {
     "id": "ir-nahash",
-    "name": "Ir-nahash",
+    "name": "Ir-Nahash",
     "lat": 30.68056,
     "lng": 35.43611,
     "type": "city",
@@ -9018,7 +9018,7 @@ export const places = [
   },
   {
     "id": "ir-shemesh",
-    "name": "Ir-shemesh",
+    "name": "Ir-Shemesh",
     "lat": 31.75062,
     "lng": 34.97474,
     "type": "city",
@@ -9045,8 +9045,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "ithlah",
-    "name": "Ithlah",
+    "id": "itlah",
+    "name": "Itlah",
     "lat": 31.84256,
     "lng": 35.02361,
     "type": "region",
@@ -9061,8 +9061,8 @@ export const places = [
     ]
   },
   {
-    "id": "ithnan",
-    "name": "Ithnan",
+    "id": "itnan",
+    "name": "Itnan",
     "lat": 30.72278,
     "lng": 34.64522,
     "type": "city",
@@ -9075,8 +9075,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "ivvah",
-    "name": "Ivvah",
+    "id": "ivah",
+    "name": "Ivah",
     "lat": 34.68472,
     "lng": 36.69056,
     "type": "city",
@@ -9094,7 +9094,7 @@ export const places = [
   },
   {
     "id": "iye-abarim",
-    "name": "Iye-abarim",
+    "name": "Iye-Abarim",
     "lat": 30.956,
     "lng": 35.77948,
     "type": "city",
@@ -9109,8 +9109,8 @@ export const places = [
     ]
   },
   {
-    "id": "jaar",
-    "name": "Jaar",
+    "id": "yaar",
+    "name": "Yaar",
     "lat": 31.80896,
     "lng": 35.10378,
     "type": "city",
@@ -9123,8 +9123,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "jabbok",
-    "name": "Jabbok",
+    "id": "yabok",
+    "name": "Yabok",
     "lat": 32.15805,
     "lng": 35.83856,
     "type": "water",
@@ -9145,8 +9145,8 @@ export const places = [
     ]
   },
   {
-    "id": "jabesh-gilead",
-    "name": "Jabesh-gilead",
+    "id": "yabesh-gilead",
+    "name": "Yabesh-Gilead",
     "lat": 32.40237,
     "lng": 35.6823,
     "type": "city",
@@ -9166,8 +9166,8 @@ export const places = [
     ]
   },
   {
-    "id": "jabez",
-    "name": "Jabez",
+    "id": "yabez",
+    "name": "Yabez",
     "lat": 31.70504,
     "lng": 35.20764,
     "type": "region",
@@ -9180,8 +9180,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "jabneel-1",
-    "name": "Jabneel 1",
+    "id": "yabneel-1",
+    "name": "Yabneel 1",
     "lat": 31.866,
     "lng": 34.7463,
     "type": "city",
@@ -9196,8 +9196,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "jabneel-2",
-    "name": "Jabneel 2",
+    "id": "yabneel-2",
+    "name": "Yabneel 2",
     "lat": 32.71333,
     "lng": 35.5125,
     "type": "city",
@@ -9210,8 +9210,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "jagur",
-    "name": "Jagur",
+    "id": "yagur",
+    "name": "Yagur",
     "lat": 31.2328,
     "lng": 34.9867,
     "type": "city",
@@ -9224,8 +9224,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "jahaz",
-    "name": "Jahaz",
+    "id": "yahaz",
+    "name": "Yahaz",
     "lat": 31.58835,
     "lng": 35.90793,
     "type": "city",
@@ -9247,8 +9247,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "janim",
-    "name": "Janim",
+    "id": "yanim",
+    "name": "Yanim",
     "lat": 31.51591,
     "lng": 35.16416,
     "type": "city",
@@ -9263,8 +9263,8 @@ export const places = [
     ]
   },
   {
-    "id": "janoah-1",
-    "name": "Janoah 1",
+    "id": "yanoah-1",
+    "name": "Yanoah 1",
     "lat": 32.15798,
     "lng": 35.36133,
     "type": "city",
@@ -9279,8 +9279,8 @@ export const places = [
     ]
   },
   {
-    "id": "janoah-2",
-    "name": "Janoah 2",
+    "id": "yanoah-2",
+    "name": "Yanoah 2",
     "lat": 33.26025,
     "lng": 35.30259,
     "type": "city",
@@ -9293,8 +9293,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "japhia",
-    "name": "Japhia",
+    "id": "yafia",
+    "name": "Yafia",
     "lat": 32.68702,
     "lng": 35.27535,
     "type": "city",
@@ -9307,8 +9307,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "jarmuth-1",
-    "name": "Jarmuth 1",
+    "id": "yarmut-1",
+    "name": "Yarmut 1",
     "lat": 31.7083,
     "lng": 34.975,
     "type": "city",
@@ -9323,8 +9323,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "jarmuth-2",
-    "name": "Jarmuth 2",
+    "id": "yarmut-2",
+    "name": "Yarmut 2",
     "lat": 32.59556,
     "lng": 35.52139,
     "type": "city",
@@ -9337,8 +9337,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "jattir",
-    "name": "Jattir",
+    "id": "yatir",
+    "name": "Yatir",
     "lat": 31.3525,
     "lng": 35.01611,
     "type": "city",
@@ -9356,8 +9356,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "javan",
-    "name": "Javan",
+    "id": "yavan",
+    "name": "Yavan",
     "lat": 38.02813,
     "lng": 26.77524,
     "type": "region",
@@ -9373,8 +9373,8 @@ export const places = [
     ]
   },
   {
-    "id": "jazer",
-    "name": "Jazer",
+    "id": "yazer",
+    "name": "Yazer",
     "lat": 32.0064,
     "lng": 35.73498,
     "type": "city",
@@ -9396,8 +9396,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "jebus",
-    "name": "Jebus",
+    "id": "yebus",
+    "name": "Yebus",
     "lat": 31.77667,
     "lng": 35.23417,
     "type": "city",
@@ -9413,8 +9413,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "jehud",
-    "name": "Jehud",
+    "id": "yehud",
+    "name": "Yehud",
     "lat": 32.03083,
     "lng": 34.89028,
     "type": "city",
@@ -9427,8 +9427,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "jericho-1",
-    "name": "Jericho 1",
+    "id": "yericho-1",
+    "name": "Yericho 1",
     "lat": 31.87172,
     "lng": 35.44456,
     "type": "city",
@@ -9457,8 +9457,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "jeruel",
-    "name": "Jeruel",
+    "id": "yeruel",
+    "name": "Yeruel",
     "lat": 31.54941,
     "lng": 35.29068,
     "type": "region",
@@ -9474,8 +9474,8 @@ export const places = [
     ]
   },
   {
-    "id": "jerusalem",
-    "name": "Jerusalem",
+    "id": "yerushalayim",
+    "name": "Yerushalayim",
     "lat": 31.77667,
     "lng": 35.23417,
     "type": "city",
@@ -9517,8 +9517,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "jeshanah",
-    "name": "Jeshanah",
+    "id": "yeshanah",
+    "name": "Yeshanah",
     "lat": 31.99855,
     "lng": 35.26029,
     "type": "city",
@@ -9531,8 +9531,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "jeshimon",
-    "name": "Jeshimon",
+    "id": "yeshimon",
+    "name": "Yeshimon",
     "lat": 31.47763,
     "lng": 35.28146,
     "type": "region",
@@ -9547,8 +9547,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "jeshua",
-    "name": "Jeshua",
+    "id": "yeshua",
+    "name": "Yeshua",
     "lat": 31.27639,
     "lng": 34.99028,
     "type": "city",
@@ -9561,8 +9561,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "jezreel-1",
-    "name": "Jezreel 1",
+    "id": "yizreel-1",
+    "name": "Yizreel 1",
     "lat": 31.4488,
     "lng": 35.09,
     "type": "region",
@@ -9575,8 +9575,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "jezreel-2",
-    "name": "Jezreel 2",
+    "id": "yizreel-2",
+    "name": "Yizreel 2",
     "lat": 32.55785,
     "lng": 35.32795,
     "type": "city",
@@ -9598,8 +9598,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "jezreel-3",
-    "name": "Jezreel 3",
+    "id": "yizreel-3",
+    "name": "Yizreel 3",
     "lat": 31.4488,
     "lng": 35.09,
     "type": "region",
@@ -9615,8 +9615,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "jogbehah",
-    "name": "Jogbehah",
+    "id": "yogbehah",
+    "name": "Yogbehah",
     "lat": 32.01353,
     "lng": 35.85575,
     "type": "city",
@@ -9631,8 +9631,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "jokdeam",
-    "name": "Jokdeam",
+    "id": "yokdeam",
+    "name": "Yokdeam",
     "lat": 31.46197,
     "lng": 35.11849,
     "type": "city",
@@ -9645,8 +9645,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "jokmeam-1",
-    "name": "Jokmeam 1",
+    "id": "yokmeam-1",
+    "name": "Yokmeam 1",
     "lat": 32.6641,
     "lng": 35.10827,
     "type": "city",
@@ -9661,8 +9661,8 @@ export const places = [
     ]
   },
   {
-    "id": "jokmeam-2",
-    "name": "Jokmeam 2",
+    "id": "yokmeam-2",
+    "name": "Yokmeam 2",
     "lat": 32.13993,
     "lng": 35.48497,
     "type": "city",
@@ -9675,8 +9675,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "jokneam",
-    "name": "Jokneam",
+    "id": "yokneam",
+    "name": "Yokneam",
     "lat": 32.6641,
     "lng": 35.10827,
     "type": "city",
@@ -9691,8 +9691,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "joktheel-1",
-    "name": "Joktheel 1",
+    "id": "yokteel-1",
+    "name": "Yokteel 1",
     "lat": 31.56883,
     "lng": 34.84917,
     "type": "region",
@@ -9707,8 +9707,8 @@ export const places = [
     ]
   },
   {
-    "id": "joppa",
-    "name": "Joppa",
+    "id": "yafo",
+    "name": "Yafo",
     "lat": 32.05448,
     "lng": 34.75304,
     "type": "city",
@@ -9727,8 +9727,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "jordan-1",
-    "name": "Jordan 1",
+    "id": "yarden-1",
+    "name": "Yarden 1",
     "lat": 32.35572,
     "lng": 35.56198,
     "type": "water",
@@ -9765,8 +9765,8 @@ export const places = [
     ]
   },
   {
-    "id": "jordan-2",
-    "name": "Jordan 2",
+    "id": "yarden-2",
+    "name": "Yarden 2",
     "lat": 32.35572,
     "lng": 35.56198,
     "type": "water",
@@ -9779,8 +9779,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "jordan-valley",
-    "name": "Jordan Valley",
+    "id": "yarden-valley",
+    "name": "Yarden Valley",
     "lat": 32.13548,
     "lng": 35.53455,
     "type": "region",
@@ -9798,8 +9798,8 @@ export const places = [
     ]
   },
   {
-    "id": "jorkeam",
-    "name": "Jorkeam",
+    "id": "yorkeam",
+    "name": "Yorkeam",
     "lat": 31.46197,
     "lng": 35.11849,
     "type": "city",
@@ -9814,8 +9814,8 @@ export const places = [
     ]
   },
   {
-    "id": "jotbah",
-    "name": "Jotbah",
+    "id": "yotbah",
+    "name": "Yotbah",
     "lat": 32.83194,
     "lng": 35.27814,
     "type": "city",
@@ -9828,8 +9828,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "jotbathah",
-    "name": "Jotbathah",
+    "id": "yotbatah",
+    "name": "Yotbatah",
     "lat": 29.49247,
     "lng": 34.89688,
     "type": "city",
@@ -9843,8 +9843,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "juttah",
-    "name": "Juttah",
+    "id": "yutah",
+    "name": "Yutah",
     "lat": 31.44778,
     "lng": 35.09,
     "type": "city",
@@ -9896,7 +9896,7 @@ export const places = [
   },
   {
     "id": "kadesh-barnea",
-    "name": "Kadesh-barnea",
+    "name": "Kadesh-Barnea",
     "lat": 30.64833,
     "lng": 34.42222,
     "type": "city",
@@ -10059,8 +10059,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "kattath",
-    "name": "Kattath",
+    "id": "katat",
+    "name": "Katat",
     "lat": 32.77111,
     "lng": 35.10472,
     "type": "city",
@@ -10094,8 +10094,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "kedemoth",
-    "name": "Kedemoth",
+    "id": "kedemot",
+    "name": "Kedemot",
     "lat": 31.61555,
     "lng": 35.87159,
     "type": "city",
@@ -10185,8 +10185,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "kedesh-naphtali",
-    "name": "Kedesh-naphtali",
+    "id": "kedesh-naftali",
+    "name": "Kedesh-Naftali",
     "lat": 32.735,
     "lng": 35.55555,
     "type": "city",
@@ -10201,8 +10201,8 @@ export const places = [
     ]
   },
   {
-    "id": "kehelathah",
-    "name": "Kehelathah",
+    "id": "kehelatah",
+    "name": "Kehelatah",
     "lat": 30.19306,
     "lng": 34.42111,
     "type": "city",
@@ -10233,8 +10233,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "kenath",
-    "name": "Kenath",
+    "id": "kenat",
+    "name": "Kenat",
     "lat": 32.75616,
     "lng": 36.61899,
     "type": "city",
@@ -10249,8 +10249,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "kerioth",
-    "name": "Kerioth",
+    "id": "keriot",
+    "name": "Keriot",
     "lat": 31.54056,
     "lng": 35.68611,
     "type": "city",
@@ -10264,8 +10264,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "kerioth-hezron",
-    "name": "Kerioth-hezron",
+    "id": "keriot-hezron",
+    "name": "Keriot-Hezron",
     "lat": 31.34495,
     "lng": 35.12438,
     "type": "city",
@@ -10280,8 +10280,8 @@ export const places = [
     ]
   },
   {
-    "id": "kibroth-hattaavah",
-    "name": "Kibroth-hattaavah",
+    "id": "kibrot-hataavah",
+    "name": "Kibrot-Hataavah",
     "lat": 28.78867,
     "lng": 34.27544,
     "type": "city",
@@ -10412,8 +10412,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "kir-hareseth",
-    "name": "Kir-hareseth",
+    "id": "kir-hareset",
+    "name": "Kir-Hareset",
     "lat": 31.18056,
     "lng": 35.70139,
     "type": "city",
@@ -10431,8 +10431,8 @@ export const places = [
     ]
   },
   {
-    "id": "kiriath-huzoth",
-    "name": "Kiriath-huzoth",
+    "id": "kiryat-huzot",
+    "name": "Kiryat-Huzot",
     "lat": 31.50369,
     "lng": 35.77657,
     "type": "region",
@@ -10447,8 +10447,8 @@ export const places = [
     ]
   },
   {
-    "id": "kiriath-jearim",
-    "name": "Kiriath-jearim",
+    "id": "kiryat-yearim",
+    "name": "Kiryat-Yearim",
     "lat": 31.80896,
     "lng": 35.10378,
     "type": "city",
@@ -10474,8 +10474,8 @@ export const places = [
     ]
   },
   {
-    "id": "kiriathaim-1",
-    "name": "Kiriathaim 1",
+    "id": "kiryatayim-1",
+    "name": "Kiryatayim 1",
     "lat": 31.54056,
     "lng": 35.68611,
     "type": "city",
@@ -10495,8 +10495,8 @@ export const places = [
     ]
   },
   {
-    "id": "kiriathaim-2",
-    "name": "Kiriathaim 2",
+    "id": "kiryatayim-2",
+    "name": "Kiryatayim 2",
     "lat": 33.11194,
     "lng": 35.4625,
     "type": "city",
@@ -10559,8 +10559,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "kittim",
-    "name": "Kittim",
+    "id": "kitim",
+    "name": "Kitim",
     "lat": 35.06963,
     "lng": 33.28405,
     "type": "region",
@@ -10648,8 +10648,8 @@ export const places = [
     ]
   },
   {
-    "id": "lakkum",
-    "name": "Lakkum",
+    "id": "lakum",
+    "name": "Lakum",
     "lat": 32.69827,
     "lng": 35.55186,
     "type": "city",
@@ -10725,8 +10725,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "lebaoth",
-    "name": "Lebaoth",
+    "id": "lebaot",
+    "name": "Lebaot",
     "lat": 31.00669,
     "lng": 34.49181,
     "type": "city",
@@ -10739,8 +10739,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "lebo-hamath",
-    "name": "Lebo-hamath",
+    "id": "lebo-hamat",
+    "name": "Lebo-Hamat",
     "lat": 34.19491,
     "lng": 36.34956,
     "type": "city",
@@ -10863,7 +10863,7 @@ export const places = [
   },
   {
     "id": "lo-debar",
-    "name": "Lo-debar",
+    "name": "Lo-Debar",
     "lat": 32.56576,
     "lng": 35.61221,
     "type": "city",
@@ -10895,8 +10895,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "lower-beth-horon",
-    "name": "Lower Beth-horon",
+    "id": "lower-beit-horon",
+    "name": "Lower Beit-Horon",
     "lat": 31.895,
     "lng": 35.08361,
     "type": "city",
@@ -10915,8 +10915,8 @@ export const places = [
     ]
   },
   {
-    "id": "lower-gulloth",
-    "name": "Lower Gulloth",
+    "id": "lower-gulot",
+    "name": "Lower Gulot",
     "lat": 31.43282,
     "lng": 35.01485,
     "type": "water",
@@ -10978,8 +10978,8 @@ export const places = [
     ]
   },
   {
-    "id": "luhith",
-    "name": "Luhith",
+    "id": "luhit",
+    "name": "Luhit",
     "lat": 31.13788,
     "lng": 35.62223,
     "type": "city",
@@ -11026,8 +11026,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "maacah",
-    "name": "Maacah",
+    "id": "maakah",
+    "name": "Maakah",
     "lat": 33.20614,
     "lng": 35.79035,
     "type": "region",
@@ -11046,8 +11046,8 @@ export const places = [
     ]
   },
   {
-    "id": "maarath",
-    "name": "Maarath",
+    "id": "maarat",
+    "name": "Maarat",
     "lat": 31.62071,
     "lng": 35.11352,
     "type": "city",
@@ -11061,7 +11061,7 @@ export const places = [
   },
   {
     "id": "maareh-geba",
-    "name": "Maareh-geba",
+    "name": "Maareh-Geba",
     "lat": 31.82341,
     "lng": 35.23072,
     "type": "region",
@@ -11106,8 +11106,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "madmannah",
-    "name": "Madmannah",
+    "id": "madmanah",
+    "name": "Madmanah",
     "lat": 31.35027,
     "lng": 34.92858,
     "type": "city",
@@ -11232,7 +11232,7 @@ export const places = [
   },
   {
     "id": "mahaneh-dan-1",
-    "name": "Mahaneh-dan 1",
+    "name": "Mahaneh-Dan 1",
     "lat": 31.77913,
     "lng": 34.99353,
     "type": "region",
@@ -11248,7 +11248,7 @@ export const places = [
   },
   {
     "id": "mahaneh-dan-2",
-    "name": "Mahaneh-dan 2",
+    "name": "Mahaneh-Dan 2",
     "lat": 31.77913,
     "lng": 34.99353,
     "type": "region",
@@ -11277,8 +11277,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "makheloth",
-    "name": "Makheloth",
+    "id": "makhelot",
+    "name": "Makhelot",
     "lat": 30.19306,
     "lng": 34.42111,
     "type": "city",
@@ -11291,8 +11291,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "makkedah",
-    "name": "Makkedah",
+    "id": "makedah",
+    "name": "Makedah",
     "lat": 31.53472,
     "lng": 34.96656,
     "type": "city",
@@ -11319,8 +11319,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "manahath",
-    "name": "Manahath",
+    "id": "manahat",
+    "name": "Manahat",
     "lat": 31.75367,
     "lng": 35.18901,
     "type": "city",
@@ -11399,8 +11399,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "maroth",
-    "name": "Maroth",
+    "id": "marot",
+    "name": "Marot",
     "lat": 31.62071,
     "lng": 35.11352,
     "type": "city",
@@ -11429,8 +11429,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "massah",
-    "name": "Massah",
+    "id": "masah",
+    "name": "Masah",
     "lat": 28.62313,
     "lng": 33.88028,
     "type": "region",
@@ -11446,8 +11446,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "mattanah",
-    "name": "Mattanah",
+    "id": "matanah",
+    "name": "Matanah",
     "lat": 31.58835,
     "lng": 35.90793,
     "type": "city",
@@ -11460,8 +11460,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "me-jarkon",
-    "name": "Me-jarkon",
+    "id": "me-yarkon",
+    "name": "Me-Yarkon",
     "lat": 32.11527,
     "lng": 34.86941,
     "type": "water",
@@ -11490,8 +11490,8 @@ export const places = [
     ]
   },
   {
-    "id": "meconah",
-    "name": "Meconah",
+    "id": "mekonah",
+    "name": "Mekonah",
     "lat": 31.35027,
     "lng": 34.92858,
     "type": "city",
@@ -11545,8 +11545,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "megiddo",
-    "name": "Megiddo",
+    "id": "megido",
+    "name": "Megido",
     "lat": 32.58528,
     "lng": 35.18444,
     "type": "city",
@@ -11567,8 +11567,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "memphis",
-    "name": "Memphis",
+    "id": "memfis",
+    "name": "Memfis",
     "lat": 29.8488,
     "lng": 31.253,
     "type": "city",
@@ -11586,8 +11586,8 @@ export const places = [
     ]
   },
   {
-    "id": "mephaath",
-    "name": "Mephaath",
+    "id": "mefaat",
+    "name": "Mefaat",
     "lat": 31.85747,
     "lng": 35.93161,
     "type": "city",
@@ -11604,8 +11604,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "merathaim",
-    "name": "Merathaim",
+    "id": "merataim",
+    "name": "Merataim",
     "lat": 32.54333,
     "lng": 44.42222,
     "type": "city",
@@ -11656,8 +11656,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "meronoth",
-    "name": "Meronoth",
+    "id": "meronot",
+    "name": "Meronot",
     "lat": 31.88601,
     "lng": 35.21642,
     "type": "region",
@@ -11719,8 +11719,8 @@ export const places = [
     ]
   },
   {
-    "id": "metheg-ammah",
-    "name": "Metheg-ammah",
+    "id": "meteg-amah",
+    "name": "Meteg-Amah",
     "lat": 31.69972,
     "lng": 34.84694,
     "type": "city",
@@ -11775,8 +11775,8 @@ export const places = [
     ]
   },
   {
-    "id": "michmethath",
-    "name": "Michmethath",
+    "id": "michmetat",
+    "name": "Michmetat",
     "lat": 32.19836,
     "lng": 35.30698,
     "type": "city",
@@ -11793,8 +11793,8 @@ export const places = [
     ]
   },
   {
-    "id": "middin",
-    "name": "Middin",
+    "id": "midin",
+    "name": "Midin",
     "lat": 31.74153,
     "lng": 35.40589,
     "type": "city",
@@ -11849,7 +11849,7 @@ export const places = [
   },
   {
     "id": "migdal-el",
-    "name": "Migdal-el",
+    "name": "Migdal-El",
     "lat": 33.08619,
     "lng": 35.41667,
     "type": "region",
@@ -11863,7 +11863,7 @@ export const places = [
   },
   {
     "id": "migdal-gad",
-    "name": "Migdal-gad",
+    "name": "Migdal-Gad",
     "lat": 31.53721,
     "lng": 34.90191,
     "type": "city",
@@ -11947,8 +11947,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "millo",
-    "name": "Millo",
+    "id": "milo",
+    "name": "Milo",
     "lat": 31.77667,
     "lng": 35.23417,
     "type": "city",
@@ -11965,8 +11965,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "minni",
-    "name": "Minni",
+    "id": "mini",
+    "name": "Mini",
     "lat": 36.5866,
     "lng": 46.27528,
     "type": "region",
@@ -11979,8 +11979,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "minnith",
-    "name": "Minnith",
+    "id": "minit",
+    "name": "Minit",
     "lat": 31.82021,
     "lng": 35.87468,
     "type": "city",
@@ -12011,8 +12011,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "misrephoth-maim",
-    "name": "Misrephoth-maim",
+    "id": "misrefot-maim",
+    "name": "Misrefot-Maim",
     "lat": 33.08508,
     "lng": 35.10623,
     "type": "city",
@@ -12027,8 +12027,8 @@ export const places = [
     ]
   },
   {
-    "id": "mithkah",
-    "name": "Mithkah",
+    "id": "mitkah",
+    "name": "Mitkah",
     "lat": 31.25157,
     "lng": 34.84083,
     "type": "region",
@@ -12213,8 +12213,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "moresheth-gath",
-    "name": "Moresheth-gath",
+    "id": "moreshet-gat",
+    "name": "Moreshet-Gat",
     "lat": 31.63336,
     "lng": 34.91661,
     "type": "city",
@@ -12261,8 +12261,8 @@ export const places = [
     ]
   },
   {
-    "id": "moseroth",
-    "name": "Moseroth",
+    "id": "moserot",
+    "name": "Moserot",
     "lat": 30.83891,
     "lng": 35.05687,
     "type": "region",
@@ -12301,7 +12301,7 @@ export const places = [
   },
   {
     "id": "mount-baal-hermon",
-    "name": "Mount Baal-hermon",
+    "name": "Mount Baal-Hermon",
     "lat": 33.4,
     "lng": 35.85,
     "type": "mountain",
@@ -12346,8 +12346,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "mount-carmel",
-    "name": "Mount Carmel",
+    "id": "mount-karmel",
+    "name": "Mount Karmel",
     "lat": 32.6725,
     "lng": 35.02333,
     "type": "mountain",
@@ -12390,8 +12390,8 @@ export const places = [
     ]
   },
   {
-    "id": "mount-ephraim",
-    "name": "Mount Ephraim",
+    "id": "mount-efraim",
+    "name": "Mount Efraim",
     "lat": 32.08378,
     "lng": 35.19721,
     "type": "mountain",
@@ -12406,8 +12406,8 @@ export const places = [
     ]
   },
   {
-    "id": "mount-ephron",
-    "name": "Mount Ephron",
+    "id": "mount-efron",
+    "name": "Mount Efron",
     "lat": 31.79694,
     "lng": 35.14417,
     "type": "mountain",
@@ -12422,8 +12422,8 @@ export const places = [
     ]
   },
   {
-    "id": "mount-esau",
-    "name": "Mount Esau",
+    "id": "mount-esav",
+    "name": "Mount Esav",
     "lat": 30.35796,
     "lng": 35.42955,
     "type": "mountain",
@@ -12607,8 +12607,8 @@ export const places = [
     ]
   },
   {
-    "id": "mount-jearim",
-    "name": "Mount Jearim",
+    "id": "mount-yearim",
+    "name": "Mount Yearim",
     "lat": 31.78126,
     "lng": 35.05111,
     "type": "mountain",
@@ -12787,8 +12787,8 @@ export const places = [
     ]
   },
   {
-    "id": "mount-shepher",
-    "name": "Mount Shepher",
+    "id": "mount-shefer",
+    "name": "Mount Shefer",
     "lat": 30.51348,
     "lng": 34.30356,
     "type": "mountain",
@@ -12851,8 +12851,8 @@ export const places = [
     ]
   },
   {
-    "id": "mount-zalmon",
-    "name": "Mount Zalmon",
+    "id": "mount-tzalmon",
+    "name": "Mount Tzalmon",
     "lat": 32.234,
     "lng": 35.2733,
     "type": "mountain",
@@ -12883,8 +12883,8 @@ export const places = [
     ]
   },
   {
-    "id": "mount-zion",
-    "name": "Mount Zion",
+    "id": "mount-tzion",
+    "name": "Mount Tzion",
     "lat": 31.77167,
     "lng": 35.22861,
     "type": "mountain",
@@ -13041,8 +13041,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "naioth",
-    "name": "Naioth",
+    "id": "naiot",
+    "name": "Naiot",
     "lat": 31.85463,
     "lng": 35.23161,
     "type": "region",
@@ -13055,8 +13055,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "naphoth-dor",
-    "name": "Naphoth-dor",
+    "id": "nafot-dor",
+    "name": "Nafot-Dor",
     "lat": 32.61743,
     "lng": 34.91636,
     "type": "city",
@@ -13089,8 +13089,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "neballat",
-    "name": "Neballat",
+    "id": "nebalat",
+    "name": "Nebalat",
     "lat": 31.98644,
     "lng": 34.9589,
     "type": "city",
@@ -13213,8 +13213,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "nephtoah",
-    "name": "Nephtoah",
+    "id": "neftoah",
+    "name": "Neftoah",
     "lat": 31.79439,
     "lng": 35.19661,
     "type": "water",
@@ -13243,8 +13243,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "netophah",
-    "name": "Netophah",
+    "id": "netofah",
+    "name": "Netofah",
     "lat": 31.66765,
     "lng": 35.22103,
     "type": "city",
@@ -13430,8 +13430,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "nophah",
-    "name": "Nophah",
+    "id": "nofah",
+    "name": "Nofah",
     "lat": 31.42602,
     "lng": 35.91095,
     "type": "region",
@@ -13472,8 +13472,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "oboth",
-    "name": "Oboth",
+    "id": "obot",
+    "name": "Obot",
     "lat": 30.61667,
     "lng": 35.19,
     "type": "city",
@@ -13517,8 +13517,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "ophel",
-    "name": "Ophel",
+    "id": "ofel",
+    "name": "Ofel",
     "lat": 31.77533,
     "lng": 35.23622,
     "type": "city",
@@ -13533,8 +13533,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "ophir",
-    "name": "Ophir",
+    "id": "ofir",
+    "name": "Ofir",
     "lat": 22.59888,
     "lng": 39.82413,
     "type": "region",
@@ -13553,8 +13553,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "ophni",
-    "name": "Ophni",
+    "id": "ofni",
+    "name": "Ofni",
     "lat": 31.96194,
     "lng": 35.21556,
     "type": "city",
@@ -13567,8 +13567,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "ophrah-1",
-    "name": "Ophrah 1",
+    "id": "ofrah-1",
+    "name": "Ofrah 1",
     "lat": 31.95444,
     "lng": 35.30028,
     "type": "city",
@@ -13583,8 +13583,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "ophrah-2",
-    "name": "Ophrah 2",
+    "id": "ofrah-2",
+    "name": "Ofrah 2",
     "lat": 32.6057,
     "lng": 35.29,
     "type": "city",
@@ -13597,8 +13597,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "paddan-aram",
-    "name": "Paddan-aram",
+    "id": "padan-aram",
+    "name": "Padan-Aram",
     "lat": 36.45589,
     "lng": 39.46389,
     "type": "region",
@@ -13679,8 +13679,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "pathros",
-    "name": "Pathros",
+    "id": "patros",
+    "name": "Patros",
     "lat": 26.80062,
     "lng": 31.85909,
     "type": "region",
@@ -13799,8 +13799,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "perez-uzzah",
-    "name": "Perez-uzzah",
+    "id": "perez-uzah",
+    "name": "Perez-Uzah",
     "lat": 31.77681,
     "lng": 35.23417,
     "type": "region",
@@ -13838,8 +13838,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "pethor",
-    "name": "Pethor",
+    "id": "petor",
+    "name": "Petor",
     "lat": 36.7014,
     "lng": 38.0865,
     "type": "city",
@@ -13853,8 +13853,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "pharpar",
-    "name": "Pharpar",
+    "id": "farpar",
+    "name": "Farpar",
     "lat": 33.35525,
     "lng": 36.19487,
     "type": "water",
@@ -13899,8 +13899,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "pi-beseth",
-    "name": "Pi-beseth",
+    "id": "pi-beset",
+    "name": "Pi-Beset",
     "lat": 30.57278,
     "lng": 31.51,
     "type": "city",
@@ -13915,8 +13915,8 @@ export const places = [
     ]
   },
   {
-    "id": "pi-hahiroth",
-    "name": "Pi-hahiroth",
+    "id": "pi-hahirot",
+    "name": "Pi-Hahirot",
     "lat": 30.22987,
     "lng": 32.438,
     "type": "region",
@@ -13930,8 +13930,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "pirathon",
-    "name": "Pirathon",
+    "id": "piraton",
+    "name": "Piraton",
     "lat": 32.19056,
     "lng": 35.16583,
     "type": "city",
@@ -13981,8 +13981,8 @@ export const places = [
     ]
   },
   {
-    "id": "pithom",
-    "name": "Pithom",
+    "id": "pitom",
+    "name": "Pitom",
     "lat": 30.5475,
     "lng": 31.96361,
     "type": "city",
@@ -14059,8 +14059,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "rabbah-1",
-    "name": "Rabbah 1",
+    "id": "rabah-1",
+    "name": "Rabah 1",
     "lat": 31.9547,
     "lng": 35.9343,
     "type": "city",
@@ -14083,8 +14083,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "rabbah-2",
-    "name": "Rabbah 2",
+    "id": "rabah-2",
+    "name": "Rabah 2",
     "lat": 31.82704,
     "lng": 34.98761,
     "type": "city",
@@ -14097,8 +14097,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "rabbith",
-    "name": "Rabbith",
+    "id": "rabit",
+    "name": "Rabit",
     "lat": 32.69728,
     "lng": 35.37753,
     "type": "city",
@@ -14111,8 +14111,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "racal",
-    "name": "Racal",
+    "id": "rakal",
+    "name": "Rakal",
     "lat": 31.42288,
     "lng": 35.13295,
     "type": "city",
@@ -14128,8 +14128,8 @@ export const places = [
     ]
   },
   {
-    "id": "rakkath",
-    "name": "Rakkath",
+    "id": "rakat",
+    "name": "Rakat",
     "lat": 32.80639,
     "lng": 35.52583,
     "type": "city",
@@ -14142,8 +14142,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "rakkon",
-    "name": "Rakkon",
+    "id": "rakon",
+    "name": "Rakon",
     "lat": 32.13083,
     "lng": 34.78726,
     "type": "city",
@@ -14299,8 +14299,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "ramath-lehi",
-    "name": "Ramath-lehi",
+    "id": "ramat-lehi",
+    "name": "Ramat-Lehi",
     "lat": 31.7488,
     "lng": 35.00101,
     "type": "city",
@@ -14315,8 +14315,8 @@ export const places = [
     ]
   },
   {
-    "id": "ramath-mizpeh",
-    "name": "Ramath-mizpeh",
+    "id": "ramat-mizpeh",
+    "name": "Ramat-Mizpeh",
     "lat": 32.11851,
     "lng": 35.77702,
     "type": "city",
@@ -14332,8 +14332,8 @@ export const places = [
     ]
   },
   {
-    "id": "ramathaim-zophim",
-    "name": "Ramathaim-zophim",
+    "id": "ramataim-tzofim",
+    "name": "Ramataim-Tzofim",
     "lat": 31.85434,
     "lng": 35.23161,
     "type": "city",
@@ -14366,8 +14366,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "ramoth-1",
-    "name": "Ramoth 1",
+    "id": "ramot-1",
+    "name": "Ramot 1",
     "lat": 32.59556,
     "lng": 35.52139,
     "type": "city",
@@ -14380,8 +14380,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "ramoth-2",
-    "name": "Ramoth 2",
+    "id": "ramot-2",
+    "name": "Ramot 2",
     "lat": 31.80896,
     "lng": 35.10378,
     "type": "city",
@@ -14394,8 +14394,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "ramoth-3",
-    "name": "Ramoth 3",
+    "id": "ramot-3",
+    "name": "Ramot 3",
     "lat": 32.49985,
     "lng": 36.01499,
     "type": "city",
@@ -14412,8 +14412,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "ramoth-gilead",
-    "name": "Ramoth-gilead",
+    "id": "ramot-gilead",
+    "name": "Ramot-Gilead",
     "lat": 32.49985,
     "lng": 36.01499,
     "type": "city",
@@ -14428,8 +14428,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "recah",
-    "name": "Recah",
+    "id": "rekah",
+    "name": "Rekah",
     "lat": 31.70504,
     "lng": 35.20764,
     "type": "region",
@@ -14552,8 +14552,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "rehoboth-1",
-    "name": "Rehoboth 1",
+    "id": "rehobot-1",
+    "name": "Rehobot 1",
     "lat": 31.03111,
     "lng": 34.56583,
     "type": "water",
@@ -14566,8 +14566,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "rehoboth-2",
-    "name": "Rehoboth 2",
+    "id": "rehobot-2",
+    "name": "Rehobot 2",
     "lat": 30.93318,
     "lng": 35.61089,
     "type": "city",
@@ -14582,8 +14582,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "rehoboth-ir",
-    "name": "Rehoboth-Ir",
+    "id": "rehobot-ir",
+    "name": "Rehobot-Ir",
     "lat": 36.3594,
     "lng": 43.1528,
     "type": "city",
@@ -14612,8 +14612,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "remeth",
-    "name": "Remeth",
+    "id": "remet",
+    "name": "Remet",
     "lat": 32.59556,
     "lng": 35.52139,
     "type": "city",
@@ -14626,8 +14626,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "rephidim",
-    "name": "Rephidim",
+    "id": "refidim",
+    "name": "Refidim",
     "lat": 28.60859,
     "lng": 33.86027,
     "type": "river",
@@ -14655,8 +14655,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "rezeph",
-    "name": "Rezeph",
+    "id": "rezef",
+    "name": "Rezef",
     "lat": 35.62778,
     "lng": 38.75639,
     "type": "city",
@@ -14718,8 +14718,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "rimmon-1",
-    "name": "Rimmon 1",
+    "id": "rimon-1",
+    "name": "Rimon 1",
     "lat": 31.92972,
     "lng": 35.29889,
     "type": "city",
@@ -14734,8 +14734,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "rimmon-2",
-    "name": "Rimmon 2",
+    "id": "rimon-2",
+    "name": "Rimon 2",
     "lat": 31.37124,
     "lng": 34.86489,
     "type": "city",
@@ -14752,8 +14752,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "rimmon-3",
-    "name": "Rimmon 3",
+    "id": "rimon-3",
+    "name": "Rimon 3",
     "lat": 32.78806,
     "lng": 35.31056,
     "type": "city",
@@ -14768,8 +14768,8 @@ export const places = [
     ]
   },
   {
-    "id": "rimmon-perez",
-    "name": "Rimmon-perez",
+    "id": "rimon-perez",
+    "name": "Rimon-Perez",
     "lat": 29.50359,
     "lng": 34.68636,
     "type": "river",
@@ -14784,8 +14784,8 @@ export const places = [
     ]
   },
   {
-    "id": "rimmono",
-    "name": "Rimmono",
+    "id": "rimono",
+    "name": "Rimono",
     "lat": 32.78806,
     "lng": 35.31056,
     "type": "city",
@@ -14800,8 +14800,8 @@ export const places = [
     ]
   },
   {
-    "id": "rissah",
-    "name": "Rissah",
+    "id": "risah",
+    "name": "Risah",
     "lat": 30.00296,
     "lng": 34.68193,
     "type": "city",
@@ -14814,8 +14814,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "rithmah",
-    "name": "Rithmah",
+    "id": "ritmah",
+    "name": "Ritmah",
     "lat": 29.04156,
     "lng": 34.04568,
     "type": "river",
@@ -14926,8 +14926,8 @@ export const places = [
     ]
   },
   {
-    "id": "salecah",
-    "name": "Salecah",
+    "id": "salekah",
+    "name": "Salekah",
     "lat": 32.4939,
     "lng": 36.7105,
     "type": "city",
@@ -15021,8 +15021,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "sansannah",
-    "name": "Sansannah",
+    "id": "sansanah",
+    "name": "Sansanah",
     "lat": 31.3445,
     "lng": 34.9014,
     "type": "city",
@@ -15049,8 +15049,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "sea-of-egypt",
-    "name": "Sea of Egypt",
+    "id": "sea-of-mitzrayim",
+    "name": "Sea of Mitzrayim",
     "lat": 30.29271,
     "lng": 32.44787,
     "type": "water",
@@ -15067,8 +15067,8 @@ export const places = [
     ]
   },
   {
-    "id": "sea-of-galilee",
-    "name": "Sea of Galilee",
+    "id": "sea-of-galil",
+    "name": "Sea of Galil",
     "lat": 32.81208,
     "lng": 35.58595,
     "type": "water",
@@ -15085,8 +15085,8 @@ export const places = [
     ]
   },
   {
-    "id": "sea-of-jazer",
-    "name": "Sea of Jazer",
+    "id": "sea-of-yazer",
+    "name": "Sea of Yazer",
     "lat": 32.0064,
     "lng": 35.73498,
     "type": "city",
@@ -15101,8 +15101,8 @@ export const places = [
     ]
   },
   {
-    "id": "secacah",
-    "name": "Secacah",
+    "id": "sekakah",
+    "name": "Sekakah",
     "lat": 31.71684,
     "lng": 35.39159,
     "type": "city",
@@ -15139,8 +15139,8 @@ export const places = [
     ]
   },
   {
-    "id": "secu",
-    "name": "Secu",
+    "id": "seku",
+    "name": "Seku",
     "lat": 31.93738,
     "lng": 35.14474,
     "type": "city",
@@ -15268,8 +15268,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "sephar",
-    "name": "Sephar",
+    "id": "sefar",
+    "name": "Sefar",
     "lat": 14.2139,
     "lng": 44.40287,
     "type": "city",
@@ -15282,8 +15282,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "sepharad",
-    "name": "Sepharad",
+    "id": "sefarad",
+    "name": "Sefarad",
     "lat": 38.48833,
     "lng": 28.04028,
     "type": "city",
@@ -15296,8 +15296,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "sepharvaim",
-    "name": "Sepharvaim",
+    "id": "sefarvaim",
+    "name": "Sefarvaim",
     "lat": 34.1846,
     "lng": 36.67144,
     "type": "region",
@@ -15440,8 +15440,8 @@ export const places = [
     ]
   },
   {
-    "id": "shallecheth",
-    "name": "Shallecheth",
+    "id": "shalechet",
+    "name": "Shalechet",
     "lat": 31.77667,
     "lng": 35.23417,
     "type": "city",
@@ -15486,8 +15486,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "shaphir",
-    "name": "Shaphir",
+    "id": "shafir",
+    "name": "Shafir",
     "lat": 31.53472,
     "lng": 34.96656,
     "type": "city",
@@ -15547,8 +15547,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "shaveh-kiriathaim",
-    "name": "Shaveh-kiriathaim",
+    "id": "shaveh-kiryatayim",
+    "name": "Shaveh-Kiryatayim",
     "lat": 31.5407,
     "lng": 35.68611,
     "type": "region",
@@ -15680,8 +15680,8 @@ export const places = [
     ]
   },
   {
-    "id": "shepham",
-    "name": "Shepham",
+    "id": "shefam",
+    "name": "Shefam",
     "lat": 34.47191,
     "lng": 36.57262,
     "type": "region",
@@ -15696,8 +15696,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "shephelah",
-    "name": "Shephelah",
+    "id": "shefelah",
+    "name": "Shefelah",
     "lat": 31.66883,
     "lng": 34.89409,
     "type": "region",
@@ -15777,8 +15777,8 @@ export const places = [
     ]
   },
   {
-    "id": "shihor-libnath",
-    "name": "Shihor-libnath",
+    "id": "shihor-libnat",
+    "name": "Shihor-Libnat",
     "lat": 32.5446,
     "lng": 34.97086,
     "type": "water",
@@ -15794,8 +15794,8 @@ export const places = [
     ]
   },
   {
-    "id": "shikkeron",
-    "name": "Shikkeron",
+    "id": "shikeron",
+    "name": "Shikeron",
     "lat": 31.82148,
     "lng": 34.812,
     "type": "city",
@@ -15878,7 +15878,7 @@ export const places = [
   },
   {
     "id": "shimron-meron",
-    "name": "Shimron-meron",
+    "name": "Shimron-Meron",
     "lat": 32.70389,
     "lng": 35.21333,
     "type": "city",
@@ -15905,8 +15905,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "shittim",
-    "name": "Shittim",
+    "id": "shitim",
+    "name": "Shitim",
     "lat": 31.84018,
     "lng": 35.67368,
     "type": "city",
@@ -16056,8 +16056,8 @@ export const places = [
     ]
   },
   {
-    "id": "silla",
-    "name": "Silla",
+    "id": "sila",
+    "name": "Sila",
     "lat": 31.77667,
     "lng": 35.23417,
     "type": "city",
@@ -16102,8 +16102,8 @@ export const places = [
     ]
   },
   {
-    "id": "siphmoth",
-    "name": "Siphmoth",
+    "id": "sifmot",
+    "name": "Sifmot",
     "lat": 31.40502,
     "lng": 35.06708,
     "type": "region",
@@ -16146,8 +16146,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "socoh-1",
-    "name": "Socoh 1",
+    "id": "sokoh-1",
+    "name": "Sokoh 1",
     "lat": 31.6822,
     "lng": 34.9749,
     "type": "city",
@@ -16167,8 +16167,8 @@ export const places = [
     ]
   },
   {
-    "id": "socoh-2",
-    "name": "Socoh 2",
+    "id": "sokoh-2",
+    "name": "Sokoh 2",
     "lat": 31.40087,
     "lng": 35.00614,
     "type": "city",
@@ -16184,8 +16184,8 @@ export const places = [
     ]
   },
   {
-    "id": "socoh-3",
-    "name": "Socoh 3",
+    "id": "sokoh-3",
+    "name": "Sokoh 3",
     "lat": 32.3421,
     "lng": 35.03202,
     "type": "city",
@@ -16252,8 +16252,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "succoth-1",
-    "name": "Succoth 1",
+    "id": "sukot-1",
+    "name": "Sukot 1",
     "lat": 32.1966,
     "lng": 35.62118,
     "type": "city",
@@ -16274,8 +16274,8 @@ export const places = [
     ]
   },
   {
-    "id": "succoth-2",
-    "name": "Succoth 2",
+    "id": "sukot-2",
+    "name": "Sukot 2",
     "lat": 30.5527,
     "lng": 32.099,
     "type": "city",
@@ -16291,8 +16291,8 @@ export const places = [
     ]
   },
   {
-    "id": "suph",
-    "name": "Suph",
+    "id": "suf",
+    "name": "Suf",
     "lat": 28.67659,
     "lng": 34.69125,
     "type": "water",
@@ -16305,8 +16305,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "suphah",
-    "name": "Suphah",
+    "id": "sufah",
+    "name": "Sufah",
     "lat": 31.66561,
     "lng": 35.81749,
     "type": "city",
@@ -16391,8 +16391,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "taanath-shiloh",
-    "name": "Taanath-shiloh",
+    "id": "taanat-shiloh",
+    "name": "Taanat-Shiloh",
     "lat": 32.17635,
     "lng": 35.37093,
     "type": "city",
@@ -16405,8 +16405,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "tabbath",
-    "name": "Tabbath",
+    "id": "tabat",
+    "name": "Tabat",
     "lat": 32.28684,
     "lng": 35.61893,
     "type": "city",
@@ -16419,8 +16419,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "tabbur-erez",
-    "name": "Tabbur-erez",
+    "id": "tabur-erez",
+    "name": "Tabur-Erez",
     "lat": 32.19944,
     "lng": 35.27278,
     "type": "city",
@@ -16490,8 +16490,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "tahath",
-    "name": "Tahath",
+    "id": "tahat",
+    "name": "Tahat",
     "lat": 31.25157,
     "lng": 34.84083,
     "type": "region",
@@ -16549,8 +16549,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "tappuah-1",
-    "name": "Tappuah 1",
+    "id": "tapuah-1",
+    "name": "Tapuah 1",
     "lat": 32.10415,
     "lng": 35.23007,
     "type": "city",
@@ -16563,8 +16563,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "tappuah-2",
-    "name": "Tappuah 2",
+    "id": "tapuah-2",
+    "name": "Tapuah 2",
     "lat": 31.69553,
     "lng": 34.996,
     "type": "city",
@@ -16651,7 +16651,7 @@ export const places = [
   },
   {
     "id": "tel-abib",
-    "name": "Tel-abib",
+    "name": "Tel-Abib",
     "lat": 32.13294,
     "lng": 45.23083,
     "type": "region",
@@ -16667,7 +16667,7 @@ export const places = [
   },
   {
     "id": "tel-harsha",
-    "name": "Tel-harsha",
+    "name": "Tel-Harsha",
     "lat": 32.13294,
     "lng": 45.23083,
     "type": "region",
@@ -16684,7 +16684,7 @@ export const places = [
   },
   {
     "id": "tel-melah",
-    "name": "Tel-melah",
+    "name": "Tel-Melah",
     "lat": 32.13294,
     "lng": 45.23083,
     "type": "region",
@@ -16698,8 +16698,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "telassar",
-    "name": "Telassar",
+    "id": "telasar",
+    "name": "Telasar",
     "lat": 36.7014,
     "lng": 38.0865,
     "type": "city",
@@ -16817,8 +16817,8 @@ export const places = [
     ]
   },
   {
-    "id": "thebes",
-    "name": "Thebes",
+    "id": "tebes",
+    "name": "Tebes",
     "lat": 25.72056,
     "lng": 32.61028,
     "type": "city",
@@ -16835,8 +16835,8 @@ export const places = [
     ]
   },
   {
-    "id": "thebez",
-    "name": "Thebez",
+    "id": "tebez",
+    "name": "Tebez",
     "lat": 32.32222,
     "lng": 35.36861,
     "type": "city",
@@ -16851,8 +16851,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "tibhath",
-    "name": "Tibhath",
+    "id": "tibhat",
+    "name": "Tibhat",
     "lat": 33.88951,
     "lng": 36.04811,
     "type": "region",
@@ -16936,8 +16936,8 @@ export const places = [
     ]
   },
   {
-    "id": "timnath-heres",
-    "name": "Timnath-heres",
+    "id": "timnat-heres",
+    "name": "Timnat-Heres",
     "lat": 32.00806,
     "lng": 35.10729,
     "type": "city",
@@ -16953,8 +16953,8 @@ export const places = [
     ]
   },
   {
-    "id": "tiphsah-1",
-    "name": "Tiphsah 1",
+    "id": "tifsah-1",
+    "name": "Tifsah 1",
     "lat": 35.95,
     "lng": 38.16667,
     "type": "city",
@@ -16967,8 +16967,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "tiphsah-2",
-    "name": "Tiphsah 2",
+    "id": "tifsah-2",
+    "name": "Tifsah 2",
     "lat": 32.10415,
     "lng": 35.23007,
     "type": "city",
@@ -17048,8 +17048,8 @@ export const places = [
     ]
   },
   {
-    "id": "tophel",
-    "name": "Tophel",
+    "id": "tofel",
+    "name": "Tofel",
     "lat": 30.8375,
     "lng": 35.60417,
     "type": "city",
@@ -17062,8 +17062,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "topheth",
-    "name": "Topheth",
+    "id": "tofet",
+    "name": "Tofet",
     "lat": 31.77004,
     "lng": 35.22669,
     "type": "region",
@@ -17190,8 +17190,8 @@ export const places = [
     ]
   },
   {
-    "id": "ummah",
-    "name": "Ummah",
+    "id": "umah",
+    "name": "Umah",
     "lat": 32.92111,
     "lng": 35.08833,
     "type": "city",
@@ -17206,8 +17206,8 @@ export const places = [
     ]
   },
   {
-    "id": "uphaz",
-    "name": "Uphaz",
+    "id": "ufaz",
+    "name": "Ufaz",
     "lat": 22.59888,
     "lng": 39.82413,
     "type": "region",
@@ -17223,8 +17223,8 @@ export const places = [
     ]
   },
   {
-    "id": "upper-beth-horon",
-    "name": "Upper Beth-horon",
+    "id": "upper-beit-horon",
+    "name": "Upper Beit-Horon",
     "lat": 31.88583,
     "lng": 35.11417,
     "type": "city",
@@ -17240,8 +17240,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "upper-gulloth",
-    "name": "Upper Gulloth",
+    "id": "upper-gulot",
+    "name": "Upper Gulot",
     "lat": 31.43282,
     "lng": 35.01485,
     "type": "water",
@@ -17320,8 +17320,8 @@ export const places = [
     ]
   },
   {
-    "id": "uzza",
-    "name": "Uzza",
+    "id": "uza",
+    "name": "Uza",
     "lat": 31.77667,
     "lng": 35.23417,
     "type": "city",
@@ -17334,8 +17334,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "uzzen-sheerah",
-    "name": "Uzzen-sheerah",
+    "id": "uzen-sheerah",
+    "name": "Uzen-Sheerah",
     "lat": 31.89573,
     "lng": 35.08361,
     "type": "region",
@@ -17402,8 +17402,8 @@ export const places = [
     ]
   },
   {
-    "id": "valley-of-baca",
-    "name": "Valley of Baca",
+    "id": "valley-of-baka",
+    "name": "Valley of Baka",
     "lat": 31.77953,
     "lng": 35.23417,
     "type": "region",
@@ -17420,8 +17420,8 @@ export const places = [
     ]
   },
   {
-    "id": "valley-of-beracah",
-    "name": "Valley of Beracah",
+    "id": "valley-of-berakah",
+    "name": "Valley of Berakah",
     "lat": 31.54251,
     "lng": 35.257,
     "type": "river",
@@ -17467,8 +17467,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "valley-of-eshcol",
-    "name": "Valley of Eshcol",
+    "id": "valley-of-eshkol",
+    "name": "Valley of Eshkol",
     "lat": 31.52582,
     "lng": 35.10222,
     "type": "region",
@@ -17520,7 +17520,7 @@ export const places = [
   },
   {
     "id": "valley-of-hamon-gog",
-    "name": "Valley of Hamon-gog",
+    "name": "Valley of Hamon-Gog",
     "lat": 31.89458,
     "lng": 36.20398,
     "type": "region",
@@ -17554,8 +17554,8 @@ export const places = [
     ]
   },
   {
-    "id": "valley-of-hinnom",
-    "name": "Valley of Hinnom",
+    "id": "valley-of-hinom",
+    "name": "Valley of Hinom",
     "lat": 31.77004,
     "lng": 35.22669,
     "type": "region",
@@ -17580,8 +17580,8 @@ export const places = [
     ]
   },
   {
-    "id": "valley-of-iphtahel",
-    "name": "Valley of Iphtahel",
+    "id": "valley-of-iftahel",
+    "name": "Valley of Iftahel",
     "lat": 32.76238,
     "lng": 35.18467,
     "type": "river",
@@ -17599,8 +17599,8 @@ export const places = [
     ]
   },
   {
-    "id": "valley-of-jehoshaphat",
-    "name": "Valley of Jehoshaphat",
+    "id": "valley-of-yehoshafat",
+    "name": "Valley of Yehoshafat",
     "lat": 31.7793,
     "lng": 35.23855,
     "type": "region",
@@ -17613,8 +17613,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "valley-of-jericho",
-    "name": "Valley of Jericho",
+    "id": "valley-of-yericho",
+    "name": "Valley of Yericho",
     "lat": 31.82972,
     "lng": 35.56608,
     "type": "region",
@@ -17630,8 +17630,8 @@ export const places = [
     ]
   },
   {
-    "id": "valley-of-jezreel",
-    "name": "Valley of Jezreel",
+    "id": "valley-of-yizreel",
+    "name": "Valley of Yizreel",
     "lat": 32.58391,
     "lng": 35.29462,
     "type": "region",
@@ -17686,8 +17686,8 @@ export const places = [
     ]
   },
   {
-    "id": "valley-of-rephaim",
-    "name": "Valley of Rephaim",
+    "id": "valley-of-refaim",
+    "name": "Valley of Refaim",
     "lat": 31.76616,
     "lng": 35.1536,
     "type": "region",
@@ -17745,8 +17745,8 @@ export const places = [
     ]
   },
   {
-    "id": "valley-of-shittim",
-    "name": "Valley of Shittim",
+    "id": "valley-of-shitim",
+    "name": "Valley of Shitim",
     "lat": 31.70173,
     "lng": 35.35664,
     "type": "water",
@@ -17764,8 +17764,8 @@ export const places = [
     ]
   },
   {
-    "id": "valley-of-siddim",
-    "name": "Valley of Siddim",
+    "id": "valley-of-sidim",
+    "name": "Valley of Sidim",
     "lat": 31.15214,
     "lng": 35.42979,
     "type": "region",
@@ -17797,8 +17797,8 @@ export const places = [
     ]
   },
   {
-    "id": "valley-of-succoth",
-    "name": "Valley of Succoth",
+    "id": "valley-of-sukot",
+    "name": "Valley of Sukot",
     "lat": 32.1765,
     "lng": 35.60621,
     "type": "region",
@@ -17839,8 +17839,8 @@ export const places = [
     ]
   },
   {
-    "id": "valley-of-zeboim",
-    "name": "Valley of Zeboim",
+    "id": "valley-of-tzeboim",
+    "name": "Valley of Tzeboim",
     "lat": 31.82779,
     "lng": 35.36096,
     "type": "river",
@@ -17856,8 +17856,8 @@ export const places = [
     ]
   },
   {
-    "id": "valley-of-zephathah",
-    "name": "Valley of Zephathah",
+    "id": "valley-of-tzefatah",
+    "name": "Valley of Tzefatah",
     "lat": 31.65156,
     "lng": 34.81366,
     "type": "river",
@@ -17938,8 +17938,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "waters-of-jericho",
-    "name": "Waters of Jericho",
+    "id": "waters-of-yericho",
+    "name": "Waters of Yericho",
     "lat": 31.87049,
     "lng": 35.44476,
     "type": "water",
@@ -18048,8 +18048,8 @@ export const places = [
     ]
   },
   {
-    "id": "wilderness-of-ziph",
-    "name": "Wilderness of Ziph",
+    "id": "wilderness-of-zif",
+    "name": "Wilderness of Zif",
     "lat": 31.48873,
     "lng": 35.18264,
     "type": "region",
@@ -18099,8 +18099,8 @@ export const places = [
     ]
   },
   {
-    "id": "zaanan",
-    "name": "Zaanan",
+    "id": "tzaanan",
+    "name": "Tzaanan",
     "lat": 31.56702,
     "lng": 34.84917,
     "type": "region",
@@ -18113,8 +18113,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "zaanannim",
-    "name": "Zaanannim",
+    "id": "tzaananim",
+    "name": "Tzaananim",
     "lat": 32.72113,
     "lng": 35.41064,
     "type": "city",
@@ -18142,8 +18142,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "zalmon",
-    "name": "Zalmon",
+    "id": "tzalmon",
+    "name": "Tzalmon",
     "lat": 32.66667,
     "lng": 36.73333,
     "type": "city",
@@ -18159,8 +18159,8 @@ export const places = [
     ]
   },
   {
-    "id": "zalmonah",
-    "name": "Zalmonah",
+    "id": "tzalmonah",
+    "name": "Tzalmonah",
     "lat": 30.77812,
     "lng": 35.42483,
     "type": "river",
@@ -18203,8 +18203,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "zaphon-1",
-    "name": "Zaphon 1",
+    "id": "tzafon-1",
+    "name": "Tzafon 1",
     "lat": 32.26769,
     "lng": 35.57724,
     "type": "city",
@@ -18218,8 +18218,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "zaphon-2",
-    "name": "Zaphon 2",
+    "id": "tzafon-2",
+    "name": "Tzafon 2",
     "lat": 35.9525,
     "lng": 35.96931,
     "type": "city",
@@ -18251,8 +18251,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "zarethan",
-    "name": "Zarethan",
+    "id": "tzartan",
+    "name": "Tzartan",
     "lat": 32.26769,
     "lng": 35.57724,
     "type": "city",
@@ -18269,8 +18269,8 @@ export const places = [
     ]
   },
   {
-    "id": "zeboiim",
-    "name": "Zeboiim",
+    "id": "tzeboiim",
+    "name": "Tzeboiim",
     "lat": 31.15214,
     "lng": 35.42979,
     "type": "region",
@@ -18290,8 +18290,8 @@ export const places = [
     ]
   },
   {
-    "id": "zeboim",
-    "name": "Zeboim",
+    "id": "tzeboim",
+    "name": "Tzeboim",
     "lat": 32.00295,
     "lng": 34.8955,
     "type": "city",
@@ -18306,8 +18306,8 @@ export const places = [
     ]
   },
   {
-    "id": "zedad",
-    "name": "Zedad",
+    "id": "tzedad",
+    "name": "Tzedad",
     "lat": 34.31346,
     "lng": 36.92419,
     "type": "city",
@@ -18382,8 +18382,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "zephath",
-    "name": "Zephath",
+    "id": "tzefat",
+    "name": "Tzefat",
     "lat": 31.21229,
     "lng": 34.95828,
     "type": "city",
@@ -18478,8 +18478,8 @@ export const places = [
     ]
   },
   {
-    "id": "zereth-shahar",
-    "name": "Zereth-shahar",
+    "id": "zeret-shahar",
+    "name": "Zeret-Shahar",
     "lat": 31.597,
     "lng": 35.55931,
     "type": "city",
@@ -18494,8 +18494,8 @@ export const places = [
     ]
   },
   {
-    "id": "ziddim",
-    "name": "Ziddim",
+    "id": "zidim",
+    "name": "Zidim",
     "lat": 32.80758,
     "lng": 35.45382,
     "type": "city",
@@ -18508,8 +18508,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "ziklag",
-    "name": "Ziklag",
+    "id": "tziklag",
+    "name": "Tziklag",
     "lat": 31.3912,
     "lng": 34.6816,
     "type": "city",
@@ -18543,8 +18543,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "zion",
-    "name": "Zion",
+    "id": "tzion",
+    "name": "Tzion",
     "lat": 31.77667,
     "lng": 35.23417,
     "type": "city",
@@ -18590,8 +18590,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "ziph-1",
-    "name": "Ziph 1",
+    "id": "zif-1",
+    "name": "Zif 1",
     "lat": 31.47475,
     "lng": 35.13514,
     "type": "city",
@@ -18608,8 +18608,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "ziph-2",
-    "name": "Ziph 2",
+    "id": "zif-2",
+    "name": "Zif 2",
     "lat": 30.99677,
     "lng": 34.98188,
     "type": "city",
@@ -18622,8 +18622,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "ziphron",
-    "name": "Ziphron",
+    "id": "zifron",
+    "name": "Zifron",
     "lat": 34.26667,
     "lng": 37.06667,
     "type": "city",
@@ -18653,8 +18653,8 @@ export const places = [
     ]
   },
   {
-    "id": "zoan",
-    "name": "Zoan",
+    "id": "tzoan",
+    "name": "Tzoan",
     "lat": 30.97694,
     "lng": 31.88,
     "type": "city",
@@ -18672,8 +18672,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "zoar",
-    "name": "Zoar",
+    "id": "tzoar",
+    "name": "Tzoar",
     "lat": 31.15214,
     "lng": 35.42979,
     "type": "region",
@@ -18691,8 +18691,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "zobah",
-    "name": "Zobah",
+    "id": "tzobah",
+    "name": "Tzobah",
     "lat": 34.09372,
     "lng": 36.22548,
     "type": "region",
@@ -18710,8 +18710,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "zophim",
-    "name": "Zophim",
+    "id": "tzofim",
+    "name": "Tzofim",
     "lat": 31.76778,
     "lng": 35.72556,
     "type": "city",
@@ -18726,8 +18726,8 @@ export const places = [
     ]
   },
   {
-    "id": "zorah",
-    "name": "Zorah",
+    "id": "tzorah",
+    "name": "Tzorah",
     "lat": 31.77399,
     "lng": 34.98529,
     "type": "city",
@@ -18746,8 +18746,8 @@ export const places = [
     "aliases": []
   },
   {
-    "id": "zuph",
-    "name": "Zuph",
+    "id": "tzuf",
+    "name": "Tzuf",
     "lat": 31.85579,
     "lng": 35.23161,
     "type": "region",

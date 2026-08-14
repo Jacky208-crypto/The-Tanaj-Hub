@@ -36,8 +36,8 @@ function cleanVerse(text, lang) {
   }
   if (lang === 'spanish') {
     cleaned = cleaned
-      .replace(/Jehov[áa]/g, 'Hashem')
-      .replace(/JAH/g, 'Hashem')
+      .replace(/Jehov[áa]/gi, 'Hashem')
+      .replace(/JAH/gi, 'Hashem')
       .replace(/Ezequiel/g, 'Yejezkel')
       .replace(/Adán/g, 'Adam')
       .replace(/Eva/g, 'Javá')
