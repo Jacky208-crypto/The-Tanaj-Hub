@@ -9765,20 +9765,6 @@ export const places = [
     ]
   },
   {
-    "id": "yarden-2",
-    "name": "Yarden 2",
-    "lat": 32.35572,
-    "lng": 35.56198,
-    "type": "water",
-    "books": [
-      "bereshit"
-    ],
-    "periods": [
-      "Patriarchs"
-    ],
-    "aliases": []
-  },
-  {
     "id": "yarden-valley",
     "name": "Yarden Valley",
     "lat": 32.13548,
