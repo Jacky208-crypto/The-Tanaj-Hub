@@ -5,6 +5,7 @@ import {
   findMatchRanges,
   TRANSLATION_LABELS,
 } from '../lib/tanajSearch';
+import { useLanguage } from '../context/LanguageContext';
 import styles from './Search.module.css';
 
 const LANGUAGES = ['hebrew', 'english', 'spanish'];
@@ -41,6 +42,7 @@ function Highlighted({ text, query, lang, matchWhole }) {
 
 export default function Search() {
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   const [language, setLanguage] = useState('hebrew');
   const [query, setQuery] = useState('');
@@ -66,7 +68,7 @@ export default function Search() {
     abortRef.current = controller;
 
     setLoading(true);
-    setProgress('Searching…');
+    setProgress(t('search.searching'));
     setError(null);
     setResults([]);
     setTotal(0);
@@ -110,18 +112,18 @@ export default function Search() {
 
   return (
     <div className={styles.page}>
-      <h1 className={styles.title}>Tanaj Search</h1>
+      <h1 className={styles.title}>{t('search.title')}</h1>
 
       <button
         className="nav-btn"
         style={{ display: 'block', margin: '0 auto 24px' }}
         onClick={() => navigate('/')}
       >
-        ← Home
+        {t('nav.home')}
       </button>
 
       <p className={styles.subtext}>
-        Search a word and see every verse it appears in across the Tanaj.
+        {t('search.subtext')}
       </p>
 
       <div className={styles.langToggle}>
@@ -147,7 +149,7 @@ export default function Search() {
           autoFocus
         />
         <button className={styles.searchBtn} type="submit" disabled={loading}>
-          {loading ? 'Searching…' : 'Search'}
+          {loading ? t('search.searching') : t('search.searchButton')}
         </button>
       </form>
 
@@ -157,18 +159,18 @@ export default function Search() {
           checked={matchWhole}
           onChange={(e) => handleWholeToggle(e.target.checked)}
         />
-        Match whole word only
+        {t('search.matchWhole')}
       </label>
 
-      <p className={styles.editionNote}>Searching {TRANSLATION_LABELS[language]}</p>
+      <p className={styles.editionNote}>{t('search.searchingEdition', { edition: TRANSLATION_LABELS[language] })}</p>
 
-      {loading && <p className={styles.status}>{progress || 'Searching the Tanaj…'}</p>}
+      {loading && <p className={styles.status}>{progress || t('search.defaultStatus')}</p>}
 
       {error && (
         <div className={styles.error}>
-          <p>Something went wrong: {error}</p>
+          <p>{t('search.errorPrefix', { message: error })}</p>
           <button className="chapter-btn" onClick={() => runSearch()}>
-            Try again
+            {t('search.tryAgain')}
           </button>
         </div>
       )}
@@ -177,8 +179,8 @@ export default function Search() {
         <>
           <p className={styles.count}>
             {total === 0
-              ? `No matches for “${searchedTerm}”.`
-              : `${total} match${total === 1 ? '' : 'es'} for “${searchedTerm}”.`}
+              ? t('search.noMatches', { term: searchedTerm })
+              : t('search.matchesCount', { n: total, term: searchedTerm })}
           </p>
 
           <div className={styles.results}>

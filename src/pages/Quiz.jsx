@@ -4,6 +4,7 @@ import styles from './Quiz.module.css';
 import { quizzes, allBooksQuiz } from '../data/quizData';
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { useLanguage } from '../context/LanguageContext';
 import { getQuizAttempts } from '../lib/supabaseClient';
 
 const BOOKS_WITH_QUIZZES = [
@@ -14,9 +15,22 @@ const BOOKS_WITH_QUIZZES = [
   'daniel', 'ezra', 'nehemia', 'divreHayamim'
 ];
 
+function localizedLabel(q, language) {
+  if (language === 'spanish') return q.labelSp || q.label;
+  if (language === 'hebrew') return q.labelHe || q.label;
+  return q.label;
+}
+
+function localizedDescription(q, language) {
+  if (language === 'spanish') return q.descriptionSp || q.description;
+  if (language === 'hebrew') return q.descriptionHe || q.description;
+  return q.description;
+}
+
 export default function Quiz() {
   const navigate = useNavigate();
   const { user } = useAuth();
+  const { t, language } = useLanguage();
 
   const [mode, setMode] = useState('menu');
   const [selectedBooks, setSelectedBooks] = useState([]);
@@ -63,7 +77,7 @@ export default function Quiz() {
   if (mode === 'builder') {
     return (
       <div className={styles.page}>
-        <h1 className={styles.title}>Create Quiz</h1>
+        <h1 className={styles.title}>{t('quiz.createQuizTitle')}</h1>
 
         <div style={{ display: 'flex', justifyContent: 'flex-start', marginBottom: '10px' }}>
           <button
@@ -87,12 +101,12 @@ export default function Quiz() {
               e.target.style.color = '#555';
             }}
           >
-            ← Back
+            {t('quiz.back')}
           </button>
         </div>
 
         <p style={{ textAlign: 'center', marginTop: '10px' }}>
-          Selected: {selectedBooks.length} book{selectedBooks.length !== 1 && 's'}
+          {t('quiz.selected', { n: selectedBooks.length })}
         </p>
 
         <div className={styles.cardGrid}>
@@ -115,14 +129,14 @@ export default function Quiz() {
                   );
                 }}
               >
-                <p className={styles.cardTitle}>{q.label}</p>
+                <p className={styles.cardTitle}>{localizedLabel(q, language)}</p>
               </div>
             );
           })}
         </div>
 
         <div style={{ textAlign: 'center', marginTop: '30px' }}>
-          <p style={{ marginBottom: '10px' }}>Number of questions:</p>
+          <p style={{ marginBottom: '10px' }}>{t('quiz.numberOfQuestions')}</p>
           <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
             {[5, 10, 15, 20].map((num) => (
               <button
@@ -168,7 +182,7 @@ export default function Quiz() {
               setMode('quiz');
             }}
           >
-            Start Quiz
+            {t('quiz.startQuiz')}
           </button>
         </div>
       </div>
@@ -178,14 +192,14 @@ export default function Quiz() {
   // 👉 MAIN MENU
   return (
     <div className={styles.page}>
-      <h1 className={styles.title}>Practice Questions</h1>
+      <h1 className={styles.title}>{t('quiz.title')}</h1>
 
       <button
         className="nav-btn"
         style={{ display: 'block', margin: '0 auto 30px' }}
         onClick={() => navigate('/')}
       >
-        ← Home
+        {t('nav.home')}
       </button>
 
       <button
@@ -193,7 +207,7 @@ export default function Quiz() {
         style={{ display: 'block', margin: '20px auto' }}
         onClick={() => setMode('builder')}
       >
-        Create Custom Quiz
+        {t('quiz.createCustom')}
       </button>
 
       {user && attempts.length > 0 && (
@@ -207,12 +221,12 @@ export default function Quiz() {
             padding: '1rem 1.25rem',
           }}
         >
-          <h2 className={styles.subtitle} style={{ marginTop: 0 }}>Your Progress</h2>
+          <h2 className={styles.subtitle} style={{ marginTop: 0 }}>{t('quiz.yourProgress')}</h2>
           <p style={{ textAlign: 'center', color: '#555', marginTop: 0 }}>
-            {attempts.length} quiz{attempts.length !== 1 && 'zes'} completed
+            {t('quiz.completed', { n: attempts.length })}
           </p>
 
-          <h3 style={{ margin: '0.5rem 0 0.25rem', fontSize: '1rem' }}>Best scores</h3>
+          <h3 style={{ margin: '0.5rem 0 0.25rem', fontSize: '1rem' }}>{t('quiz.bestScores')}</h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
             {bestList.map(([label, b]) => (
               <div
@@ -227,7 +241,7 @@ export default function Quiz() {
             ))}
           </div>
 
-          <h3 style={{ margin: '1rem 0 0.25rem', fontSize: '1rem' }}>Recent attempts</h3>
+          <h3 style={{ margin: '1rem 0 0.25rem', fontSize: '1rem' }}>{t('quiz.recentAttempts')}</h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
             {attempts.slice(0, 5).map((a) => (
               <div
@@ -256,18 +270,18 @@ export default function Quiz() {
             onClick={() => navigate('/login', { state: { mode: 'signup' } })}
             style={{ background: 'none', border: 'none', color: '#4a90e2', cursor: 'pointer', font: 'inherit', textDecoration: 'underline', padding: 0 }}
           >
-            Sign up
+            {t('quiz.signUp')}
           </button>{' '}
-          to save your scores and track your progress over time.
+          {t('quiz.signUpPrompt')}
         </p>
       )}
 
-      <h2 className={styles.subtitle}>Our Quizzes</h2>
+      <h2 className={styles.subtitle}>{t('quiz.ourQuizzes')}</h2>
 
       <div className={styles.cardGrid}>
         <div className={styles.card}>
-          <p className={styles.cardTitle}>{allBooksQuiz.label}</p>
-          <p className={styles.cardText}>{allBooksQuiz.description}</p>
+          <p className={styles.cardTitle}>{localizedLabel(allBooksQuiz, language)}</p>
+          <p className={styles.cardText}>{localizedDescription(allBooksQuiz, language)}</p>
           <button
             className={styles.goBtn}
             onClick={() => {
@@ -275,7 +289,7 @@ export default function Quiz() {
               setMode('quiz');
             }}
           >
-            GO!
+            {t('quiz.go')}
           </button>
         </div>
 
@@ -283,8 +297,8 @@ export default function Quiz() {
           const q = quizzes[key];
           return (
             <div key={key} className={styles.card}>
-              <p className={styles.cardTitle}>{q.label}</p>
-              <p className={styles.cardText}>{q.description}</p>
+              <p className={styles.cardTitle}>{localizedLabel(q, language)}</p>
+              <p className={styles.cardText}>{localizedDescription(q, language)}</p>
               <button
                 className={styles.goBtn}
                 onClick={() => {
@@ -292,7 +306,7 @@ export default function Quiz() {
                   setMode('quiz');
                 }}
               >
-                GO!
+                {t('quiz.go')}
               </button>
             </div>
           );

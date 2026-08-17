@@ -1,44 +1,51 @@
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { useLanguage } from '../context/LanguageContext';
+import LanguageSwitcher from '../components/LanguageSwitcher';
 import styles from './Home.module.css';
 
 export default function Home() {
   const navigate = useNavigate();
   const { user, signOut, loading } = useAuth();
+  const { t } = useLanguage();
 
   return (
     <div className={styles.page}>
-      <div className={styles.authBar}>
-        {loading ? null : user ? (
-          <>
-            <span className={styles.welcome}>
-              Hi, {user.user_metadata?.name || user.email}
-            </span>
-            <button className={styles.authBtn} onClick={signOut}>Log out</button>
-          </>
-        ) : (
-          <>
-            <button className={styles.authBtn} onClick={() => navigate('/login')}>
-              Log in
-            </button>
-            <button
-              className={styles.authBtn}
-              onClick={() => navigate('/login', { state: { mode: 'signup' } })}
-            >
-              Sign up
-            </button>
-          </>
-        )}
+      <div className={styles.topBar}>
+        <LanguageSwitcher />
+
+        <div className={styles.authBar}>
+          {loading ? null : user ? (
+            <>
+              <span className={styles.welcome}>
+                {t('home.greeting', { name: user.user_metadata?.name || user.email })}
+              </span>
+              <button className={styles.authBtn} onClick={signOut}>{t('home.logOut')}</button>
+            </>
+          ) : (
+            <>
+              <button className={styles.authBtn} onClick={() => navigate('/login')}>
+                {t('home.logIn')}
+              </button>
+              <button
+                className={styles.authBtn}
+                onClick={() => navigate('/login', { state: { mode: 'signup' } })}
+              >
+                {t('home.signUp')}
+              </button>
+            </>
+          )}
+        </div>
       </div>
 
       <header className={styles.header}>
         <h1 className={styles.title}>The Tanaj Study Hub</h1>
-        <p className={styles.subtext}> The Tanaj Hub is an interactive platform to learn Tanaj with quizzes and summaries</p>
+        <p className={styles.subtext}>{t('home.subtitle')}</p>
       </header>
 
       <div className={styles.control}>
         <div className={styles.card}>
-          <strong>Study Texts</strong>
+          <strong>{t('home.studyTexts')}</strong>
           <div className={styles.btnRow}>
             <button className="nav-btn" onClick={() => navigate('/torah')}>Torah</button>
             <button className="nav-btn" onClick={() => navigate('/neviim')}>Neviim</button>
@@ -49,34 +56,34 @@ export default function Home() {
 
       <div className={styles.control}>
           <div className={styles.card}>
-            <strong>Practice Questions</strong>
+            <strong>{t('home.practiceQuestions')}</strong>
             <div className={styles.btnRow}>
-              <button className="nav-btn" onClick={() => navigate('/quiz')}>Practice Questions</button>
+              <button className="nav-btn" onClick={() => navigate('/quiz')}>{t('home.practiceQuestions')}</button>
             </div>
           </div>
-          
+
           <div className={styles.card}>
-            <strong>Helpful Notes</strong>
+            <strong>{t('home.helpfulNotes')}</strong>
             <div className={styles.btnRow}>
-            <button className="nav-btn" onClick={() => navigate('/notes')}>Helpful Notes</button>
-            </div>
-          </div>
-          <div className={styles.card}>
-            <strong>Tanaj Search</strong>
-            <div className={styles.btnRow}>
-              <button className="nav-btn" onClick={() => navigate('/search')}>Tanaj Search</button>
+            <button className="nav-btn" onClick={() => navigate('/notes')}>{t('home.helpfulNotes')}</button>
             </div>
           </div>
           <div className={styles.card}>
-            <strong>Biblical Map</strong>
+            <strong>{t('home.tanajSearch')}</strong>
             <div className={styles.btnRow}>
-            <button className="nav-btn" onClick={() => navigate('/map')}> Biblical Map</button>
+              <button className="nav-btn" onClick={() => navigate('/search')}>{t('home.tanajSearch')}</button>
+            </div>
+          </div>
+          <div className={styles.card}>
+            <strong>{t('home.biblicalMap')}</strong>
+            <div className={styles.btnRow}>
+            <button className="nav-btn" onClick={() => navigate('/map')}>{t('home.biblicalMap')}</button>
             </div>
           </div>
       </div>
 
       <footer style={{ textAlign: 'center', padding: '2rem', color: '#888', fontSize: '0.85rem' }}>
-  Made by Jacky Fnounou
+  {t('home.footer')}
 </footer>
     </div>
 

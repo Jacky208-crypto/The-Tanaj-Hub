@@ -8911,7 +8911,11 @@ export const quizzes = {
   },
   shemot: {
     label: 'Shemot',
+    labelSp: 'Shemot',
+    labelHe: 'שמות',
     description: 'Study most of Shemot with this simple quiz! Integrate yourself into the yetziat mitzraim, kriat yam suf, and more!',
+    descriptionSp: '¡Estudia la mayor parte de Shemot con este simple cuestionario! ¡Integrate en la yetziat mitzraim, kriat yam suf y más!',
+    descriptionHe: 'למדו את רוב שמות עם החידון הפשוט הזה! השתלבו ביציאת מצרים, קריעת ים סוף ועוד!',
     questions: [
       {
         question: 'Who told who: "Tomorrow I will station myself on the top of the hill,"',
@@ -12403,7 +12407,11 @@ export const quizzes = {
   },
   vaikra: {
     label: 'Vaikra',
-    description: 'Study the key points of Vaikra with this simple quiz! Integrate yourself into the laws of korbanot, holidays and more!', 
+    labelSp: 'Vaikra',
+    labelHe: 'ויקרא',
+    description: 'Study the key points of Vaikra with this simple quiz! Integrate yourself into the laws of korbanot, holidays and more!',
+    descriptionSp: '¡Estudia los puntos clave de Vaikra con este simple cuestionario! ¡Integrate en las leyes de los korbanot, las festividades y más!',
+    descriptionHe: 'למדו את הנקודות המרכזיות בויקרא עם החידון הפשוט הזה! השתלבו בדיני הקורבנות, החגים ועוד!',
     questions: [
       {
         question: 'Which festival: "You shall bring from your dwellings two loaves for a wave offering"?',
@@ -12640,7 +12648,11 @@ export const quizzes = {
   },
   bamidbar: {
     label: 'Bamidbar',
+    labelSp: 'Bamidbar',
+    labelHe: 'במדבר',
     description: 'Study the key points of Bamidbar with this simple quiz! Integrate yourself into the stories like Bilaam and Balak, Najash Nejoshet, etc.',
+    descriptionSp: '¡Estudia los puntos clave de Bamidbar con este simple cuestionario! ¡Integrate en historias como Bilaam y Balak, la Najash Nejoshet, y más!',
+    descriptionHe: 'למדו את הנקודות המרכזיות בבמדבר עם החידון הפשוט הזה! השתלבו בסיפורים כמו בלעם ובלק, נחש הנחושת ועוד!',
     questions: [
       {
         question: 'To whom was it said: "Wait a moment while I listen to what Hashem decides on the matter."',
@@ -12987,7 +12999,11 @@ export const quizzes = {
   },
     devarim: {
       label: 'Devarim',
+      labelSp: 'Devarim',
+      labelHe: 'דברים',
       description: 'Study the key points of Devarim with this simple quiz! Integrate yourself into the stories like Moshe’s farewell speech, the death of Moshe, etc.',
+      descriptionSp: '¡Estudia los puntos clave de Devarim con este simple cuestionario! ¡Integrate en historias como el discurso de despedida de Moshe, la muerte de Moshe, y más!',
+      descriptionHe: 'למדו את הנקודות המרכזיות בדברים עם החידון הפשוט הזה! השתלבו בסיפורים כמו נאום הפרידה של משה, מותו של משה ועוד!',
       questions: [
         {
           question: 'Where was it said: "Is this not stored up with Me, sealed among My treasures?"',
@@ -13147,7 +13163,11 @@ export const quizzes = {
     },
     yehoshua: {
       label: 'Yehoshua',
+      labelSp: 'Yehoshua',
+      labelHe: 'יהושע',
       description: 'Study the key points of Yehoshua with this simple quiz! Integrate yourself into the stories like the conquest of Canaan, the division of the land, etc.',
+      descriptionSp: '¡Estudia los puntos clave de Yehoshua con este simple cuestionario! ¡Integrate en historias como la conquista de Canaán, la división de la tierra, y más!',
+      descriptionHe: 'למדו את הנקודות המרכזיות ביהושע עם החידון הפשוט הזה! השתלבו בסיפורים כמו כיבוש הארץ, חלוקת הנחלות ועוד!',
       questions: [ 
         {
           question: '"Come here and hear the words of Hashem your God" — who said this and to whom?',
@@ -13450,7 +13470,11 @@ export const quizzes = {
     },
     shoftim: {
       label: 'Shoftim',
+      labelSp: 'Shoftim',
+      labelHe: 'שופטים',
       description: 'Study the key points of Shoftim with this simple quiz! Integrate yourself into the period of the judges of Israel, Ehud, Guidon, Shimshon, and more!',
+      descriptionSp: '¡Estudia los puntos clave de Shoftim con este simple cuestionario! ¡Integrate en la época de los jueces de Israel: Ehud, Guidón, Shimshón y más!',
+      descriptionHe: 'למדו את הנקודות המרכזיות בשופטים עם החידון הפשוט הזה! השתלבו בתקופת השופטים בישראל - אהוד, גדעון, שמשון ועוד!',
       questions: [
         {
           question: '"Behold, I have delivered the land into his hand" — who said this and about whom?',
@@ -13908,7 +13932,11 @@ export const quizzes = {
     },
     shmuelAlef: {
       label: 'Shmuel Alef',
+      labelSp: 'Shmuel Alef',
+      labelHe: 'שמואל א',
       description: 'Study the key points of Shmuel Alef with this simple quiz! Integrate yourself into the period of leadership of Shmuel, Shaul and David, and their stories!',
+      descriptionSp: '¡Estudia los puntos clave de Shmuel Alef con este simple cuestionario! ¡Integrate en la época de liderazgo de Shmuel, Shaul y David, y sus historias!',
+      descriptionHe: 'למדו את הנקודות המרכזיות בשמואל א עם החידון הפשוט הזה! השתלבו בתקופת המנהיגות של שמואל, שאול ודוד ובסיפוריהם!',
       questions: [
           {
             question: '"In bitterness of soul" — about whom?',
@@ -14772,7 +14800,11 @@ export const quizzes = {
           },
     shmuelBet: {
       label: 'Shmuel Bet',
+      labelSp: 'Shmuel Bet',
+      labelHe: 'שמואל ב',
       description: 'Study the key points of Shmuel Bet with this simple quiz! Integrate yourself into the story of David and his rise to kingship, and test your knowledge of the characters, events, and themes that shape this pivotal book in the Tanach.',
+      descriptionSp: '¡Estudia los puntos clave de Shmuel Bet con este simple cuestionario! Integrate en la historia de David y su ascenso al reinado, y pon a prueba tu conocimiento de los personajes, eventos y temas que dan forma a este libro clave del Tanaj.',
+      descriptionHe: 'למדו את הנקודות המרכזיות בשמואל ב עם החידון הפשוט הזה! השתלבו בסיפורו של דוד ועלייתו למלוכה, ובחנו את הידע שלכם בדמויות, באירועים ובנושאים שמעצבים את הספר המרכזי הזה בתנ״ך.',
       questions: [
         {
           question: '"There the shield of the mighty was defiled" — where?',
@@ -15636,7 +15668,11 @@ export const quizzes = {
     },
     melajimAlef: {
       label: 'Melajim Alef',
+      labelSp: 'Melajim Alef',
+      labelHe: 'מלכים א',
       description: 'Study the key points of Melajim Alef with this simple quiz! Integrate yourself into the story of the last days David and Shlomos rise to kingship, the division of the reign and the kings that followed.',
+      descriptionSp: '¡Estudia los puntos clave de Melajim Alef con este simple cuestionario! Integrate en la historia de los últimos días de David, el ascenso de Shlomo al reinado, la división del reino y los reyes que le siguieron.',
+      descriptionHe: 'למדו את הנקודות המרכזיות במלכים א עם החידון הפשוט הזה! השתלבו בסיפור ימיו האחרונים של דוד, עלייתו של שלמה למלוכה, פיצול הממלכה והמלכים שבאו אחריו.',
       questions: [
         {
           question: '"He exalted himself" — about whom?',
@@ -16368,7 +16404,11 @@ export const quizzes = {
     },
     melajimBet: {
       label: 'Melajim Bet',
+      labelSp: 'Melajim Bet',
+      labelHe: 'מלכים ב',
       description: 'Study the key points of Melajim Bet with this simple quiz! Integrate yourself into the story of the evolution of the kings of Israel and Yehuda: their rise, their fall, and all of the interesting stories in between.',
+      descriptionSp: '¡Estudia los puntos clave de Melajim Bet con este simple cuestionario! Integrate en la historia de la evolución de los reyes de Israel y Yehuda: su ascenso, su caída, y todas las historias interesantes que hay en el medio.',
+      descriptionHe: 'למדו את הנקודות המרכזיות במלכים ב עם החידון הפשוט הזה! השתלבו בסיפור התפתחות מלכי ישראל ויהודה - עלייתם, נפילתם וכל הסיפורים המעניינים שביניהם.',
       questions: [
         {
           question: '"Drive and go forward; do not slacken the pace for me unless I tell you."',
@@ -17144,7 +17184,11 @@ export const quizzes = {
     },
     neviimAjaronim: {
       label: 'Neviim Ajaronim',
+      labelSp: 'Neviim Ajaronim',
+      labelHe: 'נביאים אחרונים',
       description: 'Test your knowledge of the later prophets with these questions about their words and actions.',
+      descriptionSp: '¡Pon a prueba tu conocimiento de los profetas posteriores con estas preguntas sobre sus palabras y acciones!',
+      descriptionHe: 'בחנו את הידע שלכם בנביאים האחרונים עם שאלות על דבריהם ומעשיהם.',
       questions: [
         {
           question: 'Who said, according to Amos, "you showed no compassion" — about whom?',
@@ -17546,7 +17590,11 @@ export const quizzes = {
       },
       ketuvimPoetry: {
         label: 'Ketuvim Poetry',
+        labelSp: 'Ketuvim Poetry',
+        labelHe: 'שירת הכתובים',
         description: 'Study the key points of the Poetry books in Ketuvim(Tehilim, Shir Hashrim, Mishle, Kohelet, Eja) with this simple quiz! Integrate yourself into the poetic verses that show the beauty of the Hebrew language and the depth of the human experience. Test your knowledge of the poetic expressions, metaphors, and themes found in these books, and discover the timeless wisdom they offer.',
+        descriptionSp: '¡Estudia los puntos clave de los libros poéticos de Ketuvim (Tehilim, Shir Hashirim, Mishle, Kohelet, Eija) con este simple cuestionario! Integrate en los versos poéticos que muestran la belleza del idioma hebreo y la profundidad de la experiencia humana. Pon a prueba tu conocimiento de las expresiones poéticas, metáforas y temas que se encuentran en estos libros, y descubre la sabiduría eterna que ofrecen.',
+        descriptionHe: 'למדו את הנקודות המרכזיות בספרי השירה שבכתובים (תהילים, שיר השירים, משלי, קהלת, איכה) עם החידון הפשוט הזה! השתלבו בפסוקים הפיוטיים שמראים את יופייה של השפה העברית ואת עומק החוויה האנושית. בחנו את הידע שלכם בביטויים הפיוטיים, במטאפורות ובנושאים שבספרים אלו, וגלו את החכמה הנצחית שהם מציעים.',
         questions: [
           {
             question: 'In which book does it say: "When the hay is removed and the tender grass appears... the lambs will be for your clothing"?',
@@ -17740,7 +17788,11 @@ export const quizzes = {
       },
       iyov: {
         label: 'Iyov',
+        labelSp: 'Iyov',
+        labelHe: 'איוב',
         description: 'Study the key points of the Book of Iyov with this simple quiz! Explore the profound themes of suffering, faith, and divine justice as you test your knowledge of the story of Job and his trials. Discover the timeless lessons and insights that this book offers about human resilience and the nature of God.',
+        descriptionSp: '¡Estudia los puntos clave del libro de Iyov con este simple cuestionario! Explora los temas profundos del sufrimiento, la fe y la justicia divina mientras pones a prueba tu conocimiento de la historia de Iyov y sus pruebas. Descubre las lecciones y enseñanzas eternas que ofrece este libro sobre la resiliencia humana y la naturaleza de Dios.',
+        descriptionHe: 'למדו את הנקודות המרכזיות בספר איוב עם החידון הפשוט הזה! חקרו את הנושאים העמוקים של סבל, אמונה וצדק אלוהי תוך שאתם בוחנים את ידיעתכם בסיפורו של איוב ובניסיונותיו. גלו את הלקחים והתובנות הנצחיים שהספר מציע על עמידות אנושית ועל טבעו של אלוהים.',
         questions: [
           {
             question: 'About whom was it said: "And his sons used to go and hold a feast in their houses"?',
@@ -17867,7 +17919,11 @@ export const quizzes = {
       },
       rut: {
         label: 'Rut',
+        labelSp: 'Rut',
+        labelHe: 'רות',
         description: 'Study the key points of the Book of Rut with this simple quiz! Dive into the story of loyalty, love, and redemption as you test your knowledge of the characters and events in the Book of Ruth. Discover the timeless lessons about kindness, faith, and the power of human connection that this book offers.',
+        descriptionSp: '¡Estudia los puntos clave del libro de Rut con este simple cuestionario! Sumérgete en la historia de lealtad, amor y redención mientras pones a prueba tu conocimiento de los personajes y eventos del libro de Rut. Descubre las lecciones eternas sobre la bondad, la fe y el poder de la conexión humana que ofrece este libro.',
+        descriptionHe: 'למדו את הנקודות המרכזיות בספר רות עם החידון הפשוט הזה! צללו אל סיפור הנאמנות, האהבה והגאולה תוך שאתם בוחנים את ידיעתכם בדמויות ובאירועים שבספר רות. גלו את הלקחים הנצחיים על חסד, אמונה וכוחו של הקשר האנושי שהספר מציע.',
         questions: [
           {
             question: 'Who said to whom: "Go, return each of you to her mother\'s house"?',
@@ -17994,7 +18050,11 @@ export const quizzes = {
       },
       ester: {  
         label: 'Ester',
+        labelSp: 'Ester',
+        labelHe: 'אסתר',
         description: 'Study the key points of the Book of Ester with this simple quiz! Explore the themes of courage, identity, and divine providence as you test your knowledge of the story of Esther and her role in saving the Jewish people. Discover the timeless lessons about bravery, faith, and the power of standing up for what is right that this book offers.',
+        descriptionSp: '¡Estudia los puntos clave del libro de Ester con este simple cuestionario! Explora los temas de valentía, identidad y providencia divina mientras pones a prueba tu conocimiento de la historia de Ester y su papel en la salvación del pueblo judío. Descubre las lecciones eternas sobre el coraje, la fe y el poder de defender lo correcto que ofrece este libro.',
+        descriptionHe: 'למדו את הנקודות המרכזיות במגילת אסתר עם החידון הפשוט הזה! חקרו את הנושאים של אומץ, זהות והשגחה אלוהית תוך שאתם בוחנים את ידיעתכם בסיפורה של אסתר ובתפקידה בהצלת העם היהודי. גלו את הלקחים הנצחיים על אומץ, אמונה וכוחה של עמידה על הצדק שהספר מציע.',
         questions: [
           {
             question: 'Whose actions were described as: "Showing the riches of his glorious kingdom and the honor of his excellent majesty for many days"?',
@@ -18143,7 +18203,11 @@ export const quizzes = {
       },
       daniel: {  
         label: 'Daniel',
+        labelSp: 'Daniel',
+        labelHe: 'דניאל',
         description: 'Study the key points of the Book of Daniel with this simple quiz! Explore the themes of faith, courage, and divine intervention as you test your knowledge of the story of Daniel and his experiences in the Babylonian exile. Discover the timeless lessons about resilience, trust in God, and the power of standing firm in one\'s beliefs that this book offers.',
+        descriptionSp: '¡Estudia los puntos clave del libro de Daniel con este simple cuestionario! Explora los temas de la fe, el coraje y la intervención divina mientras pones a prueba tu conocimiento de la historia de Daniel y sus vivencias en el exilio de Babilonia. Descubre las lecciones eternas sobre la resiliencia, la confianza en Dios y el poder de mantenerse firme en las propias creencias que ofrece este libro.',
+        descriptionHe: 'למדו את הנקודות המרכזיות בספר דניאל עם החידון הפשוט הזה! חקרו את הנושאים של אמונה, אומץ והתערבות אלוהית תוך שאתם בוחנים את ידיעתכם בסיפורו של דניאל ובחוויותיו בגלות בבל. גלו את הלקחים הנצחיים על עמידות, ביטחון באלוהים וכוחה של עמידה איתנה באמונות האדם שהספר מציע.',
         questions: [
           {
             question: 'Who was challenged with the question: "Who is the god that shall deliver you out of my hands?"',
@@ -18270,7 +18334,11 @@ export const quizzes = {
       },
       ezra: {
         label: 'Ezra',
+        labelSp: 'Ezra',
+        labelHe: 'עזרא',
         description: 'Study the key points of the Books of Ezra with this simple quiz! Explore the themes of leadership, community rebuilding, and spiritual renewal as you test your knowledge of the events and characters in these books. Discover the timeless lessons about resilience, faith, and the power of collective effort that these books offer.',
+        descriptionSp: '¡Estudia los puntos clave del libro de Ezra con este simple cuestionario! Explora los temas del liderazgo, la reconstrucción de la comunidad y la renovación espiritual mientras pones a prueba tu conocimiento de los eventos y personajes de este libro. Descubre las lecciones eternas sobre la resiliencia, la fe y el poder del esfuerzo colectivo que ofrece este libro.',
+        descriptionHe: 'למדו את הנקודות המרכזיות בספר עזרא עם החידון הפשוט הזה! חקרו את הנושאים של מנהיגות, בניית הקהילה מחדש והתחדשות רוחנית תוך שאתם בוחנים את ידיעתכם באירועים ובדמויות שבספר. גלו את הלקחים הנצחיים על עמידות, אמונה וכוחו של המאמץ המשותף שהספר מציע.',
         questions: [
           {
             question: 'Who issued the proclamation: "All the kingdoms of the earth has the Lord given me"?',
@@ -18364,7 +18432,11 @@ export const quizzes = {
       },
       nehemia: {
         label: 'Nehemia',
+        labelSp: 'Nehemia',
+        labelHe: 'נחמיה',
         description: 'Study the key points of the Books of Nehemiah with this simple quiz! Explore the themes of leadership, community rebuilding, and spiritual renewal as you test your knowledge of the events and characters in these books. Discover the timeless lessons about resilience, faith, and the power of collective effort that these books offer.',
+        descriptionSp: '¡Estudia los puntos clave del libro de Nejemia con este simple cuestionario! Explora los temas del liderazgo, la reconstrucción de la comunidad y la renovación espiritual mientras pones a prueba tu conocimiento de los eventos y personajes de este libro. Descubre las lecciones eternas sobre la resiliencia, la fe y el poder del esfuerzo colectivo que ofrece este libro.',
+        descriptionHe: 'למדו את הנקודות המרכזיות בספר נחמיה עם החידון הפשוט הזה! חקרו את הנושאים של מנהיגות, בניית הקהילה מחדש והתחדשות רוחנית תוך שאתם בוחנים את ידיעתכם באירועים ובדמויות שבספר. גלו את הלקחים הנצחיים על עמידות, אמונה וכוחו של המאמץ המשותף שהספר מציע.',
         questions: [
           {
             question: 'Who reported the dire situation: "The remnant that are left of the captivity there in the province are in great affliction and reproach"?',
@@ -18491,7 +18563,11 @@ export const quizzes = {
       },
       divreHayamim: {
         label: 'Divre Hayamim',
+        labelSp: 'Divre Hayamim',
+        labelHe: 'דברי הימים',
         description: 'Study the key points of the Books of Divre Hayamim with this simple quiz! Explore the themes of history, kingship, and divine providence as you test your knowledge of the events and characters in these books. Discover the timeless lessons about leadership, faith, and the consequences of human actions that these books offer.',
+        descriptionSp: '¡Estudia los puntos clave de los libros de Divre Hayamim con este simple cuestionario! Explora los temas de la historia, la monarquía y la providencia divina mientras pones a prueba tu conocimiento de los eventos y personajes de estos libros. Descubre las lecciones eternas sobre el liderazgo, la fe y las consecuencias de los actos humanos que ofrecen estos libros.',
+        descriptionHe: 'למדו את הנקודות המרכזיות בספרי דברי הימים עם החידון הפשוט הזה! חקרו את הנושאים של היסטוריה, מלוכה והשגחה אלוהית תוך שאתם בוחנים את ידיעתכם באירועים ובדמויות שבספרים אלו. גלו את הלקחים הנצחיים על מנהיגות, אמונה והשלכות מעשי האדם שהספרים מציעים.',
         questions: [
           {
             question: 'Who said: "Thine, O Lord, is the greatness, and the power, and the glory, and the victory, and the majesty"?',

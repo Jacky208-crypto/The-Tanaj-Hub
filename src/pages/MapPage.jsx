@@ -11,6 +11,7 @@ import { places, PLACE_TYPES, TIME_PERIODS } from '../data/places';
 import {
   torahBooks, neviimRishonimBooks, neviimAjaranimBooks, ketuvimBooks, getBookById,
 } from '../data/books';
+import { useLanguage } from '../context/LanguageContext';
 import styles from './MapPage.module.css';
 
 class MapErrorBoundary extends Component {
@@ -29,27 +30,27 @@ class MapErrorBoundary extends Component {
 }
 
 const TYPE_META = {
-  city:       { color: '#1d3a8a', label: 'City / Town' },
-  region:     { color: '#7c3aed', label: 'Region / Nation' },
-  mountain:   { color: '#92400e', label: 'Mountain' },
-  river:      { color: '#0369a1', label: 'River' },
-  water:      { color: '#0d9488', label: 'Sea / Lake' },
-  wilderness: { color: '#b45309', label: 'Wilderness' },
+  city:       { color: '#1d3a8a', labelKey: 'map.cityTown' },
+  region:     { color: '#7c3aed', labelKey: 'map.regionNation' },
+  mountain:   { color: '#92400e', labelKey: 'map.mountain' },
+  river:      { color: '#0369a1', labelKey: 'map.river' },
+  water:      { color: '#0d9488', labelKey: 'map.seaLake' },
+  wilderness: { color: '#b45309', labelKey: 'map.wilderness' },
 };
 
 const BASEMAPS = {
   map: {
-    label: 'Map',
+    labelKey: 'map.basemapMap',
     url: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
     attribution: '&copy; OpenStreetMap &copy; CARTO',
   },
   terrain: {
-    label: 'Terrain',
+    labelKey: 'map.basemapTerrain',
     url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
     attribution: '&copy; OpenTopoMap (CC-BY-SA)',
   },
   satellite: {
-    label: 'Satellite',
+    labelKey: 'map.basemapSatellite',
     url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
     attribution: 'Tiles &copy; Esri',
   },
@@ -90,7 +91,7 @@ function MapResizer() {
 // Cluster layer driving leaflet.markercluster directly.
 // Built imperatively in an effect so it is safe under React StrictMode
 // (mount → cleanup → mount recreates the group cleanly).
-function ClusterLayer({ places, selected, onSelect, navigate }) {
+function ClusterLayer({ places, selected, onSelect, navigate, t }) {
   const map = useMap();
   const groupRef = useRef(null);
   const markersRef = useRef(new Map());
@@ -108,7 +109,7 @@ function ClusterLayer({ places, selected, onSelect, navigate }) {
       // Render the React popup into a detached node, bound lazily on open.
       const container = document.createElement('div');
       const root = createRoot(container);
-      root.render(<PlacePopup place={p} navigate={navigate} />);
+      root.render(<PlacePopup place={p} navigate={navigate} t={t} />);
       roots.push(root);
       marker.bindPopup(container, { minWidth: 200, maxWidth: 260 });
 
@@ -130,7 +131,7 @@ function ClusterLayer({ places, selected, onSelect, navigate }) {
       markersRef.current = new Map();
       rootsRef.current = [];
     };
-  }, [places, map, onSelect, navigate]);
+  }, [places, map, onSelect, navigate, t]);
 
   // Expand cluster to reveal the selected marker, then open its popup.
   useEffect(() => {
@@ -169,6 +170,7 @@ export default function MapPage() {
 
 function MapPageInner() {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [search, setSearch] = useState('');
   const [activePeriods, setActivePeriods] = useState([]);
   const [activeTypes, setActiveTypes] = useState([]);
@@ -204,53 +206,53 @@ function MapPageInner() {
   return (
     <div className={styles.page}>
       <header className={styles.header}>
-        <button className="back-btn" onClick={() => navigate('/')}>← Home</button>
-        <h1 className={styles.title}>Biblical Map</h1>
-        <span className={styles.count}>{filtered.length} of {places.length} places</span>
+        <button className="back-btn" onClick={() => navigate('/')}>{t('nav.home')}</button>
+        <h1 className={styles.title}>{t('map.title')}</h1>
+        <span className={styles.count}>{t('map.count', { filtered: filtered.length, total: places.length })}</span>
       </header>
 
       <div className={styles.body}>
         <aside className={styles.sidebar}>
           <input
             className={styles.searchInput}
-            placeholder="Search a place…"
+            placeholder={t('map.searchPlaceholder')}
             value={search}
             onChange={e => setSearch(e.target.value)}
           />
 
           <div className={styles.filterGroup}>
-            <div className={styles.filterLabel}>Time period</div>
+            <div className={styles.filterLabel}>{t('map.timePeriod')}</div>
             <div className={styles.chips}>
               {TIME_PERIODS.map(pr => (
                 <button
                   key={pr}
                   className={`${styles.chip} ${activePeriods.includes(pr) ? styles.chipOn : ''}`}
                   onClick={() => toggle(setActivePeriods, activePeriods)(pr)}
-                >{pr}</button>
+                >{t(`map.periods.${pr}`)}</button>
               ))}
             </div>
           </div>
 
           <div className={styles.filterGroup}>
-            <div className={styles.filterLabel}>Type</div>
+            <div className={styles.filterLabel}>{t('map.type')}</div>
             <div className={styles.chips}>
-              {PLACE_TYPES.map(t => (
+              {PLACE_TYPES.map(pt => (
                 <button
-                  key={t}
-                  className={`${styles.chip} ${activeTypes.includes(t) ? styles.chipOn : ''}`}
-                  onClick={() => toggle(setActiveTypes, activeTypes)(t)}
+                  key={pt}
+                  className={`${styles.chip} ${activeTypes.includes(pt) ? styles.chipOn : ''}`}
+                  onClick={() => toggle(setActiveTypes, activeTypes)(pt)}
                 >
-                  <span className={styles.dot} style={{ background: TYPE_META[t].color }} />
-                  {TYPE_META[t].label}
+                  <span className={styles.dot} style={{ background: TYPE_META[pt].color }} />
+                  {t(TYPE_META[pt].labelKey)}
                 </button>
               ))}
             </div>
           </div>
 
           <div className={styles.filterGroup}>
-            <div className={styles.filterLabel}>Book</div>
+            <div className={styles.filterLabel}>{t('map.book')}</div>
             <select className={styles.select} value={book} onChange={e => setBook(e.target.value)}>
-              <option value="">All books</option>
+              <option value="">{t('map.allBooks')}</option>
               {BOOK_GROUPS.map(g => (
                 <optgroup key={g.section} label={g.section}>
                   {g.books.map(b => <option key={b.id} value={b.id}>{b.label}</option>)}
@@ -260,7 +262,7 @@ function MapPageInner() {
           </div>
 
           {hasFilters && (
-            <button className={styles.clearBtn} onClick={clearAll}>Clear filters</button>
+            <button className={styles.clearBtn} onClick={clearAll}>{t('map.clearFilters')}</button>
           )}
 
           <ul className={styles.resultList}>
@@ -272,10 +274,10 @@ function MapPageInner() {
               >
                 <span className={styles.dot} style={{ background: TYPE_META[p.type].color }} />
                 <span className={styles.resultName}>{p.name}</span>
-                <span className={styles.resultType}>{p.type}</span>
+                <span className={styles.resultType}>{t(TYPE_META[p.type].labelKey)}</span>
               </li>
             ))}
-            {!filtered.length && <li className={styles.empty}>No places match these filters.</li>}
+            {!filtered.length && <li className={styles.empty}>{t('map.noMatches')}</li>}
           </ul>
         </aside>
 
@@ -289,6 +291,7 @@ function MapPageInner() {
               selected={selected}
               onSelect={setSelected}
               navigate={navigate}
+              t={t}
             />
           </MapContainer>
         </div>
@@ -299,6 +302,7 @@ function MapPageInner() {
 
 // Basemap switcher rendered inside the map so it can swap the TileLayer
 function BasemapControl() {
+  const { t } = useLanguage();
   const [key, setKey] = useState('map');
   const bm = BASEMAPS[key];
   return (
@@ -310,28 +314,28 @@ function BasemapControl() {
             key={k}
             className={`${styles.basemapBtn} ${k === key ? styles.basemapOn : ''}`}
             onClick={() => setKey(k)}
-          >{v.label}</button>
+          >{t(v.labelKey)}</button>
         ))}
       </div>
     </>
   );
 }
 
-function PlacePopup({ place, navigate }) {
+function PlacePopup({ place, navigate, t }) {
   const meta = TYPE_META[place.type] || TYPE_META.city;
   return (
     <div className={styles.popup}>
       <div className={styles.popupHead}>
         <span className={styles.dot} style={{ background: meta.color }} />
         <strong>{place.name}</strong>
-        <span className={styles.popupType}>{meta.label}</span>
+        <span className={styles.popupType}>{t(meta.labelKey)}</span>
       </div>
       {place.aliases?.length > 0 && (
-        <div className={styles.popupAliases}>Also: {place.aliases.join(', ')}</div>
+        <div className={styles.popupAliases}>{t('map.also')} {place.aliases.join(', ')}</div>
       )}
       {place.comment && <div className={styles.popupComment}>{place.comment}</div>}
 
-      <div className={styles.popupSubhead}>Appears in</div>
+      <div className={styles.popupSubhead}>{t('map.appearsIn')}</div>
       <div className={styles.popupBooks}>
         {place.books.map(id => {
           const b = getBookById(id);
@@ -345,7 +349,7 @@ function PlacePopup({ place, navigate }) {
       </div>
 
       <div className={styles.popupPeriods}>
-        {place.periods.map(pr => <span key={pr} className={styles.periodTag}>{pr}</span>)}
+        {place.periods.map(pr => <span key={pr} className={styles.periodTag}>{t(`map.periods.${pr}`)}</span>)}
       </div>
 
       {place.refs?.length > 0 && (

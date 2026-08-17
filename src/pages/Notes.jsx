@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { useLanguage } from '../context/LanguageContext';
 import {
   getUserNotes,
   createUserNote,
@@ -912,8 +913,9 @@ const NOTES = [
 export default function Notes() {
   const navigate = useNavigate();
   const { user } = useAuth();
+  const { language: uiLanguage, t } = useLanguage();
   const [activeTopic, setActiveTopic] = useState(NOTES[0].topic);
-  const [language, setLanguage] = useState('english');
+  const [language, setLanguage] = useState(uiLanguage === 'spanish' ? 'spanish' : 'english');
 
   // ---- Personal notes state ----
   const [myNotes, setMyNotes] = useState([]);
@@ -999,7 +1001,7 @@ export default function Notes() {
   const current = NOTES.find(n => n.topic === activeTopic);
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Helpful Notes</h1>
+      <h1 className={styles.title}>{t('notes.title')}</h1>
 
       {/* Language Toggle */}
       <div className={styles.langToggle}>

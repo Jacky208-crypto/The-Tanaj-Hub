@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { useLanguage } from '../context/LanguageContext';
 import styles from './Login.module.css';
 
 export default function Login() {
   const navigate = useNavigate();
   const location = useLocation();
   const { signIn, signUp, signInWithGoogle, isConfigured } = useAuth();
+  const { t } = useLanguage();
 
   // Start in signup mode if navigated here from the "Sign up" button.
   const [mode, setMode] = useState(location.state?.mode === 'signup' ? 'signup' : 'login');
@@ -23,19 +25,19 @@ export default function Login() {
     setInfo('');
 
     if (!isConfigured) {
-      setError('Login is not configured. Add your Supabase keys to the .env file.');
+      setError(t('login.errNotConfigured'));
       return;
     }
     if (!email || !password) {
-      setError('Please enter both an email and a password.');
+      setError(t('login.errMissingFields'));
       return;
     }
     if (mode === 'signup' && !name.trim()) {
-      setError('Please enter your name.');
+      setError(t('login.errMissingName'));
       return;
     }
     if (mode === 'signup' && password.length < 6) {
-      setError('Password must be at least 6 characters.');
+      setError(t('login.errPasswordLength'));
       return;
     }
 
@@ -47,14 +49,14 @@ export default function Login() {
       } else {
         const result = await signUp(email, password, name.trim());
         if (result.needsConfirmation) {
-          setInfo('Account created! Check your email to confirm, then log in.');
+          setInfo(t('login.infoConfirmEmail'));
           setMode('login');
         } else {
           navigate('/');
         }
       }
     } catch (err) {
-      setError(err.message || 'Something went wrong. Please try again.');
+      setError(err.message || t('login.errGeneric'));
     } finally {
       setBusy(false);
     }
@@ -63,32 +65,30 @@ export default function Login() {
   return (
     <div className={styles.page}>
       <div className={styles.card}>
-        <button className={styles.back} onClick={() => navigate('/')}>← Home</button>
+        <button className={styles.back} onClick={() => navigate('/')}>{t('nav.home')}</button>
         <h1 className={styles.title}>
-          {mode === 'login' ? 'Log In' : 'Create Account'}
+          {mode === 'login' ? t('login.logIn') : t('login.createAccount')}
         </h1>
         <p className={styles.subtext}>
-          {mode === 'login'
-            ? 'Welcome back to the Tanaj Study Hub.'
-            : 'Sign up to save your progress to the Tanaj Study Hub.'}
+          {mode === 'login' ? t('login.welcomeBack') : t('login.signUpSubtitle')}
         </p>
 
         <form className={styles.form} onSubmit={handleSubmit}>
           {mode === 'signup' && (
             <label className={styles.label}>
-              Name
+              {t('login.name')}
               <input
                 className={styles.input}
                 type="text"
                 autoComplete="name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="Your name"
+                placeholder={t('login.namePlaceholder')}
               />
             </label>
           )}
           <label className={styles.label}>
-            Email
+            {t('login.email')}
             <input
               className={styles.input}
               type="email"
@@ -99,7 +99,7 @@ export default function Login() {
             />
           </label>
           <label className={styles.label}>
-            Password
+            {t('login.password')}
             <input
               className={styles.input}
               type="password"
@@ -114,11 +114,11 @@ export default function Login() {
           {info && <div className={styles.info}>{info}</div>}
 
           <button className="nav-btn" type="submit" disabled={busy}>
-            {busy ? 'Please wait…' : mode === 'login' ? 'Log In' : 'Sign Up'}
+            {busy ? t('login.pleaseWait') : mode === 'login' ? t('login.logInBtn') : t('login.signUpBtn')}
           </button>
         </form>
 
-        <div className={styles.divider}><span>or</span></div>
+        <div className={styles.divider}><span>{t('login.or')}</span></div>
 
         <button
           type="button"
@@ -126,7 +126,7 @@ export default function Login() {
           onClick={() => {
             setError('');
             if (!isConfigured) {
-              setError('Login is not configured. Add your Supabase keys to the .env file.');
+              setError(t('login.errNotConfigured'));
               return;
             }
             signInWithGoogle();
@@ -138,13 +138,13 @@ export default function Login() {
             <path fill="#FBBC05" d="M3.97 10.72A5.4 5.4 0 0 1 3.68 9c0-.6.1-1.18.29-1.72V4.95H.96A9 9 0 0 0 0 9c0 1.45.35 2.83.96 4.05l3.01-2.33z"/>
             <path fill="#EA4335" d="M9 3.58c1.32 0 2.5.45 3.44 1.35l2.58-2.58C13.47.9 11.43 0 9 0A9 9 0 0 0 .96 4.95l3.01 2.33C4.68 5.16 6.66 3.58 9 3.58z"/>
           </svg>
-          Sign in with Google
+          {t('login.signInGoogle')}
         </button>
 
         <div className={styles.toggle}>
           {mode === 'login' ? (
             <>
-              Don&apos;t have an account?{' '}
+              {t('login.noAccount')}{' '}
               <button
                 className={styles.linkBtn}
                 onClick={() => {
@@ -153,12 +153,12 @@ export default function Login() {
                   setInfo('');
                 }}
               >
-                Sign up
+                {t('login.signUpLink')}
               </button>
             </>
           ) : (
             <>
-              Already have an account?{' '}
+              {t('login.haveAccount')}{' '}
               <button
                 className={styles.linkBtn}
                 onClick={() => {
@@ -167,7 +167,7 @@ export default function Login() {
                   setInfo('');
                 }}
               >
-                Log in
+                {t('login.logInLink')}
               </button>
             </>
           )}

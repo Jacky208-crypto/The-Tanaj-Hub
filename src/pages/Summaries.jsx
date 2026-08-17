@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
 import styles from './Summaries.module.css';
 
 const torahBooks = ['Bereshit', 'Shemot', 'Vaikra', 'Bamidbar', 'Devarim'];
@@ -10,20 +11,21 @@ const neviimBooks = ['Yehoshua', 'Shoftim', 'Shmuel Alef', 'Shmuel Bet', 'Melaji
 
 export default function Summaries() {
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   return (
     <div className={styles.page}>
-      <h1 className={styles.title}>Helpful Notes</h1>
-      
+      <h1 className={styles.title}>{t('summaries.title')}</h1>
 
-      <p className={styles.comingSoon}>📖 Notes coming soon!</p>
+
+      <p className={styles.comingSoon}>{t('summaries.comingSoon')}</p>
 
       <button
         className="nav-btn"
         style={{ display: 'block', margin: '30px auto 0', backgroundColor: '#444' }}
         onClick={() => navigate('/')}
       >
-        ← Home
+        {t('nav.home')}
       </button>
     </div>
   );

@@ -2,6 +2,7 @@ import { Analytics } from "@vercel/analytics/react"
 import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import { LanguageProvider } from './context/LanguageContext';
 import Home from './pages/Home';
 import Torah from './pages/Torah';
 import Neviim from './pages/Neviim';
@@ -20,6 +21,7 @@ const MapPage = lazy(() => import('./pages/MapPage'));
 export default function App() {
   return (
     <>
+      <LanguageProvider>
       <AuthProvider>
         <BrowserRouter>
           <Routes>
@@ -44,6 +46,7 @@ export default function App() {
           </Routes>
         </BrowserRouter>
       </AuthProvider>
+      </LanguageProvider>
 
       <Analytics />
     </>

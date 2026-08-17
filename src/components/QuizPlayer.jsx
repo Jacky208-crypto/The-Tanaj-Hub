@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
 import styles from './QuizPlayer.module.css';
 import { useAuth } from '../context/AuthContext';
+import { useLanguage } from '../context/LanguageContext';
 import { saveQuizAttempt } from '../lib/supabaseClient';
 
 function shuffleAndPick(arr, n) {
@@ -20,11 +21,12 @@ function shuffleAndPick(arr, n) {
 
 export default function QuizPlayer({ quiz, onBack }) {
   const { user } = useAuth();
+  const { language: uiLanguage, t } = useLanguage();
   const [index, setIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [flash, setFlash] = useState(null);
   const [flashOption, setFlashOption] = useState(null);
-  const [language, setLanguage] = useState('english');
+  const [language, setLanguage] = useState(uiLanguage);
   const [sessionKey, setSessionKey] = useState(0);
   const [wrongAnswer, setWrongAnswer] = useState(null);
   const [saveState, setSaveState] = useState('idle'); // idle | saving | saved | error
@@ -127,27 +129,27 @@ export default function QuizPlayer({ quiz, onBack }) {
 
         {finished ? (
           <>
-            <p className={styles.question}>Quiz Finished! 🎉</p>
+            <p className={styles.question}>{t('quizPlayer.finished')}</p>
             <p className={styles.score}>
-              Final Score: {score} / {questions.length}
+              {t('quizPlayer.finalScore', { score, total: questions.length })}
             </p>
             {user ? (
               <p style={{ textAlign: 'center', fontSize: '0.9rem', color: '#666', margin: '0.25rem 0 0.75rem' }}>
                 {saveState === 'saving' && ''}
                 {saveState === 'saved' && ' '}
-                {saveState === 'error' && 'Could not save your score.'}
+                {saveState === 'error' && t('quizPlayer.couldNotSave')}
               </p>
             ) : (
               <p style={{ textAlign: 'center', fontSize: '0.9rem', color: '#666', margin: '0.25rem 0 0.75rem' }}>
-                Log in to save your scores and track progress.
+                {t('quizPlayer.logInToSave')}
               </p>
             )}
             <button className={styles.restartBtn} onClick={restart}>
-              Play Again
+              {t('quizPlayer.playAgain')}
             </button>
             {onBack && (
               <button className={styles.backLink} onClick={onBack}>
-                ← Back to Quizzes
+                {t('quizPlayer.backToQuizzes')}
               </button>
             )}
           </>
@@ -188,12 +190,12 @@ export default function QuizPlayer({ quiz, onBack }) {
                 textAlign: 'center',
                 direction: language === 'hebrew' ? 'rtl' : 'ltr'
               }}>
-                ✗ Correct answer: {wrongAnswer}
+                {t('quizPlayer.correctAnswer', { answer: wrongAnswer })}
               </p>
             )}
 
             <p className={styles.score}>
-              Question {index + 1} / {questions.length} — Correct: {score}
+              {t('quizPlayer.progress', { i: index + 1, n: questions.length, score })}
             </p>
           </>
         )}

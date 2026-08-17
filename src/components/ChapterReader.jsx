@@ -1,4 +1,5 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
+import { useLanguage } from '../context/LanguageContext';
 import styles from './ChapterReader.module.css';
 
 const LANGUAGES = ['hebrew', 'english', 'spanish'];
@@ -106,6 +107,7 @@ async function fetchSpanishFromBolls(sefariaBookName, chapterNum) {
 }
 
 export default function ChapterReader({ book, initialChapter = null }) {
+  const { t } = useLanguage();
   const [activeChapter, setActiveChapter] = useState(null);
   const [hebrewVerses, setHebrewVerses] = useState([]);
   const [englishVerses, setEnglishVerses] = useState([]);
@@ -202,7 +204,7 @@ export default function ChapterReader({ book, initialChapter = null }) {
 
   return (
     <div className={styles.container}>
-      <p className={styles.selectLabel}>Select a Chapter:</p>
+      <p className={styles.selectLabel}>{t('chapterReader.selectChapter')}</p>
 
       <div className={styles.buttonGrid}>
         {Array.from({ length: book.chapters }, (_, i) => i + 1).map((num) => (
@@ -219,7 +221,7 @@ export default function ChapterReader({ book, initialChapter = null }) {
       {activeChapter && (
         <div className={styles.content}>
           <button className="back-btn" onClick={goBack}>
-            ← Back to Chapter Selection
+            {t('chapterReader.backToChapters')}
           </button>
 
           <div className={styles.langToggle}>
@@ -234,15 +236,15 @@ export default function ChapterReader({ book, initialChapter = null }) {
             ))}
           </div>
 
-          {loading && <p className={styles.loading}>Loading chapter...</p>}
-          {loadingSpanish && <p className={styles.loading}>Loading Spanish translation...</p>}
+          {loading && <p className={styles.loading}>{t('chapterReader.loadingChapter')}</p>}
+          {loadingSpanish && <p className={styles.loading}>{t('chapterReader.loadingSpanish')}</p>}
 
           {error && (
             <div className={styles.error}>
-              <p>Error loading chapter {activeChapter}</p>
+              <p>{t('chapterReader.errorLoading', { chapter: activeChapter })}</p>
               <p>{error}</p>
               <button className="chapter-btn" onClick={() => loadChapter(activeChapter)}>
-                Try Again
+                {t('chapterReader.tryAgain')}
               </button>
             </div>
           )}
