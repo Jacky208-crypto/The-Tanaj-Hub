@@ -47,9 +47,9 @@ export default function Home() {
         <div className={styles.card}>
           <strong>{t('home.studyTexts')}</strong>
           <div className={styles.btnRow}>
-            <button className="nav-btn" onClick={() => navigate('/torah')}>Torah</button>
-            <button className="nav-btn" onClick={() => navigate('/neviim')}>Neviim</button>
-            <button className="nav-btn" onClick={() => navigate('/ketuvim')}>Ketuvim</button>
+            <button className="nav-btn" onClick={() => navigate('/torah')}>{t('torah.title')}</button>
+            <button className="nav-btn" onClick={() => navigate('/neviim')}>{t('neviim.title')}</button>
+            <button className="nav-btn" onClick={() => navigate('/ketuvim')}>{t('ketuvim.title')}</button>
           </div>
         </div>
       </div>

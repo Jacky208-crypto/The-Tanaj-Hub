@@ -311,7 +311,7 @@ export const translations = {
       logOut: 'התנתקות',
       logIn: 'התחברות',
       signUp: 'הרשמה',
-      subtitle: 'האתר Tanaj Hub הוא פלטפורמה אינטראקטיבית ללימוד התנ"ך עם חידונים וסיכומים',
+      subtitle: ' הוא פלטפורמה אינטראקטיבית ללימוד התנ"ך עם חידונים וסיכומים Tanaj Hub האתר',
       studyTexts: 'טקסטים ללימוד',
       practiceQuestions: 'שאלות תרגול',
       helpfulNotes: 'הערות מועילות',
@@ -321,17 +321,17 @@ export const translations = {
       languageLabel: 'שנה שפה',
     },
     torah: {
-      title: 'Torah',
+      title: 'תורה',
       subtext: 'התורה היא הטקסט היסודי של התנ"ך והיהדות.',
     },
     neviim: {
-      title: 'Neviim',
+      title: 'נביאים',
       subtext: 'ספרי הנביאים מתעדים כיצד ה\' דיבר באמצעות הנביאים כדי להנחות, להזהיר ולהשרות השראה על עם ישראל.',
       rishonim: 'Neviim Rishonim',
       ajaronim: 'Neviim Ajaronim',
     },
     ketuvim: {
-      title: 'Ketuvim',
+      title: 'כתובים',
       subtext: 'ספרי הכתובים משקפים את החוויות הרוחניות, הרגשיות והפילוסופיות של העם היהודי לאורך ההיסטוריה.',
     },
     quiz: {
