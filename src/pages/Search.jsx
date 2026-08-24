@@ -9,7 +9,7 @@ import { useLanguage } from '../context/LanguageContext';
 import styles from './Search.module.css';
 
 const LANGUAGES = ['hebrew', 'english', 'spanish'];
-const LANG_LABELS = { hebrew: 'Hebrew', english: 'English', spanish: 'Español' };
+const LANG_LABELS = { hebrew: 'עברית', english: 'English', spanish: 'Español' };
 
 const PLACEHOLDERS = {
   hebrew: 'חפש מילה…  (e.g. ברית)',
