@@ -64,6 +64,12 @@ function cleanVerse(text, lang) {
       .replace(/Hageo/g, 'Jagai')
       .replace(/Zacarías/g, 'Zejaria')
       .replace(/Malaquías/g, 'Malaji')
+      .replace(/Judá/g, 'Yehuda')
+      .replace(/Jerusalén/g, 'Yerushalaim')
+      .replace(/Baasa/g, 'Baasha')
+      .replace(/Acab/g, 'Ajab')
+      .replace(/Samaria/g, 'Shomron')
+      .replace(/Sansón/g, 'Shimshon')
   }
 
   return cleaned
