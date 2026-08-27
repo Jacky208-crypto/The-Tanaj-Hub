@@ -41,8 +41,8 @@ const TYPE_META = {
 const BASEMAPS = {
   map: {
     labelKey: 'map.basemapMap',
-    url: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
-    attribution: '&copy; OpenStreetMap &copy; CARTO',
+    url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    attribution: '&copy; OpenStreetMap contributors',
   },
   terrain: {
     labelKey: 'map.basemapTerrain',
