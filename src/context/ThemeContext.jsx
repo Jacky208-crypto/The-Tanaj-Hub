@@ -24,10 +24,7 @@ function getInitialTheme() {
   if (typeof window === 'undefined') return 'light';
   const stored = window.localStorage.getItem(STORAGE_KEY);
   if (THEMES.includes(stored)) return stored;
-  // No saved preference yet — respect the OS/browser preference for light vs dark.
-  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    return 'dark-navy';
-  }
+  // No saved preference yet — default to light mode for new visitors.
   return 'light';
 }
 

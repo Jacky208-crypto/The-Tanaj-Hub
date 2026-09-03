@@ -153,9 +153,9 @@ export const translations = {
     },
     theme: {
       light: 'Light',
-      darkNavy: 'Dark — Navy & Gold',
-      darkCharcoal: 'Dark — Charcoal & Cream',
-      sepia: 'Sepia',
+      darkNavy: 'Dark-Navy',
+      darkCharcoal: 'Dark-Charcoal',
+      sepia: 'Cream',
     },
   },
 

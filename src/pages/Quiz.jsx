@@ -239,7 +239,7 @@ export default function Quiz() {
                 </strong>
               </div>
             ))}
-          </div>
+          </div> 
 
           <h3 style={{ margin: '1rem 0 0.25rem', fontSize: '1rem' }}>{t('quiz.recentAttempts')}</h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
