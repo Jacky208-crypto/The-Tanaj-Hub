@@ -4,12 +4,6 @@
   padding: 0;
 }
 
-/* ---------------------------------------------------------------
-   Theme variables. :root / [data-theme="light"] is the default
-   (original) palette. Each additional [data-theme] block overrides
-   the same variable names so every component can just use var(...)
-   instead of a hardcoded color.
------------------------------------------------------------------- */
 :root,
 [data-theme='light'] {
   --bg-page: #fef6e4;
