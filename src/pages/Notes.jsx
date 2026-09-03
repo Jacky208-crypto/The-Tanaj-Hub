@@ -45,8 +45,8 @@ function NoteEditor({ language, title, body, onTitle, onBody, onSave, onCancel, 
         placeholder={language === 'spanish' ? 'Título' : 'Title'}
         style={{
           width: '100%', padding: '0.6rem 0.75rem', marginBottom: '0.6rem',
-          border: '1px solid #d8dee8', borderRadius: '8px', fontSize: '1rem',
-          boxSizing: 'border-box',
+          border: '1px solid var(--border)', borderRadius: '8px', fontSize: '1rem',
+          boxSizing: 'border-box', background: 'var(--bg-elevated)', color: 'var(--text-primary)',
         }}
       />
       <textarea
@@ -56,12 +56,13 @@ function NoteEditor({ language, title, body, onTitle, onBody, onSave, onCancel, 
         rows={5}
         style={{
           width: '100%', padding: '0.6rem 0.75rem',
-          border: '1px solid #d8dee8', borderRadius: '8px', fontSize: '1rem',
+          border: '1px solid var(--border)', borderRadius: '8px', fontSize: '1rem',
           resize: 'vertical', boxSizing: 'border-box', fontFamily: 'inherit',
+          background: 'var(--bg-elevated)', color: 'var(--text-primary)',
         }}
       />
       {error && (
-        <p style={{ color: '#e74c3c', fontSize: '0.9rem', marginTop: '0.5rem' }}>{error}</p>
+        <p style={{ color: 'var(--danger)', fontSize: '0.9rem', marginTop: '0.5rem' }}>{error}</p>
       )}
       <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.75rem' }}>
         <button
@@ -74,7 +75,7 @@ function NoteEditor({ language, title, body, onTitle, onBody, onSave, onCancel, 
         <button
           onClick={onCancel}
           style={{
-            background: 'transparent', border: '1px solid #d8dee8',
+            background: 'transparent', border: '1px solid var(--border)', color: 'var(--text-primary)',
             borderRadius: '8px', padding: '0.4rem 1rem', cursor: 'pointer',
           }}
         >
@@ -1086,7 +1087,7 @@ export default function Notes() {
               )}
 
               {myNotes.length === 0 && !adding ? (
-                <p className={styles.cardText} style={{ textAlign: 'center', color: '#888' }}>
+                <p className={styles.cardText} style={{ textAlign: 'center', color: 'var(--text-muted)' }}>
                   {language === 'spanish'
                     ? 'Aún no tienes apuntes. ¡Añade el primero!'
                     : 'No notes yet. Add your first one!'}

@@ -1,5 +1,6 @@
 .page {
-  background-color: #fef6e4;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
   min-height: 100vh;
   padding: 40px 24px 60px;
 }
@@ -13,7 +14,7 @@
 
 .subtext {
   text-align: center;
-  color: #555;
+  color: var(--text-secondary);
   font-size: 14px;
   margin-bottom: 20px;
 }
@@ -27,18 +28,18 @@
 
 .langBtn {
   padding: 8px 18px;
-  border: 2px solid rgb(3, 0, 56);
-  background: white;
-  color: rgb(3, 0, 56);
+  border: 2px solid var(--accent);
+  background: var(--bg-card);
+  color: var(--accent);
   border-radius: 20px;
   cursor: pointer;
   font-size: 14px;
   transition: background 0.15s, color 0.15s;
 }
-.langBtn:hover { background: #eee; }
+.langBtn:hover { background: var(--bg-hover); }
 .langActive {
-  background: rgb(3, 0, 56);
-  color: white;
+  background: var(--accent);
+  color: var(--accent-text);
 }
 
 .searchBar {
@@ -52,16 +53,18 @@
 .input {
   flex: 1;
   padding: 11px 14px;
-  border: 2px solid #333;
+  border: 2px solid var(--border-strong);
   border-radius: 6px;
   font-size: 16px;
   outline: none;
+  background: var(--bg-elevated);
+  color: var(--text-primary);
 }
-.input:focus { border-color: rgb(3, 0, 56); }
+.input:focus { border-color: var(--accent); }
 
 .searchBtn {
-  background-color: rgb(3, 0, 56);
-  color: white;
+  background-color: var(--accent);
+  color: var(--accent-text);
   border: none;
   padding: 0 24px;
   border-radius: 6px;
@@ -78,7 +81,7 @@
   justify-content: center;
   gap: 6px;
   font-size: 13px;
-  color: #444;
+  color: var(--text-secondary);
   margin-bottom: 4px;
   cursor: pointer;
 }
@@ -86,19 +89,19 @@
 .editionNote {
   text-align: center;
   font-size: 12px;
-  color: #999;
+  color: var(--text-muted);
   margin-bottom: 24px;
 }
 
 .status {
   text-align: center;
-  color: #555;
+  color: var(--text-secondary);
   margin: 20px 0;
 }
 
 .error {
   text-align: center;
-  color: #b00020;
+  color: var(--danger);
   margin: 20px auto;
   max-width: 520px;
 }
@@ -106,7 +109,7 @@
 .count {
   text-align: center;
   font-size: 15px;
-  color: #333;
+  color: var(--text-secondary);
   margin-bottom: 20px;
 }
 
@@ -124,9 +127,9 @@
   gap: 6px;
   width: 100%;
   text-align: left;
-  background: white;
-  border: 1px solid #e3d9c2;
-  border-left: 4px solid rgb(3, 0, 56);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
   border-radius: 8px;
   padding: 12px 16px;
   cursor: pointer;
@@ -134,24 +137,24 @@
   transition: box-shadow 0.15s, transform 0.05s;
 }
 .result:hover {
-  box-shadow: 3px 3px 10px rgba(3, 0, 56, 0.18);
+  box-shadow: 3px 3px 10px var(--accent-soft);
 }
 .result:active { transform: translateY(1px); }
 
 .ref {
   font-weight: bold;
   font-size: 13px;
-  color: rgb(3, 0, 56);
+  color: var(--accent);
 }
 
 .verse {
   font-size: 17px;
   line-height: 1.6;
-  color: #111;
+  color: var(--text-primary);
 }
 
 .mark {
-  background: #ffe27a;
+  background: var(--highlight);
   color: #111;
   border-radius: 3px;
   padding: 0 2px;

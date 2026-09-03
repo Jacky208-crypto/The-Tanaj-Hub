@@ -1,5 +1,6 @@
 .page {
-  background-color: #fef6e4;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
   min-height: 100vh;
   padding: 24px;
 }

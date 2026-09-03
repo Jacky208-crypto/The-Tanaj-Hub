@@ -1,128 +1,112 @@
 .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem;
-  }
-  
-  .title {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-  
-  .topicBar {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
-  }
-  
-  .topicBtn {
-    padding: 0.5rem 1.2rem;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    background: #eee;
-    font-size: 1rem;
-  }
-  
-  .active {
-    background: #4a90e2;
-    color: white;
-  }
-  
-  .entries {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .card {
-    padding: 1.2rem;
-    border-radius: 10px;
-    border: 1px solid #ddd;
-    background: white;
-  }
-  
-  .cardTitle {
-    margin: 0 0 0.5rem 0;
-    font-size: 1.1rem;
-  }
-  
-  .cardText {
-    margin: 0;
-    color: #555;
-    line-height: 1.6;
-    white-space: pre-line;
-  }
-  .tableWrapper {
-    overflow-x: auto;
-  }
-  
-  .table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.9rem;
-  }
-  
-  .table th, .table td {
-    border: 1px solid #ddd;
-    padding: 0.5rem 0.8rem;
-    text-align: left;
-  }
-  
-  .table th {
-    background: #f0f0f0;
-    font-weight: bold;
-  }
-  
-  .table tr:nth-child(even) {
-    background: #fafafa;
-  }
-  .langToggle {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    justify-content: center;
-  }
-  
-  .langBtn {
-    padding: 0.4rem 1.2rem;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    background: #eee;
-    font-size: 0.95rem;
-  }
-  
-  .langActive {
-    background: #4a90e2;
-    color: white;
-  }
-  
-  .loading {
-    text-align: center;
-    color: #888;
-  }
-  .langToggle {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    justify-content: center;
-  }
-  
-  .langBtn {
-    padding: 0.4rem 1.2rem;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    background: #eee;
-    font-size: 0.95rem;
-  }
-  
-  .langActive {
-    background: #4a90e2;
-    color: white;
-  }
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  color: var(--text-primary);
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.topicBar {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.topicBtn {
+  padding: 0.5rem 1.2rem;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  background: var(--bg-hover);
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+.active {
+  background: var(--accent2);
+  color: var(--accent2-text);
+}
+
+.entries {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.card {
+  padding: 1.2rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+}
+
+.cardTitle {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.cardText {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  white-space: pre-line;
+}
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.table th, .table td {
+  border: 1px solid var(--border);
+  padding: 0.5rem 0.8rem;
+  text-align: left;
+}
+
+.table th {
+  background: var(--bg-hover);
+  font-weight: bold;
+}
+
+.table tr:nth-child(even) {
+  background: var(--bg-elevated);
+}
+.langToggle {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  justify-content: center;
+}
+
+.langBtn {
+  padding: 0.4rem 1.2rem;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  background: var(--bg-hover);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+}
+
+.langActive {
+  background: var(--accent2);
+  color: var(--accent2-text);
+}
+
+.loading {
+  text-align: center;
+  color: var(--text-muted);
+}
+
 /* Icon buttons for editing / deleting personal notes */
 .iconBtn {
   background: transparent;
@@ -133,7 +117,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 8px;
-  color: #8a94a6;
+  color: var(--text-muted);
   transition: color 0.15s ease, background 0.15s ease, transform 0.1s ease;
 }
 
@@ -148,11 +132,11 @@
 }
 
 .editBtn:hover {
-  color: #4a90e2;
-  background: #eaf2fc;
+  color: var(--accent2);
+  background: var(--accent-softer);
 }
 
 .deleteBtn:hover {
-  color: #e74c3c;
-  background: #fdecea;
+  color: var(--danger);
+  background: var(--danger-bg);
 }

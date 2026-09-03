@@ -4,15 +4,179 @@
   padding: 0;
 }
 
+/* ---------------------------------------------------------------
+   Theme variables. :root / [data-theme="light"] is the default
+   (original) palette. Each additional [data-theme] block overrides
+   the same variable names so every component can just use var(...)
+   instead of a hardcoded color.
+------------------------------------------------------------------ */
+:root,
+[data-theme='light'] {
+  --bg-page: #fef6e4;
+  --bg-card: #ffffff;
+  --bg-elevated: #ffffff;
+  --bg-hover: #f0f0f0;
+
+  --text-primary: #111111;
+  --text-secondary: rgb(40, 40, 40);
+  --text-muted: #8a8a8a;
+  --text-faint: #9a927e;
+
+  --accent: rgb(3, 0, 56);
+  --accent-text: #ffffff;
+  --accent-soft: rgba(3, 0, 56, 0.12);
+  --accent-softer: rgba(3, 0, 56, 0.06);
+
+  --accent2: #4a90e2;
+  --accent2-text: #ffffff;
+
+  --border: #dddddd;
+  --border-strong: #333333;
+  --shadow: rgba(0, 0, 0, 0.1);
+
+  --danger: #d32f2f;
+  --danger-bg: #fde8e8;
+  --danger-text: #9b1c1c;
+  --success: #1e6b34;
+  --success-bg: #e6f4ea;
+  --highlight: #ffe27a;
+
+  --quiz-bg: rgb(82, 183, 206);
+  --quiz-card: rgb(69, 158, 174);
+  --quiz-text: #ffffff;
+  --quiz-btn-bg: #ffffff;
+  --quiz-btn-text: rgb(69, 158, 174);
+
+  color-scheme: light;
+}
+
+[data-theme='dark-navy'] {
+  --bg-page: #0a0a1f;
+  --bg-card: #14132f;
+  --bg-elevated: #1b1a3d;
+  --bg-hover: #22214a;
+
+  --text-primary: #f5e9c9;
+  --text-secondary: #d8cba8;
+  --text-muted: #a89c7a;
+  --text-faint: #8b8068;
+
+  --accent: #d4af37;
+  --accent-text: #0a0a1f;
+  --accent-soft: rgba(212, 175, 55, 0.18);
+  --accent-softer: rgba(212, 175, 55, 0.1);
+
+  --accent2: #d4af37;
+  --accent2-text: #0a0a1f;
+
+  --border: #2e2c55;
+  --border-strong: #d4af37;
+  --shadow: rgba(0, 0, 0, 0.55);
+
+  --danger: #ff6b6b;
+  --danger-bg: rgba(255, 107, 107, 0.15);
+  --danger-text: #ffb3b3;
+  --success: #6fcf97;
+  --success-bg: rgba(111, 207, 151, 0.15);
+  --highlight: #d4af37;
+
+  --quiz-bg: #14132f;
+  --quiz-card: #1b1a3d;
+  --quiz-text: #f5e9c9;
+  --quiz-btn-bg: #d4af37;
+  --quiz-btn-text: #0a0a1f;
+
+  color-scheme: dark;
+}
+
+[data-theme='dark-charcoal'] {
+  --bg-page: #1e1e1e;
+  --bg-card: #2a2a2a;
+  --bg-elevated: #333333;
+  --bg-hover: #3a3a3a;
+
+  --text-primary: #f5f0e6;
+  --text-secondary: #cfc9ba;
+  --text-muted: #9a9488;
+  --text-faint: #8a8478;
+
+  --accent: #8b93ff;
+  --accent-text: #17172b;
+  --accent-soft: rgba(139, 147, 255, 0.18);
+  --accent-softer: rgba(139, 147, 255, 0.1);
+
+  --accent2: #8b93ff;
+  --accent2-text: #17172b;
+
+  --border: #444444;
+  --border-strong: #8b93ff;
+  --shadow: rgba(0, 0, 0, 0.55);
+
+  --danger: #ff6b6b;
+  --danger-bg: rgba(255, 107, 107, 0.15);
+  --danger-text: #ffb3b3;
+  --success: #6fcf97;
+  --success-bg: rgba(111, 207, 151, 0.15);
+  --highlight: #e0c341;
+
+  --quiz-bg: #232323;
+  --quiz-card: #2f2f2f;
+  --quiz-text: #f5f0e6;
+  --quiz-btn-bg: #8b93ff;
+  --quiz-btn-text: #17172b;
+
+  color-scheme: dark;
+}
+
+[data-theme='sepia'] {
+  --bg-page: #f0e6d2;
+  --bg-card: #f7efdc;
+  --bg-elevated: #ede0c4;
+  --bg-hover: #e5d6b3;
+
+  --text-primary: #4a3728;
+  --text-secondary: #6b5541;
+  --text-muted: #8a7860;
+  --text-faint: #9c8a6e;
+
+  --accent: #8b5e28;
+  --accent-text: #fdf6e8;
+  --accent-soft: rgba(139, 94, 40, 0.15);
+  --accent-softer: rgba(139, 94, 40, 0.08);
+
+  --accent2: #8b5e28;
+  --accent2-text: #fdf6e8;
+
+  --border: #d8c7a0;
+  --border-strong: #8b5e28;
+  --shadow: rgba(74, 55, 40, 0.2);
+
+  --danger: #b3452c;
+  --danger-bg: rgba(179, 69, 44, 0.12);
+  --danger-text: #7a2e1c;
+  --success: #4c7c3f;
+  --success-bg: rgba(76, 124, 63, 0.12);
+  --highlight: #e2b23a;
+
+  --quiz-bg: #e5d6b3;
+  --quiz-card: #ede0c4;
+  --quiz-text: #4a3728;
+  --quiz-btn-bg: #8b5e28;
+  --quiz-btn-text: #fdf6e8;
+
+  color-scheme: light;
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #fef6e4;
-  color: #111;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .nav-btn {
-  background-color: rgb(3, 0, 56);
-  color: white;
+  background-color: var(--accent);
+  color: var(--accent-text);
   border: none;
   padding: 9px 33px;
   border-radius: 5px;
@@ -24,24 +188,25 @@ body {
 }
 .nav-btn:hover {
   opacity: 0.7;
-  box-shadow: 4px 4px 10px rgba(3, 0, 56, 0.6);
+  box-shadow: 4px 4px 10px var(--shadow);
 }
 
 .chapter-btn {
   padding: 10px 15px;
-  border: 2px solid #333;
-  background: white;
+  border: 2px solid var(--border-strong);
+  background: var(--bg-card);
+  color: var(--text-primary);
   cursor: pointer;
   border-radius: 5px;
   font-size: 14px;
   transition: background 0.15s;
 }
-.chapter-btn:hover { background: #f0f0f0; }
-.chapter-btn.active { background: #333; color: white; }
+.chapter-btn:hover { background: var(--bg-hover); }
+.chapter-btn.active { background: var(--accent); color: var(--accent-text); border-color: var(--accent); }
 
 .back-btn {
-  background: #666;
-  color: white;
+  background: var(--text-muted);
+  color: var(--accent-text);
   border: none;
   padding: 8px 16px;
   border-radius: 5px;
@@ -49,4 +214,4 @@ body {
   margin-bottom: 15px;
   font-size: 14px;
 }
-.back-btn:hover { background: #555; }
+.back-btn:hover { opacity: 0.85; }

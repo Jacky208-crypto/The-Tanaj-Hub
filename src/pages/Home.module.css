@@ -1,5 +1,5 @@
 .page {
-  background-color: #fef6e4;
+  background-color: var(--bg-page);
   min-height: 100vh;
   padding-bottom: 60px;
 }
@@ -12,6 +12,12 @@
   min-height: 32px;
 }
 
+.topBarLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .authBar {
   display: flex;
   align-items: center;
@@ -21,12 +27,12 @@
 
 .welcome {
   font-size: 13px;
-  color: rgb(40, 40, 40);
+  color: var(--text-secondary);
 }
 
 .authBtn {
-  background-color: rgb(3, 0, 56);
-  color: white;
+  background-color: var(--accent);
+  color: var(--accent-text);
   border: none;
   padding: 7px 18px;
   border-radius: 5px;
@@ -51,7 +57,7 @@
 .subtext {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 12px;
-  color: rgb(40, 40, 40);
+  color: var(--text-secondary);
   margin-top: 3px;
 }
 
@@ -65,10 +71,11 @@
 }
 
 .card {
-  background-color: white;
+  background-color: var(--bg-card);
+  color: var(--text-primary);
   border-radius: 10px;
   padding: 20px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px var(--shadow);
   min-width: 220px;
   text-align: center;
 }

@@ -3,6 +3,7 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+  color: var(--text-primary);
 }
 
 .selectLabel {
@@ -19,7 +20,7 @@
 }
 
 .content {
-  border-top: 2px solid #333;
+  border-top: 2px solid var(--border-strong);
   padding-top: 20px;
 }
 
@@ -37,7 +38,7 @@
 
 .verseNumber {
   font-weight: bold;
-  color: #666;
+  color: var(--text-muted);
   margin-right: 8px;
 }
 
@@ -50,33 +51,34 @@
 
 .langBtn {
   padding: 8px 18px;
-  border: 2px solid #333;
+  border: 2px solid var(--border-strong);
   border-radius: 20px;
-  background: white;
+  background: var(--bg-card);
+  color: var(--text-primary);
   cursor: pointer;
   font-size: 14px;
   transition: all 0.15s;
 }
 
 .langBtn:hover {
-  background: #f0f0f0;
+  background: var(--bg-hover);
 }
 
 .langActive {
-  background: rgb(3, 0, 56);
-  color: white;
-  border-color: rgb(3, 0, 56);
+  background: var(--accent);
+  color: var(--accent-text);
+  border-color: var(--accent);
 }
 
 .loading {
   text-align: center;
   font-style: italic;
-  color: #666;
+  color: var(--text-muted);
   padding: 40px;
 }
 
 .error {
   text-align: center;
-  color: #d32f2f;
+  color: var(--danger);
   padding: 40px;
 }

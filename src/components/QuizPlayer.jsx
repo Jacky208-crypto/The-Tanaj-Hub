@@ -118,8 +118,8 @@ export default function QuizPlayer({ quiz, onBack }) {
                 borderRadius: '20px',
                 border: 'none',
                 cursor: 'pointer',
-                background: language === lang ? '#4a90e2' : '#eee',
-                color: language === lang ? 'white' : 'black',
+                background: language === lang ? 'var(--accent2)' : 'var(--bg-hover)',
+                color: language === lang ? 'var(--accent2-text)' : 'var(--text-primary)',
               }}
             >
               {lang === 'english' ? 'English' : lang === 'spanish' ? 'Español' : 'עברית'}
@@ -134,13 +134,13 @@ export default function QuizPlayer({ quiz, onBack }) {
               {t('quizPlayer.finalScore', { score, total: questions.length })}
             </p>
             {user ? (
-              <p style={{ textAlign: 'center', fontSize: '0.9rem', color: '#666', margin: '0.25rem 0 0.75rem' }}>
+              <p style={{ textAlign: 'center', fontSize: '0.9rem', color: 'var(--quiz-text)', margin: '0.25rem 0 0.75rem' }}>
                 {saveState === 'saving' && ''}
                 {saveState === 'saved' && ' '}
                 {saveState === 'error' && t('quizPlayer.couldNotSave')}
               </p>
             ) : (
-              <p style={{ textAlign: 'center', fontSize: '0.9rem', color: '#666', margin: '0.25rem 0 0.75rem' }}>
+              <p style={{ textAlign: 'center', fontSize: '0.9rem', color: 'var(--quiz-text)', margin: '0.25rem 0 0.75rem' }}>
                 {t('quizPlayer.logInToSave')}
               </p>
             )}
@@ -185,7 +185,7 @@ export default function QuizPlayer({ quiz, onBack }) {
             {wrongAnswer && (
               <p style={{
                 marginTop: '1rem',
-                color: '#e74c3c',
+                color: 'var(--danger)',
                 fontWeight: 'bold',
                 textAlign: 'center',
                 direction: language === 'hebrew' ? 'rtl' : 'ltr'

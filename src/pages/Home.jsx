@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import LanguageSwitcher from '../components/LanguageSwitcher';
+import ThemeSwitcher from '../components/ThemeSwitcher';
 import styles from './Home.module.css';
 
 export default function Home() {
@@ -12,7 +13,10 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <div className={styles.topBar}>
-        <LanguageSwitcher />
+        <div className={styles.topBarLeft}>
+          <LanguageSwitcher />
+          <ThemeSwitcher />
+        </div>
 
         <div className={styles.authBar}>
           {loading ? null : user ? (
@@ -82,7 +86,7 @@ export default function Home() {
           </div>
       </div>
 
-      <footer style={{ textAlign: 'center', padding: '2rem', color: '#888', fontSize: '0.85rem' }}>
+      <footer style={{ textAlign: 'center', padding: '2rem', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
   {t('home.footer')}
 </footer>
     </div>

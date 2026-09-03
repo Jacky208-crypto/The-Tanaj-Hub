@@ -17,7 +17,7 @@ export default function Torah() {
           </button>
         ))}
       </div>
-      <button className="nav-btn" style={{ marginTop: 30, backgroundColor: '#444' }} onClick={() => navigate('/')}>
+      <button className="nav-btn" style={{ marginTop: 30, backgroundColor: 'var(--text-muted)' }} onClick={() => navigate('/')}>
         {t('nav.home')}
       </button>
     </div>

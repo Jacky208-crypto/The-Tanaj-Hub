@@ -21,6 +21,7 @@ export const translations = {
       biblicalMap: 'Biblical Map',
       footer: 'Made by Jacky Fnounou',
       languageLabel: 'Change language',
+      themeLabel: 'Change theme',
     },
     torah: {
       title: 'Torah',
@@ -150,6 +151,12 @@ export const translations = {
       errorLoading: ({ chapter }) => `Error loading chapter ${chapter}`,
       tryAgain: 'Try Again',
     },
+    theme: {
+      light: 'Light',
+      darkNavy: 'Dark — Navy & Gold',
+      darkCharcoal: 'Dark — Charcoal & Cream',
+      sepia: 'Sepia',
+    },
   },
 
   spanish: {
@@ -170,6 +177,7 @@ export const translations = {
       biblicalMap: 'Mapa Bíblico',
       footer: 'Hecho por Jacky Fnounou',
       languageLabel: 'Cambiar idioma',
+      themeLabel: 'Cambiar tema',
     },
     torah: {
       title: 'Torah',
@@ -299,6 +307,12 @@ export const translations = {
       errorLoading: ({ chapter }) => `Error al cargar el capítulo ${chapter}`,
       tryAgain: 'Intentar de Nuevo',
     },
+    theme: {
+      light: 'Claro',
+      darkNavy: 'Oscuro — Azul Marino y Dorado',
+      darkCharcoal: 'Oscuro — Carbón y Crema',
+      sepia: 'Sepia',
+    },
   },
 
   hebrew: {
@@ -319,6 +333,7 @@ export const translations = {
       biblicalMap: 'מפה מקראית',
       footer: 'נוצר על ידי ג\'קי פנונו',
       languageLabel: 'שנה שפה',
+      themeLabel: 'שנה ערכת נושא',
     },
     torah: {
       title: 'תורה',
@@ -447,6 +462,12 @@ export const translations = {
       loadingSpanish: '...טוען תרגום לספרדית',
       errorLoading: ({ chapter }) => `שגיאה בטעינת פרק ${chapter}`,
       tryAgain: 'נסה שוב',
+    },
+    theme: {
+      light: 'בהיר',
+      darkNavy: 'כהה — כחול נייבי וזהב',
+      darkCharcoal: 'כהה — פחם וקרם',
+      sepia: 'ספיה',
     },
   },
 };

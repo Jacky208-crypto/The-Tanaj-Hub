@@ -20,7 +20,7 @@ class MapErrorBoundary extends Component {
   render() {
     if (this.state.err) {
       return (
-        <pre style={{ padding: 20, whiteSpace: 'pre-wrap', color: '#b91c1c', fontSize: 12 }}>
+        <pre style={{ padding: 20, whiteSpace: 'pre-wrap', color: 'var(--danger)', fontSize: 12 }}>
           {String(this.state.err && this.state.err.stack || this.state.err)}
         </pre>
       );

@@ -3,6 +3,7 @@ import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { LanguageProvider } from './context/LanguageContext';
+import { ThemeProvider } from './context/ThemeContext';
 import Home from './pages/Home';
 import Torah from './pages/Torah';
 import Neviim from './pages/Neviim';
@@ -21,6 +22,7 @@ const MapPage = lazy(() => import('./pages/MapPage'));
 export default function App() {
   return (
     <>
+      <ThemeProvider>
       <LanguageProvider>
       <AuthProvider>
         <BrowserRouter>
@@ -47,6 +49,7 @@ export default function App() {
         </BrowserRouter>
       </AuthProvider>
       </LanguageProvider>
+      </ThemeProvider>
 
       <Analytics />
     </>

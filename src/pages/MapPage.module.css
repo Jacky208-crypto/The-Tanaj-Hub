@@ -2,7 +2,8 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background: #fef6e4;
+  background: var(--bg-page);
+  color: var(--text-primary);
 }
 
 .header {
@@ -10,18 +11,18 @@
   align-items: center;
   gap: 16px;
   padding: 12px 20px;
-  border-bottom: 2px solid rgba(3, 0, 56, 0.12);
+  border-bottom: 2px solid var(--accent-soft);
   flex: 0 0 auto;
 }
 .title {
   font-size: 1.3rem;
-  color: rgb(3, 0, 56);
+  color: var(--accent);
   margin: 0;
 }
 .count {
   margin-left: auto;
   font-size: 0.85rem;
-  color: #6b6350;
+  color: var(--text-faint);
 }
 
 .body {
@@ -36,7 +37,7 @@
   flex: 0 0 320px;
   padding: 16px;
   overflow-y: auto;
-  border-right: 2px solid rgba(3, 0, 56, 0.12);
+  border-right: 2px solid var(--accent-soft);
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -45,19 +46,20 @@
 .searchInput {
   width: 100%;
   padding: 9px 12px;
-  border: 2px solid rgba(3, 0, 56, 0.25);
+  border: 2px solid var(--accent-soft);
   border-radius: 6px;
   font-size: 14px;
-  background: #fff;
+  background: var(--bg-elevated);
+  color: var(--text-primary);
 }
-.searchInput:focus { outline: none; border-color: rgb(3, 0, 56); }
+.searchInput:focus { outline: none; border-color: var(--accent); }
 
 .filterGroup { display: flex; flex-direction: column; gap: 8px; }
 .filterLabel {
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: #6b6350;
+  color: var(--text-faint);
   font-weight: 700;
 }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -66,19 +68,19 @@
   align-items: center;
   gap: 6px;
   padding: 5px 10px;
-  border: 1.5px solid rgba(3, 0, 56, 0.25);
+  border: 1.5px solid var(--accent-soft);
   border-radius: 999px;
-  background: #fff;
-  color: rgb(3, 0, 56);
+  background: var(--bg-elevated);
+  color: var(--accent);
   font-size: 12px;
   cursor: pointer;
   transition: background 0.12s, border-color 0.12s;
 }
-.chip:hover { border-color: rgb(3, 0, 56); }
+.chip:hover { border-color: var(--accent); }
 .chipOn {
-  background: rgb(3, 0, 56);
-  color: #fff;
-  border-color: rgb(3, 0, 56);
+  background: var(--accent);
+  color: var(--accent-text);
+  border-color: var(--accent);
 }
 .dot {
   width: 10px;
@@ -86,23 +88,24 @@
   border-radius: 50%;
   display: inline-block;
   flex: 0 0 auto;
-  border: 1px solid rgba(0,0,0,0.15);
+  border: 1px solid var(--shadow);
 }
 
 .select {
   width: 100%;
   padding: 8px 10px;
-  border: 2px solid rgba(3, 0, 56, 0.25);
+  border: 2px solid var(--accent-soft);
   border-radius: 6px;
   font-size: 14px;
-  background: #fff;
+  background: var(--bg-elevated);
+  color: var(--text-primary);
 }
 
 .clearBtn {
   align-self: flex-start;
   background: none;
   border: none;
-  color: #b91c1c;
+  color: var(--danger);
   font-size: 13px;
   cursor: pointer;
   text-decoration: underline;
@@ -114,7 +117,7 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  border-top: 1px solid rgba(3, 0, 56, 0.12);
+  border-top: 1px solid var(--accent-soft);
 }
 .resultItem {
   display: flex;
@@ -122,14 +125,14 @@
   gap: 8px;
   padding: 7px 4px;
   cursor: pointer;
-  border-bottom: 1px solid rgba(3, 0, 56, 0.08);
+  border-bottom: 1px solid var(--accent-softer);
   font-size: 13px;
 }
-.resultItem:hover { background: rgba(3, 0, 56, 0.05); }
-.resultOn { background: rgba(3, 0, 56, 0.1); }
-.resultName { color: #111; font-weight: 600; }
-.resultType { margin-left: auto; color: #9a927e; font-size: 11px; text-transform: capitalize; }
-.empty { padding: 16px 4px; color: #9a927e; font-size: 13px; }
+.resultItem:hover { background: var(--accent-softer); }
+.resultOn { background: var(--accent-soft); }
+.resultName { color: var(--text-primary); font-weight: 600; }
+.resultType { margin-left: auto; color: var(--text-faint); font-size: 11px; text-transform: capitalize; }
+.empty { padding: 16px 4px; color: var(--text-faint); font-size: 13px; }
 
 /* ---- Map ---- */
 .mapWrap { flex: 1 1 auto; position: relative; min-width: 0; }
@@ -153,23 +156,26 @@
   z-index: 1000;
   display: flex;
   gap: 0;
-  background: #fff;
+  background: var(--bg-elevated);
   border-radius: 6px;
   overflow: hidden;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.3);
+  box-shadow: 0 1px 6px var(--shadow);
 }
 .basemapBtn {
   border: none;
-  background: #fff;
-  color: rgb(3, 0, 56);
+  background: var(--bg-elevated);
+  color: var(--accent);
   padding: 6px 12px;
   font-size: 12px;
   cursor: pointer;
 }
-.basemapBtn:not(:last-child) { border-right: 1px solid rgba(0,0,0,0.12); }
-.basemapOn { background: rgb(3, 0, 56); color: #fff; }
+.basemapBtn:not(:last-child) { border-right: 1px solid var(--border); }
+.basemapOn { background: var(--accent); color: var(--accent-text); }
 
-/* ---- Popup ---- */
+/* ---- Popup ----
+   Leaflet renders popups outside our themed root, in its own light-chrome
+   container, so these stay on fixed light colors to remain legible against
+   the map tiles regardless of the active app theme. */
 .popup { font-family: Arial, sans-serif; min-width: 180px; max-width: 240px; }
 .popupHead { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
 .popupHead strong { font-size: 15px; color: rgb(3, 0, 56); }
@@ -209,6 +215,6 @@
     flex: 0 0 auto;
     max-height: 42vh;
     border-right: none;
-    border-bottom: 2px solid rgba(3, 0, 56, 0.12);
+    border-bottom: 2px solid var(--accent-soft);
   }
 }

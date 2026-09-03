@@ -1,5 +1,5 @@
 .page {
-  background-color: #fef6e4;
+  background-color: var(--bg-page);
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -8,10 +8,11 @@
 }
 
 .card {
-  background-color: white;
+  background-color: var(--bg-card);
+  color: var(--text-primary);
   border-radius: 10px;
   padding: 32px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px var(--shadow);
   width: 100%;
   max-width: 380px;
   position: relative;
@@ -20,13 +21,13 @@
 .back {
   background: none;
   border: none;
-  color: #555;
+  color: var(--text-secondary);
   cursor: pointer;
   font-size: 13px;
   padding: 0;
   margin-bottom: 12px;
 }
-.back:hover { color: #000; }
+.back:hover { color: var(--text-primary); }
 
 .title {
   font-family: Arial;
@@ -37,7 +38,7 @@
 
 .subtext {
   font-size: 12px;
-  color: rgb(60, 60, 60);
+  color: var(--text-secondary);
   margin-bottom: 20px;
 }
 
@@ -58,28 +59,30 @@
 
 .input {
   padding: 10px 12px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border);
   border-radius: 5px;
   font-size: 14px;
   font-family: inherit;
+  background: var(--bg-elevated);
+  color: var(--text-primary);
 }
 .input:focus {
   outline: none;
-  border-color: rgb(3, 0, 56);
-  box-shadow: 0 0 0 2px rgba(3, 0, 56, 0.15);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-soft);
 }
 
 .error {
-  background-color: #fde8e8;
-  color: #9b1c1c;
+  background-color: var(--danger-bg);
+  color: var(--danger-text);
   border-radius: 5px;
   padding: 8px 10px;
   font-size: 13px;
 }
 
 .info {
-  background-color: #e6f4ea;
-  color: #1e6b34;
+  background-color: var(--success-bg);
+  color: var(--success);
   border-radius: 5px;
   padding: 8px 10px;
   font-size: 13px;
@@ -89,7 +92,7 @@
   display: flex;
   align-items: center;
   text-align: center;
-  color: #999;
+  color: var(--text-muted);
   font-size: 12px;
   margin: 16px 0;
 }
@@ -97,7 +100,7 @@
 .divider::after {
   content: '';
   flex: 1;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--border);
 }
 .divider span {
   padding: 0 10px;
@@ -110,10 +113,10 @@
   gap: 10px;
   width: 100%;
   padding: 10px 12px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border);
   border-radius: 5px;
-  background-color: white;
-  color: #3c4043;
+  background-color: var(--bg-elevated);
+  color: var(--text-primary);
   font-size: 14px;
   font-weight: bold;
   font-family: inherit;
@@ -121,8 +124,8 @@
   transition: background-color 0.15s, box-shadow 0.15s;
 }
 .googleBtn:hover {
-  background-color: #f7f7f7;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  background-color: var(--bg-hover);
+  box-shadow: 0 1px 3px var(--shadow);
 }
 
 .googleIcon {
@@ -133,14 +136,14 @@
 .toggle {
   margin-top: 18px;
   font-size: 13px;
-  color: #444;
+  color: var(--text-secondary);
   text-align: center;
 }
 
 .linkBtn {
   background: none;
   border: none;
-  color: rgb(3, 0, 56);
+  color: var(--accent);
   font-weight: bold;
   cursor: pointer;
   font-size: 13px;

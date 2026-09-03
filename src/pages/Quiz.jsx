@@ -87,18 +87,18 @@ export default function Quiz() {
               border: 'none',
               fontSize: '0.95rem',
               cursor: 'pointer',
-              color: '#555',
+              color: 'var(--text-secondary)',
               padding: '5px 10px',
               borderRadius: '8px',
               transition: 'all 0.2s ease'
             }}
             onMouseEnter={(e) => {
-              e.target.style.background = '#f0f0f0';
-              e.target.style.color = '#000';
+              e.target.style.background = 'var(--bg-hover)';
+              e.target.style.color = 'var(--text-primary)';
             }}
             onMouseLeave={(e) => {
               e.target.style.background = 'transparent';
-              e.target.style.color = '#555';
+              e.target.style.color = 'var(--text-secondary)';
             }}
           >
             {t('quiz.back')}
@@ -118,7 +118,7 @@ export default function Quiz() {
                 key={key}
                 className={styles.card}
                 style={{
-                  border: selected ? '2px solid #4a90e2' : 'none',
+                  border: selected ? '2px solid var(--accent2)' : 'none',
                   cursor: 'pointer'
                 }}
                 onClick={() => {
@@ -147,8 +147,8 @@ export default function Quiz() {
                   borderRadius: '20px',
                   border: 'none',
                   cursor: 'pointer',
-                  background: questionCount === num ? '#4a90e2' : '#eee',
-                  color: questionCount === num ? 'white' : 'black',
+                  background: questionCount === num ? 'var(--accent2)' : 'var(--bg-hover)',
+                  color: questionCount === num ? 'var(--accent2-text)' : 'var(--text-primary)',
                   fontWeight: questionCount === num ? 'bold' : 'normal',
                 }}
               >
@@ -215,14 +215,14 @@ export default function Quiz() {
           style={{
             maxWidth: '640px',
             margin: '10px auto 30px',
-            background: '#f7f9fc',
-            border: '1px solid #e3e9f2',
+            background: 'var(--bg-elevated)',
+            border: '1px solid var(--border)',
             borderRadius: '12px',
             padding: '1rem 1.25rem',
           }}
         >
           <h2 className={styles.subtitle} style={{ marginTop: 0 }}>{t('quiz.yourProgress')}</h2>
-          <p style={{ textAlign: 'center', color: '#555', marginTop: 0 }}>
+          <p style={{ textAlign: 'center', color: 'var(--text-secondary)', marginTop: 0 }}>
             {t('quiz.completed', { n: attempts.length })}
           </p>
 
@@ -233,8 +233,8 @@ export default function Quiz() {
                 key={label}
                 style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', fontSize: '0.95rem' }}
               >
-                <span style={{ color: '#333' }}>{label}</span>
-                <strong style={{ color: '#4a90e2' }}>
+                <span style={{ color: 'var(--text-primary)' }}>{label}</span>
+                <strong style={{ color: 'var(--accent2)' }}>
                   {b.score}/{b.total} ({Math.round(b.pct * 100)}%)
                 </strong>
               </div>
@@ -246,13 +246,13 @@ export default function Quiz() {
             {attempts.slice(0, 5).map((a) => (
               <div
                 key={a.id}
-                style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', fontSize: '0.9rem', color: '#555' }}
+                style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', fontSize: '0.9rem', color: 'var(--text-secondary)' }}
               >
                 <span>{a.quiz_label}</span>
                 <span>
                   {a.score}/{a.total}
                   {a.created_at && (
-                    <span style={{ color: '#999', marginLeft: '8px' }}>
+                    <span style={{ color: 'var(--text-muted)', marginLeft: '8px' }}>
                       {new Date(a.created_at).toLocaleDateString()}
                     </span>
                   )}
@@ -264,11 +264,11 @@ export default function Quiz() {
       )}
 
       {!user && (
-        <p style={{ textAlign: 'center', color: '#777', margin: '0 auto 24px', maxWidth: '520px' }}>
+        <p style={{ textAlign: 'center', color: 'var(--text-secondary)', margin: '0 auto 24px', maxWidth: '520px' }}>
           <button
             className={styles.linkInline}
             onClick={() => navigate('/login', { state: { mode: 'signup' } })}
-            style={{ background: 'none', border: 'none', color: '#4a90e2', cursor: 'pointer', font: 'inherit', textDecoration: 'underline', padding: 0 }}
+            style={{ background: 'none', border: 'none', color: 'var(--accent2)', cursor: 'pointer', font: 'inherit', textDecoration: 'underline', padding: 0 }}
           >
             {t('quiz.signUp')}
           </button>{' '}

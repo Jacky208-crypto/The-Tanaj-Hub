@@ -22,7 +22,7 @@ export default function Summaries() {
 
       <button
         className="nav-btn"
-        style={{ display: 'block', margin: '30px auto 0', backgroundColor: '#444' }}
+        style={{ display: 'block', margin: '30px auto 0', backgroundColor: 'var(--text-muted)' }}
         onClick={() => navigate('/')}
       >
         {t('nav.home')}

@@ -1,5 +1,6 @@
 .page {
-  background-color: #fef6e4;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
   min-height: 100vh;
   max-width: 860px;
   margin: 0 auto;
@@ -18,7 +19,7 @@
   font-family: Arial, Helvetica, sans-serif;
   font-size: 13px;
   text-align: center;
-  color: rgb(40, 40, 40);
+  color: var(--text-secondary);
   margin-bottom: 30px;
 }
 
@@ -26,7 +27,7 @@
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
   font-weight: bold;
-  color: rgb(40, 40, 40);
+  color: var(--text-secondary);
   margin-top: 28px;
   margin-bottom: 14px;
   text-align: center;
