@@ -101,12 +101,12 @@
   --text-faint: #8a8478;
 
   --accent: #35396d;
-  --accent-text: #17172b;
+  --accent-text: #ffffff;
   --accent-soft: rgba(139, 147, 255, 0.18);
   --accent-softer: rgba(139, 147, 255, 0.1);
 
   --accent2: #35396d;
-  --accent2-text: #17172b;
+  --accent2-text: #ffffff;
 
   --border: #444444;
   --border-strong: #8b93ff;
