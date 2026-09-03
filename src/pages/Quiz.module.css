@@ -3,7 +3,7 @@
   color: var(--text-primary);
   min-height: 100vh;
   padding: 40px 24px 60px;
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -50,8 +50,8 @@
 }
 
 .cardGrid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 280px));
   justify-content: center;
   gap: 20px;
 }
@@ -62,7 +62,7 @@
   border: 4px solid var(--border-strong);
   background-color: var(--bg-card);
   color: var(--text-primary);
-  width: 280px;
+  width: 100%;
   padding: 16px;
   display: flex;
   flex-direction: column;
