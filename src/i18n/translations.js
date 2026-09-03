@@ -309,9 +309,9 @@ export const translations = {
     },
     theme: {
       light: 'Claro',
-      darkNavy: 'Oscuro — Azul Marino y Dorado',
-      darkCharcoal: 'Oscuro — Carbón y Crema',
-      sepia: 'Sepia',
+      darkNavy: 'Oscuro-Marino',
+      darkCharcoal: 'Oscuro-Carbón',
+      sepia: 'Crema',
     },
   },
 
@@ -465,9 +465,9 @@ export const translations = {
     },
     theme: {
       light: 'בהיר',
-      darkNavy: 'כהה — כחול נייבי וזהב',
-      darkCharcoal: 'כהה — פחם וקרם',
-      sepia: 'ספיה',
+      darkNavy: 'כהה-נייבי',
+      darkCharcoal: 'כהה-פחם',
+      sepia: 'קרם',
     },
   },
 };
