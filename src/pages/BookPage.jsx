@@ -15,6 +15,8 @@ export default function BookPage() {
     book && chapterParam >= 1 && chapterParam <= book.chapters ? chapterParam : null;
   const verseParam = Number(searchParams.get('verse'));
   const initialVerse = verseParam >= 1 ? verseParam : null;
+  const langParam = searchParams.get('lang');
+  const initialLanguage = ['hebrew', 'english', 'spanish'].includes(langParam) ? langParam : null;
 
   if (!book) {
     return (
@@ -31,7 +33,7 @@ export default function BookPage() {
         <button className="back-btn" onClick={() => navigate(-1)}>{t('nav.back')}</button>
         <h1 className={styles.title}>{book.label}</h1>
       </div>
-      <ChapterReader book={book} initialChapter={initialChapter} initialVerse={initialVerse} />
+      <ChapterReader book={book} initialChapter={initialChapter} initialVerse={initialVerse} initialLanguage={initialLanguage} />
     </div>
   );
 }

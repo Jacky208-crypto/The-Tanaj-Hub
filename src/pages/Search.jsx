@@ -188,7 +188,7 @@ export default function Search() {
               <button
                 key={r.key}
                 className={styles.result}
-                onClick={() => navigate(`/book/${r.bookId}?chapter=${r.chapter}&verse=${r.verse}`)}
+                onClick={() => navigate(`/book/${r.bookId}?chapter=${r.chapter}&verse=${r.verse}&lang=${searchedLang}`)}
               >
                 <span className={styles.ref}>
                   {r.bookLabel} {r.chapter}:{r.verse}

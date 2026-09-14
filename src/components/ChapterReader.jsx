@@ -112,13 +112,13 @@ async function fetchSpanishFromBolls(sefariaBookName, chapterNum) {
   return verses.map(v => cleanVerse(v.text, 'spanish'));
 }
 
-export default function ChapterReader({ book, initialChapter = null, initialVerse = null }) {
+export default function ChapterReader({ book, initialChapter = null, initialVerse = null, initialLanguage = null }) {
   const { t } = useLanguage();
   const [activeChapter, setActiveChapter] = useState(null);
   const [hebrewVerses, setHebrewVerses] = useState([]);
   const [englishVerses, setEnglishVerses] = useState([]);
   const [spanishVerses, setSpanishVerses] = useState([]);
-  const [language, setLanguage] = useState('hebrew');
+  const [language, setLanguage] = useState(initialLanguage || 'hebrew');
   const [loading, setLoading] = useState(false);
   const [loadingSpanish, setLoadingSpanish] = useState(false);
   const [error, setError] = useState(null);
@@ -162,19 +162,49 @@ export default function ChapterReader({ book, initialChapter = null, initialVers
       ? englishVerses
       : spanishVerses;
 
-  // When arriving from Tanaj Search (/book/:id?chapter=N&verse=M), open that
-  // chapter and remember the verse so it can be scrolled to once rendered.
+  const loadSpanish = useCallback(async (chapterNum) => {
+    const cacheKey = `${book.id}-${chapterNum}`;
+
+    if (spanishCache.current[cacheKey]) {
+      setSpanishVerses(spanishCache.current[cacheKey]);
+      return;
+    }
+
+    setLoadingSpanish(true);
+    setSpanishError(null);
+
+    try {
+      const verses = await fetchSpanishFromBolls(book.sefaria, chapterNum);
+      if (!verses.length) throw new Error('No verses returned — chapter may be empty.');
+      spanishCache.current[cacheKey] = verses;
+      setSpanishVerses(verses);
+    } catch (e) {
+      setSpanishError(e.message);
+    } finally {
+      setLoadingSpanish(false);
+    }
+  }, [book]);
+
+  // When arriving from Tanaj Search (/book/:id?chapter=N&verse=M&lang=L),
+  // open that chapter in the searched language and remember the verse so it
+  // can be scrolled to once rendered.
   useEffect(() => {
     if (initialChapter) loadChapter(initialChapter);
     pendingVerseRef.current = initialVerse || null;
     setHighlightVerse(null);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [book.id, initialChapter, initialVerse]);
 
-  // Once the chapter's verses have actually rendered, scroll to the verse
-  // Tanaj Search sent us to and briefly highlight it.
+    const lang = initialLanguage || 'hebrew';
+    setLanguage(lang);
+    if (lang === 'spanish' && initialChapter) loadSpanish(initialChapter);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [book.id, initialChapter, initialVerse, initialLanguage]);
+
+  // Once the active language's verses have actually rendered, scroll to the
+  // verse Tanaj Search sent us to and briefly highlight it.
+  const activeLoading = language === 'spanish' ? loadingSpanish : loading;
+  const activeError = language === 'spanish' ? spanishError : error;
   useEffect(() => {
-    if (loading || error || currentVerses.length === 0) return;
+    if (activeLoading || activeError || currentVerses.length === 0) return;
     const verseNum = pendingVerseRef.current;
     if (!verseNum) return;
     pendingVerseRef.current = null;
@@ -185,38 +215,11 @@ export default function ChapterReader({ book, initialChapter = null, initialVers
     setHighlightVerse(verseNum);
     const timer = setTimeout(() => setHighlightVerse(null), 2500);
     return () => clearTimeout(timer);
-  }, [loading, error, currentVerses]);
+  }, [activeLoading, activeError, currentVerses]);
 
-  const handleLanguageChange = async (lang) => {
+  const handleLanguageChange = (lang) => {
     setLanguage(lang);
-  
-    if (lang === 'spanish' && activeChapter !== null) {
-      const cacheKey = `${book.id}-${activeChapter}`;
-  
-      if (spanishCache.current[cacheKey]) {
-        setSpanishVerses(spanishCache.current[cacheKey]);
-        return;
-      }
-  
-      setLoadingSpanish(true);
-      setSpanishError(null);
-  
-      try {
-        const verses = await fetchSpanishFromBolls(book.sefaria, activeChapter);
-        
-        console.log('Spanish verses fetched:', verses.length, verses.slice(0, 2));
-        
-        if (!verses.length) throw new Error('No verses returned — chapter may be empty.');
-        
-        spanishCache.current[cacheKey] = verses;
-        setSpanishVerses(verses);
-      } catch (e) {
-        console.error('Spanish fetch error:', e);
-        setSpanishError(e.message);
-      } finally {
-        setLoadingSpanish(false);
-      }
-    }
+    if (lang === 'spanish' && activeChapter !== null) loadSpanish(activeChapter);
   };
 
   const goBack = () => {
