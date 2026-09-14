@@ -112,7 +112,7 @@ async function fetchSpanishFromBolls(sefariaBookName, chapterNum) {
   return verses.map(v => cleanVerse(v.text, 'spanish'));
 }
 
-export default function ChapterReader({ book, initialChapter = null }) {
+export default function ChapterReader({ book, initialChapter = null, initialVerse = null }) {
   const { t } = useLanguage();
   const [activeChapter, setActiveChapter] = useState(null);
   const [hebrewVerses, setHebrewVerses] = useState([]);
@@ -125,6 +125,9 @@ export default function ChapterReader({ book, initialChapter = null }) {
   const [spanishError, setSpanishError] = useState(null);
 
   const spanishCache = useRef({});
+  const verseRefs = useRef({});
+  const pendingVerseRef = useRef(null);
+  const [highlightVerse, setHighlightVerse] = useState(null);
 
   const loadChapter = useCallback(async (chapterNum) => {
     setActiveChapter(chapterNum);
@@ -152,11 +155,37 @@ export default function ChapterReader({ book, initialChapter = null }) {
     }
   }, [book]);
 
-  // When arriving from Tanaj Search (/book/:id?chapter=N), open that chapter.
+  const currentVerses =
+    language === 'hebrew'
+      ? hebrewVerses
+      : language === 'english'
+      ? englishVerses
+      : spanishVerses;
+
+  // When arriving from Tanaj Search (/book/:id?chapter=N&verse=M), open that
+  // chapter and remember the verse so it can be scrolled to once rendered.
   useEffect(() => {
     if (initialChapter) loadChapter(initialChapter);
+    pendingVerseRef.current = initialVerse || null;
+    setHighlightVerse(null);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [book.id, initialChapter]);
+  }, [book.id, initialChapter, initialVerse]);
+
+  // Once the chapter's verses have actually rendered, scroll to the verse
+  // Tanaj Search sent us to and briefly highlight it.
+  useEffect(() => {
+    if (loading || error || currentVerses.length === 0) return;
+    const verseNum = pendingVerseRef.current;
+    if (!verseNum) return;
+    pendingVerseRef.current = null;
+
+    const el = verseRefs.current[verseNum];
+    if (!el) return;
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setHighlightVerse(verseNum);
+    const timer = setTimeout(() => setHighlightVerse(null), 2500);
+    return () => clearTimeout(timer);
+  }, [loading, error, currentVerses]);
 
   const handleLanguageChange = async (lang) => {
     setLanguage(lang);
@@ -198,13 +227,6 @@ export default function ChapterReader({ book, initialChapter = null }) {
     setError(null);
     setSpanishError(null);
   };
-
-  const currentVerses =
-    language === 'hebrew'
-      ? hebrewVerses
-      : language === 'english'
-      ? englishVerses
-      : spanishVerses;
 
   const isRTL = language === 'hebrew';
 
@@ -269,7 +291,11 @@ export default function ChapterReader({ book, initialChapter = null }) {
               <>
                 <h2 className={styles.chapterTitle}>{`פרק ${activeChapter}`}</h2>
                 {currentVerses.map((verse, i) => (
-                  <div key={i} className={styles.verse}>
+                  <div
+                    key={i}
+                    ref={(el) => { verseRefs.current[i + 1] = el; }}
+                    className={`${styles.verse} ${highlightVerse === i + 1 ? styles.verseHighlight : ''}`}
+                  >
                     <span className={styles.verseNumber}>{i + 1}.</span>
                     <span style={{ direction: isRTL ? 'rtl' : 'ltr' }}>{verse}</span>
                   </div>
