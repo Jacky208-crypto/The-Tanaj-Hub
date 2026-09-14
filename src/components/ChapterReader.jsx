@@ -207,10 +207,11 @@ export default function ChapterReader({ book, initialChapter = null, initialVers
     if (activeLoading || activeError || currentVerses.length === 0) return;
     const verseNum = pendingVerseRef.current;
     if (!verseNum) return;
-    pendingVerseRef.current = null;
 
     const el = verseRefs.current[verseNum];
-    if (!el) return;
+    if (!el) return; // verse divs not painted yet — try again next render
+    pendingVerseRef.current = null;
+
     el.scrollIntoView({ behavior: 'smooth', block: 'center' });
     setHighlightVerse(verseNum);
     const timer = setTimeout(() => setHighlightVerse(null), 2500);
@@ -290,7 +291,7 @@ export default function ChapterReader({ book, initialChapter = null, initialVers
               </div>
             )}
 
-            {!loading && !loadingSpanish && !error && currentVerses.length > 0 && (
+            {!activeLoading && !activeError && currentVerses.length > 0 && (
               <>
                 <h2 className={styles.chapterTitle}>{`פרק ${activeChapter}`}</h2>
                 {currentVerses.map((verse, i) => (
