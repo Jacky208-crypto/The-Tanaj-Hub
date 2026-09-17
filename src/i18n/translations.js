@@ -172,7 +172,7 @@ export const translations = {
       subtitle: 'The Tanaj Hub es una plataforma interactiva para aprender el Tanaj con preguntas y resúmenes',
       studyTexts: 'Textos',
       practiceQuestions: 'Preguntas de Práctica',
-      helpfulNotes: 'Notas Útiles',
+      helpfulNotes: 'Apuntes Útiles',
       tanajSearch: 'Búsqueda del Tanaj',
       biblicalMap: 'Mapa Bíblico',
       footer: 'Hecho por Jacky Fnounou',
@@ -221,11 +221,11 @@ export const translations = {
       progress: ({ i, n, score }) => `Pregunta ${i} / ${n} — Correctas: ${score}`,
     },
     summaries: {
-      title: 'Notas Útiles',
-      comingSoon: '📖 ¡Notas próximamente!',
+      title: 'Apuntes Útiles',
+      comingSoon: '📖 ¡Apuntes próximamente!',
     },
     notes: {
-      title: 'Notas Útiles',
+      title: 'Apuntes Útiles',
     },
     search: {
       title: 'Búsqueda en el Tanaj',
