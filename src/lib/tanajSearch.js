@@ -4,40 +4,24 @@
 // exactly what a user sees when they open a chapter:
 //   • Hebrew  — Sefaria "Miqra according to the Masorah" (the Jewish Masoretic text)
 //   • English — Sefaria JPS (Tanakh: The Holy Scriptures, published by JPS)
-//   • Spanish — Bolls Reina-Valera 1960 (the reader's Spanish edition)
+//   • Spanish — Sefaria "Tanaj Español", trans. Rav Yehuda Ribco, 2026
 //
-// Hebrew/English are fetched whole-book from Sefaria (once, then cached in memory)
+// All three are fetched whole-book from Sefaria (once, then cached in memory)
 // and scanned client-side, which lets us ignore vowel points, be case-insensitive
-// and highlight matches ourselves. Spanish uses the Bolls search endpoint.
+// and highlight matches ourselves with the same logic for every language.
 
 import { allBooks } from '../data/books';
 
 // The exact JPS English edition the reader requests.
 const JPS_VERSION = 'Tanakh: The Holy Scriptures, published by JPS';
+// The exact Sefaria Spanish edition the reader requests.
+const SPANISH_VERSION = 'spanish|Tanaj Español, trans. Rav Yehuda Ribco, 2026 [es]';
 
 export const TRANSLATION_LABELS = {
   hebrew: 'Hebrew',
   english: 'English',
   spanish: 'Español',
 };
-
-// Bolls numeric book ids (Tanakh only), keyed by the Sefaria name in books.js.
-const SEFARIA_TO_BOLLS_ID = {
-  Genesis: 1, Exodus: 2, Leviticus: 3, Numbers: 4, Deuteronomy: 5,
-  Joshua: 6, Judges: 7, Ruth: 8, 'I Samuel': 9, 'II Samuel': 10,
-  'I Kings': 11, 'II Kings': 12, 'I Chronicles': 13, 'II Chronicles': 14,
-  Ezra: 15, Nehemiah: 16, Esther: 17, Job: 18, Psalms: 19,
-  Proverbs: 20, Ecclesiastes: 21, 'Song of Songs': 22, Isaiah: 23,
-  Jeremiah: 24, Lamentations: 25, Ezekiel: 26, Daniel: 27,
-  Hosea: 28, Joel: 29, Amos: 30, Obadiah: 31, Jonah: 32,
-  Micah: 33, Nahum: 34, Habakkuk: 35, Zephaniah: 36,
-  Haggai: 37, Zechariah: 38, Malachi: 39,
-};
-const BOOK_BY_BOLLS_ID = {};
-for (const book of allBooks) {
-  const id = SEFARIA_TO_BOLLS_ID[book.sefaria];
-  if (id) BOOK_BY_BOLLS_ID[id] = book;
-}
 
 // ---- Text cleaning (mirrors the reader's cleanVerse) ----------------------
 
@@ -60,10 +44,6 @@ function cleanVerse(text, lang) {
       .replace(/\bsome\s+(mss?|manuscripts?)[^.]*\./gi, '')
       .replace(/\blit\.\s*[^,;.]*/gi, '');
   }
-  if (lang === 'spanish') {
-    cleaned = cleaned.replace(/Jehov[áa]/g, 'Hashem').replace(/JAH/g, 'Hashem');
-  }
-
   return cleaned
     .replace(/\([^)]*\)/g, '')
     .replace(/\[[^\]]*\]/g, '')
@@ -144,15 +124,31 @@ function flatten(seg) {
   return Array.isArray(seg) ? seg.map(flatten).join(' ') : String(seg ?? '');
 }
 
-// ---- Sefaria whole-book cache (Hebrew + JPS English) -----------------------
+// ---- Sefaria whole-book cache (Hebrew + JPS English + Spanish) ------------
 
-const bookCache = {}; // book.id -> { he: [[verse,…]], en: [[verse,…]] }
+const bookCache = {}; // book.id -> { he: [[verse,…]], en: [[verse,…]], es: [[verse,…]] }
+
+async function fetchSpanishBook(book, signal) {
+  const url =
+    `https://www.sefaria.org/api/v3/texts/${encodeURIComponent(book.sefaria)}` +
+    `?version=${encodeURIComponent(SPANISH_VERSION)}`;
+  const res = await fetch(url, { signal });
+  if (!res.ok) throw new Error(`Could not load ${book.label} (HTTP ${res.status})`);
+  const data = await res.json();
+  const text = data.versions?.[0]?.text;
+  return (Array.isArray(text) ? text : []).map((ch) =>
+    (Array.isArray(ch) ? ch : [ch]).map((v) => cleanVerse(flatten(v), 'spanish'))
+  );
+}
 
 async function fetchBook(book, signal) {
   const url =
     `https://www.sefaria.org/api/texts/${encodeURIComponent(book.sefaria)}` +
     `?context=0&pad=0&commentary=0&ven=${encodeURIComponent(JPS_VERSION)}`;
-  const res = await fetch(url, { signal });
+  const [res, esChapters] = await Promise.all([
+    fetch(url, { signal }),
+    fetchSpanishBook(book, signal),
+  ]);
   if (!res.ok) throw new Error(`Could not load ${book.label} (HTTP ${res.status})`);
   const data = await res.json();
 
@@ -162,7 +158,7 @@ async function fetchBook(book, signal) {
   const enChapters = (Array.isArray(data.text) ? data.text : []).map((ch) =>
     (Array.isArray(ch) ? ch : [ch]).map((v) => cleanVerse(flatten(v), 'english'))
   );
-  bookCache[book.id] = { he: heChapters, en: enChapters };
+  bookCache[book.id] = { he: heChapters, en: enChapters, es: esChapters };
 }
 
 // Fetch every uncached book, a few at a time. onProgress(loaded, total).
@@ -186,6 +182,8 @@ async function ensureAllBooks(onProgress, signal) {
   );
 }
 
+const CACHE_KEY = { hebrew: 'he', english: 'en', spanish: 'es' };
+
 async function searchSefaria(term, lang, { matchWhole, signal, onProgress }) {
   if (onProgress) onProgress('Loading Tanaj text…');
   await ensureAllBooks(
@@ -198,7 +196,7 @@ async function searchSefaria(term, lang, { matchWhole, signal, onProgress }) {
   const results = [];
 
   for (const book of allBooks) {
-    const chapters = bookCache[book.id][lang === 'hebrew' ? 'he' : 'en'];
+    const chapters = bookCache[book.id][CACHE_KEY[lang]];
     chapters.forEach((verses, ci) => {
       verses.forEach((verse, vi) => {
         // Same predicate the UI highlights with: a verse is a result iff it has
@@ -219,53 +217,6 @@ async function searchSefaria(term, lang, { matchWhole, signal, onProgress }) {
   return { total: results.length, results };
 }
 
-// ---- Spanish (Bolls Reina-Valera 1960) ------------------------------------
-
-async function searchBolls(term, { matchWhole, signal, onProgress }) {
-  if (onProgress) onProgress('Searching…');
-  const PAGE_LIMIT = 200;
-  const MAX_PAGES = 40;
-  const collected = [];
-  let total = 0;
-
-  for (let page = 1; page <= MAX_PAGES; page++) {
-    const url =
-      `https://bolls.life/v2/find/RV1960?search=${encodeURIComponent(term)}` +
-      `&match_case=false&match_whole=${matchWhole}` +
-      `&book=ot&limit=${PAGE_LIMIT}&page=${page}`;
-    const res = await fetch(url, { signal });
-    if (!res.ok) throw new Error(`Search failed (HTTP ${res.status})`);
-    const data = await res.json();
-
-    total = data.total ?? total;
-    const rows = Array.isArray(data.results) ? data.results : [];
-    if (rows.length === 0) break;
-
-    for (const row of rows) {
-      const book = BOOK_BY_BOLLS_ID[row.book];
-      if (!book) continue;
-      collected.push({
-        key: `${row.book}-${row.chapter}-${row.verse}`,
-        bookId: book.id,
-        bookLabel: book.label,
-        chapter: row.chapter,
-        verse: row.verse,
-        text: cleanVerse(row.text, 'spanish'),
-      });
-    }
-    if (collected.length >= total || rows.length < PAGE_LIMIT) break;
-  }
-
-  const order = new Map(allBooks.map((b, i) => [b.id, i]));
-  collected.sort((a, b) => {
-    const bo = order.get(a.bookId) - order.get(b.bookId);
-    if (bo !== 0) return bo;
-    if (a.chapter !== b.chapter) return a.chapter - b.chapter;
-    return a.verse - b.verse;
-  });
-  return { total: total || collected.length, results: collected };
-}
-
 /**
  * Search the whole Tanakh for `query` in one language.
  * @returns {Promise<{total:number, results:Array}>}
@@ -273,6 +224,5 @@ async function searchBolls(term, { matchWhole, signal, onProgress }) {
 export async function searchTanaj(query, lang, opts = {}) {
   const term = query.trim();
   if (!term) return { total: 0, results: [] };
-  if (lang === 'spanish') return searchBolls(term, opts);
   return searchSefaria(term, lang, opts);
 }

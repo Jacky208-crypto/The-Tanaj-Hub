@@ -35,7 +35,7 @@ function cleanVerse(text, lang) {
       .replace(/\bsee\s+[\d:-]+/gi, '')
       .replace(/\b[Ee]gyptian for[^.]*\./g, '');
   }
-  if (lang === 'spanish') {
+   if (lang === 'spanish') {
     cleaned = cleaned
       .replace(/Jehov[áa]/gi, 'Hashem')
       .replace(/JAH/gi, 'Hashem')
@@ -71,7 +71,6 @@ function cleanVerse(text, lang) {
       .replace(/Samaria/g, 'Shomron')
       .replace(/Sansón/g, 'Shimshon')
   }
-
   return cleaned
     .replace(/\([^)]*\)/g, '')
     .replace(/\[[^\]]*\]/g, '')
@@ -79,37 +78,21 @@ function cleanVerse(text, lang) {
     .trim();
 }
 
-const SEFARIA_TO_BOLLS_ID = {
-  'Genesis': 1, 'Exodus': 2, 'Leviticus': 3, 'Numbers': 4, 'Deuteronomy': 5,
-  'Joshua': 6, 'Judges': 7, 'Ruth': 8, 'I Samuel': 9, 'II Samuel': 10,
-  'I Kings': 11, 'II Kings': 12, 'I Chronicles': 13, 'II Chronicles': 14,
-  'Ezra': 15, 'Nehemiah': 16, 'Esther': 17, 'Job': 18, 'Psalms': 19,
-  'Proverbs': 20, 'Ecclesiastes': 21, 'Song of Songs': 22, 'Isaiah': 23,
-  'Jeremiah': 24, 'Lamentations': 25, 'Ezekiel': 26, 'Daniel': 27,
-  'Hosea': 28, 'Joel': 29, 'Amos': 30, 'Obadiah': 31, 'Jonah': 32,
-  'Micah': 33, 'Nahum': 34, 'Habakkuk': 35, 'Zephaniah': 36,
-  'Haggai': 37, 'Zechariah': 38, 'Malachi': 39,
-};
+// Sefaria's newly-added Spanish translation of the whole Tanakh.
+const SPANISH_VERSION = 'spanish|Tanaj Español, trans. Rav Yehuda Ribco, 2026 [es]';
 
-async function fetchSpanishFromBolls(sefariaBookName, chapterNum) {
-  const bookId = SEFARIA_TO_BOLLS_ID[sefariaBookName];
-  
-  // ADD THIS:
-  console.log('fetchSpanishFromBolls called with:', sefariaBookName, chapterNum, '→ bookId:', bookId);
-  
-  if (!bookId) throw new Error(`No Spanish mapping for book: ${sefariaBookName}`);
+async function fetchSpanishFromSefaria(sefariaBookName, chapterNum) {
+  const url =
+    `https://www.sefaria.org/api/v3/texts/${encodeURIComponent(sefariaBookName)}.${chapterNum}` +
+    `?version=${encodeURIComponent(SPANISH_VERSION)}`;
 
-  const url = `https://bolls.life/get-text/RV1960/${bookId}/${chapterNum}/`;
-  console.log('Fetching URL:', url);
-  
   const res = await fetch(url);
-  console.log('Response status:', res.status);
-  
-  const verses = await res.json();
-  console.log('Verses received:', verses.length, verses[0]);
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const data = await res.json();
 
-  if (!verses.length) throw new Error('No verses returned — chapter may be empty.');
-  return verses.map(v => cleanVerse(v.text, 'spanish'));
+  const verses = data.versions?.[0]?.text;
+  if (!verses?.length) throw new Error('No verses returned — chapter may be empty.');
+  return verses.map(v => cleanVerse(v, 'spanish'));
 }
 
 export default function ChapterReader({ book, initialChapter = null, initialVerse = null, initialLanguage = null }) {
@@ -174,7 +157,7 @@ export default function ChapterReader({ book, initialChapter = null, initialVers
     setSpanishError(null);
 
     try {
-      const verses = await fetchSpanishFromBolls(book.sefaria, chapterNum);
+      const verses = await fetchSpanishFromSefaria(book.sefaria, chapterNum);
       if (!verses.length) throw new Error('No verses returned — chapter may be empty.');
       spanishCache.current[cacheKey] = verses;
       setSpanishVerses(verses);
@@ -223,6 +206,11 @@ export default function ChapterReader({ book, initialChapter = null, initialVers
     if (lang === 'spanish' && activeChapter !== null) loadSpanish(activeChapter);
   };
 
+  const handleSelectChapter = (num) => {
+    loadChapter(num);
+    if (language === 'spanish') loadSpanish(num);
+  };
+
   const goBack = () => {
     setActiveChapter(null);
     setHebrewVerses([]);
@@ -243,7 +231,7 @@ export default function ChapterReader({ book, initialChapter = null, initialVers
           <button
             key={num}
             className={`chapter-btn ${activeChapter === num ? 'active' : ''}`}
-            onClick={() => loadChapter(num)}
+            onClick={() => handleSelectChapter(num)}
           >
             {num}
           </button>
