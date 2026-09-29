@@ -2,7 +2,7 @@
   {
     "id": "og-survived-the-flood",
     "type": "crossover",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Og survived the Flood",
       "he": "עוג ניצל מן המבול",
@@ -33,7 +33,7 @@
   {
     "id": "malki-tzedek-was-shem",
     "type": "identity",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Malki-tzedek was Shem, son of Noaj",
       "he": "מלכי-צדק הוא שם בן נח",
@@ -60,7 +60,7 @@
   {
     "id": "keturah-was-hagar",
     "type": "identity",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Keturah was Hagar",
       "he": "קטורה היא הגר",
@@ -91,7 +91,7 @@
   {
     "id": "hagar-was-pharaohs-daughter",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Hagar was Pharaoh's daughter",
       "he": "הגר הייתה בת פרעה",
@@ -118,7 +118,7 @@
   {
     "id": "amrafel-was-nimrod",
     "type": "identity",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Amrafel was Nimrod",
       "he": "אמרפל הוא נמרוד",
@@ -145,7 +145,7 @@
   {
     "id": "avraham-and-the-idols",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Avraham in his father's idol shop",
       "he": "אברהם בחנות הפסלים של אביו",
@@ -170,7 +170,7 @@
   {
     "id": "avraham-in-the-furnace",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Avraham was thrown into Nimrod's furnace",
       "he": "אברהם הושלך לכבשן האש של נמרוד",
@@ -200,7 +200,7 @@
   {
     "id": "yiskah-was-sarah",
     "type": "identity",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Yiskah was Sarah",
       "he": "יסכה היא שרה",
@@ -225,7 +225,7 @@
   {
     "id": "esav-at-yaakovs-burial",
     "type": "connection",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Esav died at Yaakov's burial",
       "he": "עשו מת בקבורת יעקב",
@@ -257,7 +257,7 @@
   {
     "id": "serach-bat-asher",
     "type": "crossover",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Serach bat Asher, who lived for generations",
       "he": "סרח בת אשר, שחיה דורות רבים",
@@ -289,7 +289,7 @@
   {
     "id": "pharaohs-three-advisors",
     "type": "crossover",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Bilam, Iyov and Yitro advised Pharaoh",
       "he": "בלעם, איוב ויתרו היו יועציו של פרעה",
@@ -319,7 +319,7 @@
   {
     "id": "yocheved-born-between-the-walls",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Yocheved was born at the gates of Egypt",
       "he": "יוכבד נולדה בין החומות",
@@ -348,7 +348,7 @@
   {
     "id": "moshe-and-the-burning-coal",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Why Moshe was \"slow of speech\"",
       "he": "למה משה היה \"כבד פה\"",
@@ -375,7 +375,7 @@
   {
     "id": "pinchas-is-eliyahu",
     "type": "identity",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Pinchas is Eliyahu",
       "he": "פנחס הוא אליהו",
@@ -409,7 +409,7 @@
   {
     "id": "rachav-married-yehoshua",
     "type": "connection",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Rachav married Yehoshua",
       "he": "רחב נישאה ליהושע",
@@ -437,7 +437,7 @@
   {
     "id": "yonah-was-the-widows-son",
     "type": "identity",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Yonah was the boy Eliyahu revived",
       "he": "יונה הוא הילד שאליהו החיה",
@@ -470,7 +470,7 @@
   {
     "id": "bitya-daughter-of-pharaoh",
     "type": "connection",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Pharaoh's daughter joined Israel",
       "he": "בת פרעה הצטרפה לעם ישראל",
@@ -498,7 +498,7 @@
   {
     "id": "ten-things-created-at-twilight",
     "type": "wonder",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Ten things created at twilight of the first Shabbat",
       "he": "עשרה דברים שנבראו בערב שבת בין השמשות",
@@ -529,7 +529,7 @@
   {
     "id": "adam-reached-the-sky",
     "type": "wonder",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Adam's original height reached the sky",
       "he": "קומתו של אדם הראשון הגיעה עד הרקיע",
@@ -554,7 +554,7 @@
   {
     "id": "the-serpent-had-legs",
     "type": "measure",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "The serpent once had legs",
       "he": "לנחש היו רגליים",
@@ -579,7 +579,7 @@
   {
     "id": "kayin-and-hevel-quarrel",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "What Kayin and Hevel argued about",
       "he": "על מה רבו קין והבל",
@@ -604,7 +604,7 @@
   {
     "id": "lemech-killed-kayin",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Lemech accidentally killed Kayin",
       "he": "למך הרג את קין בשגגה",
@@ -630,7 +630,7 @@
   {
     "id": "naamah-was-noachs-wife",
     "type": "identity",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Naamah was Noaj's wife",
       "he": "נעמה הייתה אשת נח",
@@ -657,7 +657,7 @@
   {
     "id": "chanoch-taken-early",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Why Chanoch was taken early",
       "he": "למה נלקח חנוך בטרם עת",
@@ -681,7 +681,7 @@
   {
     "id": "metushelach-delayed-the-flood",
     "type": "connection",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "The Flood waited seven days for Metushelach",
       "he": "המבול התעכב שבעה ימים בשביל מתושלח",
@@ -707,7 +707,7 @@
   {
     "id": "noaj-and-the-lion",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Noaj was injured by a lion in the ark",
       "he": "נח נפגע מאריה בתיבה",
@@ -731,7 +731,7 @@
   {
     "id": "tower-of-bavel-bricks",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "At the Tower of Bavel, a brick mattered more than a person",
       "he": "במגדל בבל לבנה הייתה חשובה מאדם",
@@ -756,7 +756,7 @@
   {
     "id": "avraham-recognized-god-at-three",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Avraham recognized God at age three",
       "he": "אברהם הכיר את בוראו בן שלוש",
@@ -781,7 +781,7 @@
   {
     "id": "sodoms-bed",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Sodom's bed for guests",
       "he": "המיטה של סדום",
@@ -808,7 +808,7 @@
   {
     "id": "lots-wife-and-the-salt",
     "type": "measure",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Why Lot's wife became salt",
       "he": "למה נהפכה אשת לוט לנציב מלח",
@@ -834,7 +834,7 @@
   {
     "id": "the-three-angels",
     "type": "identity",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Who the three visitors were",
       "he": "מי היו שלושת האורחים",
@@ -861,7 +861,7 @@
   {
     "id": "yitzchak-at-the-akeidah-was-37",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Yitzchak was 37 at the Akeidah",
       "he": "יצחק היה בן שלושים ושבע בעקדה",
@@ -887,7 +887,7 @@
   {
     "id": "sarah-died-after-the-akeidah",
     "type": "connection",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Sarah died on hearing of the Akeidah",
       "he": "שרה מתה כששמעה על העקדה",
@@ -914,7 +914,7 @@
   {
     "id": "twins-struggling-in-the-womb",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Yaakov and Esav already struggled in the womb",
       "he": "יעקב ועשו נאבקו כבר בבטן",
@@ -942,7 +942,7 @@
   {
     "id": "esavs-day-of-five-sins",
     "type": "connection",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "The day Avraham died, Esav sold the birthright",
       "he": "ביום שמת אברהם מכר עשו את הבכורה",
@@ -969,7 +969,7 @@
   {
     "id": "yaakov-studied-with-ever",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Yaakov studied 14 years in the house of Ever",
       "he": "יעקב למד ארבע עשרה שנה בבית עבר",
@@ -996,7 +996,7 @@
   {
     "id": "yaakovs-night-at-the-place",
     "type": "wonder",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "The stones under Yaakov's head became one",
       "he": "האבנים שתחת ראשו של יעקב נעשו אחת",
@@ -1021,7 +1021,7 @@
   {
     "id": "leahs-tender-eyes",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Why Leah's eyes were \"tender\"",
       "he": "למה עיני לאה היו \"רכות\"",
@@ -1047,7 +1047,7 @@
   {
     "id": "rachel-gave-leah-the-signs",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Rachel gave Leah the secret signs",
       "he": "רחל מסרה ללאה את הסימנים",
@@ -1074,7 +1074,7 @@
   {
     "id": "dinah-hidden-in-a-chest",
     "type": "connection",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Dinah was hidden in a chest from Esav",
       "he": "דינה הוסתרה בתיבה מפני עשו",
@@ -1102,7 +1102,7 @@
   {
     "id": "yaakovs-wrestler-was-esavs-angel",
     "type": "identity",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Yaakov wrestled Esav's guardian angel",
       "he": "יעקב נאבק בשרו של עשו",
@@ -1128,7 +1128,7 @@
   {
     "id": "osnat-was-dinahs-daughter",
     "type": "identity",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Osnat, Yosef's wife, was Dinah's daughter",
       "he": "אסנת אשת יוסף הייתה בת דינה",
@@ -1156,7 +1156,7 @@
   {
     "id": "the-man-who-found-yosef",
     "type": "identity",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "The \"man\" who directed Yosef was the angel Gavriel",
       "he": "ה\"איש\" שהדריך את יוסף היה המלאך גבריאל",
@@ -1180,7 +1180,7 @@
   {
     "id": "yosef-saw-his-fathers-image",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Yosef saw his father's image",
       "he": "יוסף ראה את דמות דיוקנו של אביו",
@@ -1207,7 +1207,7 @@
   {
     "id": "potifars-wife-foresaw-descendants",
     "type": "connection",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Potifar's wife foresaw descendants from Yosef",
       "he": "אשת פוטיפר ראתה שעתידה להעמיד בנים מיוסף",
@@ -1235,7 +1235,7 @@
   {
     "id": "menashe-was-the-interpreter",
     "type": "identity",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "The interpreter was Menashe, Yosef's son",
       "he": "המליץ היה מנשה בן יוסף",
@@ -1260,7 +1260,7 @@
   {
     "id": "yaakov-wanted-to-reveal-the-end",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Yaakov wanted to reveal the end of days",
       "he": "יעקב ביקש לגלות את הקץ",
@@ -1284,7 +1284,7 @@
   {
     "id": "yaakov-did-not-die",
     "type": "wonder",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "\"Yaakov our father did not die\"",
       "he": "\"יעקב אבינו לא מת\"",
@@ -1308,7 +1308,7 @@
   {
     "id": "adam-said-psalm-92",
     "type": "connection",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Adam composed the Psalm for Shabbat",
       "he": "אדם הראשון אמר \"מזמור שיר ליום השבת\"",
@@ -1335,7 +1335,7 @@
   {
     "id": "the-midwives-were-yocheved-and-miriam",
     "type": "identity",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "The midwives were Yocheved and Miriam",
       "he": "המיילדות היו יוכבד ומרים",
@@ -1362,7 +1362,7 @@
   {
     "id": "pharaohs-astrologers-and-the-water",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Pharaoh's astrologers foresaw water",
       "he": "האצטגנינים של פרעה ראו מים",
@@ -1388,7 +1388,7 @@
   {
     "id": "miriams-prophecy-and-amram",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Miriam convinced her father to remarry",
       "he": "מרים שכנעה את אביה להחזיר את אמה",
@@ -1417,7 +1417,7 @@
   {
     "id": "pharaohs-daughter-at-the-nile",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Pharaoh's daughter at the Nile",
       "he": "בת פרעה ביאור",
@@ -1445,7 +1445,7 @@
   {
     "id": "the-quarreling-men-were-datan-and-aviram",
     "type": "crossover",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "The two quarreling Hebrews were Datan and Aviram",
       "he": "שני העברים הניצים היו דתן ואבירם",
@@ -1474,7 +1474,7 @@
   {
     "id": "moshe-killed-with-the-name",
     "type": "wonder",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Moshe killed the Egyptian with a word",
       "he": "משה הרג את המצרי בשם המפורש",
@@ -1499,7 +1499,7 @@
   {
     "id": "moshe-and-the-lost-kid",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Moshe and the runaway lamb",
       "he": "משה והגדי שברח",
@@ -1524,7 +1524,7 @@
   {
     "id": "only-one-fifth-left-egypt",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Only one in five left Egypt",
       "he": "רק אחד מחמישה יצא ממצרים",
@@ -1548,7 +1548,7 @@
   {
     "id": "nachshon-jumped-into-the-sea",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Nachshon jumped into the sea first",
       "he": "נחשון קפץ ראשון לים",
@@ -1578,7 +1578,7 @@
   {
     "id": "the-mountain-held-over-them",
     "type": "wonder",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "The mountain was held over Israel's heads",
       "he": "כפה עליהם הר כגיגית",
@@ -1600,7 +1600,7 @@
   {
     "id": "sinai-in-seventy-languages",
     "type": "wonder",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Each word at Sinai split into seventy languages",
       "he": "כל דיבור בסיני נחלק לשבעים לשונות",
@@ -1623,7 +1623,7 @@
   {
     "id": "chur-and-the-golden-calf",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "What Aharon saw before the golden calf",
       "he": "מה ראה אהרן לפני העגל",
@@ -1650,7 +1650,7 @@
   {
     "id": "betzalel-was-thirteen",
     "type": "connection",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Betzalel built the Mishkan at thirteen",
       "he": "בצלאל בנה את המשכן בן שלוש עשרה",
@@ -1679,7 +1679,7 @@
   {
     "id": "moshes-radiant-face",
     "type": "wonder",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Moshe's radiance came from leftover ink",
       "he": "קרני ההוד של משה באו מן הדיו",
@@ -1703,7 +1703,7 @@
   {
     "id": "the-womens-mirrors",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "The laver was made from the women's mirrors",
       "he": "הכיור נעשה ממראות הנשים",
@@ -1727,7 +1727,7 @@
   {
     "id": "why-nadav-and-avihu-died",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Why Nadav and Avihu died",
       "he": "מדוע מתו נדב ואביהוא",
@@ -1756,7 +1756,7 @@
   {
     "id": "the-blasphemers-father",
     "type": "connection",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "The blasphemer was the son of the Egyptian Moshe killed",
       "he": "המקלל היה בנו של המצרי שהרג משה",
@@ -1782,7 +1782,7 @@
   {
     "id": "miriams-well",
     "type": "wonder",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Miriam's well, Aharon's clouds, Moshe's manna",
       "he": "באר מרים, ענני אהרן ומן משה",
@@ -1810,7 +1810,7 @@
   {
     "id": "eldad-and-medads-prophecy",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "What Eldad and Medad prophesied",
       "he": "מה ניבאו אלדד ומידד",
@@ -1838,7 +1838,7 @@
   {
     "id": "the-giant-grape-cluster",
     "type": "wonder",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "The spies' giant cluster of grapes",
       "he": "האשכול הענק של המרגלים",
@@ -1860,7 +1860,7 @@
   {
     "id": "kalev-prayed-in-chevron",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Kalev prayed at the graves of the Patriarchs",
       "he": "כלב התפלל על קברי האבות",
@@ -1884,7 +1884,7 @@
   {
     "id": "on-ben-pelet-saved-by-his-wife",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "On ben Pelet was saved by his wife",
       "he": "און בן פלת ניצל בזכות אשתו",
@@ -1910,7 +1910,7 @@
   {
     "id": "the-sons-of-korach",
     "type": "connection",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Korach's sons survived and wrote psalms",
       "he": "בני קרח ניצלו וכתבו מזמורים",
@@ -1936,7 +1936,7 @@
   {
     "id": "bilams-donkey-was-killed",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Why Bilam's donkey was killed",
       "he": "למה נהרגה האתון של בלעם",
@@ -1960,7 +1960,7 @@
   {
     "id": "bilam-was-lavan",
     "type": "identity",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Beor, Bilam's father, was Lavan",
       "he": "בעור אבי בלעם הוא לבן",
@@ -1989,7 +1989,7 @@
   {
     "id": "zimri-was-shelumiel",
     "type": "identity",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Zimri had five names",
       "he": "לזמרי היו חמישה שמות",
@@ -2016,7 +2016,7 @@
   {
     "id": "the-miracles-for-pinchas",
     "type": "wonder",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Miracles were done for Pinchas",
       "he": "נסים נעשו לפנחס",
@@ -2041,7 +2041,7 @@
   {
     "id": "the-wood-gatherer-was-tzelofchad",
     "type": "identity",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "The wood gatherer was Tzelofchad",
       "he": "המקושש היה צלפחד",
@@ -2071,7 +2071,7 @@
   {
     "id": "pinchas-killed-bilam",
     "type": "crossover",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Pinchas killed Bilam",
       "he": "פנחס הרג את בלעם",
@@ -2097,7 +2097,7 @@
   {
     "id": "og-and-the-mountain",
     "type": "wonder",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Og tried to throw a mountain at Israel",
       "he": "עוג ביקש לזרוק הר על ישראל",
@@ -2123,7 +2123,7 @@
   {
     "id": "the-hailstones-moshe-and-yehoshua",
     "type": "connection",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "The hailstones held back by Moshe, released by Yehoshua",
       "he": "אבני אלגביש: נעצרו בשביל משה ונפלו בשביל יהושע",
@@ -2149,7 +2149,7 @@
   {
     "id": "moshes-515-prayers",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Moshe prayed 515 times to enter the Land",
       "he": "משה התפלל 515 תפילות להיכנס לארץ",
@@ -2173,7 +2173,7 @@
   {
     "id": "moshe-wrote-thirteen-torahs",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Moshe wrote thirteen Torah scrolls on his last day",
       "he": "משה כתב שלושה עשר ספרי תורה ביומו האחרון",
@@ -2198,7 +2198,7 @@
   {
     "id": "who-wrote-the-last-eight-verses",
     "type": "connection",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Who wrote the Torah's last eight verses",
       "he": "מי כתב את שמונה הפסוקים האחרונים בתורה",
@@ -2223,7 +2223,7 @@
   {
     "id": "moshes-hidden-grave",
     "type": "wonder",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Moshe's grave cannot be found",
       "he": "קבורתו של משה אינה נמצאת",
@@ -2248,7 +2248,7 @@
   {
     "id": "yehoshuas-spies-were-pinchas-and-kalev",
     "type": "identity",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Yehoshua's two spies were Pinchas and Kalev",
       "he": "שני המרגלים של יהושע היו פנחס וכלב",
@@ -2275,7 +2275,7 @@
   {
     "id": "the-forgotten-laws-and-otniel",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Otniel restored laws forgotten after Moshe's death",
       "he": "עתניאל החזיר הלכות שנשתכחו באבלו של משה",
@@ -2304,7 +2304,7 @@
   {
     "id": "otniel-was-yaavetz",
     "type": "identity",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Otniel was Yaavetz",
       "he": "עתניאל הוא יעבץ",
@@ -2329,7 +2329,7 @@
   {
     "id": "ivtzan-was-boaz",
     "type": "identity",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "The judge Ivtzan was Boaz",
       "he": "השופט אבצן הוא בועז",
@@ -2355,7 +2355,7 @@
   {
     "id": "shimshons-mother-tzlelponit",
     "type": "identity",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "The names of Shimshon's mother and David's mother",
       "he": "שמות אמו של שמשון ואמו של דוד",
@@ -2383,7 +2383,7 @@
   {
     "id": "shimshons-shoulders",
     "type": "wonder",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Shimshon's shoulders were sixty cubits wide",
       "he": "בין כתפיו של שמשון היו שישים אמה",
@@ -2407,7 +2407,7 @@
   {
     "id": "four-who-asked-improperly",
     "type": "connection",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Four who made risky vows",
       "he": "ארבעה ששאלו שלא כהוגן",
@@ -2437,7 +2437,7 @@
   {
     "id": "michas-open-door",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Why Micha kept his share in the World to Come",
       "he": "למה לא נמנה מיכה בין אלו שאין להם חלק",
@@ -2462,7 +2462,7 @@
   {
     "id": "chanahs-prayer",
     "type": "connection",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "The laws of prayer come from Chanah",
       "he": "הלכות תפילה נלמדו מחנה",
@@ -2487,7 +2487,7 @@
   {
     "id": "peninahs-intention",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Peninah meant well",
       "he": "פנינה לשם שמים נתכוונה",
@@ -2514,7 +2514,7 @@
   {
     "id": "orpah-mother-of-golyat",
     "type": "connection",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Orpah was the mother of Golyat",
       "he": "ערפה הייתה אמו של גלית",
@@ -2543,7 +2543,7 @@
   {
     "id": "yishbi-benov-and-avishai",
     "type": "crossover",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "David was nearly killed by Yishbi-benov",
       "he": "דוד כמעט נהרג בידי ישבי בנב",
@@ -2570,7 +2570,7 @@
   {
     "id": "batsheva-destined-for-david",
     "type": "connection",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Bat-Sheva was destined for David",
       "he": "בת שבע הייתה ראויה לדוד",
@@ -2597,7 +2597,7 @@
   {
     "id": "shlomo-ashmedai-and-the-shamir",
     "type": "wonder",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Shlomo, Ashmedai and the shamir",
       "he": "שלמה, אשמדאי והשמיר",
@@ -2625,7 +2625,7 @@
   {
     "id": "shlomo-pharaohs-daughter-and-rome",
     "type": "connection",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "The day Shlomo married Pharaoh's daughter, Rome began",
       "he": "ביום שנשא שלמה את בת פרעה נוסדה רומי",
@@ -2651,7 +2651,7 @@
   {
     "id": "ovadiah-the-edomite-convert",
     "type": "identity",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Ovadiah was an Edomite convert",
       "he": "עובדיה היה גר אדומי",
@@ -2678,7 +2678,7 @@
   {
     "id": "yeshayahu-in-the-cedar",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Yeshayahu was killed inside a cedar tree",
       "he": "ישעיהו נהרג בתוך ארז",
@@ -2704,7 +2704,7 @@
   {
     "id": "chizkiyahu-and-yeshayahus-daughter",
     "type": "connection",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Chizkiyahu married Yeshayahu's daughter",
       "he": "חזקיהו נשא את בת ישעיהו",
@@ -2732,7 +2732,7 @@
   {
     "id": "elishas-bears",
     "type": "wonder",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "The bears of Elisha: one miracle or two",
       "he": "הדובים של אלישע: נס או נס בתוך נס",
@@ -2756,7 +2756,7 @@
   {
     "id": "the-four-lepers-were-gechazi",
     "type": "identity",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "The four lepers were Gechazi and his sons",
       "he": "ארבעת המצורעים היו גיחזי ובניו",
@@ -2783,7 +2783,7 @@
   {
     "id": "the-dry-bones-were-ephraimites",
     "type": "connection",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Who the dry bones of Yechezkel were",
       "he": "מי היו העצמות היבשות של יחזקאל",
@@ -2809,7 +2809,7 @@
   {
     "id": "why-yonah-fled",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Why Yonah ran away",
       "he": "למה ברח יונה",
@@ -2834,7 +2834,7 @@
   {
     "id": "yonahs-fish-from-creation",
     "type": "wonder",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Yonah's fish was prepared since Creation",
       "he": "הדג של יונה נברא לכך מששת ימי בראשית",
@@ -2858,7 +2858,7 @@
   {
     "id": "the-king-of-nineveh-was-pharaoh",
     "type": "crossover",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "The king of Nineveh was the Pharaoh of the Exodus",
       "he": "מלך נינוה היה פרעה של יציאת מצרים",
@@ -2884,7 +2884,7 @@
   {
     "id": "who-was-malachi",
     "type": "identity",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Who was Malachi?",
       "he": "מי היה מלאכי",
@@ -2910,7 +2910,7 @@
   {
     "id": "zechariahs-blood-and-nevuzaradan",
     "type": "crossover",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "The blood of Zecharyah and Nevuzaradan's conversion",
       "he": "דמו של זכריה וגיורו של נבוזראדן",
@@ -2937,7 +2937,7 @@
   {
     "id": "enemies-descendants-taught-torah",
     "type": "connection",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Descendants of Israel's enemies taught Torah",
       "he": "מבני בניהם של שונאי ישראל למדו תורה",
@@ -2965,7 +2965,7 @@
   {
     "id": "the-burned-scroll-was-eichah",
     "type": "connection",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "The scroll King Yehoyakim burned was Eichah",
       "he": "המגילה שיהויקים שרף הייתה איכה",
@@ -2993,7 +2993,7 @@
   {
     "id": "the-ten-authors-of-tehillim",
     "type": "connection",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Tehillim was written with ten elders",
       "he": "ספר תהלים נכתב על ידי עשרה זקנים",
@@ -3024,7 +3024,7 @@
   {
     "id": "who-wrote-the-books-of-tanakh",
     "type": "connection",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Who wrote each book of Tanakh",
       "he": "מי כתב את ספרי התנ\"ך",
@@ -3060,7 +3060,7 @@
   {
     "id": "davids-lyre-at-midnight",
     "type": "wonder",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "David's lyre played by itself at midnight",
       "he": "הכינור של דוד ניגן מאליו בחצות",
@@ -3085,7 +3085,7 @@
   {
     "id": "shlomos-names",
     "type": "identity",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Shlomo was called by seven names",
       "he": "שבעה שמות נקראו לשלמה",
@@ -3112,7 +3112,7 @@
   {
     "id": "when-did-iyov-live",
     "type": "backstory",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "When did Iyov live?",
       "he": "מתי חי איוב",
@@ -3137,7 +3137,7 @@
   {
     "id": "iyovs-wife-was-dinah",
     "type": "identity",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Iyov's wife was Dinah",
       "he": "אשתו של איוב הייתה דינה",
@@ -3164,7 +3164,7 @@
   {
     "id": "ruth-was-eglons-daughter",
     "type": "connection",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Ruth was a daughter of King Eglon",
       "he": "רות הייתה בת עגלון מלך מואב",
@@ -3194,7 +3194,7 @@
   {
     "id": "memuchan-was-haman",
     "type": "identity",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Memuchan was Haman",
       "he": "ממוכן הוא המן",
@@ -3221,7 +3221,7 @@
   {
     "id": "vashti-measure-for-measure",
     "type": "measure",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Vashti was punished measure for measure",
       "he": "ושתי נענשה מידה כנגד מידה",
@@ -3247,7 +3247,7 @@
   {
     "id": "haman-the-barber",
     "type": "measure",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Haman had been a barber",
       "he": "המן היה ספר",
@@ -3273,7 +3273,7 @@
   {
     "id": "hatach-was-daniel",
     "type": "identity",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Hatach was the prophet Daniel",
       "he": "התך הוא דניאל",
@@ -3300,7 +3300,7 @@
   {
     "id": "achashverosh-wore-the-priestly-garments",
     "type": "connection",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Achashverosh displayed the Temple's garments",
       "he": "אחשורוש לבש את בגדי הכהונה",
@@ -3325,7 +3325,7 @@
   {
     "id": "belshazzars-miscalculation",
     "type": "connection",
-    "status": "draft",
+    "status": "reviewed",
     "title": {
       "en": "Belshatzar miscounted the seventy years",
       "he": "בלשאצר טעה בחשבון שבעים השנים",
