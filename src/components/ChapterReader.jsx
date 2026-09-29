@@ -299,7 +299,6 @@ export default function ChapterReader({ book, initialChapter = null, initialVers
             {!activeLoading && !activeError && currentVerses.length > 0 && (
               <>
                 <h2 className={styles.chapterTitle}>{`פרק ${activeChapter}`}</h2>
-                <p className={styles.commentaryHint}>{t('commentary.hint')}</p>
                 {currentVerses.map((verse, i) => (
                   <div
                     key={i}
