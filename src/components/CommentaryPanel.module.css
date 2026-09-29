@@ -1,0 +1,380 @@
+/* Desktop: fixed panel on the right. Phones: bottom sheet. */
+.panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 420px;
+  max-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  border-left: 1px solid var(--border);
+  box-shadow: -8px 0 24px var(--shadow);
+  z-index: 1000;
+  font-family: Arial, sans-serif;
+  animation: slideIn 0.2s ease-out;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(40px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@media (max-width: 899px) {
+  .panel {
+    top: auto;
+    left: 0;
+    width: 100%;
+    height: 65vh;
+    border-left: none;
+    border-top: 1px solid var(--border);
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 -8px 24px var(--shadow);
+    animation: slideUp 0.22s ease-out;
+  }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.headerTitle {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+}
+
+.headerMain {
+  font-weight: bold;
+  font-size: 17px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.headerSub {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.iconBtn {
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 18px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.iconBtn:hover {
+  background: var(--bg-hover);
+}
+
+.iconSpacer {
+  width: 34px;
+  flex-shrink: 0;
+}
+
+.body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 18px 28px;
+}
+
+.verseQuote {
+  margin: 0 0 18px;
+  padding: 10px 14px;
+  border-inline-start: 3px solid var(--accent);
+  background: var(--accent-softer);
+  border-radius: 4px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+.sectionLabel {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 18px 0 6px;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 8px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-primary);
+  font-size: 15px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.row:hover {
+  background: var(--bg-hover);
+}
+
+.rowTitle {
+  font-weight: 600;
+}
+
+.rowDisabled {
+  cursor: default;
+  opacity: 0.55;
+}
+
+.rowDisabled:hover {
+  background: transparent;
+}
+
+.rowNote {
+  font-size: 12px;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+.rowHe {
+  flex: 1;
+  color: var(--text-muted);
+  font-size: 14px;
+  direction: rtl;
+  text-align: right;
+}
+
+.count {
+  font-size: 12px;
+  min-width: 22px;
+  padding: 1px 7px;
+  border-radius: 10px;
+  background: var(--accent-soft);
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.chevron {
+  color: var(--text-muted);
+  font-size: 18px;
+}
+
+.moreBtn {
+  margin-top: 8px;
+  padding: 6px 0;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.moreBtn:hover {
+  color: var(--text-primary);
+}
+
+.status {
+  text-align: center;
+  color: var(--text-muted);
+  font-style: italic;
+  padding: 24px 0;
+}
+
+.linkBtn {
+  display: inline-block;
+  margin-top: 10px;
+  background: none;
+  border: none;
+  color: var(--accent2);
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.langToggle {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.langBtn {
+  padding: 5px 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: 16px;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.langActive {
+  background: var(--accent);
+  color: var(--accent-text);
+  border-color: var(--accent);
+}
+
+.passage {
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.passage:last-of-type {
+  border-bottom: none;
+}
+
+.passageRef {
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.segment,
+.segmentHe {
+  margin: 0 0 12px;
+  line-height: 1.65;
+  font-size: 15px;
+}
+
+.segmentHe {
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.attribution {
+  font-size: 11px;
+  color: var(--text-faint);
+}
+
+.attribution a {
+  color: inherit;
+}
+
+/* ---- Curated midrash ---- */
+
+.highlightLabel {
+  color: var(--accent2);
+  margin-top: 0;
+}
+
+.midrashRow {
+  background: var(--accent-softer);
+  border-radius: 6px;
+  border-bottom: none;
+  margin-bottom: 6px;
+}
+
+.midrashRowText {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: start;
+}
+
+.typeBadge,
+.typeBadgeSmall {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent2);
+}
+
+.typeBadge {
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.midrashTitle {
+  font-size: 21px;
+  line-height: 1.3;
+  margin: 0 0 12px;
+}
+
+.midrashStory {
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0 0 16px;
+}
+
+.otherView {
+  border-inline-start: 3px solid var(--border-strong);
+  padding: 8px 12px;
+  margin-bottom: 16px;
+  background: var(--bg-card);
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.otherView p {
+  margin: 0;
+}
+
+.otherViewLabel {
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.sourceList {
+  list-style: none;
+  margin: 0 0 8px;
+  padding: 0;
+}
+
+.sourceList li {
+  padding: 4px 0;
+  font-size: 14px;
+}
+
+.sourceList a {
+  color: var(--accent2);
+}
+
+.anchorChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.anchorChip {
+  padding: 5px 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: 16px;
+  font-size: 13px;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.anchorChip:hover {
+  background: var(--bg-hover);
+}

@@ -1,5 +1,7 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import CommentaryPanel from './CommentaryPanel';
+import { getMidrashVersesInChapter } from '../lib/midrashim';
 import styles from './ChapterReader.module.css';
 
 const LANGUAGES = ['hebrew', 'english', 'spanish'];
@@ -96,7 +98,7 @@ async function fetchSpanishFromSefaria(sefariaBookName, chapterNum) {
   return verses.map(v => cleanVerse(v, 'spanish'));
 }
 
-export default function ChapterReader({ book, initialChapter = null, initialVerse = null, initialLanguage = null }) {
+export default function ChapterReader({ book, initialChapter = null, initialVerse = null, initialLanguage = null, initialMidrash = null }) {
   const { t } = useLanguage();
   const [activeChapter, setActiveChapter] = useState(null);
   const [hebrewVerses, setHebrewVerses] = useState([]);
@@ -112,9 +114,15 @@ export default function ChapterReader({ book, initialChapter = null, initialVers
   const verseRefs = useRef({});
   const pendingVerseRef = useRef(null);
   const [highlightVerse, setHighlightVerse] = useState(null);
+  const [selectedVerse, setSelectedVerse] = useState(null);
+  // A curated midrash to open in the panel once the verse from the URL renders.
+  const pendingMidrashRef = useRef(null);
+  const [panelStart, setPanelStart] = useState(null);
+  const closeCommentary = useCallback(() => setSelectedVerse(null), []);
 
   const loadChapter = useCallback(async (chapterNum) => {
     setActiveChapter(chapterNum);
+    setSelectedVerse(null);
     setLoading(true);
     setError(null);
     setSpanishError(null);
@@ -175,13 +183,14 @@ export default function ChapterReader({ book, initialChapter = null, initialVers
   useEffect(() => {
     if (initialChapter) loadChapter(initialChapter);
     pendingVerseRef.current = initialVerse || null;
+    pendingMidrashRef.current = initialVerse && initialMidrash ? initialMidrash : null;
     setHighlightVerse(null);
 
     const lang = initialLanguage || 'hebrew';
     setLanguage(lang);
     if (lang === 'spanish' && initialChapter) loadSpanish(initialChapter);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [book.id, initialChapter, initialVerse, initialLanguage]);
+  }, [book.id, initialChapter, initialVerse, initialLanguage, initialMidrash]);
 
   // Once the active language's verses have actually rendered, scroll to the
   // verse Tanaj Search sent us to and briefly highlight it.
@@ -198,6 +207,11 @@ export default function ChapterReader({ book, initialChapter = null, initialVers
 
     el.scrollIntoView({ behavior: 'smooth', block: 'center' });
     setHighlightVerse(verseNum);
+    if (pendingMidrashRef.current) {
+      setPanelStart(`midrash:${pendingMidrashRef.current}`);
+      setSelectedVerse(verseNum);
+      pendingMidrashRef.current = null;
+    }
     const timer = setTimeout(() => setHighlightVerse(null), 2500);
     return () => clearTimeout(timer);
   }, [activeLoading, activeError, currentVerses]);
@@ -214,6 +228,7 @@ export default function ChapterReader({ book, initialChapter = null, initialVers
 
   const goBack = () => {
     setActiveChapter(null);
+    setSelectedVerse(null);
     setHebrewVerses([]);
     setEnglishVerses([]);
     setSpanishVerses([]);
@@ -222,9 +237,10 @@ export default function ChapterReader({ book, initialChapter = null, initialVers
   };
 
   const isRTL = language === 'hebrew';
+  const midrashVerses = activeChapter ? getMidrashVersesInChapter(book.sefaria, activeChapter) : new Set();
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${selectedVerse ? styles.withPanel : ''}`}>
       <p className={styles.selectLabel}>{t('chapterReader.selectChapter')}</p>
 
       <div className={styles.buttonGrid}>
@@ -283,13 +299,29 @@ export default function ChapterReader({ book, initialChapter = null, initialVers
             {!activeLoading && !activeError && currentVerses.length > 0 && (
               <>
                 <h2 className={styles.chapterTitle}>{`פרק ${activeChapter}`}</h2>
+                <p className={styles.commentaryHint}>{t('commentary.hint')}</p>
                 {currentVerses.map((verse, i) => (
                   <div
                     key={i}
                     ref={(el) => { verseRefs.current[i + 1] = el; }}
-                    className={`${styles.verse} ${highlightVerse === i + 1 ? styles.verseHighlight : ''}`}
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => { setPanelStart(null); setSelectedVerse(i + 1); }}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        setPanelStart(null);
+                        setSelectedVerse(i + 1);
+                      }
+                    }}
+                    className={`${styles.verse} ${styles.verseClickable} ${selectedVerse === i + 1 ? styles.verseSelected : ''} ${highlightVerse === i + 1 ? styles.verseHighlight : ''}`}
                   >
-                    <span className={styles.verseNumber}>{i + 1}.</span>
+                    <span className={styles.verseNumber}>
+                      {i + 1}.
+                      {midrashVerses.has(i + 1) && (
+                        <span className={styles.midrashMark} title={t('commentary.highlights')}></span>
+                      )}
+                    </span>
                     <span style={{ direction: isRTL ? 'rtl' : 'ltr' }}>{verse}</span>
                   </div>
                 ))}
@@ -298,6 +330,19 @@ export default function ChapterReader({ book, initialChapter = null, initialVers
 
           </div>
         )}
+
+      {activeChapter && selectedVerse && currentVerses[selectedVerse - 1] && (
+        <CommentaryPanel
+          book={book}
+          chapter={activeChapter}
+          verse={selectedVerse}
+          verseText={currentVerses[selectedVerse - 1]}
+          verseRTL={isRTL}
+          readerLanguage={language}
+          initialSelected={panelStart}
+          onClose={closeCommentary}
+        />
+      )}
     </div>
   );
 }

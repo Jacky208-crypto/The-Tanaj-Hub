@@ -98,3 +98,52 @@
     box-shadow: 0 0 0 0 transparent;
   }
 }
+
+/* Leave room for the commentary side panel on wide screens. */
+@media (min-width: 900px) {
+  .withPanel {
+    margin-right: 440px;
+    margin-left: max(0px, calc(50vw - 620px));
+  }
+}
+
+/* Room for the bottom sheet on phones so the last verses stay reachable. */
+@media (max-width: 899px) {
+  .withPanel {
+    padding-bottom: 65vh;
+  }
+}
+
+.commentaryHint {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: -10px 0 20px;
+}
+
+.verseClickable {
+  cursor: pointer;
+  padding: 4px 8px;
+  margin-left: -8px;
+  margin-right: -8px;
+  border-radius: 6px;
+  transition: background 0.12s;
+}
+
+.verseClickable:hover {
+  background: var(--accent-softer);
+}
+
+.verseClickable:focus-visible {
+  outline: 2px solid var(--accent);
+}
+
+.verseSelected,
+.verseSelected:hover {
+  background: var(--accent-soft);
+}
+
+.midrashMark {
+  font-size: 12px;
+  margin-inline-start: 2px;
+}
