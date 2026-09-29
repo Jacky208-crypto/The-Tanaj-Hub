@@ -177,7 +177,6 @@ export const translations = {
       },
       via: 'via',
       seeAll: ({ count }) => `See all ${count} on Sefaria ↗`,
-      hint: 'Tap any verse to see its commentary',
     },
     theme: {
       light: 'Light',
