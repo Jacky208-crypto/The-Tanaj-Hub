@@ -54,7 +54,7 @@ export function LangInputs({ label, hint, form, set, field, multiline, rows, opt
               rtl={l.rtl}
               multiline={multiline}
               rows={rows}
-              placeholder={optional || l.code !== 'en' ? 'Optional — falls back to English' : ''}
+              placeholder={optional || l.code !== 'en' ? ' ' : ''}
             />
           </div>
         ))}
