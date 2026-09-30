@@ -1,21 +1,38 @@
-// Checks src/data/midrashim.json before entries go live.
+// Checks the midrashim before entries go live.
 //
-//   node scripts/validate-midrashim.mjs            schema + Sefaria checks + coverage
-//   node scripts/validate-midrashim.mjs --offline  schema checks only
+//   npm run validate:midrash               the Supabase table (drafts too) + Sefaria checks
+//   npm run validate:midrash -- --offline  skip the Sefaria checks
+//   npm run validate:midrash -- --file     check supabase/content/midrashim.json instead
 //
 // For every entry it verifies: required fields in all three languages, a known
 // type, unique id, every anchor is a real verse of a book the site has, and
 // every source ref opens on Sefaria. Then it prints how many entries each book
 // has so gaps are easy to spot.
 
-import { readFileSync } from 'node:fs';
 import { allBooks } from '../src/data/books.js';
+import { adminClient, readContent } from './lib/supabaseAdmin.mjs';
 
 const TYPES = ['identity', 'crossover', 'backstory', 'connection', 'wonder', 'measure'];
 const LANGS = ['en', 'he', 'es'];
 const offline = process.argv.includes('--offline');
+const fromFile = process.argv.includes('--file');
 
-const entries = JSON.parse(readFileSync(new URL('../src/data/midrashim.json', import.meta.url), 'utf8'));
+// Rows use one column per language (title_en, title_he, …); regroup them
+// into { en, he, es } for the checks below.
+const byLang = (row, field) =>
+  row[`${field}_en`] == null && row[`${field}_he`] == null && row[`${field}_es`] == null
+    ? null
+    : Object.fromEntries(LANGS.map((l) => [l, row[`${field}_${l}`]]));
+const rows = fromFile
+  ? readContent('midrashim')
+  : await adminClient().selectAll('midrashim', 'sort_order,id');
+const entries = rows.map((r) => ({
+  ...r,
+  title: byLang(r, 'title'),
+  story: byLang(r, 'story'),
+  otherView: byLang(r, 'other_view'),
+}));
+console.log(`Checking ${entries.length} entries from ${fromFile ? 'supabase/content/midrashim.json' : 'Supabase'}…`);
 const bookBySefaria = new Map(allBooks.map((b) => [b.sefaria, b]));
 const errors = [];
 const err = (id, msg) => errors.push(`${id}: ${msg}`);

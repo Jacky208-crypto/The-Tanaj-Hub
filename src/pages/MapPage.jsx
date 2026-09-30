@@ -7,7 +7,9 @@ import 'leaflet/dist/leaflet.css';
 import 'leaflet.markercluster/dist/MarkerCluster.css';
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 import 'leaflet.markercluster';
-import { places, PLACE_TYPES, TIME_PERIODS } from '../data/places';
+import { PLACE_TYPES, TIME_PERIODS } from '../data/places';
+import { getPlaces, pick } from '../lib/content';
+import ContentStatus from '../components/ContentStatus';
 import {
   torahBooks, neviimRishonimBooks, neviimAjaranimBooks, ketuvimBooks, getBookById,
 } from '../data/books';
@@ -91,7 +93,7 @@ function MapResizer() {
 // Cluster layer driving leaflet.markercluster directly.
 // Built imperatively in an effect so it is safe under React StrictMode
 // (mount → cleanup → mount recreates the group cleanly).
-function ClusterLayer({ places, selected, onSelect, navigate, t }) {
+function ClusterLayer({ places, selected, onSelect, navigate, t, language }) {
   const map = useMap();
   const groupRef = useRef(null);
   const markersRef = useRef(new Map());
@@ -109,7 +111,7 @@ function ClusterLayer({ places, selected, onSelect, navigate, t }) {
       // Render the React popup into a detached node, bound lazily on open.
       const container = document.createElement('div');
       const root = createRoot(container);
-      root.render(<PlacePopup place={p} navigate={navigate} t={t} />);
+      root.render(<PlacePopup place={p} navigate={navigate} t={t} language={language} />);
       roots.push(root);
       marker.bindPopup(container, { minWidth: 200, maxWidth: 260 });
 
@@ -131,7 +133,7 @@ function ClusterLayer({ places, selected, onSelect, navigate, t }) {
       markersRef.current = new Map();
       rootsRef.current = [];
     };
-  }, [places, map, onSelect, navigate, t]);
+  }, [places, map, onSelect, navigate, t, language]);
 
   // Expand cluster to reveal the selected marker, then open its popup.
   useEffect(() => {
@@ -170,19 +172,30 @@ export default function MapPage() {
 
 function MapPageInner() {
   const navigate = useNavigate();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const [places, setPlaces] = useState(null); // from Supabase
+  const [placesError, setPlacesError] = useState(null);
+  const [placesReload, setPlacesReload] = useState(0);
   const [search, setSearch] = useState('');
   const [activePeriods, setActivePeriods] = useState([]);
   const [activeTypes, setActiveTypes] = useState([]);
   const [book, setBook] = useState('');
   const [selected, setSelected] = useState(null);
 
+  useEffect(() => {
+    let active = true;
+    getPlaces()
+      .then((rows) => { if (active) setPlaces(rows); })
+      .catch((e) => { if (active) setPlacesError(e.message); });
+    return () => { active = false; };
+  }, [placesReload]);
+
   const toggle = (setter, list) => (v) =>
     setter(list.includes(v) ? list.filter(x => x !== v) : [...list, v]);
 
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
-    return places.filter(p => {
+    return (places ?? []).filter(p => {
       if (q) {
         const hit = p.name.toLowerCase().includes(q) ||
           (p.aliases || []).some(a => a.toLowerCase().includes(q));
@@ -193,11 +206,12 @@ function MapPageInner() {
       if (book && !p.books.includes(book)) return false;
       return true;
     });
-  }, [search, activePeriods, activeTypes, book]);
+  }, [places, search, activePeriods, activeTypes, book]);
 
+  // Includes whether places have loaded, so the map fits them once they arrive.
   const signature = useMemo(
-    () => `${search}|${activePeriods.join(',')}|${activeTypes.join(',')}|${book}`,
-    [search, activePeriods, activeTypes, book]
+    () => `${Boolean(places)}|${search}|${activePeriods.join(',')}|${activeTypes.join(',')}|${book}`,
+    [places, search, activePeriods, activeTypes, book]
   );
 
   const hasFilters = search || activePeriods.length || activeTypes.length || book;
@@ -208,7 +222,7 @@ function MapPageInner() {
       <header className={styles.header}>
         <button className="back-btn" onClick={() => navigate('/')}>{t('nav.home')}</button>
         <h1 className={styles.title}>{t('map.title')}</h1>
-        <span className={styles.count}>{t('map.count', { filtered: filtered.length, total: places.length })}</span>
+        <span className={styles.count}>{places && t('map.count', { filtered: filtered.length, total: places.length })}</span>
       </header>
 
       <div className={styles.body}>
@@ -277,7 +291,15 @@ function MapPageInner() {
                 <span className={styles.resultType}>{t(TYPE_META[p.type].labelKey)}</span>
               </li>
             ))}
-            {!filtered.length && <li className={styles.empty}>{t('map.noMatches')}</li>}
+            {places && !filtered.length && <li className={styles.empty}>{t('map.noMatches')}</li>}
+            {!places && (
+              <li>
+                <ContentStatus
+                  error={placesError}
+                  onRetry={() => { setPlacesError(null); setPlacesReload((k) => k + 1); }}
+                />
+              </li>
+            )}
           </ul>
         </aside>
 
@@ -292,6 +314,7 @@ function MapPageInner() {
               onSelect={setSelected}
               navigate={navigate}
               t={t}
+              language={language}
             />
           </MapContainer>
         </div>
@@ -321,7 +344,8 @@ function BasemapControl() {
   );
 }
 
-function PlacePopup({ place, navigate, t }) {
+function PlacePopup({ place, navigate, t, language }) {
+  const description = pick(place, 'description', language);
   const meta = TYPE_META[place.type] || TYPE_META.city;
   return (
     <div className={styles.popup}>
@@ -333,7 +357,7 @@ function PlacePopup({ place, navigate, t }) {
       {place.aliases?.length > 0 && (
         <div className={styles.popupAliases}>{t('map.also')} {place.aliases.join(', ')}</div>
       )}
-      {place.comment && <div className={styles.popupComment}>{place.comment}</div>}
+      {description && <div className={styles.popupComment}>{description}</div>}
 
       <div className={styles.popupSubhead}>{t('map.appearsIn')}</div>
       <div className={styles.popupBooks}>

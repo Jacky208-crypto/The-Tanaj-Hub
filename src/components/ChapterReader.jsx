@@ -1,7 +1,7 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import CommentaryPanel from './CommentaryPanel';
-import { getMidrashVersesInChapter } from '../lib/midrashim';
+import { getMidrashVersesInChapter, useMidrashIndex } from '../lib/midrashim';
 import styles from './ChapterReader.module.css';
 
 const LANGUAGES = ['hebrew', 'english', 'spanish'];
@@ -100,6 +100,7 @@ async function fetchSpanishFromSefaria(sefariaBookName, chapterNum) {
 
 export default function ChapterReader({ book, initialChapter = null, initialVerse = null, initialLanguage = null, initialMidrash = null }) {
   const { t } = useLanguage();
+  const midrashIndex = useMidrashIndex();
   const [activeChapter, setActiveChapter] = useState(null);
   const [hebrewVerses, setHebrewVerses] = useState([]);
   const [englishVerses, setEnglishVerses] = useState([]);
@@ -237,7 +238,7 @@ export default function ChapterReader({ book, initialChapter = null, initialVers
   };
 
   const isRTL = language === 'hebrew';
-  const midrashVerses = activeChapter ? getMidrashVersesInChapter(book.sefaria, activeChapter) : new Set();
+  const midrashVerses = activeChapter ? getMidrashVersesInChapter(midrashIndex, book.sefaria, activeChapter) : new Set();
 
   return (
     <div className={`${styles.container} ${selectedVerse ? styles.withPanel : ''}`}>

@@ -2,19 +2,22 @@
 
 ## What's actually running today
 - `index.js` — Express + pg, one route: `GET /api/questions/:book`. It is
-  **not currently called by the React app** — Quiz.jsx imports questions
-  straight from `src/data/quizData.js` instead, and the `getQuizAttempts()`
-  call in Quiz.jsx is commented out.
-- `quizData.js` / `seed.js` — a one-time script that loads those same
-  questions into the `questions` Postgres table this server queries.
+  **not called by the React app** — quiz questions now come from the Supabase
+  `quiz_questions` table (see `supabase/README.md`), and the
+  `getQuizAttempts()` call in Quiz.jsx is commented out.
+- `quizData.js` / `seed.js` — an old one-time script that loaded a copy of
+  the questions into a `questions` table this server queries. Superseded by
+  `npm run import:content` at the repo root.
 
 ## What the React app actually talks to right now
 - **Auth, quiz attempts, notes** → Supabase directly, from the browser
   (`src/lib/supabaseClient.js`: GoTrue Auth REST + PostgREST), protected by
   Supabase Row-Level Security. No Node server involved.
+- **Site content** (quiz questions, study notes, midrashim, map places) →
+  Supabase directly too (`src/lib/content.js`).
 - **Bible text + search** → Sefaria's and Bolls' public APIs, fetched
   straight from the browser (`ChapterReader.jsx`, `src/lib/tanajSearch.js`).
-- **Map** → static local data (`src/data/places.js`), no network calls.
+- **Map** → places from Supabase; map tiles from OpenStreetMap / OpenTopoMap / Esri.
 
 ## The stub files added in this folder
 `config/`, `middleware/`, `routes/`, `controllers/`, `models/` — every file

@@ -4,6 +4,11 @@
 
 export const translations = {
   english: {
+    content: {
+      loading: 'Loading...',
+      error: 'Could not load this content. Check your connection and try again.',
+      retry: 'Try again',
+    },
     nav: {
       home: '← Home',
       back: '← Back',
@@ -187,6 +192,11 @@ export const translations = {
   },
 
   spanish: {
+    content: {
+      loading: 'Cargando...',
+      error: 'No se pudo cargar este contenido. Revisa tu conexión e inténtalo de nuevo.',
+      retry: 'Reintentar',
+    },
     nav: {
       home: '← Inicio',
       back: '← Atrás',
@@ -371,6 +381,11 @@ export const translations = {
   },
 
   hebrew: {
+    content: {
+      loading: '...טוען',
+      error: '.לא ניתן לטעון את התוכן. בדקו את החיבור ונסו שוב',
+      retry: 'נסו שוב',
+    },
     nav: {
       home: '→ בית',
       back: '→ חזרה',

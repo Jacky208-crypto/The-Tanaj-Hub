@@ -1,27 +1,42 @@
-import { useState, useMemo, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import styles from './QuizPlayer.module.css';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import { saveQuizAttempt } from '../lib/supabaseClient';
+import { getRandomQuestions, pick } from '../lib/content';
+import ContentStatus from './ContentStatus';
 
-function shuffleAndPick(arr, n) {
-  const shuffled = [...arr].sort(() => Math.random() - 0.5);
-  const picked = shuffled.slice(0, n);
+const SUFFIX = { english: 'en', spanish: 'es', hebrew: 'he' };
 
-  return picked.map(q => {
-    const indices = [0, 1, 2, 3].sort(() => Math.random() - 0.5);
-    return {
-      ...q,
-      options: indices.map(i => q.options[i]),
-      optionsSp: q.optionsSp ? indices.map(i => q.optionsSp[i]) : undefined,
-      optionsHe: q.optionsHe ? indices.map(i => q.optionsHe[i]) : undefined,
-    };
-  });
+function shuffled(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
 }
 
+// Shuffle each question's answers, applying the same order to every language
+// so correct_index keeps pointing at the right answer.
+function shuffleOptions(q) {
+  const order = shuffled(q.options_en.map((_, i) => i));
+  const reorder = (opts) => (opts ? order.map((i) => opts[i]) : null);
+  return {
+    ...q,
+    options_en: reorder(q.options_en),
+    options_es: reorder(q.options_es),
+    options_he: reorder(q.options_he),
+    correct_index: order.indexOf(q.correct_index),
+  };
+}
+
+// quiz = { label, quizKeys: ['bereshit', …], count }
 export default function QuizPlayer({ quiz, onBack }) {
   const { user } = useAuth();
   const { language: uiLanguage, t } = useLanguage();
+  const [questions, setQuestions] = useState(null); // null while loading
+  const [loadError, setLoadError] = useState(null);
   const [index, setIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [flash, setFlash] = useState(null);
@@ -32,13 +47,17 @@ export default function QuizPlayer({ quiz, onBack }) {
   const [saveState, setSaveState] = useState('idle'); // idle | saving | saved | error
   const savedForSession = useRef(-1);
 
-  const questions = useMemo(
-    () => shuffleAndPick(quiz.questions, quiz.count || 5),
-    [quiz, sessionKey]
-  );
+  // Fresh random questions for every run (first play and each "play again").
+  useEffect(() => {
+    let active = true;
+    getRandomQuestions(quiz.quizKeys, quiz.count || 5)
+      .then((rows) => { if (active) setQuestions(rows.map(shuffleOptions)); })
+      .catch((e) => { if (active) setLoadError(e.message); });
+    return () => { active = false; };
+  }, [quiz, sessionKey]);
 
-  const finished = index >= questions.length;
-  const current = questions[index];
+  const finished = questions !== null && index >= questions.length;
+  const current = questions?.[index];
 
   // When a quiz finishes, save the attempt for logged-in users (once per run).
   useEffect(() => {
@@ -54,43 +73,34 @@ export default function QuizPlayer({ quiz, onBack }) {
     })
       .then(() => setSaveState('saved'))
       .catch(() => setSaveState('error'));
-  }, [finished, user, sessionKey, quiz.label, score, questions.length]);
+  }, [finished, user, sessionKey, quiz.label, score, questions]);
 
-  const getQuestion = (q) => {
-    if (language === 'spanish' && q.questionSp) return q.questionSp;
-    if (language === 'hebrew' && q.questionHe) return q.questionHe;
-    return q.question;
-  };
+  const getOptions = (q) => q[`options_${SUFFIX[language]}`] || q.options_en;
 
-  const getOptions = (q) => {
-    if (language === 'spanish' && q.optionsSp) return q.optionsSp;
-    if (language === 'hebrew' && q.optionsHe) return q.optionsHe;
-    return q.options;
-  };
-
-  const getCorrect = (q) => {
-    if (language === 'spanish' && q.correctSp) return q.correctSp;
-    if (language === 'hebrew' && q.correctHe) return q.correctHe;
-    return q.correct;
-  };
-
-  const handleAnswer = (option) => {
+  const handleAnswer = (optionIndex) => {
     if (flash) return;
-    const isCorrect = option === getCorrect(current);
+    const isCorrect = optionIndex === current.correct_index;
     if (isCorrect) {
       setScore((s) => s + 1);
       setWrongAnswer(null);
     } else {
-      setWrongAnswer(getCorrect(current));
+      setWrongAnswer(current.correct_index);
     }
     setFlash(isCorrect ? 'correct' : 'incorrect');
-    setFlashOption(option);
+    setFlashOption(optionIndex);
     setTimeout(() => {
       setFlash(null);
       setFlashOption(null);
       setWrongAnswer(null);
       setIndex((i) => i + 1);
     }, 2000);
+  };
+
+  // Clears the current questions and fetches a new random set.
+  const loadNewQuestions = () => {
+    setQuestions(null);
+    setLoadError(null);
+    setSessionKey((k) => k + 1);
   };
 
   const restart = () => {
@@ -100,7 +110,7 @@ export default function QuizPlayer({ quiz, onBack }) {
     setFlashOption(null);
     setWrongAnswer(null);
     setSaveState('idle');
-    setSessionKey((k) => k + 1);
+    loadNewQuestions();
   };
 
   return (
@@ -127,7 +137,9 @@ export default function QuizPlayer({ quiz, onBack }) {
           ))}
         </div>
 
-        {finished ? (
+        {questions === null ? (
+          <ContentStatus error={loadError} onRetry={loadNewQuestions} />
+        ) : finished ? (
           <>
             <p className={styles.question}>{t('quizPlayer.finished')}</p>
             <p className={styles.score}>
@@ -159,21 +171,21 @@ export default function QuizPlayer({ quiz, onBack }) {
               className={styles.question}
               style={{ direction: language === 'hebrew' ? 'rtl' : 'ltr' }}
             >
-              {getQuestion(current)}
+              {pick(current, 'question', language)}
             </p>
             <div className={styles.options}>
-              {getOptions(current).map((opt) => {
+              {getOptions(current).map((opt, i) => {
                 let cls = styles.optionBtn;
-                if (flashOption === opt) {
+                if (flashOption === i) {
                   cls += flash === 'correct'
                     ? ` ${styles.correct}`
                     : ` ${styles.incorrect}`;
                 }
                 return (
                   <button
-                    key={opt}
+                    key={i}
                     className={cls}
-                    onClick={() => handleAnswer(opt)}
+                    onClick={() => handleAnswer(i)}
                     style={{ direction: language === 'hebrew' ? 'rtl' : 'ltr' }}
                   >
                     {opt}
@@ -182,7 +194,7 @@ export default function QuizPlayer({ quiz, onBack }) {
               })}
             </div>
 
-            {wrongAnswer && (
+            {wrongAnswer !== null && (
               <p style={{
                 marginTop: '1rem',
                 color: 'var(--danger)',
@@ -190,7 +202,7 @@ export default function QuizPlayer({ quiz, onBack }) {
                 textAlign: 'center',
                 direction: language === 'hebrew' ? 'rtl' : 'ltr'
               }}>
-                {t('quizPlayer.correctAnswer', { answer: wrongAnswer })}
+                {t('quizPlayer.correctAnswer', { answer: getOptions(current)[wrongAnswer] })}
               </p>
             )}
 

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { fetchVerseSources, fetchSourceText } from '../lib/sefariaCommentary';
-import { getMidrashimForVerse, parseAnchor, localized } from '../lib/midrashim';
+import { getMidrashimForVerse, parseAnchor, localized, useMidrashIndex } from '../lib/midrashim';
 import styles from './CommentaryPanel.module.css';
 
 // Midrash collections shown before "More midrash" (sorted by how many
@@ -20,6 +20,7 @@ export default function CommentaryPanel({
   book, chapter, verse, verseText, verseRTL, readerLanguage, initialSelected = null, onClose,
 }) {
   const { t, language } = useLanguage();
+  const midrashIndex = useMidrashIndex();
   const [sources, setSources] = useState(null);
   const [sourcesError, setSourcesError] = useState(null);
   const [selected, setSelected] = useState(initialSelected); // commentator title or midrash:<id>
@@ -48,16 +49,17 @@ export default function CommentaryPanel({
     : [];
   const group = allGroups.find((g) => g.id === selected) || null;
 
-  const midrashim = getMidrashimForVerse(book.sefaria, chapter, verse);
+  const midrashim = getMidrashimForVerse(midrashIndex, book.sefaria, chapter, verse);
   const isMidrashSelected = selected?.startsWith(MIDRASH_PREFIX);
   const midrash = isMidrashSelected
     ? midrashim.find((m) => MIDRASH_PREFIX + m.id === selected) || null
     : null;
 
   // An open midrash that isn't anchored to the newly clicked verse → back to the list.
+  // (Wait for the entries to load, or a midrash opened from a link would be dropped.)
   useEffect(() => {
-    if (isMidrashSelected && !midrash) setSelected(null);
-  }, [isMidrashSelected, midrash]);
+    if (midrashIndex && isMidrashSelected && !midrash) setSelected(null);
+  }, [midrashIndex, isMidrashSelected, midrash]);
 
   // Load the text of the open commentator. If it has nothing on this verse,
   // fall back to the list.

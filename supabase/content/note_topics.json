@@ -1,0 +1,42 @@
+[
+  {
+    "slug": "important-dates",
+    "title_en": "Important Dates",
+    "title_es": "Fechas Importantes",
+    "title_he": null,
+    "sort_order": 1,
+    "published": true
+  },
+  {
+    "slug": "desert-journey",
+    "title_en": "Israel's trajectory in the desert",
+    "title_es": "Trayectorio de Israel en el desierto",
+    "title_he": null,
+    "sort_order": 2,
+    "published": true
+  },
+  {
+    "slug": "tables-of-kings",
+    "title_en": "Tables of the Kings",
+    "title_es": "Tablas de Reyes",
+    "title_he": null,
+    "sort_order": 3,
+    "published": true
+  },
+  {
+    "slug": "important-places",
+    "title_en": "Important Places",
+    "title_es": "Lugares Importantes",
+    "title_he": null,
+    "sort_order": 4,
+    "published": true
+  },
+  {
+    "slug": "numbers",
+    "title_en": "Numbers",
+    "title_es": "Números",
+    "title_he": null,
+    "sort_order": 5,
+    "published": true
+  }
+]

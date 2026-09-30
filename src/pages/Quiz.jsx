@@ -1,31 +1,22 @@
 import { useNavigate } from 'react-router-dom';
 import QuizPlayer from '../components/QuizPlayer';
+import ContentStatus from '../components/ContentStatus';
 import styles from './Quiz.module.css';
-import { quizzes, allBooksQuiz } from '../data/quizData';
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import { getQuizAttempts } from '../lib/supabaseClient';
+import { getQuizzes, pick } from '../lib/content';
 
-const BOOKS_WITH_QUIZZES = [
-  'bereshit', 'shemot', 'vaikra', 'bamidbar', 'devarim',
-  'yehoshua', 'shoftim', 'shmuelAlef', 'shmuelBet',
-  'melajimAlef', 'melajimBet', 'neviimAjaronim',
-  'ketuvimPoetry', 'iyov', 'rut', 'ester',
-  'daniel', 'ezra', 'nehemia', 'divreHayamim'
-];
-
-function localizedLabel(q, language) {
-  if (language === 'spanish') return q.labelSp || q.label;
-  if (language === 'hebrew') return q.labelHe || q.label;
-  return q.label;
-}
-
-function localizedDescription(q, language) {
-  if (language === 'spanish') return q.descriptionSp || q.description;
-  if (language === 'hebrew') return q.descriptionHe || q.description;
-  return q.description;
-}
+// The "All Books" card draws from every quiz, so it has no row of its own.
+const ALL_BOOKS = {
+  label_en: 'All Books',
+  label_es: 'Todos los libros',
+  label_he: 'כל הספרים',
+  description_en: 'Test your knowledge across the entire Tanach!',
+  description_es: '¡Pon a prueba tu conocimiento de todo el Tanaj!',
+  description_he: '!בחן את הידע שלך על כל התנ״ך',
+};
 
 export default function Quiz() {
   const navigate = useNavigate();
@@ -37,6 +28,23 @@ export default function Quiz() {
   const [customQuiz, setCustomQuiz] = useState(null);
   const [questionCount, setQuestionCount] = useState(5);
   const [attempts, setAttempts] = useState([]);
+  const [quizzes, setQuizzes] = useState(null); // quiz cards from Supabase
+  const [quizzesError, setQuizzesError] = useState(null);
+  const [reloadKey, setReloadKey] = useState(0);
+
+  useEffect(() => {
+    let active = true;
+    getQuizzes()
+      .then((rows) => { if (active) setQuizzes(rows); })
+      .catch((e) => { if (active) setQuizzesError(e.message); });
+    return () => { active = false; };
+  }, [reloadKey]);
+  const quizzesStatus = !quizzes && (
+    <ContentStatus
+      error={quizzesError}
+      onRetry={() => { setQuizzesError(null); setReloadKey((k) => k + 1); }}
+    />
+  );
 
   /* Load this account's quiz history whenever we return to the menu.
   useEffect(() => {
@@ -109,9 +117,10 @@ export default function Quiz() {
           {t('quiz.selected', { n: selectedBooks.length })}
         </p>
 
+        {quizzesStatus}
         <div className={styles.cardGrid}>
-          {BOOKS_WITH_QUIZZES.map((key) => {
-            const q = quizzes[key];
+          {quizzes?.map((q) => {
+            const key = q.key;
             const selected = selectedBooks.includes(key);
             return (
               <div
@@ -129,7 +138,7 @@ export default function Quiz() {
                   );
                 }}
               >
-                <p className={styles.cardTitle}>{localizedLabel(q, language)}</p>
+                <p className={styles.cardTitle}>{pick(q, 'label', language)}</p>
               </div>
             );
           })}
@@ -169,14 +178,10 @@ export default function Quiz() {
               fontSize: '1rem',
             }}
             onClick={() => {
-              const combinedQuestions = selectedBooks.flatMap(
-                key => quizzes[key].questions
-              );
-              if (combinedQuestions.length === 0) return;
+              if (selectedBooks.length === 0) return;
               setCustomQuiz({
                 label: 'Custom Quiz',
-                description: 'Selected books',
-                questions: combinedQuestions,
+                quizKeys: selectedBooks,
                 count: questionCount
               });
               setMode('quiz');
@@ -278,14 +283,16 @@ export default function Quiz() {
 
       <h2 className={styles.subtitle}>{t('quiz.ourQuizzes')}</h2>
 
+      {quizzesStatus}
+      {quizzes && (
       <div className={styles.cardGrid}>
         <div className={styles.card}>
-          <p className={styles.cardTitle}>{localizedLabel(allBooksQuiz, language)}</p>
-          <p className={styles.cardText}>{localizedDescription(allBooksQuiz, language)}</p>
+          <p className={styles.cardTitle}>{pick(ALL_BOOKS, 'label', language)}</p>
+          <p className={styles.cardText}>{pick(ALL_BOOKS, 'description', language)}</p>
           <button
             className={styles.goBtn}
             onClick={() => {
-              setCustomQuiz(allBooksQuiz);
+              setCustomQuiz({ label: ALL_BOOKS.label_en, quizKeys: quizzes.map((q) => q.key) });
               setMode('quiz');
             }}
           >
@@ -293,16 +300,15 @@ export default function Quiz() {
           </button>
         </div>
 
-        {BOOKS_WITH_QUIZZES.map((key) => {
-          const q = quizzes[key];
+        {quizzes.map((q) => {
           return (
-            <div key={key} className={styles.card}>
-              <p className={styles.cardTitle}>{localizedLabel(q, language)}</p>
-              <p className={styles.cardText}>{localizedDescription(q, language)}</p>
+            <div key={q.key} className={styles.card}>
+              <p className={styles.cardTitle}>{pick(q, 'label', language)}</p>
+              <p className={styles.cardText}>{pick(q, 'description', language)}</p>
               <button
                 className={styles.goBtn}
                 onClick={() => {
-                  setCustomQuiz(quizzes[key]);
+                  setCustomQuiz({ label: q.label_en, quizKeys: [q.key] });
                   setMode('quiz');
                 }}
               >
@@ -312,6 +318,7 @@ export default function Quiz() {
           );
         })}
       </div>
+      )}
     </div>
   );
 }

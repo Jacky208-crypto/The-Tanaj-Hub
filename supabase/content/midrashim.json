@@ -1,0 +1,3328 @@
+[
+  {
+    "id": "og-survived-the-flood",
+    "type": "crossover",
+    "status": "reviewed",
+    "title_en": "Og survived the Flood",
+    "title_he": "עוג ניצל מן המבול",
+    "title_es": "Og sobrevivió al Diluvio",
+    "story_en": "The Talmud (Zevachim 113b) counts Og, king of Bashan, among the generation of the Flood and says he survived it by a miracle. Bereshit Rabbah identifies him as the \"fugitive\" who came to tell Avram that Lot had been captured (Genesis 14:13). According to Niddah 61a, this is why Moshe feared Og centuries later: he worried that the merit of having helped Avraham would protect him.",
+    "story_he": "הגמרא (זבחים קיג ע\"ב) מונה את עוג מלך הבשן בין בני דור המבול ואומרת שניצל ממנו בנס. בבראשית רבה הוא מזוהה עם \"הפליט\" שבא להגיד לאברם שלוט נשבה (בראשית יד, יג). לפי נדה סא ע\"א, זו הסיבה שמשה חשש מעוג מאות שנים אחר כך: הוא חשש שזכות העזרה לאברהם תעמוד לו.",
+    "story_es": "El Talmud (Zevajim 113b) cuenta a Og, rey de Bashán, entre la generación del Diluvio y dice que sobrevivió por un milagro. Bereshit Rabá lo identifica como el \"fugitivo\" que vino a avisar a Avram que Lot había sido capturado (Bereshit 14:13). Según Nidá 61a, por eso Moshe temió a Og siglos después: temía que el mérito de haber ayudado a Avraham lo protegiera.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "og",
+      "avraham",
+      "moshe"
+    ],
+    "anchors": [
+      "Genesis 7:23",
+      "Genesis 14:13",
+      "Numbers 21:34",
+      "Deuteronomy 3:11"
+    ],
+    "sources": [
+      "Zevachim 113b",
+      "Bereshit Rabbah 42:8",
+      "Niddah 61a"
+    ],
+    "sort_order": 1
+  },
+  {
+    "id": "malki-tzedek-was-shem",
+    "type": "identity",
+    "status": "reviewed",
+    "title_en": "Malki-tzedek was Shem, son of Noaj",
+    "title_he": "מלכי-צדק הוא שם בן נח",
+    "title_es": "Malki-Tzédek era Shem, hijo de Noaj",
+    "story_en": "The Talmud (Nedarim 32b) identifies Malki-tzedek, the king of Shalem who greeted Avram with bread and wine, as Shem. It adds that the priesthood was meant to come from Shem's line, but because he blessed Avram before blessing God, it passed to Avraham's descendants instead. Rashi cites the same identification.",
+    "story_he": "הגמרא (נדרים לב ע\"ב) מזהה את מלכי-צדק, מלך שלם שקידם את אברם בלחם ויין, עם שם. עוד נאמר שם שהכהונה הייתה אמורה לצאת משם, אך משום שהקדים את ברכת אברם לברכת המקום, היא הועברה לזרעו של אברהם. רש\"י מביא את אותו זיהוי.",
+    "story_es": "El Talmud (Nedarim 32b) identifica a Malki-Tzédek, el rey de Shalem que recibió a Avram con pan y vino, como Shem. Añade que el sacerdocio debía salir de la línea de Shem, pero como bendijo a Avram antes que a Dios, pasó a los descendientes de Avraham. Rashí cita la misma identificación.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "malki-tzedek",
+      "shem",
+      "avraham"
+    ],
+    "anchors": [
+      "Genesis 14:18"
+    ],
+    "sources": [
+      "Nedarim 32b",
+      "Rashi on Genesis 14:18"
+    ],
+    "sort_order": 2
+  },
+  {
+    "id": "keturah-was-hagar",
+    "type": "identity",
+    "status": "reviewed",
+    "title_en": "Keturah was Hagar",
+    "title_he": "קטורה היא הגר",
+    "title_es": "Keturá era Hagar",
+    "story_en": "In Bereshit Rabbah, Rav says that Keturah, whom Avraham married after Sarah's death, is Hagar. She was called Keturah because her deeds were pleasing like incense (ketoret). Rashi on Genesis 25:1 brings this view.",
+    "story_he": "בבראשית רבה אומר רב שקטורה, שאברהם נשא לאחר מות שרה, היא הגר. היא נקראה קטורה משום שמעשיה היו נאים כקטורת. רש\"י בבראשית כה, א מביא דעה זו.",
+    "story_es": "En Bereshit Rabá, Rav dice que Keturá, con quien Avraham se casó tras la muerte de Sará, es Hagar. Se la llamó Keturá porque sus actos eran agradables como el incienso (ketóret). Rashí en Bereshit 25:1 trae esta opinión.",
+    "other_view_en": "In the same passage, Rabbi Nechemya disagrees, pointing out that the Torah speaks of Avraham's \"concubines\" in the plural (Genesis 25:6).",
+    "other_view_he": "באותו מקום חולק רבי נחמיה ומציין שהתורה מדברת על \"הפילגשים\" של אברהם בלשון רבים (בראשית כה, ו).",
+    "other_view_es": "En el mismo pasaje, Rabí Nejemiá discrepa y señala que la Torá habla de las \"concubinas\" de Avraham en plural (Bereshit 25:6).",
+    "characters": [
+      "hagar",
+      "avraham"
+    ],
+    "anchors": [
+      "Genesis 25:1"
+    ],
+    "sources": [
+      "Bereshit Rabbah 61:4",
+      "Rashi on Genesis 25:1"
+    ],
+    "sort_order": 3
+  },
+  {
+    "id": "hagar-was-pharaohs-daughter",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "Hagar was Pharaoh's daughter",
+    "title_he": "הגר הייתה בת פרעה",
+    "title_es": "Hagar era hija de Paró",
+    "story_en": "Rabbi Shimon bar Yochai (Bereshit Rabbah 45:1) says Hagar was Pharaoh's daughter. After Pharaoh saw the miracles done for Sarah in his palace, he gave his daughter to her household, saying it was better for his daughter to be a maidservant there than a mistress in another house. Rashi on Genesis 16:1 cites this.",
+    "story_he": "רבי שמעון בר יוחאי (בראשית רבה מה, א) אומר שהגר הייתה בתו של פרעה. כאשר ראה פרעה את הנסים שנעשו לשרה בביתו, נתן את בתו לביתה ואמר: מוטב שתהא בתי שפחה בבית זה ולא גבירה בבית אחר. רש\"י בבראשית טז, א מביא זאת.",
+    "story_es": "Rabí Shimón bar Iojái (Bereshit Rabá 45:1) dice que Hagar era hija de Paró. Cuando Paró vio los milagros hechos a Sará en su palacio, entregó a su hija a esa casa, diciendo que era mejor que fuera sirvienta allí que señora en otra casa. Rashí en Bereshit 16:1 lo cita.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "hagar",
+      "sarah",
+      "pharaoh"
+    ],
+    "anchors": [
+      "Genesis 16:1"
+    ],
+    "sources": [
+      "Bereshit Rabbah 45:1",
+      "Rashi on Genesis 16:1"
+    ],
+    "sort_order": 4
+  },
+  {
+    "id": "amrafel-was-nimrod",
+    "type": "identity",
+    "status": "reviewed",
+    "title_en": "Amrafel was Nimrod",
+    "title_he": "אמרפל הוא נמרוד",
+    "title_es": "Amrafel era Nimrod",
+    "story_en": "Rav and Shmuel (Eruvin 53a) both identify Amrafel, one of the four kings who fought in Avram's time, with Nimrod. One of them explains the name as a contraction of amar (\"he said\") and hipil (\"he cast\"): he gave the order to throw Avraham into the fiery furnace. Rashi on Genesis 14:1 cites this.",
+    "story_he": "רב ושמואל (עירובין נג ע\"א) מזהים שניהם את אמרפל, אחד מארבעת המלכים בימי אברם, עם נמרוד. אחד מהם מסביר את השם: \"שאמר והפיל\" את אברהם אבינו לכבשן האש. רש\"י בבראשית יד, א מביא זאת.",
+    "story_es": "Rav y Shmuel (Eruvín 53a) identifican ambos a Amrafel, uno de los cuatro reyes en tiempos de Avram, con Nimrod. Uno de ellos explica el nombre como una contracción de amar (\"dijo\") e hipil (\"arrojó\"): dio la orden de arrojar a Avraham al horno de fuego. Rashí en Bereshit 14:1 lo cita.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "nimrod",
+      "avraham"
+    ],
+    "anchors": [
+      "Genesis 14:1",
+      "Genesis 10:8"
+    ],
+    "sources": [
+      "Eruvin 53a",
+      "Rashi on Genesis 14:1"
+    ],
+    "sort_order": 5
+  },
+  {
+    "id": "avraham-and-the-idols",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "Avraham in his father's idol shop",
+    "title_he": "אברהם בחנות הפסלים של אביו",
+    "title_es": "Avraham en la tienda de ídolos de su padre",
+    "story_en": "Bereshit Rabbah 38:13 relates that Terach sold idols and once left the young Avraham in charge of the shop. Avraham asked each customer his age, and when a man of fifty or sixty answered, he remarked on how strange it was to bow to something made that very day. He later broke the idols and put the stick in the hand of the largest one, claiming it had destroyed the others.",
+    "story_he": "בבראשית רבה לח, יג מסופר שתרח היה מוכר פסלים, ופעם הושיב את אברהם במקומו בחנות. אברהם שאל כל קונה בן כמה הוא, וכשענה בן חמישים או שישים, אמר: אוי לו לאדם זה שהוא בן שישים ומשתחווה לבן יום אחד. לאחר מכן שבר את הפסלים ונתן את המקל ביד הגדול שבהם, וטען שהוא שבר את האחרים.",
+    "story_es": "Bereshit Rabá 38:13 relata que Téraj vendía ídolos y una vez dejó al joven Avraham a cargo de la tienda. Avraham preguntaba a cada cliente su edad, y cuando alguien respondía cincuenta o sesenta, comentaba lo extraño que era postrarse ante algo hecho ese mismo día. Luego rompió los ídolos y puso el palo en la mano del más grande, diciendo que este había destruido a los demás.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "avraham",
+      "terach"
+    ],
+    "anchors": [
+      "Genesis 11:28"
+    ],
+    "sources": [
+      "Bereshit Rabbah 38:13"
+    ],
+    "sort_order": 6
+  },
+  {
+    "id": "avraham-in-the-furnace",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "Avraham was thrown into Nimrod's furnace",
+    "title_he": "אברהם הושלך לכבשן האש של נמרוד",
+    "title_es": "Avraham fue arrojado al horno de Nimrod",
+    "story_en": "Continuing the idol-shop story, Bereshit Rabbah 38:13 says Terach handed Avraham over to Nimrod, who threw him into a fiery furnace; Avraham came out unharmed. His brother Haran, who had waited to see who would win, was then thrown in and died. The midrash reads this into \"Ur Kasdim\" (ur means fire) and into Haran dying \"in the presence of Terach his father.\" The Talmud (Pesachim 118a) also mentions Nimrod casting Avraham into the furnace.",
+    "story_he": "בהמשך סיפור חנות הפסלים, בבראשית רבה לח, יג נאמר שתרח מסר את אברהם לנמרוד, שהשליכו לכבשן האש, ואברהם יצא ממנו בשלום. הרן אחיו, שחיכה לראות מי ינצח, הושלך אחריו ומת. המדרש דורש זאת מ\"אור כשדים\" ומכך שהרן מת \"על פני תרח אביו\". גם הגמרא (פסחים קיח ע\"א) מזכירה שנמרוד השליך את אברהם לכבשן.",
+    "story_es": "Continuando la historia de la tienda, Bereshit Rabá 38:13 dice que Téraj entregó a Avraham a Nimrod, quien lo arrojó a un horno de fuego; Avraham salió ileso. Su hermano Harán, que esperaba ver quién ganaría, fue arrojado después y murió. El midrash lo deriva de \"Ur Kasdim\" (ur significa fuego) y de que Harán murió \"en presencia de Téraj su padre\". El Talmud (Pesajim 118a) también menciona que Nimrod arrojó a Avraham al horno.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "avraham",
+      "nimrod",
+      "haran",
+      "terach"
+    ],
+    "anchors": [
+      "Genesis 11:28",
+      "Genesis 15:7"
+    ],
+    "sources": [
+      "Bereshit Rabbah 38:13",
+      "Rashi on Genesis 11:28",
+      "Pesachim 118a"
+    ],
+    "sort_order": 7
+  },
+  {
+    "id": "yiskah-was-sarah",
+    "type": "identity",
+    "status": "reviewed",
+    "title_en": "Yiskah was Sarah",
+    "title_he": "יסכה היא שרה",
+    "title_es": "Iská era Sará",
+    "story_en": "Genesis 11:29 mentions Yiskah, daughter of Haran, without saying anything more about her. Rabbi Yitzchak (Megillah 14a) says Yiskah is Sarah. She was called Yiskah because she \"saw\" (sachta) through divine inspiration, and the Talmud counts her among the seven prophetesses.",
+    "story_he": "בבראשית יא, כט מוזכרת יסכה בת הרן בלי שנאמר עליה דבר נוסף. רבי יצחק (מגילה יד ע\"א) אומר: יסכה זו שרה. ולמה נקרא שמה יסכה? שסכתה ברוח הקודש. הגמרא מונה אותה בין שבע הנביאות.",
+    "story_es": "Bereshit 11:29 menciona a Iská, hija de Harán, sin decir nada más de ella. Rabí Itzjak (Meguilá 14a) dice que Iská es Sará. Se la llamó Iská porque \"veía\" (sajtá) por inspiración divina, y el Talmud la cuenta entre las siete profetisas.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "sarah"
+    ],
+    "anchors": [
+      "Genesis 11:29"
+    ],
+    "sources": [
+      "Megillah 14a",
+      "Rashi on Genesis 11:29"
+    ],
+    "sort_order": 8
+  },
+  {
+    "id": "esav-at-yaakovs-burial",
+    "type": "connection",
+    "status": "reviewed",
+    "title_en": "Esav died at Yaakov's burial",
+    "title_he": "עשו מת בקבורת יעקב",
+    "title_es": "Esav murió en el entierro de Yaakov",
+    "story_en": "According to Sotah 13a, when Yaakov's sons reached the Cave of Machpelah, Esav blocked the burial and claimed the last plot was his. While Naftali ran back to Egypt for the deed, Chushim son of Dan, who was hard of hearing, asked what the delay was. When he understood, he struck Esav and killed him. The Talmud notes that this fulfilled Rivkah's words \"Why should I be bereaved of you both in one day?\" Targum Jonathan and Pirkei DeRabbi Eliezer add that Esav's head rolled into the cave and was buried there, near Yitzchak.",
+    "story_he": "לפי סוטה יג ע\"א, כשהגיעו בני יעקב למערת המכפלה, עיכב עשו את הקבורה וטען שהמקום האחרון שייך לו. בזמן שנפתלי רץ למצרים להביא את השטר, שאל חושים בן דן, שהיה כבד שמיעה, מה פשר העיכוב. כשהבין, היכה את עשו והרגו. הגמרא מציינת שבכך התקיימו דברי רבקה \"למה אשכל גם שניכם יום אחד\". תרגום יונתן ופרקי דרבי אליעזר מוסיפים שראשו של עשו התגלגל לתוך המערה ונקבר שם, אצל יצחק.",
+    "story_es": "Según Sotá 13a, cuando los hijos de Yaakov llegaron a la Cueva de Majpelá, Esav impidió el entierro alegando que el último lugar era suyo. Mientras Naftalí corría a Egipto por la escritura, Jushim hijo de Dan, que oía con dificultad, preguntó por qué se demoraban. Al entenderlo, golpeó a Esav y lo mató. El Talmud señala que así se cumplieron las palabras de Rivká: \"¿Por qué he de perderlos a ambos en un solo día?\" El Targum Ionatán y Pirkei de Rabí Eliézer añaden que la cabeza de Esav rodó dentro de la cueva y fue enterrada allí, junto a Itzjak.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "esav",
+      "yaakov",
+      "chushim",
+      "naftali",
+      "rivkah"
+    ],
+    "anchors": [
+      "Genesis 50:13",
+      "Genesis 46:23",
+      "Genesis 27:45"
+    ],
+    "sources": [
+      "Sotah 13a",
+      "Targum Jonathan on Genesis 50:13",
+      "Pirkei DeRabbi Eliezer 39"
+    ],
+    "sort_order": 9
+  },
+  {
+    "id": "serach-bat-asher",
+    "type": "crossover",
+    "status": "reviewed",
+    "title_en": "Serach bat Asher, who lived for generations",
+    "title_he": "סרח בת אשר, שחיה דורות רבים",
+    "title_es": "Séraj bat Asher, que vivió por generaciones",
+    "story_en": "Serach, daughter of Asher, is listed among those who went down to Egypt (Genesis 46:17) and again in the census in the desert (Numbers 26:46). The Talmud (Sotah 13a) says she was the one survivor of that generation who could tell Moshe where Yosef's coffin had been sunk in the Nile. Bereshit Rabbah 94:9 records an opinion that she is also the \"wise woman\" who negotiated with Yoav in the days of King David (II Samuel 20:16). Targum Jonathan adds that she was taken into the Garden of Eden alive, because she was the one who told Yaakov that Yosef was still living.",
+    "story_he": "סרח בת אשר נמנית בין יורדי מצרים (בראשית מו, יז) ושוב במפקד במדבר (במדבר כו, מו). הגמרא (סוטה יג ע\"א) אומרת שהיא נשארה מאותו הדור, ולכן ידעה להראות למשה היכן הוטבע ארונו של יוסף בנילוס. בבראשית רבה צד, ט מובאת דעה שהיא גם \"האישה החכמה\" שדיברה עם יואב בימי דוד המלך (שמואל ב כ, טז). תרגום יונתן מוסיף שנכנסה לגן עדן בחייה, משום שהיא בישרה ליעקב שיוסף עדיין חי.",
+    "story_es": "Séraj, hija de Asher, aparece entre los que bajaron a Egipto (Bereshit 46:17) y otra vez en el censo del desierto (Bamidbar 26:46). El Talmud (Sotá 13a) dice que ella quedaba de aquella generación y por eso pudo mostrar a Moshe dónde estaba hundido el ataúd de Yosef en el Nilo. Bereshit Rabá 94:9 trae una opinión de que ella es también la \"mujer sabia\" que negoció con Yoav en días del rey David (Shmuel Bet 20:16). El Targum Ionatán añade que entró viva al Gan Edén, porque fue ella quien le anunció a Yaakov que Yosef aún vivía.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "serach",
+      "moshe",
+      "yosef",
+      "yoav"
+    ],
+    "anchors": [
+      "Genesis 46:17",
+      "Numbers 26:46",
+      "Exodus 13:19",
+      "II Samuel 20:16"
+    ],
+    "sources": [
+      "Sotah 13a",
+      "Bereshit Rabbah 94:9",
+      "Targum Jonathan on Genesis 46:17"
+    ],
+    "sort_order": 10
+  },
+  {
+    "id": "pharaohs-three-advisors",
+    "type": "crossover",
+    "status": "reviewed",
+    "title_en": "Bilam, Iyov and Yitro advised Pharaoh",
+    "title_he": "בלעם, איוב ויתרו היו יועציו של פרעה",
+    "title_es": "Bilam, Iyov e Yitró aconsejaron a Paró",
+    "story_en": "Rabbi Simai (Sotah 11a) says Pharaoh consulted three advisors about what to do with the Israelites. Bilam proposed killing the baby boys and was later killed in the war with Midian. Iyov stayed silent and was punished with suffering. Yitro fled in protest, and some of his descendants merited to sit in the Sanhedrin.",
+    "story_he": "רבי סימאי (סוטה יא ע\"א) אומר ששלושה היו באותה עצה של פרעה: בלעם, איוב ויתרו. בלעם, שיעץ להרוג את הבנים, נהרג במלחמת מדין. איוב, ששתק, נידון ביסורים. יתרו, שברח, זכו מבני בניו לשבת בלשכת הגזית.",
+    "story_es": "Rabí Simái (Sotá 11a) dice que Paró consultó a tres consejeros sobre qué hacer con los israelitas. Bilam propuso matar a los varones recién nacidos y luego murió en la guerra con Midián. Iyov guardó silencio y fue castigado con sufrimientos. Yitró huyó en protesta, y algunos de sus descendientes merecieron sentarse en el Sanedrín.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "bilam",
+      "iyov",
+      "yitro",
+      "pharaoh"
+    ],
+    "anchors": [
+      "Exodus 1:10",
+      "Exodus 18:1",
+      "Numbers 22:5",
+      "Job 1:1"
+    ],
+    "sources": [
+      "Sotah 11a"
+    ],
+    "sort_order": 11
+  },
+  {
+    "id": "yocheved-born-between-the-walls",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "Yocheved was born at the gates of Egypt",
+    "title_he": "יוכבד נולדה בין החומות",
+    "title_es": "Iojéved nació a las puertas de Egipto",
+    "story_en": "Genesis 46 says Yaakov's family numbered seventy, but only sixty-nine are listed by name. The Talmud (Sotah 12a) resolves this with Yocheved, Moshe's mother: she was conceived on the way and born \"between the walls\" as the family entered Egypt, as Numbers 26:59 says she was born to Levi \"in Egypt.\"",
+    "story_he": "בבראשית מו נאמר שמשפחת יעקב מנתה שבעים נפש, אך רק שישים ותשע נמנים בשמם. הגמרא (סוטה יב ע\"א) מיישבת זאת ביוכבד, אמו של משה: הורתה הייתה בדרך ולידתה בין החומות, כשנכנסה המשפחה למצרים, כמו שנאמר \"אשר ילדה אותה ללוי במצרים\" (במדבר כו, נט).",
+    "story_es": "Bereshit 46 dice que la familia de Yaakov sumaba setenta, pero solo sesenta y nueve aparecen por nombre. El Talmud (Sotá 12a) lo resuelve con Iojéved, la madre de Moshe: fue concebida en el camino y nació \"entre las murallas\" al entrar la familia en Egipto, como dice Bamidbar 26:59 que nació a Leví \"en Egipto\".",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "yocheved",
+      "levi",
+      "moshe"
+    ],
+    "anchors": [
+      "Numbers 26:59",
+      "Genesis 46:15",
+      "Genesis 46:27"
+    ],
+    "sources": [
+      "Sotah 12a",
+      "Rashi on Numbers 26:59"
+    ],
+    "sort_order": 12
+  },
+  {
+    "id": "moshe-and-the-burning-coal",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "Why Moshe was \"slow of speech\"",
+    "title_he": "למה משה היה \"כבד פה\"",
+    "title_es": "Por qué Moshe era \"torpe de habla\"",
+    "story_en": "Shemot Rabbah 1:26 relates that the young Moshe took Pharaoh's crown and put it on his own head, and Pharaoh's advisors wanted him killed. Yitro, sitting among them, suggested a test: put gold and a burning coal before the child. If he reached for the gold, he understood what he was doing. Moshe reached for the gold, but the angel Gavriel pushed his hand to the coal; he put it in his mouth and burned his tongue. This is given as the reason he was \"slow of speech\" (Exodus 4:10).",
+    "story_he": "בשמות רבה א, כו מסופר שמשה הקטן נטל את כתרו של פרעה ושם אותו על ראשו, ויועצי פרעה ביקשו להורגו. יתרו, שישב ביניהם, הציע לבחון אותו: להביא לפניו זהב וגחלת. אם יושיט ידו לזהב, יש בו דעת. משה הושיט ידו לזהב, אך המלאך גבריאל דחה את ידו לגחלת; הוא הכניסה לפיו ונכווה בלשונו. מכאן, לפי המדרש, נעשה \"כבד פה וכבד לשון\" (שמות ד, י).",
+    "story_es": "Shemot Rabá 1:26 relata que el joven Moshe tomó la corona de Paró y se la puso, y los consejeros de Paró quisieron matarlo. Yitró, sentado entre ellos, propuso una prueba: poner ante el niño oro y una brasa. Si tomaba el oro, entendía lo que hacía. Moshe fue hacia el oro, pero el ángel Gavriel le desvió la mano hacia la brasa; se la llevó a la boca y se quemó la lengua. Esa es la razón dada de que fuera \"torpe de habla\" (Shemot 4:10).",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "moshe",
+      "yitro",
+      "pharaoh"
+    ],
+    "anchors": [
+      "Exodus 4:10",
+      "Exodus 2:10"
+    ],
+    "sources": [
+      "Shemot Rabbah 1:26"
+    ],
+    "sort_order": 13
+  },
+  {
+    "id": "pinchas-is-eliyahu",
+    "type": "identity",
+    "status": "reviewed",
+    "title_en": "Pinchas is Eliyahu",
+    "title_he": "פנחס הוא אליהו",
+    "title_es": "Pinjás es Eliyahu",
+    "story_en": "Pirkei DeRabbi Eliezer 47 says that after Pinchas stopped the plague, God called him by the name Eliyahu and gave him life in this world and the next. Targum Jonathan on Exodus 6:18 also identifies Pinchas with Eliyahu. On this view, the zealous priest of the desert and the prophet of Melachim are the same person.",
+    "story_he": "בפרקי דרבי אליעזר מז נאמר שלאחר שעצר פנחס את המגפה, קרא הקב\"ה את שמו אליהו ונתן לו חיי העולם הזה והעולם הבא. גם תרגום יונתן לשמות ו, יח מזהה את פנחס עם אליהו. לפי שיטה זו, הכהן הקנאי שבמדבר והנביא שבספר מלכים הם אדם אחד.",
+    "story_es": "Pirkei de Rabí Eliézer 47 dice que después de que Pinjás detuvo la plaga, Dios lo llamó con el nombre de Eliyahu y le dio vida en este mundo y en el venidero. El Targum Ionatán sobre Shemot 6:18 también identifica a Pinjás con Eliyahu. Según esta opinión, el sacerdote celoso del desierto y el profeta de Melajim son la misma persona.",
+    "other_view_en": "Bereshit Rabbah 71:9 records other opinions on Eliyahu's tribe: Rabbi Eliezer says he descended from Binyamin, and Rabbi Nehorai says from Gad. Pinchas was from Levi.",
+    "other_view_he": "בבראשית רבה עא, ט מובאות דעות אחרות על שבטו של אליהו: רבי אליעזר אומר משבט בנימין, ורבי נהוראי אומר משבט גד. פנחס היה משבט לוי.",
+    "other_view_es": "Bereshit Rabá 71:9 trae otras opiniones sobre la tribu de Eliyahu: Rabí Eliézer dice que descendía de Biniamín, y Rabí Nehorái que de Gad. Pinjás era de Leví.",
+    "characters": [
+      "pinchas",
+      "eliyahu"
+    ],
+    "anchors": [
+      "Numbers 25:11",
+      "Numbers 25:12",
+      "I Kings 17:1"
+    ],
+    "sources": [
+      "Pirkei DeRabbi Eliezer 47",
+      "Targum Jonathan on Exodus 6:18",
+      "Bereshit Rabbah 71:9"
+    ],
+    "sort_order": 14
+  },
+  {
+    "id": "rachav-married-yehoshua",
+    "type": "connection",
+    "status": "reviewed",
+    "title_en": "Rachav married Yehoshua",
+    "title_he": "רחב נישאה ליהושע",
+    "title_es": "Rajav se casó con Yehoshúa",
+    "story_en": "The Talmud (Megillah 14b) says Rachav, who hid the spies in Yericho, converted and married Yehoshua. It lists eight prophets who were also priests among her descendants, including Yirmiyahu, and says Chuldah the prophetess descended from her as well.",
+    "story_he": "הגמרא (מגילה יד ע\"ב) אומרת שרחב, שהסתירה את המרגלים ביריחו, נתגיירה ונישאה ליהושע. שמונה נביאים שהיו גם כהנים יצאו ממנה, ביניהם ירמיהו, וגם חולדה הנביאה מצאצאיה.",
+    "story_es": "El Talmud (Meguilá 14b) dice que Rajav, que escondió a los espías en Yerijó, se convirtió y se casó con Yehoshúa. Enumera ocho profetas que también eran sacerdotes entre sus descendientes, incluido Yirmiyahu, y dice que la profetisa Julda también descendía de ella.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "rachav",
+      "yehoshua",
+      "yirmiyahu",
+      "chuldah"
+    ],
+    "anchors": [
+      "Joshua 2:1",
+      "Joshua 6:25"
+    ],
+    "sources": [
+      "Megillah 14b"
+    ],
+    "sort_order": 15
+  },
+  {
+    "id": "yonah-was-the-widows-son",
+    "type": "identity",
+    "status": "reviewed",
+    "title_en": "Yonah was the boy Eliyahu revived",
+    "title_he": "יונה הוא הילד שאליהו החיה",
+    "title_es": "Yoná era el niño que Eliyahu revivió",
+    "story_en": "In I Kings 17, Eliyahu stays with a widow in Tzarfat and brings her son back to life. Pirkei DeRabbi Eliezer 33 says this widow was the mother of Yonah, making the prophet Yonah the child Eliyahu revived. The Jerusalem Talmud (Sukkah 5:1) records Rabbi Levi's teaching that Yonah was from the tribe of Asher, based on this identification.",
+    "story_he": "במלכים א יז שוהה אליהו אצל אלמנה בצרפת ומחיה את בנה. בפרקי דרבי אליעזר לג נאמר שאלמנה זו הייתה אמו של יונה, כך שהנביא יונה הוא הילד שאליהו החיה. בתלמוד הירושלמי (סוכה ה, א) מובאת דרשת רבי לוי שיונה היה משבט אשר, על סמך זיהוי זה.",
+    "story_es": "En Melajim Alef 17, Eliyahu se hospeda con una viuda en Tzarfat y devuelve la vida a su hijo. Pirkei de Rabí Eliézer 33 dice que esa viuda era la madre de Yoná, de modo que el profeta Yoná era el niño que Eliyahu revivió. El Talmud de Jerusalén (Sucá 5:1) trae la enseñanza de Rabí Leví de que Yoná era de la tribu de Asher, basándose en esta identificación.",
+    "other_view_en": "In the same passage of the Jerusalem Talmud, Rabbi Yochanan says Yonah was from the tribe of Zevulun.",
+    "other_view_he": "באותו מקום בירושלמי אומר רבי יוחנן שיונה היה משבט זבולון.",
+    "other_view_es": "En el mismo pasaje del Talmud de Jerusalén, Rabí Iojanán dice que Yoná era de la tribu de Zevulún.",
+    "characters": [
+      "yonah",
+      "eliyahu"
+    ],
+    "anchors": [
+      "Jonah 1:1",
+      "I Kings 17:17",
+      "I Kings 17:22"
+    ],
+    "sources": [
+      "Pirkei DeRabbi Eliezer 33",
+      "Jerusalem Talmud Sukkah 5:1"
+    ],
+    "sort_order": 16
+  },
+  {
+    "id": "bitya-daughter-of-pharaoh",
+    "type": "connection",
+    "status": "reviewed",
+    "title_en": "Pharaoh's daughter joined Israel",
+    "title_he": "בת פרעה הצטרפה לעם ישראל",
+    "title_es": "La hija de Paró se unió a Israel",
+    "story_en": "I Chronicles 4:18 mentions \"Bitya, daughter of Pharaoh, whom Mered married.\" The Talmud (Megillah 13a) identifies her with the daughter of Pharaoh who drew Moshe from the Nile, and explains that she went down to the river to purify herself from her father's idols. It identifies Mered as Kalev.",
+    "story_he": "בדברי הימים א ד, יח נזכרת \"בתיה בת פרעה אשר לקח מרד\". הגמרא (מגילה יג ע\"א) מזהה אותה עם בת פרעה שמשתה את משה מן היאור, ומסבירה שירדה לרחוץ כדי להיטהר מגילולי בית אביה. מרד, לפי הגמרא, הוא כלב.",
+    "story_es": "Divré Hayamim Alef 4:18 menciona a \"Bitiá, hija de Paró, con quien se casó Méred\". El Talmud (Meguilá 13a) la identifica con la hija de Paró que sacó a Moshe del Nilo, y explica que bajó al río para purificarse de los ídolos de la casa de su padre. Identifica a Méred con Kalev.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "bitya",
+      "moshe",
+      "kalev",
+      "pharaoh"
+    ],
+    "anchors": [
+      "Exodus 2:5",
+      "I Chronicles 4:18"
+    ],
+    "sources": [
+      "Megillah 13a"
+    ],
+    "sort_order": 17
+  },
+  {
+    "id": "ten-things-created-at-twilight",
+    "type": "wonder",
+    "status": "reviewed",
+    "title_en": "Ten things created at twilight of the first Shabbat",
+    "title_he": "עשרה דברים שנבראו בערב שבת בין השמשות",
+    "title_es": "Diez cosas creadas al anochecer del primer Shabat",
+    "story_en": "The Mishnah (Pirkei Avot 5:6) lists ten things created at twilight on the eve of the first Shabbat, among them the mouth of the earth that swallowed Korach, the mouth of the well, the mouth of Bilam's donkey, the rainbow, the manna, and Moshe's staff. On this view, these later miracles were built into creation from the start.",
+    "story_he": "המשנה (אבות ה, ו) מונה עשרה דברים שנבראו בערב שבת בין השמשות, ביניהם פי הארץ שבלעה את קרח, פי הבאר, פי האתון של בלעם, הקשת, המן והמטה של משה. לפי זה, נסים אלה היו חלק מהבריאה מראשיתה.",
+    "story_es": "La Mishná (Pirkei Avot 5:6) enumera diez cosas creadas al anochecer de la víspera del primer Shabat, entre ellas la boca de la tierra que tragó a Kóraj, la boca del pozo, la boca de la burra de Bilam, el arcoíris, el maná y el cayado de Moshe. Según esto, esos milagros posteriores formaban parte de la creación desde el principio.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "moshe",
+      "bilam",
+      "korach",
+      "miriam"
+    ],
+    "anchors": [
+      "Exodus 4:17",
+      "Numbers 22:28",
+      "Numbers 16:32",
+      "Genesis 9:13",
+      "Exodus 16:15"
+    ],
+    "sources": [
+      "Pirkei Avot 5:6"
+    ],
+    "sort_order": 18
+  },
+  {
+    "id": "adam-reached-the-sky",
+    "type": "wonder",
+    "status": "reviewed",
+    "title_en": "Adam's original height reached the sky",
+    "title_he": "קומתו של אדם הראשון הגיעה עד הרקיע",
+    "title_es": "La estatura original de Adam llegaba al cielo",
+    "story_en": "Rabbi Elazar (Chagigah 12a) says that Adam's height originally reached from the earth to the sky, reading Deuteronomy 4:32 (\"since the day God created man on the earth, and from one end of the heavens\") as describing him. After he sinned, God placed His hand on him and made him smaller.",
+    "story_he": "רבי אלעזר (חגיגה יב ע\"א) אומר שאדם הראשון היה מן הארץ ועד הרקיע, ודורש כך את הפסוק \"למן היום אשר ברא אלהים אדם על הארץ ולמקצה השמים\" (דברים ד, לב). כיוון שחטא, הניח הקב\"ה ידו עליו ומיעטו.",
+    "story_es": "Rabí Elazar (Jaguigá 12a) dice que la estatura de Adam llegaba originalmente de la tierra al cielo, leyendo así Devarim 4:32 (\"desde el día en que Dios creó al hombre sobre la tierra, y de un extremo de los cielos\"). Cuando pecó, Dios puso Su mano sobre él y lo redujo.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "adam"
+    ],
+    "anchors": [
+      "Genesis 2:7",
+      "Deuteronomy 4:32"
+    ],
+    "sources": [
+      "Chagigah 12a"
+    ],
+    "sort_order": 19
+  },
+  {
+    "id": "the-serpent-had-legs",
+    "type": "measure",
+    "status": "reviewed",
+    "title_en": "The serpent once had legs",
+    "title_he": "לנחש היו רגליים",
+    "title_es": "La serpiente tenía patas",
+    "story_en": "On the curse \"upon your belly you shall go\" (Genesis 3:14), Rashi, citing Bereshit Rabbah 20:5, explains that the serpent originally had legs and they were cut off as its punishment.",
+    "story_he": "על הקללה \"על גחנך תלך\" (בראשית ג, יד) מפרש רש\"י, על פי בראשית רבה כ, ה: רגליים היו לו ונקצצו.",
+    "story_es": "Sobre la maldición \"sobre tu vientre andarás\" (Bereshit 3:14), Rashí, citando Bereshit Rabá 20:5, explica que la serpiente tenía patas y le fueron cortadas como castigo.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "serpent"
+    ],
+    "anchors": [
+      "Genesis 3:14"
+    ],
+    "sources": [
+      "Rashi on Genesis 3:14",
+      "Bereshit Rabbah 20:5"
+    ],
+    "sort_order": 20
+  },
+  {
+    "id": "kayin-and-hevel-quarrel",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "What Kayin and Hevel argued about",
+    "title_he": "על מה רבו קין והבל",
+    "title_es": "Por qué discutieron Kayin y Hével",
+    "story_en": "The Torah says only that Kayin \"spoke to Hevel his brother\" before killing him. Bereshit Rabbah 22:7 records several views of what the argument was about. One is that they divided the world, one taking the land and the other the movable property, and each then claimed the other was using what was his. Another is that each insisted the Temple would be built in his portion. Rabbi Huna says an extra twin sister was born with Hevel, and each claimed the right to marry her.",
+    "story_he": "התורה אומרת רק \"ויאמר קין אל הבל אחיו\" לפני שהרגו. בבראשית רבה כב, ז מובאות כמה דעות על מה היה הוויכוח. אחת: חילקו את העולם, אחד נטל את הקרקעות ואחד את המטלטלין, וכל אחד טען שהשני משתמש במה ששייך לו. אחרת: זה אומר בתחומי בית המקדש נבנה וזה אומר בתחומי. רבי הונא אומר שתאומה יתירה נולדה עם הבל, וכל אחד טען שהוא זכאי לשאת אותה.",
+    "story_es": "La Torá solo dice que Kayin \"habló a Hével su hermano\" antes de matarlo. Bereshit Rabá 22:7 trae varias opiniones sobre la discusión. Una es que se repartieron el mundo, uno tomando la tierra y el otro los bienes muebles, y cada uno acusó al otro de usar lo que era suyo. Otra es que cada uno insistía en que el Templo se construiría en su porción. Rabí Huna dice que con Hével nació una hermana gemela adicional, y cada uno reclamaba el derecho a casarse con ella.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "kayin",
+      "hevel"
+    ],
+    "anchors": [
+      "Genesis 4:8"
+    ],
+    "sources": [
+      "Bereshit Rabbah 22:7"
+    ],
+    "sort_order": 21
+  },
+  {
+    "id": "lemech-killed-kayin",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "Lemech accidentally killed Kayin",
+    "title_he": "למך הרג את קין בשגגה",
+    "title_es": "Lémej mató a Kayin por accidente",
+    "story_en": "Rashi on Genesis 4:23 explains Lemech's strange speech to his wives. Lemech was blind, and his son Tuval-Kayin used to guide him while hunting. Tuval-Kayin saw Kayin in the distance, took him for an animal, and told his father to shoot. Lemech killed Kayin, his ancestor, and then, clapping his hands in grief, struck and killed his son as well. His wives then separated from him.",
+    "story_he": "רש\"י בבראשית ד, כג מסביר את דבריו התמוהים של למך לנשיו. למך היה סומא, ותובל-קין בנו היה מושכו. ראה תובל-קין את קין מרחוק ונדמה לו כחיה, ואמר לאביו למשוך בקשת. הרג למך את קין זקנו, וכשספק כפיו בצער הכה את בנו והרגו. לכן פירשו ממנו נשיו.",
+    "story_es": "Rashí en Bereshit 4:23 explica el extraño discurso de Lémej a sus esposas. Lémej era ciego y su hijo Tuval-Kayin lo guiaba. Tuval-Kayin vio a Kayin a lo lejos, lo tomó por un animal y le dijo a su padre que disparara. Lémej mató a Kayin, su antepasado, y al golpear sus manos de dolor golpeó y mató también a su hijo. Por eso sus esposas se apartaron de él.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "lemech",
+      "kayin",
+      "tuval-kayin"
+    ],
+    "anchors": [
+      "Genesis 4:23"
+    ],
+    "sources": [
+      "Rashi on Genesis 4:23"
+    ],
+    "sort_order": 22
+  },
+  {
+    "id": "naamah-was-noachs-wife",
+    "type": "identity",
+    "status": "reviewed",
+    "title_en": "Naamah was Noaj's wife",
+    "title_he": "נעמה הייתה אשת נח",
+    "title_es": "Naamá era la esposa de Noaj",
+    "story_en": "Genesis 4:22 names Naamah, sister of Tuval-Kayin, but says nothing else about her. Rashi, citing Bereshit Rabbah 23:3, says she was Noaj's wife.",
+    "story_he": "בבראשית ד, כב נזכרת נעמה אחות תובל-קין, בלי שנאמר עליה דבר נוסף. רש\"י, על פי בראשית רבה כג, ג, אומר שהיא הייתה אשתו של נח.",
+    "story_es": "Bereshit 4:22 nombra a Naamá, hermana de Tuval-Kayin, sin decir nada más de ella. Rashí, citando Bereshit Rabá 23:3, dice que era la esposa de Noaj.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "naamah",
+      "noaj"
+    ],
+    "anchors": [
+      "Genesis 4:22",
+      "Genesis 7:7"
+    ],
+    "sources": [
+      "Rashi on Genesis 4:22",
+      "Bereshit Rabbah 23:3"
+    ],
+    "sort_order": 23
+  },
+  {
+    "id": "chanoch-taken-early",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "Why Chanoch was taken early",
+    "title_he": "למה נלקח חנוך בטרם עת",
+    "title_es": "Por qué Janoj fue llevado antes de tiempo",
+    "story_en": "The Torah says of Chanoch that \"he was no more, for God took him\" (Genesis 5:24), and he lived far fewer years than the others of his generation. Rashi explains that Chanoch was righteous but easily swayed toward wrongdoing, so God took him before his time.",
+    "story_he": "על חנוך נאמר \"ואיננו כי לקח אתו אלהים\" (בראשית ה, כד), והוא חי שנים מעטות בהרבה מבני דורו. רש\"י מסביר שצדיק היה, אך קל בדעתו לשוב ולהרשיע, ולכן מיהר הקב\"ה וסילקו לפני זמנו.",
+    "story_es": "La Torá dice de Janoj que \"desapareció, porque Dios lo tomó\" (Bereshit 5:24), y vivió muchos menos años que otros de su generación. Rashí explica que Janoj era justo pero fácil de desviar hacia el mal, por lo que Dios lo llevó antes de su tiempo.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "chanoch"
+    ],
+    "anchors": [
+      "Genesis 5:24"
+    ],
+    "sources": [
+      "Rashi on Genesis 5:24"
+    ],
+    "sort_order": 24
+  },
+  {
+    "id": "metushelach-delayed-the-flood",
+    "type": "connection",
+    "status": "reviewed",
+    "title_en": "The Flood waited seven days for Metushelach",
+    "title_he": "המבול התעכב שבעה ימים בשביל מתושלח",
+    "title_es": "El Diluvio esperó siete días por Metushélaj",
+    "story_en": "Genesis 7:10 says the Flood came \"after seven days.\" Rav (Sanhedrin 108b) explains that these were the seven days of mourning for Metushelach, who died just before the Flood, and learns from this that mourning for the righteous holds back disaster. By the Torah's chronology, Metushelach's 969 years end in the year of the Flood.",
+    "story_he": "בבראשית ז, י נאמר שהמבול בא \"לשבעת הימים\". רב (סנהדרין קח ע\"ב) מסביר שאלה היו ימי האבל על מתושלח, שמת סמוך למבול, ולומד מכאן שהספדן של צדיקים מעכב את הפורענות. לפי חשבון השנים בתורה, 969 שנותיו של מתושלח מסתיימות בשנת המבול.",
+    "story_es": "Bereshit 7:10 dice que el Diluvio llegó \"a los siete días\". Rav (Sanedrín 108b) explica que eran los siete días de duelo por Metushélaj, que murió justo antes del Diluvio, y aprende de ello que el duelo por los justos detiene la calamidad. Según la cronología de la Torá, los 969 años de Metushélaj terminan en el año del Diluvio.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "metushelach",
+      "noaj"
+    ],
+    "anchors": [
+      "Genesis 7:10",
+      "Genesis 5:27"
+    ],
+    "sources": [
+      "Sanhedrin 108b"
+    ],
+    "sort_order": 25
+  },
+  {
+    "id": "noaj-and-the-lion",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "Noaj was injured by a lion in the ark",
+    "title_he": "נח נפגע מאריה בתיבה",
+    "title_es": "Noaj fue herido por un león en el arca",
+    "story_en": "On \"only Noaj was left\" (Genesis 7:23), Rashi explains that Noaj was exhausted and coughing blood from the work of caring for the animals. He adds another view: Noaj was once late bringing food to the lion, and it struck him.",
+    "story_he": "על \"וישאר אך נח\" (בראשית ז, כג) מפרש רש\"י שנח היה גונח ומשליך דם מטורח הבהמות והחיות. עוד מביא: יש אומרים שאיחר פעם מזונו של הארי, והכישו.",
+    "story_es": "Sobre \"solo quedó Noaj\" (Bereshit 7:23), Rashí explica que Noaj estaba agotado y tosía sangre por el trabajo de cuidar a los animales. Añade otra opinión: una vez Noaj se retrasó en llevar la comida al león, y este lo hirió.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "noaj"
+    ],
+    "anchors": [
+      "Genesis 7:23"
+    ],
+    "sources": [
+      "Rashi on Genesis 7:23"
+    ],
+    "sort_order": 26
+  },
+  {
+    "id": "tower-of-bavel-bricks",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "At the Tower of Bavel, a brick mattered more than a person",
+    "title_he": "במגדל בבל לבנה הייתה חשובה מאדם",
+    "title_es": "En la Torre de Bavel, un ladrillo valía más que una persona",
+    "story_en": "Pirkei DeRabbi Eliezer 24 describes the tower rising seven mil high, with workers carrying bricks up the eastern side and descending on the western side. If a person fell and died, no one paid attention; if a brick fell, they sat down and wept over the loss. The midrash adds that Avraham passed by and cursed the builders.",
+    "story_he": "בפרקי דרבי אליעזר כד מתואר המגדל שהגיע לגובה שבעה מילין, והעולים עם הלבנים עלו ממזרח והיורדים ירדו ממערב. אם נפל אדם ומת, לא שמו לב אליו; ואם נפלה לבנה, ישבו ובכו עליה. המדרש מוסיף שאברהם עבר שם וקילל אותם.",
+    "story_es": "Pirkei de Rabí Eliézer 24 describe la torre alcanzando siete mil de altura, con obreros que subían ladrillos por el lado este y bajaban por el oeste. Si una persona caía y moría, nadie le prestaba atención; si caía un ladrillo, se sentaban a llorar la pérdida. El midrash añade que Avraham pasó por allí y maldijo a los constructores.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "avraham"
+    ],
+    "anchors": [
+      "Genesis 11:3",
+      "Genesis 11:4"
+    ],
+    "sources": [
+      "Pirkei DeRabbi Eliezer 24"
+    ],
+    "sort_order": 27
+  },
+  {
+    "id": "avraham-recognized-god-at-three",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "Avraham recognized God at age three",
+    "title_he": "אברהם הכיר את בוראו בן שלוש",
+    "title_es": "Avraham reconoció a Dios a los tres años",
+    "story_en": "Rabbi Ami bar Abba (Nedarim 32a) says Avraham recognized his Creator at the age of three. He derives it from the word ekev in \"because (ekev) Avraham listened to My voice\" (Genesis 26:5): its numerical value is 172, the number of years Avraham served God out of his 175-year life.",
+    "story_he": "רבי אמי בר אבא (נדרים לב ע\"א) אומר: בן שלוש שנים הכיר אברהם את בוראו. הוא לומד זאת מהמילה \"עקב\" בפסוק \"עקב אשר שמע אברהם בקלי\" (בראשית כו, ה): מניינה 172, מספר השנים שעבד אברהם את ה' מתוך 175 שנות חייו.",
+    "story_es": "Rabí Amí bar Abá (Nedarim 32a) dice que Avraham reconoció a su Creador a los tres años. Lo deriva de la palabra ékev en \"porque (ékev) Avraham escuchó Mi voz\" (Bereshit 26:5): su valor numérico es 172, los años que Avraham sirvió a Dios de sus 175 años de vida.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "avraham"
+    ],
+    "anchors": [
+      "Genesis 26:5",
+      "Genesis 25:7"
+    ],
+    "sources": [
+      "Nedarim 32a"
+    ],
+    "sort_order": 28
+  },
+  {
+    "id": "sodoms-bed",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "Sodom's bed for guests",
+    "title_he": "המיטה של סדום",
+    "title_es": "La cama de Sedom para los huéspedes",
+    "story_en": "The Talmud (Sanhedrin 109b) describes the cruelty of Sodom. They had a bed for guests: a guest too tall was cut to fit, and one too short was stretched. Eliezer, Avraham's servant, visited and refused to lie on it. The Talmud also tells of a young woman who secretly brought bread to the poor; when she was caught, she was smeared with honey and left for the bees. It links this to \"the outcry of Sodom\" (Genesis 18:20).",
+    "story_he": "הגמרא (סנהדרין קט ע\"ב) מתארת את אכזריות אנשי סדום. הייתה להם מיטה לאורחים: אורח ארוך קיצצוהו, וקצר מתחוהו. אליעזר עבד אברהם הגיע לשם וסירב לשכב בה. עוד מסופר על נערה שהוציאה בסתר פת לעניים; כשנתגלה הדבר, משחוה בדבש והעמידוה על חומת העיר ובאו הדבורים. הגמרא קושרת זאת ל\"זעקת סדום ועמורה\" (בראשית יח, כ).",
+    "story_es": "El Talmud (Sanedrín 109b) describe la crueldad de Sedom. Tenían una cama para los huéspedes: al que era demasiado alto lo cortaban, y al demasiado bajo lo estiraban. Eliézer, el siervo de Avraham, estuvo allí y se negó a acostarse en ella. También cuenta de una joven que llevaba pan en secreto a los pobres; cuando la descubrieron, la untaron con miel y la dejaron a las abejas. Lo vincula con \"el clamor de Sedom\" (Bereshit 18:20).",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "eliezer",
+      "avraham"
+    ],
+    "anchors": [
+      "Genesis 18:20",
+      "Genesis 18:21",
+      "Genesis 19:4"
+    ],
+    "sources": [
+      "Sanhedrin 109b"
+    ],
+    "sort_order": 29
+  },
+  {
+    "id": "lots-wife-and-the-salt",
+    "type": "measure",
+    "status": "reviewed",
+    "title_en": "Why Lot's wife became salt",
+    "title_he": "למה נהפכה אשת לוט לנציב מלח",
+    "title_es": "Por qué la esposa de Lot se volvió sal",
+    "story_en": "Bereshit Rabbah 51:5 and Rashi explain that Lot's wife sinned through salt. When the guests arrived, Lot asked her to give them a little salt, and she refused, not wanting to adopt the custom of hospitality. The midrash adds that she went to the neighbors asking for salt, which revealed that guests were in the house. She sinned with salt and was punished with salt.",
+    "story_he": "בבראשית רבה נא, ה וברש\"י מוסבר שאשת לוט חטאה במלח. כשבאו האורחים ביקש ממנה לוט לתת להם מעט מלח, והיא סירבה, שלא רצתה להנהיג מנהג הכנסת אורחים. המדרש מוסיף שהלכה לשכנות לבקש מלח, וכך גילתה שיש אורחים בבית. במלח חטאה ובמלח לקתה.",
+    "story_es": "Bereshit Rabá 51:5 y Rashí explican que la esposa de Lot pecó con la sal. Cuando llegaron los huéspedes, Lot le pidió que les diera un poco de sal y ella se negó, pues no quería adoptar la costumbre de la hospitalidad. El midrash añade que fue a las vecinas a pedir sal, revelando así que había huéspedes en la casa. Pecó con sal y fue castigada con sal.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "lot",
+      "lots-wife"
+    ],
+    "anchors": [
+      "Genesis 19:26"
+    ],
+    "sources": [
+      "Bereshit Rabbah 51:5",
+      "Rashi on Genesis 19:26"
+    ],
+    "sort_order": 30
+  },
+  {
+    "id": "the-three-angels",
+    "type": "identity",
+    "status": "reviewed",
+    "title_en": "Who the three visitors were",
+    "title_he": "מי היו שלושת האורחים",
+    "title_es": "Quiénes eran los tres visitantes",
+    "story_en": "Rashi on Genesis 18:2 identifies the three visitors as angels, each with one task: Michael came to announce Yitzchak's birth to Sarah, Gavriel to overturn Sodom, and Refael to heal Avraham after his circumcision. Refael then went on to rescue Lot, which Rashi says explains why only one of them speaks when Lot is led out.",
+    "story_he": "רש\"י בבראשית יח, ב מזהה את שלושת האורחים כמלאכים, שכל אחד מהם בא לשליחות אחת: מיכאל לבשר את שרה על לידת יצחק, גבריאל להפוך את סדום, ורפאל לרפא את אברהם לאחר המילה. רפאל הלך משם להציל את לוט, ולכן, לפי רש\"י, רק אחד מדבר כשמוציאים את לוט.",
+    "story_es": "Rashí en Bereshit 18:2 identifica a los tres visitantes como ángeles, cada uno con una misión: Mijael vino a anunciar a Sará el nacimiento de Itzjak, Gavriel a destruir Sedom y Refael a curar a Avraham tras su circuncisión. Refael fue después a rescatar a Lot, lo que, según Rashí, explica por qué solo uno habla al sacar a Lot.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "avraham",
+      "sarah",
+      "lot"
+    ],
+    "anchors": [
+      "Genesis 18:2",
+      "Genesis 19:17"
+    ],
+    "sources": [
+      "Rashi on Genesis 18:2"
+    ],
+    "sort_order": 31
+  },
+  {
+    "id": "yitzchak-at-the-akeidah-was-37",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "Yitzchak was 37 at the Akeidah",
+    "title_he": "יצחק היה בן שלושים ושבע בעקדה",
+    "title_es": "Itzjak tenía 37 años en la Akedá",
+    "story_en": "Bereshit Rabbah 55:4 describes Yishmael boasting to Yitzchak that he had been circumcised at thirteen and could have refused. Yitzchak answered that he was thirty-seven and would not refuse even if God asked for his whole life. The midrash says this exchange is what preceded \"God tested Avraham.\" The age fits the Torah's chronology: Sarah was 90 at Yitzchak's birth and died at 127, right after the Akeidah.",
+    "story_he": "בבראשית רבה נה, ד מסופר שישמעאל התפאר לפני יצחק שנימול בן שלוש עשרה ויכול היה למחות. ענה לו יצחק: אני היום בן שלושים ושבע, ואילו ביקש הקב\"ה את כולי, לא הייתי מעכב. לפי המדרש, זה מה שקדם ל\"והאלהים נסה את אברהם\". הגיל מתאים לחשבון בתורה: שרה ילדה את יצחק בת תשעים ומתה בת 127, סמוך לעקדה.",
+    "story_es": "Bereshit Rabá 55:4 relata que Ishmael se jactaba ante Itzjak de haber sido circuncidado a los trece años pudiendo negarse. Itzjak respondió que tenía treinta y siete y no se negaría aunque Dios le pidiera la vida entera. Según el midrash, este diálogo precedió a \"Dios probó a Avraham\". La edad concuerda con la cronología de la Torá: Sará tenía 90 al nacer Itzjak y murió a los 127, justo después de la Akedá.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "yitzchak",
+      "yishmael",
+      "avraham"
+    ],
+    "anchors": [
+      "Genesis 22:1"
+    ],
+    "sources": [
+      "Bereshit Rabbah 55:4"
+    ],
+    "sort_order": 32
+  },
+  {
+    "id": "sarah-died-after-the-akeidah",
+    "type": "connection",
+    "status": "reviewed",
+    "title_en": "Sarah died on hearing of the Akeidah",
+    "title_he": "שרה מתה כששמעה על העקדה",
+    "title_es": "Sará murió al saber de la Akedá",
+    "story_en": "Rashi on Genesis 23:2 explains why Sarah's death is told immediately after the binding of Yitzchak: when she heard that her son had been prepared for slaughter and nearly sacrificed, she died from the shock. Rashi cites Pirkei DeRabbi Eliezer 32.",
+    "story_he": "רש\"י בבראשית כג, ב מסביר מדוע נסמכה מיתת שרה לעקדת יצחק: על ידי בשורת העקדה, שנזדמן בנה לשחיטה וכמעט שלא נשחט, פרחה נשמתה ממנה ומתה. רש\"י מביא זאת מפרקי דרבי אליעזר לב.",
+    "story_es": "Rashí en Bereshit 23:2 explica por qué la muerte de Sará se narra justo después de la atadura de Itzjak: cuando supo que su hijo había sido preparado para el sacrificio y casi sacrificado, murió de la impresión. Rashí cita Pirkei de Rabí Eliézer 32.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "sarah",
+      "yitzchak",
+      "avraham"
+    ],
+    "anchors": [
+      "Genesis 23:2",
+      "Genesis 22:19"
+    ],
+    "sources": [
+      "Rashi on Genesis 23:2"
+    ],
+    "sort_order": 33
+  },
+  {
+    "id": "twins-struggling-in-the-womb",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "Yaakov and Esav already struggled in the womb",
+    "title_he": "יעקב ועשו נאבקו כבר בבטן",
+    "title_es": "Yaakov y Esav ya luchaban en el vientre",
+    "story_en": "On \"the children struggled within her\" (Genesis 25:22), Rashi cites Bereshit Rabbah 63:6: whenever Rivkah passed the study house of Shem and Ever, Yaakov stirred to come out, and whenever she passed a place of idol worship, Esav stirred to come out.",
+    "story_he": "על \"ויתרצצו הבנים בקרבה\" (בראשית כה, כב) מביא רש\"י מבראשית רבה סג, ו: כשהייתה רבקה עוברת על פתחי בית המדרש של שם ועבר, יעקב רץ ומפרכס לצאת, וכשעוברת על פתחי עבודה זרה, עשו מפרכס לצאת.",
+    "story_es": "Sobre \"los niños luchaban dentro de ella\" (Bereshit 25:22), Rashí cita Bereshit Rabá 63:6: cada vez que Rivká pasaba por la casa de estudio de Shem y Éver, Yaakov se agitaba para salir, y cuando pasaba por un lugar de idolatría, era Esav quien se agitaba para salir.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "yaakov",
+      "esav",
+      "rivkah",
+      "shem"
+    ],
+    "anchors": [
+      "Genesis 25:22"
+    ],
+    "sources": [
+      "Rashi on Genesis 25:22",
+      "Bereshit Rabbah 63:6"
+    ],
+    "sort_order": 34
+  },
+  {
+    "id": "esavs-day-of-five-sins",
+    "type": "connection",
+    "status": "reviewed",
+    "title_en": "The day Avraham died, Esav sold the birthright",
+    "title_he": "ביום שמת אברהם מכר עשו את הבכורה",
+    "title_es": "El día que murió Avraham, Esav vendió la primogenitura",
+    "story_en": "Rabbi Yochanan (Bava Batra 16b) says Esav committed five serious transgressions on the day Avraham died, including murder, denying God, and despising the birthright. The Talmud explains that Yaakov was cooking lentils, a traditional mourner's meal, because Avraham had died that day. Avraham died at 175 when the twins were 15, so the timing fits.",
+    "story_he": "רבי יוחנן (בבא בתרא טז ע\"ב) אומר שחמש עבירות עבר אותו רשע באותו יום שמת אברהם, ביניהן רצח, כפירה וביזוי הבכורה. הגמרא מסבירה שיעקב בישל עדשים, מאכל אבלים, משום שאברהם מת באותו יום. אברהם מת בן 175, כשהתאומים היו בני חמש עשרה, והזמנים מתאימים.",
+    "story_es": "Rabí Iojanán (Bavá Batrá 16b) dice que Esav cometió cinco transgresiones graves el día en que murió Avraham, entre ellas asesinato, negar a Dios y despreciar la primogenitura. El Talmud explica que Yaakov cocinaba lentejas, comida tradicional de duelo, porque Avraham había muerto ese día. Avraham murió a los 175 años, cuando los gemelos tenían 15, así que las fechas coinciden.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "esav",
+      "yaakov",
+      "avraham"
+    ],
+    "anchors": [
+      "Genesis 25:29",
+      "Genesis 25:34"
+    ],
+    "sources": [
+      "Bava Batra 16b"
+    ],
+    "sort_order": 35
+  },
+  {
+    "id": "yaakov-studied-with-ever",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "Yaakov studied 14 years in the house of Ever",
+    "title_he": "יעקב למד ארבע עשרה שנה בבית עבר",
+    "title_es": "Yaakov estudió 14 años en la casa de Éver",
+    "story_en": "The Talmud (Megillah 17a) notices that when the ages in the Torah are added up, fourteen years of Yaakov's life are missing between leaving home and arriving at Lavan's house. A baraita explains that he spent those years hiding from Esav and studying in the house of Ever.",
+    "story_he": "הגמרא (מגילה יז ע\"א) מחשבת את השנים שבתורה ומוצאת שחסרות ארבע עשרה שנה בחייו של יעקב בין יציאתו מבית אביו להגעתו לבית לבן. בברייתא מבואר שבשנים אלה היה טמון בבית עבר ולמד תורה, מפני עשו.",
+    "story_es": "El Talmud (Meguilá 17a) observa que al sumar las edades de la Torá faltan catorce años de la vida de Yaakov entre su salida de casa y su llegada a la casa de Laván. Una baraita explica que pasó esos años escondido de Esav, estudiando en la casa de Éver.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "yaakov",
+      "ever",
+      "esav"
+    ],
+    "anchors": [
+      "Genesis 28:9",
+      "Genesis 28:10"
+    ],
+    "sources": [
+      "Megillah 17a"
+    ],
+    "sort_order": 36
+  },
+  {
+    "id": "yaakovs-night-at-the-place",
+    "type": "wonder",
+    "status": "reviewed",
+    "title_en": "The stones under Yaakov's head became one",
+    "title_he": "האבנים שתחת ראשו של יעקב נעשו אחת",
+    "title_es": "Las piedras bajo la cabeza de Yaakov se volvieron una",
+    "story_en": "Rabbi Yitzchak (Chullin 91b) notes that Yaakov took \"the stones\" to put under his head, but in the morning set up \"the stone.\" He explains that the stones each wanted the righteous man to rest his head on it, and they merged into one. The Talmud also says that when Yaakov decided to go back and pray where his fathers had prayed, the land contracted for him and he arrived at once.",
+    "story_he": "רבי יצחק (חולין צא ע\"ב) מקשה: כתוב \"ויקח מאבני המקום\" וכתוב \"ויקח את האבן\". הוא מסביר שהאבנים התקבצו, וכל אחת אמרה: עלי יניח צדיק את ראשו, ונעשו כולן אבן אחת. עוד אומרת הגמרא שכאשר נתן יעקב דעתו לחזור ולהתפלל במקום שהתפללו אבותיו, קפצה לו הארץ ומיד \"ויפגע במקום\".",
+    "story_es": "Rabí Itzjak (Julín 91b) nota que Yaakov tomó \"las piedras\" para ponerlas bajo su cabeza, pero por la mañana erigió \"la piedra\". Explica que cada piedra quería que el justo apoyara la cabeza sobre ella, y se unieron en una sola. El Talmud también dice que cuando Yaakov decidió volver a rezar donde habían rezado sus padres, la tierra se contrajo para él y llegó de inmediato.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "yaakov"
+    ],
+    "anchors": [
+      "Genesis 28:11",
+      "Genesis 28:18"
+    ],
+    "sources": [
+      "Chullin 91b"
+    ],
+    "sort_order": 37
+  },
+  {
+    "id": "leahs-tender-eyes",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "Why Leah's eyes were \"tender\"",
+    "title_he": "למה עיני לאה היו \"רכות\"",
+    "title_es": "Por qué los ojos de Leá eran \"tiernos\"",
+    "story_en": "Rashi on Genesis 29:17 explains that Leah's eyes were weak from crying. People used to say that Rivkah had two sons and Lavan two daughters, the older for the older and the younger for the younger, and Leah wept, fearing she would have to marry Esav.",
+    "story_he": "רש\"י בבראשית כט, יז מסביר שעיני לאה היו רכות מבכי. היו הכל אומרים: שני בנים לרבקה ושתי בנות ללבן, הגדולה לגדול והקטנה לקטן. ולאה בכתה, שהייתה סבורה שתעלה בגורלו של עשו.",
+    "story_es": "Rashí en Bereshit 29:17 explica que los ojos de Leá estaban débiles de tanto llorar. Todos decían que Rivká tenía dos hijos y Laván dos hijas, la mayor para el mayor y la menor para el menor, y Leá lloraba temiendo que le tocaría casarse con Esav.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "leah",
+      "esav",
+      "yaakov"
+    ],
+    "anchors": [
+      "Genesis 29:17"
+    ],
+    "sources": [
+      "Rashi on Genesis 29:17"
+    ],
+    "sort_order": 38
+  },
+  {
+    "id": "rachel-gave-leah-the-signs",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "Rachel gave Leah the secret signs",
+    "title_he": "רחל מסרה ללאה את הסימנים",
+    "title_es": "Rajel le dio a Leá las señales secretas",
+    "story_en": "The Talmud (Megillah 13b) says Yaakov, suspecting Lavan would switch the sisters, gave Rachel secret signs to identify herself. On the wedding night Rachel realized her sister would be put to shame, so she gave the signs to Leah.",
+    "story_he": "הגמרא (מגילה יג ע\"ב) אומרת שיעקב, שחשד שלבן יחליף את הבנות, מסר לרחל סימנים. בליל החתונה אמרה רחל: עכשיו תיכלם אחותי, ומסרה אותם ללאה.",
+    "story_es": "El Talmud (Meguilá 13b) dice que Yaakov, sospechando que Laván cambiaría a las hermanas, le dio a Rajel señales secretas para identificarse. En la noche de bodas, Rajel pensó que su hermana sería avergonzada y le dio las señales a Leá.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "rachel",
+      "leah",
+      "yaakov",
+      "lavan"
+    ],
+    "anchors": [
+      "Genesis 29:25"
+    ],
+    "sources": [
+      "Megillah 13b"
+    ],
+    "sort_order": 39
+  },
+  {
+    "id": "dinah-hidden-in-a-chest",
+    "type": "connection",
+    "status": "reviewed",
+    "title_en": "Dinah was hidden in a chest from Esav",
+    "title_he": "דינה הוסתרה בתיבה מפני עשו",
+    "title_es": "Diná fue escondida en un cofre de Esav",
+    "story_en": "Genesis 32:23 counts Yaakov's \"eleven children,\" leaving out Dinah. Rashi explains that Yaakov locked her in a chest so Esav would not see her and want to marry her. Rashi adds that Yaakov was punished for this: had she married Esav she might have brought him back to good ways, and instead she was taken by Shechem.",
+    "story_he": "בבראשית לב, כג נמנים \"אחד עשר ילדיו\" של יעקב, בלי דינה. רש\"י מסביר שיעקב נתן אותה בתיבה ונעל בפניה, שלא ייתן בה עשו עיניו. ועל כך נענש: שמא הייתה מחזירתו למוטב, ונפלה ביד שכם.",
+    "story_es": "Bereshit 32:23 cuenta \"once hijos\" de Yaakov, sin Diná. Rashí explica que Yaakov la encerró en un cofre para que Esav no la viera y quisiera casarse con ella. Rashí añade que Yaakov fue castigado por ello: si se hubiera casado con Esav quizá lo habría hecho volver al buen camino, y en cambio fue tomada por Shejem.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "dinah",
+      "yaakov",
+      "esav",
+      "shechem"
+    ],
+    "anchors": [
+      "Genesis 32:23",
+      "Genesis 34:2"
+    ],
+    "sources": [
+      "Rashi on Genesis 32:23"
+    ],
+    "sort_order": 40
+  },
+  {
+    "id": "yaakovs-wrestler-was-esavs-angel",
+    "type": "identity",
+    "status": "reviewed",
+    "title_en": "Yaakov wrestled Esav's guardian angel",
+    "title_he": "יעקב נאבק בשרו של עשו",
+    "title_es": "Yaakov luchó con el ángel guardián de Esav",
+    "story_en": "The Torah calls Yaakov's opponent at night simply \"a man.\" Rashi, citing Bereshit Rabbah 77:3, says it was Esav's guardian angel, the night before Yaakov met Esav himself.",
+    "story_he": "התורה קוראת ליריבו של יעקב בלילה \"איש\" בלבד. רש\"י, על פי בראשית רבה עז, ג, אומר שהיה זה שרו של עשו, בלילה שלפני פגישתו של יעקב עם עשו עצמו.",
+    "story_es": "La Torá llama al oponente nocturno de Yaakov simplemente \"un hombre\". Rashí, citando Bereshit Rabá 77:3, dice que era el ángel guardián de Esav, la noche antes de que Yaakov se encontrara con el propio Esav.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "yaakov",
+      "esav"
+    ],
+    "anchors": [
+      "Genesis 32:25"
+    ],
+    "sources": [
+      "Rashi on Genesis 32:25",
+      "Bereshit Rabbah 77:3"
+    ],
+    "sort_order": 41
+  },
+  {
+    "id": "osnat-was-dinahs-daughter",
+    "type": "identity",
+    "status": "reviewed",
+    "title_en": "Osnat, Yosef's wife, was Dinah's daughter",
+    "title_he": "אסנת אשת יוסף הייתה בת דינה",
+    "title_es": "Osnat, esposa de Yosef, era hija de Diná",
+    "story_en": "Pirkei DeRabbi Eliezer 38 says Dinah conceived a daughter, Osnat, from Shechem. Yaakov hung a plate with God's name around her neck and sent her away, and she was brought to Egypt and raised in the house of Potifera. Yosef later married her (Genesis 41:45), so Yosef's wife was his own niece.",
+    "story_he": "בפרקי דרבי אליעזר לח נאמר שדינה הרתה משכם וילדה את אסנת. יעקב כתב את השם על ציץ זהב, תלה על צווארה ושילחה, והיא הגיעה למצרים וגדלה בבית פוטיפרע. יוסף נשא אותה לימים (בראשית מא, מה), כך שאשתו הייתה בת אחותו.",
+    "story_es": "Pirkei de Rabí Eliézer 38 dice que Diná concibió de Shejem una hija, Osnat. Yaakov le colgó al cuello una placa con el nombre de Dios y la envió lejos; llegó a Egipto y se crió en la casa de Potifera. Yosef se casó con ella más tarde (Bereshit 41:45), así que la esposa de Yosef era su propia sobrina.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "osnat",
+      "dinah",
+      "yosef",
+      "yaakov"
+    ],
+    "anchors": [
+      "Genesis 41:45",
+      "Genesis 34:2"
+    ],
+    "sources": [
+      "Pirkei DeRabbi Eliezer 38"
+    ],
+    "sort_order": 42
+  },
+  {
+    "id": "the-man-who-found-yosef",
+    "type": "identity",
+    "status": "reviewed",
+    "title_en": "The \"man\" who directed Yosef was the angel Gavriel",
+    "title_he": "ה\"איש\" שהדריך את יוסף היה המלאך גבריאל",
+    "title_es": "El \"hombre\" que guió a Yosef era el ángel Gavriel",
+    "story_en": "When Yosef wandered in the field searching for his brothers, \"a man found him\" and told him where they had gone (Genesis 37:15). Rashi, citing Bereshit Rabbah 84:14 and Tanchuma, says this was the angel Gavriel. Without him, Yosef would not have reached his brothers, and the chain of events that led to Egypt would not have begun.",
+    "story_he": "כשיוסף היה תועה בשדה בחיפוש אחר אחיו, \"וימצאהו איש\" והראה לו לאן הלכו (בראשית לז, טו). רש\"י, על פי בראשית רבה פד, יד ותנחומא, אומר שזה גבריאל. בלעדיו לא היה יוסף מגיע לאחיו, ושרשרת האירועים שהובילה למצרים לא הייתה מתחילה.",
+    "story_es": "Cuando Yosef vagaba por el campo buscando a sus hermanos, \"un hombre lo encontró\" y le dijo adónde habían ido (Bereshit 37:15). Rashí, citando Bereshit Rabá 84:14 y el Tanjumá, dice que era el ángel Gavriel. Sin él, Yosef no habría llegado a sus hermanos, y no habría comenzado la cadena de hechos que llevó a Egipto.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "yosef"
+    ],
+    "anchors": [
+      "Genesis 37:15"
+    ],
+    "sources": [
+      "Rashi on Genesis 37:15"
+    ],
+    "sort_order": 43
+  },
+  {
+    "id": "yosef-saw-his-fathers-image",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "Yosef saw his father's image",
+    "title_he": "יוסף ראה את דמות דיוקנו של אביו",
+    "title_es": "Yosef vio la imagen de su padre",
+    "story_en": "The Talmud (Sotah 36b) says that when Potifar's wife seized Yosef's garment, the image of his father Yaakov appeared to him in the window. It told him that his brothers' names were destined to be engraved on the stones of the ephod, and asked whether he wanted his name erased from among them. Yosef held back and left.",
+    "story_he": "הגמרא (סוטה לו ע\"ב) אומרת שכאשר תפסה אשת פוטיפר את בגדו של יוסף, באה דמות דיוקנו של אביו ונראתה לו בחלון. אמרה לו: יוסף, עתידים אחיך שייכתבו על אבני אפוד ואתה ביניהם; רצונך שיימחה שמך מביניהם? ויוסף התגבר ויצא.",
+    "story_es": "El Talmud (Sotá 36b) dice que cuando la esposa de Potifar agarró la ropa de Yosef, se le apareció en la ventana la imagen de su padre Yaakov. Le dijo que los nombres de sus hermanos estaban destinados a grabarse en las piedras del efod, y le preguntó si quería que su nombre fuera borrado de entre ellos. Yosef se contuvo y salió.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "yosef",
+      "yaakov",
+      "potifars-wife"
+    ],
+    "anchors": [
+      "Genesis 39:11",
+      "Genesis 39:12"
+    ],
+    "sources": [
+      "Sotah 36b"
+    ],
+    "sort_order": 44
+  },
+  {
+    "id": "potifars-wife-foresaw-descendants",
+    "type": "connection",
+    "status": "reviewed",
+    "title_en": "Potifar's wife foresaw descendants from Yosef",
+    "title_he": "אשת פוטיפר ראתה שעתידה להעמיד בנים מיוסף",
+    "title_es": "La esposa de Potifar previó descendientes de Yosef",
+    "story_en": "Rashi on Genesis 39:1, citing Bereshit Rabbah 85:2, explains why the story of Potifar's wife follows the story of Tamar. Like Tamar, she saw through astrology that she was destined to have descendants from Yosef, but did not know whether they would come from her or from her daughter. According to the tradition that Osnat grew up in Potifera's house, those descendants came through her daughter.",
+    "story_he": "רש\"י בבראשית לט, א, על פי בראשית רבה פה, ב, מסביר מדוע נסמך מעשה אשת פוטיפר למעשה תמר. כמו תמר, גם היא ראתה באצטגנינות שעתידה להעמיד בנים ממנו, ולא ידעה אם ממנה או מבתה. לפי המסורת שאסנת גדלה בבית פוטיפרע, הבנים יצאו מבתה.",
+    "story_es": "Rashí en Bereshit 39:1, citando Bereshit Rabá 85:2, explica por qué la historia de la esposa de Potifar sigue a la de Tamar. Como Tamar, ella vio por astrología que estaba destinada a tener descendientes de Yosef, pero no sabía si de ella o de su hija. Según la tradición de que Osnat se crió en casa de Potifera, esos descendientes vinieron a través de su hija.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "potifars-wife",
+      "yosef",
+      "tamar",
+      "osnat"
+    ],
+    "anchors": [
+      "Genesis 39:1",
+      "Genesis 41:45"
+    ],
+    "sources": [
+      "Rashi on Genesis 39:1"
+    ],
+    "sort_order": 45
+  },
+  {
+    "id": "menashe-was-the-interpreter",
+    "type": "identity",
+    "status": "reviewed",
+    "title_en": "The interpreter was Menashe, Yosef's son",
+    "title_he": "המליץ היה מנשה בן יוסף",
+    "title_es": "El intérprete era Menashé, hijo de Yosef",
+    "story_en": "When the brothers spoke among themselves before Yosef, they did not know he understood them, \"for the interpreter was between them\" (Genesis 42:23). Rashi, citing Bereshit Rabbah 91:8, says the interpreter was Menashe, Yosef's son.",
+    "story_he": "כשדיברו האחים ביניהם לפני יוסף, לא ידעו שהוא מבין, \"כי המליץ בינותם\" (בראשית מב, כג). רש\"י, על פי בראשית רבה צא, ח, אומר שהמליץ היה מנשה בנו של יוסף.",
+    "story_es": "Cuando los hermanos hablaban entre sí ante Yosef, no sabían que él los entendía, \"porque el intérprete estaba entre ellos\" (Bereshit 42:23). Rashí, citando Bereshit Rabá 91:8, dice que el intérprete era Menashé, hijo de Yosef.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "menashe",
+      "yosef"
+    ],
+    "anchors": [
+      "Genesis 42:23"
+    ],
+    "sources": [
+      "Rashi on Genesis 42:23"
+    ],
+    "sort_order": 46
+  },
+  {
+    "id": "yaakov-wanted-to-reveal-the-end",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "Yaakov wanted to reveal the end of days",
+    "title_he": "יעקב ביקש לגלות את הקץ",
+    "title_es": "Yaakov quiso revelar el fin de los días",
+    "story_en": "Yaakov gathered his sons saying \"I will tell you what will happen at the end of days\" (Genesis 49:1), but then spoke about other things. Rashi, citing Bereshit Rabbah 98:2, explains that he wanted to reveal the time of the final redemption, but the Divine Presence departed from him.",
+    "story_he": "יעקב אסף את בניו ואמר \"ואגידה לכם את אשר יקרא אתכם באחרית הימים\" (בראשית מט, א), אך דיבר על דברים אחרים. רש\"י, על פי בראשית רבה צח, ב, מסביר שביקש לגלות את הקץ ונסתלקה ממנו השכינה.",
+    "story_es": "Yaakov reunió a sus hijos diciendo \"les diré lo que sucederá al final de los días\" (Bereshit 49:1), pero luego habló de otras cosas. Rashí, citando Bereshit Rabá 98:2, explica que quiso revelar el momento de la redención final, pero la Presencia Divina se apartó de él.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "yaakov"
+    ],
+    "anchors": [
+      "Genesis 49:1"
+    ],
+    "sources": [
+      "Rashi on Genesis 49:1"
+    ],
+    "sort_order": 47
+  },
+  {
+    "id": "yaakov-did-not-die",
+    "type": "wonder",
+    "status": "reviewed",
+    "title_en": "\"Yaakov our father did not die\"",
+    "title_he": "\"יעקב אבינו לא מת\"",
+    "title_es": "\"Yaakov nuestro padre no murió\"",
+    "story_en": "Rabbi Yochanan (Taanit 5b) says \"Yaakov our father did not die.\" When asked how that can be, since he was eulogized, embalmed and buried, he answers that he is interpreting a verse: since Yaakov's descendants live on, he too lives. Notably, the Torah says of Yaakov that he \"was gathered to his people\" (Genesis 49:33), without the word \"died.\"",
+    "story_he": "רבי יוחנן (תענית ה ע\"ב) אומר: יעקב אבינו לא מת. וכשהקשו לו: וכי בכדי ספדו ספדנייא וחנטו חנטייא וקברו קברייא? השיב: מקרא אני דורש, מה זרעו בחיים אף הוא בחיים. יש לשים לב שבתורה נאמר על יעקב \"ויאסף אל עמיו\" (בראשית מט, לג), בלי המילה \"וימת\".",
+    "story_es": "Rabí Iojanán (Taanit 5b) dice: \"Yaakov nuestro padre no murió\". Cuando le preguntan cómo puede ser, si fue llorado, embalsamado y enterrado, responde que está interpretando un versículo: así como su descendencia vive, él también vive. Cabe notar que la Torá dice de Yaakov que \"fue reunido con su pueblo\" (Bereshit 49:33), sin la palabra \"murió\".",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "yaakov"
+    ],
+    "anchors": [
+      "Genesis 49:33"
+    ],
+    "sources": [
+      "Taanit 5b"
+    ],
+    "sort_order": 48
+  },
+  {
+    "id": "adam-said-psalm-92",
+    "type": "connection",
+    "status": "reviewed",
+    "title_en": "Adam composed the Psalm for Shabbat",
+    "title_he": "אדם הראשון אמר \"מזמור שיר ליום השבת\"",
+    "title_es": "Adam compuso el Salmo del Shabat",
+    "story_en": "Bereshit Rabbah 22:13 relates that Adam met Kayin after Kayin had repented and his sentence was eased. Adam, amazed at the power of repentance, immediately said \"A psalm, a song for the Shabbat day\" (Psalms 92:1). Rabbi Levi adds that Adam said this psalm, it was forgotten, and Moshe later restored it.",
+    "story_he": "בבראשית רבה כב, יג מסופר שאדם הראשון פגש את קין לאחר שעשה תשובה והוקל עונשו. אמר אדם: כך היא כוחה של תשובה ואני לא הייתי יודע! מיד עמד ואמר \"מזמור שיר ליום השבת\" (תהלים צב, א). רבי לוי מוסיף שאדם אמרו, ונשתכח, ובא משה וחידשו.",
+    "story_es": "Bereshit Rabá 22:13 relata que Adam se encontró con Kayin después de que este se arrepintiera y su castigo fuera aliviado. Adam, asombrado por el poder del arrepentimiento, dijo en seguida \"Salmo, cántico para el día de Shabat\" (Tehilim 92:1). Rabí Leví añade que Adam dijo este salmo, fue olvidado, y Moshe lo restauró más tarde.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "adam",
+      "kayin",
+      "moshe"
+    ],
+    "anchors": [
+      "Genesis 4:16",
+      "Psalms 92:1"
+    ],
+    "sources": [
+      "Bereshit Rabbah 22:13"
+    ],
+    "sort_order": 49
+  },
+  {
+    "id": "the-midwives-were-yocheved-and-miriam",
+    "type": "identity",
+    "status": "reviewed",
+    "title_en": "The midwives were Yocheved and Miriam",
+    "title_he": "המיילדות היו יוכבד ומרים",
+    "title_es": "Las parteras eran Iojéved y Miriam",
+    "story_en": "The Hebrew midwives who defied Pharaoh are named Shifrah and Puah (Exodus 1:15). In the Talmud (Sotah 11b), Rav and Shmuel disagree: one says they were a mother and daughter, Yocheved and Miriam; the other says a mother-in-law and daughter-in-law, Yocheved and Elisheva, Aharon's wife. Rashi follows the first view: Shifrah is Yocheved and Puah is Miriam.",
+    "story_he": "המיילדות העבריות שמרדו בפרעה נקראו שפרה ופועה (שמות א, טו). בגמרא (סוטה יא ע\"ב) נחלקו רב ושמואל: אחד אומר אשה ובתה, יוכבד ומרים; ואחד אומר כלה וחמותה, יוכבד ואלישבע אשת אהרן. רש\"י הולך בדרך הראשונה: שפרה זו יוכבד, ופועה זו מרים.",
+    "story_es": "Las parteras hebreas que desafiaron a Paró se llaman Shifrá y Puá (Shemot 1:15). En el Talmud (Sotá 11b), Rav y Shmuel discrepan: uno dice que eran madre e hija, Iojéved y Miriam; el otro, suegra y nuera, Iojéved y Elisheva, esposa de Aharón. Rashí sigue la primera opinión: Shifrá es Iojéved y Puá es Miriam.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "yocheved",
+      "miriam",
+      "elisheva"
+    ],
+    "anchors": [
+      "Exodus 1:15"
+    ],
+    "sources": [
+      "Sotah 11b",
+      "Rashi on Exodus 1:15"
+    ],
+    "sort_order": 50
+  },
+  {
+    "id": "pharaohs-astrologers-and-the-water",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "Pharaoh's astrologers foresaw water",
+    "title_he": "האצטגנינים של פרעה ראו מים",
+    "title_es": "Los astrólogos de Paró previeron agua",
+    "story_en": "The Talmud (Sotah 12b) says Pharaoh's astrologers saw that the savior of Israel would be stricken through water, so they decreed that every boy be thrown into the Nile. Once Moshe was placed in the water, they told Pharaoh the savior had already been cast in, and the decree was cancelled. The prediction was true, but it referred to the waters of Merivah, where Moshe's fate to die in the desert was sealed.",
+    "story_he": "הגמרא (סוטה יב ע\"ב) אומרת שאצטגניני פרעה ראו שמושיען של ישראל לוקה במים, ולכן גזרו \"כל הבן הילוד היארה תשליכהו\". כיוון שהושלך משה למים, אמרו שכבר הושלך מושיעם, ובטלה הגזירה. הם ראו נכון, אך לא ידעו שמדובר במי מריבה, שבהם נגזר על משה שלא ייכנס לארץ.",
+    "story_es": "El Talmud (Sotá 12b) dice que los astrólogos de Paró vieron que el salvador de Israel sería castigado a través del agua, por eso decretaron que todo varón fuera arrojado al Nilo. Una vez que Moshe fue puesto en el agua, dijeron que el salvador ya había sido arrojado, y se anuló el decreto. La visión era cierta, pero se refería a las aguas de Merivá, donde se selló que Moshe no entraría a la Tierra.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "pharaoh",
+      "moshe"
+    ],
+    "anchors": [
+      "Exodus 1:22",
+      "Numbers 20:13"
+    ],
+    "sources": [
+      "Sotah 12b"
+    ],
+    "sort_order": 51
+  },
+  {
+    "id": "miriams-prophecy-and-amram",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "Miriam convinced her father to remarry",
+    "title_he": "מרים שכנעה את אביה להחזיר את אמה",
+    "title_es": "Miriam convenció a su padre de volver a casarse",
+    "story_en": "The Talmud (Sotah 12a) says that after Pharaoh's decree, Amram, the leader of his generation, divorced his wife so as not to bring children into the world only to be killed, and others followed. His daughter Miriam argued that his decree was harsher than Pharaoh's, since it prevented girls too. Amram remarried Yocheved, which the Talmud reads into \"a man of the house of Levi went and took a daughter of Levi\" (Exodus 2:1). Sotah 13a adds that Miriam prophesied her mother would bear Israel's savior, and when Moshe was born the house filled with light.",
+    "story_he": "הגמרא (סוטה יב ע\"א) אומרת שלאחר גזירת פרעה גירש עמרם, גדול הדור, את אשתו, שלא להוליד ילדים לריק, וכולם עשו כמותו. אמרה לו מרים בתו: גזירתך קשה משל פרעה, שהוא גזר על הזכרים ואתה גם על הנקבות. החזיר עמרם את יוכבד, וזה \"וילך איש מבית לוי ויקח את בת לוי\" (שמות ב, א). בסוטה יג ע\"א מוסיפה הגמרא שמרים ניבאה שאמה תלד את מושיען של ישראל, וכשנולד משה נתמלא הבית כולו אורה.",
+    "story_es": "El Talmud (Sotá 12a) dice que tras el decreto de Paró, Amram, líder de su generación, se divorció de su esposa para no traer hijos al mundo solo para que los mataran, y otros lo siguieron. Su hija Miriam le dijo que su decreto era peor que el de Paró, pues impedía también a las niñas. Amram volvió a casarse con Iojéved, lo que el Talmud lee en \"un hombre de la casa de Leví fue y tomó a una hija de Leví\" (Shemot 2:1). Sotá 13a añade que Miriam profetizó que su madre daría a luz al salvador de Israel, y al nacer Moshe la casa se llenó de luz.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "miriam",
+      "amram",
+      "yocheved",
+      "moshe"
+    ],
+    "anchors": [
+      "Exodus 2:1",
+      "Exodus 2:4"
+    ],
+    "sources": [
+      "Sotah 12a",
+      "Sotah 13a"
+    ],
+    "sort_order": 52
+  },
+  {
+    "id": "pharaohs-daughter-at-the-nile",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "Pharaoh's daughter at the Nile",
+    "title_he": "בת פרעה ביאור",
+    "title_es": "La hija de Paró en el Nilo",
+    "story_en": "The Talmud (Sotah 12b) fills in the scene at the Nile. Pharaoh's daughter's maidservants urged her not to go against her father's decree, and the angel Gavriel struck them down. The word amatah in \"she sent amatah to take it\" is read by one sage as \"her maidservant\" and by another as \"her arm.\" The Talmud also says the baby Moshe refused to nurse from Egyptian women, which is why Miriam offered to bring a Hebrew nurse, and brought his own mother.",
+    "story_he": "הגמרא (סוטה יב ע\"ב) משלימה את המעשה ביאור. נערותיה של בת פרעה אמרו לה שלא תעבור על גזירת אביה, ובא גבריאל וחבטן בקרקע. את המילה \"אמתה\" בפסוק \"ותשלח את אמתה ותקחה\" דורש אחד \"שפחתה\" ואחד \"ידה\". עוד אומרת הגמרא שמשה התינוק לא רצה לינוק ממצריות, ולכן הציעה מרים להביא מינקת עברייה, והביאה את אמו.",
+    "story_es": "El Talmud (Sotá 12b) completa la escena en el Nilo. Las doncellas de la hija de Paró le insistieron en que no desobedeciera el decreto de su padre, y el ángel Gavriel las derribó. La palabra amatá en \"envió a amatá a tomarlo\" es leída por un sabio como \"su sierva\" y por otro como \"su brazo\". El Talmud también dice que el bebé Moshe se negó a mamar de mujeres egipcias, por eso Miriam ofreció traer una nodriza hebrea, y trajo a su propia madre.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "bitya",
+      "moshe",
+      "miriam",
+      "yocheved"
+    ],
+    "anchors": [
+      "Exodus 2:5",
+      "Exodus 2:7"
+    ],
+    "sources": [
+      "Sotah 12b"
+    ],
+    "sort_order": 53
+  },
+  {
+    "id": "the-quarreling-men-were-datan-and-aviram",
+    "type": "crossover",
+    "status": "reviewed",
+    "title_en": "The two quarreling Hebrews were Datan and Aviram",
+    "title_he": "שני העברים הניצים היו דתן ואבירם",
+    "title_es": "Los dos hebreos que peleaban eran Datán y Aviram",
+    "story_en": "When Moshe tried to separate two fighting Hebrews, one of them exposed his killing of the Egyptian (Exodus 2:13-14). Reish Lakish (Nedarim 64b) says that wherever the Torah mentions men \"quarreling\" or \"standing\" against Moshe, they are Datan and Aviram. The same pair later joined Korach's rebellion (Numbers 16:1).",
+    "story_he": "כשניסה משה להפריד בין שני עברים ניצים, אחד מהם גילה שהרג את המצרי (שמות ב, יג-יד). ריש לקיש (נדרים סד ע\"ב) אומר: כל מקום שנאמר \"נצים\" ו\"נצבים\" נגד משה, אינם אלא דתן ואבירם. אותם שניים הצטרפו לימים למחלוקת קרח (במדבר טז, א).",
+    "story_es": "Cuando Moshe intentó separar a dos hebreos que peleaban, uno de ellos reveló que había matado al egipcio (Shemot 2:13-14). Reish Lakish (Nedarim 64b) dice que dondequiera que la Torá menciona hombres \"peleando\" o \"parados\" contra Moshe, son Datán y Aviram. La misma pareja se unió después a la rebelión de Kóraj (Bamidbar 16:1).",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "datan",
+      "aviram",
+      "moshe",
+      "korach"
+    ],
+    "anchors": [
+      "Exodus 2:13",
+      "Exodus 5:20",
+      "Numbers 16:1"
+    ],
+    "sources": [
+      "Nedarim 64b"
+    ],
+    "sort_order": 54
+  },
+  {
+    "id": "moshe-killed-with-the-name",
+    "type": "wonder",
+    "status": "reviewed",
+    "title_en": "Moshe killed the Egyptian with a word",
+    "title_he": "משה הרג את המצרי בשם המפורש",
+    "title_es": "Moshe mató al egipcio con una palabra",
+    "story_en": "The Hebrew asked Moshe, \"Do you mean to kill me (literally, 'say to kill me') as you killed the Egyptian?\" (Exodus 2:14). Rashi, citing Tanchuma and Shemot Rabbah 1:30, learns from the word \"say\" that Moshe killed the Egyptian by pronouncing God's explicit name.",
+    "story_he": "העברי אמר למשה \"הלהרגני אתה אמר כאשר הרגת את המצרי\" (שמות ב, יד). רש\"י, על פי תנחומא ושמות רבה א, ל, לומד מהמילה \"אמר\" שבשם המפורש הרגו.",
+    "story_es": "El hebreo le dijo a Moshe: \"¿Acaso dices matarme como mataste al egipcio?\" (Shemot 2:14). Rashí, citando el Tanjumá y Shemot Rabá 1:30, aprende de la palabra \"dices\" que Moshe mató al egipcio pronunciando el nombre explícito de Dios.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "moshe"
+    ],
+    "anchors": [
+      "Exodus 2:12",
+      "Exodus 2:14"
+    ],
+    "sources": [
+      "Rashi on Exodus 2:14"
+    ],
+    "sort_order": 55
+  },
+  {
+    "id": "moshe-and-the-lost-kid",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "Moshe and the runaway lamb",
+    "title_he": "משה והגדי שברח",
+    "title_es": "Moshe y el cabrito que huyó",
+    "story_en": "Shemot Rabbah 2:2 relates that while Moshe was tending Yitro's flock, a young goat ran away. He chased it until it stopped at a pool to drink. Moshe said he had not known it ran because it was thirsty and must be tired, and carried it back on his shoulders. God said that one who shows such compassion for a flock will shepherd His people Israel.",
+    "story_he": "בשמות רבה ב, ב מסופר שכאשר רעה משה את צאן יתרו, ברח ממנו גדי. רץ אחריו עד שהגיע לבריכת מים ועמד לשתות. אמר משה: לא הייתי יודע שרץ היית מפני צמא, עייף אתה. הרכיבו על כתפו והלך. אמר הקב\"ה: יש לך רחמים לנהוג צאן של בשר ודם, חייך, אתה תרעה צאני ישראל.",
+    "story_es": "Shemot Rabá 2:2 relata que mientras Moshe pastoreaba el rebaño de Yitró, un cabrito escapó. Lo persiguió hasta que se detuvo a beber en un estanque. Moshe dijo que no sabía que corría por sed y que debía estar cansado, y lo cargó sobre sus hombros. Dios dijo que quien muestra tanta compasión por un rebaño pastoreará a Su pueblo Israel.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "moshe",
+      "yitro"
+    ],
+    "anchors": [
+      "Exodus 3:1"
+    ],
+    "sources": [
+      "Shemot Rabbah 2:2"
+    ],
+    "sort_order": 56
+  },
+  {
+    "id": "only-one-fifth-left-egypt",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "Only one in five left Egypt",
+    "title_he": "רק אחד מחמישה יצא ממצרים",
+    "title_es": "Solo uno de cada cinco salió de Egipto",
+    "story_en": "The Torah says Israel left Egypt chamushim (Exodus 13:18), usually translated \"armed.\" Rashi, citing the Mekhilta, brings another reading: chamushim as in chamishah, \"five\": only one in five went out, and the rest died during the three days of darkness because they did not want to leave.",
+    "story_he": "התורה אומרת \"וחמשים עלו בני ישראל מארץ מצרים\" (שמות יג, יח), ובדרך כלל מפרשים: מזוינים. רש\"י, על פי המכילתא, מביא פירוש נוסף: \"חמשים\" לשון חמשה, אחד מחמשה יצאו, וארבעה חלקים מתו בשלושת ימי אפלה.",
+    "story_es": "La Torá dice que Israel salió de Egipto jamushim (Shemot 13:18), normalmente traducido como \"armados\". Rashí, citando la Mejiltá, trae otra lectura: jamushim como jamishá, \"cinco\": solo uno de cada cinco salió, y los demás murieron durante los tres días de oscuridad porque no querían salir.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [],
+    "anchors": [
+      "Exodus 13:18",
+      "Exodus 10:22"
+    ],
+    "sources": [
+      "Rashi on Exodus 13:18",
+      "Rashi on Exodus 10:22"
+    ],
+    "sort_order": 57
+  },
+  {
+    "id": "nachshon-jumped-into-the-sea",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "Nachshon jumped into the sea first",
+    "title_he": "נחשון קפץ ראשון לים",
+    "title_es": "Najshón saltó primero al mar",
+    "story_en": "The Talmud (Sotah 37a) records a debate about what happened at the sea. Rabbi Yehuda says each tribe refused to go in first, until Nachshon ben Aminadav, prince of Yehuda, jumped in with his tribe after him. For this Yehuda merited kingship.",
+    "story_he": "בגמרא (סוטה לז ע\"א) מובא ויכוח על מה שקרה על הים. רבי יהודה אומר: זה אומר אין אני יורד תחילה וזה אומר אין אני יורד תחילה, קפץ נחשון בן עמינדב, נשיא שבט יהודה, וירד לים תחילה ושבטו אחריו. בשכר זה זכה יהודה למלכות.",
+    "story_es": "El Talmud (Sotá 37a) registra un debate sobre lo ocurrido en el mar. Rabí Iehudá dice que cada tribu se negaba a entrar primero, hasta que Najshón ben Aminadav, príncipe de Iehudá, saltó y su tribu lo siguió. Por esto Iehudá mereció la realeza.",
+    "other_view_en": "In the same passage Rabbi Meir says the tribes competed to go in first, and the tribe of Binyamin jumped in before the others.",
+    "other_view_he": "באותו מקום אומר רבי מאיר שהשבטים התחרו מי ייכנס ראשון, וקפץ שבטו של בנימין וירד לים תחילה.",
+    "other_view_es": "En el mismo pasaje Rabí Meír dice que las tribus competían por entrar primero, y la tribu de Biniamín saltó antes que las demás.",
+    "characters": [
+      "nachshon"
+    ],
+    "anchors": [
+      "Exodus 14:22",
+      "Numbers 7:12"
+    ],
+    "sources": [
+      "Sotah 37a"
+    ],
+    "sort_order": 58
+  },
+  {
+    "id": "the-mountain-held-over-them",
+    "type": "wonder",
+    "status": "reviewed",
+    "title_en": "The mountain was held over Israel's heads",
+    "title_he": "כפה עליהם הר כגיגית",
+    "title_es": "El monte fue sostenido sobre sus cabezas",
+    "story_en": "The Torah says the people stood betachtit, \"at the foot of\" the mountain (Exodus 19:17), which can literally mean \"beneath.\" Rabbi Avdimi (Shabbat 88a) reads it literally: God held the mountain over them like an overturned tub and said, \"If you accept the Torah, good; if not, there will be your burial.\"",
+    "story_he": "התורה אומרת \"ויתיצבו בתחתית ההר\" (שמות יט, יז). רב אבדימי (שבת פח ע\"א) דורש זאת כפשוטו: כפה עליהם הקב\"ה את ההר כגיגית ואמר להם: אם אתם מקבלים את התורה, מוטב; ואם לאו, שם תהא קבורתכם.",
+    "story_es": "La Torá dice que el pueblo se paró betajtit, \"al pie\" del monte (Shemot 19:17), que literalmente puede significar \"debajo\". Rav Avdimi (Shabat 88a) lo lee literalmente: Dios sostuvo el monte sobre ellos como una tina volcada y les dijo: \"Si aceptan la Torá, bien; si no, allí será su sepultura\".",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [],
+    "anchors": [
+      "Exodus 19:17"
+    ],
+    "sources": [
+      "Shabbat 88a"
+    ],
+    "sort_order": 59
+  },
+  {
+    "id": "sinai-in-seventy-languages",
+    "type": "wonder",
+    "status": "reviewed",
+    "title_en": "Each word at Sinai split into seventy languages",
+    "title_he": "כל דיבור בסיני נחלק לשבעים לשונות",
+    "title_es": "Cada palabra en Sinai se dividió en setenta idiomas",
+    "story_en": "Rabbi Yochanan (Shabbat 88b) says each utterance that came from God at Sinai divided into seventy languages. Rabbi Yehoshua ben Levi adds that at each utterance the people's souls left their bodies, and God revived them with the dew that will one day revive the dead.",
+    "story_he": "רבי יוחנן (שבת פח ע\"ב) אומר: כל דיבור ודיבור שיצא מפי הגבורה נחלק לשבעים לשונות. רבי יהושע בן לוי מוסיף שעל כל דיבור יצאה נשמתן של ישראל, והוריד הקב\"ה טל שעתיד להחיות בו מתים והחיה אותם.",
+    "story_es": "Rabí Iojanán (Shabat 88b) dice que cada palabra que salió de Dios en Sinai se dividió en setenta idiomas. Rabí Iehoshúa ben Leví añade que con cada palabra las almas del pueblo salieron de sus cuerpos, y Dios los revivió con el rocío que un día resucitará a los muertos.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [],
+    "anchors": [
+      "Exodus 20:1",
+      "Exodus 20:15"
+    ],
+    "sources": [
+      "Shabbat 88b"
+    ],
+    "sort_order": 60
+  },
+  {
+    "id": "chur-and-the-golden-calf",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "What Aharon saw before the golden calf",
+    "title_he": "מה ראה אהרן לפני העגל",
+    "title_es": "Qué vio Aharón antes del becerro de oro",
+    "story_en": "Chur was appointed with Aharon to lead the people while Moshe was on the mountain (Exodus 24:14), but he disappears from the story. On \"Aharon saw and built an altar\" (Exodus 32:5), Rabbi Elazar (Sanhedrin 7a) says Aharon saw Chur, who had protested, lying slain before him. Aharon feared that if they killed him too, the people would never be forgiven, and chose to go along.",
+    "story_he": "חור מונה עם אהרן להנהיג את העם בזמן שמשה בהר (שמות כד, יד), ונעלם מן הסיפור. על \"וירא אהרן ויבן מזבח\" (שמות לב, ה) אומר רבי אלעזר (סנהדרין ז ע\"א): ראה חור שזבוח לפניו, שמחה בהם. אהרן חשש שאם יהרגו גם אותו לא תהיה להם תקנה, ובחר להיענות להם.",
+    "story_es": "Jur fue designado junto con Aharón para guiar al pueblo mientras Moshe estaba en el monte (Shemot 24:14), pero desaparece de la historia. Sobre \"Aharón vio y construyó un altar\" (Shemot 32:5), Rabí Elazar (Sanedrín 7a) dice que Aharón vio a Jur, que había protestado, degollado ante él. Aharón temió que si lo mataban también a él, el pueblo nunca sería perdonado, y decidió acceder.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "chur",
+      "aharon",
+      "moshe"
+    ],
+    "anchors": [
+      "Exodus 32:5",
+      "Exodus 24:14"
+    ],
+    "sources": [
+      "Sanhedrin 7a"
+    ],
+    "sort_order": 61
+  },
+  {
+    "id": "betzalel-was-thirteen",
+    "type": "connection",
+    "status": "reviewed",
+    "title_en": "Betzalel built the Mishkan at thirteen",
+    "title_he": "בצלאל בנה את המשכן בן שלוש עשרה",
+    "title_es": "Betzalel construyó el Mishkán a los trece años",
+    "story_en": "The Talmud (Sanhedrin 69b) calculates from the genealogy Kalev, Chur, Uri, Betzalel that Betzalel was about thirteen when he built the Mishkan. Sotah 11b identifies Kalev's wife Efrat, Chur's mother, as Miriam, so Betzalel was Miriam's great-grandson and Chur was her son.",
+    "story_he": "הגמרא (סנהדרין סט ע\"ב) מחשבת מן הייחוס כלב, חור, אורי, בצלאל שבצלאל היה כבן שלוש עשרה כשעשה את המשכן. בסוטה יא ע\"ב מזוהה אפרת אשת כלב, אמו של חור, עם מרים, כך שבצלאל היה נין של מרים וחור היה בנה.",
+    "story_es": "El Talmud (Sanedrín 69b) calcula por la genealogía Kalev, Jur, Urí, Betzalel que Betzalel tenía unos trece años cuando construyó el Mishkán. Sotá 11b identifica a Efrat, esposa de Kalev y madre de Jur, con Miriam, así que Betzalel era bisnieto de Miriam y Jur era su hijo.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "betzalel",
+      "chur",
+      "miriam",
+      "kalev"
+    ],
+    "anchors": [
+      "Exodus 31:2",
+      "I Chronicles 2:19"
+    ],
+    "sources": [
+      "Sanhedrin 69b",
+      "Sotah 11b"
+    ],
+    "sort_order": 62
+  },
+  {
+    "id": "moshes-radiant-face",
+    "type": "wonder",
+    "status": "reviewed",
+    "title_en": "Moshe's radiance came from leftover ink",
+    "title_he": "קרני ההוד של משה באו מן הדיו",
+    "title_es": "El resplandor de Moshe vino de la tinta sobrante",
+    "story_en": "When Moshe came down with the second tablets, the skin of his face was radiant (Exodus 34:29). Shemot Rabbah 47:6 brings a teaching of Reish Lakish: as Moshe was writing the Torah, a little ink remained on his quill, and he passed it over his head; from this the rays of splendor formed.",
+    "story_he": "כשירד משה עם הלוחות השניים, \"קרן עור פניו\" (שמות לד, כט). בשמות רבה מז, ו מובאת דרשת ריש לקיש: כשהיה משה כותב את התורה נשתייר מעט דיו בקולמוס, והעבירו על ראשו, וממנו נעשו לו קרני ההוד.",
+    "story_es": "Cuando Moshe bajó con las segundas tablas, la piel de su rostro resplandecía (Shemot 34:29). Shemot Rabá 47:6 trae una enseñanza de Reish Lakish: mientras Moshe escribía la Torá, quedó un poco de tinta en su pluma, la pasó por su cabeza, y de ella se formaron los rayos de esplendor.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "moshe"
+    ],
+    "anchors": [
+      "Exodus 34:29"
+    ],
+    "sources": [
+      "Shemot Rabbah 47:6"
+    ],
+    "sort_order": 63
+  },
+  {
+    "id": "the-womens-mirrors",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "The laver was made from the women's mirrors",
+    "title_he": "הכיור נעשה ממראות הנשים",
+    "title_es": "La fuente fue hecha con los espejos de las mujeres",
+    "story_en": "The copper laver was made from \"the mirrors of the women who gathered\" (Exodus 38:8). Rashi, citing Tanchuma, says Moshe wanted to reject the mirrors because they were used for vanity. God told him to accept them, because with those mirrors the women in Egypt had encouraged their exhausted husbands and kept the families of Israel growing.",
+    "story_he": "הכיור נעשה \"במראת הצבאת\" (שמות לח, ח). רש\"י, על פי תנחומא, אומר שמשה מאס בהן מפני שעשויות ליצר הרע. אמר לו הקב\"ה: קבל, כי אלו חביבין עלי מן הכל, שעל ידיהן העמידו הנשים צבאות רבות במצרים, כשעודדו את בעליהן שהיו יגעים בעבודת פרך.",
+    "story_es": "La fuente de cobre fue hecha con \"los espejos de las mujeres que se congregaban\" (Shemot 38:8). Rashí, citando el Tanjumá, dice que Moshe quiso rechazar los espejos porque servían a la vanidad. Dios le dijo que los aceptara, porque con esos espejos las mujeres en Egipto alentaron a sus maridos agotados y mantuvieron creciendo a las familias de Israel.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "moshe"
+    ],
+    "anchors": [
+      "Exodus 38:8"
+    ],
+    "sources": [
+      "Rashi on Exodus 38:8"
+    ],
+    "sort_order": 64
+  },
+  {
+    "id": "why-nadav-and-avihu-died",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "Why Nadav and Avihu died",
+    "title_he": "מדוע מתו נדב ואביהוא",
+    "title_es": "Por qué murieron Nadav y Avihú",
+    "story_en": "The Torah says Aharon's sons offered \"strange fire\" and were consumed (Leviticus 10:2), without fully explaining their sin. Rashi brings two views. Rabbi Eliezer (Eruvin 63a) says they ruled on a matter of law in front of Moshe, their teacher. Rabbi Yishmael says they entered the Sanctuary drunk, pointing to the command against priests drinking wine that follows immediately after (Leviticus 10:9).",
+    "story_he": "התורה אומרת שבני אהרן הקריבו \"אש זרה\" ונשרפו (ויקרא י, ב), בלי לפרט את חטאם. רש\"י מביא שתי דעות. רבי אליעזר (עירובין סג ע\"א) אומר: לא מתו אלא על שהורו הלכה בפני משה רבן. רבי ישמעאל אומר: שתויי יין נכנסו למקדש, ולראיה הוא מביא את האיסור על שתיית יין לכהנים הבא מיד אחר כך (ויקרא י, ט).",
+    "story_es": "La Torá dice que los hijos de Aharón ofrecieron \"fuego extraño\" y fueron consumidos (Vaikrá 10:2), sin explicar del todo su pecado. Rashí trae dos opiniones. Rabí Eliézer (Eruvín 63a) dice que dictaminaron una ley en presencia de Moshe, su maestro. Rabí Ishmael dice que entraron al Santuario ebrios, señalando la prohibición de que los sacerdotes beban vino que aparece justo después (Vaikrá 10:9).",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "nadav",
+      "avihu",
+      "aharon",
+      "moshe"
+    ],
+    "anchors": [
+      "Leviticus 10:2",
+      "Leviticus 10:9"
+    ],
+    "sources": [
+      "Rashi on Leviticus 10:2",
+      "Eruvin 63a"
+    ],
+    "sort_order": 65
+  },
+  {
+    "id": "the-blasphemers-father",
+    "type": "connection",
+    "status": "reviewed",
+    "title_en": "The blasphemer was the son of the Egyptian Moshe killed",
+    "title_he": "המקלל היה בנו של המצרי שהרג משה",
+    "title_es": "El blasfemo era hijo del egipcio que Moshe mató",
+    "story_en": "Leviticus 24:10 introduces the blasphemer as the son of an Israelite woman and \"an Egyptian man.\" Rashi, citing Vayikra Rabbah 32:4, says the Egyptian was the one Moshe killed (Exodus 2:12), linking the two stories through the same phrase \"Egyptian man.\" Rashi adds that the son had been ruled against in a dispute over camping with his mother's tribe, Dan, and then blasphemed.",
+    "story_he": "בויקרא כד, י מוצג המקלל כבן אשה ישראלית ו\"איש מצרי\". רש\"י, על פי ויקרא רבה לב, ד, אומר שזה המצרי שהרג משה (שמות ב, יב), וקושר את שני הסיפורים בביטוי \"איש מצרי\". רש\"י מוסיף שהבן יצא חייב בדינו של משה כשביקש לנטוע אהלו במחנה דן, שבט אמו, ועמד וגידף.",
+    "story_es": "Vaikrá 24:10 presenta al blasfemo como hijo de una mujer israelita y de \"un hombre egipcio\". Rashí, citando Vaikrá Rabá 32:4, dice que ese egipcio era el que Moshe mató (Shemot 2:12), vinculando ambas historias por la misma expresión \"hombre egipcio\". Rashí añade que el hijo había perdido un juicio ante Moshe por acampar con la tribu de su madre, Dan, y entonces blasfemó.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "moshe",
+      "shlomit"
+    ],
+    "anchors": [
+      "Leviticus 24:10",
+      "Exodus 2:12"
+    ],
+    "sources": [
+      "Rashi on Leviticus 24:10"
+    ],
+    "sort_order": 66
+  },
+  {
+    "id": "miriams-well",
+    "type": "wonder",
+    "status": "reviewed",
+    "title_en": "Miriam's well, Aharon's clouds, Moshe's manna",
+    "title_he": "באר מרים, ענני אהרן ומן משה",
+    "title_es": "El pozo de Miriam, las nubes de Aharón y el maná de Moshe",
+    "story_en": "Rabbi Yosei ben Rabbi Yehuda (Taanit 9a) says three leaders rose for Israel in the desert, and each brought a gift: the well in Miriam's merit, the pillar of cloud in Aharon's merit, and the manna in Moshe's merit. When Miriam died the well disappeared, which is why the people had no water right after her death (Numbers 20:1-2). It returned in the merit of Moshe and Aharon.",
+    "story_he": "רבי יוסי ברבי יהודה (תענית ט ע\"א) אומר: שלושה פרנסים טובים עמדו לישראל, משה אהרן ומרים, ושלוש מתנות טובות ניתנו על ידם: באר בזכות מרים, עמוד ענן בזכות אהרן, ומן בזכות משה. מתה מרים, נסתלקה הבאר, ולכן \"ולא היה מים לעדה\" מיד אחרי מותה (במדבר כ, א-ב). וחזרה בזכות משה ואהרן.",
+    "story_es": "Rabí Iosí ben Rabí Iehudá (Taanit 9a) dice que tres líderes surgieron para Israel en el desierto, y cada uno trajo un regalo: el pozo por el mérito de Miriam, la columna de nube por el de Aharón y el maná por el de Moshe. Cuando murió Miriam desapareció el pozo, por eso el pueblo no tuvo agua justo después de su muerte (Bamidbar 20:1-2). Volvió por el mérito de Moshe y Aharón.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "miriam",
+      "aharon",
+      "moshe"
+    ],
+    "anchors": [
+      "Numbers 20:1",
+      "Numbers 20:2",
+      "Numbers 21:17"
+    ],
+    "sources": [
+      "Taanit 9a"
+    ],
+    "sort_order": 67
+  },
+  {
+    "id": "eldad-and-medads-prophecy",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "What Eldad and Medad prophesied",
+    "title_he": "מה ניבאו אלדד ומידד",
+    "title_es": "Qué profetizaron Eldad y Medad",
+    "story_en": "The Torah says Eldad and Medad prophesied in the camp but not what they said (Numbers 11:26). The Talmud (Sanhedrin 17a) brings several opinions. One is that they prophesied \"Moshe will die and Yehoshua will bring Israel into the Land,\" which explains why Yehoshua urged Moshe to stop them. Another says they prophesied about the quail, and a third about the war of Gog and Magog.",
+    "story_he": "התורה אומרת שאלדד ומידד התנבאו במחנה, אך לא מה אמרו (במדבר יא, כו). בגמרא (סנהדרין יז ע\"א) מובאות כמה דעות. אחת: \"משה מת ויהושע מכניס את ישראל לארץ\", ולכן ביקש יהושע ממשה לכלאם. אחרת אומרת שניבאו על עסקי שליו, ושלישית על עסקי גוג ומגוג.",
+    "story_es": "La Torá dice que Eldad y Medad profetizaron en el campamento pero no qué dijeron (Bamidbar 11:26). El Talmud (Sanedrín 17a) trae varias opiniones. Una es que profetizaron \"Moshe morirá y Yehoshúa llevará a Israel a la Tierra\", lo que explica por qué Yehoshúa le pidió a Moshe detenerlos. Otra dice que profetizaron sobre las codornices, y una tercera sobre la guerra de Gog y Magog.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "eldad",
+      "medad",
+      "moshe",
+      "yehoshua"
+    ],
+    "anchors": [
+      "Numbers 11:26",
+      "Numbers 11:28"
+    ],
+    "sources": [
+      "Sanhedrin 17a"
+    ],
+    "sort_order": 68
+  },
+  {
+    "id": "the-giant-grape-cluster",
+    "type": "wonder",
+    "status": "reviewed",
+    "title_en": "The spies' giant cluster of grapes",
+    "title_he": "האשכול הענק של המרגלים",
+    "title_es": "El racimo gigante de los espías",
+    "story_en": "The spies carried one cluster of grapes \"on a pole between two\" (Numbers 13:23). The Talmud (Sotah 34a) calculates from the wording that eight men were needed to carry it, and from the weight a person can lift, it concludes the cluster was enormously heavy.",
+    "story_he": "המרגלים נשאו אשכול ענבים אחד \"במוט בשנים\" (במדבר יג, כג). הגמרא (סוטה לד ע\"א) מחשבת מלשון הפסוק ששמונה אנשים נשאו אותו, ומן המשקל שאדם יכול להרים היא מעריכה שמשקלו היה עצום.",
+    "story_es": "Los espías llevaron un racimo de uvas \"en una vara entre dos\" (Bamidbar 13:23). El Talmud (Sotá 34a) calcula por la redacción que hicieron falta ocho hombres para cargarlo, y por el peso que una persona puede levantar estima que el racimo pesaba muchísimo.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [],
+    "anchors": [
+      "Numbers 13:23"
+    ],
+    "sources": [
+      "Sotah 34a"
+    ],
+    "sort_order": 69
+  },
+  {
+    "id": "kalev-prayed-in-chevron",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "Kalev prayed at the graves of the Patriarchs",
+    "title_he": "כלב התפלל על קברי האבות",
+    "title_es": "Kalev rezó en las tumbas de los Patriarcas",
+    "story_en": "The spies went up through the Negev, but the verse says \"and he came to Chevron\" in the singular (Numbers 13:22). Rashi, following Sotah 34b, says Kalev alone went there and prostrated himself on the graves of the Patriarchs, praying not to be drawn into the other spies' plan.",
+    "story_he": "המרגלים עלו בנגב, אך הפסוק אומר \"ויבא עד חברון\" בלשון יחיד (במדבר יג, כב). רש\"י, על פי סוטה לד ע\"ב, אומר שכלב לבדו הלך לשם ונשתטח על קברי האבות, שלא יהא ניסת לחבריו להיות בעצתם.",
+    "story_es": "Los espías subieron por el Négev, pero el versículo dice \"y llegó a Jevrón\" en singular (Bamidbar 13:22). Rashí, siguiendo Sotá 34b, dice que solo Kalev fue allí y se postró sobre las tumbas de los Patriarcas, rezando para no ser arrastrado al plan de los demás espías.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "kalev"
+    ],
+    "anchors": [
+      "Numbers 13:22"
+    ],
+    "sources": [
+      "Rashi on Numbers 13:22"
+    ],
+    "sort_order": 70
+  },
+  {
+    "id": "on-ben-pelet-saved-by-his-wife",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "On ben Pelet was saved by his wife",
+    "title_he": "און בן פלת ניצל בזכות אשתו",
+    "title_es": "On ben Pelet fue salvado por su esposa",
+    "story_en": "On ben Pelet is listed among Korach's rebels (Numbers 16:1) but never mentioned again. The Talmud (Sanhedrin 109b-110a) says his wife persuaded him to withdraw, since he would gain nothing either way. She kept him home, and sat at the entrance with her hair uncovered so that the rebels who came for him turned back. Korach's wife, by contrast, urged her husband on.",
+    "story_he": "און בן פלת נמנה בין עדת קרח (במדבר טז, א) ואינו מוזכר עוד. הגמרא (סנהדרין קט ע\"ב-קי ע\"א) אומרת שאשתו שכנעה אותו לפרוש: אם מר רבה ואם מר רבה, אתה תלמיד. היא השאירה אותו בבית, וישבה בפתח ופרעה את שערה, וכל מי שבא לקרוא לו חזר לאחוריו. אשתו של קרח, לעומתה, הסיתה את בעלה.",
+    "story_es": "On ben Pelet aparece entre los rebeldes de Kóraj (Bamidbar 16:1) pero nunca vuelve a mencionarse. El Talmud (Sanedrín 109b-110a) dice que su esposa lo convenció de retirarse, pues no ganaría nada en ningún caso. Lo retuvo en casa y se sentó a la entrada con el cabello descubierto, de modo que los rebeldes que venían por él se volvían. La esposa de Kóraj, en cambio, incitó a su marido.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "on-ben-pelet",
+      "korach"
+    ],
+    "anchors": [
+      "Numbers 16:1"
+    ],
+    "sources": [
+      "Sanhedrin 109b",
+      "Sanhedrin 110a"
+    ],
+    "sort_order": 71
+  },
+  {
+    "id": "the-sons-of-korach",
+    "type": "connection",
+    "status": "reviewed",
+    "title_en": "Korach's sons survived and wrote psalms",
+    "title_he": "בני קרח ניצלו וכתבו מזמורים",
+    "title_es": "Los hijos de Kóraj sobrevivieron y escribieron salmos",
+    "story_en": "Numbers 26:11 says \"the sons of Korach did not die.\" Rashi, citing Sanhedrin 110a, explains that they were part of the plot but had thoughts of repentance at the last moment, so a raised place was set aside for them in Gehinnom and they survived. Several psalms are attributed to \"the sons of Korach,\" and the Talmud (Bava Batra 14b) counts them among the authors of Tehillim.",
+    "story_he": "בבמדבר כו, יא נאמר \"ובני קרח לא מתו\". רש\"י, על פי סנהדרין קי ע\"א, מסביר שהם היו בעצה תחילה, ובשעת המחלוקת הרהרו תשובה בלבם, לכן נתבצר להם מקום גבוה בגיהנום וישבו שם. כמה מזמורים מיוחסים ל\"בני קרח\", והגמרא (בבא בתרא יד ע\"ב) מונה אותם בין מחברי תהלים.",
+    "story_es": "Bamidbar 26:11 dice que \"los hijos de Kóraj no murieron\". Rashí, citando Sanedrín 110a, explica que participaron en el complot pero al final pensaron en arrepentirse, así que se les reservó un lugar elevado en el Guehinom y sobrevivieron. Varios salmos se atribuyen a \"los hijos de Kóraj\", y el Talmud (Bavá Batrá 14b) los cuenta entre los autores de Tehilim.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "korach"
+    ],
+    "anchors": [
+      "Numbers 26:11",
+      "Psalms 42:1"
+    ],
+    "sources": [
+      "Rashi on Numbers 26:11",
+      "Bava Batra 14b"
+    ],
+    "sort_order": 72
+  },
+  {
+    "id": "bilams-donkey-was-killed",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "Why Bilam's donkey was killed",
+    "title_he": "למה נהרגה האתון של בלעם",
+    "title_es": "Por qué murió la burra de Bilam",
+    "story_en": "The angel told Bilam that had the donkey not turned aside, \"I would have killed you and let her live\" (Numbers 22:33). Rashi explains that now the donkey was killed, so that people would not point to it and say \"this is the animal that silenced Bilam,\" out of consideration for human dignity.",
+    "story_he": "המלאך אמר לבלעם שאלמלא נטתה האתון, \"גם אתכה הרגתי ואותה החייתי\" (במדבר כב, לג). רש\"י מסביר שעכשיו, כיוון שדיברה והוכיחתך, הרגתיה, שלא יאמרו: זו היא שסילקה את בלעם בתוכחתה, כי חס המקום על כבוד הבריות.",
+    "story_es": "El ángel le dijo a Bilam que si la burra no se hubiera desviado, \"te habría matado a ti y a ella la habría dejado vivir\" (Bamidbar 22:33). Rashí explica que ahora la burra fue muerta, para que la gente no la señalara diciendo \"este es el animal que hizo callar a Bilam\", por consideración a la dignidad humana.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "bilam"
+    ],
+    "anchors": [
+      "Numbers 22:33"
+    ],
+    "sources": [
+      "Rashi on Numbers 22:33"
+    ],
+    "sort_order": 73
+  },
+  {
+    "id": "bilam-was-lavan",
+    "type": "identity",
+    "status": "reviewed",
+    "title_en": "Beor, Bilam's father, was Lavan",
+    "title_he": "בעור אבי בלעם הוא לבן",
+    "title_es": "Beor, el padre de Bilam, era Laván",
+    "story_en": "A baraita in the Talmud (Sanhedrin 105a) says Beor, Bilam's father, is the same person as Kushan-Rishatayim, the oppressor in the time of the Judges (Judges 3:8), and as Lavan the Aramean. The name Rishatayim, \"double wickedness,\" refers to two attacks on Israel: pursuing Yaakov, and oppressing Israel later. Targum Jonathan on Numbers 22:5 goes further and identifies Bilam himself with Lavan.",
+    "story_he": "בברייתא בגמרא (סנהדרין קה ע\"א) נאמר: הוא בעור אבי בלעם, הוא כושן רשעתים (שופטים ג, ח), הוא לבן הארמי. השם רשעתים מרמז לשתי רשעויות שעשה לישראל: אחת בימי יעקב, שרדף אחריו, ואחת בימי השופטים. תרגום יונתן לבמדבר כב, ה הולך רחוק יותר ומזהה את בלעם עצמו עם לבן.",
+    "story_es": "Una baraita en el Talmud (Sanedrín 105a) dice que Beor, padre de Bilam, es la misma persona que Kushán-Rishatáyim, el opresor de la época de los Jueces (Shoftim 3:8), y que Laván el arameo. El nombre Rishatáyim, \"doble maldad\", alude a dos ataques contra Israel: perseguir a Yaakov y oprimir a Israel después. El Targum Ionatán sobre Bamidbar 22:5 va más lejos e identifica al propio Bilam con Laván.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "bilam",
+      "lavan",
+      "yaakov"
+    ],
+    "anchors": [
+      "Numbers 22:5",
+      "Genesis 31:23",
+      "Judges 3:8"
+    ],
+    "sources": [
+      "Sanhedrin 105a",
+      "Targum Jonathan on Numbers 22:5"
+    ],
+    "sort_order": 74
+  },
+  {
+    "id": "zimri-was-shelumiel",
+    "type": "identity",
+    "status": "reviewed",
+    "title_en": "Zimri had five names",
+    "title_he": "לזמרי היו חמישה שמות",
+    "title_es": "Zimrí tenía cinco nombres",
+    "story_en": "Rabbi Yochanan (Sanhedrin 82b) says Zimri, the prince of Shimon killed by Pinchas, had five names, one of them Shelumiel ben Tzurishaddai. That is the name of the prince of Shimon listed in the census and at the Mishkan's dedication (Numbers 1:6, 7:36), so the respected tribal leader and the sinner of Shittim are the same man.",
+    "story_he": "רבי יוחנן (סנהדרין פב ע\"ב) אומר: חמישה שמות היו לו לזמרי, נשיא שבט שמעון שהרגו פנחס, ואחד מהם שלומיאל בן צורישדי. זהו שמו של נשיא שמעון במפקד ובחנוכת המשכן (במדבר א, ו; ז, לו), כך שהנשיא המכובד והחוטא בשיטים הם אדם אחד.",
+    "story_es": "Rabí Iojanán (Sanedrín 82b) dice que Zimrí, el príncipe de Shimón al que mató Pinjás, tenía cinco nombres, uno de ellos Shelumiel ben Tzurishadái. Ese es el nombre del príncipe de Shimón en el censo y en la inauguración del Mishkán (Bamidbar 1:6, 7:36), así que el respetado líder tribal y el pecador de Shitim son el mismo hombre.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "zimri",
+      "pinchas"
+    ],
+    "anchors": [
+      "Numbers 25:14",
+      "Numbers 1:6",
+      "Numbers 7:36"
+    ],
+    "sources": [
+      "Sanhedrin 82b"
+    ],
+    "sort_order": 75
+  },
+  {
+    "id": "the-miracles-for-pinchas",
+    "type": "wonder",
+    "status": "reviewed",
+    "title_en": "Miracles were done for Pinchas",
+    "title_he": "נסים נעשו לפנחס",
+    "title_es": "Se hicieron milagros para Pinjás",
+    "story_en": "Rabbi Yochanan (Sanhedrin 82b) lists six miracles that were performed for Pinchas when he killed Zimri and Kozbi. Among them: Zimri did not separate from Kozbi (which would have made killing him forbidden), and Zimri did not call for help though he could have.",
+    "story_he": "רבי יוחנן (סנהדרין פב ע\"ב) מונה שישה נסים שנעשו לפנחס כשהרג את זמרי וכזבי. ביניהם: שלא פירש זמרי מכזבי, שאילו פירש היה אסור להורגו, ושלא דיבר זמרי לקרוא לעזרה אף שיכול היה.",
+    "story_es": "Rabí Iojanán (Sanedrín 82b) enumera seis milagros que se hicieron para Pinjás cuando mató a Zimrí y Kozbí. Entre ellos: Zimrí no se separó de Kozbí (lo que habría prohibido matarlo), y Zimrí no pidió ayuda aunque podía hacerlo.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "pinchas",
+      "zimri"
+    ],
+    "anchors": [
+      "Numbers 25:8"
+    ],
+    "sources": [
+      "Sanhedrin 82b"
+    ],
+    "sort_order": 76
+  },
+  {
+    "id": "the-wood-gatherer-was-tzelofchad",
+    "type": "identity",
+    "status": "reviewed",
+    "title_en": "The wood gatherer was Tzelofchad",
+    "title_he": "המקושש היה צלפחד",
+    "title_es": "El recolector de leña era Tzelofjad",
+    "story_en": "The man put to death for gathering wood on Shabbat is not named (Numbers 15:32). Rabbi Akiva (Shabbat 96b) compares \"in the desert\" there with his daughters' words \"our father died in the desert\" (Numbers 27:3) and concludes the wood gatherer was Tzelofchad.",
+    "story_he": "האיש שנסקל על שקושש עצים בשבת אינו נקרא בשמו (במדבר טו, לב). רבי עקיבא (שבת צו ע\"ב) משווה בין \"במדבר\" שם ל\"אבינו מת במדבר\" בדברי בנותיו (במדבר כז, ג), ולומד שהמקושש היה צלפחד.",
+    "story_es": "El hombre ejecutado por recoger leña en Shabat no es nombrado (Bamidbar 15:32). Rabí Akivá (Shabat 96b) compara \"en el desierto\" allí con las palabras de sus hijas \"nuestro padre murió en el desierto\" (Bamidbar 27:3) y concluye que el recolector era Tzelofjad.",
+    "other_view_en": "Rabbi Yehuda ben Beteira objects in the same passage: if Rabbi Akiva is right, he has revealed what the Torah chose to conceal, and if he is wrong, he has cast blame on a righteous man.",
+    "other_view_he": "רבי יהודה בן בתירא חולק שם: עקיבא, בין כך ובין כך אתה עתיד ליתן את הדין. אם כדבריך, התורה כיסתהו ואתה מגלה אותו; ואם לאו, אתה מוציא לעז על אותו צדיק.",
+    "other_view_es": "Rabí Iehudá ben Betirá objeta en el mismo pasaje: si Rabí Akivá tiene razón, reveló lo que la Torá quiso ocultar, y si se equivoca, difamó a un justo.",
+    "characters": [
+      "tzelofchad"
+    ],
+    "anchors": [
+      "Numbers 15:32",
+      "Numbers 27:3"
+    ],
+    "sources": [
+      "Shabbat 96b"
+    ],
+    "sort_order": 77
+  },
+  {
+    "id": "pinchas-killed-bilam",
+    "type": "crossover",
+    "status": "reviewed",
+    "title_en": "Pinchas killed Bilam",
+    "title_he": "פנחס הרג את בלעם",
+    "title_es": "Pinjás mató a Bilam",
+    "story_en": "The Torah says Bilam was killed in the war against Midian (Numbers 31:8), a war in which Pinchas went out with the army. The Talmud (Sanhedrin 106b) records a statement from \"Bilam's chronicle\" that Bilam the lame was thirty-three years old when Pinchas killed him.",
+    "story_he": "התורה אומרת שבלעם נהרג במלחמת מדין (במדבר לא, ח), מלחמה שפנחס יצא בה עם הצבא. הגמרא (סנהדרין קו ע\"ב) מביאה ממה שנכתב \"בפנקסו של בלעם\": בר תלתין ותלת שנין בלעם חגירא כד קטיל ליה פנחס ליסטאה.",
+    "story_es": "La Torá dice que Bilam murió en la guerra contra Midián (Bamidbar 31:8), una guerra en la que Pinjás salió con el ejército. El Talmud (Sanedrín 106b) cita lo escrito en \"la crónica de Bilam\": Bilam el cojo tenía treinta y tres años cuando Pinjás lo mató.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "pinchas",
+      "bilam"
+    ],
+    "anchors": [
+      "Numbers 31:8",
+      "Numbers 31:6"
+    ],
+    "sources": [
+      "Sanhedrin 106b"
+    ],
+    "sort_order": 78
+  },
+  {
+    "id": "og-and-the-mountain",
+    "type": "wonder",
+    "status": "reviewed",
+    "title_en": "Og tried to throw a mountain at Israel",
+    "title_he": "עוג ביקש לזרוק הר על ישראל",
+    "title_es": "Og intentó lanzar una montaña sobre Israel",
+    "story_en": "The Talmud (Berakhot 54b) records a tradition about the battle with Og. He asked how large Israel's camp was, and hearing it was three parasangs, uprooted a mountain that size to hurl on them. God sent insects that bored through the mountain, and it dropped over his head onto his neck. Moshe, ten cubits tall, took a ten-cubit axe, leapt ten cubits, and struck Og's ankle, killing him.",
+    "story_he": "הגמרא (ברכות נד ע\"ב) מביאה מסורת על המלחמה בעוג. שאל עוג כמה גדול מחנה ישראל, וכששמע שלוש פרסאות, עקר הר בן שלוש פרסאות להשליכו עליהם. הביא הקב\"ה עליו קמצי ונקבוהו, ונשמט ההר על צווארו. משה, שקומתו עשר אמות, נטל גרזן בן עשר אמות, קפץ עשר אמות, והכהו בקרסולו והרגו.",
+    "story_es": "El Talmud (Berajot 54b) trae una tradición sobre la batalla con Og. Preguntó cuán grande era el campamento de Israel y, al saber que medía tres parasangas, arrancó una montaña de ese tamaño para arrojarla sobre ellos. Dios envió insectos que perforaron la montaña, y esta se le cayó alrededor del cuello. Moshe, de diez codos de altura, tomó un hacha de diez codos, saltó diez codos y golpeó el tobillo de Og, matándolo.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "og",
+      "moshe"
+    ],
+    "anchors": [
+      "Numbers 21:33",
+      "Deuteronomy 3:1"
+    ],
+    "sources": [
+      "Berakhot 54b"
+    ],
+    "sort_order": 79
+  },
+  {
+    "id": "the-hailstones-moshe-and-yehoshua",
+    "type": "connection",
+    "status": "reviewed",
+    "title_en": "The hailstones held back by Moshe, released by Yehoshua",
+    "title_he": "אבני אלגביש: נעצרו בשביל משה ונפלו בשביל יהושע",
+    "title_es": "El granizo detenido por Moshe y soltado por Yehoshúa",
+    "story_en": "The Talmud (Berakhot 54b) explains the \"stones of elgavish\" as stones held in the air al gav ish, \"because of a man,\" and brought down al gav ish, \"because of a man.\" They stopped in mid-air when Moshe prayed to end the plague of hail in Egypt (Exodus 9:33), and they fell forty years later on the Emorite kings fighting Yehoshua (Joshua 10:11).",
+    "story_he": "הגמרא (ברכות נד ע\"ב) מבארת \"אבני אלגביש\": אבנים שעמדו על גב איש וירדו על גב איש. הן נעצרו באוויר כשהתפלל משה להפסיק את מכת הברד במצרים (שמות ט, לג), ונפלו כעבור ארבעים שנה על מלכי האמורי שנלחמו ביהושע (יהושע י, יא).",
+    "story_es": "El Talmud (Berajot 54b) explica las \"piedras de elgavish\" como piedras detenidas en el aire al gav ish, \"a causa de un hombre\", y derribadas al gav ish, \"a causa de un hombre\". Se detuvieron en el aire cuando Moshe rezó para terminar la plaga del granizo en Egipto (Shemot 9:33) y cayeron cuarenta años después sobre los reyes emoritas que combatían a Yehoshúa (Yehoshúa 10:11).",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "moshe",
+      "yehoshua"
+    ],
+    "anchors": [
+      "Exodus 9:33",
+      "Joshua 10:11"
+    ],
+    "sources": [
+      "Berakhot 54b"
+    ],
+    "sort_order": 80
+  },
+  {
+    "id": "moshes-515-prayers",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "Moshe prayed 515 times to enter the Land",
+    "title_he": "משה התפלל 515 תפילות להיכנס לארץ",
+    "title_es": "Moshe rezó 515 veces para entrar a la Tierra",
+    "story_en": "Devarim Rabbah 11:10 says Moshe prayed 515 times to be allowed into the Land of Israel. It derives the number from va'etchanan, \"I pleaded\" (Deuteronomy 3:23), whose letters add up to 515.",
+    "story_he": "בדברים רבה יא, י נאמר שמשה התפלל חמש מאות וחמש עשרה תפילות שיוכל להיכנס לארץ ישראל. המספר נלמד מהמילה \"ואתחנן\" (דברים ג, כג), שמניינה 515.",
+    "story_es": "Devarim Rabá 11:10 dice que Moshe rezó 515 veces para que se le permitiera entrar a la Tierra de Israel. Deriva el número de vaetjanán, \"supliqué\" (Devarim 3:23), cuyas letras suman 515.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "moshe"
+    ],
+    "anchors": [
+      "Deuteronomy 3:23"
+    ],
+    "sources": [
+      "Devarim Rabbah 11:10"
+    ],
+    "sort_order": 81
+  },
+  {
+    "id": "moshe-wrote-thirteen-torahs",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "Moshe wrote thirteen Torah scrolls on his last day",
+    "title_he": "משה כתב שלושה עשר ספרי תורה ביומו האחרון",
+    "title_es": "Moshe escribió trece rollos de Torá en su último día",
+    "story_en": "Devarim Rabbah 9:9 says that on the day Moshe knew he would die, he wrote thirteen Torah scrolls: one for each of the twelve tribes, and one placed in the Ark so that anyone who tried to falsify the text could be checked against it.",
+    "story_he": "בדברים רבה ט, ט נאמר שביום שידע משה שהוא עתיד למות, כתב שלושה עשר ספרי תורה: שנים עשר לשנים עשר השבטים, ואחד הניח בארון, שאם יבקש מישהו לזייף דבר, ימצאו את זה שבארון.",
+    "story_es": "Devarim Rabá 9:9 dice que el día en que Moshe supo que moriría, escribió trece rollos de Torá: uno para cada una de las doce tribus y uno que colocó en el Arca, para que si alguien intentaba falsificar el texto pudiera compararse con él.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "moshe"
+    ],
+    "anchors": [
+      "Deuteronomy 31:9",
+      "Deuteronomy 31:26"
+    ],
+    "sources": [
+      "Devarim Rabbah 9:9"
+    ],
+    "sort_order": 82
+  },
+  {
+    "id": "who-wrote-the-last-eight-verses",
+    "type": "connection",
+    "status": "reviewed",
+    "title_en": "Who wrote the Torah's last eight verses",
+    "title_he": "מי כתב את שמונה הפסוקים האחרונים בתורה",
+    "title_es": "Quién escribió los últimos ocho versículos de la Torá",
+    "story_en": "The Torah ends by describing Moshe's death and burial (Deuteronomy 34:5-12). The Talmud (Bava Batra 15a) asks how Moshe could have written \"and Moshe died there.\" One view says Yehoshua wrote these last eight verses. Another says Moshe wrote them too: God dictated, and Moshe wrote them in tears.",
+    "story_he": "התורה מסתיימת בתיאור מותו וקבורתו של משה (דברים לד, ה-יב). הגמרא (בבא בתרא טו ע\"א) שואלת: אפשר משה חי וכתב \"וימת שם משה\"? דעה אחת: עד כאן כתב משה, מכאן ואילך כתב יהושע. דעה אחרת: גם את אלה כתב משה, הקב\"ה אומר ומשה כותב בדמע.",
+    "story_es": "La Torá termina describiendo la muerte y sepultura de Moshe (Devarim 34:5-12). El Talmud (Bavá Batrá 15a) pregunta cómo pudo Moshe escribir \"y murió allí Moshe\". Una opinión dice que Yehoshúa escribió estos últimos ocho versículos. Otra dice que también los escribió Moshe: Dios dictaba y Moshe los escribía con lágrimas.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "moshe",
+      "yehoshua"
+    ],
+    "anchors": [
+      "Deuteronomy 34:5"
+    ],
+    "sources": [
+      "Bava Batra 15a"
+    ],
+    "sort_order": 83
+  },
+  {
+    "id": "moshes-hidden-grave",
+    "type": "wonder",
+    "status": "reviewed",
+    "title_en": "Moshe's grave cannot be found",
+    "title_he": "קבורתו של משה אינה נמצאת",
+    "title_es": "La tumba de Moshe no se puede encontrar",
+    "story_en": "The Torah says \"no one knows his burial place to this day\" (Deuteronomy 34:6). The Talmud (Sotah 14a) tells that the Roman government once sent people to find it. Those standing at the top of the mountain saw it below, and those below saw it above; when they split into two groups, each saw it where the other stood. Pirkei Avot 5:6 counts Moshe's grave, in one view, among the things created at twilight on the first Shabbat eve.",
+    "story_he": "התורה אומרת \"ולא ידע איש את קברתו עד היום הזה\" (דברים לד, ו). הגמרא (סוטה יד ע\"א) מספרת ששלחה המלכות הרומית אנשים לחפשו. העומדים למעלה ראוהו למטה, והעומדים למטה ראוהו למעלה; נחלקו לשתי כתות, ואלה ראוהו אצל אלה. במשנה (אבות ה, ו) נמנה קברו של משה, לדעה אחת, בין הדברים שנבראו בערב שבת בין השמשות.",
+    "story_es": "La Torá dice que \"nadie conoce su sepultura hasta el día de hoy\" (Devarim 34:6). El Talmud (Sotá 14a) cuenta que el gobierno romano envió gente a buscarla. Los que estaban arriba en el monte la veían abajo, y los de abajo la veían arriba; al dividirse en dos grupos, cada uno la veía donde estaba el otro. Pirkei Avot 5:6 cuenta la tumba de Moshe, según una opinión, entre lo creado al anochecer de la primera víspera de Shabat.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "moshe"
+    ],
+    "anchors": [
+      "Deuteronomy 34:6"
+    ],
+    "sources": [
+      "Sotah 14a",
+      "Pirkei Avot 5:6"
+    ],
+    "sort_order": 84
+  },
+  {
+    "id": "yehoshuas-spies-were-pinchas-and-kalev",
+    "type": "identity",
+    "status": "reviewed",
+    "title_en": "Yehoshua's two spies were Pinchas and Kalev",
+    "title_he": "שני המרגלים של יהושע היו פנחס וכלב",
+    "title_es": "Los dos espías de Yehoshúa eran Pinjás y Kalev",
+    "story_en": "Yehoshua sent two unnamed spies to Yericho (Joshua 2:1). Bamidbar Rabbah 16:1 identifies them as Pinchas and Kalev, who risked their lives and succeeded, unlike Moshe's spies. The word cheresh, \"secretly,\" is also read as \"potters\": they disguised themselves as pot sellers.",
+    "story_he": "יהושע שלח שני מרגלים עלומי שם ליריחו (יהושע ב, א). בבמדבר רבה טז, א הם מזוהים עם פנחס וכלב, שמסרו נפשם והצליחו, בניגוד למרגלים של משה. המילה \"חרש\" נדרשת גם כ\"חרס\": הם התחפשו לקדרים ומכרו כלי חרס.",
+    "story_es": "Yehoshúa envió dos espías sin nombre a Yerijó (Yehoshúa 2:1). Bamidbar Rabá 16:1 los identifica como Pinjás y Kalev, que arriesgaron sus vidas y tuvieron éxito, a diferencia de los espías de Moshe. La palabra jéresh, \"en secreto\", también se lee como \"alfareros\": se disfrazaron de vendedores de vasijas.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "pinchas",
+      "kalev",
+      "yehoshua",
+      "rachav"
+    ],
+    "anchors": [
+      "Joshua 2:1"
+    ],
+    "sources": [
+      "Bamidbar Rabbah 16:1"
+    ],
+    "sort_order": 85
+  },
+  {
+    "id": "the-forgotten-laws-and-otniel",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "Otniel restored laws forgotten after Moshe's death",
+    "title_he": "עתניאל החזיר הלכות שנשתכחו באבלו של משה",
+    "title_es": "Otniel restauró leyes olvidadas tras la muerte de Moshe",
+    "story_en": "Shmuel (Temurah 16a) says three thousand laws were forgotten during the mourning for Moshe. The people asked Yehoshua to seek them from Heaven, and he answered \"it is not in heaven\" (Deuteronomy 30:12). A baraita adds that 1,700 inferences and fine points were forgotten, and Rabbi Abbahu says Otniel ben Kenaz restored them through his sharp reasoning. The Talmud reads this into Kalev's offer of his daughter to whoever captures Kiryat Sefer, literally \"city of the book\" (Joshua 15:16-17).",
+    "story_he": "שמואל (תמורה טז ע\"א) אומר: שלושת אלפים הלכות נשתכחו בימי אבלו של משה. אמרו ליהושע: שאל, ואמר להם \"לא בשמים היא\" (דברים ל, יב). בברייתא נוסף שאלף ושבע מאות קלים וחמורים, גזרות שוות ודקדוקי סופרים נשתכחו, ואמר רבי אבהו: אף על פי כן החזירן עתניאל בן קנז מתוך פלפולו. הגמרא דורשת זאת בהצעתו של כלב לתת את בתו ללוכד קרית ספר (יהושע טו, טז-יז).",
+    "story_es": "Shmuel (Temurá 16a) dice que tres mil leyes se olvidaron durante el duelo por Moshe. El pueblo pidió a Yehoshúa que las consultara al Cielo, y él respondió \"no está en el cielo\" (Devarim 30:12). Una baraita añade que se olvidaron 1.700 deducciones y detalles, y Rabí Abahu dice que Otniel ben Kenaz los restauró con su agudo razonamiento. El Talmud lo lee en la oferta de Kalev de dar a su hija a quien conquistara Kiriat Séfer, literalmente \"ciudad del libro\" (Yehoshúa 15:16-17).",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "otniel",
+      "yehoshua",
+      "kalev",
+      "moshe"
+    ],
+    "anchors": [
+      "Joshua 15:17",
+      "Judges 1:13",
+      "Deuteronomy 34:8"
+    ],
+    "sources": [
+      "Temurah 16a"
+    ],
+    "sort_order": 86
+  },
+  {
+    "id": "otniel-was-yaavetz",
+    "type": "identity",
+    "status": "reviewed",
+    "title_en": "Otniel was Yaavetz",
+    "title_he": "עתניאל הוא יעבץ",
+    "title_es": "Otniel era Iaavetz",
+    "story_en": "I Chronicles 4:9-10 tells briefly of Yaavetz, who prayed and was answered. A baraita (Temurah 16a) says Otniel and Yaavetz are the same person, whose actual name was Yehuda. He was called Otniel because God answered him (ana'o El), and Yaavetz because he gave counsel and spread Torah in Israel (ya'atz ve-ribetz).",
+    "story_he": "בדברי הימים א ד, ט-י מסופר בקצרה על יעבץ, שהתפלל ונענה. בברייתא (תמורה טז ע\"א) נאמר: הוא עתניאל הוא יעבץ, ויהודה שמו. עתניאל, שענאו אל; יעבץ, שיעץ וריבץ תורה בישראל.",
+    "story_es": "Divré Hayamim Alef 4:9-10 cuenta brevemente de Iaavetz, que rezó y fue respondido. Una baraita (Temurá 16a) dice que Otniel e Iaavetz son la misma persona, cuyo nombre real era Iehudá. Se lo llamó Otniel porque Dios le respondió (anaó El), e Iaavetz porque aconsejó y difundió la Torá en Israel (iaatz verivetz).",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "otniel"
+    ],
+    "anchors": [
+      "I Chronicles 4:9",
+      "Judges 3:9"
+    ],
+    "sources": [
+      "Temurah 16a"
+    ],
+    "sort_order": 87
+  },
+  {
+    "id": "ivtzan-was-boaz",
+    "type": "identity",
+    "status": "reviewed",
+    "title_en": "The judge Ivtzan was Boaz",
+    "title_he": "השופט אבצן הוא בועז",
+    "title_es": "El juez Ivtzán era Boaz",
+    "story_en": "Judges 12:8-10 mentions Ivtzan of Beit Lechem, who judged Israel and had thirty sons and thirty daughters. Rabba bar Rav Huna (Bava Batra 91a) says Ivtzan is Boaz. The same passage says Boaz made 120 wedding feasts for his children, and all of them died in his lifetime.",
+    "story_he": "בשופטים יב, ח-י מוזכר אבצן מבית לחם, ששפט את ישראל והיו לו שלושים בנים ושלושים בנות. רבה בר רב הונא (בבא בתרא צא ע\"א) אומר: אבצן זה בועז. באותו מקום נאמר שבועז עשה מאה ועשרים משתאות לבניו, וכולם מתו בחייו.",
+    "story_es": "Shoftim 12:8-10 menciona a Ivtzán de Bet Léjem, que juzgó a Israel y tuvo treinta hijos y treinta hijas. Rabá bar Rav Huna (Bavá Batrá 91a) dice que Ivtzán es Boaz. El mismo pasaje dice que Boaz celebró 120 banquetes de boda para sus hijos, y todos murieron en vida de él.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "boaz",
+      "ivtzan"
+    ],
+    "anchors": [
+      "Judges 12:8",
+      "Ruth 2:1"
+    ],
+    "sources": [
+      "Bava Batra 91a"
+    ],
+    "sort_order": 88
+  },
+  {
+    "id": "shimshons-mother-tzlelponit",
+    "type": "identity",
+    "status": "reviewed",
+    "title_en": "The names of Shimshon's mother and David's mother",
+    "title_he": "שמות אמו של שמשון ואמו של דוד",
+    "title_es": "Los nombres de la madre de Shimshón y la madre de David",
+    "story_en": "The Tanakh does not name Shimshon's mother or King David's mother. The Talmud (Bava Batra 91a) records their names: Shimshon's mother was Tzlelponit, and David's mother was Nitzevet bat Adael. The same passage names Avraham's mother as Amatlai bat Karnevo.",
+    "story_he": "התנ\"ך אינו נוקב בשם אמו של שמשון ובשם אמו של דוד המלך. הגמרא (בבא בתרא צא ע\"א) מביאה את שמותיהן: אמו של שמשון צללפונית, ואמו של דוד נצבת בת עדאל. באותו מקום נזכר שאמו של אברהם אמתלאי בת כרנבו.",
+    "story_es": "El Tanaj no nombra a la madre de Shimshón ni a la madre del rey David. El Talmud (Bavá Batrá 91a) registra sus nombres: la madre de Shimshón era Tzlelponit, y la madre de David era Nitzévet bat Adael. El mismo pasaje nombra a la madre de Avraham como Amatlái bat Karnevó.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "shimshon",
+      "david",
+      "avraham"
+    ],
+    "anchors": [
+      "Judges 13:2",
+      "I Samuel 16:1",
+      "Genesis 11:26"
+    ],
+    "sources": [
+      "Bava Batra 91a"
+    ],
+    "sort_order": 89
+  },
+  {
+    "id": "shimshons-shoulders",
+    "type": "wonder",
+    "status": "reviewed",
+    "title_en": "Shimshon's shoulders were sixty cubits wide",
+    "title_he": "בין כתפיו של שמשון היו שישים אמה",
+    "title_es": "Los hombros de Shimshón medían sesenta codos",
+    "story_en": "Rabbi Shimon the Pious (Sotah 10a) says the width between Shimshon's shoulders was sixty cubits. He derives it from Shimshon carrying off the gates of Aza on his shoulders (Judges 16:3), since city gates were at least that wide.",
+    "story_he": "רבי שמעון חסידא (סוטה י ע\"א) אומר: בין כתפיו של שמשון היו שישים אמה. הוא לומד זאת מכך ששמשון נשא על כתפיו את דלתות שער עזה (שופטים טז, ג), ושערי עיר אינם פחותים משישים אמה.",
+    "story_es": "Rabí Shimón el Piadoso (Sotá 10a) dice que el ancho entre los hombros de Shimshón era de sesenta codos. Lo deriva de que Shimshón cargó sobre sus hombros las puertas de Azá (Shoftim 16:3), ya que las puertas de una ciudad tenían por lo menos ese ancho.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "shimshon"
+    ],
+    "anchors": [
+      "Judges 16:3"
+    ],
+    "sources": [
+      "Sotah 10a"
+    ],
+    "sort_order": 90
+  },
+  {
+    "id": "four-who-asked-improperly",
+    "type": "connection",
+    "status": "reviewed",
+    "title_en": "Four who made risky vows",
+    "title_he": "ארבעה ששאלו שלא כהוגן",
+    "title_es": "Cuatro que hicieron promesas arriesgadas",
+    "story_en": "Vayikra Rabbah 37:4 groups four people who made open-ended requests or vows: Avraham's servant Eliezer (\"the girl to whom I say...\"), King Shaul (promising his daughter to whoever defeated Golyat), Kalev (promising his daughter to whoever captured Kiryat Sefer), and Yiftach (vowing to offer whatever came out of his house first). Three were answered favorably despite the risk. Yiftach was not: his daughter came out to greet him.",
+    "story_he": "בויקרא רבה לז, ד מקובצים ארבעה שפתחו בנדר או בבקשה בלי גבול: אליעזר עבד אברהם (\"והיה הנערה אשר אמר אליה\"), שאול (שהבטיח את בתו למי שיכה את גלית), כלב (שהבטיח את בתו ללוכד קרית ספר), ויפתח (שנדר להעלות את היוצא מדלתי ביתו). שלושה נענו כהוגן, ויפתח לא: בתו יצאה לקראתו.",
+    "story_es": "Vaikrá Rabá 37:4 agrupa a cuatro personas que hicieron pedidos o promesas sin límite: Eliézer, siervo de Avraham (\"la joven a la que yo diga...\"), el rey Shaúl (que prometió su hija a quien venciera a Goliat), Kalev (que prometió su hija a quien conquistara Kiriat Séfer) e Iftaj (que prometió ofrecer lo primero que saliera de su casa). Tres fueron respondidos favorablemente pese al riesgo. Iftaj no: su hija salió a recibirlo.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "eliezer",
+      "shaul",
+      "kalev",
+      "yiftach"
+    ],
+    "anchors": [
+      "Judges 11:31",
+      "Genesis 24:14",
+      "I Samuel 17:25",
+      "Joshua 15:16"
+    ],
+    "sources": [
+      "Vayikra Rabbah 37:4"
+    ],
+    "sort_order": 91
+  },
+  {
+    "id": "michas-open-door",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "Why Micha kept his share in the World to Come",
+    "title_he": "למה לא נמנה מיכה בין אלו שאין להם חלק",
+    "title_es": "Por qué Mijá no fue excluido del Mundo Venidero",
+    "story_en": "Micha made the idol that the tribe of Dan later worshipped for generations (Judges 17-18). The Talmud (Sanhedrin 103b) asks why he is not listed among those with no share in the World to Come, and answers that his bread was always available to passersby: his hospitality protected him.",
+    "story_he": "מיכה עשה את הפסל שבני דן עבדו לו דורות רבים (שופטים יז-יח). הגמרא (סנהדרין קג ע\"ב) שואלת מדוע לא מנוהו בין אלו שאין להם חלק לעולם הבא, ומשיבה: מפני שפיתו מצויה לעוברי דרכים.",
+    "story_es": "Mijá hizo el ídolo que la tribu de Dan adoró durante generaciones (Shoftim 17-18). El Talmud (Sanedrín 103b) pregunta por qué no figura entre quienes no tienen parte en el Mundo Venidero, y responde que su pan estaba siempre disponible para los caminantes: su hospitalidad lo protegió.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "micha"
+    ],
+    "anchors": [
+      "Judges 17:1",
+      "Judges 17:5"
+    ],
+    "sources": [
+      "Sanhedrin 103b"
+    ],
+    "sort_order": 92
+  },
+  {
+    "id": "chanahs-prayer",
+    "type": "connection",
+    "status": "reviewed",
+    "title_en": "The laws of prayer come from Chanah",
+    "title_he": "הלכות תפילה נלמדו מחנה",
+    "title_es": "Las leyes de la oración vienen de Janá",
+    "story_en": "The Talmud (Berakhot 31a) learns several laws of the Amidah from Chanah's prayer at Shiloh (I Samuel 1:13). From \"she spoke in her heart\" it learns that one must pray with intention; from \"only her lips moved,\" that the words must be articulated; and from \"her voice was not heard,\" that one prays quietly.",
+    "story_he": "הגמרא (ברכות לא ע\"א) לומדת כמה הלכות תפילה מתפילת חנה בשילה (שמואל א א, יג). \"וחנה היא מדברת על לבה\": מכאן למתפלל שצריך שיכוון לבו. \"רק שפתיה נעות\": מכאן שיחתוך בשפתיו. \"וקולה לא ישמע\": מכאן שאסור להגביה קולו בתפילתו.",
+    "story_es": "El Talmud (Berajot 31a) aprende varias leyes de la Amidá de la oración de Janá en Shiló (Shmuel Alef 1:13). De \"hablaba en su corazón\" aprende que hay que rezar con intención; de \"solo sus labios se movían\", que las palabras deben articularse; y de \"su voz no se oía\", que se reza en voz baja.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "chanah",
+      "eli"
+    ],
+    "anchors": [
+      "I Samuel 1:13"
+    ],
+    "sources": [
+      "Berakhot 31a"
+    ],
+    "sort_order": 93
+  },
+  {
+    "id": "peninahs-intention",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "Peninah meant well",
+    "title_he": "פנינה לשם שמים נתכוונה",
+    "title_es": "Peniná tenía buenas intenciones",
+    "story_en": "Peninah provoked Chanah about her childlessness (I Samuel 1:6). Rabbi Levi (Bava Batra 16a) says both Peninah and the Satan who accused Iyov acted for the sake of Heaven. Peninah's goal was to move Chanah to pray with all her heart, and Chanah's prayer was answered with the birth of Shmuel.",
+    "story_he": "פנינה הכעיסה את חנה על עקרותה (שמואל א א, ו). רבי לוי (בבא בתרא טז ע\"א) אומר: שטן ופנינה לשם שמים נתכוונו. פנינה רצתה לעורר את חנה להתפלל בכל לבה, ותפילתה של חנה נענתה בלידת שמואל.",
+    "story_es": "Peniná provocaba a Janá por no tener hijos (Shmuel Alef 1:6). Rabí Leví (Bavá Batrá 16a) dice que tanto Peniná como el Satán que acusó a Iyov actuaron por causa del Cielo. El objetivo de Peniná era mover a Janá a rezar con todo su corazón, y la oración de Janá fue respondida con el nacimiento de Shmuel.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "peninah",
+      "chanah",
+      "iyov"
+    ],
+    "anchors": [
+      "I Samuel 1:6",
+      "Job 1:9"
+    ],
+    "sources": [
+      "Bava Batra 16a"
+    ],
+    "sort_order": 94
+  },
+  {
+    "id": "orpah-mother-of-golyat",
+    "type": "connection",
+    "status": "reviewed",
+    "title_en": "Orpah was the mother of Golyat",
+    "title_he": "ערפה הייתה אמו של גלית",
+    "title_es": "Orpá era la madre de Goliat",
+    "story_en": "Golyat and the other Philistine giants are called descendants of \"Harafah\" (II Samuel 21:16-22). The Talmud (Sotah 42b) identifies Harafah with Orpah, Ruth's sister-in-law, who turned back to Moav. So the two sisters-in-law who parted on the road had descendants who met in battle: David, descended from Ruth, fought Golyat, descended from Orpah.",
+    "story_he": "גלית ושאר ענקי פלשתים נקראים \"ילידי הרפה\" (שמואל ב כא, טז-כב). הגמרא (סוטה מב ע\"ב) מזהה את הרפה עם ערפה, גיסתה של רות, שחזרה למואב. כך שתי הגיסות שנפרדו בדרך העמידו צאצאים שנפגשו במלחמה: דוד, מבני רות, נלחם בגלית, מבני ערפה.",
+    "story_es": "Goliat y los otros gigantes filisteos son llamados descendientes de \"Harafá\" (Shmuel Bet 21:16-22). El Talmud (Sotá 42b) identifica a Harafá con Orpá, la cuñada de Rut que volvió a Moav. Así, las dos cuñadas que se separaron en el camino tuvieron descendientes que se enfrentaron en batalla: David, descendiente de Rut, luchó contra Goliat, descendiente de Orpá.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "orpah",
+      "ruth",
+      "golyat",
+      "david"
+    ],
+    "anchors": [
+      "Ruth 1:14",
+      "I Samuel 17:4",
+      "II Samuel 21:16"
+    ],
+    "sources": [
+      "Sotah 42b"
+    ],
+    "sort_order": 95
+  },
+  {
+    "id": "yishbi-benov-and-avishai",
+    "type": "crossover",
+    "status": "reviewed",
+    "title_en": "David was nearly killed by Yishbi-benov",
+    "title_he": "דוד כמעט נהרג בידי ישבי בנב",
+    "title_es": "David casi fue muerto por Ishbí-Benov",
+    "story_en": "II Samuel 21:16-17 briefly mentions that the giant Yishbi-benov planned to kill David, and Avishai came to his aid. The Talmud (Sanhedrin 95a) expands the story: David was captured by Yishbi-benov, who threw him in the air to fall on his spear. Avishai arrived, and using God's name he suspended David between heaven and earth until he could rescue him.",
+    "story_he": "בשמואל ב כא, טז-יז מסופר בקצרה שהענק ישבי בנב ביקש להרוג את דוד, ואבישי עזר לו. הגמרא (סנהדרין צה ע\"א) מרחיבה: דוד נתפס בידי ישבי בנב, שזרק אותו באוויר כדי שייפול על רמחו. בא אבישי, הזכיר את השם, והעמיד את דוד בין שמים לארץ עד שהצילו.",
+    "story_es": "Shmuel Bet 21:16-17 menciona brevemente que el gigante Ishbí-Benov planeaba matar a David, y Avishái vino en su ayuda. El Talmud (Sanedrín 95a) amplía la historia: David fue capturado por Ishbí-Benov, que lo lanzó al aire para que cayera sobre su lanza. Llegó Avishái y, usando el nombre de Dios, mantuvo a David suspendido entre el cielo y la tierra hasta rescatarlo.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "david",
+      "avishai",
+      "yishbi-benov"
+    ],
+    "anchors": [
+      "II Samuel 21:16",
+      "II Samuel 21:17"
+    ],
+    "sources": [
+      "Sanhedrin 95a"
+    ],
+    "sort_order": 96
+  },
+  {
+    "id": "batsheva-destined-for-david",
+    "type": "connection",
+    "status": "reviewed",
+    "title_en": "Bat-Sheva was destined for David",
+    "title_he": "בת שבע הייתה ראויה לדוד",
+    "title_es": "Bat-Sheva estaba destinada a David",
+    "story_en": "Rava (Sanhedrin 107a) says Bat-Sheva was designated for David from the six days of Creation, but she came to him through pain, because he took her before her time. From their marriage came Shlomo, who built the Temple.",
+    "story_he": "רבא (סנהדרין קז ע\"א) אומר: ראויה הייתה בת שבע בת אליעם לדוד מששת ימי בראשית, אלא שבאה אליו במכאוב, מפני שאכלה פגה. מנישואיהם נולד שלמה, בונה בית המקדש.",
+    "story_es": "Rava (Sanedrín 107a) dice que Bat-Sheva estaba destinada a David desde los seis días de la Creación, pero llegó a él con dolor, porque la tomó antes de tiempo. De su matrimonio nació Shlomó, que construyó el Templo.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "batsheva",
+      "david",
+      "shlomo"
+    ],
+    "anchors": [
+      "II Samuel 11:2",
+      "II Samuel 12:24"
+    ],
+    "sources": [
+      "Sanhedrin 107a"
+    ],
+    "sort_order": 97
+  },
+  {
+    "id": "shlomo-ashmedai-and-the-shamir",
+    "type": "wonder",
+    "status": "reviewed",
+    "title_en": "Shlomo, Ashmedai and the shamir",
+    "title_he": "שלמה, אשמדאי והשמיר",
+    "title_es": "Shlomó, Ashmedai y el shamir",
+    "story_en": "The Temple was built without iron tools being heard (I Kings 6:7). The Talmud (Gittin 68a-b) tells that Shlomo needed the shamir, a creature that could cut stone, which Moshe had used for the stones of the ephod. To find it, Shlomo had Ashmedai, king of the demons, captured and brought to him. Pirkei Avot 5:6 lists the shamir among the things created at twilight on the first Shabbat eve.",
+    "story_he": "המקדש נבנה בלי שנשמע בו כלי ברזל (מלכים א ו, ז). הגמרא (גיטין סח ע\"א-ע\"ב) מספרת ששלמה נזקק לשמיר, בריה שחותכת אבנים, שבו השתמש משה לאבני האפוד. כדי למצוא אותו, לכד שלמה את אשמדאי מלך השדים והביאו אליו. במשנה (אבות ה, ו) נמנה השמיר בין הדברים שנבראו בערב שבת בין השמשות.",
+    "story_es": "El Templo se construyó sin que se oyeran herramientas de hierro (Melajim Alef 6:7). El Talmud (Guitín 68a-b) cuenta que Shlomó necesitaba el shamir, una criatura capaz de cortar piedra, que Moshe había usado para las piedras del efod. Para encontrarlo, Shlomó hizo capturar a Ashmedai, rey de los demonios, y lo trajo ante él. Pirkei Avot 5:6 cuenta el shamir entre lo creado al anochecer de la primera víspera de Shabat.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "shlomo",
+      "ashmedai",
+      "moshe"
+    ],
+    "anchors": [
+      "I Kings 6:7"
+    ],
+    "sources": [
+      "Gittin 68a",
+      "Gittin 68b",
+      "Pirkei Avot 5:6"
+    ],
+    "sort_order": 98
+  },
+  {
+    "id": "shlomo-pharaohs-daughter-and-rome",
+    "type": "connection",
+    "status": "reviewed",
+    "title_en": "The day Shlomo married Pharaoh's daughter, Rome began",
+    "title_he": "ביום שנשא שלמה את בת פרעה נוסדה רומי",
+    "title_es": "El día que Shlomó se casó con la hija de Paró, comenzó Roma",
+    "story_en": "Rabbi Yitzchak (Sanhedrin 21b) says that when Shlomo married Pharaoh's daughter, the angel Gavriel planted a reed in the sea; a sandbank gathered around it, and on it the great city of Rome was built. Shabbat 56b adds that she brought Shlomo a thousand musical instruments used in idol worship. The Talmud presents this as the start of the chain that led to the Temple's destruction by Rome.",
+    "story_he": "רבי יצחק (סנהדרין כא ע\"ב) אומר: בשעה שנשא שלמה את בת פרעה, ירד גבריאל ונעץ קנה בים, ועלה בו שרטון, ועליו נבנה כרך גדול של רומי. בשבת נו ע\"ב נוסף שהכניסה לו אלף מיני זמר של עבודה זרה. הגמרא מציגה זאת כתחילת השרשרת שהובילה לחורבן המקדש בידי רומי.",
+    "story_es": "Rabí Itzjak (Sanedrín 21b) dice que cuando Shlomó se casó con la hija de Paró, el ángel Gavriel clavó una caña en el mar; se formó un banco de arena a su alrededor, y sobre él se construyó la gran ciudad de Roma. Shabat 56b añade que ella le trajo a Shlomó mil instrumentos musicales usados en la idolatría. El Talmud lo presenta como el comienzo de la cadena que llevó a la destrucción del Templo por Roma.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "shlomo"
+    ],
+    "anchors": [
+      "I Kings 3:1",
+      "I Kings 11:1"
+    ],
+    "sources": [
+      "Sanhedrin 21b",
+      "Shabbat 56b"
+    ],
+    "sort_order": 99
+  },
+  {
+    "id": "ovadiah-the-edomite-convert",
+    "type": "identity",
+    "status": "reviewed",
+    "title_en": "Ovadiah was an Edomite convert",
+    "title_he": "עובדיה היה גר אדומי",
+    "title_es": "Ovadiá era un converso edomita",
+    "story_en": "Ovadiah, who ran Achav's household and hid a hundred prophets from Izevel (I Kings 18:3-4), is identified with the prophet Ovadiah, whose short book is a prophecy against Edom. Rabbi Meir (Sanhedrin 39b) says Ovadiah was an Edomite convert, and therefore he was the one to prophesy about Edom, as the saying goes: the axe's handle comes from the forest itself.",
+    "story_he": "עובדיהו, שהיה על ביתו של אחאב והחביא מאה נביאים מפני איזבל (מלכים א יח, ג-ד), מזוהה עם הנביא עובדיה, שספרו הקצר הוא נבואה על אדום. רבי מאיר (סנהדרין לט ע\"ב) אומר: עובדיה גר אדומי היה, ולכן הוא שניבא על אדום, כדאמרי אינשי: מיניה וביה אבא ניזיל ביה נרגא.",
+    "story_es": "Ovadiá, administrador de la casa de Ajav, que escondió a cien profetas de Izével (Melajim Alef 18:3-4), es identificado con el profeta Ovadiá, cuyo breve libro es una profecía contra Edom. Rabí Meír (Sanedrín 39b) dice que Ovadiá era un converso edomita, y por eso fue él quien profetizó sobre Edom, como dice el refrán: el mango del hacha sale del mismo bosque.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "ovadiah",
+      "achav",
+      "izevel"
+    ],
+    "anchors": [
+      "I Kings 18:3",
+      "Obadiah 1:1"
+    ],
+    "sources": [
+      "Sanhedrin 39b"
+    ],
+    "sort_order": 100
+  },
+  {
+    "id": "yeshayahu-in-the-cedar",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "Yeshayahu was killed inside a cedar tree",
+    "title_he": "ישעיהו נהרג בתוך ארז",
+    "title_es": "Ieshaiahu murió dentro de un cedro",
+    "story_en": "II Kings 21:16 says King Menashe shed much innocent blood in Jerusalem. The Talmud (Yevamot 49b) tells that Menashe put Yeshayahu on trial. Yeshayahu pronounced a divine name and was swallowed into a cedar tree, and Menashe's servants sawed through the tree. He died when the saw reached his mouth, which the Talmud connects to his words \"I dwell among a people of unclean lips\" (Isaiah 6:5).",
+    "story_he": "במלכים ב כא, טז נאמר שמנשה שפך דם נקי הרבה בירושלים. הגמרא (יבמות מט ע\"ב) מספרת שמנשה העמיד את ישעיהו לדין. אמר ישעיהו שם ונבלע בארז, והביאו את הארז ונסרוהו. כשהגיע המסור לפיו נח נפשו, והגמרא קושרת זאת לדבריו \"ובתוך עם טמא שפתים אנכי יושב\" (ישעיהו ו, ה).",
+    "story_es": "Melajim Bet 21:16 dice que el rey Menashé derramó mucha sangre inocente en Jerusalén. El Talmud (Yevamot 49b) cuenta que Menashé juzgó a Ieshaiahu. Ieshaiahu pronunció un nombre divino y fue tragado por un cedro, y los siervos de Menashé serraron el árbol. Murió cuando la sierra llegó a su boca, lo que el Talmud relaciona con sus palabras \"habito en medio de un pueblo de labios impuros\" (Ieshaiahu 6:5).",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "yeshayahu",
+      "menashe"
+    ],
+    "anchors": [
+      "II Kings 21:16",
+      "Isaiah 6:5"
+    ],
+    "sources": [
+      "Yevamot 49b"
+    ],
+    "sort_order": 101
+  },
+  {
+    "id": "chizkiyahu-and-yeshayahus-daughter",
+    "type": "connection",
+    "status": "reviewed",
+    "title_en": "Chizkiyahu married Yeshayahu's daughter",
+    "title_he": "חזקיהו נשא את בת ישעיהו",
+    "title_es": "Jizkiiahu se casó con la hija de Ieshaiahu",
+    "story_en": "When Chizkiyahu fell ill, Yeshayahu told him he would die (II Kings 20:1). The Talmud (Berakhot 10a) says the reason was that Chizkiyahu had not married, having foreseen that his children would be wicked. Chizkiyahu then asked Yeshayahu for his daughter's hand, hoping their combined merit would produce righteous children. He prayed, was granted fifteen more years, and his son Menashe was born in those years.",
+    "story_he": "כשחלה חזקיהו, אמר לו ישעיהו \"כי מת אתה\" (מלכים ב כ, א). הגמרא (ברכות י ע\"א) אומרת שהסיבה הייתה שלא עסק בפריה ורביה, משום שראה ברוח הקודש שיצאו ממנו בנים שאינם מהוגנים. אמר חזקיהו לישעיהו: תן לי את בתך, אולי זכותי וזכותך יגרמו ויצאו ממני בנים מהוגנים. הוא התפלל, נוספו לו חמש עשרה שנה, ובשנים אלה נולד בנו מנשה.",
+    "story_es": "Cuando Jizkiiahu enfermó, Ieshaiahu le dijo que moriría (Melajim Bet 20:1). El Talmud (Berajot 10a) dice que la razón era que Jizkiiahu no se había casado, pues previó que sus hijos serían malvados. Jizkiiahu pidió entonces la mano de la hija de Ieshaiahu, esperando que el mérito de ambos produjera hijos justos. Rezó, se le concedieron quince años más, y en esos años nació su hijo Menashé.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "chizkiyahu",
+      "yeshayahu",
+      "menashe"
+    ],
+    "anchors": [
+      "II Kings 20:1",
+      "Isaiah 38:1",
+      "II Kings 21:1"
+    ],
+    "sources": [
+      "Berakhot 10a"
+    ],
+    "sort_order": 102
+  },
+  {
+    "id": "elishas-bears",
+    "type": "wonder",
+    "status": "reviewed",
+    "title_en": "The bears of Elisha: one miracle or two",
+    "title_he": "הדובים של אלישע: נס או נס בתוך נס",
+    "title_es": "Los osos de Elishá: uno o dos milagros",
+    "story_en": "After boys from Beit El mocked Elisha, two bears came out of the forest (II Kings 2:24). The Talmud (Sotah 47a) records a dispute: one sage says it was one miracle, since there was a forest but no bears. The other says it was a miracle within a miracle: there was neither a forest nor bears, and both appeared.",
+    "story_he": "לאחר שנערים מבית אל התלוצצו באלישע, יצאו שתי דובים מן היער (מלכים ב ב, כד). בגמרא (סוטה מז ע\"א) נחלקו: אחד אומר נס, יער היה ודובים לא היו. ואחד אומר נס בתוך נס, לא יער היה ולא דובים היו, ונבראו שניהם.",
+    "story_es": "Después de que unos muchachos de Bet El se burlaron de Elishá, dos osas salieron del bosque (Melajim Bet 2:24). El Talmud (Sotá 47a) registra una disputa: un sabio dice que fue un solo milagro, pues había bosque pero no osos. El otro dice que fue un milagro dentro de un milagro: no había ni bosque ni osos, y ambos aparecieron.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "elisha"
+    ],
+    "anchors": [
+      "II Kings 2:24"
+    ],
+    "sources": [
+      "Sotah 47a"
+    ],
+    "sort_order": 103
+  },
+  {
+    "id": "the-four-lepers-were-gechazi",
+    "type": "identity",
+    "status": "reviewed",
+    "title_en": "The four lepers were Gechazi and his sons",
+    "title_he": "ארבעת המצורעים היו גיחזי ובניו",
+    "title_es": "Los cuatro leprosos eran Guejazí y sus hijos",
+    "story_en": "Elisha cursed his servant Gechazi that Naaman's leprosy would cling \"to you and to your descendants forever\" (II Kings 5:27). During the siege of Shomron, four unnamed lepers at the city gate discovered the Aramean camp was abandoned (II Kings 7:3). Rabbi Yochanan (Sanhedrin 107b) says these were Gechazi and his three sons.",
+    "story_he": "אלישע קילל את גיחזי משרתו שצרעת נעמן תדבק \"בך ובזרעך לעולם\" (מלכים ב ה, כז). במצור על שומרון, ארבעה מצורעים עלומי שם בפתח השער גילו שמחנה ארם ריק (מלכים ב ז, ג). רבי יוחנן (סנהדרין קז ע\"ב) אומר: אלו גיחזי ושלושת בניו.",
+    "story_es": "Elishá maldijo a su siervo Guejazí para que la lepra de Naamán se le pegara \"a ti y a tu descendencia para siempre\" (Melajim Bet 5:27). Durante el sitio de Shomrón, cuatro leprosos sin nombre a la puerta de la ciudad descubrieron que el campamento arameo estaba abandonado (Melajim Bet 7:3). Rabí Iojanán (Sanedrín 107b) dice que eran Guejazí y sus tres hijos.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "gechazi",
+      "elisha",
+      "naaman"
+    ],
+    "anchors": [
+      "II Kings 7:3",
+      "II Kings 5:27"
+    ],
+    "sources": [
+      "Sanhedrin 107b"
+    ],
+    "sort_order": 104
+  },
+  {
+    "id": "the-dry-bones-were-ephraimites",
+    "type": "connection",
+    "status": "reviewed",
+    "title_en": "Who the dry bones of Yechezkel were",
+    "title_he": "מי היו העצמות היבשות של יחזקאל",
+    "title_es": "Quiénes eran los huesos secos de Iejezkel",
+    "story_en": "Rav (Sanhedrin 92b) says the dry bones that Yechezkel revived (Ezekiel 37) were members of the tribe of Ephraim who miscalculated the end of the Egyptian exile, left Egypt early, and were killed. The Talmud connects this to the sons of Ephraim killed by the men of Gat (I Chronicles 7:21). Rabbi Yehuda ben Beteira stood up and said he was a descendant of the revived men, and that the tefillin he wore had been left to him by them.",
+    "story_he": "רב (סנהדרין צב ע\"ב) אומר שהמתים שהחיה יחזקאל (יחזקאל לז) היו בני אפרים, שמנו לקץ וטעו ויצאו ממצרים לפני הזמן, ונהרגו. הגמרא קושרת זאת לבני אפרים שהרגום אנשי גת (דברי הימים א ז, כא). רבי יהודה בן בתירא עמד על רגליו ואמר: אני מבני בניהם, והללו תפילין שהניח לי אבי אבא מהם.",
+    "story_es": "Rav (Sanedrín 92b) dice que los huesos secos que Iejezkel revivió (Iejezkel 37) eran miembros de la tribu de Efráim que calcularon mal el fin del exilio egipcio, salieron de Egipto antes de tiempo y fueron muertos. El Talmud lo vincula con los hijos de Efráim muertos por los hombres de Gat (Divré Hayamim Alef 7:21). Rabí Iehudá ben Betirá se levantó y dijo que era descendiente de los revividos, y que los tefilín que llevaba se los había dejado su abuelo, de ellos.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "yechezkel",
+      "ephraim"
+    ],
+    "anchors": [
+      "Ezekiel 37:1",
+      "I Chronicles 7:21"
+    ],
+    "sources": [
+      "Sanhedrin 92b"
+    ],
+    "sort_order": 105
+  },
+  {
+    "id": "why-yonah-fled",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "Why Yonah ran away",
+    "title_he": "למה ברח יונה",
+    "title_es": "Por qué huyó Yoná",
+    "story_en": "Pirkei DeRabbi Eliezer 10 explains Yonah's flight. On an earlier mission he prophesied Jerusalem's destruction; the people repented, the decree was cancelled, and he was called a false prophet. Sent to Nineveh, he reasoned that the nations are quick to repent: Nineveh would repent, God would relent, and Israel would look bad by comparison. So he fled to the sea. This matches his own words later: \"I knew that You are a gracious and compassionate God\" (Jonah 4:2).",
+    "story_he": "בפרקי דרבי אליעזר י מוסבר מדוע ברח יונה. בשליחות קודמת ניבא על חורבן ירושלים, ועשו תשובה ובטלה הגזירה, וקראו לו נביא שקר. כשנשלח לנינוה אמר: יודע אני שהגויים קרובי תשובה הם, יעשו תשובה ויחזור הקב\"ה, ויהיו ישראל נראים רעים לעומתם. לכן ברח לים. זה תואם את דבריו שלו לאחר מכן: \"כי ידעתי כי אתה אל חנון ורחום\" (יונה ד, ב).",
+    "story_es": "Pirkei de Rabí Eliézer 10 explica la huida de Yoná. En una misión anterior profetizó la destrucción de Jerusalén; el pueblo se arrepintió, el decreto se anuló y lo llamaron falso profeta. Enviado a Nínive, razonó que las naciones se arrepienten rápido: Nínive se arrepentiría, Dios se retractaría, e Israel quedaría mal en comparación. Por eso huyó al mar. Esto concuerda con sus propias palabras después: \"Sabía que Tú eres un Dios clemente y compasivo\" (Yoná 4:2).",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "yonah"
+    ],
+    "anchors": [
+      "Jonah 1:3",
+      "Jonah 4:2"
+    ],
+    "sources": [
+      "Pirkei DeRabbi Eliezer 10"
+    ],
+    "sort_order": 106
+  },
+  {
+    "id": "yonahs-fish-from-creation",
+    "type": "wonder",
+    "status": "reviewed",
+    "title_en": "Yonah's fish was prepared since Creation",
+    "title_he": "הדג של יונה נברא לכך מששת ימי בראשית",
+    "title_es": "El pez de Yoná estaba preparado desde la Creación",
+    "story_en": "\"God appointed a great fish to swallow Yonah\" (Jonah 2:1). Rabbi Tarfon (Pirkei DeRabbi Eliezer 10) says the fish was appointed for this from the six days of Creation. The midrash goes on to describe Yonah seeing the wonders of the deep from inside the fish, as if through windows.",
+    "story_he": "\"וימן ה' דג גדול לבלע את יונה\" (יונה ב, א). רבי טרפון (פרקי דרבי אליעזר י) אומר: אותו הדג מזומן היה מששת ימי בראשית לבלוע את יונה. המדרש ממשיך ומתאר שיונה ראה מתוך הדג את נפלאות המעמקים, כמו מבעד לחלונות.",
+    "story_es": "\"Dios dispuso un gran pez para que tragara a Yoná\" (Yoná 2:1). Rabí Tarfón (Pirkei de Rabí Eliézer 10) dice que el pez estaba designado para esto desde los seis días de la Creación. El midrash sigue describiendo cómo Yoná veía las maravillas de las profundidades desde dentro del pez, como a través de ventanas.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "yonah"
+    ],
+    "anchors": [
+      "Jonah 2:1"
+    ],
+    "sources": [
+      "Pirkei DeRabbi Eliezer 10"
+    ],
+    "sort_order": 107
+  },
+  {
+    "id": "the-king-of-nineveh-was-pharaoh",
+    "type": "crossover",
+    "status": "reviewed",
+    "title_en": "The king of Nineveh was the Pharaoh of the Exodus",
+    "title_he": "מלך נינוה היה פרעה של יציאת מצרים",
+    "title_es": "El rey de Nínive era el Paró del Éxodo",
+    "story_en": "Pirkei DeRabbi Eliezer 43 says the Pharaoh of the Exodus survived the sea after declaring \"Who is like You among the mighty, God?\" (Exodus 15:11). He went on to rule in Nineveh, and when Yonah came, he was the king who rose from his throne, put on sackcloth, and led the city in repentance (Jonah 3:6).",
+    "story_he": "בפרקי דרבי אליעזר מג נאמר שפרעה של יציאת מצרים ניצל מן הים לאחר שאמר \"מי כמכה באלים ה'\" (שמות טו, יא). הוא הלך ומלך בנינוה, וכשבא יונה, הוא המלך שקם מכסאו, לבש שק והוביל את העיר בתשובה (יונה ג, ו).",
+    "story_es": "Pirkei de Rabí Eliézer 43 dice que el Paró del Éxodo sobrevivió al mar tras declarar \"¿Quién como Tú entre los poderosos, Dios?\" (Shemot 15:11). Luego reinó en Nínive, y cuando llegó Yoná, él fue el rey que se levantó de su trono, se vistió de cilicio y guió a la ciudad al arrepentimiento (Yoná 3:6).",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "pharaoh",
+      "yonah"
+    ],
+    "anchors": [
+      "Jonah 3:6",
+      "Exodus 15:11"
+    ],
+    "sources": [
+      "Pirkei DeRabbi Eliezer 43"
+    ],
+    "sort_order": 108
+  },
+  {
+    "id": "who-was-malachi",
+    "type": "identity",
+    "status": "reviewed",
+    "title_en": "Who was Malachi?",
+    "title_he": "מי היה מלאכי",
+    "title_es": "¿Quién era Malají?",
+    "story_en": "The Talmud (Megillah 15a) records a debate on the identity of the prophet Malachi. Rav Nachman says Malachi is Mordechai, called malachi because he was second to the king (melech). Rabbi Yehoshua ben Korcha says Malachi is Ezra. The Rabbis say Malachi was his own name.",
+    "story_he": "בגמרא (מגילה טו ע\"א) מובאת מחלוקת על זהותו של הנביא מלאכי. רב נחמן אומר: מלאכי זה מרדכי, ולמה נקרא שמו מלאכי? שהיה משנה למלך. רבי יהושע בן קרחה אומר: מלאכי זה עזרא. וחכמים אומרים: מלאכי שמו.",
+    "story_es": "El Talmud (Meguilá 15a) registra un debate sobre la identidad del profeta Malají. Rav Najmán dice que Malají es Mordejái, llamado malají porque era segundo del rey (mélej). Rabí Iehoshúa ben Korjá dice que Malají es Ezra. Los Sabios dicen que Malají era su propio nombre.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "malachi",
+      "mordechai",
+      "ezra"
+    ],
+    "anchors": [
+      "Malachi 1:1"
+    ],
+    "sources": [
+      "Megillah 15a"
+    ],
+    "sort_order": 109
+  },
+  {
+    "id": "zechariahs-blood-and-nevuzaradan",
+    "type": "crossover",
+    "status": "reviewed",
+    "title_en": "The blood of Zecharyah and Nevuzaradan's conversion",
+    "title_he": "דמו של זכריה וגיורו של נבוזראדן",
+    "title_es": "La sangre de Zejariá y la conversión de Nevuzaradán",
+    "story_en": "The priest-prophet Zecharyah ben Yehoyada was stoned in the Temple courtyard (II Chronicles 24:21). The Talmud (Gittin 57b, Sanhedrin 96b) says that centuries later, when Nevuzaradan conquered Jerusalem, he found Zecharyah's blood still seething. After killing many people over it and failing to calm it, he was struck with fear and repentance, fled, and converted.",
+    "story_he": "הכהן והנביא זכריה בן יהוידע נרגם בחצר בית ה' (דברי הימים ב כד, כא). הגמרא (גיטין נז ע\"ב, סנהדרין צו ע\"ב) אומרת שמאות שנים אחר כך, כשכבש נבוזראדן את ירושלים, מצא את דמו של זכריה שהיה תוסס. לאחר שהרג רבים עליו ולא נח, הרהר בתשובה, ברח ונתגייר.",
+    "story_es": "El sacerdote y profeta Zejariá ben Iehoiadá fue apedreado en el patio del Templo (Divré Hayamim Bet 24:21). El Talmud (Guitín 57b, Sanedrín 96b) dice que siglos después, cuando Nevuzaradán conquistó Jerusalén, encontró la sangre de Zejariá todavía hirviendo. Tras matar a muchos por ella sin lograr calmarla, sintió temor y arrepentimiento, huyó y se convirtió.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "zecharyah",
+      "nevuzaradan"
+    ],
+    "anchors": [
+      "II Chronicles 24:21",
+      "II Kings 25:8"
+    ],
+    "sources": [
+      "Gittin 57b",
+      "Sanhedrin 96b"
+    ],
+    "sort_order": 110
+  },
+  {
+    "id": "enemies-descendants-taught-torah",
+    "type": "connection",
+    "status": "reviewed",
+    "title_en": "Descendants of Israel's enemies taught Torah",
+    "title_he": "מבני בניהם של שונאי ישראל למדו תורה",
+    "title_es": "Descendientes de enemigos de Israel enseñaron Torá",
+    "story_en": "The Talmud (Gittin 57b) says descendants of Haman studied Torah in Bnei Brak, descendants of Sisera taught children in Jerusalem, and descendants of Sancheriv taught Torah in public; these were Shemayah and Avtalyon, the teachers of Hillel.",
+    "story_he": "הגמרא (גיטין נז ע\"ב) אומרת: מבני בניו של המן למדו תורה בבני ברק, מבני בניו של סיסרא לימדו תינוקות בירושלים, ומבני בניו של סנחריב לימדו תורה ברבים. ומאן נינהו? שמעיה ואבטליון, רבותיו של הלל.",
+    "story_es": "El Talmud (Guitín 57b) dice que descendientes de Hamán estudiaron Torá en Bnei Brak, descendientes de Sísera enseñaron a niños en Jerusalén, y descendientes de Sanjeriv enseñaron Torá en público; estos fueron Shemaiá y Avtalión, los maestros de Hilel.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "haman",
+      "sisera",
+      "sancheriv"
+    ],
+    "anchors": [
+      "Judges 4:2",
+      "Esther 3:1",
+      "II Kings 18:13"
+    ],
+    "sources": [
+      "Gittin 57b"
+    ],
+    "sort_order": 111
+  },
+  {
+    "id": "the-burned-scroll-was-eichah",
+    "type": "connection",
+    "status": "reviewed",
+    "title_en": "The scroll King Yehoyakim burned was Eichah",
+    "title_he": "המגילה שיהויקים שרף הייתה איכה",
+    "title_es": "El rollo que quemó Iehoiakim era Ejá",
+    "story_en": "Yirmiyahu dictated a scroll of prophecies to Baruch, and King Yehoyakim cut it up and threw it into the fire (Jeremiah 36:23). The Talmud (Moed Katan 26a) says the scroll was the book of Eichah. As each of the first verses was read, starting with \"How does the city sit solitary\" (Lamentations 1:1), the king answered \"I am king,\" as if it did not apply to him. When they reached \"Her adversaries have become the head\" (Lamentations 1:5), he burned it.",
+    "story_he": "ירמיהו הכתיב מגילת נבואות לברוך, והמלך יהויקים קרע אותה והשליכה לאש (ירמיהו לו, כג). הגמרא (מועד קטן כו ע\"א) אומרת שהמגילה הייתה ספר איכה. על כל אחד מן הפסוקים הראשונים, החל מ\"איכה ישבה בדד\" (איכה א, א), אמר המלך: אנא מלכא, כלומר שאין הדבר נוגע לו. כשהגיעו ל\"היו צריה לראש\" (איכה א, ה), שרפה.",
+    "story_es": "Irmiahu dictó un rollo de profecías a Baruj, y el rey Iehoiakim lo cortó y lo arrojó al fuego (Irmiahu 36:23). El Talmud (Moed Katán 26a) dice que el rollo era el libro de Ejá. Con cada uno de los primeros versículos, empezando por \"Cómo se sienta solitaria la ciudad\" (Ejá 1:1), el rey respondía \"yo soy rey\", como si no le concerniera. Al llegar a \"Sus adversarios se han vuelto cabeza\" (Ejá 1:5), lo quemó.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "yirmiyahu",
+      "yehoyakim",
+      "baruch"
+    ],
+    "anchors": [
+      "Jeremiah 36:23",
+      "Lamentations 1:1",
+      "Lamentations 1:5"
+    ],
+    "sources": [
+      "Moed Katan 26a"
+    ],
+    "sort_order": 112
+  },
+  {
+    "id": "the-ten-authors-of-tehillim",
+    "type": "connection",
+    "status": "reviewed",
+    "title_en": "Tehillim was written with ten elders",
+    "title_he": "ספר תהלים נכתב על ידי עשרה זקנים",
+    "title_es": "Tehilim fue escrito con diez ancianos",
+    "story_en": "A baraita (Bava Batra 14b-15a) says David wrote the book of Psalms together with ten elders of earlier generations, including psalms by Adam, Malki-tzedek, Avraham, Moshe, Heiman, Yedutun, Asaf, and the three sons of Korach. That is why some psalms carry the names of other authors, such as \"A prayer of Moshe\" (Psalms 90:1).",
+    "story_he": "בברייתא (בבא בתרא יד ע\"ב-טו ע\"א) נאמר: דוד כתב ספר תהלים על ידי עשרה זקנים, על ידי אדם הראשון, על ידי מלכי צדק, על ידי אברהם, על ידי משה, על ידי הימן, על ידי ידותון, על ידי אסף ועל ידי שלושה בני קרח. לכן יש מזמורים הנושאים שמות של מחברים אחרים, כמו \"תפלה למשה\" (תהלים צ, א).",
+    "story_es": "Una baraita (Bavá Batrá 14b-15a) dice que David escribió el libro de los Salmos junto con diez ancianos de generaciones anteriores, incluidos salmos de Adam, Malki-Tzédek, Avraham, Moshe, Hemán, Iedutún, Asaf y los tres hijos de Kóraj. Por eso algunos salmos llevan nombres de otros autores, como \"Oración de Moshe\" (Tehilim 90:1).",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "david",
+      "adam",
+      "malki-tzedek",
+      "avraham",
+      "moshe",
+      "korach"
+    ],
+    "anchors": [
+      "Psalms 1:1",
+      "Psalms 90:1",
+      "Psalms 110:1"
+    ],
+    "sources": [
+      "Bava Batra 14b"
+    ],
+    "sort_order": 113
+  },
+  {
+    "id": "who-wrote-the-books-of-tanakh",
+    "type": "connection",
+    "status": "reviewed",
+    "title_en": "Who wrote each book of Tanakh",
+    "title_he": "מי כתב את ספרי התנ\"ך",
+    "title_es": "Quién escribió cada libro del Tanaj",
+    "story_en": "A baraita (Bava Batra 14b-15a) lists the authors of the books of Tanakh. Moshe wrote the Torah, the section of Bilam, and Iyov. Yehoshua wrote his book. Shmuel wrote his book, Shoftim and Ruth. Yirmiyahu wrote his book, Melachim and Eichah. Chizkiyahu and his colleagues wrote Yeshayahu, Mishlei, Shir HaShirim and Kohelet. The Men of the Great Assembly wrote Yechezkel, the Twelve Prophets, Daniel and Esther. Ezra wrote his book and the genealogies of Divrei HaYamim, which Nechemyah completed.",
+    "story_he": "בברייתא (בבא בתרא יד ע\"ב-טו ע\"א) נמנים כותבי ספרי התנ\"ך. משה כתב ספרו, פרשת בלעם ואיוב. יהושע כתב ספרו. שמואל כתב ספרו, שופטים ורות. ירמיהו כתב ספרו, מלכים וקינות. חזקיה וסיעתו כתבו ישעיה, משלי, שיר השירים וקהלת. אנשי כנסת הגדולה כתבו יחזקאל, שנים עשר, דניאל ומגילת אסתר. עזרא כתב ספרו ויחס של דברי הימים, ונחמיה השלימו.",
+    "story_es": "Una baraita (Bavá Batrá 14b-15a) enumera a los autores de los libros del Tanaj. Moshe escribió la Torá, la sección de Bilam e Iyov. Yehoshúa escribió su libro. Shmuel escribió su libro, Shoftim y Rut. Irmiahu escribió su libro, Melajim y Ejá. Jizkiiahu y sus colegas escribieron Ieshaiahu, Mishlé, Shir Hashirim y Kohélet. Los Hombres de la Gran Asamblea escribieron Iejezkel, los Doce Profetas, Daniel y Ester. Ezra escribió su libro y las genealogías de Divré Hayamim, que Nejemiá completó.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "moshe",
+      "yehoshua",
+      "shmuel",
+      "yirmiyahu",
+      "chizkiyahu",
+      "ezra"
+    ],
+    "anchors": [
+      "Job 1:1",
+      "Judges 1:1",
+      "Ruth 1:1",
+      "I Kings 1:1",
+      "Proverbs 1:1",
+      "Esther 1:1",
+      "Ezra 1:1"
+    ],
+    "sources": [
+      "Bava Batra 14b",
+      "Bava Batra 15a"
+    ],
+    "sort_order": 114
+  },
+  {
+    "id": "davids-lyre-at-midnight",
+    "type": "wonder",
+    "status": "reviewed",
+    "title_en": "David's lyre played by itself at midnight",
+    "title_he": "הכינור של דוד ניגן מאליו בחצות",
+    "title_es": "La lira de David sonaba sola a medianoche",
+    "story_en": "David wrote \"At midnight I rise to give thanks to You\" (Psalms 119:62). The Talmud (Berakhot 3b) asks how he knew exactly when midnight was, and answers that a lyre hung over his bed. At midnight the north wind blew on it and it played by itself, and David would rise and study Torah until dawn. The Talmud connects this to \"Awake, lyre and harp, I will awaken the dawn\" (Psalms 57:9).",
+    "story_he": "דוד כתב \"חצות לילה אקום להודות לך\" (תהלים קיט, סב). הגמרא (ברכות ג ע\"ב) שואלת כיצד ידע את זמן חצות בדיוק, ומשיבה: כינור היה תלוי למעלה ממיטתו של דוד, וכיוון שהגיע חצות לילה בא רוח צפונית ונושבת בו ומנגן מאליו. מיד היה עומד ועוסק בתורה עד שעלה עמוד השחר. הגמרא קושרת זאת ל\"עורה הנבל וכנור אעירה שחר\" (תהלים נז, ט).",
+    "story_es": "David escribió \"A medianoche me levanto para darte gracias\" (Tehilim 119:62). El Talmud (Berajot 3b) pregunta cómo sabía exactamente cuándo era medianoche, y responde que una lira colgaba sobre su cama. A medianoche soplaba el viento del norte y la hacía sonar sola, y David se levantaba a estudiar Torá hasta el amanecer. El Talmud lo relaciona con \"Despierta, lira y arpa, despertaré a la aurora\" (Tehilim 57:9).",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "david"
+    ],
+    "anchors": [
+      "Psalms 119:62",
+      "Psalms 57:9"
+    ],
+    "sources": [
+      "Berakhot 3b"
+    ],
+    "sort_order": 115
+  },
+  {
+    "id": "shlomos-names",
+    "type": "identity",
+    "status": "reviewed",
+    "title_en": "Shlomo was called by seven names",
+    "title_he": "שבעה שמות נקראו לשלמה",
+    "title_es": "Shlomó era llamado por siete nombres",
+    "story_en": "Kohelet Rabbah 1:1 records that Shlomo was called by several names: Yedidyah (II Samuel 12:25), Kohelet (Ecclesiastes 1:1) and Shlomo. Rabbi Yehoshua says there were seven, adding Agur, Yakeh, Lemuel and Itiel, names that appear in the last chapters of Mishlei (Proverbs 30:1, 31:1). On this view, those chapters are also Shlomo's words.",
+    "story_he": "בקהלת רבה א, א נאמר ששלמה נקרא בכמה שמות: ידידיה (שמואל ב יב, כה), קהלת (קהלת א, א) ושלמה. רבי יהושע אומר שבעה, ומוסיף אגור, יקה, למואל ואיתיאל, שמות המופיעים בפרקים האחרונים של משלי (משלי ל, א; לא, א). לפי זה, גם פרקים אלה הם דברי שלמה.",
+    "story_es": "Kohélet Rabá 1:1 registra que Shlomó era llamado por varios nombres: Iedidiá (Shmuel Bet 12:25), Kohélet (Kohélet 1:1) y Shlomó. Rabí Iehoshúa dice que eran siete, añadiendo Agur, Iaké, Lemuel e Itiel, nombres que aparecen en los últimos capítulos de Mishlé (Mishlé 30:1, 31:1). Según esto, esos capítulos también son palabras de Shlomó.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "shlomo"
+    ],
+    "anchors": [
+      "Proverbs 30:1",
+      "Proverbs 31:1",
+      "Ecclesiastes 1:1",
+      "II Samuel 12:25"
+    ],
+    "sources": [
+      "Kohelet Rabbah 1:1"
+    ],
+    "sort_order": 116
+  },
+  {
+    "id": "when-did-iyov-live",
+    "type": "backstory",
+    "status": "reviewed",
+    "title_en": "When did Iyov live?",
+    "title_he": "מתי חי איוב",
+    "title_es": "¿Cuándo vivió Iyov?",
+    "story_en": "The Talmud (Bava Batra 15a-b) records many opinions on when Iyov lived: in the time of Moshe, of the spies, of the Judges, of the kingdom of Sheva, of Nevuchadnetzar, or of Yaakov. One sage even said Iyov never existed and his story is a parable. Rabbi Shmuel bar Nachmani disagreed, pointing out that the book gives his name and his town: \"There was a man in the land of Utz, Iyov was his name\" (Job 1:1).",
+    "story_he": "הגמרא (בבא בתרא טו ע\"א-ע\"ב) מביאה דעות רבות מתי חי איוב: בימי משה, בימי המרגלים, בימי השופטים, בימי מלכות שבא, בימי נבוכדנצר או בימי יעקב. אחד החכמים אף אמר: איוב לא היה ולא נברא, אלא משל היה. רבי שמואל בר נחמני חלק עליו, שהרי כתוב שמו ושם מקומו: \"איש היה בארץ עוץ איוב שמו\" (איוב א, א).",
+    "story_es": "El Talmud (Bavá Batrá 15a-b) registra muchas opiniones sobre cuándo vivió Iyov: en tiempos de Moshe, de los espías, de los Jueces, del reino de Sheba, de Nevujadnétzar o de Yaakov. Un sabio llegó a decir que Iyov nunca existió y que su historia es una parábola. Rabí Shmuel bar Najmaní discrepó, señalando que el libro da su nombre y su lugar: \"Había un hombre en la tierra de Utz, llamado Iyov\" (Iyov 1:1).",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "iyov"
+    ],
+    "anchors": [
+      "Job 1:1"
+    ],
+    "sources": [
+      "Bava Batra 15a",
+      "Bava Batra 15b"
+    ],
+    "sort_order": 117
+  },
+  {
+    "id": "iyovs-wife-was-dinah",
+    "type": "identity",
+    "status": "reviewed",
+    "title_en": "Iyov's wife was Dinah",
+    "title_he": "אשתו של איוב הייתה דינה",
+    "title_es": "La esposa de Iyov era Diná",
+    "story_en": "One opinion in the Talmud (Bava Batra 15b) says Iyov lived in the time of Yaakov and married Dinah, Yaakov's daughter. It links the word nevalah, \"loathsome,\" in Iyov's rebuke of his wife (Job 2:10) to the same word describing what was done to Dinah (Genesis 34:7).",
+    "story_he": "דעה אחת בגמרא (בבא בתרא טו ע\"ב) אומרת שאיוב חי בימי יעקב ונשא את דינה בת יעקב. היא לומדת זאת מהמילה \"נבלה\" בתוכחתו של איוב לאשתו, \"כדבר אחת הנבלות תדברי\" (איוב ב, י), ומאותה מילה במעשה דינה, \"כי נבלה עשה בישראל\" (בראשית לד, ז).",
+    "story_es": "Una opinión en el Talmud (Bavá Batrá 15b) dice que Iyov vivió en tiempos de Yaakov y se casó con Diná, hija de Yaakov. Vincula la palabra nevalá, \"infame\", en el reproche de Iyov a su esposa (Iyov 2:10) con la misma palabra que describe lo que le hicieron a Diná (Bereshit 34:7).",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "iyov",
+      "dinah",
+      "yaakov"
+    ],
+    "anchors": [
+      "Job 2:10",
+      "Genesis 34:7"
+    ],
+    "sources": [
+      "Bava Batra 15b"
+    ],
+    "sort_order": 118
+  },
+  {
+    "id": "ruth-was-eglons-daughter",
+    "type": "connection",
+    "status": "reviewed",
+    "title_en": "Ruth was a daughter of King Eglon",
+    "title_he": "רות הייתה בת עגלון מלך מואב",
+    "title_es": "Rut era hija del rey Eglón",
+    "story_en": "Ruth Rabbah 2:9 says Ruth and Orpah were daughters of Eglon, king of Moav. When Ehud told Eglon \"I have a word of God for you,\" Eglon rose from his throne (Judges 3:20). In reward for honoring God's word, God promised that a descendant of his would sit on the throne of God, and Ruth became the ancestor of King David and Shlomo. The Talmud (Horayot 10b) says Ruth was Eglon's granddaughter.",
+    "story_he": "ברות רבה ב, ט נאמר שרות וערפה היו בנותיו של עגלון מלך מואב. כשאמר לו אהוד \"דבר אלהים לי אליך\", קם עגלון מכסאו (שופטים ג, כ). בשכר זה שכיבד את דבר ה', הבטיחו הקב\"ה שיעמיד ממנו מי שישב על כסא ה', ורות הייתה לאם המלכות של דוד ושלמה. הגמרא (הוריות י ע\"ב) אומרת שרות הייתה בת בנו של עגלון.",
+    "story_es": "Rut Rabá 2:9 dice que Rut y Orpá eran hijas de Eglón, rey de Moav. Cuando Ehud le dijo a Eglón \"tengo una palabra de Dios para ti\", Eglón se levantó de su trono (Shoftim 3:20). Como recompensa por honrar la palabra de Dios, Dios prometió que un descendiente suyo se sentaría en el trono de Dios, y Rut fue antepasada del rey David y de Shlomó. El Talmud (Horayot 10b) dice que Rut era nieta de Eglón.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "ruth",
+      "orpah",
+      "eglon",
+      "ehud",
+      "david"
+    ],
+    "anchors": [
+      "Ruth 1:4",
+      "Judges 3:20"
+    ],
+    "sources": [
+      "Ruth Rabbah 2:9",
+      "Horayot 10b"
+    ],
+    "sort_order": 119
+  },
+  {
+    "id": "memuchan-was-haman",
+    "type": "identity",
+    "status": "reviewed",
+    "title_en": "Memuchan was Haman",
+    "title_he": "ממוכן הוא המן",
+    "title_es": "Memuján era Hamán",
+    "story_en": "Memuchan, the advisor who proposed deposing Vashti (Esther 1:16), is identified in a baraita (Megillah 12b) with Haman. He was called Memuchan because he was \"prepared\" (muchan) to bring calamity on the Jews. Rav Kahana notes that Memuchan is listed last among the advisors but speaks first.",
+    "story_he": "ממוכן, היועץ שהציע להדיח את ושתי (אסתר א, טז), מזוהה בברייתא (מגילה יב ע\"ב) עם המן. ולמה נקרא שמו ממוכן? שמוכן לפורענות. רב כהנא מעיר: מכאן שההדיוט קופץ בראש, שממוכן נזכר אחרון בין השרים ודיבר ראשון.",
+    "story_es": "Memuján, el consejero que propuso destituir a Vashtí (Ester 1:16), es identificado en una baraita (Meguilá 12b) con Hamán. Se lo llamó Memuján porque estaba \"preparado\" (mujan) para traer la calamidad sobre los judíos. Rav Kahana señala que Memuján aparece último en la lista de consejeros pero habla primero.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "haman",
+      "vashti",
+      "achashverosh"
+    ],
+    "anchors": [
+      "Esther 1:16",
+      "Esther 1:14"
+    ],
+    "sources": [
+      "Megillah 12b"
+    ],
+    "sort_order": 120
+  },
+  {
+    "id": "vashti-measure-for-measure",
+    "type": "measure",
+    "status": "reviewed",
+    "title_en": "Vashti was punished measure for measure",
+    "title_he": "ושתי נענשה מידה כנגד מידה",
+    "title_es": "Vashtí fue castigada medida por medida",
+    "story_en": "The Talmud (Megillah 12b) says the command for Vashti to appear before the king's guests without her garments was a punishment measure for measure. Vashti used to make Jewish girls work stripped of their clothes, and on Shabbat. The Talmud notes that the feast took place on the seventh day (Esther 1:10), which Rava identifies as Shabbat.",
+    "story_he": "הגמרא (מגילה יב ע\"ב) אומרת שהציווי שתופיע ושתי לפני אורחי המלך ערומה היה עונש מידה כנגד מידה. ושתי הייתה מביאה בנות ישראל ומפשיטה אותן ערומות ועושה בהן מלאכה בשבת. הגמרא מציינת שהמשתה היה \"ביום השביעי\" (אסתר א, י), ורבא אומר שזה היה יום שבת.",
+    "story_es": "El Talmud (Meguilá 12b) dice que la orden de que Vashtí se presentara ante los invitados del rey sin su ropa fue un castigo medida por medida. Vashtí obligaba a muchachas judías a trabajar desnudas, y en Shabat. El Talmud señala que el banquete fue \"en el séptimo día\" (Ester 1:10), que Rava identifica como Shabat.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "vashti",
+      "achashverosh"
+    ],
+    "anchors": [
+      "Esther 1:11",
+      "Esther 1:10"
+    ],
+    "sources": [
+      "Megillah 12b"
+    ],
+    "sort_order": 121
+  },
+  {
+    "id": "haman-the-barber",
+    "type": "measure",
+    "status": "reviewed",
+    "title_en": "Haman had been a barber",
+    "title_he": "המן היה ספר",
+    "title_es": "Hamán había sido barbero",
+    "story_en": "When Haman had to honor Mordechai (Esther 6:11), the Talmud (Megillah 16a) says Esther closed all the bathhouses and barbershops, so Haman himself had to wash Mordechai and trim his hair. Haman sighed, and Mordechai reminded him that he had once been the barber of the village of Kartzum, so he had simply returned to his old job. A baraita adds that Haman worked as a barber there for twenty-two years.",
+    "story_he": "כשנאלץ המן לכבד את מרדכי (אסתר ו, יא), אומרת הגמרא (מגילה טז ע\"א) שאסתר סגרה את כל בתי המרחצאות ואת כל האומנים, והמן עצמו נאלץ לרחוץ את מרדכי ולספר את שערו. המן נאנח, ומרדכי אמר לו: רשע, לא ספר של כפר קרצום היית? חזרת לאומנותך. בברייתא נוסף: המן ספר של כפר קרצום היה עשרים ושתיים שנה.",
+    "story_es": "Cuando Hamán tuvo que honrar a Mordejái (Ester 6:11), el Talmud (Meguilá 16a) dice que Ester cerró todos los baños y barberías, así que Hamán mismo tuvo que bañar a Mordejái y cortarle el cabello. Hamán suspiró, y Mordejái le recordó que había sido barbero de la aldea de Kartzum, así que simplemente había vuelto a su antiguo oficio. Una baraita añade que Hamán fue barbero allí durante veintidós años.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "haman",
+      "mordechai",
+      "esther"
+    ],
+    "anchors": [
+      "Esther 6:11"
+    ],
+    "sources": [
+      "Megillah 16a"
+    ],
+    "sort_order": 122
+  },
+  {
+    "id": "hatach-was-daniel",
+    "type": "identity",
+    "status": "reviewed",
+    "title_en": "Hatach was the prophet Daniel",
+    "title_he": "התך הוא דניאל",
+    "title_es": "Hatáj era el profeta Daniel",
+    "story_en": "Esther's messenger to Mordechai was Hatach, one of the king's chamberlains (Esther 4:5). Rav (Megillah 15a) says Hatach is Daniel. He was called Hatach because he had been \"cut down\" (chatach) from his high position under earlier kings.",
+    "story_he": "שליחה של אסתר למרדכי היה התך, מסריסי המלך (אסתר ד, ה). רב (מגילה טו ע\"א) אומר: התך זה דניאל. ולמה נקרא שמו התך? שחתכוהו מגדולתו.",
+    "story_es": "El mensajero de Ester ante Mordejái era Hatáj, uno de los chambelanes del rey (Ester 4:5). Rav (Meguilá 15a) dice que Hatáj es Daniel. Se lo llamó Hatáj porque había sido \"cortado\" (jatáj) de su alto cargo que tuvo bajo reyes anteriores.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "daniel",
+      "esther",
+      "mordechai"
+    ],
+    "anchors": [
+      "Esther 4:5",
+      "Daniel 1:6"
+    ],
+    "sources": [
+      "Megillah 15a"
+    ],
+    "sort_order": 123
+  },
+  {
+    "id": "achashverosh-wore-the-priestly-garments",
+    "type": "connection",
+    "status": "reviewed",
+    "title_en": "Achashverosh displayed the Temple's garments",
+    "title_he": "אחשורוש לבש את בגדי הכהונה",
+    "title_es": "Ajashverosh exhibió las vestiduras del Templo",
+    "story_en": "At his feast Achashverosh displayed \"the riches of his glorious kingdom and the splendor of his majestic greatness\" (Esther 1:4). The Talmud (Megillah 12a) notes that the words \"glory\" and \"splendor\" (kavod and tiferet) are the same words used for the High Priest's garments (Exodus 28:2), and says Achashverosh wore the priestly garments taken from the Temple.",
+    "story_he": "במשתהו הראה אחשורוש \"את עשר כבוד מלכותו ואת יקר תפארת גדולתו\" (אסתר א, ד). הגמרא (מגילה יב ע\"א) מציינת שהמילים \"כבוד\" ו\"תפארת\" הן המילים הנאמרות בבגדי כהונה, \"לכבוד ולתפארת\" (שמות כח, ב), ואומרת שאחשורוש לבש את בגדי הכהונה שנלקחו מן המקדש.",
+    "story_es": "En su banquete, Ajashverosh mostró \"la riqueza de la gloria de su reino y el esplendor de su majestad\" (Ester 1:4). El Talmud (Meguilá 12a) señala que las palabras \"gloria\" y \"esplendor\" (kavod y tiféret) son las mismas usadas para las vestiduras del Sumo Sacerdote (Shemot 28:2), y dice que Ajashverosh vistió las vestiduras sacerdotales tomadas del Templo.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "achashverosh"
+    ],
+    "anchors": [
+      "Esther 1:4",
+      "Exodus 28:2"
+    ],
+    "sources": [
+      "Megillah 12a"
+    ],
+    "sort_order": 124
+  },
+  {
+    "id": "belshazzars-miscalculation",
+    "type": "connection",
+    "status": "reviewed",
+    "title_en": "Belshatzar miscounted the seventy years",
+    "title_he": "בלשאצר טעה בחשבון שבעים השנים",
+    "title_es": "Belshatzar contó mal los setenta años",
+    "story_en": "Yirmiyahu prophesied that Israel would return after seventy years of Babylon (Jeremiah 29:10). The Talmud (Megillah 11b) says Belshatzar counted the seventy years, concluded they had passed without redemption, and brought out the Temple vessels at his feast (Daniel 5:2). He had counted wrong, and that very night he was killed (Daniel 5:30). The Talmud says Achashverosh later made a similar miscalculation.",
+    "story_he": "ירמיהו ניבא שישראל ישובו לאחר שבעים שנה לבבל (ירמיהו כט, י). הגמרא (מגילה יא ע\"ב) אומרת שבלשאצר חישב את שבעים השנים, הסיק שעברו ולא נגאלו, והוציא את כלי המקדש במשתהו (דניאל ה, ב). הוא טעה בחשבון, ובו בלילה נהרג (דניאל ה, ל). הגמרא אומרת שגם אחשורוש טעה לאחר מכן בחשבון דומה.",
+    "story_es": "Irmiahu profetizó que Israel volvería tras setenta años de Babilonia (Irmiahu 29:10). El Talmud (Meguilá 11b) dice que Belshatzar contó los setenta años, concluyó que habían pasado sin redención y sacó los utensilios del Templo en su banquete (Daniel 5:2). Había contado mal, y esa misma noche lo mataron (Daniel 5:30). El Talmud dice que Ajashverosh cometió después un error de cálculo similar.",
+    "other_view_en": null,
+    "other_view_he": null,
+    "other_view_es": null,
+    "characters": [
+      "belshatzar",
+      "yirmiyahu",
+      "achashverosh"
+    ],
+    "anchors": [
+      "Daniel 5:2",
+      "Daniel 5:30",
+      "Jeremiah 29:10"
+    ],
+    "sources": [
+      "Megillah 11b"
+    ],
+    "sort_order": 125
+  }
+]

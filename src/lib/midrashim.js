@@ -1,33 +1,72 @@
-// Curated "notable midrash" entries (src/data/midrashim.json), looked up by
-// the verses they're anchored to. Anchors use Sefaria's book names
+// Curated "notable midrash" entries (the Supabase `midrashim` table), looked
+// up by the verses they're anchored to. Anchors use Sefaria's book names
 // ("Genesis 14:13") so they line up with book.sefaria.
 
-import midrashim from '../data/midrashim.json';
+import { useEffect, useState } from 'react';
 import { allBooks } from '../data/books';
+import { getMidrashimRows } from './content';
 
-// Entries start as "draft" and only become public once reviewed; drafts are
-// still shown on the local dev server so they can be checked in context.
-const visible = midrashim.filter((m) => m.status === 'reviewed' || import.meta.env.DEV);
+// Rows have one column per language (title_en, title_he, …); the panel works
+// with { en, he, es } objects, so regroup them once when they arrive.
+function toEntry(row) {
+  const byLang = (field) =>
+    row[`${field}_en`] == null ? null : { en: row[`${field}_en`], he: row[`${field}_he`], es: row[`${field}_es`] };
+  return {
+    id: row.id,
+    type: row.type,
+    status: row.status,
+    title: byLang('title'),
+    story: byLang('story'),
+    otherView: byLang('other_view'),
+    characters: row.characters,
+    anchors: row.anchors,
+    sources: row.sources,
+  };
+}
 
-const byVerse = new Map();
-for (const entry of visible) {
-  for (const anchor of entry.anchors) {
-    if (!byVerse.has(anchor)) byVerse.set(anchor, []);
-    byVerse.get(anchor).push(entry);
+// Supabase only returns drafts to admins, so everything that arrives is shown.
+function buildIndex(rows) {
+  const byVerse = new Map();
+  for (const entry of rows.map(toEntry)) {
+    for (const anchor of entry.anchors) {
+      if (!byVerse.has(anchor)) byVerse.set(anchor, []);
+      byVerse.get(anchor).push(entry);
+    }
   }
+  return byVerse;
+}
+
+let index = null;
+
+// The verse → entries index, or null until it has loaded. A failed load
+// just means no ✨ markers; the reader and Sefaria commentary still work.
+export function useMidrashIndex() {
+  const [loaded, setLoaded] = useState(index);
+  useEffect(() => {
+    if (loaded) return;
+    let active = true;
+    getMidrashimRows()
+      .then((rows) => {
+        index ??= buildIndex(rows);
+        if (active) setLoaded(index);
+      })
+      .catch((e) => console.warn('Midrashim unavailable:', e.message));
+    return () => { active = false; };
+  }, [loaded]);
+  return loaded;
 }
 
 const bookBySefaria = new Map(allBooks.map((b) => [b.sefaria, b]));
 
-export function getMidrashimForVerse(sefariaBook, chapter, verse) {
-  return byVerse.get(`${sefariaBook} ${chapter}:${verse}`) || [];
+export function getMidrashimForVerse(midrashIndex, sefariaBook, chapter, verse) {
+  return midrashIndex?.get(`${sefariaBook} ${chapter}:${verse}`) || [];
 }
 
 // Verse numbers in a chapter that have at least one entry, for the ✨ markers.
-export function getMidrashVersesInChapter(sefariaBook, chapter) {
+export function getMidrashVersesInChapter(midrashIndex, sefariaBook, chapter) {
   const prefix = `${sefariaBook} ${chapter}:`;
   const verses = new Set();
-  for (const anchor of byVerse.keys()) {
+  for (const anchor of midrashIndex?.keys() ?? []) {
     if (anchor.startsWith(prefix)) verses.add(Number(anchor.slice(prefix.length)));
   }
   return verses;
