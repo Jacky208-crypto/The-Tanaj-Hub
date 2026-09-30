@@ -50,6 +50,10 @@ history of every edit.
 - `published = false` hides a quiz, question, note or place from visitors
   (admins still see it). Midrashim use `status` (`draft` / `reviewed`) instead;
   run `npm run validate:midrash` before switching one to `reviewed`.
+- New quiz questions can come in as drafts: `npm run add:questions -- file.json`
+  (see the top of `scripts/add-quiz-drafts.mjs` for the file shape). They're
+  added with `published = false` and listed under **Drafts to review** in
+  /admin → Quiz questions; tick *Published* to make one live.
 - `note_entries.table_*` is JSON: `{"headers": [...], "rows": [[...], ...]}`.
 - `places.type` and `places.periods` must use the values in
   `src/data/places.js`; `places.books` uses the ids in `src/data/books.js`.

@@ -109,30 +109,40 @@ function QuestionEditor({ row, quizzes, quizKey, nextOrder, onDone }) {
   );
 }
 
+// The quiz picker also offers "Drafts": unpublished questions from every quiz
+// (new ones come in this way from `npm run add:questions`), to review and publish.
+const DRAFTS = '__drafts__';
+
 export default function QuestionsAdmin({ notify }) {
   const quizzesState = useAdminRows('quizzes', 'select=key,label_en&order=sort_order');
   const quizzes = quizzesState.rows;
+  const draftsState = useAdminRows('quiz_questions', 'select=id&published=eq.false');
+  const draftCount = draftsState.rows?.length;
   const [quizKey, setQuizKey] = useState(null);
-  const activeQuiz = quizKey ?? quizzes?.[0]?.key;
+  const activeQuiz = quizKey ?? (draftCount ? DRAFTS : quizzes?.[0]?.key);
+  const showingDrafts = activeQuiz === DRAFTS;
   const { rows, error, reload } = useAdminRows(
     'quiz_questions',
-    activeQuiz ? `select=*&quiz_key=eq.${activeQuiz}&order=sort_order` : 'select=id&limit=0',
+    showingDrafts ? 'select=*&published=eq.false&order=quiz_key,sort_order'
+      : activeQuiz ? `select=*&quiz_key=eq.${activeQuiz}&order=sort_order` : 'select=id&limit=0',
   );
   const [search, setSearch] = useState('');
   const [editing, setEditing] = useState(null); // null | 'new' | row
+  const quizLabel = (key) => quizzes?.find((x) => x.key === key)?.label_en ?? key;
 
   if (!quizzes) return <Loading error={quizzesState.error} onRetry={quizzesState.reload} />;
 
   if (editing) {
+    const editQuiz = editing === 'new' ? (showingDrafts ? quizzes[0].key : activeQuiz) : editing.quiz_key;
     return (
       <QuestionEditor
         row={editing === 'new' ? null : editing}
         quizzes={quizzes}
-        quizKey={activeQuiz}
-        nextOrder={Math.max(0, ...(rows || []).map((r) => r.sort_order)) + 1}
+        quizKey={editQuiz}
+        nextOrder={Math.max(0, ...(rows || []).filter((r) => r.quiz_key === editQuiz).map((r) => r.sort_order)) + 1}
         onDone={(message) => {
           setEditing(null);
-          if (message) { notify(message); reload(); }
+          if (message) { notify(message); reload(); draftsState.reload(); }
         }}
       />
     );
@@ -146,29 +156,33 @@ export default function QuestionsAdmin({ notify }) {
     <>
       <div className={styles.toolbar}>
         <select className={styles.select} value={activeQuiz} onChange={(e) => setQuizKey(e.target.value)}>
+          <option value={DRAFTS}>Drafts to review ({draftCount ?? '…'})</option>
           {quizzes.map((x) => <option key={x.key} value={x.key}>{x.label_en}</option>)}
         </select>
         <input className={styles.search} placeholder="Search questions and answers…" value={search} onChange={(e) => setSearch(e.target.value)} />
         <button className={styles.primaryBtn} onClick={() => setEditing('new')}>+ New question</button>
       </div>
+      {showingDrafts && (
+        <p className={styles.hint}>Drafts are hidden from every quiz. Open one, check it, tick “Published” and save to make it live.</p>
+      )}
       {!rows ? <Loading error={error} onRetry={reload} /> : (
         <>
-          <div className={styles.count}>{shown.length} of {rows.length} questions</div>
+          <div className={styles.count}>{shown.length} of {rows.length} {showingDrafts ? 'drafts' : 'questions'}</div>
           <ul className={styles.list}>
             {shown.map((r) => (
               <li key={r.id}>
                 <button className={styles.item} onClick={() => setEditing(r)}>
                   <span className={styles.itemMain}>
                     <span className={styles.itemTitle}>{r.question_en}</span>
-                    <span className={styles.itemMeta}>✓ {r.options_en[r.correct_index]}</span>
+                    <span className={styles.itemMeta}>{showingDrafts && `${quizLabel(r.quiz_key)} · `}✓ {r.options_en[r.correct_index]}</span>
                   </span>
                   {!r.question_es && <span className={styles.badge}>no ES</span>}
                   {!r.question_he && <span className={styles.badge}>no HE</span>}
-                  {!r.published && <span className={`${styles.badge} ${styles.badgeHidden}`}>hidden</span>}
+                  {!r.published && <span className={`${styles.badge} ${styles.badgeDraft}`}>draft</span>}
                 </button>
               </li>
             ))}
-            {!shown.length && <li className={styles.empty}>No questions match.</li>}
+            {!shown.length && <li className={styles.empty}>{showingDrafts ? 'No drafts waiting — all caught up.' : 'No questions match.'}</li>}
           </ul>
         </>
       )}
