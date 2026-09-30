@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { insertRow, updateRow, deleteRow } from '../../lib/adminApi';
+import { insertRow, updateRow, updateWhere, deleteRow } from '../../lib/adminApi';
 import styles from '../../pages/Admin.module.css';
 import { Loading, Field, LangInputs, TextInput, PublishedToggle, EditorShell } from './AdminKit';
 import { LANGS, useAdminRows, useEditor, orNull } from './adminHelpers';
@@ -128,6 +128,7 @@ export default function QuestionsAdmin({ notify }) {
   );
   const [search, setSearch] = useState('');
   const [editing, setEditing] = useState(null); // null | 'new' | row
+  const [publishing, setPublishing] = useState(false);
   const quizLabel = (key) => quizzes?.find((x) => x.key === key)?.label_en ?? key;
 
   if (!quizzes) return <Loading error={quizzesState.error} onRetry={quizzesState.reload} />;
@@ -152,6 +153,22 @@ export default function QuestionsAdmin({ notify }) {
   const shown = (rows || []).filter((r) =>
     !q || [r.question_en, r.question_es, r.question_he, ...r.options_en].some((t) => t?.toLowerCase().includes(q)));
 
+  // Publishes exactly the drafts listed (by id), so a draft added meanwhile
+  // (e.g. by `npm run add:questions`) isn't published unseen.
+  const publishAll = async () => {
+    if (!window.confirm(`Publish all ${rows.length} drafts? They’ll appear in the quizzes right away.`)) return;
+    setPublishing(true);
+    try {
+      const count = await updateWhere('quiz_questions', `id=in.(${rows.map((r) => r.id).join(',')})`, { published: true });
+      notify(`Published ${count} question${count === 1 ? '' : 's'}.`);
+      reload();
+      draftsState.reload();
+    } catch (e) {
+      notify(e.message);
+    }
+    setPublishing(false);
+  };
+
   return (
     <>
       <div className={styles.toolbar}>
@@ -163,7 +180,15 @@ export default function QuestionsAdmin({ notify }) {
         <button className={styles.primaryBtn} onClick={() => setEditing('new')}>+ New question</button>
       </div>
       {showingDrafts && (
-        <p className={styles.hint}>Drafts are hidden from every quiz. Open one, check it, tick “Published” and save to make it live.</p>
+        <div className={styles.toolbar}>
+          <p className={styles.hint}>Drafts are hidden from every quiz. Open one, check it, tick “Published” and save to make it live — or publish them all at once.</p>
+          <span className={styles.spacer} />
+          {rows?.length > 0 && (
+            <button className={styles.secondaryBtn} onClick={publishAll} disabled={publishing}>
+              {publishing ? 'Publishing…' : `Publish all ${rows.length}`}
+            </button>
+          )}
+        </div>
       )}
       {!rows ? <Loading error={error} onRetry={reload} /> : (
         <>

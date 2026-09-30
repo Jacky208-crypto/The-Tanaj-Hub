@@ -82,6 +82,18 @@ export async function updateRow(table, key, id, changes) {
   }));
 }
 
+// Same change to every row matching a PostgREST filter ("published=eq.false").
+// Returns how many rows were changed.
+export async function updateWhere(table, filter, changes) {
+  const rows = await request(`${table}?${filter}`, {
+    method: 'PATCH',
+    headers: { Prefer: 'return=representation' },
+    body: JSON.stringify(changes),
+  });
+  savedRow(rows);
+  return rows.length;
+}
+
 export async function deleteRow(table, key, id) {
   savedRow(await request(`${table}?${key}=eq.${encodeURIComponent(id)}`, {
     method: 'DELETE',
