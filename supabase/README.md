@@ -33,9 +33,12 @@ backup of what's in it.
    on conflict do nothing;
    ```
 
-**Editing:** change rows in the Table Editor. Changes are live immediately.
-Then run `npm run export:content` and commit `supabase/content/` so git keeps
-a history of every edit.
+**Editing:** log in to the site with an admin account and use the **Admin**
+button on the home page (`/admin`) — forms for quiz questions, map places,
+midrashim and study notes, with checks that catch mistakes before saving.
+The Table Editor works too. Either way, changes are live immediately. Then run
+`npm run export:content` and commit `supabase/content/` so git keeps a
+history of every edit.
 
 **Things to know while editing:**
 

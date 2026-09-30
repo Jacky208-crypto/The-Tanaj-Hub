@@ -16,6 +16,7 @@ export const translations = {
     home: {
       greeting: ({ name }) => `Hi, ${name}`,
       logOut: 'Log out',
+      admin: 'Admin',
       logIn: 'Log in',
       signUp: 'Sign up',
       subtitle: 'The Tanaj Hub is an interactive platform to learn Tanaj with quizzes and summaries',
@@ -204,6 +205,7 @@ export const translations = {
     home: {
       greeting: ({ name }) => `Hola, ${name}`,
       logOut: 'Cerrar sesión',
+      admin: 'Admin',
       logIn: 'Iniciar sesión',
       signUp: 'Registrarse',
       subtitle: 'The Tanaj Hub es una plataforma interactiva para aprender el Tanaj con preguntas y resúmenes',
@@ -393,6 +395,7 @@ export const translations = {
     home: {
       greeting: ({ name }) => `שלום, ${name}`,
       logOut: 'התנתקות',
+      admin: 'ניהול',
       logIn: 'התחברות',
       signUp: 'הרשמה',
       subtitle: ' הוא פלטפורמה אינטראקטיבית ללימוד התנ"ך עם חידונים וסיכומים Tanaj Hub האתר',

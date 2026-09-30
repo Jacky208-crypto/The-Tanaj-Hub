@@ -36,6 +36,9 @@ function buildIndex(rows) {
   return byVerse;
 }
 
+// The index for the most recently loaded rows. Rows are cached in content.js;
+// after an admin edit clears that cache, new rows arrive and it's rebuilt.
+let indexedRows = null;
 let index = null;
 
 // The verse → entries index, or null until it has loaded. A failed load
@@ -43,16 +46,18 @@ let index = null;
 export function useMidrashIndex() {
   const [loaded, setLoaded] = useState(index);
   useEffect(() => {
-    if (loaded) return;
     let active = true;
     getMidrashimRows()
       .then((rows) => {
-        index ??= buildIndex(rows);
+        if (rows !== indexedRows) {
+          indexedRows = rows;
+          index = buildIndex(rows);
+        }
         if (active) setLoaded(index);
       })
       .catch((e) => console.warn('Midrashim unavailable:', e.message));
     return () => { active = false; };
-  }, [loaded]);
+  }, []);
   return loaded;
 }
 

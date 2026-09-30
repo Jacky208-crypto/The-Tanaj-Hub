@@ -17,6 +17,8 @@ import Login from './pages/Login';
 
 // Lazy-loaded so Leaflet + the places dataset only download when the map is opened.
 const MapPage = lazy(() => import('./pages/MapPage'));
+// Admin-only content editor; lazy so visitors never download it.
+const Admin = lazy(() => import('./pages/Admin'));
 
 
 export default function App() {
@@ -45,6 +47,14 @@ export default function App() {
               }
             />
             <Route path="/login" element={<Login />} />
+            <Route
+              path="/admin"
+              element={
+                <Suspense fallback={<div style={{ padding: 24 }}>Loading…</div>}>
+                  <Admin />
+                </Suspense>
+              }
+            />
           </Routes>
         </BrowserRouter>
       </AuthProvider>

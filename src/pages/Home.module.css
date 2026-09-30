@@ -42,6 +42,35 @@
 }
 .authBtn:hover { opacity: 0.7; }
 
+/* Small outlined pill, only shown to admins. */
+.adminBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 4px 11px 4px 9px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.adminBtn svg {
+  width: 12px;
+  height: 12px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.adminBtn:hover {
+  background: var(--accent-softer);
+  color: var(--text-primary);
+  border-color: var(--text-muted);
+}
+
 .header {
   text-align: center;
   padding-top: 30px;

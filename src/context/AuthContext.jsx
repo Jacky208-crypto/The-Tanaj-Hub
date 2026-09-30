@@ -6,6 +6,9 @@ const AuthContext = createContext(null);
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  // { userId, isAdmin } from the last admin check, so a stale answer for a
+  // previous account is never used for the current one.
+  const [adminCheck, setAdminCheck] = useState(null);
 
   // On first load, restore any saved session (refreshing the token if needed).
   useEffect(() => {
@@ -22,6 +25,18 @@ export function AuthProvider({ children }) {
       active = false;
     };
   }, []);
+
+  // Ask Supabase whether this account is in public.admins.
+  useEffect(() => {
+    if (!user?.id) return;
+    let active = true;
+    auth.checkIsAdmin()
+      .catch(() => false)
+      .then((isAdmin) => { if (active) setAdminCheck({ userId: user.id, isAdmin }); });
+    return () => { active = false; };
+  }, [user?.id]);
+  const adminChecked = Boolean(user) && adminCheck?.userId === user.id;
+  const isAdmin = adminChecked && adminCheck.isAdmin;
 
   const signIn = useCallback(async (email, password) => {
     const { user: u } = await auth.signIn(email, password);
@@ -48,6 +63,8 @@ export function AuthProvider({ children }) {
   const value = {
     user,
     loading,
+    isAdmin,
+    adminChecked,
     isConfigured: auth.isConfigured,
     signIn,
     signUp,

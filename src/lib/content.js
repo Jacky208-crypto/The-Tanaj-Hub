@@ -5,26 +5,23 @@
 // Each loader caches its result for the rest of the visit, and forgets a
 // failed request so the next call retries.
 
-import { loadSession } from './supabaseClient';
+import { getFreshSession } from './supabaseClient';
 
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
 const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_KEY;
 const REST_URL = `${SUPABASE_URL}/rest/v1`;
 
-// Send the user's token when it's still valid (so admins get drafts);
-// an expired token would make Supabase reject even public reads.
-function headers() {
+// Send the user's token when signed in (so admins get drafts). It's refreshed
+// first if needed — an expired token would make Supabase reject even public reads.
+async function headers() {
   const h = { apikey: SUPABASE_KEY, 'Content-Type': 'application/json' };
-  const session = loadSession();
-  const now = Math.floor(Date.now() / 1000);
-  if (session?.access_token && (!session.expires_at || session.expires_at - now > 30)) {
-    h.Authorization = `Bearer ${session.access_token}`;
-  }
+  const session = await getFreshSession();
+  if (session?.access_token) h.Authorization = `Bearer ${session.access_token}`;
   return h;
 }
 
 async function request(path, init = {}) {
-  const res = await fetch(`${REST_URL}/${path}`, { ...init, headers: { ...headers(), ...init.headers } });
+  const res = await fetch(`${REST_URL}/${path}`, { ...init, headers: { ...(await headers()), ...init.headers } });
   if (!res.ok) throw new Error(`Could not load content (HTTP ${res.status})`);
   return res.json();
 }
@@ -40,12 +37,19 @@ async function selectAll(table, query) {
   }
 }
 
+const caches = [];
 function cached(load) {
   let promise = null;
+  caches.push(() => { promise = null; });
   return () => {
     if (!promise) promise = load().catch((e) => { promise = null; throw e; });
     return promise;
   };
+}
+
+// After an admin edit, so the next visit to a page loads the new content.
+export function clearContentCache() {
+  caches.forEach((clear) => clear());
 }
 
 // Columns are one per language (label_en, label_es, label_he); the site's

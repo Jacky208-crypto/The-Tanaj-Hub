@@ -7,7 +7,7 @@ import styles from './Home.module.css';
 
 export default function Home() {
   const navigate = useNavigate();
-  const { user, signOut, loading } = useAuth();
+  const { user, signOut, loading, isAdmin } = useAuth();
   const { t } = useLanguage();
 
   return (
@@ -21,6 +21,15 @@ export default function Home() {
         <div className={styles.authBar}>
           {loading ? null : user ? (
             <>
+              {isAdmin && (
+                <button className={styles.adminBtn} onClick={() => navigate('/admin')} title={t('home.admin')}>
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 20h9" />
+                    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z" />
+                  </svg>
+                  {t('home.admin')}
+                </button>
+              )}
               <span className={styles.welcome}>
                 {t('home.greeting', { name: user.user_metadata?.name || user.email })}
               </span>

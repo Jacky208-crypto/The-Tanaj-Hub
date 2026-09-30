@@ -169,11 +169,45 @@ export async function signOut(accessToken) {
 
 const REST_URL = `${SUPABASE_URL}/rest/v1`;
 
-// Returns { token, userId } for the signed-in user, or null if not logged in.
-function currentAuth() {
+// The saved session, refreshed first if its token has expired or is about to
+// (tokens last an hour, and a tab can stay open much longer than that).
+// Returns null if not logged in or the session can no longer be refreshed.
+let refreshing = null;
+export async function getFreshSession() {
   const session = loadSession();
+  if (!session?.access_token) return null;
+  const now = Math.floor(Date.now() / 1000);
+  if (!session.expires_at || session.expires_at - now > 60) return session;
+  if (!session.refresh_token) return null;
+  // Several requests may notice at once; share one refresh between them.
+  refreshing ??= refresh(session.refresh_token)
+    .then((fresh) => {
+      const merged = { ...fresh, user: fresh.user ?? session.user };
+      saveSession(merged);
+      return merged;
+    })
+    .catch(() => null)
+    .finally(() => { refreshing = null; });
+  return refreshing;
+}
+
+// Returns { token, userId } for the signed-in user, or null if not logged in.
+async function currentAuth() {
+  const session = await getFreshSession();
   if (!session?.access_token || !session?.user?.id) return null;
   return { token: session.access_token, userId: session.user.id };
+}
+
+// Whether the signed-in account is in public.admins (see content_setup.sql).
+export async function checkIsAdmin() {
+  const me = await currentAuth();
+  if (!me) return false;
+  const res = await fetch(`${REST_URL}/rpc/is_admin`, {
+    method: 'POST',
+    headers: dataHeaders(me.token),
+    body: '{}',
+  });
+  return (await parse(res)) === true;
 }
 
 function dataHeaders(token, extra = {}) {
@@ -187,7 +221,7 @@ function dataHeaders(token, extra = {}) {
 
 // ---- Quiz attempts ----
 export async function saveQuizAttempt({ quizLabel, score, total }) {
-  const me = currentAuth();
+  const me = await currentAuth();
   if (!me) return null; // not logged in — nothing to save
   const res = await fetch(`${REST_URL}/quiz_attempts`, {
     method: 'POST',
@@ -204,7 +238,7 @@ export async function saveQuizAttempt({ quizLabel, score, total }) {
 }
 
 export async function getQuizAttempts() {
-  const me = currentAuth();
+  const me = await currentAuth();
   if (!me) return [];
   const res = await fetch(
     `${REST_URL}/quiz_attempts?user_id=eq.${me.userId}&order=created_at.desc`,
@@ -215,7 +249,7 @@ export async function getQuizAttempts() {
 
 // ---- Personal notes ----
 export async function getUserNotes() {
-  const me = currentAuth();
+  const me = await currentAuth();
   if (!me) return [];
   const res = await fetch(
     `${REST_URL}/user_notes?user_id=eq.${me.userId}&order=updated_at.desc`,
@@ -225,7 +259,7 @@ export async function getUserNotes() {
 }
 
 export async function createUserNote({ title, body }) {
-  const me = currentAuth();
+  const me = await currentAuth();
   if (!me) throw new Error('Please log in to save notes.');
   const res = await fetch(`${REST_URL}/user_notes`, {
     method: 'POST',
@@ -237,7 +271,7 @@ export async function createUserNote({ title, body }) {
 }
 
 export async function updateUserNote(id, { title, body }) {
-  const me = currentAuth();
+  const me = await currentAuth();
   if (!me) throw new Error('Please log in to save notes.');
   const res = await fetch(`${REST_URL}/user_notes?id=eq.${id}`, {
     method: 'PATCH',
@@ -249,7 +283,7 @@ export async function updateUserNote(id, { title, body }) {
 }
 
 export async function deleteUserNote(id) {
-  const me = currentAuth();
+  const me = await currentAuth();
   if (!me) throw new Error('Please log in to manage notes.');
   const res = await fetch(`${REST_URL}/user_notes?id=eq.${id}`, {
     method: 'DELETE',
