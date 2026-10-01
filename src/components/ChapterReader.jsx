@@ -72,7 +72,7 @@ function cleanVerse(text, lang) {
       .replace(/Acab/g, 'Ajab')
       .replace(/Samaria/g, 'Shomron')
       .replace(/Sansón/g, 'Shimshon')
-      .replace(/Elohim/g, "Dios")
+      .replace(/Elohim/gi, "Dios")
   }
   return cleaned
     .replace(/\([^)]*\)/g, '')
