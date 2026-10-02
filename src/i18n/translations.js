@@ -61,7 +61,7 @@ export const translations = {
       startQuiz: 'Start Quiz',
     },
     suggest: {
-      button: '✍️ Suggest a question',
+      button: 'Suggest a question',
       title: 'Suggest a Question',
       intro: 'Know a good question about the Tanaj? Send it in! If it’s added to a quiz, we’ll email you.',
       loginPrompt: 'Log in to suggest a question — we’ll email you if it gets added.',
