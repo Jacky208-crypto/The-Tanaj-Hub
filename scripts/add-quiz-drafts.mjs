@@ -10,7 +10,11 @@
 //   { "quiz_key": "bereshit",
 //     "question_en": "...", "question_es": "...", "question_he": "...",
 //     "options_en": [4 answers], "options_es": [...], "options_he": [...],
-//     "correct_index": 0 }
+//     "correct_index": 0,
+//     "submission_id": "..." }   ← optional: the visitor suggestion this came from
+//                                  (npm run suggestions). The suggestion is marked
+//                                  accepted and linked, so publishing the draft
+//                                  emails the visitor.
 //
 // Only inserts — never changes existing rows. A question whose English text
 // already exists in that quiz is skipped.
@@ -54,6 +58,7 @@ drafts.forEach((d, i) => {
   if (seen.has(key)) return console.log(`skip (already exists): ${label}`);
   seen.add(key);
   rows.push({
+    submission_id: d.submission_id,
     quiz_key: d.quiz_key,
     sort_order: (nextOrder[d.quiz_key] = (nextOrder[d.quiz_key] ?? 1) + 1) - 1,
     question_en: d.question_en.trim(), question_es: d.question_es.trim(), question_he: d.question_he.trim(),
@@ -70,7 +75,17 @@ if (problems.length) {
 if (dryRun) {
   console.log(`OK: ${rows.length} draft(s) would be added.`);
 } else if (rows.length) {
-  await db.upsert('quiz_questions', rows);
+  const linked = rows.filter((r) => r.submission_id);
+  const strip = ({ submission_id, ...row }) => row;
+  const plain = rows.filter((r) => !r.submission_id).map(strip);
+  if (plain.length) await db.upsert('quiz_questions', plain);
+  for (const r of linked) {
+    const [saved] = await db.insert('quiz_questions', [strip(r)]);
+    await db.update('question_submissions', `id=eq.${r.submission_id}`, {
+      status: 'accepted', quiz_question_id: saved.id, reviewed_at: new Date().toISOString(),
+    });
+  }
+  if (linked.length) console.log(`Linked ${linked.length} to visitor suggestions (they're emailed when published).`);
   console.log(`Added ${rows.length} draft question(s). Review them in /admin → Quiz questions → Drafts.`);
 } else {
   console.log('Nothing new to add.');

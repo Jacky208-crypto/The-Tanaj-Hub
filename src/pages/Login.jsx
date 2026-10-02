@@ -12,6 +12,8 @@ export default function Login() {
 
   // Start in signup mode if navigated here from the "Sign up" button.
   const [mode, setMode] = useState(location.state?.mode === 'signup' ? 'signup' : 'login');
+  // Pages that send people here to log in pass `from` so they come back after.
+  const returnTo = location.state?.from || '/';
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -45,14 +47,14 @@ export default function Login() {
     try {
       if (mode === 'login') {
         await signIn(email, password);
-        navigate('/');
+        navigate(returnTo);
       } else {
         const result = await signUp(email, password, name.trim());
         if (result.needsConfirmation) {
           setInfo(t('login.infoConfirmEmail'));
           setMode('login');
         } else {
-          navigate('/');
+          navigate(returnTo);
         }
       }
     } catch (err) {

@@ -215,6 +215,14 @@ export default function Quiz() {
         {t('quiz.createCustom')}
       </button>
 
+      <button
+        className="nav-btn"
+        style={{ display: 'block', margin: '0 auto 30px' }}
+        onClick={() => navigate('/suggest')}
+      >
+        {t('suggest.button')}
+      </button>
+
       {user && attempts.length > 0 && (
         <div
           style={{

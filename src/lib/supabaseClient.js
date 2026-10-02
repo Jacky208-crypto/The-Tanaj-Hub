@@ -293,6 +293,38 @@ export async function deleteUserNote(id) {
   return true;
 }
 
+// ---- Suggested quiz questions (see supabase/submissions_setup.sql) ----
+// The database fills in the account's email and keeps the suggestion
+// "pending" until an admin reviews it.
+export async function submitQuestion({ language, quizKey, question, options, correctIndex, source }) {
+  const me = await currentAuth();
+  if (!me) throw new Error('Please log in to suggest a question.');
+  const res = await fetch(`${REST_URL}/question_submissions`, {
+    method: 'POST',
+    headers: dataHeaders(me.token, { Prefer: 'return=minimal' }),
+    body: JSON.stringify({
+      user_id: me.userId,
+      language,
+      quiz_key: quizKey,
+      question,
+      options,
+      correct_index: correctIndex,
+      source: source || null,
+    }),
+  });
+  await parse(res);
+}
+
+export async function getMySubmissions() {
+  const me = await currentAuth();
+  if (!me) return [];
+  const res = await fetch(
+    `${REST_URL}/question_submissions?user_id=eq.${me.userId}&select=id,quiz_key,question,status,created_at&order=created_at.desc`,
+    { headers: dataHeaders(me.token) }
+  );
+  return (await parse(res)) || [];
+}
+
 // Restore a valid session on app load, refreshing the token if it's expired.
 export async function restoreSession() {
   // If we just came back from a Google sign-in, adopt that session first.

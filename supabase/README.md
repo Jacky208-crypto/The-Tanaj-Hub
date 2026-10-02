@@ -9,6 +9,8 @@ Run them in this order. Each is safe to run again.
 3. `content_setup.sql` — site content: `quizzes`, `quiz_questions`,
    `note_topics`, `note_entries`, `midrashim`, `places`, plus the `admins`
    table. Anyone can read published content; only admins can change it.
+4. `submissions_setup.sql` — quiz questions suggested by visitors (see
+   *Suggested questions* below).
 
 ## Site content
 
@@ -57,3 +59,37 @@ history of every edit.
 - `note_entries.table_*` is JSON: `{"headers": [...], "rows": [[...], ...]}`.
 - `places.type` and `places.periods` must use the values in
   `src/data/places.js`; `places.books` uses the ids in `src/data/books.js`.
+
+## Suggested questions
+
+Signed-in visitors suggest questions on `/suggest` (the "Suggest a question"
+button on the quiz page). They land in `question_submissions` as *pending*.
+
+**Review:** /admin → **Suggestions**. *Accept → create question* opens the
+question editor pre-filled with their text (add the other languages; English
+is required). *Reject* sends nothing. Or run `npm run suggestions` and let
+Claude write translated drafts linked to them (`submission_id` in the
+`npm run add:questions` file).
+
+**The email:** the database emails the visitor, in the language they used on
+the site, the moment their accepted question is **published** — from the
+editor, "Publish all", or the Table Editor. Each person is emailed once.
+
+**Email setup (once), with Resend:**
+
+1. Sign up at resend.com → *Domains* → add your domain and add the DNS
+   records it shows at your domain registrar. Wait until it says *Verified*.
+2. *API Keys* → create a key with "Sending access".
+3. In the SQL Editor, run (with your values):
+   ```sql
+   select vault.create_secret('re_your_api_key', 'resend_api_key');
+   select vault.create_secret('Tanaj Hub <noreply@yourdomain.com>', 'email_from');
+   select vault.create_secret('https://yourdomain.com', 'site_url');
+   ```
+   To change one later: `select vault.update_secret(id, 'new value') from
+   vault.secrets where name = 'email_from';`
+4. Anything published before step 3 is emailed by running
+   `select public.send_pending_submission_emails();`
+
+Sends are queued through `pg_net`; if an email doesn't arrive, check
+Resend's *Logs* page, or `select * from net._http_response order by created desc limit 5;`

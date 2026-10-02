@@ -90,6 +90,29 @@ export function adminClient({ required = true } = {}) {
       }
     },
 
+    // Rows matching a PostgREST query, e.g. 'select=*&status=eq.pending'.
+    select(table, query) {
+      return request(`${table}?${query}`);
+    },
+
+    // Insert rows and get them back (with their generated ids).
+    insert(table, rows) {
+      return request(table, {
+        method: 'POST',
+        headers: { Prefer: 'return=representation' },
+        body: JSON.stringify(rows),
+      });
+    },
+
+    // Same change to every row matching a filter, e.g. 'id=eq.123'.
+    update(table, filter, changes) {
+      return request(`${table}?${filter}`, {
+        method: 'PATCH',
+        headers: { Prefer: 'return=minimal' },
+        body: JSON.stringify(changes),
+      });
+    },
+
     // Insert or update by primary key, in batches.
     async upsert(table, rows) {
       const BATCH = 500;

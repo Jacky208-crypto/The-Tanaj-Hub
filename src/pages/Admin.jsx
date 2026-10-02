@@ -5,10 +5,12 @@ import QuestionsAdmin from '../components/admin/QuestionsAdmin';
 import PlacesAdmin from '../components/admin/PlacesAdmin';
 import MidrashimAdmin from '../components/admin/MidrashimAdmin';
 import NotesAdmin from '../components/admin/NotesAdmin';
+import SuggestionsAdmin from '../components/admin/SuggestionsAdmin';
 import styles from './Admin.module.css';
 
 const TABS = [
   { id: 'questions', label: 'Quiz questions', Component: QuestionsAdmin },
+  { id: 'suggestions', label: 'Suggestions', Component: SuggestionsAdmin },
   { id: 'places', label: 'Map places', Component: PlacesAdmin },
   { id: 'midrashim', label: 'Midrashim', Component: MidrashimAdmin },
   { id: 'notes', label: 'Study notes', Component: NotesAdmin },

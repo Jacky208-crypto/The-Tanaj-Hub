@@ -310,3 +310,15 @@
   .answer > input[type='text'] { grid-column: 2; }
   .answerHeadRow { display: none; }
 }
+
+/* Visitor-suggested questions (SuggestionsAdmin) */
+.suggestion {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+}
+.suggestionQuestion { font-weight: 600; margin: 6px 0; overflow-wrap: anywhere; }
+.suggestionAnswers { margin: 0 0 6px; padding-inline-start: 20px; }
+.suggestionCorrect { color: var(--success); font-weight: 600; }

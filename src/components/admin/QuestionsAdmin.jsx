@@ -48,13 +48,17 @@ function toRow(form) {
   };
 }
 
-function QuestionEditor({ row, quizzes, quizKey, nextOrder, onDone }) {
+// `prefill` starts a new question from other values (e.g. a visitor's
+// suggestion); `afterCreate(savedRow)` runs once a new question is saved.
+export function QuestionEditor({ row, prefill, quizzes, quizKey, nextOrder, onDone, afterCreate, title }) {
   const isNew = !row;
-  const { form, set, busy, error, onSave, onDelete } = useEditor(toForm(row, quizKey), {
-    save: (f) => (isNew
-      ? insertRow('quiz_questions', { ...toRow(f), sort_order: nextOrder })
-      : updateRow('quiz_questions', 'id', row.id, toRow(f))),
-    remove: () => deleteRow('quiz_questions', 'id', row.id),
+  const { form, set, busy, error, onSave, onDelete } = useEditor(toForm(row ?? prefill, quizKey), {
+    save: async (f) => {
+      if (!isNew) return updateRow('quiz_questions', 'id', row.id, toRow(f));
+      const saved = await insertRow('quiz_questions', { ...toRow(f), sort_order: nextOrder });
+      await afterCreate?.(saved);
+    },
+    remove: isNew ? undefined : () => deleteRow('quiz_questions', 'id', row.id),
     onDone,
   });
   const setAnswer = (i, code, value) =>
@@ -62,7 +66,7 @@ function QuestionEditor({ row, quizzes, quizKey, nextOrder, onDone }) {
 
   return (
     <EditorShell
-      title={isNew ? 'New question' : 'Edit question'}
+      title={title ?? (isNew ? 'New question' : 'Edit question')}
       isNew={isNew} busy={busy} error={error}
       onBack={() => onDone()} onSave={onSave} onDelete={onDelete}
     >

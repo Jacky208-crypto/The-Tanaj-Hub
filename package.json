@@ -12,7 +12,8 @@
     "validate:midrash": "node --env-file-if-exists=.env scripts/validate-midrashim.mjs",
     "import:content": "node --env-file=.env scripts/import-content.mjs",
     "export:content": "node --env-file=.env scripts/export-content.mjs",
-    "add:questions": "node --env-file=.env scripts/add-quiz-drafts.mjs"
+    "add:questions": "node --env-file=.env scripts/add-quiz-drafts.mjs",
+    "suggestions": "node --env-file=.env scripts/list-suggestions.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
