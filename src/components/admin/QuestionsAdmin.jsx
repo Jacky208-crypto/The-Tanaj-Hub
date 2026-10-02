@@ -3,7 +3,7 @@ import { insertRow, updateRow, updateWhere, deleteRow } from '../../lib/adminApi
 import styles from '../../pages/Admin.module.css';
 import { Loading, Field, LangInputs, TextInput, PublishedToggle, EditorShell } from './AdminKit';
 import { LANGS, useAdminRows, useEditor, orNull } from './adminHelpers';
-import { QUIZ_CHAPTERS } from '../../data/books';
+import { QUIZ_CHAPTERS, QUIZ_BOOKS, getBookById } from '../../data/books';
 
 const ANSWERS = 4;
 
@@ -20,20 +20,29 @@ function toForm(row, quizKey) {
       he: row?.options_he?.[i] ?? '',
     })),
     correct_index: row?.correct_index ?? null,
+    book: row?.book ?? '',
     chapter: row?.chapter ?? '',
   };
 }
 
-// The perek, required for quizzes that cover a single book (QUIZ_CHAPTERS);
-// other quizzes don't store one.
-function toChapter(form) {
-  const max = QUIZ_CHAPTERS[form.quiz_key];
-  if (!max) return null;
+// How many perakim the question's book has: single-book quizzes have a fixed
+// book; multi-book quizzes (QUIZ_BOOKS) need the book picked first.
+function maxChapter(form) {
+  if (QUIZ_BOOKS[form.quiz_key]) return getBookById(form.book)?.chapters ?? null;
+  return QUIZ_CHAPTERS[form.quiz_key] ?? null;
+}
+
+// { book, chapter } for the row; both are required, but book only for multi-book quizzes.
+function toPlace(form) {
+  const multi = QUIZ_BOOKS[form.quiz_key];
+  if (multi && !multi.includes(form.book)) throw new Error('Pick the book this question is about.');
+  const max = maxChapter(form);
   const n = Number(form.chapter);
+  if (!max) return { book: null, chapter: Number.isInteger(n) && n >= 1 ? n : null }; // a quiz with no books listed
   if (form.chapter === '' || !Number.isInteger(n) || n < 1 || n > max) {
     throw new Error(`Enter the perek this question is about (1–${max}).`);
   }
-  return n;
+  return { book: multi ? form.book : null, chapter: n };
 }
 
 function toRow(form) {
@@ -58,7 +67,7 @@ function toRow(form) {
     options_es: options.es,
     options_he: options.he,
     correct_index: form.correct_index,
-    chapter: toChapter(form),
+    ...toPlace(form),
     published: form.published !== false,
   };
 }
@@ -91,18 +100,25 @@ export function QuestionEditor({ row, prefill, quizzes, quizKey, nextOrder, onDo
         </select>
       </Field>
 
-      {QUIZ_CHAPTERS[form.quiz_key] && (
-        <Field label="Perek" hint={`The chapter the question is about (1–${QUIZ_CHAPTERS[form.quiz_key]}). Players can pick perakim when they build a quiz.`}>
-          <TextInput
-            type="number"
-            min={1}
-            max={QUIZ_CHAPTERS[form.quiz_key]}
-            value={form.chapter}
-            onChange={(v) => set('chapter', v)}
-            style={{ maxWidth: '8rem' }}
-          />
+      {QUIZ_BOOKS[form.quiz_key] && (
+        <Field label="Book" hint="Which book of this quiz the question is about.">
+          <select className={styles.select} value={form.book} onChange={(e) => set('book', e.target.value)}>
+            <option value="">Choose…</option>
+            {QUIZ_BOOKS[form.quiz_key].map((b) => <option key={b} value={b}>{getBookById(b).label}</option>)}
+          </select>
         </Field>
       )}
+
+      <Field label="Perek" hint={`The chapter the question is about${maxChapter(form) ? ` (1–${maxChapter(form)})` : ''}. Players can pick perakim when they build a quiz.`}>
+        <TextInput
+          type="number"
+          min={1}
+          max={maxChapter(form) ?? undefined}
+          value={form.chapter}
+          onChange={(v) => set('chapter', v)}
+          style={{ maxWidth: '8rem' }}
+        />
+      </Field>
 
       <LangInputs label="Question" form={form} set={set} field="question" multiline rows={2} />
 
@@ -231,9 +247,9 @@ export default function QuestionsAdmin({ notify }) {
                 <button className={styles.item} onClick={() => setEditing(r)}>
                   <span className={styles.itemMain}>
                     <span className={styles.itemTitle}>{r.question_en}</span>
-                    <span className={styles.itemMeta}>{showingDrafts && `${quizLabel(r.quiz_key)} · `}{r.chapter && `Perek ${r.chapter} · `}✓ {r.options_en[r.correct_index]}</span>
+                    <span className={styles.itemMeta}>{showingDrafts && `${quizLabel(r.quiz_key)} · `}{r.chapter && `${r.book ? `${getBookById(r.book)?.label ?? r.book} ` : 'Perek '}${r.chapter} · `}✓ {r.options_en[r.correct_index]}</span>
                   </span>
-                  {!r.chapter && QUIZ_CHAPTERS[r.quiz_key] && <span className={styles.badge}>no perek</span>}
+                  {!r.chapter && <span className={styles.badge}>no perek</span>}
                   {!r.question_es && <span className={styles.badge}>no ES</span>}
                   {!r.question_he && <span className={styles.badge}>no HE</span>}
                   {!r.published && <span className={`${styles.badge} ${styles.badgeDraft}`}>draft</span>}

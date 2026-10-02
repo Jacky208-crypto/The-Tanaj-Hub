@@ -62,6 +62,7 @@ export const translations = {
       chaptersTitle: 'Perakim (optional)',
       chaptersHint: 'Leave empty for the whole book, or pick perakim like "1-20, 24-28".',
       chaptersAll: ({ n }) => `All (1-${n})`,
+      booksHint: 'Pick the books you want (none = all of them), then their perakim.',
       chaptersInvalid: ({ book, part, n }) => `${book}: "${part}" isn't a valid perek — use numbers from 1 to ${n}, like "1-20, 24-28".`,
     },
     suggest: {
@@ -281,6 +282,7 @@ export const translations = {
       chaptersTitle: 'Perakim (opcional)',
       chaptersHint: 'Déjalo vacío para todo el libro, o elige perakim como "1-20, 24-28".',
       chaptersAll: ({ n }) => `Todos (1-${n})`,
+      booksHint: 'Elige los libros que quieras (ninguno = todos) y luego sus perakim.',
       chaptersInvalid: ({ book, part, n }) => `${book}: "${part}" no es un perek válido — usa números del 1 al ${n}, como "1-20, 24-28".`,
     },
     suggest: {
@@ -501,6 +503,7 @@ export const translations = {
       chaptersTitle: 'פרקים (לא חובה)',
       chaptersHint: 'השאירו ריק לכל הספר, או בחרו פרקים כמו 1-20, 24-28',
       chaptersAll: ({ n }) => `הכל (1-${n})`,
+      booksHint: 'בחרו את הספרים (בלי בחירה = כולם), ואז את הפרקים',
       chaptersInvalid: ({ book, part, n }) => `${book}: "${part}" אינו פרק תקין — השתמשו במספרים מ-1 עד ${n}, כמו 1-20, 24-28`,
     },
     suggest: {

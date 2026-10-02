@@ -67,10 +67,13 @@ export const getQuizzes = cached(() =>
 );
 
 // `howMany` random questions drawn from the given quizzes, picked by the database.
-// `chapters` ({ shemot: [1, 2, 24], … }) optionally limits quizzes to those perakim.
-export function getRandomQuestions(quizKeys, howMany, chapters) {
+// `chapters` ({ shemot: [1, 2, 24], … }) optionally limits single-book quizzes
+// to those perakim; `books` ({ neviimAjaronim: { yona: [], yeshayahu: [1, 2] } })
+// limits multi-book quizzes to those books ([] = whole book) and perakim.
+export function getRandomQuestions(quizKeys, howMany, chapters, books) {
   const body = { quiz_keys: quizKeys, how_many: howMany };
   if (chapters && Object.keys(chapters).length) body.chapters = chapters;
+  if (books && Object.keys(books).length) body.books = books;
   return request('rpc/random_quiz_questions', { method: 'POST', body: JSON.stringify(body) });
 }
 

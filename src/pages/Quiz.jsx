@@ -7,7 +7,7 @@ import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import { getQuizAttempts } from '../lib/supabaseClient';
 import { getQuizzes, pick } from '../lib/content';
-import { QUIZ_CHAPTERS, parseChapters } from '../data/books';
+import { QUIZ_CHAPTERS, QUIZ_BOOKS, getBookById, bookLabel, parseChapters } from '../data/books';
 
 // The "All Books" card draws from every quiz, so it has no row of its own.
 const ALL_BOOKS = {
@@ -28,7 +28,8 @@ export default function Quiz() {
   const [selectedBooks, setSelectedBooks] = useState([]);
   const [customQuiz, setCustomQuiz] = useState(null);
   const [questionCount, setQuestionCount] = useState(5);
-  const [chapterText, setChapterText] = useState({}); // quiz key → "1-20, 24-28"
+  const [chapterText, setChapterText] = useState({}); // quiz key or "quizKey/bookId" → "1-20, 24-28"
+  const [pickedBooks, setPickedBooks] = useState({}); // multi-book quiz key → [book ids] (none = all)
   const [chapterError, setChapterError] = useState(null);
   const [attempts, setAttempts] = useState([]);
   const [quizzes, setQuizzes] = useState(null); // quiz cards from Supabase
@@ -80,6 +81,7 @@ export default function Quiz() {
           setCustomQuiz(null);
           setSelectedBooks([]);
           setChapterText({});
+          setPickedBooks({});
           setChapterError(null);
         }}
       />
@@ -88,21 +90,38 @@ export default function Quiz() {
 
   // 👉 BUILDER MODE
   if (mode === 'builder') {
-    // Selected books that can be narrowed down to perakim.
-    const chapterBooks = (quizzes || []).filter((q) => selectedBooks.includes(q.key) && QUIZ_CHAPTERS[q.key]);
+    // Selected quizzes that can be narrowed down: single-book ones by perakim,
+    // multi-book ones by books and then perakim.
+    const selectedQuizzes = (quizzes || []).filter((q) => selectedBooks.includes(q.key));
+    const chapterQuizzes = selectedQuizzes.filter((q) => QUIZ_CHAPTERS[q.key]);
+    const multiBookQuizzes = selectedQuizzes.filter((q) => QUIZ_BOOKS[q.key]);
 
     const startCustomQuiz = () => {
       if (selectedBooks.length === 0) return;
-      const chapters = {};
-      for (const q of chapterBooks) {
-        const text = chapterText[q.key]?.trim();
-        if (!text) continue;
+      // Parses one perakim box; throws the message to show when it's invalid.
+      const parse = (field, label, max) => {
         try {
-          chapters[q.key] = parseChapters(text, QUIZ_CHAPTERS[q.key]);
+          return parseChapters(chapterText[field]?.trim() ?? '', max);
         } catch (e) {
-          setChapterError(t('quiz.chaptersInvalid', { book: pick(q, 'label', language), part: e.message, n: QUIZ_CHAPTERS[q.key] }));
-          return;
+          throw new Error(t('quiz.chaptersInvalid', { book: label, part: e.message, n: max }));
         }
+      };
+      const chapters = {};
+      const books = {};
+      try {
+        for (const q of chapterQuizzes) {
+          const list = parse(q.key, pick(q, 'label', language), QUIZ_CHAPTERS[q.key]);
+          if (list.length) chapters[q.key] = list;
+        }
+        for (const q of multiBookQuizzes) {
+          const picked = pickedBooks[q.key] ?? [];
+          if (!picked.length) continue;
+          books[q.key] = Object.fromEntries(picked.map((b) =>
+            [b, parse(`${q.key}/${b}`, bookLabel(b, language), getBookById(b).chapters)]));
+        }
+      } catch (e) {
+        setChapterError(e.message);
+        return;
       }
       setChapterError(null);
       setCustomQuiz({
@@ -110,9 +129,43 @@ export default function Quiz() {
         quizKeys: selectedBooks,
         count: questionCount,
         chapters,
+        books,
       });
       setMode('quiz');
     };
+
+    const togglePickedBook = (quizKey, bookId) => {
+      setPickedBooks((prev) => {
+        const list = prev[quizKey] ?? [];
+        return { ...prev, [quizKey]: list.includes(bookId) ? list.filter((b) => b !== bookId) : [...list, bookId] };
+      });
+      setChapterError(null);
+    };
+
+    const chapterRow = (field, label, max) => (
+      <label key={field} style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <span style={{ flex: '0 0 130px' }}>{label}</span>
+        <input
+          value={chapterText[field] ?? ''}
+          placeholder={t('quiz.chaptersAll', { n: max })}
+          onChange={(e) => {
+            setChapterText((prev) => ({ ...prev, [field]: e.target.value }));
+            setChapterError(null);
+          }}
+          dir="ltr"
+          style={{
+            flex: 1,
+            minWidth: 0,
+            padding: '0.45rem 0.75rem',
+            borderRadius: '8px',
+            border: '1px solid var(--border)',
+            background: 'var(--bg-elevated)',
+            color: 'var(--text-primary)',
+            font: 'inherit',
+          }}
+        />
+      </label>
+    );
 
     return (
       <div className={styles.page}>
@@ -175,38 +228,56 @@ export default function Quiz() {
           })}
         </div>
 
-        {chapterBooks.length > 0 && (
+        {(chapterQuizzes.length > 0 || multiBookQuizzes.length > 0) && (
           <div style={{ maxWidth: '520px', margin: '30px auto 0' }}>
             <p style={{ textAlign: 'center', marginBottom: '4px' }}>{t('quiz.chaptersTitle')}</p>
             <p style={{ textAlign: 'center', marginTop: 0, fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
               {t('quiz.chaptersHint')}
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-              {chapterBooks.map((q) => (
-                <label key={q.key} style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <span style={{ flex: '0 0 130px' }}>{pick(q, 'label', language)}</span>
-                  <input
-                    value={chapterText[q.key] ?? ''}
-                    placeholder={t('quiz.chaptersAll', { n: QUIZ_CHAPTERS[q.key] })}
-                    onChange={(e) => {
-                      setChapterText((prev) => ({ ...prev, [q.key]: e.target.value }));
-                      setChapterError(null);
-                    }}
-                    dir="ltr"
-                    style={{
-                      flex: 1,
-                      minWidth: 0,
-                      padding: '0.45rem 0.75rem',
-                      borderRadius: '8px',
-                      border: '1px solid var(--border)',
-                      background: 'var(--bg-elevated)',
-                      color: 'var(--text-primary)',
-                      font: 'inherit',
-                    }}
-                  />
-                </label>
-              ))}
+              {chapterQuizzes.map((q) => chapterRow(q.key, pick(q, 'label', language), QUIZ_CHAPTERS[q.key]))}
             </div>
+
+            {multiBookQuizzes.map((q) => {
+              const picked = pickedBooks[q.key] ?? [];
+              return (
+                <div key={q.key} style={{ marginTop: '20px' }}>
+                  <p style={{ margin: '0 0 4px', fontWeight: 'bold' }}>{pick(q, 'label', language)}</p>
+                  <p style={{ margin: '0 0 8px', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+                    {t('quiz.booksHint')}
+                  </p>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '10px' }}>
+                    {QUIZ_BOOKS[q.key].map((b) => {
+                      const on = picked.includes(b);
+                      return (
+                        <button
+                          key={b}
+                          type="button"
+                          aria-pressed={on}
+                          onClick={() => togglePickedBook(q.key, b)}
+                          style={{
+                            padding: '0.3rem 0.8rem',
+                            borderRadius: '20px',
+                            border: 'none',
+                            cursor: 'pointer',
+                            background: on ? 'var(--accent2)' : 'var(--bg-hover)',
+                            color: on ? 'var(--accent2-text)' : 'var(--text-primary)',
+                            fontWeight: on ? 'bold' : 'normal',
+                          }}
+                        >
+                          {bookLabel(b, language)}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    {QUIZ_BOOKS[q.key].filter((b) => picked.includes(b)).map((b) =>
+                      chapterRow(`${q.key}/${b}`, bookLabel(b, language), getBookById(b).chapters))}
+                  </div>
+                </div>
+              );
+            })}
+
             {chapterError && (
               <p style={{ color: 'var(--danger)', textAlign: 'center', fontSize: '0.9rem' }}>{chapterError}</p>
             )}

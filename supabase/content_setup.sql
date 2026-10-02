@@ -77,6 +77,7 @@ create table if not exists public.quiz_questions (
   options_es     text[],
   options_he     text[],
   correct_index  smallint not null,
+  book           text,                           -- multi-book quizzes only: the book's id in src/data/books.js
   chapter        smallint check (chapter >= 1),  -- the perek the question is about (null = not set)
   published      boolean not null default true,
   created_at     timestamptz default now(),
@@ -94,6 +95,8 @@ create index if not exists quiz_questions_quiz_idx
 -- Added after the table was first created, so older databases get it too.
 alter table public.quiz_questions
   add column if not exists chapter smallint check (chapter >= 1);
+alter table public.quiz_questions
+  add column if not exists book text;
 
 create index if not exists quiz_questions_chapter_idx
   on public.quiz_questions (quiz_key, chapter);
@@ -102,11 +105,16 @@ create index if not exists quiz_questions_chapter_idx
 -- browser only downloads the handful it will show. Called by the site as
 -- POST /rest/v1/rpc/random_quiz_questions.
 --
--- `chapters` optionally limits some quizzes to certain perakim:
---   {"shemot": [1,2,3,24,25]}  → Shemot questions only from those chapters;
--- quizzes not named in it use all their questions.
+-- `chapters` optionally limits single-book quizzes to certain perakim:
+--   {"shemot": [1,2,3,24,25]}  → Shemot questions only from those chapters.
+-- `books` does the same for multi-book quizzes, per book ([] = whole book):
+--   {"neviimAjaronim": {"yona": [], "yeshayahu": [1,2]}}  → only Yona, and
+--   Yeshayahu 1–2.
+-- Quizzes not named in either use all their questions.
 drop function if exists public.random_quiz_questions(text[], integer);
-create or replace function public.random_quiz_questions(quiz_keys text[], how_many integer, chapters jsonb default null)
+drop function if exists public.random_quiz_questions(text[], integer, jsonb);
+create or replace function public.random_quiz_questions(
+  quiz_keys text[], how_many integer, chapters jsonb default null, books jsonb default null)
 returns setof public.quiz_questions
 language sql
 volatile
@@ -117,6 +125,11 @@ as $$
     and (chapters is null
          or not (chapters ? q.quiz_key)
          or q.chapter in (select jsonb_array_elements_text(chapters -> q.quiz_key)::smallint))
+    and (books is null
+         or not (books ? q.quiz_key)
+         or (books -> q.quiz_key ? q.book
+             and (jsonb_array_length(books -> q.quiz_key -> q.book) = 0
+                  or q.chapter in (select jsonb_array_elements_text(books -> q.quiz_key -> q.book)::smallint))))
   order by random()
   limit least(greatest(how_many, 1), 100);
 $$;
@@ -247,7 +260,7 @@ grant select on public.quizzes, public.quiz_questions, public.note_topics,
 grant insert, update, delete on public.quizzes, public.quiz_questions, public.note_topics,
                                 public.note_entries, public.midrashim, public.places
   to authenticated;
-grant execute on function public.random_quiz_questions(text[], integer, jsonb) to anon, authenticated;
+grant execute on function public.random_quiz_questions(text[], integer, jsonb, jsonb) to anon, authenticated;
 grant execute on function public.is_admin() to anon, authenticated;
 
 -- ============================================================

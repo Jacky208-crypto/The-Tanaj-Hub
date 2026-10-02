@@ -31,7 +31,7 @@ function shuffleOptions(q) {
   };
 }
 
-// quiz = { label, quizKeys: ['bereshit', …], count, chapters?: { shemot: [1, 2, …] } }
+// quiz = { label, quizKeys: ['bereshit', …], count, chapters?: { shemot: [1, 2, …] }, books?: { neviimAjaronim: { yona: [] } } }
 export default function QuizPlayer({ quiz, onBack }) {
   const { user } = useAuth();
   const { language: uiLanguage, t } = useLanguage();
@@ -50,7 +50,7 @@ export default function QuizPlayer({ quiz, onBack }) {
   // Fresh random questions for every run (first play and each "play again").
   useEffect(() => {
     let active = true;
-    getRandomQuestions(quiz.quizKeys, quiz.count || 5, quiz.chapters)
+    getRandomQuestions(quiz.quizKeys, quiz.count || 5, quiz.chapters, quiz.books)
       .then((rows) => { if (active) setQuestions(rows.map(shuffleOptions)); })
       .catch((e) => { if (active) setLoadError(e.message); });
     return () => { active = false; };

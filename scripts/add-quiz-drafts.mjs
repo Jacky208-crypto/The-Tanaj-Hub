@@ -11,8 +11,8 @@
 //     "question_en": "...", "question_es": "...", "question_he": "...",
 //     "options_en": [4 answers], "options_es": [...], "options_he": [...],
 //     "correct_index": 0,
-//     "chapter": 25,             ← the perek; required for single-book quizzes
-//                                  (QUIZ_CHAPTERS in src/data/books.js), left out otherwise
+//     "chapter": 25,             ← the perek; required
+//     "book": "yona",            ← multi-book quizzes only (QUIZ_BOOKS in src/data/books.js)
 //     "submission_id": "..." }   ← optional: the visitor suggestion this came from
 //                                  (npm run suggestions). The suggestion is marked
 //                                  accepted and linked, so publishing the draft
@@ -23,7 +23,7 @@
 
 import { readFileSync } from 'node:fs';
 import { adminClient } from './lib/supabaseAdmin.mjs';
-import { QUIZ_CHAPTERS } from '../src/data/books.js';
+import { QUIZ_CHAPTERS, QUIZ_BOOKS, getBookById } from '../src/data/books.js';
 
 const args = process.argv.slice(2);
 const dryRun = args.includes('--dry-run');
@@ -57,7 +57,9 @@ drafts.forEach((d, i) => {
   if (!Number.isInteger(d.correct_index) || d.correct_index < 0 || d.correct_index > 3) {
     problems.push(`${label}: correct_index must be 0–3`);
   }
-  const maxChapter = QUIZ_CHAPTERS[d.quiz_key];
+  const books = QUIZ_BOOKS[d.quiz_key];
+  if (books && !books.includes(d.book)) problems.push(`${label}: book must be one of ${books.join(', ')}`);
+  const maxChapter = books ? getBookById(d.book)?.chapters : QUIZ_CHAPTERS[d.quiz_key];
   if (maxChapter && !(Number.isInteger(d.chapter) && d.chapter >= 1 && d.chapter <= maxChapter)) {
     problems.push(`${label}: chapter must be the perek, 1–${maxChapter}`);
   }
@@ -71,6 +73,7 @@ drafts.forEach((d, i) => {
     question_en: d.question_en.trim(), question_es: d.question_es.trim(), question_he: d.question_he.trim(),
     options_en: d.options_en, options_es: d.options_es, options_he: d.options_he,
     correct_index: d.correct_index,
+    book: books ? d.book : null,
     chapter: maxChapter ? d.chapter : null,
     published: false,
   });

@@ -4,6 +4,7 @@ import styles from '../../pages/Admin.module.css';
 import { Loading } from './AdminKit';
 import { useAdminRows } from './adminHelpers';
 import { QuestionEditor } from './QuestionsAdmin';
+import { QUIZ_BOOKS, getBookById, bookLabel } from '../../data/books';
 
 // Quiz questions suggested by visitors (supabase/submissions_setup.sql).
 // Accepting one opens the question editor pre-filled with it; the database
@@ -11,6 +12,16 @@ import { QuestionEditor } from './QuestionsAdmin';
 
 const LANG_CODE = { english: 'en', spanish: 'es', hebrew: 'he' };
 const LANG_TAG = { english: 'EN', spanish: 'ES', hebrew: 'HE' };
+
+// For multi-book quizzes, the book named in the visitor's source
+// ("Yona 2:1", "Jonah 2", "יונה ב") — '' when none is recognised.
+function bookFromSource(source, quizKey) {
+  const text = source?.toLowerCase() ?? '';
+  const names = (QUIZ_BOOKS[quizKey] ?? []).flatMap((b) =>
+    [getBookById(b).label, getBookById(b).sefaria, bookLabel(b, 'hebrew')].map((name) => [name.toLowerCase(), b]));
+  // Longest names first, so "II Chronicles" isn't read as "I Chronicles".
+  return names.sort((a, b) => b[0].length - a[0].length).find(([name]) => text.includes(name))?.[1] ?? '';
+}
 
 // The perek in a visitor's source: "Bereshit 25:27" → 25, "Shemot 3" → 3,
 // "בראשית כה, כז" → 25. '' when there's none to find (the admin fills it in).
@@ -107,6 +118,7 @@ export default function SuggestionsAdmin({ notify }) {
             [`question_${code}`]: open.question,
             [`options_${code}`]: open.options,
             correct_index: open.correct_index,
+            book: bookFromSource(open.source, open.quiz_key),
             chapter: chapterFromSource(open.source),
             published: true,
           }}

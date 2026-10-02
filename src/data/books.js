@@ -60,14 +60,32 @@ export function getBookById(id) {
 }
 
 // Quizzes that cover a single book → how many perakim it has. Questions in
-// these quizzes carry a `chapter`, so players can pick perakim. Quizzes that
-// span several books (Neviim Ajaronim, Ketuvim Poetry, Divre Hayamim) aren't
-// listed: a chapter number alone wouldn't say which book it's in.
+// these quizzes carry a `chapter`, so players can pick perakim.
 export const QUIZ_CHAPTERS = {
   bereshit: 50, shemot: 40, vaikra: 27, bamidbar: 36, devarim: 34,
   yehoshua: 24, shoftim: 21, shmuelAlef: 31, shmuelBet: 24, melajimAlef: 22, melajimBet: 25,
   iyov: 42, rut: 4, ester: 10, daniel: 12, ezra: 10, nehemia: 13,
 };
+
+// Quizzes that span several books → their book ids (above). Questions in
+// these carry a `book` and a `chapter`, so players pick books, then perakim.
+export const QUIZ_BOOKS = {
+  neviimAjaronim: neviimAjaranimBooks.map((b) => b.id),
+  ketuvimPoetry: ['tehilim', 'mishle', 'shir-hashirim', 'kohelet', 'eja'],
+  divreHayamim: ['divre-hayamim-a', 'divre-hayamim-b'],
+};
+
+// Hebrew names for the books offered in QUIZ_BOOKS.
+const HEBREW_NAMES = {
+  yeshayahu: 'ישעיהו', yirmiyahu: 'ירמיהו', yejezkel: 'יחזקאל', hoshea: 'הושע', yoel: 'יואל',
+  amosh: 'עמוס', ovadia: 'עובדיה', yona: 'יונה', mija: 'מיכה', nahum: 'נחום', habakuk: 'חבקוק',
+  tzefania: 'צפניה', jagai: 'חגי', zejaria: 'זכריה', malaji: 'מלאכי',
+  tehilim: 'תהילים', mishle: 'משלי', 'shir-hashirim': 'שיר השירים', kohelet: 'קהלת', eja: 'איכה',
+  'divre-hayamim-a': 'דברי הימים א', 'divre-hayamim-b': 'דברי הימים ב',
+};
+export function bookLabel(id, language) {
+  return (language === 'hebrew' && HEBREW_NAMES[id]) || getBookById(id)?.label || id;
+}
 
 // "1-20, 24-28" → [1, …, 20, 24, …, 28] (sorted, no repeats). Throws on
 // anything that isn't a chapter or range between 1 and `max`.
