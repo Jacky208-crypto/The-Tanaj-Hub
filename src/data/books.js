@@ -58,3 +58,27 @@ export const allBooks = [...torahBooks, ...neviimRishonimBooks, ...neviimAjarani
 export function getBookById(id) {
   return allBooks.find(b => b.id === id);
 }
+
+// Quizzes that cover a single book → how many perakim it has. Questions in
+// these quizzes carry a `chapter`, so players can pick perakim. Quizzes that
+// span several books (Neviim Ajaronim, Ketuvim Poetry, Divre Hayamim) aren't
+// listed: a chapter number alone wouldn't say which book it's in.
+export const QUIZ_CHAPTERS = {
+  bereshit: 50, shemot: 40, vaikra: 27, bamidbar: 36, devarim: 34,
+  yehoshua: 24, shoftim: 21, shmuelAlef: 31, shmuelBet: 24, melajimAlef: 22, melajimBet: 25,
+  iyov: 42, rut: 4, ester: 10, daniel: 12, ezra: 10, nehemia: 13,
+};
+
+// "1-20, 24-28" → [1, …, 20, 24, …, 28] (sorted, no repeats). Throws on
+// anything that isn't a chapter or range between 1 and `max`.
+export function parseChapters(text, max) {
+  const out = new Set();
+  for (const part of String(text).split(/[,;]/).map((s) => s.trim()).filter(Boolean)) {
+    const m = part.match(/^(\d+)\s*(?:[-–]\s*(\d+))?$/);
+    const a = m && Number(m[1]);
+    const b = m && Number(m[2] ?? m[1]);
+    if (!m || a < 1 || b > max || a > b) throw new Error(part);
+    for (let c = a; c <= b; c++) out.add(c);
+  }
+  return [...out].sort((x, y) => x - y);
+}

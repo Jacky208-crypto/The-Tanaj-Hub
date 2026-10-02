@@ -77,6 +77,7 @@ create table if not exists public.quiz_questions (
   options_es     text[],
   options_he     text[],
   correct_index  smallint not null,
+  chapter        smallint check (chapter >= 1),  -- the perek the question is about (null = not set)
   published      boolean not null default true,
   created_at     timestamptz default now(),
   updated_at     timestamptz default now(),
@@ -90,17 +91,32 @@ create table if not exists public.quiz_questions (
 create index if not exists quiz_questions_quiz_idx
   on public.quiz_questions (quiz_key, sort_order);
 
+-- Added after the table was first created, so older databases get it too.
+alter table public.quiz_questions
+  add column if not exists chapter smallint check (chapter >= 1);
+
+create index if not exists quiz_questions_chapter_idx
+  on public.quiz_questions (quiz_key, chapter);
+
 -- Random questions from one or more quizzes, picked in the database so the
 -- browser only downloads the handful it will show. Called by the site as
 -- POST /rest/v1/rpc/random_quiz_questions.
-create or replace function public.random_quiz_questions(quiz_keys text[], how_many integer)
+--
+-- `chapters` optionally limits some quizzes to certain perakim:
+--   {"shemot": [1,2,3,24,25]}  → Shemot questions only from those chapters;
+-- quizzes not named in it use all their questions.
+drop function if exists public.random_quiz_questions(text[], integer);
+create or replace function public.random_quiz_questions(quiz_keys text[], how_many integer, chapters jsonb default null)
 returns setof public.quiz_questions
 language sql
 volatile
 as $$
   select *
-  from public.quiz_questions
-  where quiz_key = any (quiz_keys) and published
+  from public.quiz_questions q
+  where q.quiz_key = any (quiz_keys) and q.published
+    and (chapters is null
+         or not (chapters ? q.quiz_key)
+         or q.chapter in (select jsonb_array_elements_text(chapters -> q.quiz_key)::smallint))
   order by random()
   limit least(greatest(how_many, 1), 100);
 $$;
@@ -231,7 +247,7 @@ grant select on public.quizzes, public.quiz_questions, public.note_topics,
 grant insert, update, delete on public.quizzes, public.quiz_questions, public.note_topics,
                                 public.note_entries, public.midrashim, public.places
   to authenticated;
-grant execute on function public.random_quiz_questions(text[], integer) to anon, authenticated;
+grant execute on function public.random_quiz_questions(text[], integer, jsonb) to anon, authenticated;
 grant execute on function public.is_admin() to anon, authenticated;
 
 -- ============================================================

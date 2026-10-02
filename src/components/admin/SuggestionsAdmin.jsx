@@ -12,6 +12,16 @@ import { QuestionEditor } from './QuestionsAdmin';
 const LANG_CODE = { english: 'en', spanish: 'es', hebrew: 'he' };
 const LANG_TAG = { english: 'EN', spanish: 'ES', hebrew: 'HE' };
 
+// The perek in a visitor's source: "Bereshit 25:27" → 25, "Shemot 3" → 3,
+// "בראשית כה, כז" → 25. '' when there's none to find (the admin fills it in).
+const GEMATRIA = { א: 1, ב: 2, ג: 3, ד: 4, ה: 5, ו: 6, ז: 7, ח: 8, ט: 9, י: 10, כ: 20, ך: 20, ל: 30, מ: 40, ם: 40, נ: 50, ן: 50, ס: 60, ע: 70, פ: 80, ף: 80, צ: 90, ץ: 90, ק: 100 };
+function chapterFromSource(source) {
+  const m = source?.match(/(\d+)\s*[:.,]\s*\d+/) || source?.match(/(\d+)\s*$/);
+  if (m) return Number(m[1]);
+  const he = source?.match(/\s([א-ת]{1,3})[׳'"״]?\s*[,:]/) || source?.match(/\s([א-ת]{1,3})[׳'"״]?\s*$/);
+  return he ? [...he[1]].reduce((sum, ch) => sum + (GEMATRIA[ch] ?? 0), 0) || '' : '';
+}
+
 function Suggestion({ s, quizLabel }) {
   return (
     <div className={styles.suggestion} dir={s.language === 'hebrew' ? 'rtl' : undefined}>
@@ -97,6 +107,7 @@ export default function SuggestionsAdmin({ notify }) {
             [`question_${code}`]: open.question,
             [`options_${code}`]: open.options,
             correct_index: open.correct_index,
+            chapter: chapterFromSource(open.source),
             published: true,
           }}
           quizzes={quizzes}

@@ -7,6 +7,7 @@ import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import { getQuizAttempts } from '../lib/supabaseClient';
 import { getQuizzes, pick } from '../lib/content';
+import { QUIZ_CHAPTERS, parseChapters } from '../data/books';
 
 // The "All Books" card draws from every quiz, so it has no row of its own.
 const ALL_BOOKS = {
@@ -27,6 +28,8 @@ export default function Quiz() {
   const [selectedBooks, setSelectedBooks] = useState([]);
   const [customQuiz, setCustomQuiz] = useState(null);
   const [questionCount, setQuestionCount] = useState(5);
+  const [chapterText, setChapterText] = useState({}); // quiz key → "1-20, 24-28"
+  const [chapterError, setChapterError] = useState(null);
   const [attempts, setAttempts] = useState([]);
   const [quizzes, setQuizzes] = useState(null); // quiz cards from Supabase
   const [quizzesError, setQuizzesError] = useState(null);
@@ -76,6 +79,8 @@ export default function Quiz() {
           setMode('menu');
           setCustomQuiz(null);
           setSelectedBooks([]);
+          setChapterText({});
+          setChapterError(null);
         }}
       />
     );
@@ -83,6 +88,32 @@ export default function Quiz() {
 
   // 👉 BUILDER MODE
   if (mode === 'builder') {
+    // Selected books that can be narrowed down to perakim.
+    const chapterBooks = (quizzes || []).filter((q) => selectedBooks.includes(q.key) && QUIZ_CHAPTERS[q.key]);
+
+    const startCustomQuiz = () => {
+      if (selectedBooks.length === 0) return;
+      const chapters = {};
+      for (const q of chapterBooks) {
+        const text = chapterText[q.key]?.trim();
+        if (!text) continue;
+        try {
+          chapters[q.key] = parseChapters(text, QUIZ_CHAPTERS[q.key]);
+        } catch (e) {
+          setChapterError(t('quiz.chaptersInvalid', { book: pick(q, 'label', language), part: e.message, n: QUIZ_CHAPTERS[q.key] }));
+          return;
+        }
+      }
+      setChapterError(null);
+      setCustomQuiz({
+        label: 'Custom Quiz',
+        quizKeys: selectedBooks,
+        count: questionCount,
+        chapters,
+      });
+      setMode('quiz');
+    };
+
     return (
       <div className={styles.page}>
         <h1 className={styles.title}>{t('quiz.createQuizTitle')}</h1>
@@ -144,6 +175,44 @@ export default function Quiz() {
           })}
         </div>
 
+        {chapterBooks.length > 0 && (
+          <div style={{ maxWidth: '520px', margin: '30px auto 0' }}>
+            <p style={{ textAlign: 'center', marginBottom: '4px' }}>{t('quiz.chaptersTitle')}</p>
+            <p style={{ textAlign: 'center', marginTop: 0, fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+              {t('quiz.chaptersHint')}
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              {chapterBooks.map((q) => (
+                <label key={q.key} style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <span style={{ flex: '0 0 130px' }}>{pick(q, 'label', language)}</span>
+                  <input
+                    value={chapterText[q.key] ?? ''}
+                    placeholder={t('quiz.chaptersAll', { n: QUIZ_CHAPTERS[q.key] })}
+                    onChange={(e) => {
+                      setChapterText((prev) => ({ ...prev, [q.key]: e.target.value }));
+                      setChapterError(null);
+                    }}
+                    dir="ltr"
+                    style={{
+                      flex: 1,
+                      minWidth: 0,
+                      padding: '0.45rem 0.75rem',
+                      borderRadius: '8px',
+                      border: '1px solid var(--border)',
+                      background: 'var(--bg-elevated)',
+                      color: 'var(--text-primary)',
+                      font: 'inherit',
+                    }}
+                  />
+                </label>
+              ))}
+            </div>
+            {chapterError && (
+              <p style={{ color: 'var(--danger)', textAlign: 'center', fontSize: '0.9rem' }}>{chapterError}</p>
+            )}
+          </div>
+        )}
+
         <div style={{ textAlign: 'center', marginTop: '30px' }}>
           <p style={{ marginBottom: '10px' }}>{t('quiz.numberOfQuestions')}</p>
           <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
@@ -177,15 +246,7 @@ export default function Quiz() {
               padding: '0.8rem 2rem',
               fontSize: '1rem',
             }}
-            onClick={() => {
-              if (selectedBooks.length === 0) return;
-              setCustomQuiz({
-                label: 'Custom Quiz',
-                quizKeys: selectedBooks,
-                count: questionCount
-              });
-              setMode('quiz');
-            }}
+            onClick={startCustomQuiz}
           >
             {t('quiz.startQuiz')}
           </button>

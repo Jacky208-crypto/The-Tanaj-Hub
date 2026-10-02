@@ -3,6 +3,7 @@ import { insertRow, updateRow, updateWhere, deleteRow } from '../../lib/adminApi
 import styles from '../../pages/Admin.module.css';
 import { Loading, Field, LangInputs, TextInput, PublishedToggle, EditorShell } from './AdminKit';
 import { LANGS, useAdminRows, useEditor, orNull } from './adminHelpers';
+import { QUIZ_CHAPTERS } from '../../data/books';
 
 const ANSWERS = 4;
 
@@ -19,7 +20,20 @@ function toForm(row, quizKey) {
       he: row?.options_he?.[i] ?? '',
     })),
     correct_index: row?.correct_index ?? null,
+    chapter: row?.chapter ?? '',
   };
+}
+
+// The perek, required for quizzes that cover a single book (QUIZ_CHAPTERS);
+// other quizzes don't store one.
+function toChapter(form) {
+  const max = QUIZ_CHAPTERS[form.quiz_key];
+  if (!max) return null;
+  const n = Number(form.chapter);
+  if (form.chapter === '' || !Number.isInteger(n) || n < 1 || n > max) {
+    throw new Error(`Enter the perek this question is about (1–${max}).`);
+  }
+  return n;
 }
 
 function toRow(form) {
@@ -44,6 +58,7 @@ function toRow(form) {
     options_es: options.es,
     options_he: options.he,
     correct_index: form.correct_index,
+    chapter: toChapter(form),
     published: form.published !== false,
   };
 }
@@ -75,6 +90,19 @@ export function QuestionEditor({ row, prefill, quizzes, quizKey, nextOrder, onDo
           {quizzes.map((q) => <option key={q.key} value={q.key}>{q.label_en}</option>)}
         </select>
       </Field>
+
+      {QUIZ_CHAPTERS[form.quiz_key] && (
+        <Field label="Perek" hint={`The chapter the question is about (1–${QUIZ_CHAPTERS[form.quiz_key]}). Players can pick perakim when they build a quiz.`}>
+          <TextInput
+            type="number"
+            min={1}
+            max={QUIZ_CHAPTERS[form.quiz_key]}
+            value={form.chapter}
+            onChange={(v) => set('chapter', v)}
+            style={{ maxWidth: '8rem' }}
+          />
+        </Field>
+      )}
 
       <LangInputs label="Question" form={form} set={set} field="question" multiline rows={2} />
 
@@ -203,8 +231,9 @@ export default function QuestionsAdmin({ notify }) {
                 <button className={styles.item} onClick={() => setEditing(r)}>
                   <span className={styles.itemMain}>
                     <span className={styles.itemTitle}>{r.question_en}</span>
-                    <span className={styles.itemMeta}>{showingDrafts && `${quizLabel(r.quiz_key)} · `}✓ {r.options_en[r.correct_index]}</span>
+                    <span className={styles.itemMeta}>{showingDrafts && `${quizLabel(r.quiz_key)} · `}{r.chapter && `Perek ${r.chapter} · `}✓ {r.options_en[r.correct_index]}</span>
                   </span>
+                  {!r.chapter && QUIZ_CHAPTERS[r.quiz_key] && <span className={styles.badge}>no perek</span>}
                   {!r.question_es && <span className={styles.badge}>no ES</span>}
                   {!r.question_he && <span className={styles.badge}>no HE</span>}
                   {!r.published && <span className={`${styles.badge} ${styles.badgeDraft}`}>draft</span>}

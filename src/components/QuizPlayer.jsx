@@ -31,7 +31,7 @@ function shuffleOptions(q) {
   };
 }
 
-// quiz = { label, quizKeys: ['bereshit', …], count }
+// quiz = { label, quizKeys: ['bereshit', …], count, chapters?: { shemot: [1, 2, …] } }
 export default function QuizPlayer({ quiz, onBack }) {
   const { user } = useAuth();
   const { language: uiLanguage, t } = useLanguage();
@@ -50,7 +50,7 @@ export default function QuizPlayer({ quiz, onBack }) {
   // Fresh random questions for every run (first play and each "play again").
   useEffect(() => {
     let active = true;
-    getRandomQuestions(quiz.quizKeys, quiz.count || 5)
+    getRandomQuestions(quiz.quizKeys, quiz.count || 5, quiz.chapters)
       .then((rows) => { if (active) setQuestions(rows.map(shuffleOptions)); })
       .catch((e) => { if (active) setLoadError(e.message); });
     return () => { active = false; };
@@ -139,6 +139,15 @@ export default function QuizPlayer({ quiz, onBack }) {
 
         {questions === null ? (
           <ContentStatus error={loadError} onRetry={loadNewQuestions} />
+        ) : questions.length === 0 ? (
+          <>
+            <p className={styles.question}>{t('quizPlayer.noQuestions')}</p>
+            {onBack && (
+              <button className={styles.backLink} onClick={onBack}>
+                {t('quizPlayer.backToQuizzes')}
+              </button>
+            )}
+          </>
         ) : finished ? (
           <>
             <p className={styles.question}>{t('quizPlayer.finished')}</p>

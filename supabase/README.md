@@ -49,6 +49,10 @@ history of every edit.
 - `quiz_questions.correct_index` is the position of the right answer
   (0 = first) in *all* three `options_*` lists, so keep the options in the
   same order in each language.
+- `quiz_questions.chapter` is the perek a question is about. It's required
+  for quizzes that cover one book (`QUIZ_CHAPTERS` in `src/data/books.js`) —
+  players can pick perakim in "Create Custom Quiz" — and left empty for
+  multi-book quizzes (Neviim Ajaronim, Ketuvim Poetry, Divre Hayamim).
 - `published = false` hides a quiz, question, note or place from visitors
   (admins still see it). Midrashim use `status` (`draft` / `reviewed`) instead;
   run `npm run validate:midrash` before switching one to `reviewed`.

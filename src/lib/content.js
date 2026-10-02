@@ -67,11 +67,11 @@ export const getQuizzes = cached(() =>
 );
 
 // `howMany` random questions drawn from the given quizzes, picked by the database.
-export function getRandomQuestions(quizKeys, howMany) {
-  return request('rpc/random_quiz_questions', {
-    method: 'POST',
-    body: JSON.stringify({ quiz_keys: quizKeys, how_many: howMany }),
-  });
+// `chapters` ({ shemot: [1, 2, 24], … }) optionally limits quizzes to those perakim.
+export function getRandomQuestions(quizKeys, howMany, chapters) {
+  const body = { quiz_keys: quizKeys, how_many: howMany };
+  if (chapters && Object.keys(chapters).length) body.chapters = chapters;
+  return request('rpc/random_quiz_questions', { method: 'POST', body: JSON.stringify(body) });
 }
 
 // ---- Study notes ----

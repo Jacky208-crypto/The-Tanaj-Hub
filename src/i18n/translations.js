@@ -59,6 +59,10 @@ export const translations = {
       selected: ({ n }) => `Selected: ${n} book${n === 1 ? '' : 's'}`,
       numberOfQuestions: 'Number of questions:',
       startQuiz: 'Start Quiz',
+      chaptersTitle: 'Perakim (optional)',
+      chaptersHint: 'Leave empty for the whole book, or pick perakim like "1-20, 24-28".',
+      chaptersAll: ({ n }) => `All (1-${n})`,
+      chaptersInvalid: ({ book, part, n }) => `${book}: "${part}" isn't a valid perek — use numbers from 1 to ${n}, like "1-20, 24-28".`,
     },
     suggest: {
       button: 'Suggest a question',
@@ -87,6 +91,7 @@ export const translations = {
     },
     quizPlayer: {
       finished: 'Quiz Finished! 🎉',
+      noQuestions: 'There are no questions for those perakim yet. Try a wider range.',
       finalScore: ({ score, total }) => `Final Score: ${score} / ${total}`,
       couldNotSave: 'Could not save your score.',
       logInToSave: 'Log in to save your scores and track progress.',
@@ -97,7 +102,7 @@ export const translations = {
     },
     summaries: {
       title: 'Helpful Notes',
-      comingSoon: '📖 Notes coming soon!',
+      comingSoon: 'Notes coming soon!',
     },
     notes: {
       title: 'Helpful Notes',
@@ -273,9 +278,13 @@ export const translations = {
       selected: ({ n }) => `Seleccionado: ${n} libro${n === 1 ? '' : 's'}`,
       numberOfQuestions: 'Número de preguntas:',
       startQuiz: 'Comenzar Quiz',
+      chaptersTitle: 'Perakim (opcional)',
+      chaptersHint: 'Déjalo vacío para todo el libro, o elige perakim como "1-20, 24-28".',
+      chaptersAll: ({ n }) => `Todos (1-${n})`,
+      chaptersInvalid: ({ book, part, n }) => `${book}: "${part}" no es un perek válido — usa números del 1 al ${n}, como "1-20, 24-28".`,
     },
     suggest: {
-      button: '✍️ Sugerir una pregunta',
+      button: 'Sugerir una pregunta',
       title: 'Sugerir una pregunta',
       intro: '¿Conoces una buena pregunta sobre el Tanaj? ¡Envíala! Si se añade a un cuestionario, te enviaremos un correo.',
       loginPrompt: 'Inicia sesión para sugerir una pregunta; te avisaremos por correo si se añade.',
@@ -301,6 +310,7 @@ export const translations = {
     },
     quizPlayer: {
       finished: '¡Quiz Terminado! 🎉',
+      noQuestions: 'Todavía no hay preguntas para esos perakim. Prueba con un rango más amplio.',
       finalScore: ({ score, total }) => `Puntuación Final: ${score} / ${total}`,
       couldNotSave: 'No se pudo guardar tu puntuación.',
       logInToSave: 'Inicia sesión para guardar tus puntuaciones y seguir tu progreso.',
@@ -311,7 +321,7 @@ export const translations = {
     },
     summaries: {
       title: 'Apuntes Útiles',
-      comingSoon: '📖 ¡Apuntes próximamente!',
+      comingSoon: '¡Apuntes próximamente!',
     },
     notes: {
       title: 'Apuntes Útiles',
@@ -488,9 +498,13 @@ export const translations = {
       selected: ({ n }) => `נבחרו: ${n} ספרים`,
       numberOfQuestions: ':מספר שאלות',
       startQuiz: 'התחל חידון',
+      chaptersTitle: 'פרקים (לא חובה)',
+      chaptersHint: 'השאירו ריק לכל הספר, או בחרו פרקים כמו 1-20, 24-28',
+      chaptersAll: ({ n }) => `הכל (1-${n})`,
+      chaptersInvalid: ({ book, part, n }) => `${book}: "${part}" אינו פרק תקין — השתמשו במספרים מ-1 עד ${n}, כמו 1-20, 24-28`,
     },
     suggest: {
-      button: '✍️ הציעו שאלה',
+      button: 'הציעו שאלה',
       title: 'הצעת שאלה',
       intro: 'מכירים שאלה טובה על התנ״ך? שלחו אותה! אם היא תתווסף לחידון, נשלח לכם מייל.',
       loginPrompt: 'התחברו כדי להציע שאלה — נשלח לכם מייל אם היא תתווסף.',
@@ -516,6 +530,7 @@ export const translations = {
     },
     quizPlayer: {
       finished: '!החידון הסתיים 🎉',
+      noQuestions: 'עדיין אין שאלות לפרקים האלה. נסו טווח רחב יותר',
       finalScore: ({ score, total }) => `תוצאה סופית: ${score} / ${total}`,
       couldNotSave: '.לא ניתן היה לשמור את התוצאה שלך',
       logInToSave: '.התחבר כדי לשמור את התוצאות שלך ולעקוב אחר ההתקדמות',
@@ -526,7 +541,7 @@ export const translations = {
     },
     summaries: {
       title: 'הערות מועילות',
-      comingSoon: '!📖 הערות בקרוב',
+      comingSoon: '!הערות בקרוב',
     },
     notes: {
       title: 'הערות מועילות',
