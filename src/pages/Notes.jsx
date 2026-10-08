@@ -191,10 +191,13 @@ export default function Notes() {
   const current = topics?.find((n) => n.slug === activeTopic);
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>{t('notes.title')}</h1>
-      <button className="nav-btn" style={{ marginTop: 30, backgroundColor: 'var(--text-muted)' }} onClick={() => navigate('/')}>
-        {t('nav.home')}
-      </button>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+        <h1 className={styles.title}>{t('notes.title')}</h1>
+        <button className="nav-btn" style={{ marginTop: 30, backgroundColor: 'var(--text-muted)' }} onClick={() => navigate('/')}>
+          {t('nav.home')}
+        </button>
+      </div>
+
 
       {/* Language Toggle */}
       <div className={styles.langToggle}>
