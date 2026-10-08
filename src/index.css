@@ -21,7 +21,7 @@
   --accent-soft: rgba(3, 0, 56, 0.12);
   --accent-softer: rgba(3, 0, 56, 0.06);
 
-  --accent2: #4a90e2;
+  --accent2: rgb(3, 0, 56);
   --accent2-text: #ffffff;
 
   --border: #dddddd;
