@@ -36,8 +36,8 @@
   --highlight: #ffe27a;
 
   --quiz-bg: #fef6e4;
-  --quiz-card: rgb(3, 0, 56);
-  --quiz-text: #ffffff;
+  --quiz-card: #ffffff;
+  --quiz-text: rgb(3, 0, 56);
   --quiz-btn-bg: #fef6e4;
   --quiz-btn-text: rgb(69, 158, 174);
 
