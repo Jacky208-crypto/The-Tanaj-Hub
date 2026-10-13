@@ -5,9 +5,33 @@
   color: var(--text-primary);
 }
 
+/* Three columns keep the title centered with the Home button on the left,
+   without the two ever overlapping. */
+.header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.homeBtn {
+  justify-self: start;
+  margin: 0;
+  padding: 9px 20px;
+}
+
 .title {
   text-align: center;
-  margin-bottom: 2rem;
+  margin: 0;
+}
+
+/* On phones there's no room beside the title, so stack the button above it. */
+@media (max-width: 600px) {
+  .header {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
 }
 
 .topicBar {
