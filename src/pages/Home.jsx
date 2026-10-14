@@ -52,7 +52,7 @@ export default function Home() {
       </div>
 
       <header className={styles.header}>
-        <h1 className={styles.title}>JOEL</h1>
+        <h1 className={styles.title}>The Tanaj Study Hub</h1>
         <p className={styles.subtext}>{t('home.subtitle')}</p>
       </header>
 
