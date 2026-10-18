@@ -14,6 +14,39 @@ import styles from './Notes.module.css';
 
 const MY_NOTES = '__my_notes__';
 
+// Languages the notes can be read in, and the page's own labels in each.
+const NOTE_LANGUAGES = ['english', 'spanish', 'hebrew'];
+const LANGUAGE_NAMES = { english: 'English', spanish: 'Español', hebrew: 'עברית' };
+const STRINGS = {
+  english: {
+    titlePh: 'Title', bodyPh: 'Write your note…', saving: 'Saving…', cancel: 'Cancel',
+    myNotes: 'My Notes', personalTitle: 'Your personal notes',
+    personalText: 'Log in to write and save your own notes. They are stored on your account and available on any device.',
+    signUp: 'Sign up', newNote: 'New note', saveNote: 'Save note', addNote: '+ Add note',
+    empty: 'No notes yet. Add your first one!', saveChanges: 'Save changes',
+    untitled: '(Untitled)', edit: 'Edit', del: 'Delete',
+    saveError: 'Could not save your note.', deleteError: 'Could not delete that note.',
+  },
+  spanish: {
+    titlePh: 'Título', bodyPh: 'Escribe tu apunte…', saving: 'Guardando…', cancel: 'Cancelar',
+    myNotes: 'Mis Apuntes', personalTitle: 'Tus apuntes personales',
+    personalText: 'Inicia sesión para escribir y guardar tus propios apuntes. Se guardan en tu cuenta y estarán disponibles en cualquier dispositivo.',
+    signUp: 'Crear cuenta', newNote: 'Nuevo apunte', saveNote: 'Guardar apunte', addNote: '+ Añadir apunte',
+    empty: 'Aún no tienes apuntes. ¡Añade el primero!', saveChanges: 'Guardar cambios',
+    untitled: '(Sin título)', edit: 'Editar', del: 'Eliminar',
+    saveError: 'No se pudo guardar tu apunte.', deleteError: 'No se pudo eliminar ese apunte.',
+  },
+  hebrew: {
+    titlePh: 'כותרת', bodyPh: 'כתוב את ההערה שלך…', saving: 'שומר…', cancel: 'ביטול',
+    myNotes: 'ההערות שלי', personalTitle: 'ההערות האישיות שלך',
+    personalText: 'התחבר כדי לכתוב ולשמור הערות משלך. הן נשמרות בחשבון שלך וזמינות בכל מכשיר.',
+    signUp: 'הרשמה', newNote: 'הערה חדשה', saveNote: 'שמור הערה', addNote: '+ הוסף הערה',
+    empty: 'אין עדיין הערות. הוסף את הראשונה!', saveChanges: 'שמור שינויים',
+    untitled: '(ללא כותרת)', edit: 'עריכה', del: 'מחיקה',
+    saveError: 'לא ניתן היה לשמור את ההערה.', deleteError: 'לא ניתן היה למחוק את ההערה.',
+  },
+};
+
 function EditIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -37,14 +70,14 @@ function TrashIcon() {
 
 // Controlled note editor used for both adding a new note and editing in place.
 // Defined at module scope so it keeps a stable identity (no focus loss on re-render).
-function NoteEditor({ language, title, body, onTitle, onBody, onSave, onCancel, busy, error, saveLabel }) {
+function NoteEditor({ s, title, body, onTitle, onBody, onSave, onCancel, busy, error, saveLabel }) {
   return (
     <>
       <input
         type="text"
         value={title}
         onChange={(e) => onTitle(e.target.value)}
-        placeholder={language === 'spanish' ? 'Título' : 'Title'}
+        placeholder={s.titlePh}
         style={{
           width: '100%', padding: '0.6rem 0.75rem', marginBottom: '0.6rem',
           border: '1px solid var(--border)', borderRadius: '8px', fontSize: '1rem',
@@ -54,7 +87,7 @@ function NoteEditor({ language, title, body, onTitle, onBody, onSave, onCancel, 
       <textarea
         value={body}
         onChange={(e) => onBody(e.target.value)}
-        placeholder={language === 'spanish' ? 'Escribe tu apunte…' : 'Write your note…'}
+        placeholder={s.bodyPh}
         rows={5}
         style={{
           width: '100%', padding: '0.6rem 0.75rem',
@@ -72,7 +105,7 @@ function NoteEditor({ language, title, body, onTitle, onBody, onSave, onCancel, 
           disabled={busy || (!title.trim() && !body.trim())}
           onClick={onSave}
         >
-          {busy ? (language === 'spanish' ? 'Guardando…' : 'Saving…') : saveLabel}
+          {busy ? s.saving : saveLabel}
         </button>
         <button
           onClick={onCancel}
@@ -81,7 +114,7 @@ function NoteEditor({ language, title, body, onTitle, onBody, onSave, onCancel, 
             borderRadius: '8px', padding: '0.4rem 1rem', cursor: 'pointer',
           }}
         >
-          {language === 'spanish' ? 'Cancelar' : 'Cancel'}
+          {s.cancel}
         </button>
       </div>
     </>
@@ -97,7 +130,9 @@ export default function Notes() {
   const [topicsReload, setTopicsReload] = useState(0);
   const [chosenTopic, setChosenTopic] = useState(null); // topic slug or MY_NOTES
   const activeTopic = chosenTopic ?? topics?.[0]?.slug ?? null;
-  const [language, setLanguage] = useState(uiLanguage === 'spanish' ? 'spanish' : 'english');
+  const [language, setLanguage] = useState(NOTE_LANGUAGES.includes(uiLanguage) ? uiLanguage : 'english');
+  const s = STRINGS[language];
+  const isRTL = language === 'hebrew';
 
   // ---- Personal notes state ----
   const [myNotes, setMyNotes] = useState([]);
@@ -161,7 +196,7 @@ export default function Notes() {
       }
       resetDraft();
     } catch (err) {
-      setNoteError(err.message || 'Could not save your note.');
+      setNoteError(err.message || s.saveError);
     } finally {
       setBusy(false);
     }
@@ -182,7 +217,7 @@ export default function Notes() {
       setMyNotes((prev) => prev.filter((n) => n.id !== id));
       if (editingId === id) resetDraft();
     } catch (err) {
-      setNoteError(err.message || 'Could not delete that note.');
+      setNoteError(err.message || s.deleteError);
     } finally {
       setBusy(false);
     }
@@ -200,17 +235,20 @@ export default function Notes() {
 
       {/* Language Toggle */}
       <div className={styles.langToggle}>
-        {['english', 'spanish'].map(lang => (
+        {NOTE_LANGUAGES.map(lang => (
           <button
             key={lang}
             className={`${styles.langBtn} ${language === lang ? styles.langActive : ''}`}
             onClick={() => setLanguage(lang)}
+            lang={lang === 'hebrew' ? 'he' : undefined}
           >
-            {lang === 'english' ? 'English' : 'Español'}
+            {LANGUAGE_NAMES[lang]}
           </button>
         ))}
       </div>
  
+      {/* Everything below follows the chosen language's direction (Hebrew reads right to left). */}
+      <div dir={isRTL ? 'rtl' : 'ltr'} lang={isRTL ? 'he' : undefined}>
       <div className={styles.topicBar}>
         {topics?.map((n) => (
           <button
@@ -225,7 +263,7 @@ export default function Notes() {
           className={`${styles.topicBtn} ${activeTopic === MY_NOTES ? styles.active : ''}`}
           onClick={() => setChosenTopic(MY_NOTES)}
         >
-          {language === 'spanish' ? 'Mis Apuntes' : 'My Notes'}
+          {s.myNotes}
         </button>
       </div>
 
@@ -234,19 +272,17 @@ export default function Notes() {
           {!user ? (
             <div className={styles.card} style={{ textAlign: 'center' }}>
               <h2 className={styles.cardTitle}>
-                {language === 'spanish' ? 'Tus apuntes personales' : 'Your personal notes'}
+                {s.personalTitle}
               </h2>
               <p className={styles.cardText}>
-                {language === 'spanish'
-                  ? 'Inicia sesión para escribir y guardar tus propios apuntes. Se guardan en tu cuenta y estarán disponibles en cualquier dispositivo.'
-                  : 'Log in to write and save your own notes. They are stored on your account and available on any device.'}
+                {s.personalText}
               </p>
               <button
                 className="nav-btn"
                 style={{ marginTop: '0.75rem' }}
                 onClick={() => navigate('/login', { state: { mode: 'signup' } })}
               >
-                {language === 'spanish' ? 'Crear cuenta' : 'Sign up'}
+                {s.signUp}
               </button>
             </div>
           ) : (
@@ -255,10 +291,10 @@ export default function Notes() {
               {adding ? (
                 <div className={styles.card}>
                   <h2 className={styles.cardTitle}>
-                    {language === 'spanish' ? 'Nuevo apunte' : 'New note'}
+                    {s.newNote}
                   </h2>
                   <NoteEditor
-                    language={language}
+                    s={s}
                     title={draftTitle}
                     body={draftBody}
                     onTitle={setDraftTitle}
@@ -267,7 +303,7 @@ export default function Notes() {
                     onCancel={resetDraft}
                     busy={busy}
                     error={noteError}
-                    saveLabel={language === 'spanish' ? 'Guardar apunte' : 'Save note'}
+                    saveLabel={s.saveNote}
                   />
                 </div>
               ) : (
@@ -276,22 +312,20 @@ export default function Notes() {
                   style={{ display: 'block', margin: '0 auto 1.25rem' }}
                   onClick={startAdd}
                 >
-                  {language === 'spanish' ? '+ Añadir apunte' : '+ Add note'}
+                  {s.addNote}
                 </button>
               )}
 
               {myNotes.length === 0 && !adding ? (
                 <p className={styles.cardText} style={{ textAlign: 'center', color: 'var(--text-muted)' }}>
-                  {language === 'spanish'
-                    ? 'Aún no tienes apuntes. ¡Añade el primero!'
-                    : 'No notes yet. Add your first one!'}
+                  {s.empty}
                 </p>
               ) : (
                 myNotes.map((note) => (
                   <div key={note.id} className={styles.card}>
                     {editingId === note.id ? (
                       <NoteEditor
-                        language={language}
+                        s={s}
                         title={draftTitle}
                         body={draftBody}
                         onTitle={setDraftTitle}
@@ -300,21 +334,21 @@ export default function Notes() {
                         onCancel={resetDraft}
                         busy={busy}
                         error={noteError}
-                        saveLabel={language === 'spanish' ? 'Guardar cambios' : 'Save changes'}
+                        saveLabel={s.saveChanges}
                       />
                     ) : (
                       <>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '0.5rem' }}>
                           <h2 className={styles.cardTitle} style={{ marginBottom: 0 }}>
-                            {note.title || (language === 'spanish' ? '(Sin título)' : '(Untitled)')}
+                            {note.title || s.untitled}
                           </h2>
                           <div style={{ display: 'flex', gap: '0.25rem', flexShrink: 0 }}>
                             <button
                               type="button"
                               className={`${styles.iconBtn} ${styles.editBtn}`}
                               onClick={() => startEdit(note)}
-                              title={language === 'spanish' ? 'Editar' : 'Edit'}
-                              aria-label={language === 'spanish' ? 'Editar' : 'Edit'}
+                              title={s.edit}
+                              aria-label={s.edit}
                             >
                               <EditIcon />
                             </button>
@@ -322,8 +356,8 @@ export default function Notes() {
                               type="button"
                               className={`${styles.iconBtn} ${styles.deleteBtn}`}
                               onClick={() => handleDeleteNote(note.id)}
-                              title={language === 'spanish' ? 'Eliminar' : 'Delete'}
-                              aria-label={language === 'spanish' ? 'Eliminar' : 'Delete'}
+                              title={s.del}
+                              aria-label={s.del}
                             >
                               <TrashIcon />
                             </button>
@@ -392,6 +426,7 @@ export default function Notes() {
         })}
       </div>
       )}
+      </div>
     </div>
   );
 }
