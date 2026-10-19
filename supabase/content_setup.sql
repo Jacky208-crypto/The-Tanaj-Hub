@@ -101,6 +101,17 @@ alter table public.quiz_questions
 create index if not exists quiz_questions_chapter_idx
   on public.quiz_questions (quiz_key, chapter);
 
+-- The kind of question, so players can filter custom quizzes by it. Ids and
+-- labels are in src/data/questionTypes.js; `npm run classify:questions` fills
+-- it in for questions that don't have one yet.
+alter table public.quiz_questions
+  add column if not exists question_type text;
+alter table public.quiz_questions
+  drop constraint if exists question_type_known;
+alter table public.quiz_questions
+  add constraint question_type_known check (question_type in (
+    'who_to_whom', 'about_whom', 'who', 'fill_blank', 'numbers', 'places', 'why', 'source', 'details'));
+
 -- Random questions from one or more quizzes, picked in the database so the
 -- browser only downloads the handful it will show. Called by the site as
 -- POST /rest/v1/rpc/random_quiz_questions.
@@ -111,10 +122,13 @@ create index if not exists quiz_questions_chapter_idx
 --   {"neviimAjaronim": {"yona": [], "yeshayahu": [1,2]}}  → only Yona, and
 --   Yeshayahu 1–2.
 -- Quizzes not named in either use all their questions.
+-- `types` optionally keeps only those question types: ['who_to_whom','places'].
 drop function if exists public.random_quiz_questions(text[], integer);
 drop function if exists public.random_quiz_questions(text[], integer, jsonb);
+drop function if exists public.random_quiz_questions(text[], integer, jsonb, jsonb);
 create or replace function public.random_quiz_questions(
-  quiz_keys text[], how_many integer, chapters jsonb default null, books jsonb default null)
+  quiz_keys text[], how_many integer, chapters jsonb default null, books jsonb default null,
+  types text[] default null)
 returns setof public.quiz_questions
 language sql
 volatile
@@ -130,6 +144,7 @@ as $$
          or (books -> q.quiz_key ? q.book
              and (jsonb_array_length(books -> q.quiz_key -> q.book) = 0
                   or q.chapter in (select jsonb_array_elements_text(books -> q.quiz_key -> q.book)::smallint))))
+    and (types is null or q.question_type = any (types))
   order by random()
   limit least(greatest(how_many, 1), 100);
 $$;
@@ -260,7 +275,7 @@ grant select on public.quizzes, public.quiz_questions, public.note_topics,
 grant insert, update, delete on public.quizzes, public.quiz_questions, public.note_topics,
                                 public.note_entries, public.midrashim, public.places
   to authenticated;
-grant execute on function public.random_quiz_questions(text[], integer, jsonb, jsonb) to anon, authenticated;
+grant execute on function public.random_quiz_questions(text[], integer, jsonb, jsonb, text[]) to anon, authenticated;
 grant execute on function public.is_admin() to anon, authenticated;
 
 -- ============================================================

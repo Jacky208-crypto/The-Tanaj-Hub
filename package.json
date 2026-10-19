@@ -14,7 +14,8 @@
     "export:content": "node --env-file=.env scripts/export-content.mjs",
     "import:notes-he": "node --env-file=.env scripts/import-hebrew-notes.mjs",
     "add:questions": "node --env-file=.env scripts/add-quiz-drafts.mjs",
-    "suggestions": "node --env-file=.env scripts/list-suggestions.mjs"
+    "suggestions": "node --env-file=.env scripts/list-suggestions.mjs",
+    "classify:questions": "node --env-file=.env scripts/classify-questions.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

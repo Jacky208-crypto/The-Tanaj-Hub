@@ -4,6 +4,7 @@ import styles from '../../pages/Admin.module.css';
 import { Loading, Field, LangInputs, TextInput, PublishedToggle, EditorShell } from './AdminKit';
 import { LANGS, useAdminRows, useEditor, orNull } from './adminHelpers';
 import { QUIZ_CHAPTERS, QUIZ_BOOKS, getBookById } from '../../data/books';
+import { QUESTION_TYPES, classifyQuestion } from '../../data/questionTypes';
 
 const ANSWERS = 4;
 
@@ -22,8 +23,13 @@ function toForm(row, quizKey) {
     correct_index: row?.correct_index ?? null,
     book: row?.book ?? '',
     chapter: row?.chapter ?? '',
+    question_type: row?.question_type ?? '',
   };
 }
+
+// The automatic guess for the form's current English question and answers.
+const guessType = (form) =>
+  classifyQuestion({ question_en: form.question_en, options_en: form.answers.map((a) => a.en) });
 
 // How many perakim the question's book has: single-book quizzes have a fixed
 // book; multi-book quizzes (QUIZ_BOOKS) need the book picked first.
@@ -68,6 +74,7 @@ function toRow(form) {
     options_he: options.he,
     correct_index: form.correct_index,
     ...toPlace(form),
+    question_type: form.question_type || guessType(form),
     published: form.published !== false,
   };
 }
@@ -121,6 +128,13 @@ export function QuestionEditor({ row, prefill, quizzes, quizKey, nextOrder, onDo
       </Field>
 
       <LangInputs label="Question" form={form} set={set} field="question" multiline rows={2} />
+
+      <Field label="Question type" hint="Players can filter custom quizzes by it. “Guess” picks one from the English wording when you save.">
+        <select className={styles.select} value={form.question_type} onChange={(e) => set('question_type', e.target.value)}>
+          <option value="">Guess ({QUESTION_TYPES.find((t) => t.id === guessType(form))?.label_en})</option>
+          {QUESTION_TYPES.map((t) => <option key={t.id} value={t.id}>{t.label_en}</option>)}
+        </select>
+      </Field>
 
       <Field label="Answers" hint="Click the circle next to the correct answer. Spanish and Hebrew are optional, but if you fill one in, fill all four in the same order.">
         <div className={styles.answers}>

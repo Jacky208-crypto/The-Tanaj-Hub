@@ -8,6 +8,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { getQuizAttempts } from '../lib/supabaseClient';
 import { getQuizzes, pick } from '../lib/content';
 import { QUIZ_CHAPTERS, QUIZ_BOOKS, getBookById, bookLabel, parseChapters } from '../data/books';
+import { QUESTION_TYPES } from '../data/questionTypes';
 
 // The "All Books" card draws from every quiz, so it has no row of its own.
 const ALL_BOOKS = {
@@ -30,6 +31,7 @@ export default function Quiz() {
   const [questionCount, setQuestionCount] = useState(5);
   const [chapterText, setChapterText] = useState({}); // quiz key or "quizKey/bookId" → "1-20, 24-28"
   const [pickedBooks, setPickedBooks] = useState({}); // multi-book quiz key → [book ids] (none = all)
+  const [pickedTypes, setPickedTypes] = useState([]); // question type ids (none = all)
   const [chapterError, setChapterError] = useState(null);
   const [attempts, setAttempts] = useState([]);
   const [quizzes, setQuizzes] = useState(null); // quiz cards from Supabase
@@ -82,6 +84,7 @@ export default function Quiz() {
           setSelectedBooks([]);
           setChapterText({});
           setPickedBooks({});
+          setPickedTypes([]);
           setChapterError(null);
         }}
       />
@@ -130,6 +133,7 @@ export default function Quiz() {
         count: questionCount,
         chapters,
         books,
+        types: pickedTypes,
       });
       setMode('quiz');
     };
@@ -141,6 +145,9 @@ export default function Quiz() {
       });
       setChapterError(null);
     };
+
+    const togglePickedType = (id) =>
+      setPickedTypes((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]));
 
     const chapterRow = (field, label, max) => (
       <label key={field} style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -283,6 +290,37 @@ export default function Quiz() {
             )}
           </div>
         )}
+
+        <div style={{ maxWidth: '640px', margin: '30px auto 0', textAlign: 'center' }}>
+          <p style={{ marginBottom: '4px' }}>{t('quiz.typesTitle')}</p>
+          <p style={{ marginTop: 0, fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+            {t('quiz.typesHint')}
+          </p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '6px' }}>
+            {QUESTION_TYPES.map((qt) => {
+              const on = pickedTypes.includes(qt.id);
+              return (
+                <button
+                  key={qt.id}
+                  type="button"
+                  aria-pressed={on}
+                  onClick={() => togglePickedType(qt.id)}
+                  style={{
+                    padding: '0.3rem 0.8rem',
+                    borderRadius: '20px',
+                    border: 'none',
+                    cursor: 'pointer',
+                    background: on ? 'var(--accent2)' : 'var(--bg-hover)',
+                    color: on ? 'var(--accent2-text)' : 'var(--text-primary)',
+                    fontWeight: on ? 'bold' : 'normal',
+                  }}
+                >
+                  {pick(qt, 'label', language)}
+                </button>
+              );
+            })}
+          </div>
+        </div>
 
         <div style={{ textAlign: 'center', marginTop: '30px' }}>
           <p style={{ marginBottom: '10px' }}>{t('quiz.numberOfQuestions')}</p>

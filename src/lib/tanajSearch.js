@@ -11,6 +11,7 @@
 // and highlight matches ourselves with the same logic for every language.
 
 import { allBooks } from '../data/books';
+import { applySpanishFixes, cleanSpanishNames, unwrapSpanishBrackets } from './spanishText';
 
 // The exact JPS English edition the reader requests.
 const JPS_VERSION = 'Tanakh: The Holy Scriptures, published by JPS';
@@ -44,10 +45,14 @@ function cleanVerse(text, lang) {
       .replace(/\bsome\s+(mss?|manuscripts?)[^.]*\./gi, '')
       .replace(/\blit\.\s*[^,;.]*/gi, '');
   }
+  if (lang === 'spanish') {
+    cleaned = cleanSpanishNames(unwrapSpanishBrackets(cleaned));
+  }
   return cleaned
     .replace(/\([^)]*\)/g, '')
     .replace(/\[[^\]]*\]/g, '')
     .replace(/\s+/g, ' ')
+    .replace(/\s+([,.;:])/g, '$1')
     .trim();
 }
 
@@ -136,8 +141,9 @@ async function fetchSpanishBook(book, signal) {
   if (!res.ok) throw new Error(`Could not load ${book.label} (HTTP ${res.status})`);
   const data = await res.json();
   const text = data.versions?.[0]?.text;
-  return (Array.isArray(text) ? text : []).map((ch) =>
-    (Array.isArray(ch) ? ch : [ch]).map((v) => cleanVerse(flatten(v), 'spanish'))
+  return (Array.isArray(text) ? text : []).map((ch, ci) =>
+    applySpanishFixes(book.sefaria, ci + 1, (Array.isArray(ch) ? ch : [ch]).map(flatten))
+      .map((v) => cleanVerse(v, 'spanish'))
   );
 }
 

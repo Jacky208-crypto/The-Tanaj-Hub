@@ -53,6 +53,10 @@ history of every edit.
   for quizzes that cover one book (`QUIZ_CHAPTERS` in `src/data/books.js`) —
   players can pick perakim in "Create Custom Quiz" — and left empty for
   multi-book quizzes (Neviim Ajaronim, Ketuvim Poetry, Divre Hayamim).
+- `quiz_questions.question_type` (who said to whom, places, numbers, … — ids
+  in `src/data/questionTypes.js`) lets players filter custom quizzes by kind
+  of question. `npm run classify:questions` guesses it for questions that
+  don't have one; fix wrong guesses in the admin editor.
 - `published = false` hides a quiz, question, note or place from visitors
   (admins still see it). Midrashim use `status` (`draft` / `reviewed`) instead;
   run `npm run validate:midrash` before switching one to `reviewed`.

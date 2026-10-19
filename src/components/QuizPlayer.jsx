@@ -50,7 +50,7 @@ export default function QuizPlayer({ quiz, onBack }) {
   // Fresh random questions for every run (first play and each "play again").
   useEffect(() => {
     let active = true;
-    getRandomQuestions(quiz.quizKeys, quiz.count || 5, quiz.chapters, quiz.books)
+    getRandomQuestions(quiz.quizKeys, quiz.count || 5, quiz.chapters, quiz.books, quiz.types)
       .then((rows) => { if (active) setQuestions(rows.map(shuffleOptions)); })
       .catch((e) => { if (active) setLoadError(e.message); });
     return () => { active = false; };

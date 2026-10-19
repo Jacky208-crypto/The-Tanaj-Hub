@@ -13,6 +13,8 @@
 //     "correct_index": 0,
 //     "chapter": 25,             ← the perek; required
 //     "book": "yona",            ← multi-book quizzes only (QUIZ_BOOKS in src/data/books.js)
+//     "question_type": "places", ← optional (ids in src/data/questionTypes.js);
+//                                  guessed from the wording when left out
 //     "submission_id": "..." }   ← optional: the visitor suggestion this came from
 //                                  (npm run suggestions). The suggestion is marked
 //                                  accepted and linked, so publishing the draft
@@ -24,6 +26,7 @@
 import { readFileSync } from 'node:fs';
 import { adminClient } from './lib/supabaseAdmin.mjs';
 import { QUIZ_CHAPTERS, QUIZ_BOOKS, getBookById } from '../src/data/books.js';
+import { classifyQuestion, QUESTION_TYPE_IDS } from '../src/data/questionTypes.js';
 
 const args = process.argv.slice(2);
 const dryRun = args.includes('--dry-run');
@@ -39,6 +42,10 @@ const quizKeys = new Set((await db.selectAll('quizzes', 'key')).map((q) => q.key
 const existing = await db.selectAll('quiz_questions', 'quiz_key,sort_order');
 const norm = (s) => s.trim().toLowerCase().replace(/\s+/g, ' ');
 const seen = new Set(existing.map((q) => `${q.quiz_key}|${norm(q.question_en)}`));
+const placeNames = new Set();
+for (const p of await db.selectAll('places', 'id')) {
+  for (const n of [p.name, ...(p.aliases ?? [])]) placeNames.add(n.toLowerCase());
+}
 const nextOrder = {};
 for (const q of existing) nextOrder[q.quiz_key] = Math.max(nextOrder[q.quiz_key] ?? 0, q.sort_order + 1);
 
@@ -63,6 +70,9 @@ drafts.forEach((d, i) => {
   if (maxChapter && !(Number.isInteger(d.chapter) && d.chapter >= 1 && d.chapter <= maxChapter)) {
     problems.push(`${label}: chapter must be the perek, 1–${maxChapter}`);
   }
+  if (d.question_type != null && !QUESTION_TYPE_IDS.includes(d.question_type)) {
+    problems.push(`${label}: question_type must be one of ${QUESTION_TYPE_IDS.join(', ')}`);
+  }
   const key = `${d.quiz_key}|${norm(d.question_en ?? '')}`;
   if (seen.has(key)) return console.log(`skip (already exists): ${label}`);
   seen.add(key);
@@ -75,6 +85,7 @@ drafts.forEach((d, i) => {
     correct_index: d.correct_index,
     book: books ? d.book : null,
     chapter: maxChapter ? d.chapter : null,
+    question_type: d.question_type ?? classifyQuestion(d, placeNames),
     published: false,
   });
 });

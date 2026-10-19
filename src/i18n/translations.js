@@ -63,6 +63,8 @@ export const translations = {
       chaptersHint: 'Leave empty for the whole book, or pick perakim like "1-20, 24-28".',
       chaptersAll: ({ n }) => `All (1-${n})`,
       booksHint: 'Pick the books you want (none = all of them), then their perakim.',
+      typesTitle: 'Question types (optional)',
+      typesHint: 'Pick the kinds of questions you want to practice (none = all of them).',
       chaptersInvalid: ({ book, part, n }) => `${book}: "${part}" isn't a valid perek — use numbers from 1 to ${n}, like "1-20, 24-28".`,
     },
     suggest: {
@@ -92,7 +94,7 @@ export const translations = {
     },
     quizPlayer: {
       finished: 'Quiz Finished! 🎉',
-      noQuestions: 'There are no questions for those perakim yet. Try a wider range.',
+      noQuestions: 'There are no questions for those perakim and question types yet. Try a wider range or more types.',
       finalScore: ({ score, total }) => `Final Score: ${score} / ${total}`,
       couldNotSave: 'Could not save your score.',
       logInToSave: 'Log in to save your scores and track progress.',
@@ -283,6 +285,8 @@ export const translations = {
       chaptersHint: 'Déjalo vacío para todo el libro, o elige perakim como "1-20, 24-28".',
       chaptersAll: ({ n }) => `Todos (1-${n})`,
       booksHint: 'Elige los libros que quieras (ninguno = todos) y luego sus perakim.',
+      typesTitle: 'Tipos de pregunta (opcional)',
+      typesHint: 'Elige los tipos de preguntas que quieras practicar (ninguno = todos).',
       chaptersInvalid: ({ book, part, n }) => `${book}: "${part}" no es un perek válido — usa números del 1 al ${n}, como "1-20, 24-28".`,
     },
     suggest: {
@@ -312,7 +316,7 @@ export const translations = {
     },
     quizPlayer: {
       finished: '¡Quiz Terminado! 🎉',
-      noQuestions: 'Todavía no hay preguntas para esos perakim. Prueba con un rango más amplio.',
+      noQuestions: 'Todavía no hay preguntas para esos perakim y tipos de pregunta. Prueba con un rango más amplio o más tipos.',
       finalScore: ({ score, total }) => `Puntuación Final: ${score} / ${total}`,
       couldNotSave: 'No se pudo guardar tu puntuación.',
       logInToSave: 'Inicia sesión para guardar tus puntuaciones y seguir tu progreso.',
@@ -504,6 +508,8 @@ export const translations = {
       chaptersHint: 'השאירו ריק לכל הספר, או בחרו פרקים כמו 1-20, 24-28',
       chaptersAll: ({ n }) => `הכל (1-${n})`,
       booksHint: 'בחרו את הספרים (בלי בחירה = כולם), ואז את הפרקים',
+      typesTitle: 'סוגי שאלות (לא חובה)',
+      typesHint: 'בחרו את סוגי השאלות שתרצו לתרגל (בלי בחירה = כולם)',
       chaptersInvalid: ({ book, part, n }) => `${book}: "${part}" אינו פרק תקין — השתמשו במספרים מ-1 עד ${n}, כמו 1-20, 24-28`,
     },
     suggest: {
@@ -533,7 +539,7 @@ export const translations = {
     },
     quizPlayer: {
       finished: '!החידון הסתיים 🎉',
-      noQuestions: 'עדיין אין שאלות לפרקים האלה. נסו טווח רחב יותר',
+      noQuestions: 'עדיין אין שאלות לפרקים ולסוגי השאלות האלה. נסו טווח רחב יותר או יותר סוגים',
       finalScore: ({ score, total }) => `תוצאה סופית: ${score} / ${total}`,
       couldNotSave: '.לא ניתן היה לשמור את התוצאה שלך',
       logInToSave: '.התחבר כדי לשמור את התוצאות שלך ולעקוב אחר ההתקדמות',

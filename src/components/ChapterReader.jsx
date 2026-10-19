@@ -2,6 +2,7 @@ import { useState, useCallback, useRef, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import CommentaryPanel from './CommentaryPanel';
 import { getMidrashVersesInChapter, useMidrashIndex } from '../lib/midrashim';
+import { applySpanishFixes, cleanSpanishNames, unwrapSpanishBrackets } from '../lib/spanishText';
 import styles from './ChapterReader.module.css';
 
 const LANGUAGES = ['hebrew', 'english', 'spanish'];
@@ -37,47 +38,14 @@ function cleanVerse(text, lang) {
       .replace(/\bsee\s+[\d:-]+/gi, '')
       .replace(/\b[Ee]gyptian for[^.]*\./g, '');
   }
-   if (lang === 'spanish') {
-    cleaned = cleaned
-      .replace(/Jehov[áa]/gi, 'Hashem')
-      .replace(/JAH/gi, 'Hashem')
-      .replace(/Ezequiel/g, 'Yejezkel')
-      .replace(/Adán/g, 'Adam')
-      .replace(/Eva/g, 'Javá')
-      .replace(/Abel/g, 'Hebel')
-      .replace(/Enoc/g, 'Janoj')
-      .replace(/Enos/g, 'Enosh')
-      .replace(/Lamec/g, 'Lemej')
-      .replace(/Set/g, 'Shet')
-      .replace(/Noé/g, 'Noaj')
-      .replace(/Isaac/g, 'Itzjak')
-      .replace(/Jacob/g, 'Yaakov')
-      .replace(/José/g, 'Yosef')
-      .replace(/Gosén/g, 'Goshen')
-      .replace(/Moisés/g, 'Moshe')
-      .replace(/Josué/g, 'Yehoshua')
-      .replace(/Aod/g, 'Ehud')
-      .replace(/Isaías/g, 'Yeshayahu')
-      .replace(/Jeremías/g, 'Yirmiyahu')
-      .replace(/Oseas/g, 'Hoshea')
-      .replace(/Abdías/g, 'Ovadiá')
-      .replace(/Miqueas/g, 'Mija')
-      .replace(/Sofonías/g, 'Tzefania')
-      .replace(/Hageo/g, 'Jagai')
-      .replace(/Zacarías/g, 'Zejaria')
-      .replace(/Malaquías/g, 'Malaji')
-      .replace(/Judá/g, 'Yehuda')
-      .replace(/Jerusalén/g, 'Yerushalaim')
-      .replace(/Baasa/g, 'Baasha')
-      .replace(/Acab/g, 'Ajab')
-      .replace(/Samaria/g, 'Shomron')
-      .replace(/Sansón/g, 'Shimshon')
-      .replace(/Elohim/gi, "Dios")
+  if (lang === 'spanish') {
+    cleaned = cleanSpanishNames(unwrapSpanishBrackets(cleaned));
   }
   return cleaned
     .replace(/\([^)]*\)/g, '')
     .replace(/\[[^\]]*\]/g, '')
     .replace(/\s+/g, ' ')
+    .replace(/\s+([,.;:])/g, '$1')
     .trim();
 }
 
@@ -95,7 +63,7 @@ async function fetchSpanishFromSefaria(sefariaBookName, chapterNum) {
 
   const verses = data.versions?.[0]?.text;
   if (!verses?.length) throw new Error('No verses returned — chapter may be empty.');
-  return verses.map(v => cleanVerse(v, 'spanish'));
+  return applySpanishFixes(sefariaBookName, chapterNum, verses).map(v => cleanVerse(v, 'spanish'));
 }
 
 export default function ChapterReader({ book, initialChapter = null, initialVerse = null, initialLanguage = null, initialMidrash = null }) {
