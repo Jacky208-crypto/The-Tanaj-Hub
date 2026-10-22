@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
-import { fetchVerseSources, fetchSourceText } from '../lib/sefariaCommentary';
+import { fetchVerseSources, fetchSourceText, fetchSpanishText } from '../lib/sefariaCommentary';
 import { getMidrashimForVerse, parseAnchor, localized, useMidrashIndex } from '../lib/midrashim';
 import styles from './CommentaryPanel.module.css';
 
@@ -26,7 +26,10 @@ export default function CommentaryPanel({
   const [selected, setSelected] = useState(initialSelected); // commentator title or midrash:<id>
   const [text, setText] = useState(null);
   const [textError, setTextError] = useState(null);
-  const [textLang, setTextLang] = useState('en');
+  // Spanish visitors start on the (machine-translated) Spanish.
+  const [textLang, setTextLang] = useState(language === 'spanish' ? 'es' : 'en');
+  const [esText, setEsText] = useState(null); // { [ref]: [html] }
+  const [esError, setEsError] = useState(null);
   const [showMore, setShowMore] = useState(false);
   const [showMoreMidrash, setShowMoreMidrash] = useState(false);
   const [reloadKey, setReloadKey] = useState(0);
@@ -75,6 +78,20 @@ export default function CommentaryPanel({
     return () => { cancelled = true; };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sources, selected]);
+
+  // Spanish is translated only when asked for — it costs DeepL characters
+  // the first time anyone opens a commentary in Spanish.
+  useEffect(() => {
+    if (textLang !== 'es' || !text) return;
+    let cancelled = false;
+    setEsText(null);
+    setEsError(null);
+    fetchSpanishText(text.passages)
+      .then((r) => { if (!cancelled) setEsText(r); })
+      .catch(() => { if (!cancelled) setEsError(t('commentary.translateError')); });
+    return () => { cancelled = true; };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [textLang, text]);
 
   const uiRTL = language === 'hebrew';
 
@@ -268,26 +285,42 @@ export default function CommentaryPanel({
 
             {text && (
               <>
-                {hasEn && hasHe && (
+                {hasEn && (
                   <div className={styles.langToggle}>
+                    <button
+                      className={`${styles.langBtn} ${textLang === 'es' ? styles.langActive : ''}`}
+                      onClick={() => setTextLang('es')}
+                    >
+                      Español
+                    </button>
                     <button
                       className={`${styles.langBtn} ${textLang === 'en' ? styles.langActive : ''}`}
                       onClick={() => setTextLang('en')}
                     >
                       English
                     </button>
-                    <button
-                      className={`${styles.langBtn} ${textLang === 'he' ? styles.langActive : ''}`}
-                      onClick={() => setTextLang('he')}
-                    >
-                      עברית
-                    </button>
+                    {hasHe && (
+                      <button
+                        className={`${styles.langBtn} ${textLang === 'he' ? styles.langActive : ''}`}
+                        onClick={() => setTextLang('he')}
+                      >
+                        עברית
+                      </button>
+                    )}
                   </div>
                 )}
 
-                {text.passages.map((p) => {
+                {textLang === 'es' && hasEn && (
+                  esError ? <p className={styles.status}>{esError}</p>
+                    : !esText ? <p className={styles.status}>{t('commentary.loading')}</p>
+                    : <p className={styles.machineNote}>{t('commentary.machineTranslated')}</p>
+                )}
+
+                {!(textLang === 'es' && hasEn && !esText && !esError) && text.passages.map((p) => {
                   const useHe = textLang === 'he' ? p.he.length > 0 : p.en.length === 0;
-                  const segments = useHe ? p.he : p.en;
+                  // Spanish falls back to English for a passage that couldn't be translated.
+                  const es = !useHe && textLang === 'es' ? esText?.[p.ref] : null;
+                  const segments = useHe ? p.he : es || p.en;
                   return (
                     <article key={p.ref} className={styles.passage}>
                       {group.category === 'Midrash' && (
@@ -311,6 +344,7 @@ export default function CommentaryPanel({
                           Sefaria
                         </a>
                         {(useHe ? p.heVersion : p.enVersion) && ` · ${useHe ? p.heVersion : p.enVersion}`}
+                        {es && ` · DeepL`}
                       </div>
                     </article>
                   );

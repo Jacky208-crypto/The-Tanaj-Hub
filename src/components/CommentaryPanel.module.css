@@ -378,3 +378,10 @@
 .anchorChip:hover {
   background: var(--bg-hover);
 }
+
+.machineNote {
+  margin: -6px 0 12px;
+  font-size: 11px;
+  font-style: italic;
+  color: var(--text-faint);
+}

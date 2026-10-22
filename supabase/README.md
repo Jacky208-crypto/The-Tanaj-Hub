@@ -101,3 +101,22 @@ editor, "Publish all", or the Table Editor. Each person is emailed once.
 
 Sends are queued through `pg_net`; if an email doesn't arrive, check
 Resend's *Logs* page, or `select * from net._http_response order by created desc limit 5;`
+
+## Spanish commentary (Rashi, Ramban, midrash…)
+
+Sefaria only has these in English and Hebrew. In the commentary panel,
+**Español** translates Sefaria's English with DeepL the first time anyone
+opens a ref, and saves it in `commentary_translations`; after that everyone
+reads the saved copy.
+
+**Setup (once):**
+
+1. Run `commentary_translations_setup.sql`.
+2. Get a DeepL API key (deepl.com → API; the free plan is 500,000
+   characters a month — a key ending in `:fx`).
+3. Add `DEEPL_API_KEY=...` to `.env`, and add `DEEPL_API_KEY` and
+   `SUPABASE_SECRET_KEY` to Vercel → Project → Settings → Environment
+   Variables, then redeploy.
+
+To fix a bad translation, edit its `segments_es` in the Table Editor (one
+array entry per comment). Deleting a row makes it translate again next time.

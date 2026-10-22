@@ -152,3 +152,58 @@ export async function fetchSourceText(group) {
   textCache.set(key, result);
   return result;
 }
+
+// ---- Spanish ---------------------------------------------------------------
+// Sefaria has no Spanish commentary, so translations are made with DeepL by
+// api/translate-commentary.js and saved in Supabase's commentary_translations
+// table. Saved ones are read straight from Supabase; the rest are translated
+// (once, for every visitor) on first request.
+
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
+const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_KEY;
+const spanishCache = new Map(); // ref → [html]
+
+async function readSavedSpanish(refs) {
+  if (!SUPABASE_URL || !SUPABASE_KEY) return [];
+  const list = refs.map((r) => `"${r.replace(/["\\]/g, '\\$&')}"`).join(',');
+  const res = await fetch(
+    `${SUPABASE_URL}/rest/v1/commentary_translations?select=ref,segments_es&ref=in.(${encodeURIComponent(list)})`,
+    { headers: { apikey: SUPABASE_KEY } }
+  );
+  // A missing table (setup SQL not run yet) shouldn't block translating.
+  return res.ok ? res.json() : [];
+}
+
+async function translateRef(ref) {
+  const res = await fetch('/api/translate-commentary', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ ref }),
+  });
+  const data = await res.json().catch(() => null);
+  if (!res.ok) throw new Error(data?.error || `HTTP ${res.status}`);
+  return data.segments;
+}
+
+// Takes the passages from fetchSourceText (only those with English) and
+// returns { [ref]: [html] }. Refs that fail are left out.
+export async function fetchSpanishText(passages) {
+  const refs = passages.filter((p) => p.en.length).map((p) => p.ref);
+  const missing = refs.filter((r) => !spanishCache.has(r));
+
+  if (missing.length) {
+    for (const row of await readSavedSpanish(missing)) {
+      spanishCache.set(row.ref, row.segments_es.map(sanitize).filter(Boolean));
+    }
+    const toTranslate = missing.filter((r) => !spanishCache.has(r));
+    const settled = await Promise.allSettled(toTranslate.map(translateRef));
+    settled.forEach((s, i) => {
+      if (s.status === 'fulfilled') spanishCache.set(toTranslate[i], s.value.map(sanitize).filter(Boolean));
+    });
+    if (!refs.some((r) => spanishCache.has(r))) {
+      throw settled.find((s) => s.status === 'rejected')?.reason || new Error('No translation available.');
+    }
+  }
+
+  return Object.fromEntries(refs.filter((r) => spanishCache.has(r)).map((r) => [r, spanishCache.get(r)]));
+}
