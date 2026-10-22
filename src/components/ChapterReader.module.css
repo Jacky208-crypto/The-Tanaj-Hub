@@ -147,3 +147,58 @@
   font-size: 12px;
   margin-inline-start: 2px;
 }
+
+/* Verse numbers and marks stay out of text selections (for "Highlight & quote"). */
+.verseNumber {
+  user-select: none;
+}
+
+/* Pesukim quoted in the user's notes. */
+.verseMarked {
+  background: var(--mark-bg);
+  box-shadow: inset 3px 0 0 var(--mark);
+}
+
+[dir='rtl'] .verseMarked,
+.verseMarked:has(span[style*='rtl']) {
+  box-shadow: inset -3px 0 0 var(--mark);
+}
+
+.mark_yellow { --mark: #eab308; --mark-bg: rgba(250, 204, 21, 0.18); }
+.mark_green { --mark: #22c55e; --mark-bg: rgba(34, 197, 94, 0.15); }
+.mark_blue { --mark: #3b82f6; --mark-bg: rgba(59, 130, 246, 0.15); }
+.mark_pink { --mark: #ec4899; --mark-bg: rgba(236, 72, 153, 0.14); }
+.mark_purple { --mark: #a855f7; --mark-bg: rgba(168, 85, 247, 0.15); }
+
+.noteMark {
+  font-size: 11px;
+  margin-inline-start: 3px;
+  color: var(--text-muted);
+}
+
+.selectionBar {
+  position: fixed;
+  transform: translateX(-50%);
+  z-index: 1100;
+  display: flex;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 10px;
+  background: var(--accent);
+  box-shadow: 0 6px 18px var(--shadow);
+}
+
+.selectionBar button {
+  border: none;
+  background: transparent;
+  color: var(--accent-text);
+  padding: 6px 10px;
+  border-radius: 7px;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.selectionBar button:hover {
+  background: rgba(255, 255, 255, 0.15);
+}

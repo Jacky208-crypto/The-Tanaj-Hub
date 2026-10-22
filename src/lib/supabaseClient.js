@@ -258,25 +258,38 @@ export async function getUserNotes() {
   return (await parse(res)) || [];
 }
 
-export async function createUserNote({ title, body }) {
+// Notes anchored to one chapter (perek notes and pasuk notes), for the reader.
+export async function getUserNotesForChapter(bookId, chapter) {
+  const me = await currentAuth();
+  if (!me) return [];
+  const res = await fetch(
+    `${REST_URL}/user_notes?user_id=eq.${me.userId}&book_id=eq.${encodeURIComponent(bookId)}&chapter=eq.${chapter}&order=updated_at.desc`,
+    { headers: dataHeaders(me.token) }
+  );
+  return (await parse(res)) || [];
+}
+
+// `anchor` is optional: { book_id, chapter, verse_from, verse_to } (see user_data_setup.sql).
+export async function createUserNote({ title, body, anchor }) {
   const me = await currentAuth();
   if (!me) throw new Error('Please log in to save notes.');
   const res = await fetch(`${REST_URL}/user_notes`, {
     method: 'POST',
     headers: dataHeaders(me.token, { Prefer: 'return=representation' }),
-    body: JSON.stringify({ user_id: me.userId, title, body }),
+    body: JSON.stringify({ user_id: me.userId, title, body, ...anchor }),
   });
   const data = await parse(res);
   return Array.isArray(data) ? data[0] : data;
 }
 
-export async function updateUserNote(id, { title, body }) {
+// Only the fields passed are changed (e.g. just `body`, or an anchor's verse_to).
+export async function updateUserNote(id, fields) {
   const me = await currentAuth();
   if (!me) throw new Error('Please log in to save notes.');
   const res = await fetch(`${REST_URL}/user_notes?id=eq.${id}`, {
     method: 'PATCH',
     headers: dataHeaders(me.token, { Prefer: 'return=representation' }),
-    body: JSON.stringify({ title, body, updated_at: new Date().toISOString() }),
+    body: JSON.stringify({ ...fields, updated_at: new Date().toISOString() }),
   });
   const data = await parse(res);
   return Array.isArray(data) ? data[0] : data;

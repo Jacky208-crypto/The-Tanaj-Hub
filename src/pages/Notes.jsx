@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import {
@@ -10,6 +10,11 @@ import {
 } from '../lib/supabaseClient';
 import { getNoteTopics, pick } from '../lib/content';
 import ContentStatus from '../components/ContentStatus';
+import RichNoteEditor, { RichNoteView } from '../components/notes/RichNoteEditor';
+import { noteStrings } from '../components/notes/noteStrings';
+import {
+  anchorRef, anchorTitle, isEmptyHtml, extractQuestions, toggleQuestionInHtml, readerLink,
+} from '../components/notes/noteUtils';
 import styles from './Notes.module.css';
 
 const MY_NOTES = '__my_notes__';
@@ -68,9 +73,10 @@ function TrashIcon() {
   );
 }
 
-// Controlled note editor used for both adding a new note and editing in place.
-// Defined at module scope so it keeps a stable identity (no focus loss on re-render).
-function NoteEditor({ s, title, body, onTitle, onBody, onSave, onCancel, busy, error, saveLabel }) {
+// Note editor used for both adding a new note and editing in place: a title
+// plus the rich editor (body is HTML). Defined at module scope so it keeps a
+// stable identity (no focus loss on re-render).
+function NoteEditor({ s, language, title, body, onTitle, onBody, onSave, onCancel, busy, error, saveLabel }) {
   return (
     <>
       <input
@@ -78,31 +84,21 @@ function NoteEditor({ s, title, body, onTitle, onBody, onSave, onCancel, busy, e
         value={title}
         onChange={(e) => onTitle(e.target.value)}
         placeholder={s.titlePh}
+        dir="auto"
         style={{
           width: '100%', padding: '0.6rem 0.75rem', marginBottom: '0.6rem',
-          border: '1px solid var(--border)', borderRadius: '8px', fontSize: '1rem',
+          border: '1px solid var(--border)', borderRadius: '8px', fontSize: '1.05rem', fontWeight: 'bold',
           boxSizing: 'border-box', background: 'var(--bg-elevated)', color: 'var(--text-primary)',
         }}
       />
-      <textarea
-        value={body}
-        onChange={(e) => onBody(e.target.value)}
-        placeholder={s.bodyPh}
-        rows={5}
-        style={{
-          width: '100%', padding: '0.6rem 0.75rem',
-          border: '1px solid var(--border)', borderRadius: '8px', fontSize: '1rem',
-          resize: 'vertical', boxSizing: 'border-box', fontFamily: 'inherit',
-          background: 'var(--bg-elevated)', color: 'var(--text-primary)',
-        }}
-      />
+      <RichNoteEditor content={body} onChange={onBody} language={language} placeholder={s.bodyPh} />
       {error && (
         <p style={{ color: 'var(--danger)', fontSize: '0.9rem', marginTop: '0.5rem' }}>{error}</p>
       )}
       <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.75rem' }}>
         <button
           className="nav-btn"
-          disabled={busy || (!title.trim() && !body.trim())}
+          disabled={busy || (!title.trim() && isEmptyHtml(body))}
           onClick={onSave}
         >
           {busy ? s.saving : saveLabel}
@@ -123,15 +119,21 @@ function NoteEditor({ s, title, body, onTitle, onBody, onSave, onCancel, busy, e
 
 export default function Notes() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const { user } = useAuth();
   const { language: uiLanguage, t } = useLanguage();
   const [topics, setTopics] = useState(null); // study-note topics from Supabase
   const [topicsError, setTopicsError] = useState(null);
   const [topicsReload, setTopicsReload] = useState(0);
-  const [chosenTopic, setChosenTopic] = useState(null); // topic slug or MY_NOTES
+  // /notes?tab=mine&note=<id> (from the reader's "Open in My Notes") opens a personal note.
+  const linkedNote = searchParams.get('note');
+  const [chosenTopic, setChosenTopic] = useState(
+    searchParams.get('tab') === 'mine' || linkedNote ? MY_NOTES : null
+  ); // topic slug or MY_NOTES
   const activeTopic = chosenTopic ?? topics?.[0]?.slug ?? null;
   const [language, setLanguage] = useState(NOTE_LANGUAGES.includes(uiLanguage) ? uiLanguage : 'english');
   const s = STRINGS[language];
+  const ns = noteStrings(language);
   const isRTL = language === 'hebrew';
 
   // ---- Personal notes state ----
@@ -142,6 +144,7 @@ export default function Notes() {
   const [adding, setAdding] = useState(false);
   const [busy, setBusy] = useState(false);
   const [noteError, setNoteError] = useState('');
+  const [filter, setFilter] = useState('all'); // 'all' | 'anchored' | 'questions'
 
   useEffect(() => {
     let active = true;
@@ -160,6 +163,12 @@ export default function Notes() {
     return () => { active = false; };
   }, [user]);
 
+  // Scroll to the note the reader linked to, once it has loaded.
+  useEffect(() => {
+    if (!linkedNote || !myNotes.length) return;
+    document.getElementById(`note-${linkedNote}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, [linkedNote, myNotes]);
+
   function resetDraft() {
     setDraftTitle('');
     setDraftBody('');
@@ -177,20 +186,20 @@ export default function Notes() {
   }
 
   async function handleSaveNote() {
-    if (!draftTitle.trim() && !draftBody.trim()) return;
+    if (!draftTitle.trim() && isEmptyHtml(draftBody)) return;
     setBusy(true);
     setNoteError('');
     try {
       if (editingId) {
         const updated = await updateUserNote(editingId, {
           title: draftTitle.trim(),
-          body: draftBody.trim(),
+          body: draftBody,
         });
         setMyNotes((prev) => prev.map((n) => (n.id === editingId ? updated : n)));
       } else {
         const created = await createUserNote({
           title: draftTitle.trim(),
-          body: draftBody.trim(),
+          body: draftBody,
         });
         setMyNotes((prev) => [created, ...prev]);
       }
@@ -222,6 +231,20 @@ export default function Notes() {
       setBusy(false);
     }
   }
+
+  async function handleToggleQuestion(note, index) {
+    try {
+      const updated = await updateUserNote(note.id, { body: toggleQuestionInHtml(note.body, index) });
+      setMyNotes((prev) => prev.map((n) => (n.id === note.id ? updated : n)));
+    } catch (err) {
+      setNoteError(err.message || s.saveError);
+    }
+  }
+
+  const shownNotes = filter === 'anchored' ? myNotes.filter((n) => n.book_id) : myNotes;
+  const questions = filter === 'questions'
+    ? myNotes.flatMap((note) => extractQuestions(note).map((q) => ({ ...q, note })))
+    : [];
 
   const current = topics?.find((n) => n.slug === activeTopic);
   return (
@@ -295,6 +318,7 @@ export default function Notes() {
                   </h2>
                   <NoteEditor
                     s={s}
+                    language={language}
                     title={draftTitle}
                     body={draftBody}
                     onTitle={setDraftTitle}
@@ -316,16 +340,60 @@ export default function Notes() {
                 </button>
               )}
 
-              {myNotes.length === 0 && !adding ? (
+              {myNotes.length > 0 && (
+                <div className={styles.filterBar}>
+                  {[['all', ns.all], ['anchored', ns.onPesukim], ['questions', ns.questions]].map(([id, label]) => (
+                    <button
+                      key={id}
+                      className={`${styles.filterBtn} ${filter === id ? styles.filterActive : ''}`}
+                      onClick={() => setFilter(id)}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              {filter === 'questions' ? (
+                questions.length === 0 ? (
+                  <p className={styles.cardText} style={{ textAlign: 'center', color: 'var(--text-muted)' }}>
+                    {ns.noQuestions}
+                  </p>
+                ) : (
+                  questions.map((q) => (
+                    <div key={`${q.note.id}-${q.index}`} className={`${styles.card} ${styles.questionCard} ${q.answered ? styles.questionAnswered : ''}`}>
+                      <label className={styles.questionCheck}>
+                        <input type="checkbox" checked={q.answered} onChange={() => handleToggleQuestion(q.note, q.index)} />
+                        <span>{q.answered ? ns.answeredLabel : ns.unanswered}</span>
+                      </label>
+                      <p className={styles.questionText} dir="auto">{q.text}</p>
+                      <div className={styles.questionMeta}>
+                        {(q.ref || anchorRef(q.note, language)) && (
+                          <span className={styles.anchorChip} dir="ltr">📖 {q.ref || anchorRef(q.note, language)}</span>
+                        )}
+                        <span>{q.note.title || anchorTitle(q.note, ns, language) || s.untitled}</span>
+                        <button className={styles.linkBtn} onClick={() => { setFilter('all'); startEdit(q.note); }}>
+                          {ns.openNote}
+                        </button>
+                      </div>
+                    </div>
+                  ))
+                )
+              ) : shownNotes.length === 0 && !adding ? (
                 <p className={styles.cardText} style={{ textAlign: 'center', color: 'var(--text-muted)' }}>
                   {s.empty}
                 </p>
               ) : (
-                myNotes.map((note) => (
-                  <div key={note.id} className={styles.card}>
+                shownNotes.map((note) => (
+                  <div
+                    key={note.id}
+                    id={`note-${note.id}`}
+                    className={`${styles.card} ${linkedNote === note.id ? styles.cardLinked : ''}`}
+                  >
                     {editingId === note.id ? (
                       <NoteEditor
                         s={s}
+                        language={language}
                         title={draftTitle}
                         body={draftBody}
                         onTitle={setDraftTitle}
@@ -339,9 +407,20 @@ export default function Notes() {
                     ) : (
                       <>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '0.5rem' }}>
-                          <h2 className={styles.cardTitle} style={{ marginBottom: 0 }}>
-                            {note.title || s.untitled}
-                          </h2>
+                          <div style={{ minWidth: 0 }}>
+                            <h2 className={styles.cardTitle} style={{ marginBottom: 0 }} dir="auto">
+                              {note.title || anchorTitle(note, ns, language) || s.untitled}
+                            </h2>
+                            {note.book_id && (
+                              <Link
+                                className={styles.anchorChip}
+                                to={readerLink(note.book_id, note.chapter, note.verse_from)}
+                                title={ns.goToPassuk}
+                              >
+                                📖 <span dir="ltr">{anchorRef(note, language)}</span>
+                              </Link>
+                            )}
+                          </div>
                           <div style={{ display: 'flex', gap: '0.25rem', flexShrink: 0 }}>
                             <button
                               type="button"
@@ -364,7 +443,9 @@ export default function Notes() {
                           </div>
                         </div>
                         {note.body && (
-                          <p className={styles.cardText} style={{ whiteSpace: 'pre-line' }}>{note.body}</p>
+                          <div className={styles.noteBody}>
+                            <RichNoteView content={note.body} language={language} />
+                          </div>
                         )}
                       </>
                     )}

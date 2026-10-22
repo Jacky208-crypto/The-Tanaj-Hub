@@ -1,8 +1,12 @@
-import { useState, useCallback, useRef, useEffect } from 'react';
+import { useState, useCallback, useRef, useEffect, useMemo } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { useAuth } from '../context/AuthContext';
+import { getUserNotesForChapter } from '../lib/supabaseClient';
+import { noteStrings } from './notes/noteStrings';
+import { quotedVerses } from './notes/noteUtils';
 import CommentaryPanel from './CommentaryPanel';
 import { getMidrashVersesInChapter, useMidrashIndex } from '../lib/midrashim';
-import { applySpanishFixes, cleanSpanishNames, unwrapSpanishBrackets } from '../lib/spanishText';
+import { fetchChapterText, fetchSpanishFromSefaria } from '../lib/verseText';
 import styles from './ChapterReader.module.css';
 
 const LANGUAGES = ['hebrew', 'english', 'spanish'];
@@ -12,62 +16,10 @@ const LANG_LABELS = {
   spanish: 'Español',
 };
 
-function cleanVerse(text, lang) {
-  if (!text) return '';
-
-  let cleaned = text
-    .replace(/<[^>]+>/g, '')
-    .replace(/&[#a-z0-9]+;/gi, ' ')
-    .replace(/\{[^\}]+\}/g, '')
-    .replace(/^\d+\./, '');
-
-  if (lang === 'english') {
-    cleaned = cleaned
-      .replace(/\bv\.\s*\d+[\d\s;:,cf\.-]*/gi, '')
-      .replace(/\b(cf|see|cp)\.\s*[\d\s;:,v\.-]*/gi, '')
-      .replace(/[a-z]\b(?=\s*(Cf|See|cf|see))/g, '')
-      .replace(/[a-zA-Z](?=Cf\.|See\s)/g, '')
-      .replace(/\b(Cf|cf|See|see|Cp|cp)\.\s*[\w\s\d;:,v\.\-ff]*/g, '')
-      .replace(/\b[a-z]\s+(Num|Lev|Gen|Deut|Exod|Josh|Judg|Sam|Kgs|Isa|Jer|Ezek|Hos|Amos|Ps|Prov|Job|Dan|Ezra|Neh|Chr)\.\s*[\d:.ff\s,]*/g, '')
-      .replace(/\bGreek(\s+and\s+\w+)?\s+(read|reads)[^.]*\./gi, '')
-      .replace(/\bSyriac\s+(read|reads)[^.]*\./gi, '')
-      .replace(/\bHebrew\s+(read|reads)[^.]*\./gi, '')
-      .replace(/\bLXX[^.]*\./gi, '')
-      .replace(/\bsome\s+(mss?|manuscripts?)[^.]*\./gi, '')
-      .replace(/\blit\.\s*[^,;.]*/gi, '')
-      .replace(/\bsee\s+[\d:-]+/gi, '')
-      .replace(/\b[Ee]gyptian for[^.]*\./g, '');
-  }
-  if (lang === 'spanish') {
-    cleaned = cleanSpanishNames(unwrapSpanishBrackets(cleaned));
-  }
-  return cleaned
-    .replace(/\([^)]*\)/g, '')
-    .replace(/\[[^\]]*\]/g, '')
-    .replace(/\s+/g, ' ')
-    .replace(/\s+([,.;:])/g, '$1')
-    .trim();
-}
-
-// Sefaria's newly-added Spanish translation of the whole Tanakh.
-const SPANISH_VERSION = 'spanish|Tanaj Español, trans. Rav Yehuda Ribco, 2026 [es]';
-
-async function fetchSpanishFromSefaria(sefariaBookName, chapterNum) {
-  const url =
-    `https://www.sefaria.org/api/v3/texts/${encodeURIComponent(sefariaBookName)}.${chapterNum}` +
-    `?version=${encodeURIComponent(SPANISH_VERSION)}`;
-
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  const data = await res.json();
-
-  const verses = data.versions?.[0]?.text;
-  if (!verses?.length) throw new Error('No verses returned — chapter may be empty.');
-  return applySpanishFixes(sefariaBookName, chapterNum, verses).map(v => cleanVerse(v, 'spanish'));
-}
-
 export default function ChapterReader({ book, initialChapter = null, initialVerse = null, initialLanguage = null, initialMidrash = null }) {
-  const { t } = useLanguage();
+  const { t, language: uiLanguage } = useLanguage();
+  const { user } = useAuth();
+  const ns = noteStrings(uiLanguage);
   const midrashIndex = useMidrashIndex();
   const [activeChapter, setActiveChapter] = useState(null);
   const [hebrewVerses, setHebrewVerses] = useState([]);
@@ -89,6 +41,16 @@ export default function ChapterReader({ book, initialChapter = null, initialVers
   const [panelStart, setPanelStart] = useState(null);
   const closeCommentary = useCallback(() => setSelectedVerse(null), []);
 
+  // The user's notes on the open chapter: shown in the panel, and any pasuk
+  // quoted in them is highlighted in the text.
+  const [chapterNotes, setChapterNotes] = useState([]);
+  const [notesError, setNotesError] = useState(null);
+  // Text selected in the reader → { left, top, verse, verseTo, text } for the popup.
+  const [selectionBar, setSelectionBar] = useState(null);
+  // "Highlight & quote" / "Question on this" waiting for the panel's editor.
+  const [pendingAction, setPendingAction] = useState(null);
+  const clearPendingAction = useCallback(() => setPendingAction(null), []);
+
   const loadChapter = useCallback(async (chapterNum) => {
     setActiveChapter(chapterNum);
     setSelectedVerse(null);
@@ -101,14 +63,9 @@ export default function ChapterReader({ book, initialChapter = null, initialVers
     setSpanishVerses([]);
 
     try {
-      const res = await fetch(
-        `https://www.sefaria.org/api/texts/${encodeURIComponent(book.sefaria)}.${chapterNum}?commentary=0&context=0&pad=0&ven=Tanakh:%20The%20Holy%20Scriptures,%20published%20by%20JPS`
-      );
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const data = await res.json();
-
-      setEnglishVerses(data.text.map(v => cleanVerse(v, 'english')));
-      setHebrewVerses(data.he.map(v => cleanVerse(v, 'hebrew')));
+      const text = await fetchChapterText(book.sefaria, chapterNum);
+      setEnglishVerses(text.english);
+      setHebrewVerses(text.hebrew);
     } catch (e) {
       setError(e.message);
     } finally {
@@ -184,6 +141,84 @@ export default function ChapterReader({ book, initialChapter = null, initialVers
     const timer = setTimeout(() => setHighlightVerse(null), 2500);
     return () => clearTimeout(timer);
   }, [activeLoading, activeError, currentVerses]);
+
+  useEffect(() => {
+    setChapterNotes([]);
+    setNotesError(null);
+    if (!user || !activeChapter) return;
+    let active = true;
+    getUserNotesForChapter(book.id, activeChapter)
+      .then((rows) => { if (active) setChapterNotes(rows); })
+      .catch((e) => { if (active) setNotesError(e.message); });
+    return () => { active = false; };
+  }, [user, book.id, activeChapter]);
+
+  const highlighted = useMemo(
+    () => (activeChapter ? quotedVerses(chapterNotes, book.id, activeChapter) : new Map()),
+    [chapterNotes, book.id, activeChapter]
+  );
+  const notedVerses = useMemo(() => {
+    const set = new Set();
+    for (const n of chapterNotes) {
+      if (!n.verse_from) continue;
+      for (let v = n.verse_from; v <= (n.verse_to || n.verse_from); v++) set.add(v);
+    }
+    return set;
+  }, [chapterNotes]);
+
+  // Show the "Highlight & quote" popup when words of a pasuk are selected.
+  useEffect(() => {
+    if (!user) return;
+    let timer;
+    const verseOf = (node) => {
+      const el = node?.nodeType === 1 ? node : node?.parentElement;
+      return Number(el?.closest('[data-verse]')?.getAttribute('data-verse')) || null;
+    };
+    const onSelection = () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        const sel = window.getSelection();
+        const text = sel?.toString().replace(/\s+/g, ' ').trim();
+        const a = sel && verseOf(sel.anchorNode);
+        const b = sel && verseOf(sel.focusNode);
+        if (!text || !a || !b) { setSelectionBar(null); return; }
+        const rect = sel.getRangeAt(0).getBoundingClientRect();
+        setSelectionBar({
+          left: rect.left + rect.width / 2,
+          top: rect.bottom + 8,
+          verse: Math.min(a, b),
+          verseTo: Math.max(a, b),
+          text,
+        });
+      }, 200);
+    };
+    // The popup is placed once, so hide it rather than leave it behind on scroll.
+    const onScroll = () => setSelectionBar(null);
+    document.addEventListener('selectionchange', onSelection);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener('selectionchange', onSelection);
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, [user]);
+
+  function runSelectionAction(type) {
+    if (!selectionBar) return;
+    const { verse, verseTo, text } = selectionBar;
+    setPanelStart(null);
+    setSelectedVerse(verse);
+    setPendingAction({ type, verse, verseTo, text });
+    window.getSelection()?.removeAllRanges();
+    setSelectionBar(null);
+  }
+
+  // Clicking a pasuk opens the panel — but not when the click ended a text selection.
+  function openVerse(num) {
+    if (window.getSelection()?.toString().trim()) return;
+    setPanelStart(null);
+    setSelectedVerse(num);
+  }
 
   const handleLanguageChange = (lang) => {
     setLanguage(lang);
@@ -274,7 +309,8 @@ export default function ChapterReader({ book, initialChapter = null, initialVers
                     ref={(el) => { verseRefs.current[i + 1] = el; }}
                     role="button"
                     tabIndex={0}
-                    onClick={() => { setPanelStart(null); setSelectedVerse(i + 1); }}
+                    data-verse={i + 1}
+                    onClick={() => openVerse(i + 1)}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter' || e.key === ' ') {
                         e.preventDefault();
@@ -282,12 +318,15 @@ export default function ChapterReader({ book, initialChapter = null, initialVers
                         setSelectedVerse(i + 1);
                       }
                     }}
-                    className={`${styles.verse} ${styles.verseClickable} ${selectedVerse === i + 1 ? styles.verseSelected : ''} ${highlightVerse === i + 1 ? styles.verseHighlight : ''}`}
+                    className={`${styles.verse} ${styles.verseClickable} ${selectedVerse === i + 1 ? styles.verseSelected : ''} ${highlightVerse === i + 1 ? styles.verseHighlight : ''} ${highlighted.has(i + 1) ? `${styles.verseMarked} ${styles[`mark_${highlighted.get(i + 1)}`]}` : ''}`}
                   >
                     <span className={styles.verseNumber}>
                       {i + 1}.
                       {midrashVerses.has(i + 1) && (
                         <span className={styles.midrashMark} title={t('commentary.highlights')}></span>
+                      )}
+                      {notedVerses.has(i + 1) && (
+                        <span className={styles.noteMark} title={ns.myNote}>✎</span>
                       )}
                     </span>
                     <span style={{ direction: isRTL ? 'rtl' : 'ltr' }}>{verse}</span>
@@ -309,7 +348,23 @@ export default function ChapterReader({ book, initialChapter = null, initialVers
           readerLanguage={language}
           initialSelected={panelStart}
           onClose={closeCommentary}
+          notes={chapterNotes}
+          setNotes={setChapterNotes}
+          notesError={notesError}
+          pendingAction={pendingAction}
+          onActionDone={clearPendingAction}
         />
+      )}
+
+      {selectionBar && (
+        <div
+          className={styles.selectionBar}
+          style={{ left: selectionBar.left, top: selectionBar.top }}
+          onMouseDown={(e) => e.preventDefault()}
+        >
+          <button onClick={() => runSelectionAction('quote')}>❝ {ns.highlightQuote}</button>
+          <button onClick={() => runSelectionAction('question')}>? {ns.questionOnThis}</button>
+        </div>
       )}
     </div>
   );

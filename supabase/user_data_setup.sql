@@ -72,3 +72,18 @@ drop policy if exists "Users delete own notes" on public.user_notes;
 create policy "Users delete own notes"
   on public.user_notes for delete
   using (auth.uid() = user_id);
+
+-- ------------------------------------------------------------
+-- 2b. Notes tied to the text (added for the reader's "My note" section).
+--     book_id/chapter set + verse_from null  → a note on the whole perek
+--     verse_from..verse_to set               → a note on one pasuk or a run of pesukim
+--     all null                               → a free-standing note from My Notes
+--     body holds the note as HTML from the rich editor (older notes are plain text).
+-- ------------------------------------------------------------
+alter table public.user_notes add column if not exists book_id    text;
+alter table public.user_notes add column if not exists chapter    integer;
+alter table public.user_notes add column if not exists verse_from integer;
+alter table public.user_notes add column if not exists verse_to   integer;
+
+create index if not exists user_notes_anchor_idx
+  on public.user_notes (user_id, book_id, chapter);

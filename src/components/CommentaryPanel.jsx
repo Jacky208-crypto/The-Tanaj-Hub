@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { fetchVerseSources, fetchSourceText, fetchSpanishText } from '../lib/sefariaCommentary';
 import { getMidrashimForVerse, parseAnchor, localized, useMidrashIndex } from '../lib/midrashim';
+import PassukNotes from './notes/PassukNotes';
+import { noteStrings } from './notes/noteStrings';
 import styles from './CommentaryPanel.module.css';
 
 // Midrash collections shown before "More midrash" (sorted by how many
@@ -18,9 +20,11 @@ const MIDRASH_PREFIX = 'midrash:';
 // open commentator (e.g. Rashi) follows them from verse to verse.
 export default function CommentaryPanel({
   book, chapter, verse, verseText, verseRTL, readerLanguage, initialSelected = null, onClose,
+  notes, setNotes, notesError, pendingAction, onActionDone,
 }) {
   const { t, language } = useLanguage();
   const midrashIndex = useMidrashIndex();
+  const bodyRef = useRef(null);
   const [sources, setSources] = useState(null);
   const [sourcesError, setSourcesError] = useState(null);
   const [selected, setSelected] = useState(initialSelected); // commentator title or midrash:<id>
@@ -133,12 +137,20 @@ export default function CommentaryPanel({
           </div>
           <div className={styles.headerSub}>{refLabel}</div>
         </div>
+        <button
+          className={styles.iconBtn}
+          onClick={() => bodyRef.current?.querySelector('#passuk-notes')?.scrollIntoView({ behavior: 'smooth' })}
+          aria-label={noteStrings(language).myNote}
+          title={noteStrings(language).myNote}
+        >
+          ✎
+        </button>
         <button className={styles.iconBtn} onClick={onClose} aria-label={t('commentary.close')}>
           ✕
         </button>
       </header>
 
-      <div className={styles.body}>
+      <div className={styles.body} ref={bodyRef}>
         <blockquote className={styles.verseQuote} dir={verseRTL ? 'rtl' : 'ltr'}>
           {verseText}
         </blockquote>
@@ -364,6 +376,19 @@ export default function CommentaryPanel({
             )}
           </>
         )}
+
+        <PassukNotes
+          book={book}
+          chapter={chapter}
+          verse={verse}
+          verseText={verseText}
+          readerLanguage={readerLanguage}
+          notes={notes}
+          setNotes={setNotes}
+          notesError={notesError}
+          pendingAction={pendingAction}
+          onActionDone={onActionDone}
+        />
       </div>
     </aside>
   );
