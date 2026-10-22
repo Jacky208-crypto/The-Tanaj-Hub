@@ -54,7 +54,8 @@ export const PassukQuote = Node.create({
   },
 
   parseHTML() {
-    return [{ tag: 'blockquote[data-passuk]' }];
+    // Ahead of the plain blockquote rule, which would otherwise claim it.
+    return [{ tag: 'blockquote[data-passuk]', priority: 60 }];
   },
 
   renderHTML({ node, HTMLAttributes }) {

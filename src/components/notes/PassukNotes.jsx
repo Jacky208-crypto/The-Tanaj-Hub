@@ -8,6 +8,7 @@ import RichNoteEditor from './RichNoteEditor';
 import { noteStrings } from './noteStrings';
 import { PASSUK_COLORS, anchorRef, isEmptyHtml } from './noteUtils';
 import styles from './PassukNotes.module.css';
+import { EditIcon, CheckIcon, ContinueIcon, QuoteIcon, QuestionIcon, ArrowRightIcon } from './icons';
 
 const SAVE_DELAY = 700;
 
@@ -150,7 +151,7 @@ export default function PassukNotes({
   if (!user) {
     return (
       <section className={styles.section}>
-        <h3 className={styles.title}>✎ {s.myNote}</h3>
+        <h3 className={styles.title}><EditIcon /> {s.myNote}</h3>
         <p className={styles.muted}>{s.loginToNote}</p>
         <Link className={styles.loginBtn} to="/login">{s.login}</Link>
       </section>
@@ -162,9 +163,9 @@ export default function PassukNotes({
   return (
     <section className={styles.section} id="passuk-notes">
       <div className={styles.headRow}>
-        <h3 className={styles.title}>✎ {s.myNote}</h3>
+        <h3 className={styles.title}><EditIcon /> {s.myNote}</h3>
         <span className={styles.status} aria-live="polite">
-          {status === 'saving' ? s.saving : status === 'saved' ? `✓ ${s.saved}` : ''}
+          {status === 'saving' ? s.saving : status === 'saved' ? <><CheckIcon /> {s.saved}</> : ''}
         </span>
       </div>
 
@@ -187,7 +188,7 @@ export default function PassukNotes({
       {scope === 'passuk' && prevNote ? (
         <div className={styles.continueBox}>
           <button className={styles.continueBtn} onClick={continueNote}>
-            ↪ {s.continueFrom(anchorRef(prevNote, language))}
+            <ContinueIcon /> {s.continueFrom(anchorRef(prevNote, language))}
           </button>
           <p className={styles.muted}>{s.continueHint}</p>
           <button className={styles.linkBtn} onClick={() => setSeparateAt(verse)}>{s.newPassukNote}</button>
@@ -196,7 +197,7 @@ export default function PassukNotes({
         <>
           <div className={styles.actions}>
             <button className={styles.actionBtn} onClick={() => quote(verseText)} disabled={!editor}>
-              ❝ {s.quotePassuk}
+              <QuoteIcon /> {s.quotePassuk}
             </button>
             <span className={styles.colors}>
               {PASSUK_COLORS.map((c) => (
@@ -210,7 +211,7 @@ export default function PassukNotes({
               ))}
             </span>
             <button className={styles.actionBtn} onClick={() => askQuestion()} disabled={!editor}>
-              ? {s.askQuestion}
+              <QuestionIcon /> {s.askQuestion}
             </button>
           </div>
 
@@ -241,7 +242,7 @@ export default function PassukNotes({
 
       {activeNote && (
         <Link className={styles.openLink} to={`/notes?tab=mine&note=${activeNote.id}`}>
-          {s.openInMyNotes} →
+          {s.openInMyNotes} <ArrowRightIcon />
         </Link>
       )}
     </section>

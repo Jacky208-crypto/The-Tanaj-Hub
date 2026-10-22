@@ -8,6 +8,7 @@ import CommentaryPanel from './CommentaryPanel';
 import { getMidrashVersesInChapter, useMidrashIndex } from '../lib/midrashim';
 import { fetchChapterText, fetchSpanishFromSefaria } from '../lib/verseText';
 import styles from './ChapterReader.module.css';
+import { EditIcon, HighlighterIcon, QuestionIcon } from './notes/icons';
 
 const LANGUAGES = ['hebrew', 'english', 'spanish'];
 const LANG_LABELS = {
@@ -15,6 +16,9 @@ const LANG_LABELS = {
   english: 'English',
   spanish: 'Español',
 };
+
+const MIN_PANEL_WIDTH = 420;
+const PANEL_WIDTH_KEY = 'tanaj-commentary-width';
 
 export default function ChapterReader({ book, initialChapter = null, initialVerse = null, initialLanguage = null, initialMidrash = null }) {
   const { t, language: uiLanguage } = useLanguage();
@@ -50,6 +54,17 @@ export default function ChapterReader({ book, initialChapter = null, initialVers
   // "Highlight & quote" / "Question on this" waiting for the panel's editor.
   const [pendingAction, setPendingAction] = useState(null);
   const clearPendingAction = useCallback(() => setPendingAction(null), []);
+
+  // Commentary panel width on desktop: at least the original 420px, and
+  // always leaving room for the text. Remembered on this device.
+  const [panelWidth, setPanelWidth] = useState(() => {
+    try { return Number(localStorage.getItem(PANEL_WIDTH_KEY)) || MIN_PANEL_WIDTH; } catch { return MIN_PANEL_WIDTH; }
+  });
+  const resizePanel = useCallback((w) => {
+    const next = Math.round(Math.max(MIN_PANEL_WIDTH, Math.min(w, window.innerWidth - 360)));
+    setPanelWidth(next);
+    try { localStorage.setItem(PANEL_WIDTH_KEY, String(next)); } catch { /* storage unavailable */ }
+  }, []);
 
   const loadChapter = useCallback(async (chapterNum) => {
     setActiveChapter(chapterNum);
@@ -244,7 +259,10 @@ export default function ChapterReader({ book, initialChapter = null, initialVers
   const midrashVerses = activeChapter ? getMidrashVersesInChapter(midrashIndex, book.sefaria, activeChapter) : new Set();
 
   return (
-    <div className={`${styles.container} ${selectedVerse ? styles.withPanel : ''}`}>
+    <div
+      className={`${styles.container} ${selectedVerse ? styles.withPanel : ''}`}
+      style={{ '--panel-width': `${Math.max(MIN_PANEL_WIDTH, panelWidth)}px` }}
+    >
       <p className={styles.selectLabel}>{t('chapterReader.selectChapter')}</p>
 
       <div className={styles.buttonGrid}>
@@ -326,7 +344,7 @@ export default function ChapterReader({ book, initialChapter = null, initialVers
                         <span className={styles.midrashMark} title={t('commentary.highlights')}></span>
                       )}
                       {notedVerses.has(i + 1) && (
-                        <span className={styles.noteMark} title={ns.myNote}>✎</span>
+                        <span className={styles.noteMark} title={ns.myNote}><EditIcon size={12} /></span>
                       )}
                     </span>
                     <span style={{ direction: isRTL ? 'rtl' : 'ltr' }}>{verse}</span>
@@ -353,6 +371,8 @@ export default function ChapterReader({ book, initialChapter = null, initialVers
           notesError={notesError}
           pendingAction={pendingAction}
           onActionDone={clearPendingAction}
+          width={Math.max(MIN_PANEL_WIDTH, panelWidth)}
+          onResize={resizePanel}
         />
       )}
 
@@ -362,8 +382,8 @@ export default function ChapterReader({ book, initialChapter = null, initialVers
           style={{ left: selectionBar.left, top: selectionBar.top }}
           onMouseDown={(e) => e.preventDefault()}
         >
-          <button onClick={() => runSelectionAction('quote')}>❝ {ns.highlightQuote}</button>
-          <button onClick={() => runSelectionAction('question')}>? {ns.questionOnThis}</button>
+          <button onClick={() => runSelectionAction('quote')}><HighlighterIcon /> {ns.highlightQuote}</button>
+          <button onClick={() => runSelectionAction('question')}><QuestionIcon /> {ns.questionOnThis}</button>
         </div>
       )}
     </div>

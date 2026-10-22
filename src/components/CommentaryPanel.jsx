@@ -6,6 +6,7 @@ import { getMidrashimForVerse, parseAnchor, localized, useMidrashIndex } from '.
 import PassukNotes from './notes/PassukNotes';
 import { noteStrings } from './notes/noteStrings';
 import styles from './CommentaryPanel.module.css';
+import { EditIcon } from './notes/icons';
 
 // Midrash collections shown before "More midrash" (sorted by how many
 // passages each has on the verse).
@@ -20,11 +21,22 @@ const MIDRASH_PREFIX = 'midrash:';
 // open commentator (e.g. Rashi) follows them from verse to verse.
 export default function CommentaryPanel({
   book, chapter, verse, verseText, verseRTL, readerLanguage, initialSelected = null, onClose,
-  notes, setNotes, notesError, pendingAction, onActionDone,
+  notes, setNotes, notesError, pendingAction, onActionDone, width, onResize,
 }) {
   const { t, language } = useLanguage();
   const midrashIndex = useMidrashIndex();
   const bodyRef = useRef(null);
+  const [resizing, setResizing] = useState(false);
+
+  // Dragging the left edge: the panel's width is the distance to the window's right edge.
+  function startResize(e) {
+    e.preventDefault();
+    e.currentTarget.setPointerCapture(e.pointerId);
+    setResizing(true);
+  }
+  function moveResize(e) {
+    if (resizing) onResize(window.innerWidth - e.clientX);
+  }
   const [sources, setSources] = useState(null);
   const [sourcesError, setSourcesError] = useState(null);
   const [selected, setSelected] = useState(initialSelected); // commentator title or midrash:<id>
@@ -122,7 +134,20 @@ export default function CommentaryPanel({
   const hasHe = text?.passages.some((p) => p.he.length);
 
   return (
-    <aside className={styles.panel} aria-label={t('commentary.title')}>
+    <aside
+      className={`${styles.panel} ${resizing ? styles.resizing : ''}`}
+      style={{ '--panel-width': `${width}px` }}
+      aria-label={t('commentary.title')}
+    >
+      <div
+        className={styles.resizeHandle}
+        onPointerDown={startResize}
+        onPointerMove={moveResize}
+        onPointerUp={() => setResizing(false)}
+        onPointerCancel={() => setResizing(false)}
+        role="separator"
+        aria-orientation="vertical"
+      />
       <header className={styles.header}>
         {group || midrash ? (
           <button className={styles.iconBtn} onClick={() => setSelected(null)} aria-label={t('commentary.back')}>
@@ -143,7 +168,7 @@ export default function CommentaryPanel({
           aria-label={noteStrings(language).myNote}
           title={noteStrings(language).myNote}
         >
-          ✎
+          <EditIcon size={18} />
         </button>
         <button className={styles.iconBtn} onClick={onClose} aria-label={t('commentary.close')}>
           ✕

@@ -2,19 +2,23 @@ import { useId, useRef, useState } from 'react';
 import { NodeViewWrapper } from '@tiptap/react';
 import { noteStrings } from './noteStrings';
 import styles from './RichNote.module.css';
+import {
+  PointerIcon, SquareIcon, CircleIcon, DiamondIcon, ArrowRightIcon, LineIcon, PenIcon, TextIcon,
+  UndoIcon, TrashIcon, TallerIcon, ShorterIcon, CloseIcon,
+} from './icons';
 
 const WIDTH = 800;
 const INK = 'currentColor';
 const COLORS = [INK, '#e11d48', '#2563eb', '#16a34a', '#ea580c', '#9333ea'];
 const TOOLS = [
-  { id: 'select', icon: '⬚' },
-  { id: 'rect', icon: '▭' },
-  { id: 'ellipse', icon: '◯' },
-  { id: 'diamond', icon: '◇' },
-  { id: 'arrow', icon: '→' },
-  { id: 'line', icon: '╱' },
-  { id: 'pen', icon: '✎' },
-  { id: 'text', icon: 'T' },
+  { id: 'select', Icon: PointerIcon },
+  { id: 'rect', Icon: SquareIcon },
+  { id: 'ellipse', Icon: CircleIcon },
+  { id: 'diamond', Icon: DiamondIcon },
+  { id: 'arrow', Icon: ArrowRightIcon },
+  { id: 'line', Icon: LineIcon },
+  { id: 'pen', Icon: PenIcon },
+  { id: 'text', Icon: TextIcon },
 ];
 const BOXES = ['rect', 'ellipse', 'diamond'];
 const LINES = ['line', 'arrow'];
@@ -243,7 +247,7 @@ export default function SketchView({ node, editor, updateAttributes, deleteNode,
               title={s[tl.id]}
               aria-label={s[tl.id]}
             >
-              {tl.icon}
+              <tl.Icon />
             </button>
           ))}
           <span className={styles.sketchSep} />
@@ -266,12 +270,12 @@ export default function SketchView({ node, editor, updateAttributes, deleteNode,
             {s.fill}
           </label>
           <span className={styles.sketchSep} />
-          <button type="button" className={styles.sketchBtn} onClick={() => commit(saved.slice(0, -1))} disabled={!saved.length} title={s.undoShape} aria-label={s.undoShape}>↶</button>
-          <button type="button" className={styles.sketchBtn} onClick={removeSelected} disabled={!selectedId} title={s.deleteShape} aria-label={s.deleteShape}>🗑</button>
-          <button type="button" className={styles.sketchBtn} onClick={() => updateAttributes({ height: height + 120 })} title={s.taller} aria-label={s.taller}>↕+</button>
-          <button type="button" className={styles.sketchBtn} onClick={() => updateAttributes({ height: Math.max(160, height - 120) })} title={s.shorter} aria-label={s.shorter}>↕−</button>
+          <button type="button" className={styles.sketchBtn} onClick={() => commit(saved.slice(0, -1))} disabled={!saved.length} title={s.undoShape} aria-label={s.undoShape}><UndoIcon /></button>
+          <button type="button" className={styles.sketchBtn} onClick={removeSelected} disabled={!selectedId} title={s.deleteShape} aria-label={s.deleteShape}><TrashIcon /></button>
+          <button type="button" className={styles.sketchBtn} onClick={() => updateAttributes({ height: height + 120 })} title={s.taller} aria-label={s.taller}><TallerIcon /></button>
+          <button type="button" className={styles.sketchBtn} onClick={() => updateAttributes({ height: Math.max(160, height - 120) })} title={s.shorter} aria-label={s.shorter}><ShorterIcon /></button>
           <span className={styles.sketchSpacer} />
-          <button type="button" className={styles.sketchBtn} onClick={deleteNode} title={s.removeBlock} aria-label={s.removeBlock}>✕</button>
+          <button type="button" className={styles.sketchBtn} onClick={deleteNode} title={s.removeBlock} aria-label={s.removeBlock}><CloseIcon /></button>
         </div>
       )}
       <div className={styles.sketchBoard} tabIndex={editable ? 0 : undefined} onKeyDown={onKeyDown}>

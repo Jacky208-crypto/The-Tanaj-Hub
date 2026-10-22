@@ -102,7 +102,7 @@
 /* Leave room for the commentary side panel on wide screens. */
 @media (min-width: 900px) {
   .withPanel {
-    margin-right: 440px;
+    margin-right: calc(var(--panel-width, 420px) + 20px);
     margin-left: max(0px, calc(50vw - 620px));
   }
 }
@@ -189,6 +189,9 @@
 }
 
 .selectionBar button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   border: none;
   background: transparent;
   color: var(--accent-text);

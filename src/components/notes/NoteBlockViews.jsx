@@ -3,8 +3,9 @@ import { NodeViewWrapper, NodeViewContent } from '@tiptap/react';
 import { noteStrings } from './noteStrings';
 import { PASSUK_COLORS, readerLink } from './noteUtils';
 import styles from './RichNote.module.css';
+import { QuestionIcon, LightbulbIcon, AlertIcon, CloseIcon } from './icons';
 
-const CALLOUT_ICONS = { question: '?', insight: '💡', important: '!' };
+const CALLOUT_ICONS = { question: QuestionIcon, insight: LightbulbIcon, important: AlertIcon };
 
 export function PassukQuoteView({ node, editor, updateAttributes, deleteNode, extension }) {
   const s = extension.options.strings || noteStrings('english');
@@ -36,7 +37,7 @@ export function PassukQuoteView({ node, editor, updateAttributes, deleteNode, ex
               />
             ))}
             <button type="button" className={styles.blockRemove} onClick={deleteNode} title={s.removeBlock} aria-label={s.removeBlock}>
-              ✕
+              <CloseIcon size={14} />
             </button>
           </span>
         )}
@@ -48,11 +49,12 @@ export function PassukQuoteView({ node, editor, updateAttributes, deleteNode, ex
 export function CalloutView({ node, editor, updateAttributes, deleteNode, extension }) {
   const s = extension.options.strings || noteStrings('english');
   const { kind, ref, answered } = node.attrs;
+  const KindIcon = CALLOUT_ICONS[kind] || QuestionIcon;
   const editable = editor.isEditable;
   return (
     <NodeViewWrapper className={`${styles.callout} ${styles[`callout_${kind}`] || ''} ${answered ? styles.calloutAnswered : ''}`}>
       <div className={styles.calloutHead} contentEditable={false}>
-        <span className={styles.calloutIcon}>{CALLOUT_ICONS[kind] || '•'}</span>
+        <KindIcon size={16} />
         <span className={styles.calloutLabel}>{s[kind] || kind}</span>
         {ref && <span className={styles.calloutRef} dir="ltr">{ref}</span>}
         <span className={styles.blockTools}>
@@ -69,7 +71,7 @@ export function CalloutView({ node, editor, updateAttributes, deleteNode, extens
           )}
           {editable && (
             <button type="button" className={styles.blockRemove} onClick={deleteNode} title={s.removeBlock} aria-label={s.removeBlock}>
-              ✕
+              <CloseIcon size={14} />
             </button>
           )}
         </span>

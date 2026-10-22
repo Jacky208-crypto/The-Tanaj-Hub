@@ -41,7 +41,7 @@
 .tbBtn:disabled { opacity: 0.35; cursor: default; }
 .tbActive, .tbActive:hover:not(:disabled) { background: var(--accent-soft); }
 .tbWide { padding: 0 8px; font-size: 13px; }
-.caret { font-size: 9px; opacity: 0.6; }
+.caret { display: inline-flex; opacity: 0.6; }
 
 .tbSep {
   width: 1px;
@@ -87,6 +87,9 @@
 }
 
 .menuItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   text-align: start;
   padding: 7px 10px;
   border: none;
@@ -197,7 +200,7 @@
   pointer-events: none;
 }
 
-.content :global(.ProseMirror-selectednode) { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
+.editable :global(.ProseMirror-selectednode) { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
 
 /* ---------- Quoted pasuk ---------- */
 .passukQuote {
@@ -300,19 +303,6 @@ a.passukRef:hover { text-decoration: underline; }
   margin-bottom: 4px;
 }
 
-.calloutIcon {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: var(--c);
-  color: #fff;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11px;
-}
-
-.callout_insight .calloutIcon { background: transparent; font-size: 14px; }
 
 .calloutRef {
   text-transform: none;

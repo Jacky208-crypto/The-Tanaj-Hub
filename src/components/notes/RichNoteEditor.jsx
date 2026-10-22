@@ -11,6 +11,10 @@ import PassukPicker from './PassukPicker';
 import { noteStrings } from './noteStrings';
 import { noteToHtml } from './noteUtils';
 import styles from './RichNote.module.css';
+import {
+  UndoIcon, RedoIcon, BulletListIcon, OrderedListIcon, ChecklistIcon, QuoteIcon, PlusIcon, ChevronDownIcon,
+  BookIcon, QuestionIcon, LightbulbIcon, AlertIcon, TableIcon, DiagramIcon, DividerIcon,
+} from './icons';
 
 const HIGHLIGHTS = ['#fde68a', '#bbf7d0', '#bfdbfe', '#fbcfe8', '#e9d5ff'];
 const TEXT_COLORS = ['#dc2626', '#2563eb', '#16a34a', '#ea580c', '#9333ea', '#6b7280'];
@@ -51,7 +55,7 @@ function Menu({ label, title, active, children, wide }) {
         aria-label={title}
         aria-expanded={open}
       >
-        {label} <span className={styles.caret}>▾</span>
+        {label} <span className={styles.caret}><ChevronDownIcon size={12} /></span>
       </button>
       {open && (
         <div
@@ -111,8 +115,8 @@ function Toolbar({ editor, s, onPickPassuk }) {
   return (
     // preventDefault keeps the editor's selection while clicking buttons.
     <div className={styles.toolbar} onMouseDown={(e) => { if (e.target.tagName !== 'INPUT') e.preventDefault(); }}>
-      <Btn onClick={() => chain().undo().run()} disabled={!st.canUndo} title={s.undo}>↶</Btn>
-      <Btn onClick={() => chain().redo().run()} disabled={!st.canRedo} title={s.redo}>↷</Btn>
+      <Btn onClick={() => chain().undo().run()} disabled={!st.canUndo} title={s.undo}><UndoIcon /></Btn>
+      <Btn onClick={() => chain().redo().run()} disabled={!st.canRedo} title={s.redo}><RedoIcon /></Btn>
       <span className={styles.tbSep} />
 
       <Menu label={styleLabels[st.level]} title={s.textStyle} wide>
@@ -145,24 +149,24 @@ function Toolbar({ editor, s, onPickPassuk }) {
       </Menu>
       <span className={styles.tbSep} />
 
-      <Btn onClick={() => chain().toggleBulletList().run()} active={st.bullet} title={s.bulletList}>•≡</Btn>
-      <Btn onClick={() => chain().toggleOrderedList().run()} active={st.ordered} title={s.orderedList}>1≡</Btn>
-      <Btn onClick={() => chain().toggleTaskList().run()} active={st.task} title={s.checklist}>☑</Btn>
-      <Btn onClick={() => chain().toggleBlockquote().run()} active={st.quote} title={s.quote}>❝</Btn>
+      <Btn onClick={() => chain().toggleBulletList().run()} active={st.bullet} title={s.bulletList}><BulletListIcon /></Btn>
+      <Btn onClick={() => chain().toggleOrderedList().run()} active={st.ordered} title={s.orderedList}><OrderedListIcon /></Btn>
+      <Btn onClick={() => chain().toggleTaskList().run()} active={st.task} title={s.checklist}><ChecklistIcon /></Btn>
+      <Btn onClick={() => chain().toggleBlockquote().run()} active={st.quote} title={s.quote}><QuoteIcon /></Btn>
       <span className={styles.tbSep} />
 
-      <Menu label={`＋ ${s.insert}`} title={s.insert} wide>
-        <button type="button" className={styles.menuItem} onClick={onPickPassuk}>📜 {s.insertPassuk}</button>
-        <button type="button" className={styles.menuItem} onClick={() => chain().insertCallout({ kind: 'question' }).run()}>❓ {s.insertQuestion}</button>
-        <button type="button" className={styles.menuItem} onClick={() => chain().insertCallout({ kind: 'insight' }).run()}>💡 {s.insertInsight}</button>
-        <button type="button" className={styles.menuItem} onClick={() => chain().insertCallout({ kind: 'important' }).run()}>❗ {s.insertImportant}</button>
-        <button type="button" className={styles.menuItem} onClick={() => chain().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()}>▦ {s.table}</button>
-        <button type="button" className={styles.menuItem} onClick={() => chain().insertSketch().run()}>◇ {s.insertDiagram}</button>
-        <button type="button" className={styles.menuItem} onClick={() => chain().setHorizontalRule().run()}>— {s.divider}</button>
+      <Menu label={<><PlusIcon /> {s.insert}</>} title={s.insert} wide>
+        <button type="button" className={styles.menuItem} onClick={onPickPassuk}><BookIcon /> {s.insertPassuk}</button>
+        <button type="button" className={styles.menuItem} onClick={() => chain().insertCallout({ kind: 'question' }).run()}><QuestionIcon /> {s.insertQuestion}</button>
+        <button type="button" className={styles.menuItem} onClick={() => chain().insertCallout({ kind: 'insight' }).run()}><LightbulbIcon /> {s.insertInsight}</button>
+        <button type="button" className={styles.menuItem} onClick={() => chain().insertCallout({ kind: 'important' }).run()}><AlertIcon /> {s.insertImportant}</button>
+        <button type="button" className={styles.menuItem} onClick={() => chain().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()}><TableIcon /> {s.table}</button>
+        <button type="button" className={styles.menuItem} onClick={() => chain().insertSketch().run()}><DiagramIcon /> {s.insertDiagram}</button>
+        <button type="button" className={styles.menuItem} onClick={() => chain().setHorizontalRule().run()}><DividerIcon /> {s.divider}</button>
       </Menu>
 
       {st.table && (
-        <Menu label={`▦ ${s.table}`} title={s.table} active wide>
+        <Menu label={<><TableIcon /> {s.table}</>} title={s.table} active wide>
           <button type="button" className={styles.menuItem} onClick={() => chain().addRowAfter().run()}>{s.addRowAfter}</button>
           <button type="button" className={styles.menuItem} onClick={() => chain().addColumnAfter().run()}>{s.addColAfter}</button>
           <button type="button" className={styles.menuItem} onClick={() => chain().deleteRow().run()}>{s.deleteRow}</button>

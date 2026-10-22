@@ -16,6 +16,7 @@ import {
   anchorRef, anchorTitle, isEmptyHtml, extractQuestions, toggleQuestionInHtml, readerLink,
 } from '../components/notes/noteUtils';
 import styles from './Notes.module.css';
+import { EditIcon, TrashIcon, BookIcon } from '../components/notes/icons';
 
 const MY_NOTES = '__my_notes__';
 
@@ -51,27 +52,6 @@ const STRINGS = {
     saveError: 'לא ניתן היה לשמור את ההערה.', deleteError: 'לא ניתן היה למחוק את ההערה.',
   },
 };
-
-function EditIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M12 20h9" />
-      <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z" />
-    </svg>
-  );
-}
-
-function TrashIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M3 6h18" />
-      <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
-      <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
-      <line x1="10" y1="11" x2="10" y2="17" />
-      <line x1="14" y1="11" x2="14" y2="17" />
-    </svg>
-  );
-}
 
 // Note editor used for both adding a new note and editing in place: a title
 // plus the rich editor (body is HTML). Defined at module scope so it keeps a
@@ -369,7 +349,7 @@ export default function Notes() {
                       <p className={styles.questionText} dir="auto">{q.text}</p>
                       <div className={styles.questionMeta}>
                         {(q.ref || anchorRef(q.note, language)) && (
-                          <span className={styles.anchorChip} dir="ltr">📖 {q.ref || anchorRef(q.note, language)}</span>
+                          <span className={styles.anchorChip} dir="ltr"><BookIcon size={14} /> {q.ref || anchorRef(q.note, language)}</span>
                         )}
                         <span>{q.note.title || anchorTitle(q.note, ns, language) || s.untitled}</span>
                         <button className={styles.linkBtn} onClick={() => { setFilter('all'); startEdit(q.note); }}>
@@ -417,7 +397,7 @@ export default function Notes() {
                                 to={readerLink(note.book_id, note.chapter, note.verse_from)}
                                 title={ns.goToPassuk}
                               >
-                                📖 <span dir="ltr">{anchorRef(note, language)}</span>
+                                <BookIcon size={14} /> <span dir="ltr">{anchorRef(note, language)}</span>
                               </Link>
                             )}
                           </div>
