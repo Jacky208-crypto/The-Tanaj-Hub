@@ -67,15 +67,27 @@ export function toggleQuestionInHtml(html, index) {
   return doc.body.innerHTML;
 }
 
-// Verses of one chapter quoted in these notes → highlight color.
+// Pesukim of one chapter quoted in these notes → list of highlights
+// { color, lang, start, end }. start/end are character offsets into the pasuk
+// when only part of it was quoted (end null = to the end of the pasuk);
+// both null = the whole pasuk.
 export function quotedVerses(notes, bookId, chapter) {
   const verses = new Map();
+  const add = (v, mark) => verses.set(v, [...(verses.get(v) || []), mark]);
   for (const note of notes) {
     for (const el of parse(note.body).querySelectorAll('blockquote[data-passuk]')) {
       if (el.getAttribute('data-book') !== bookId || Number(el.getAttribute('data-chapter')) !== chapter) continue;
       const from = Number(el.getAttribute('data-verse'));
       const to = Number(el.getAttribute('data-verse-to')) || from;
-      for (let v = from; v <= to; v++) verses.set(v, el.getAttribute('data-color') || 'yellow');
+      const color = el.getAttribute('data-color') || 'yellow';
+      const lang = el.getAttribute('data-lang');
+      const partial = el.hasAttribute('data-start');
+      const start = Number(el.getAttribute('data-start')) || 0;
+      const end = el.hasAttribute('data-end') ? Number(el.getAttribute('data-end')) : null;
+      for (let v = from; v <= to; v++) {
+        if (!partial) add(v, { color, lang, start: null, end: null });
+        else add(v, { color, lang, start: v === from ? start : 0, end: v === to ? end : null });
+      }
     }
   }
   return verses;

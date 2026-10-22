@@ -17,6 +17,30 @@ const LANG_LABELS = {
   spanish: 'Español',
 };
 
+// Character offsets of a selection inside the pasuk text, for quoting just
+// that part: { start, end } (start in the first pasuk, end in the last), or
+// null when the selection takes in the whole of the pesukim.
+function selectedPart(range, verse, verseTo) {
+  const textOf = (v) => document.querySelector(`[data-verse="${v}"] [data-verse-text]`);
+  const first = textOf(verse);
+  const last = textOf(verseTo);
+  if (!first || !last) return null;
+  const offsetIn = (el, node, offset, fallback) => {
+    if (!el.contains(node)) return fallback;
+    const r = document.createRange();
+    r.selectNodeContents(el);
+    r.setEnd(node, offset);
+    return r.toString().length;
+  };
+  let start = offsetIn(first, range.startContainer, range.startOffset, 0);
+  let end = offsetIn(last, range.endContainer, range.endOffset, last.textContent.length);
+  // Leave out spaces picked up at the edges of the selection.
+  while (start < first.textContent.length && /\s/.test(first.textContent[start])) start++;
+  while (end > 0 && /\s/.test(last.textContent[end - 1])) end--;
+  if (start === 0 && end >= last.textContent.length) return null;
+  return { start, end };
+}
+
 const MIN_PANEL_WIDTH = 420;
 const PANEL_WIDTH_KEY = 'tanaj-commentary-width';
 
@@ -197,13 +221,17 @@ export default function ChapterReader({ book, initialChapter = null, initialVers
         const a = sel && verseOf(sel.anchorNode);
         const b = sel && verseOf(sel.focusNode);
         if (!text || !a || !b) { setSelectionBar(null); return; }
-        const rect = sel.getRangeAt(0).getBoundingClientRect();
+        const range = sel.getRangeAt(0);
+        const rect = range.getBoundingClientRect();
+        const verse = Math.min(a, b);
+        const verseTo = Math.max(a, b);
         setSelectionBar({
           left: rect.left + rect.width / 2,
           top: rect.bottom + 8,
-          verse: Math.min(a, b),
-          verseTo: Math.max(a, b),
+          verse,
+          verseTo,
           text,
+          range: selectedPart(range, verse, verseTo),
         });
       }, 200);
     };
@@ -218,12 +246,40 @@ export default function ChapterReader({ book, initialChapter = null, initialVers
     };
   }, [user]);
 
+  // A quote covers the whole pasuk unless it was of part of the text — and the
+  // part's offsets only make sense in the language it was quoted in.
+  function wholeMark(num) {
+    return highlighted.get(num)?.find((m) => m.start === null || m.lang !== language);
+  }
+
+  // Wrap the quoted parts of a pasuk in colored <mark>s.
+  function markParts(text, marks) {
+    if (!marks?.length) return text;
+    const ranges = marks
+      .map((m) => ({ color: m.color, from: Math.max(0, m.start), to: Math.min(text.length, m.end ?? text.length) }))
+      .filter((r) => r.to > r.from)
+      .sort((x, y) => x.from - y.from);
+    const out = [];
+    let at = 0;
+    for (const r of ranges) {
+      const from = Math.max(r.from, at);
+      if (r.to <= from) continue;
+      if (from > at) out.push(text.slice(at, from));
+      out.push(
+        <mark key={from} className={`${styles.partMark} ${styles[`mark_${r.color}`]}`}>{text.slice(from, r.to)}</mark>
+      );
+      at = r.to;
+    }
+    if (at < text.length) out.push(text.slice(at));
+    return out;
+  }
+
   function runSelectionAction(type) {
     if (!selectionBar) return;
-    const { verse, verseTo, text } = selectionBar;
+    const { verse, verseTo, text, range } = selectionBar;
     setPanelStart(null);
     setSelectedVerse(verse);
-    setPendingAction({ type, verse, verseTo, text });
+    setPendingAction({ type, verse, verseTo, text, range });
     window.getSelection()?.removeAllRanges();
     setSelectionBar(null);
   }
@@ -336,7 +392,7 @@ export default function ChapterReader({ book, initialChapter = null, initialVers
                         setSelectedVerse(i + 1);
                       }
                     }}
-                    className={`${styles.verse} ${styles.verseClickable} ${selectedVerse === i + 1 ? styles.verseSelected : ''} ${highlightVerse === i + 1 ? styles.verseHighlight : ''} ${highlighted.has(i + 1) ? `${styles.verseMarked} ${styles[`mark_${highlighted.get(i + 1)}`]}` : ''}`}
+                    className={`${styles.verse} ${styles.verseClickable} ${selectedVerse === i + 1 ? styles.verseSelected : ''} ${highlightVerse === i + 1 ? styles.verseHighlight : ''} ${wholeMark(i + 1) ? `${styles.verseMarked} ${styles[`mark_${wholeMark(i + 1).color}`]}` : ''}`}
                   >
                     <span className={styles.verseNumber}>
                       {i + 1}.
@@ -347,7 +403,9 @@ export default function ChapterReader({ book, initialChapter = null, initialVers
                         <span className={styles.noteMark} title={ns.myNote}><EditIcon size={12} /></span>
                       )}
                     </span>
-                    <span style={{ direction: isRTL ? 'rtl' : 'ltr' }}>{verse}</span>
+                    <span data-verse-text style={{ direction: isRTL ? 'rtl' : 'ltr' }}>
+                      {wholeMark(i + 1) ? verse : markParts(verse, highlighted.get(i + 1))}
+                    </span>
                   </div>
                 ))}
               </>

@@ -170,6 +170,16 @@
 .mark_pink { --mark: #ec4899; --mark-bg: rgba(236, 72, 153, 0.14); }
 .mark_purple { --mark: #a855f7; --mark-bg: rgba(168, 85, 247, 0.15); }
 
+/* Only part of a pasuk quoted: highlight just those words. */
+.partMark {
+  color: inherit;
+  background: color-mix(in srgb, var(--mark) 32%, transparent);
+  border-radius: 3px;
+  padding: 1px 0;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
 .noteMark {
   font-size: 11px;
   margin-inline-start: 3px;

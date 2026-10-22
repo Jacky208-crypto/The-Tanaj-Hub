@@ -124,11 +124,12 @@ export default function PassukNotes({
 
   const label = (from, to) => `${bookLabel(book.id, readerLanguage)} ${chapter}:${to && to > from ? `${from}–${to}` : from}`;
 
-  function quote(text, from = verse, to = null) {
+  function quote(text, from = verse, to = null, range = null) {
     if (!editor) return;
     editor.chain().focus().insertPassukQuote({
       bookId: book.id, chapter, verse: from, verseTo: to && to > from ? to : null,
       label: label(from, to), text, lang: readerLanguage, color,
+      start: range?.start ?? null, end: range?.end ?? null,
     }, { atEnd: true }).run();
   }
 
@@ -141,8 +142,8 @@ export default function PassukNotes({
   // "Question on this"). Wait until the right pasuk's editor is ready.
   useEffect(() => {
     if (!pendingAction || !editor || pendingAction.verse !== verse) return;
-    const { type, text, verse: from, verseTo } = pendingAction;
-    quote(text, from, verseTo);
+    const { type, text, verse: from, verseTo, range } = pendingAction;
+    quote(text, from, verseTo, range);
     if (type === 'question') askQuestion(from, verseTo);
     onActionDone();
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -46,6 +46,10 @@ export const PassukQuote = Node.create({
       chapter: dataAttr('chapter', 'chapter', { number: true }),
       verse: dataAttr('verse', 'verse', { number: true }),
       verseTo: dataAttr('verse-to', 'verseTo', { number: true }),
+      // For a quote of part of the text: character offsets where it starts in
+      // the first pasuk and ends in the last one. Unset = whole pesukim.
+      start: dataAttr('start', 'start', { number: true }),
+      end: dataAttr('end', 'end', { number: true }),
       label: dataAttr('label', 'label', { fallback: '' }),
       text: dataAttr('text', 'text', { fallback: '' }),
       lang: dataAttr('lang', 'lang', { fallback: 'hebrew' }),
