@@ -220,21 +220,28 @@ function dataHeaders(token, extra = {}) {
 }
 
 // ---- Quiz attempts ----
-export async function saveQuizAttempt({ quizLabel, score, total }) {
+// `details` is the per-question report (see QuizReport.jsx) and `mode` is
+// 'choice' or 'free'. Both need the columns added in user_data_setup.sql
+// section 1b — if they're missing, the score alone is saved instead.
+export async function saveQuizAttempt({ quizLabel, score, total, mode, details }) {
   const me = await currentAuth();
   if (!me) return null; // not logged in — nothing to save
-  const res = await fetch(`${REST_URL}/quiz_attempts`, {
-    method: 'POST',
-    headers: dataHeaders(me.token, { Prefer: 'return=representation' }),
-    body: JSON.stringify({
-      user_id: me.userId,
-      quiz_label: quizLabel,
-      score,
-      total,
-    }),
-  });
-  const data = await parse(res);
-  return Array.isArray(data) ? data[0] : data;
+  const post = async (body) => {
+    const res = await fetch(`${REST_URL}/quiz_attempts`, {
+      method: 'POST',
+      headers: dataHeaders(me.token, { Prefer: 'return=representation' }),
+      body: JSON.stringify({ user_id: me.userId, quiz_label: quizLabel, total, ...body }),
+    });
+    const data = await parse(res);
+    return Array.isArray(data) ? data[0] : data;
+  };
+  try {
+    return await post({ score, mode: mode || 'choice', details: details || null });
+  } catch (e) {
+    if (!details) throw e;
+    // Older database without the report columns (or score still an integer).
+    return post({ score: Math.floor(score) });
+  }
 }
 
 export async function getQuizAttempts() {

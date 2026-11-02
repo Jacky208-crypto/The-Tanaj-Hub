@@ -36,6 +36,17 @@ create policy "Users delete own attempts"
   on public.quiz_attempts for delete
   using (auth.uid() = user_id);
 
+-- ------------------------------------------------------------
+-- 1b. Quiz reports (added for "See report" after a quiz).
+--     score  → numeric, so free-response half points (7.5) fit
+--     mode   → 'choice' (multiple choice) or 'free' (free response)
+--     details → one object per question: quiz_key, book, chapter, mode,
+--               lang, question, answer, correct, result ('right'|'half'|'wrong')
+-- ------------------------------------------------------------
+alter table public.quiz_attempts alter column score type numeric(6,1);
+alter table public.quiz_attempts add column if not exists mode    text not null default 'choice';
+alter table public.quiz_attempts add column if not exists details jsonb;
+
 -- ============================================================
 -- 2. USER NOTES  (personal notes each account writes & saves)
 -- ============================================================

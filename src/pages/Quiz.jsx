@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import QuizPlayer from '../components/QuizPlayer';
+import QuizReport, { formatScore } from '../components/QuizReport';
 import ContentStatus from '../components/ContentStatus';
 import styles from './Quiz.module.css';
 import { useState, useEffect } from 'react';
@@ -37,6 +38,8 @@ export default function Quiz() {
   const [quizzes, setQuizzes] = useState(null); // quiz cards from Supabase
   const [quizzesError, setQuizzesError] = useState(null);
   const [reloadKey, setReloadKey] = useState(0);
+  const [history, setHistory] = useState([]); // this account's saved quiz attempts
+  const [openReport, setOpenReport] = useState(null); // the past attempt being viewed
 
   useEffect(() => {
     let active = true;
@@ -51,6 +54,16 @@ export default function Quiz() {
       onRetry={() => { setQuizzesError(null); setReloadKey((k) => k + 1); }}
     />
   );
+
+  // Saved quiz reports for signed-in users, refreshed whenever we return to the menu.
+  useEffect(() => {
+    if (!user || mode !== 'menu') return;
+    let active = true;
+    getQuizAttempts()
+      .then((rows) => { if (active) setHistory(rows); })
+      .catch(() => { if (active) setHistory([]); });
+    return () => { active = false; };
+  }, [user, mode]);
 
   /* Load this account's quiz history whenever we return to the menu.
   useEffect(() => {
@@ -73,6 +86,23 @@ export default function Quiz() {
   }, {});
   const bestList = Object.entries(bestByQuiz).sort((a, b) => b[1].pct - a[1].pct);
 */
+  // 👉 PAST REPORT
+  if (mode === 'report' && openReport) {
+    return (
+      <div className={styles.page}>
+        <div style={{ maxWidth: '640px', margin: '0 auto' }}>
+          <QuizReport
+            details={openReport.details}
+            score={Number(openReport.score)}
+            total={openReport.total}
+            onClose={() => { setMode('menu'); setOpenReport(null); }}
+            closeLabel={t('quizReport.backToQuizzes')}
+          />
+        </div>
+      </div>
+    );
+  }
+
   // 👉 QUIZ MODE
   if (mode === 'quiz' && customQuiz) {
     return (
@@ -457,6 +487,67 @@ export default function Quiz() {
           </button>{' '}
           {t('quiz.signUpPrompt')}
         </p>
+      )}
+
+      {user && history.length > 0 && (
+        <div
+          style={{
+            maxWidth: '640px',
+            margin: '0 auto 30px',
+            background: 'var(--bg-elevated)',
+            border: '1px solid var(--border)',
+            borderRadius: '12px',
+            padding: '1rem 1.25rem',
+          }}
+        >
+          <h2 className={styles.subtitle} style={{ marginTop: 0, marginBottom: '10px' }}>{t('quizReport.pastTitle')}</h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+            {history.slice(0, 10).map((a) => {
+              const hasReport = Array.isArray(a.details) && a.details.length > 0;
+              return (
+                <button
+                  key={a.id}
+                  type="button"
+                  disabled={!hasReport}
+                  title={hasReport ? undefined : t('quizReport.noDetails')}
+                  onClick={() => { setOpenReport(a); setMode('report'); }}
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    gap: '12px',
+                    width: '100%',
+                    padding: '6px 8px',
+                    border: 'none',
+                    borderRadius: '8px',
+                    background: 'transparent',
+                    color: hasReport ? 'var(--text-primary)' : 'var(--text-muted)',
+                    cursor: hasReport ? 'pointer' : 'default',
+                    font: 'inherit',
+                    fontSize: '0.9rem',
+                    textAlign: 'start',
+                  }}
+                  onMouseEnter={(e) => { if (hasReport) e.currentTarget.style.background = 'var(--bg-hover)'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; }}
+                >
+                  <span>
+                    {a.quiz_label}
+                    {a.mode === 'free' && <span style={{ color: 'var(--text-muted)' }}> · {t('quizReport.modeFree')}</span>}
+                  </span>
+                  <span>
+                    <strong style={{ color: hasReport ? 'var(--accent2)' : 'inherit' }}>
+                      {formatScore(Number(a.score))}/{a.total}
+                    </strong>
+                    {a.created_at && (
+                      <span style={{ color: 'var(--text-muted)', marginInlineStart: '8px' }}>
+                        {new Date(a.created_at).toLocaleDateString()}
+                      </span>
+                    )}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
       )}
 
       <h2 className={styles.subtitle}>{t('quiz.ourQuizzes')}</h2>

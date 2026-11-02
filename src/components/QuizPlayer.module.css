@@ -86,3 +86,106 @@
   cursor: pointer;
   font-size: 14px;
 }
+
+/* ---- Answer mode, free response, report ---- */
+
+.modeRow {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.freeBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.freeInput {
+  width: 400px;
+  max-width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 2px solid var(--border-strong);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  font: inherit;
+  font-size: 15px;
+  resize: vertical;
+}
+
+.freeInput[readonly] {
+  opacity: 0.75;
+}
+
+.revealed {
+  width: 400px;
+  max-width: 100%;
+  margin: 4px 0 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  text-align: center;
+  line-height: 1.5;
+}
+
+.gradeRow {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.gradeBtn {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.gradeWrong { border-color: #f44336; }
+.gradeHalf { border-color: #f5b301; }
+.gradeRight { border-color: #4caf50; }
+
+.reportBtn {
+  margin-top: 8px;
+  padding: 10px 24px;
+  border: 2px solid var(--quiz-btn-bg);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--quiz-text);
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.reportBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.note {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--quiz-text);
+  margin: 0.25rem 0 0.75rem;
+}
+
+.inlineLink {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--accent2);
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}

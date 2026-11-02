@@ -1,0 +1,147 @@
+.report {
+  width: 100%;
+  color: var(--quiz-text);
+}
+
+.title {
+  text-align: center;
+  margin: 0 0 4px;
+  font-size: 22px;
+}
+
+.bigScore {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0 0 12px;
+}
+
+.pct {
+  font-size: 16px;
+  font-weight: normal;
+  opacity: 0.8;
+}
+
+.feedback {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+.feedback p {
+  margin: 4px 0;
+}
+
+.sectionTitle {
+  font-size: 16px;
+  margin: 18px 0 8px;
+}
+
+.seferList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.seferRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.seferName {
+  flex: 0 0 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bar {
+  flex: 1;
+  height: 10px;
+  border-radius: 5px;
+  background: var(--bg-hover);
+  overflow: hidden;
+}
+
+.barFill {
+  display: block;
+  height: 100%;
+  background: var(--accent2);
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.item {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-inline-start: 5px solid var(--border-strong);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.right { border-inline-start-color: #4caf50; }
+.half { border-inline-start-color: #f5b301; }
+.wrong { border-inline-start-color: #f44336; }
+
+.itemHead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.icon {
+  font-size: 14px;
+}
+
+.meta {
+  flex: 1;
+}
+
+.question {
+  font-weight: bold;
+  margin: 6px 0;
+  line-height: 1.4;
+}
+
+.answer {
+  margin: 3px 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.label {
+  color: var(--text-secondary);
+}
+
+.selfGrade {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.closeBtn {
+  display: block;
+  margin: 18px auto 0;
+  background: transparent;
+  border: none;
+  color: var(--quiz-text);
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 14px;
+}
