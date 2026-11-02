@@ -20,8 +20,6 @@ function seferLabel(item, quizzes, language) {
   return quiz ? pick(quiz, 'label', language) : item.quiz_key || '—';
 }
 
-const RESULT_ICON = { right: '✅', half: '🟡', wrong: '❌' };
-
 // details: [{ quiz_key, book, chapter, mode, question, answer, correct, result, lang }]
 export default function QuizReport({ details, score, total, onClose, closeLabel }) {
   const { t, language } = useLanguage();
@@ -104,7 +102,9 @@ export default function QuizReport({ details, score, total, onClose, closeLabel 
           return (
             <li key={i} className={`${styles.item} ${styles[item.result] || ''}`}>
               <div className={styles.itemHead}>
-                <span className={styles.icon}>{RESULT_ICON[item.result]}</span>
+                <span className={`${styles.resultTag} ${styles[`tag_${item.result}`] || ''}`}>
+                  {t(`quizPlayer.grade.${item.result}`)}
+                </span>
                 <span className={styles.meta}>
                   {seferLabel(item, quizzes, language)}
                   {item.chapter ? ` · ${t('quizReport.perek', { n: item.chapter })}` : ''}

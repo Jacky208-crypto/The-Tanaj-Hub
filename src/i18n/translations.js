@@ -93,7 +93,7 @@ export const translations = {
       status: { pending: 'Waiting for review', accepted: 'Added ✓', rejected: 'Not added' },
     },
     quizPlayer: {
-      finished: 'Quiz Finished! 🎉',
+      finished: 'Quiz Finished!',
       noQuestions: 'There are no questions for those perakim and question types yet. Try a wider range or more types.',
       finalScore: ({ score, total }) => `Final Score: ${score} / ${total}`,
       couldNotSave: 'Could not save your score.',
@@ -116,7 +116,7 @@ export const translations = {
     },
     quizReport: {
       title: 'Quiz Report',
-      feedbackGreat: 'Excellent! You really know this material. 🌟',
+      feedbackGreat: 'Excellent! You really know this material.',
       feedbackGood: 'Very good! Just a few things to review.',
       feedbackOk: 'Good progress — keep reviewing the ones you missed.',
       feedbackLow: 'Keep going! Review the questions below and try again.',
@@ -349,7 +349,7 @@ export const translations = {
       status: { pending: 'Esperando revisión', accepted: 'Añadida ✓', rejected: 'No añadida' },
     },
     quizPlayer: {
-      finished: '¡Quiz Terminado! 🎉',
+      finished: '¡Quiz Terminado!',
       noQuestions: 'Todavía no hay preguntas para esos perakim y tipos de pregunta. Prueba con un rango más amplio o más tipos.',
       finalScore: ({ score, total }) => `Puntuación Final: ${score} / ${total}`,
       couldNotSave: 'No se pudo guardar tu puntuación.',
@@ -372,7 +372,7 @@ export const translations = {
     },
     quizReport: {
       title: 'Reporte del Quiz',
-      feedbackGreat: '¡Excelente! Dominas este material. 🌟',
+      feedbackGreat: '¡Excelente! Dominas este material.',
       feedbackGood: '¡Muy bien! Solo te faltan algunas cosas por repasar.',
       feedbackOk: 'Vas bien — sigue repasando las que fallaste.',
       feedbackLow: '¡Sigue adelante! Repasa las preguntas de abajo e inténtalo otra vez.',
@@ -606,7 +606,7 @@ export const translations = {
       status: { pending: 'ממתינה לבדיקה', accepted: 'נוספה ✓', rejected: 'לא נוספה' },
     },
     quizPlayer: {
-      finished: '!החידון הסתיים 🎉',
+      finished: '!החידון הסתיים',
       noQuestions: 'עדיין אין שאלות לפרקים ולסוגי השאלות האלה. נסו טווח רחב יותר או יותר סוגים',
       finalScore: ({ score, total }) => `תוצאה סופית: ${score} / ${total}`,
       couldNotSave: '.לא ניתן היה לשמור את התוצאה שלך',
@@ -629,7 +629,7 @@ export const translations = {
     },
     quizReport: {
       title: 'דוח החידון',
-      feedbackGreat: '!מצוין! אתם שולטים בחומר 🌟',
+      feedbackGreat: '!מצוין! אתם שולטים בחומר',
       feedbackGood: '!טוב מאוד! נשארו רק כמה דברים לחזור עליהם',
       feedbackOk: 'התקדמות טובה — המשיכו לחזור על מה שפספסתם.',
       feedbackLow: '!המשיכו! חזרו על השאלות למטה ונסו שוב',

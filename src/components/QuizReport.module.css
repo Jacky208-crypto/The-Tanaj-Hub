@@ -105,9 +105,13 @@
   color: var(--text-secondary);
 }
 
-.icon {
-  font-size: 14px;
+.resultTag {
+  font-weight: bold;
 }
+
+.tag_right { color: #4caf50; }
+.tag_half { color: #c98f00; }
+.tag_wrong { color: #f44336; }
 
 .meta {
   flex: 1;

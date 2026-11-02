@@ -290,6 +290,7 @@ export default function QuizPlayer({ quiz, onBack }) {
                         {t('quizPlayer.grade.half')}
                       </button>
                       <button className={`${styles.gradeBtn} ${styles.gradeRight}`} onClick={() => handleSelfGrade('right')}>
+                        {t('quizPlayer.grade.right')}
                       </button>
                     </div>
                   </>

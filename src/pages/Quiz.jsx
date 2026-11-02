@@ -40,6 +40,7 @@ export default function Quiz() {
   const [reloadKey, setReloadKey] = useState(0);
   const [history, setHistory] = useState([]); // this account's saved quiz attempts
   const [openReport, setOpenReport] = useState(null); // the past attempt being viewed
+  const [showHistory, setShowHistory] = useState(false); // "Your quiz reports" list open?
 
   useEffect(() => {
     let active = true;
@@ -500,8 +501,36 @@ export default function Quiz() {
             padding: '1rem 1.25rem',
           }}
         >
-          <h2 className={styles.subtitle} style={{ marginTop: 0, marginBottom: '10px' }}>{t('quizReport.pastTitle')}</h2>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+          <button
+            type="button"
+            aria-expanded={showHistory}
+            onClick={() => setShowHistory((v) => !v)}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: '12px',
+              width: '100%',
+              padding: 0,
+              border: 'none',
+              background: 'transparent',
+              color: 'var(--text-secondary)',
+              cursor: 'pointer',
+              font: 'inherit',
+            }}
+          >
+            <span className={styles.subtitle} style={{ margin: 0 }}>
+              {t('quizReport.pastTitle')} ({Math.min(history.length, 10)})
+            </span>
+            <span
+              aria-hidden="true"
+              style={{ display: 'inline-block', transition: 'transform 0.2s', transform: showHistory ? 'rotate(180deg)' : 'none' }}
+            >
+              ▾
+            </span>
+          </button>
+          {showHistory && (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', marginTop: '10px' }}>
             {history.slice(0, 10).map((a) => {
               const hasReport = Array.isArray(a.details) && a.details.length > 0;
               return (
@@ -547,6 +576,7 @@ export default function Quiz() {
               );
             })}
           </div>
+          )}
         </div>
       )}
 
