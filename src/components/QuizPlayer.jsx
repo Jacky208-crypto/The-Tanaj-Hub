@@ -284,13 +284,12 @@ export default function QuizPlayer({ quiz, onBack }) {
                     <p className={styles.note}>{t('quizPlayer.howDidYouDo')}</p>
                     <div className={styles.gradeRow}>
                       <button className={`${styles.gradeBtn} ${styles.gradeWrong}`} onClick={() => handleSelfGrade('wrong')}>
-                        ❌ {t('quizPlayer.grade.wrong')}
+                        {t('quizPlayer.grade.wrong')}
                       </button>
                       <button className={`${styles.gradeBtn} ${styles.gradeHalf}`} onClick={() => handleSelfGrade('half')}>
-                        🟡 {t('quizPlayer.grade.half')}
+                        {t('quizPlayer.grade.half')}
                       </button>
                       <button className={`${styles.gradeBtn} ${styles.gradeRight}`} onClick={() => handleSelfGrade('right')}>
-                        ✅ {t('quizPlayer.grade.right')}
                       </button>
                     </div>
                   </>

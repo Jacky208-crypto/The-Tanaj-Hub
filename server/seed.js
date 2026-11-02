@@ -32,7 +32,7 @@ async function seed() {
         ]
       )
     }
-    console.log(`✅ Inserted questions for ${book}`)
+    console.log(`Inserted questions for ${book}`)
   }
 
   console.log('🎉 All questions seeded!')
