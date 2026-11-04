@@ -1,13 +1,15 @@
-// Vercel function: POST /api/translate-commentary  { ref: "Rashi on Genesis 1:2" }
-// → { ref, segments: [html, ...] }  (Spanish)
+// Vercel function: POST /api/translate-commentary  { ref: "Rashi on Genesis 1:2", lang: "es" | "en" }
+// → { ref, segments: [html, ...] }
 //
-// Sefaria has no Spanish for Rashi, Ramban, midrash…, so the first time a
-// visitor opens one in Spanish we translate Sefaria's English with DeepL and
-// save it in the commentary_translations table (supabase/commentary_translations_setup.sql).
+// Sefaria has no Spanish for Rashi, Ramban, midrash…, and no English at all
+// for many commentators (Metzudat Zion, Malbim on Neviim…). The first time a
+// visitor opens one of these we translate it with DeepL, from Sefaria's English
+// when it has one and otherwise from the Hebrew, and save it in the
+// commentary_translations table (supabase/commentary_translations_setup.sql).
 // The browser reads that table directly, so this only runs for refs nobody
-// has opened in Spanish yet.
+// has opened in that language yet.
 //
-// The English is always fetched from Sefaria here, never taken from the
+// The source text is always fetched from Sefaria here, never taken from the
 // request, so the DeepL key can't be used to translate arbitrary text.
 //
 // Environment variables (Vercel → Project → Settings → Environment Variables,
@@ -18,12 +20,22 @@
 
 import { cleanSpanishNames } from '../src/lib/spanishText.js';
 
-// Longest English text we'll translate for one ref. Commentary on a verse is
+// Longest source text we'll translate for one ref. Commentary on a verse is
 // usually a few thousand characters (Ramban on Genesis 1:1 is ~19k); this
 // stops someone requesting a whole book through a long midrash ref.
 const MAX_CHARS = 50000;
 // DeepL accepts at most 50 texts per request.
 const DEEPL_BATCH = 50;
+
+const TARGETS = {
+  es: { deepl: 'ES', column: 'segments_es' },
+  en: { deepl: 'EN-US', column: 'segments_en' },
+};
+
+// Vowel points and cantillation (not maqaf or sof pasuq). DeepL bills per
+// character and the vocalized editions are about twice as long without
+// saying anything more.
+const NIQQUD = /[\u0591-\u05BD\u05BF\u05C1\u05C2\u05C4\u05C5\u05C7]/g;
 
 const json = (body, status = 200) =>
   new Response(JSON.stringify(body), {
@@ -57,22 +69,28 @@ function stripFootnotes(html) {
   return out.trim();
 }
 
-async function fetchEnglish(ref) {
+async function fetchSource(ref) {
   const res = await fetch(
-    `https://www.sefaria.org/api/v3/texts/${encodeURIComponent(ref)}?version=english`
+    `https://www.sefaria.org/api/v3/texts/${encodeURIComponent(ref)}?version=english&version=hebrew`
   );
   if (!res.ok) throw new Error(`Sefaria HTTP ${res.status}`);
   const data = await res.json();
   if (data.error) throw new Error(data.error);
   const en = data.versions?.find((v) => v.language === 'en');
+  const he = data.versions?.find((v) => v.language === 'he');
+  const enSegments = flatten(en?.text).map(stripFootnotes).filter(Boolean);
+  if (enSegments.length) {
+    return { ref: data.ref || ref, from: 'EN', version: en.versionTitle || null, segments: enSegments };
+  }
   return {
     ref: data.ref || ref,
-    version: en?.versionTitle || null,
-    segments: flatten(en?.text).map(stripFootnotes).filter(Boolean),
+    from: 'HE',
+    version: he?.versionTitle || null,
+    segments: flatten(he?.text).map((s) => stripFootnotes(s).replace(NIQQUD, '')).filter(Boolean),
   };
 }
 
-async function deepl(texts) {
+async function deepl(texts, from, to) {
   const key = process.env.DEEPL_API_KEY;
   const host = key.endsWith(':fx') ? 'api-free.deepl.com' : 'api.deepl.com';
   const out = [];
@@ -85,8 +103,8 @@ async function deepl(texts) {
       },
       body: JSON.stringify({
         text: texts.slice(i, i + DEEPL_BATCH),
-        source_lang: 'EN',
-        target_lang: 'ES',
+        source_lang: from,
+        target_lang: to,
         tag_handling: 'html',
       }),
     });
@@ -106,13 +124,13 @@ function supabase(path, init = {}) {
   });
 }
 
-async function readSaved(ref) {
+async function readSaved(ref, column) {
   const res = await supabase(
-    `commentary_translations?select=ref,segments_es&ref=eq.${encodeURIComponent(ref)}`
+    `commentary_translations?select=*&ref=eq.${encodeURIComponent(ref)}`
   );
   if (!res.ok) throw new Error(`Supabase HTTP ${res.status}`);
   const [row] = await res.json();
-  return row || null;
+  return row?.[column] ? { ref: row.ref, segments: row[column] } : null;
 }
 
 export async function POST(request) {
@@ -120,42 +138,52 @@ export async function POST(request) {
     return json({ error: 'Translation is not configured.' }, 503);
   }
 
-  let ref;
+  let ref, lang;
   try {
-    ({ ref } = await request.json());
+    ({ ref, lang = 'es' } = await request.json());
   } catch {
     return json({ error: 'Invalid JSON.' }, 400);
   }
   if (typeof ref !== 'string' || !ref.trim() || ref.length > 200) {
     return json({ error: 'Missing ref.' }, 400);
   }
+  const target = TARGETS[lang];
+  if (!target) return json({ error: 'Unsupported language.' }, 400);
 
   try {
-    const saved = await readSaved(ref);
-    if (saved) return json({ ref: saved.ref, segments: saved.segments_es });
+    const saved = await readSaved(ref, target.column);
+    if (saved) return json(saved);
 
-    const en = await fetchEnglish(ref);
-    if (!en.segments.length) return json({ error: 'No English text to translate.' }, 404);
-    const chars = en.segments.reduce((n, s) => n + s.length, 0);
+    const source = await fetchSource(ref);
+    if (!source.segments.length) return json({ error: 'No text to translate.' }, 404);
+    // Sefaria's own English is better than a machine one, and the browser shows it.
+    if (lang === 'en' && source.from === 'EN') return json({ error: 'Already in English.' }, 409);
+    const chars = source.segments.reduce((n, s) => n + s.length, 0);
     if (chars > MAX_CHARS) return json({ error: 'Text too long to translate.' }, 413);
 
     // Sefaria may normalize the ref ("Rashi on Gen 1:2" → "Rashi on Genesis 1:2").
-    if (en.ref !== ref) {
-      const savedNormalized = await readSaved(en.ref);
-      if (savedNormalized) return json({ ref: en.ref, segments: savedNormalized.segments_es });
+    if (source.ref !== ref) {
+      const savedNormalized = await readSaved(source.ref, target.column);
+      if (savedNormalized) return json(savedNormalized);
     }
 
-    const segments = (await deepl(en.segments)).map(cleanSpanishNames);
+    const translated = await deepl(source.segments, source.from, target.deepl);
+    const segments = lang === 'es' ? translated.map(cleanSpanishNames) : translated;
 
-    // ignore-duplicates: if two visitors translate the same ref at once, keep the first.
+    // A ref's languages share one row, so merge: this only sets the columns
+    // sent here. Rows that already had this language returned early above.
     const save = await supabase('commentary_translations', {
       method: 'POST',
-      headers: { Prefer: 'resolution=ignore-duplicates' },
-      body: JSON.stringify({ ref: en.ref, en_version: en.version, segments_es: segments }),
+      headers: { Prefer: 'resolution=merge-duplicates' },
+      body: JSON.stringify({
+        ref: source.ref,
+        [source.from === 'EN' ? 'en_version' : 'he_version']: source.version,
+        [target.column]: segments,
+      }),
     });
-    if (!save.ok) console.error('Could not save translation', en.ref, save.status, await save.text());
+    if (!save.ok) console.error('Could not save translation', source.ref, save.status, await save.text());
 
-    return json({ ref: en.ref, segments });
+    return json({ ref: source.ref, segments });
   } catch (e) {
     console.error('translate-commentary', ref, e);
     return json({ error: e.message }, 502);

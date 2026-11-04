@@ -1,15 +1,17 @@
 -- ============================================================
--- Tanaj Study Hub — Spanish translations of Sefaria commentaries
+-- Tanaj Study Hub — machine translations of Sefaria commentaries
 -- Run this in your Supabase dashboard: SQL Editor → New query → Run
 --
--- Sefaria has Rashi, Ramban, midrash… in English and Hebrew only. The first
--- time someone opens a commentary in Spanish, the Vercel function
--- api/translate-commentary.js translates Sefaria's English with DeepL and
--- saves it here; everyone after that reads the saved copy.
+-- Sefaria has Rashi, Ramban, midrash… in English and Hebrew only, and many
+-- commentators (Metzudat Zion, Malbim on Neviim…) in Hebrew only. The first
+-- time someone opens one in a language Sefaria doesn't have, the Vercel
+-- function api/translate-commentary.js translates it with DeepL (from the
+-- English if there is one, otherwise from the Hebrew) and saves it here;
+-- everyone after that reads the saved copy.
 --
 -- One row per Sefaria ref ("Rashi on Genesis 1:2", "Bereshit Rabbah 1:1").
--- To fix a bad translation, edit segments_es in the Table Editor. Deleting a
--- row makes the next visitor translate it again.
+-- To fix a bad translation, edit segments_es or segments_en in the Table
+-- Editor. Deleting a row makes the next visitor translate it again.
 --
 -- Safe to re-run.
 -- ============================================================
@@ -17,9 +19,14 @@
 create table if not exists public.commentary_translations (
   ref          text primary key,                 -- Sefaria ref, as Sefaria returns it
   en_version   text,                             -- the English version that was translated
-  segments_es  text[] not null,                  -- one entry per comment, light HTML (<b>, <i>…)
+  segments_es  text[],                           -- one entry per comment, light HTML (<b>, <i>…)
   created_at   timestamptz default now()
 );
+
+alter table public.commentary_translations
+  add column if not exists he_version  text,     -- the Hebrew version that was translated, if there was no English
+  add column if not exists segments_en text[],   -- English, only for refs Sefaria has no English for
+  alter column segments_es drop not null;
 
 alter table public.commentary_translations enable row level security;
 

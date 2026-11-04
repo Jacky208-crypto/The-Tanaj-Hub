@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
-import { fetchVerseSources, fetchSourceText, fetchSpanishText } from '../lib/sefariaCommentary';
+import { fetchVerseSources, fetchSourceText, fetchTranslation, passagesToTranslate } from '../lib/sefariaCommentary';
 import { getMidrashimForVerse, parseAnchor, localized, useMidrashIndex } from '../lib/midrashim';
 import PassukNotes from './notes/PassukNotes';
 import { noteStrings } from './notes/noteStrings';
@@ -42,10 +42,13 @@ export default function CommentaryPanel({
   const [selected, setSelected] = useState(initialSelected); // commentator title or midrash:<id>
   const [text, setText] = useState(null);
   const [textError, setTextError] = useState(null);
-  // Spanish visitors start on the (machine-translated) Spanish.
-  const [textLang, setTextLang] = useState(language === 'spanish' ? 'es' : 'en');
-  const [esText, setEsText] = useState(null); // { [ref]: [html] }
-  const [esError, setEsError] = useState(null);
+  // Visitors start in their own language. Hebrew readers start on the original
+  // rather than on a machine translation of it.
+  const [textLang, setTextLang] = useState(
+    language === 'spanish' ? 'es' : language === 'hebrew' ? 'he' : 'en'
+  );
+  const [translation, setTranslation] = useState(null); // { lang, byRef: { [ref]: [html] } }
+  const [translationError, setTranslationError] = useState(null);
   const [showMore, setShowMore] = useState(false);
   const [showMoreMidrash, setShowMoreMidrash] = useState(false);
   const [reloadKey, setReloadKey] = useState(0);
@@ -95,19 +98,24 @@ export default function CommentaryPanel({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sources, selected]);
 
-  // Spanish is translated only when asked for — it costs DeepL characters
-  // the first time anyone opens a commentary in Spanish.
+  const hasHe = text?.passages.some((p) => p.he.length);
+  // A commentary with no Hebrew on Sefaria has no עברית button to stay on.
+  const lang = textLang === 'he' && text && !hasHe ? 'en' : textLang;
+  const needsTranslation = !!text && lang !== 'he' && passagesToTranslate(text.passages, lang).length > 0;
+
+  // Translated only when asked for — it costs DeepL characters the first time
+  // anyone opens a commentary in that language.
   useEffect(() => {
-    if (textLang !== 'es' || !text) return;
+    if (!needsTranslation) return;
     let cancelled = false;
-    setEsText(null);
-    setEsError(null);
-    fetchSpanishText(text.passages)
-      .then((r) => { if (!cancelled) setEsText(r); })
-      .catch(() => { if (!cancelled) setEsError(t('commentary.translateError')); });
+    setTranslation(null);
+    setTranslationError(null);
+    fetchTranslation(text.passages, lang)
+      .then((byRef) => { if (!cancelled) setTranslation({ lang, byRef }); })
+      .catch(() => { if (!cancelled) setTranslationError(t('commentary.translateError')); });
     return () => { cancelled = true; };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [textLang, text]);
+  }, [lang, text]);
 
   const uiRTL = language === 'hebrew';
 
@@ -130,8 +138,8 @@ export default function CommentaryPanel({
     </li>
   );
 
-  const hasEn = text?.passages.some((p) => p.en.length);
-  const hasHe = text?.passages.some((p) => p.he.length);
+  const translated = needsTranslation && translation?.lang === lang ? translation.byRef : null;
+  const translating = needsTranslation && !translated && !translationError;
 
   return (
     <aside
@@ -322,42 +330,41 @@ export default function CommentaryPanel({
 
             {text && (
               <>
-                {hasEn && (
-                  <div className={styles.langToggle}>
+                <div className={styles.langToggle}>
+                  <button
+                    className={`${styles.langBtn} ${lang === 'es' ? styles.langActive : ''}`}
+                    onClick={() => setTextLang('es')}
+                  >
+                    Español
+                  </button>
+                  <button
+                    className={`${styles.langBtn} ${lang === 'en' ? styles.langActive : ''}`}
+                    onClick={() => setTextLang('en')}
+                  >
+                    English
+                  </button>
+                  {hasHe && (
                     <button
-                      className={`${styles.langBtn} ${textLang === 'es' ? styles.langActive : ''}`}
-                      onClick={() => setTextLang('es')}
+                      className={`${styles.langBtn} ${lang === 'he' ? styles.langActive : ''}`}
+                      onClick={() => setTextLang('he')}
                     >
-                      Español
+                      עברית
                     </button>
-                    <button
-                      className={`${styles.langBtn} ${textLang === 'en' ? styles.langActive : ''}`}
-                      onClick={() => setTextLang('en')}
-                    >
-                      English
-                    </button>
-                    {hasHe && (
-                      <button
-                        className={`${styles.langBtn} ${textLang === 'he' ? styles.langActive : ''}`}
-                        onClick={() => setTextLang('he')}
-                      >
-                        עברית
-                      </button>
-                    )}
-                  </div>
-                )}
+                  )}
+                </div>
 
-                {textLang === 'es' && hasEn && (
-                  esError ? <p className={styles.status}>{esError}</p>
-                    : !esText ? <p className={styles.status}>{t('commentary.loading')}</p>
+                {needsTranslation && (
+                  translationError ? <p className={styles.status}>{translationError}</p>
+                    : translating ? <p className={styles.status}>{t('commentary.loading')}</p>
                     : <p className={styles.machineNote}>{t('commentary.machineTranslated')}</p>
                 )}
 
-                {!(textLang === 'es' && hasEn && !esText && !esError) && text.passages.map((p) => {
-                  const useHe = textLang === 'he' ? p.he.length > 0 : p.en.length === 0;
-                  // Spanish falls back to English for a passage that couldn't be translated.
-                  const es = !useHe && textLang === 'es' ? esText?.[p.ref] : null;
-                  const segments = useHe ? p.he : es || p.en;
+                {!translating && text.passages.map((p) => {
+                  // A passage that couldn't be translated falls back to the original.
+                  const machine = translated?.[p.ref];
+                  const useHe = !machine && (lang === 'he' ? p.he.length > 0 : p.en.length === 0);
+                  const segments = machine || (useHe ? p.he : p.en);
+                  const version = useHe || !p.en.length ? p.heVersion : p.enVersion;
                   return (
                     <article key={p.ref} className={styles.passage}>
                       {group.category === 'Midrash' && (
@@ -380,8 +387,8 @@ export default function CommentaryPanel({
                         >
                           Sefaria
                         </a>
-                        {(useHe ? p.heVersion : p.enVersion) && ` · ${useHe ? p.heVersion : p.enVersion}`}
-                        {es && ` · DeepL`}
+                        {version && ` · ${version}`}
+                        {machine && ` · DeepL`}
                       </div>
                     </article>
                   );

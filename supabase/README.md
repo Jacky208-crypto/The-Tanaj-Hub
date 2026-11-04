@@ -102,12 +102,13 @@ editor, "Publish all", or the Table Editor. Each person is emailed once.
 Sends are queued through `pg_net`; if an email doesn't arrive, check
 Resend's *Logs* page, or `select * from net._http_response order by created desc limit 5;`
 
-## Spanish commentary (Rashi, Ramban, midrash…)
+## Translated commentary (Rashi, Ramban, Metzudat Zion, midrash…)
 
-Sefaria only has these in English and Hebrew. In the commentary panel,
-**Español** translates Sefaria's English with DeepL the first time anyone
-opens a ref, and saves it in `commentary_translations`; after that everyone
-reads the saved copy.
+Sefaria has these in English and Hebrew at most, and many only in Hebrew. In
+the commentary panel, **Español** (and **English**, when Sefaria has none)
+translates with DeepL the first time anyone opens a ref, from Sefaria's
+English if there is one and otherwise from the Hebrew. It's saved in
+`commentary_translations`; after that everyone reads the saved copy.
 
 **Setup (once):**
 
@@ -118,5 +119,5 @@ reads the saved copy.
    `SUPABASE_SECRET_KEY` to Vercel → Project → Settings → Environment
    Variables, then redeploy.
 
-To fix a bad translation, edit its `segments_es` in the Table Editor (one
-array entry per comment). Deleting a row makes it translate again next time.
+To fix a bad translation, edit its `segments_es` or `segments_en` in the
+Table Editor (one array entry per comment). Deleting a row makes it translate again next time.
