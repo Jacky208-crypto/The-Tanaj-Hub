@@ -15,6 +15,7 @@ import Notes from './pages/Notes';
 import Search from './pages/Search';
 import Login from './pages/Login';
 import Suggest from './pages/Suggest';
+import Privacy from './pages/Privacy';
 
 // Lazy-loaded so Leaflet + the places dataset only download when the map is opened.
 const MapPage = lazy(() => import('./pages/MapPage'));
@@ -49,6 +50,7 @@ export default function App() {
             />
             <Route path="/login" element={<Login />} />
             <Route path="/suggest" element={<Suggest />} />
+            <Route path="/privacy" element={<Privacy />} />
             <Route
               path="/admin"
               element={

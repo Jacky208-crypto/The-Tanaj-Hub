@@ -26,6 +26,7 @@ export const translations = {
       tanajSearch: 'Tanaj Search',
       biblicalMap: 'Biblical Map',
       footer: 'Made by Jacky Fnounou',
+      privacyLink: 'Privacy & Terms',
       languageLabel: 'Change language',
       themeLabel: 'Change theme',
     },
@@ -251,6 +252,58 @@ export const translations = {
       via: 'via',
       seeAll: ({ count }) => `See all ${count} on Sefaria ↗`,
     },
+    privacy: {
+      title: 'Privacy & Terms',
+      updated: 'Last updated: November 6, 2026',
+      intro: 'The Tanaj Hub is a free learning site. It collects as little as it can, and this page explains what that is.',
+      sections: [
+        {
+          heading: 'What the site collects',
+          body: 'You can read the texts, search and use the map without an account. If you create one, the site stores:',
+          items: [
+            'Your name and email, and your password or Google sign-in. Passwords are stored securely by Supabase, never as plain text.',
+            'Your quiz results.',
+            'Your personal notes. Other visitors can\'t see them.',
+            'Questions you suggest, along with your name and email.',
+          ],
+        },
+        {
+          heading: 'How it is used',
+          body: 'Only to run the site: keeping you logged in, saving your notes and quiz results, and emailing you if a question you suggested is published. Your information is never sold, and the site has no ads.',
+        },
+        {
+          heading: 'Cookies and your browser',
+          body: 'The site doesn\'t use advertising or tracking cookies. Your browser\'s storage remembers your theme, your language, your panel size and that you are logged in. Visit statistics come from Vercel Analytics, which counts page views without cookies.',
+        },
+        {
+          heading: 'Services the site uses',
+          body: 'These services help run the site. Some of them can see basic technical information, such as your IP address, when your browser connects to them.',
+          items: [
+            'Supabase: accounts and saved data',
+            'Vercel: hosting and visit statistics',
+            'Resend: sending emails',
+            'Google: only if you sign in with Google',
+            'Sefaria: Tanaj texts and commentary',
+            'OpenStreetMap, OpenTopoMap and Esri: map images',
+          ],
+        },
+        {
+          heading: 'Your data',
+          body: 'You can delete your notes at any time. To get a copy of your data or delete your account, send an email to the address below. Deleting your account removes your notes, quiz results and suggestions. Questions that were already published stay in the quizzes, without your name.',
+        },
+        {
+          heading: 'Terms of use',
+          items: [
+            'The site is free and provided as it is. Summaries, quizzes and translations can contain mistakes.',
+            'Questions you suggest may be edited, translated and published on the site.',
+            'Please don\'t misuse the site or try to break it.',
+            'If this page changes, the date at the top will change too.',
+          ],
+        },
+      ],
+      contactHeading: 'Contact',
+      contactBody: 'For questions or requests, write to',
+    },
     theme: {
       light: 'Light',
       darkNavy: 'Dark-Navy',
@@ -282,6 +335,7 @@ export const translations = {
       tanajSearch: 'Búsqueda del Tanaj',
       biblicalMap: 'Mapa Bíblico',
       footer: 'Hecho por Jacky Fnounou',
+      privacyLink: 'Privacidad y términos',
       languageLabel: 'Cambiar idioma',
       themeLabel: 'Cambiar tema',
     },
@@ -508,6 +562,58 @@ export const translations = {
       seeAll: ({ count }) => `Ver los ${count} en Sefaria ↗`,
       hint: 'Toca un versículo para ver sus comentarios',
     },
+    privacy: {
+      title: 'Privacidad y términos',
+      updated: 'Última actualización: 6 de noviembre de 2026',
+      intro: 'The Tanaj Hub es un sitio gratuito para aprender. Recopila lo mínimo posible, y esta página explica qué es.',
+      sections: [
+        {
+          heading: 'Qué recopila el sitio',
+          body: 'Puedes leer los textos, buscar y usar el mapa sin una cuenta. Si creas una, el sitio guarda:',
+          items: [
+            'Tu nombre y correo, y tu contraseña o inicio de sesión con Google. Supabase guarda las contraseñas de forma segura, nunca como texto simple.',
+            'Tus resultados de los cuestionarios.',
+            'Tus notas personales. Los demás visitantes no pueden verlas.',
+            'Las preguntas que sugieres, junto con tu nombre y correo.',
+          ],
+        },
+        {
+          heading: 'Cómo se usa',
+          body: 'Solo para hacer funcionar el sitio: mantener tu sesión iniciada, guardar tus notas y resultados, y enviarte un correo si se publica una pregunta que sugeriste. Tu información nunca se vende y el sitio no tiene anuncios.',
+        },
+        {
+          heading: 'Cookies y tu navegador',
+          body: 'El sitio no usa cookies de publicidad ni de seguimiento. El almacenamiento de tu navegador recuerda tu tema, tu idioma, el tamaño del panel y que has iniciado sesión. Las estadísticas de visitas vienen de Vercel Analytics, que cuenta las páginas vistas sin cookies.',
+        },
+        {
+          heading: 'Servicios que usa el sitio',
+          body: 'Estos servicios ayudan a hacer funcionar el sitio. Algunos pueden ver información técnica básica, como tu dirección IP, cuando tu navegador se conecta a ellos.',
+          items: [
+            'Supabase: cuentas y datos guardados',
+            'Vercel: alojamiento y estadísticas de visitas',
+            'Resend: envío de correos',
+            'Google: solo si inicias sesión con Google',
+            'Sefaria: textos del Tanaj y comentarios',
+            'OpenStreetMap, OpenTopoMap y Esri: imágenes del mapa',
+          ],
+        },
+        {
+          heading: 'Tus datos',
+          body: 'Puedes borrar tus notas en cualquier momento. Para obtener una copia de tus datos o eliminar tu cuenta, envía un correo a la dirección de abajo. Al eliminar tu cuenta se borran tus notas, resultados y sugerencias. Las preguntas ya publicadas permanecen en los cuestionarios, sin tu nombre.',
+        },
+        {
+          heading: 'Términos de uso',
+          items: [
+            'El sitio es gratuito y se ofrece tal como está. Los resúmenes, cuestionarios y traducciones pueden contener errores.',
+            'Las preguntas que sugieres pueden editarse, traducirse y publicarse en el sitio.',
+            'Por favor, no hagas un mal uso del sitio ni intentes dañarlo.',
+            'Si esta página cambia, la fecha de arriba también cambiará.',
+          ],
+        },
+      ],
+      contactHeading: 'Contacto',
+      contactBody: 'Para preguntas o solicitudes, escribe a',
+    },
     theme: {
       light: 'Claro',
       darkNavy: 'Oscuro-Marino',
@@ -539,6 +645,7 @@ export const translations = {
       tanajSearch: 'חיפוש בתנ"ך',
       biblicalMap: 'מפה מקראית',
       footer: 'נוצר על ידי ג\'קי פנונו',
+      privacyLink: 'פרטיות ותנאים',
       languageLabel: 'שנה שפה',
       themeLabel: 'שנה ערכת נושא',
     },
@@ -764,6 +871,58 @@ export const translations = {
       via: 'דרך',
       seeAll: ({ count }) => `הצג את כל ${count} בספריא ↗`,
       hint: 'לחצו על פסוק כדי לראות את המפרשים',
+    },
+    privacy: {
+      title: 'פרטיות ותנאים',
+      updated: 'עדכון אחרון: 6 בנובמבר 2026',
+      intro: 'The Tanaj Hub הוא אתר לימוד חינמי. האתר אוסף כמה שפחות מידע, והעמוד הזה מסביר איזה מידע.',
+      sections: [
+        {
+          heading: 'איזה מידע האתר אוסף',
+          body: 'אפשר לקרוא את הטקסטים, לחפש ולהשתמש במפה בלי חשבון. אם יוצרים חשבון, האתר שומר:',
+          items: [
+            'שם וכתובת מייל, וגם סיסמה או התחברות דרך Google. הסיסמאות נשמרות בצורה מאובטחת ב-Supabase, ואף פעם לא כטקסט גלוי.',
+            'תוצאות חידונים.',
+            'הערות אישיות. מבקרים אחרים לא יכולים לראות אותן.',
+            'שאלות שהצעתם, יחד עם השם וכתובת המייל שלכם.',
+          ],
+        },
+        {
+          heading: 'איך המידע משמש',
+          body: 'רק להפעלת האתר: כדי להשאיר אתכם מחוברים, לשמור את ההערות והתוצאות שלכם, ולשלוח לכם מייל אם שאלה שהצעתם מתפרסמת. המידע שלכם אף פעם לא נמכר, ואין באתר פרסומות.',
+        },
+        {
+          heading: 'עוגיות והדפדפן שלכם',
+          body: 'האתר לא משתמש בעוגיות פרסום או מעקב. האחסון של הדפדפן זוכר את ערכת הנושא, השפה, גודל החלונית ואת ההתחברות שלכם. נתוני הביקורים מגיעים מ-Vercel Analytics, שסופר צפיות בעמודים בלי עוגיות.',
+        },
+        {
+          heading: 'שירותים שהאתר משתמש בהם',
+          body: 'השירותים האלה עוזרים להפעיל את האתר. חלקם יכולים לראות מידע טכני בסיסי, כמו כתובת ה-IP שלכם, כשהדפדפן מתחבר אליהם.',
+          items: [
+            'Supabase: חשבונות ומידע שמור',
+            'Vercel: אחסון האתר ונתוני ביקורים',
+            'Resend: שליחת מיילים',
+            'Google: רק אם מתחברים דרך Google',
+            'Sefaria: טקסטים של התנ״ך ופירושים',
+            'OpenStreetMap, OpenTopoMap ו-Esri: תמונות המפה',
+          ],
+        },
+        {
+          heading: 'המידע שלכם',
+          body: 'אפשר למחוק את ההערות שלכם בכל זמן. כדי לקבל עותק של המידע שלכם או למחוק את החשבון, שלחו מייל לכתובת שלמטה. מחיקת החשבון מוחקת את ההערות, התוצאות וההצעות שלכם. שאלות שכבר פורסמו נשארות בחידונים, בלי השם שלכם.',
+        },
+        {
+          heading: 'תנאי שימוש',
+          items: [
+            'האתר חינמי ומוצע כפי שהוא. סיכומים, חידונים ותרגומים עלולים לכלול טעויות.',
+            'שאלות שאתם מציעים עשויות להיערך, להיות מתורגמות ולהתפרסם באתר.',
+            'נא לא לעשות שימוש לרעה באתר או לנסות לפגוע בו.',
+            'אם העמוד הזה ישתנה, גם התאריך למעלה ישתנה.',
+          ],
+        },
+      ],
+      contactHeading: 'יצירת קשר',
+      contactBody: 'לשאלות או בקשות, כתבו אל',
     },
     theme: {
       light: 'בהיר',

@@ -15,7 +15,8 @@
     "import:notes-he": "node --env-file=.env scripts/import-hebrew-notes.mjs",
     "add:questions": "node --env-file=.env scripts/add-quiz-drafts.mjs",
     "suggestions": "node --env-file=.env scripts/list-suggestions.mjs",
-    "classify:questions": "node --env-file=.env scripts/classify-questions.mjs"
+    "classify:questions": "node --env-file=.env scripts/classify-questions.mjs",
+    "preload:commentary": "node --env-file=.env scripts/preload-commentary-translations.mjs"
   },
   "dependencies": {
     "@tiptap/extension-highlight": "^3.32.0",

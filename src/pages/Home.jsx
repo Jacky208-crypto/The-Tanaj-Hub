@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import LanguageSwitcher from '../components/LanguageSwitcher';
@@ -97,6 +97,8 @@ export default function Home() {
 
       <footer style={{ textAlign: 'center', padding: '2rem', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
   {t('home.footer')}
+  {' · '}
+  <Link to="/privacy" style={{ color: 'inherit' }}>{t('home.privacyLink')}</Link>
 </footer>
     </div>
 
