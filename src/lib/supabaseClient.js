@@ -104,6 +104,7 @@ export async function handleOAuthCallback() {
   const params = new URLSearchParams(window.location.hash.slice(1));
   const accessToken = params.get('access_token');
   if (!accessToken) return null;
+  const isRecovery = params.get('type') === 'recovery';
 
   const session = withExpiry({
     access_token: accessToken,
@@ -117,6 +118,12 @@ export async function handleOAuthCallback() {
     // If the user lookup fails, we still keep the token.
   }
   saveSession(session);
+  // A password-reset link always ends on the new-password form, even if
+  // Supabase fell back to the Site URL because the redirect isn't allow-listed.
+  if (isRecovery && window.location.pathname !== '/reset-password') {
+    window.location.replace('/reset-password');
+    return session;
+  }
   window.history.replaceState(
     null,
     '',
@@ -135,6 +142,18 @@ export async function signIn(email, password) {
   const session = withExpiry(data);
   saveSession(session);
   return { session, user: data.user };
+}
+
+// Emails a password-reset link. Supabase answers the same way whether or not
+// the email has an account, so this can't reveal who is signed up.
+export async function requestPasswordReset(email) {
+  const redirectTo = `${window.location.origin}/reset-password`;
+  const res = await fetch(`${AUTH_URL}/recover?redirect_to=${encodeURIComponent(redirectTo)}`, {
+    method: 'POST',
+    headers: headers(),
+    body: JSON.stringify({ email }),
+  });
+  await parse(res);
 }
 
 export async function refresh(refreshToken) {
@@ -343,6 +362,58 @@ export async function getMySubmissions() {
     { headers: dataHeaders(me.token) }
   );
   return (await parse(res)) || [];
+}
+
+// ---- Account ----
+export async function updatePassword(password) {
+  const session = await getFreshSession();
+  if (!session?.access_token) throw new Error('Not logged in.');
+  const res = await fetch(`${AUTH_URL}/user`, {
+    method: 'PUT',
+    headers: dataHeaders(session.access_token),
+    body: JSON.stringify({ password }),
+  });
+  return parse(res);
+}
+
+// Everything stored for this account, for the "Download my data" button.
+export async function exportMyData() {
+  const me = await currentAuth();
+  if (!me) throw new Error('Not logged in.');
+  const read = async (table) => {
+    const res = await fetch(`${REST_URL}/${table}?user_id=eq.${me.userId}&select=*`, {
+      headers: dataHeaders(me.token),
+    });
+    return (await parse(res)) || [];
+  };
+  const [user, quizAttempts, notes, suggestions] = await Promise.all([
+    getUser(me.token),
+    read('quiz_attempts'),
+    read('user_notes'),
+    read('question_submissions'),
+  ]);
+  return {
+    account: {
+      name: user.user_metadata?.name ?? null,
+      email: user.email,
+      createdAt: user.created_at,
+    },
+    quizAttempts,
+    notes,
+    suggestions,
+  };
+}
+
+// Permanently deletes the signed-in account (see api/delete-account.js).
+export async function deleteAccount() {
+  const session = await getFreshSession();
+  if (!session?.access_token) throw new Error('Not logged in.');
+  const res = await fetch('/api/delete-account', {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${session.access_token}` },
+  });
+  await parse(res);
+  saveSession(null);
 }
 
 // Restore a valid session on app load, refreshing the token if it's expired.

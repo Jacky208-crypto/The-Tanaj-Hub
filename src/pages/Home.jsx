@@ -30,9 +30,9 @@ export default function Home() {
                   {t('home.admin')}
                 </button>
               )}
-              <span className={styles.welcome}>
+              <button className={styles.welcome} onClick={() => navigate('/account')} title={t('account.title')}>
                 {t('home.greeting', { name: user.user_metadata?.name || user.email })}
-              </span>
+              </button>
               <button className={styles.authBtn} onClick={signOut}>{t('home.logOut')}</button>
             </>
           ) : (

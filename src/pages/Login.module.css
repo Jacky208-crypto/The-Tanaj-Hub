@@ -150,3 +150,37 @@
   padding: 0;
   text-decoration: underline;
 }
+
+.forgot {
+  align-self: flex-end;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 13px;
+  margin-top: -6px;
+  padding: 0;
+  text-decoration: underline;
+}
+.forgot:hover { color: var(--text-primary); }
+
+.check {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1.4;
+}
+.check input { margin-top: 2px; }
+.check a,
+.note a { color: inherit; }
+
+.note {
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1.4;
+  margin-top: 10px;
+  text-align: center;
+}

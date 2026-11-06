@@ -60,6 +60,11 @@ export function AuthProvider({ children }) {
     setUser(null);
   }, []);
 
+  const deleteAccount = useCallback(async () => {
+    await auth.deleteAccount();
+    setUser(null);
+  }, []);
+
   const value = {
     user,
     loading,
@@ -70,6 +75,9 @@ export function AuthProvider({ children }) {
     signUp,
     signInWithGoogle,
     signOut,
+    deleteAccount,
+    requestPasswordReset: auth.requestPasswordReset,
+    updatePassword: auth.updatePassword,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

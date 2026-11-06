@@ -16,6 +16,8 @@ import Search from './pages/Search';
 import Login from './pages/Login';
 import Suggest from './pages/Suggest';
 import Privacy from './pages/Privacy';
+import Account from './pages/Account';
+import ResetPassword from './pages/ResetPassword';
 
 // Lazy-loaded so Leaflet + the places dataset only download when the map is opened.
 const MapPage = lazy(() => import('./pages/MapPage'));
@@ -51,6 +53,8 @@ export default function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/suggest" element={<Suggest />} />
             <Route path="/privacy" element={<Privacy />} />
+            <Route path="/account" element={<Account />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
             <Route
               path="/admin"
               element={

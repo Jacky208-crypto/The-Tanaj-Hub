@@ -23,3 +23,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Real dependency folder. The .nosync name keeps iCloud from evicting it;
+# node_modules is a symlink to it.
+node_modules.nosync
