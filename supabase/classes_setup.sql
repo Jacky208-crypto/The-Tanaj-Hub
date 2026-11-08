@@ -16,10 +16,10 @@
 --             — never a student's other quizzes, notes or anything else
 --   everyone  nothing else
 --
--- MAKING SOMEONE A TEACHER (you decide, in the SQL editor or Table Editor):
---   insert into public.teachers (user_id, school)
---   values ((select id from auth.users where email = 'teacher@school.org'),
---           'School name');
+-- MAKING SOMEONE A TEACHER: /admin → Teachers → add their email. It works
+-- before or after they sign up; they become a teacher once they log in with
+-- that (confirmed) email. Keep "Confirm email" ON in Supabase → Authentication,
+-- otherwise anyone could sign up with a teacher's address.
 --
 -- Safe to re-run: it only creates what's missing and resets the policies.
 -- ============================================================
@@ -28,7 +28,11 @@
 -- 1. TEACHERS  (accounts allowed to create classes)
 -- ============================================================
 -- Same pattern as public.admins: RLS on with NO policies, so the API can't
--- read or write it; only is_teacher() below and the dashboard can.
+-- read or write these; only the functions below and the dashboard can.
+--
+-- teacher_emails is what /admin → Teachers manages (by email, so a teacher
+-- can be added before they have an account). public.teachers is the older
+-- by-account list; it still counts, and is copied into teacher_emails below.
 create table if not exists public.teachers (
   user_id     uuid primary key references auth.users (id) on delete cascade,
   school      text,
@@ -36,14 +40,92 @@ create table if not exists public.teachers (
 );
 alter table public.teachers enable row level security;
 
+create table if not exists public.teacher_emails (
+  email       text primary key check (email = lower(btrim(email)) and position('@' in email) > 1),
+  school      text,
+  created_at  timestamptz default now()
+);
+alter table public.teacher_emails enable row level security;
+
+insert into public.teacher_emails (email, school)
+select lower(u.email), t.school
+  from public.teachers t join auth.users u on u.id = t.user_id
+ where u.email is not null
+on conflict (email) do nothing;
+
+-- A teacher = listed by account, or logged in with a confirmed email that's
+-- on the list.
 create or replace function public.is_teacher()
 returns boolean
 language sql
 stable
 security definer set search_path = public
 as $$
-  select exists (select 1 from public.teachers where user_id = auth.uid());
+  select exists (select 1 from public.teachers where user_id = auth.uid())
+      or exists (
+        select 1 from public.teacher_emails e
+        join auth.users u on lower(u.email) = e.email
+        where u.id = auth.uid() and u.email_confirmed_at is not null
+      );
 $$;
+
+-- ---- Admin-only: manage teachers from /admin → Teachers ----
+create or replace function public.admin_list_teachers()
+returns table (email text, school text, added_at timestamptz, has_account boolean, name text, class_count integer)
+language plpgsql stable security definer set search_path = public
+as $$
+begin
+  if not public.is_admin() then
+    raise exception 'Only admins can do this.' using errcode = '42501';
+  end if;
+  return query
+    select e.email, e.school, e.created_at,
+           u.id is not null,
+           (u.raw_user_meta_data ->> 'name'),
+           coalesce((select count(*)::integer from public.classes c
+                      where c.teacher_id = u.id and not c.archived), 0)
+      from public.teacher_emails e
+      left join auth.users u on lower(u.email) = e.email
+     order by e.created_at desc;
+end;
+$$;
+
+create or replace function public.admin_add_teacher(teacher_email text, school_name text default null)
+returns void
+language plpgsql security definer set search_path = public
+as $$
+begin
+  if not public.is_admin() then
+    raise exception 'Only admins can do this.' using errcode = '42501';
+  end if;
+  insert into public.teacher_emails (email, school)
+  values (lower(btrim(teacher_email)), nullif(btrim(school_name), ''))
+  on conflict (email) do update set school = coalesce(excluded.school, public.teacher_emails.school);
+end;
+$$;
+
+-- Stops them creating classes and hides their Teach page. Their existing
+-- classes stay, so students don't lose anything.
+create or replace function public.admin_remove_teacher(teacher_email text)
+returns void
+language plpgsql security definer set search_path = public
+as $$
+begin
+  if not public.is_admin() then
+    raise exception 'Only admins can do this.' using errcode = '42501';
+  end if;
+  delete from public.teacher_emails where email = lower(btrim(teacher_email));
+  delete from public.teachers
+   where user_id in (select id from auth.users where lower(email) = lower(btrim(teacher_email)));
+end;
+$$;
+
+revoke all on function public.admin_list_teachers() from public, anon;
+revoke all on function public.admin_add_teacher(text, text) from public, anon;
+revoke all on function public.admin_remove_teacher(text) from public, anon;
+grant execute on function public.admin_list_teachers() to authenticated;
+grant execute on function public.admin_add_teacher(text, text) to authenticated;
+grant execute on function public.admin_remove_teacher(text) to authenticated;
 
 -- ============================================================
 -- 2. CLASSES, MEMBERS, ASSIGNMENTS

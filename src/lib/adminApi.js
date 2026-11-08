@@ -47,6 +47,11 @@ async function request(path, init = {}) {
   return body;
 }
 
+// Calls an admin-only database function (they check is_admin() themselves).
+export function adminRpc(name, args = {}) {
+  return request(`rpc/${name}`, { method: 'POST', body: JSON.stringify(args) });
+}
+
 // Every row matching `query` (paged past Supabase's 1000-row limit).
 export async function listRows(table, query) {
   const rows = [];
