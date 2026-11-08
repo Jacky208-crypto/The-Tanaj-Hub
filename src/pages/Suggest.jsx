@@ -20,7 +20,7 @@ const ERRORS = {
 // /admin → Suggestions, and the database emails the person once it's published.
 export default function Suggest() {
   const navigate = useNavigate();
-  const { user, loading } = useAuth();
+  const { user, loading, isAnonymous } = useAuth();
   const { t, language } = useLanguage();
   const [quizzes, setQuizzes] = useState(null);
   const [form, setForm] = useState(EMPTY);
@@ -84,13 +84,13 @@ export default function Suggest() {
 
   if (loading) return <div className={styles.page}><div className={styles.inner}>{header}</div></div>;
 
-  if (!user) {
+  if (!user || isAnonymous) {
     return (
       <div className={styles.page}>
         <div className={styles.inner}>
           {header}
           <div className={styles.card}>
-            <p style={{ marginTop: 0 }}>{t('suggest.loginPrompt')}</p>
+            <p style={{ marginTop: 0 }}>{isAnonymous ? t('suggest.anonPrompt') : t('suggest.loginPrompt')}</p>
             <button className={styles.submit} onClick={() => navigate('/login', { state: { from: '/suggest' } })}>
               {t('suggest.logIn')}
             </button>

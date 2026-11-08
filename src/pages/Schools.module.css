@@ -1,0 +1,107 @@
+.page {
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  min-height: 100vh;
+  padding: 40px 16px 60px;
+}
+
+.inner {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.back {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 13px;
+  padding: 0;
+  margin-bottom: 12px;
+}
+.back:hover { color: var(--text-primary); }
+
+.title {
+  font-family: Arial;
+  font-size: 28px;
+  font-weight: bolder;
+  margin-bottom: 6px;
+}
+
+.intro {
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.card {
+  background-color: var(--bg-card);
+  border-radius: 10px;
+  padding: 24px;
+  box-shadow: 0 4px 10px var(--shadow);
+}
+
+.card + .card {
+  margin-top: 16px;
+}
+
+.section + .section {
+  margin-top: 22px;
+}
+
+.heading {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.body,
+.list {
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.list {
+  margin: 0;
+  padding-inline-start: 20px;
+}
+
+.list li + li {
+  margin-top: 4px;
+}
+
+.section + .body {
+  margin-top: 18px;
+}
+
+.link {
+  color: inherit;
+  text-decoration: underline;
+}
+.link:hover { color: var(--text-primary); }
+
+.cta {
+  text-align: center;
+}
+
+.button {
+  display: inline-block;
+  background-color: var(--accent);
+  color: var(--accent-text);
+  border-radius: 5px;
+  font-size: 14px;
+  margin-top: 14px;
+  padding: 10px 22px;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+.button:hover { opacity: 0.7; }
+
+.small {
+  color: var(--text-muted);
+  font-size: 12px;
+  margin-top: 10px;
+  overflow-wrap: anywhere;
+}

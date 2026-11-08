@@ -156,6 +156,21 @@ export async function requestPasswordReset(email) {
   await parse(res);
 }
 
+// A class account: no email or password (supabase/classes_setup.sql). Needs
+// "Allow anonymous sign-ins" switched on in Supabase. The nickname goes in
+// user_metadata.name so the home page can greet the student.
+export async function signInAnonymously(name) {
+  const res = await fetch(`${AUTH_URL}/signup`, {
+    method: 'POST',
+    headers: headers(),
+    body: JSON.stringify({ data: name ? { name } : {} }),
+  });
+  const data = await parse(res);
+  const session = withExpiry(data);
+  saveSession(session);
+  return session;
+}
+
 export async function refresh(refreshToken) {
   const res = await fetch(`${AUTH_URL}/token?grant_type=refresh_token`, {
     method: 'POST',
@@ -242,14 +257,20 @@ function dataHeaders(token, extra = {}) {
 // `details` is the per-question report (see QuizReport.jsx) and `mode` is
 // 'choice' or 'free'. Both need the columns added in user_data_setup.sql
 // section 1b — if they're missing, the score alone is saved instead.
-export async function saveQuizAttempt({ quizLabel, score, total, mode, details }) {
+export async function saveQuizAttempt({ quizLabel, score, total, mode, details, assignmentId }) {
   const me = await currentAuth();
   if (!me) return null; // not logged in — nothing to save
   const post = async (body) => {
     const res = await fetch(`${REST_URL}/quiz_attempts`, {
       method: 'POST',
       headers: dataHeaders(me.token, { Prefer: 'return=representation' }),
-      body: JSON.stringify({ user_id: me.userId, quiz_label: quizLabel, total, ...body }),
+      body: JSON.stringify({
+        user_id: me.userId,
+        quiz_label: quizLabel,
+        total,
+        ...(assignmentId ? { assignment_id: assignmentId } : {}),
+        ...body,
+      }),
     });
     const data = await parse(res);
     return Array.isArray(data) ? data[0] : data;
@@ -362,6 +383,120 @@ export async function getMySubmissions() {
     { headers: dataHeaders(me.token) }
   );
   return (await parse(res)) || [];
+}
+
+// ---- Classes (supabase/classes_setup.sql) ----
+// Row-Level Security decides what each account sees: teachers their own
+// classes, students the classes they joined.
+
+async function authed(path, init = {}) {
+  const me = await currentAuth();
+  if (!me) throw new Error('Not logged in.');
+  const res = await fetch(`${REST_URL}/${path}`, {
+    ...init,
+    headers: dataHeaders(me.token, init.headers),
+  });
+  return { me, data: await parse(res) };
+}
+
+async function rpc(name, args = {}) {
+  const { data } = await authed(`rpc/${name}`, { method: 'POST', body: JSON.stringify(args) });
+  return data;
+}
+
+// Whether the signed-in account is in public.teachers.
+export async function checkIsTeacher() {
+  const me = await currentAuth();
+  if (!me) return false;
+  return (await rpc('is_teacher')) === true;
+}
+
+export function createClass(name) {
+  return rpc('create_class', { class_name: name });
+}
+
+// Checked before creating a class account, so a mistyped code doesn't leave an
+// unused anonymous account behind. Works logged out. Returns null (unknown)
+// if the check isn't installed yet (supabase/classes_setup.sql section 4).
+export async function classCodeExists(code) {
+  try {
+    const res = await fetch(`${REST_URL}/rpc/class_code_exists`, {
+      method: 'POST',
+      headers: headers(),
+      body: JSON.stringify({ code }),
+    });
+    if (!res.ok) return null;
+    return (await res.json()) === true;
+  } catch {
+    return null;
+  }
+}
+
+// Returns the class id. Throws "No class has that code." for a wrong code.
+export function joinClass(code, nickname) {
+  return rpc('join_class', { code, nick: nickname });
+}
+
+// Student: the classes I'm in, each with its assignments.
+export async function getStudentClasses() {
+  const me = await currentAuth();
+  if (!me) return [];
+  const { data } = await authed(
+    `class_members?user_id=eq.${me.userId}` +
+    '&select=nickname,joined_at,classes(id,name,archived,assignments(id,quiz_key,due_at,created_at))' +
+    '&order=joined_at.desc'
+  );
+  return (data || []).filter((m) => m.classes && !m.classes.archived);
+}
+
+// Student: my attempts on assignments, newest first.
+export async function getMyAssignmentAttempts() {
+  const me = await currentAuth();
+  if (!me) return [];
+  const { data } = await authed(
+    `quiz_attempts?user_id=eq.${me.userId}&assignment_id=not.is.null` +
+    '&select=assignment_id,score,total,created_at&order=created_at.desc'
+  );
+  return data || [];
+}
+
+export async function leaveClass(classId) {
+  const me = await currentAuth();
+  if (!me) throw new Error('Not logged in.');
+  await authed(`class_members?class_id=eq.${classId}&user_id=eq.${me.userId}`, { method: 'DELETE' });
+}
+
+// Teacher: my (not archived) classes with their students and assignments.
+export async function getTeacherClasses() {
+  const me = await currentAuth();
+  if (!me) return [];
+  const { data } = await authed(
+    `classes?teacher_id=eq.${me.userId}&archived=is.false` +
+    '&select=id,name,join_code,created_at,class_members(user_id,nickname,joined_at),assignments(id,quiz_key,due_at,created_at)' +
+    '&order=created_at.desc'
+  );
+  return data || [];
+}
+
+export async function addAssignment({ classId, quizKey, dueAt }) {
+  const { data } = await authed('assignments', {
+    method: 'POST',
+    headers: { Prefer: 'return=representation' },
+    body: JSON.stringify({ class_id: classId, quiz_key: quizKey, due_at: dueAt || null }),
+  });
+  return Array.isArray(data) ? data[0] : data;
+}
+
+export async function deleteAssignment(id) {
+  await authed(`assignments?id=eq.${id}`, { method: 'DELETE' });
+}
+
+export async function removeStudent(classId, userId) {
+  await authed(`class_members?class_id=eq.${classId}&user_id=eq.${userId}`, { method: 'DELETE' });
+}
+
+export async function archiveClass(id) {
+  await authed(`classes?id=eq.${id}`, { method: 'PATCH', body: JSON.stringify({ archived: true }) });
 }
 
 // ---- Account ----

@@ -16,6 +16,10 @@ import Search from './pages/Search';
 import Login from './pages/Login';
 import Suggest from './pages/Suggest';
 import Privacy from './pages/Privacy';
+import Schools from './pages/Schools';
+import Join from './pages/Join';
+import MyClasses from './pages/MyClasses';
+import Teach from './pages/Teach';
 import Account from './pages/Account';
 import ResetPassword from './pages/ResetPassword';
 
@@ -53,6 +57,10 @@ export default function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/suggest" element={<Suggest />} />
             <Route path="/privacy" element={<Privacy />} />
+            <Route path="/schools" element={<Schools />} />
+            <Route path="/join" element={<Join />} />
+            <Route path="/my-classes" element={<MyClasses />} />
+            <Route path="/teach" element={<Teach />} />
             <Route path="/account" element={<Account />} />
             <Route path="/reset-password" element={<ResetPassword />} />
             <Route

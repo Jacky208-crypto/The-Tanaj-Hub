@@ -43,7 +43,8 @@ function needsOptions(q) {
     || (q.options_en ?? []).some((o) => NEEDS_OPTIONS_A.test((o ?? '').trim()));
 }
 
-// quiz = { label, quizKeys: ['bereshit', …], count, chapters?: { shemot: [1, 2, …] }, books?: { neviimAjaronim: { yona: [] } } }
+// quiz = { label, quizKeys: ['bereshit', …], count, chapters?: { shemot: [1, 2, …] }, books?: { neviimAjaronim: { yona: [] } },
+//          assignmentId?: set when a student plays a quiz their teacher assigned }
 export default function QuizPlayer({ quiz, onBack }) {
   const navigate = useNavigate();
   const { user } = useAuth();
@@ -91,10 +92,11 @@ export default function QuizPlayer({ quiz, onBack }) {
       total: questions.length,
       mode,
       details: answers,
+      assignmentId: quiz.assignmentId,
     })
       .then(() => setSaveState('saved'))
       .catch(() => setSaveState('error'));
-  }, [finished, user, sessionKey, quiz.label, score, questions, mode, answers]);
+  }, [finished, user, sessionKey, quiz.label, quiz.assignmentId, score, questions, mode, answers]);
 
   const getOptions = (q) => q[`options_${SUFFIX[language]}`] || q.options_en;
 

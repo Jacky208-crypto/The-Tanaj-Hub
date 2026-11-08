@@ -17,7 +17,7 @@ function saveJson(data) {
 
 export default function Account() {
   const navigate = useNavigate();
-  const { user, loading, isAdmin, deleteAccount } = useAuth();
+  const { user, loading, isAdmin, isAnonymous, deleteAccount } = useAuth();
   const { language, t } = useLanguage();
   const [downloading, setDownloading] = useState(false);
   const [confirming, setConfirming] = useState(false);
@@ -51,8 +51,10 @@ export default function Account() {
   async function handleDelete(e) {
     e.preventDefault();
     setError('');
-    if (typedEmail.trim().toLowerCase() !== user.email.toLowerCase()) {
-      setError(t('account.errEmail'));
+    // Class accounts have no email, so they type a word instead.
+    const expected = (user.email || t('account.deleteWord')).toLowerCase();
+    if (typedEmail.trim().toLowerCase() !== expected) {
+      setError(user.email ? t('account.errEmail') : t('account.errWord'));
       return;
     }
     setDeleting(true);
@@ -73,8 +75,9 @@ export default function Account() {
           <>
             <p className={styles.sub}>
               {user.user_metadata?.name && <>{user.user_metadata.name} · </>}
-              <span dir="ltr">{user.email}</span>
+              {user.email ? <span dir="ltr">{user.email}</span> : t('classes.anonAccount')}
             </p>
+            {isAnonymous && <p className={styles.sub}>{t('classes.anonAccountNote')}</p>}
             <div className={styles.card}>
               <button className={styles.action} onClick={handleDownload} disabled={downloading}>
                 {downloading ? t('account.downloading') : t('account.download')}
@@ -96,10 +99,12 @@ export default function Account() {
                 <form className={styles.form} onSubmit={handleDelete}>
                   <div className={styles.error}>{t('account.deleteWarning')}</div>
                   <label className={styles.label}>
-                    {t('account.deleteConfirmLabel')}
+                    {user.email
+                      ? t('account.deleteConfirmLabel')
+                      : t('account.deleteTypeWord', { word: t('account.deleteWord') })}
                     <input
                       className={styles.input}
-                      type="email"
+                      type={user.email ? 'email' : 'text'}
                       dir="ltr"
                       autoComplete="off"
                       value={typedEmail}

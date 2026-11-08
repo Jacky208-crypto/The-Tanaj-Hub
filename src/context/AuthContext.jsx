@@ -38,6 +38,19 @@ export function AuthProvider({ children }) {
   const adminChecked = Boolean(user) && adminCheck?.userId === user.id;
   const isAdmin = adminChecked && adminCheck.isAdmin;
 
+  // Same for public.teachers (supabase/classes_setup.sql).
+  const [teacherCheck, setTeacherCheck] = useState(null);
+  useEffect(() => {
+    if (!user?.id) return;
+    let active = true;
+    auth.checkIsTeacher()
+      .catch(() => false)
+      .then((isTeacher) => { if (active) setTeacherCheck({ userId: user.id, isTeacher }); });
+    return () => { active = false; };
+  }, [user?.id]);
+  const teacherChecked = Boolean(user) && teacherCheck?.userId === user.id;
+  const isTeacher = teacherChecked && teacherCheck.isTeacher;
+
   const signIn = useCallback(async (email, password) => {
     const { user: u } = await auth.signIn(email, password);
     setUser(u);
@@ -60,6 +73,13 @@ export function AuthProvider({ children }) {
     setUser(null);
   }, []);
 
+  // A no-email class account for joining with a code.
+  const signInAnonymously = useCallback(async (name) => {
+    const session = await auth.signInAnonymously(name);
+    setUser(session.user);
+    return session.user;
+  }, []);
+
   const deleteAccount = useCallback(async () => {
     await auth.deleteAccount();
     setUser(null);
@@ -70,6 +90,10 @@ export function AuthProvider({ children }) {
     loading,
     isAdmin,
     adminChecked,
+    isTeacher,
+    teacherChecked,
+    isAnonymous: Boolean(user?.is_anonymous),
+    signInAnonymously,
     isConfigured: auth.isConfigured,
     signIn,
     signUp,

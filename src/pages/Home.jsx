@@ -7,7 +7,13 @@ import styles from './Home.module.css';
 
 export default function Home() {
   const navigate = useNavigate();
-  const { user, signOut, loading, isAdmin } = useAuth();
+  const { user, signOut, loading, isAdmin, isTeacher, isAnonymous } = useAuth();
+
+  // A class account has no email or password: logging out loses it for good.
+  const handleSignOut = () => {
+    if (isAnonymous && !window.confirm(t('classes.anonLogoutWarning'))) return;
+    signOut();
+  };
   const { t } = useLanguage();
 
   return (
@@ -30,13 +36,24 @@ export default function Home() {
                   {t('home.admin')}
                 </button>
               )}
-              <button className={styles.welcome} onClick={() => navigate('/account')} title={t('account.title')}>
-                {t('home.greeting', { name: user.user_metadata?.name || user.email })}
+              {isTeacher && (
+                <button className={styles.adminBtn} onClick={() => navigate('/teach')}>
+                  {t('classes.navTeach')}
+                </button>
+              )}
+              <button className={styles.adminBtn} onClick={() => navigate('/my-classes')}>
+                {t('classes.navClasses')}
               </button>
-              <button className={styles.authBtn} onClick={signOut}>{t('home.logOut')}</button>
+              <button className={styles.welcome} onClick={() => navigate('/account')} title={t('account.title')}>
+                {t('home.greeting', { name: user.user_metadata?.name || user.email || t('classes.guestName') })}
+              </button>
+              <button className={styles.authBtn} onClick={handleSignOut}>{t('home.logOut')}</button>
             </>
           ) : (
             <>
+              <button className={styles.adminBtn} onClick={() => navigate('/join')}>
+                {t('classes.joinCta')}
+              </button>
               <button className={styles.authBtn} onClick={() => navigate('/login')}>
                 {t('home.logIn')}
               </button>
@@ -99,6 +116,8 @@ export default function Home() {
   {t('home.footer')}
   {' · '}
   <Link to="/privacy" style={{ color: 'inherit' }}>{t('home.privacyLink')}</Link>
+  {' · '}
+  <Link to="/schools" style={{ color: 'inherit' }}>{t('home.schoolsLink')}</Link>
 </footer>
     </div>
 
