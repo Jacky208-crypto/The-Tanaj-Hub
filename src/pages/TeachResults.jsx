@@ -5,7 +5,8 @@ import { useLanguage } from '../context/LanguageContext';
 import { getClassResults } from '../lib/supabaseClient';
 import { getQuizzes } from '../lib/content';
 import { formatDue } from '../lib/dates';
-import { assignmentSummary, assignmentTitle } from '../lib/assignments';
+import { assignmentSummary, assignmentTitle, isQuizKind } from '../lib/assignments';
+import { bookLabel } from '../data/books';
 import QuizReport, { RESULT_POINTS, formatScore } from '../components/QuizReport';
 import styles from './Classes.module.css';
 
@@ -40,6 +41,84 @@ function hardestQuestions(attempts, limit = 5) {
     .slice(0, limit);
 }
 
+// ---- Progress over time (single series: one hue, no legend; hover = <title>) ----
+function Sparkline({ points }) {
+  const W = 96;
+  const H = 26;
+  const P = 4;
+  if (!points.length) return null;
+  const x = (i) => (points.length === 1 ? W / 2 : P + (i * (W - 2 * P)) / (points.length - 1));
+  const y = (pct) => H - P - pct * (H - 2 * P);
+  const path = points.map((p, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)},${y(p.pct).toFixed(1)}`).join(' ');
+  return (
+    <svg className={styles.spark} viewBox={`0 0 ${W} ${H}`} width={W} height={H} role="img"
+      aria-label={points.map((p) => `${p.label}: ${pctText(p.pct)}`).join(', ')}>
+      <line x1={P} x2={W - P} y1={y(0.5)} y2={y(0.5)} className={styles.sparkGrid} />
+      {points.length > 1 && <path d={path} className={styles.sparkLine} />}
+      {points.map((p, i) => (
+        <circle key={i} cx={x(i)} cy={y(p.pct)} r={i === points.length - 1 ? 3 : 2.2} className={styles.sparkDot}>
+          <title>{`${p.label}: ${pctText(p.pct)}`}</title>
+        </circle>
+      ))}
+    </svg>
+  );
+}
+
+function TrendChart({ points, label }) {
+  const W = 600;
+  const H = 170;
+  const L = 40;
+  const R = 50;
+  const T = 12;
+  const B = 28;
+  const x = (i) => (points.length === 1 ? (L + W - R) / 2 : L + (i * (W - L - R)) / (points.length - 1));
+  const y = (pct) => T + (1 - pct) * (H - T - B);
+  const path = points.map((p, i) => `${i ? 'L' : 'M'}${x(i)},${y(p.pct)}`).join(' ');
+  const last = points[points.length - 1];
+  return (
+    <svg className={styles.trend} viewBox={`0 0 ${W} ${H}`} role="img"
+      aria-label={`${label}: ${points.map((p) => `${p.label} ${pctText(p.pct)}`).join(', ')}`}>
+      {[0, 0.5, 1].map((g) => (
+        <g key={g}>
+          <line x1={L} x2={W - R} y1={y(g)} y2={y(g)} className={styles.trendGrid} />
+          <text x={L - 8} y={y(g) + 4} textAnchor="end" className={styles.trendAxis}>{pctText(g)}</text>
+        </g>
+      ))}
+      <path d={path} className={styles.trendLine} />
+      {points.map((p, i) => (
+        <g key={i}>
+          <circle cx={x(i)} cy={y(p.pct)} r="12" className={styles.trendHit}>
+            <title>{`${p.label} (${p.when}): ${pctText(p.pct)}`}</title>
+          </circle>
+          <circle cx={x(i)} cy={y(p.pct)} r="4.5" className={styles.trendDot} pointerEvents="none" />
+          <text x={x(i)} y={H - 8} textAnchor="middle" className={styles.trendAxis}>{i + 1}</text>
+        </g>
+      ))}
+      <text x={x(points.length - 1) + 10} y={y(last.pct) + 4} className={styles.trendLabel}>{pctText(last.pct)}</text>
+    </svg>
+  );
+}
+
+// Missed share per perek, from the details of quiz attempts (questions without
+// a perek, like teachers' own questions, are skipped).
+function weakSpots(attempts, perekLabel, minAnswers = 3, limit = 6) {
+  const rows = new Map();
+  for (const attempt of attempts) {
+    for (const d of attempt.details || []) {
+      if (!d.chapter || !(d.book || d.quiz_key)) continue;
+      const key = `${d.book || d.quiz_key}|${d.chapter}`;
+      const row = rows.get(key) || { key, label: perekLabel(d), asked: 0, missed: 0 };
+      row.asked += 1;
+      row.missed += 1 - (RESULT_POINTS[d.result] ?? 0);
+      rows.set(key, row);
+    }
+  }
+  return [...rows.values()]
+    .filter((r) => r.asked >= minAnswers && r.missed > 0)
+    .sort((a, b) => b.missed / b.asked - a.missed / a.asked || b.asked - a.asked)
+    .slice(0, limit);
+}
+
 function csvCell(v) {
   const s = String(v ?? '');
   return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
@@ -58,6 +137,7 @@ export default function TeachResults() {
   const [error, setError] = useState('');
   const [focus, setFocus] = useState(null); // assignment id shown in the detail section
   const [open, setOpen] = useState(null);   // { student, assignment, attempt } quiz report shown
+  const [weakFor, setWeakFor] = useState(''); // '' = whole class, else a student id
 
   const load = useCallback(() => {
     Promise.all([getClassResults(classId), getQuizzes()])
@@ -91,20 +171,36 @@ export default function TeachResults() {
     ? t('classes.due', { date: formatDue(a.due_at, language) })
     : t('classes.assignedOn', { date: formatDue(a.created_at, language) }));
   const responseLate = (r, a) => Boolean(a.due_at) && r.done_at > a.due_at;
+  const quizAssignments = view ? view.assignments.filter(isQuizKind) : [];
+  // One student's best % on each quiz assignment they did, in order.
+  const progressOf = (s) => quizAssignments
+    .map((a) => ({ a, r: summarize(view.grid[s.id]?.[a.id], a) }))
+    .filter((x) => x.r)
+    .map(({ a, r }) => ({ label: title(a), pct: r.pct }));
+  // Class average (current students) on each quiz assignment with results.
+  const classTrend = quizAssignments
+    .map((a) => {
+      const rows = view.students.filter((s) => s.name !== null)
+        .map((s) => summarize(view.grid[s.id]?.[a.id], a)).filter(Boolean);
+      return rows.length ? { label: title(a), when: when(a), pct: rows.reduce((sum, r) => sum + r.pct, 0) / rows.length } : null;
+    })
+    .filter(Boolean);
+  const perekLabel = (d) => `${d.book ? bookLabel(d.book, language) : (quizzes.find((q) => q.key === d.quiz_key)?.label_en ?? d.quiz_key)} ${d.chapter}`;
+  const weak = view ? weakSpots(view.attempts.filter((x) => !weakFor || x.user_id === weakFor), perekLabel) : [];
 
   function exportCsv() {
     const { cls, assignments, students, grid, answers } = view;
     const header = [t('classes.csvStudent')];
     for (const a of assignments) {
       const name = `${title(a)} (${when(a)})`;
-      if (kindOf(a) === 'quiz') header.push(name, `${name} – ${t('classes.csvTries')}`, `${name} – ${t('classes.csvLate')}`);
+      if (isQuizKind(a)) header.push(name, `${name} – ${t('classes.csvTries')}`, `${name} – ${t('classes.csvLate')}`);
       else header.push(name);
     }
     const lines = [header.map(csvCell).join(',')];
     for (const s of students) {
       const row = [studentName(s)];
       for (const a of assignments) {
-        if (kindOf(a) === 'quiz') {
+        if (isQuizKind(a)) {
           const r = summarize(grid[s.id]?.[a.id], a);
           row.push(r ? `${formatScore(Number(r.best.score))}/${r.best.total}` : '', r ? r.tries : 0, r?.late ? t('classes.yes') : '');
         } else {
@@ -131,7 +227,7 @@ export default function TeachResults() {
     ?? view?.assignments.at(-1);
 
   function cell(s, a) {
-    if (kindOf(a) === 'quiz') {
+    if (isQuizKind(a)) {
       const r = summarize(view.grid[s.id]?.[a.id], a);
       if (!r) return <td key={a.id} className={styles.notStarted}>{t('classes.notStarted')}</td>;
       const band = r.pct >= 0.8 ? styles.good : r.pct >= 0.5 ? styles.ok : styles.low;
@@ -152,7 +248,7 @@ export default function TeachResults() {
     const r = view.answers[s.id]?.[a.id];
     if (!r) return <td key={a.id} className={styles.notStarted}>{t('classes.notDone')}</td>;
     const late = responseLate(r, a) && <span className={styles.lateTag}>{t('classes.late')}</span>;
-    if (kindOf(a) === 'reading') return <td key={a.id} className={styles.good}>✓{late}</td>;
+    if (kindOf(a) === 'reading' || kindOf(a) === 'map') return <td key={a.id} className={styles.good}>✓{late}</td>;
     return (
       <td key={a.id}>
         <button className={`${styles.cell} ${styles.good}`} onClick={() => setFocus(a.id)}>
@@ -164,7 +260,7 @@ export default function TeachResults() {
 
   function detail(a) {
     const kind = kindOf(a);
-    if (kind === 'quiz') {
+    if (isQuizKind(a)) {
       const hardest = hardestQuestions(view.attempts.filter((x) => x.assignment_id === a.id));
       return (
         <>
@@ -253,7 +349,7 @@ export default function TeachResults() {
                   {view.assignments.map((a) => {
                     // Counts and averages cover current students only.
                     const current = view.students.filter((s) => s.name !== null);
-                    const isQuiz = kindOf(a) === 'quiz';
+                    const isQuiz = isQuizKind(a);
                     const rows = isQuiz
                       ? current.map((s) => summarize(view.grid[s.id]?.[a.id], a)).filter(Boolean)
                       : current.map((s) => view.answers[s.id]?.[a.id]).filter(Boolean);
@@ -292,6 +388,7 @@ export default function TeachResults() {
                         <thead>
                           <tr>
                             <th>{t('classes.csvStudent')}</th>
+                            {quizAssignments.length > 1 && <th>{t('classes.progress')}</th>}
                             {view.assignments.map((a) => (
                               <th key={a.id} className={styles.thTitle}>
                                 <span className={styles.clamp}>{title(a)}</span>
@@ -304,6 +401,7 @@ export default function TeachResults() {
                           {view.students.map((s) => (
                             <tr key={s.id}>
                               <th className={s.name === null ? styles.leftClass : undefined}>{studentName(s)}</th>
+                              {quizAssignments.length > 1 && <td><Sparkline points={progressOf(s)} /></td>}
                               {view.assignments.map((a) => cell(s, a))}
                             </tr>
                           ))}
@@ -312,6 +410,52 @@ export default function TeachResults() {
                     </div>
                   )}
                 </div>
+
+                {classTrend.length > 1 && (
+                  <div className={styles.card}>
+                    <div className={styles.cardHead}>
+                      <span className={styles.cardTitle}>{t('classes.trendTitle')}</span>
+                    </div>
+                    <TrendChart points={classTrend} label={t('classes.trendTitle')} />
+                    <ol className={styles.trendKey}>
+                      {classTrend.map((p, i) => (
+                        <li key={i}><span className={styles.meta}>{i + 1}.</span> {p.label} · {pctText(p.pct)}</li>
+                      ))}
+                    </ol>
+                  </div>
+                )}
+
+                {quizAssignments.length > 0 && (
+                  <div className={styles.card}>
+                    <div className={styles.cardHead}>
+                      <span className={styles.cardTitle}>{t('classes.weakTitle')}</span>
+                      <select className={styles.inputSmall} value={weakFor} onChange={(e) => setWeakFor(e.target.value)}
+                        aria-label={t('classes.weakFor')}>
+                        <option value="">{t('classes.wholeClass')}</option>
+                        {view.students.map((s) => <option key={s.id} value={s.id}>{studentName(s)}</option>)}
+                      </select>
+                    </div>
+                    {weak.length === 0 ? (
+                      <p className={styles.empty}>{t('classes.weakNone')}</p>
+                    ) : (
+                      <ul className={styles.list}>
+                        {weak.map((w) => (
+                          <li key={w.key} className={styles.item}>
+                            <div className={styles.itemMain}>
+                              <div>{w.label}</div>
+                              <div className={styles.barTrack}>
+                                <div className={styles.barFill} style={{ width: `${Math.round((w.missed / w.asked) * 100)}%` }} />
+                              </div>
+                            </div>
+                            <span className={styles.missRate}>
+                              {t('classes.weakRate', { pct: pctText(w.missed / w.asked), n: w.asked })}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                )}
 
                 {open && (
                   <div className={styles.card}>

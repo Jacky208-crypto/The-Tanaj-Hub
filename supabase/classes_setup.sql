@@ -610,3 +610,48 @@ create policy "Teachers add class notes" on public.class_notes for insert
 drop policy if exists "Teachers delete class notes" on public.class_notes;
 create policy "Teachers delete class notes" on public.class_notes for delete
   using (public.owns_class(class_id));
+
+-- ============================================================
+-- 13. CLASS QUESTIONS  (a teacher's own questions, for their class only)
+-- ============================================================
+-- Assigned with kind = 'custom': students get `question_count` random
+-- questions from their class's bank.
+create table if not exists public.class_questions (
+  id             uuid primary key default gen_random_uuid(),
+  class_id       uuid not null references public.classes (id) on delete cascade,
+  question       text not null check (length(btrim(question)) between 1 and 500),
+  options        text[] not null check (cardinality(options) between 2 and 6),
+  correct_index  smallint not null,
+  created_at     timestamptz default now(),
+  constraint class_questions_correct_in_range check (correct_index >= 0 and correct_index < cardinality(options))
+);
+create index if not exists class_questions_class_idx on public.class_questions (class_id);
+alter table public.class_questions enable row level security;
+
+drop policy if exists "Read class questions" on public.class_questions;
+create policy "Read class questions" on public.class_questions for select
+  using (public.owns_class(class_id) or public.in_class(class_id));
+drop policy if exists "Teachers add class questions" on public.class_questions;
+create policy "Teachers add class questions" on public.class_questions for insert
+  with check (public.owns_class(class_id));
+drop policy if exists "Teachers delete class questions" on public.class_questions;
+create policy "Teachers delete class questions" on public.class_questions for delete
+  using (public.owns_class(class_id));
+
+-- ============================================================
+-- 14. MAP ACTIVITIES
+-- ============================================================
+-- kind = 'map': "find these places" — place_ids are public.places ids; the
+-- student clicks each pin on the map, then the activity counts as done
+-- (an assignment_responses row, like a reading). prompt = optional instructions.
+alter table public.assignments add column if not exists place_ids text[];
+
+alter table public.assignments drop constraint if exists assignments_kind_check;
+alter table public.assignments add constraint assignments_kind_check check (
+  (kind = 'quiz' and quiz_key is not null)
+  or kind = 'custom'
+  or (kind = 'reading' and book is not null)
+  or (kind = 'discussion' and length(btrim(coalesce(prompt, ''))) between 1 and 1000)
+  or (kind = 'map' and cardinality(place_ids) between 1 and 20
+      and (prompt is null or length(prompt) <= 1000))
+);

@@ -458,3 +458,118 @@
 .answerWho { font-weight: bold; font-size: 13px; }
 .answerText { white-space: pre-wrap; font-size: 14px; overflow-wrap: anywhere; }
 .thTitle { max-width: 180px; white-space: normal; vertical-align: bottom; }
+
+/* ---- Batch 2: class questions, map activities ---- */
+.bank {
+  margin-top: 14px;
+  font-size: 14px;
+}
+.bank summary {
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--text-secondary);
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+.optionGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 6px;
+}
+.optionRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.chipRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-weight: normal;
+}
+.placeChip {
+  background-color: var(--accent-softer);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text-primary);
+  cursor: pointer;
+  font-size: 12px;
+  padding: 3px 10px;
+}
+.placeResults {
+  list-style: none;
+  margin: 0;
+  padding: 4px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background-color: var(--bg-card);
+  font-weight: normal;
+}
+.placeResults button {
+  display: block;
+  width: 100%;
+  background: none;
+  border: none;
+  border-radius: 4px;
+  color: var(--text-primary);
+  cursor: pointer;
+  font: inherit;
+  padding: 5px 8px;
+  text-align: start;
+}
+.placeResults button:hover { background-color: var(--bg-page); }
+
+a.primary,
+a.secondary {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* ---- Progress and weak spots ---- */
+.spark { display: block; overflow: visible; }
+.sparkGrid { stroke: var(--border); stroke-width: 1; }
+.sparkLine { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.sparkDot { fill: var(--accent); stroke: var(--bg-card); stroke-width: 1.5; }
+
+.trend { display: block; width: 100%; height: auto; overflow: visible; }
+.trendGrid { stroke: var(--border); stroke-width: 1; }
+.trendAxis { fill: var(--text-muted); font-size: 12px; }
+.trendLine { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.trendDot { fill: var(--accent); stroke: var(--bg-card); stroke-width: 2; }
+.trendHit { fill: transparent; }
+.trendLabel { fill: var(--text-primary); font-size: 13px; font-weight: bold; }
+.trendKey {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.inputSmall {
+  padding: 5px 8px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  font: inherit;
+  font-size: 13px;
+}
+.barTrack {
+  height: 6px;
+  margin-top: 4px;
+  border-radius: 3px;
+  background-color: var(--bg-page);
+  overflow: hidden;
+}
+.barFill {
+  height: 100%;
+  border-radius: 3px;
+  background-color: var(--accent);
+}

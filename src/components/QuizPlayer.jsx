@@ -46,7 +46,8 @@ function needsOptions(q) {
 // quiz = { label, quizKeys: ['bereshit', …], count, chapters?: { shemot: [1, 2, …] }, books?: { neviimAjaronim: { yona: [] } },
 //          assignmentId?: set when a student plays a quiz their teacher assigned,
 //          mode?: 'choice' | 'free' fixed by the teacher, noRetry?: hide "Play again",
-//          questionIds?: play exactly these questions ("Review my mistakes") }
+//          questionIds?: play exactly these questions ("Review my mistakes"),
+//          fixedQuestions?: questions already loaded (a teacher's class questions) }
 export default function QuizPlayer({ quiz, onBack }) {
   const navigate = useNavigate();
   const { user } = useAuth();
@@ -70,9 +71,11 @@ export default function QuizPlayer({ quiz, onBack }) {
   // Fresh random questions for every run (first play and each "play again").
   useEffect(() => {
     let active = true;
-    const load = quiz.questionIds
-      ? getQuestionsByIds(quiz.questionIds).then((rows) => shuffled(rows).slice(0, quiz.count || rows.length))
-      : getRandomQuestions(quiz.quizKeys, quiz.count || 5, quiz.chapters, quiz.books, quiz.types);
+    const load = quiz.fixedQuestions
+      ? Promise.resolve(shuffled(quiz.fixedQuestions).slice(0, quiz.count || quiz.fixedQuestions.length))
+      : quiz.questionIds
+        ? getQuestionsByIds(quiz.questionIds).then((rows) => shuffled(rows).slice(0, quiz.count || rows.length))
+        : getRandomQuestions(quiz.quizKeys, quiz.count || 5, quiz.chapters, quiz.books, quiz.types);
     load
       .then((rows) => { if (active) setQuestions(rows.map(shuffleOptions)); })
       .catch((e) => { if (active) setLoadError(e.message); });

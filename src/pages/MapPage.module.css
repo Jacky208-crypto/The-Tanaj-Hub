@@ -218,3 +218,31 @@
     border-bottom: 2px solid var(--accent-soft);
   }
 }
+
+/* Map activity ("find these places") */
+.activity {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.activityTitle { font-weight: 700; margin: 0; }
+.activityPrompt { margin: 0; font-size: 14px; color: var(--text-secondary); white-space: pre-wrap; }
+.activityProgress { margin: 0; font-size: 14px; font-weight: 700; }
+.activityList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+}
+.activityFound { color: var(--success); }
+.activityDone {
+  margin: 0;
+  padding: 8px 10px;
+  border-radius: 6px;
+  background: var(--success-bg);
+  color: var(--success);
+  font-size: 14px;
+}

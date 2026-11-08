@@ -4,9 +4,9 @@ import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import {
   getTeacherClasses, createClass, addAssignment, deleteAssignment, removeStudent, archiveClass,
-  addClassPost, deleteClassPost,
+  addClassPost, deleteClassPost, addClassQuestion, deleteClassQuestion,
 } from '../lib/supabaseClient';
-import { getQuizzes, pick } from '../lib/content';
+import { getPlaces, getQuizzes, pick } from '../lib/content';
 import { formatDue } from '../lib/dates';
 import { assignmentSummary, assignmentTitle } from '../lib/assignments';
 import { QUIZ_BOOKS, QUIZ_CHAPTERS, allBooks, bookLabel, getBookById, parseChapters } from '../data/books';
@@ -19,7 +19,68 @@ function endOfDay(dateText) {
   return new Date(y, m - 1, d, 23, 59).toISOString();
 }
 
-const EMPTY_FORM = { kind: 'quiz', quizKey: '', due: '', count: '10', book: '', chapters: '', mode: '', retries: true, prompt: '' };
+const KINDS = ['quiz', 'custom', 'reading', 'discussion', 'map'];
+const MAX_PLACES = 20;
+const EMPTY_FORM = {
+  kind: 'quiz', quizKey: '', due: '', count: '10', book: '', chapters: '', mode: '', retries: true, prompt: '', placeIds: [],
+};
+
+// Search the map's places and pick up to MAX_PLACES for a map activity.
+function PlacePicker({ value, onChange }) {
+  const { t } = useLanguage();
+  const [places, setPlaces] = useState(null);
+  const [search, setSearch] = useState('');
+  useEffect(() => {
+    getPlaces().then(setPlaces).catch(() => setPlaces([]));
+  }, []);
+  const byId = Object.fromEntries((places || []).map((p) => [p.id, p]));
+  const q = search.trim().toLowerCase();
+  const matches = (places || [])
+    .filter((p) => !value.includes(p.id))
+    .filter((p) => p.name.toLowerCase().includes(q) || (p.aliases || []).some((a) => a.toLowerCase().includes(q)))
+    .slice(0, 8);
+
+  return (
+    <div className={styles.label}>
+      {t('classes.placesLabel', { n: value.length, max: MAX_PLACES })}
+      {value.length > 0 && (
+        <div className={styles.chipRow}>
+          {value.map((id) => (
+            <button
+              type="button"
+              key={id}
+              className={styles.placeChip}
+              onClick={() => onChange(value.filter((x) => x !== id))}
+              title={t('classes.remove')}
+            >
+              {byId[id]?.name ?? id} ×
+            </button>
+          ))}
+        </div>
+      )}
+      {value.length < MAX_PLACES && (
+        <>
+          <input
+            className={styles.input}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder={t('classes.searchPlaces')}
+          />
+          {q && (
+            <ul className={styles.placeResults}>
+              {matches.map((p) => (
+                <li key={p.id}>
+                  <button type="button" onClick={() => { onChange([...value, p.id]); setSearch(''); }}>{p.name}</button>
+                </li>
+              ))}
+              {matches.length === 0 && <li className={styles.meta}>{t('map.noMatches')}</li>}
+            </ul>
+          )}
+        </>
+      )}
+    </div>
+  );
+}
 
 function AssignForm({ cls, quizzes, onDone }) {
   const { language, t } = useLanguage();
@@ -27,24 +88,38 @@ function AssignForm({ cls, quizzes, onDone }) {
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
   const set = (k, v) => setForm((f) => ({ ...f, [k]: v }));
-  const isQuiz = form.kind === 'quiz';
+  const { kind } = form;
+  const isQuiz = kind === 'quiz';
+  const usesQuestions = isQuiz || kind === 'custom';
+  const textKind = kind === 'reading' || kind === 'discussion';
+  const bankSize = (cls.class_questions || []).length;
   const books = isQuiz ? QUIZ_BOOKS[form.quizKey] : null;
   // Chapters can be narrowed for single-book quizzes, once a book is picked in
   // a multi-book quiz, and for any book in a reading or discussion.
   const maxChapters = isQuiz
     ? (books ? (form.book ? getBookById(form.book).chapters : null) : QUIZ_CHAPTERS[form.quizKey])
-    : (form.book ? getBookById(form.book).chapters : null);
-  const ready = isQuiz ? Boolean(form.quizKey) : form.kind === 'reading' ? Boolean(form.book) : Boolean(form.prompt.trim());
+    : (textKind && form.book ? getBookById(form.book).chapters : null);
+  const ready = {
+    quiz: Boolean(form.quizKey),
+    custom: bankSize > 0,
+    reading: Boolean(form.book),
+    discussion: Boolean(form.prompt.trim()),
+    map: form.placeIds.length > 0,
+  }[kind];
+  const showOptions = (isQuiz && form.quizKey) || (kind === 'custom' && bankSize > 0);
 
   async function submit(e) {
     e.preventDefault();
     setError('');
     if (!ready) {
-      setError(form.kind === 'reading' ? t('classes.errBook') : t('classes.errPrompt'));
+      setError(t({
+        quiz: 'classes.errGeneric', custom: 'classes.errBank', reading: 'classes.errBook',
+        discussion: 'classes.errPrompt', map: 'classes.errPlaces',
+      }[kind]));
       return;
     }
     const count = Number(form.count);
-    if (isQuiz && (!Number.isInteger(count) || count < 1 || count > 50)) {
+    if (usesQuestions && (!Number.isInteger(count) || count < 1 || count > 50)) {
       setError(t('classes.errCount'));
       return;
     }
@@ -63,15 +138,16 @@ function AssignForm({ cls, quizzes, onDone }) {
     try {
       await addAssignment({
         classId: cls.id,
-        kind: form.kind,
+        kind,
         quizKey: form.quizKey,
         dueAt: endOfDay(form.due),
-        questionCount: isQuiz ? count : 10,
+        questionCount: usesQuestions ? count : 10,
         chapters,
-        book: isQuiz ? (books ? form.book : '') : form.book,
-        mode: isQuiz ? form.mode : '',
-        allowRetries: isQuiz ? form.retries : true,
+        book: isQuiz ? (books ? form.book : '') : textKind ? form.book : '',
+        mode: usesQuestions ? form.mode : '',
+        allowRetries: usesQuestions ? form.retries : true,
         prompt: form.prompt.trim(),
+        placeIds: form.placeIds,
       });
       setForm(EMPTY_FORM);
       onDone();
@@ -85,36 +161,46 @@ function AssignForm({ cls, quizzes, onDone }) {
   return (
     <form className={styles.form} onSubmit={submit}>
       <div className={styles.kindTabs} role="tablist">
-        {['quiz', 'reading', 'discussion'].map((k) => (
+        {KINDS.map((k) => (
           <button
             key={k}
             type="button"
             role="tab"
-            aria-selected={form.kind === k}
-            className={`${styles.kindTab} ${form.kind === k ? styles.kindTabOn : ''}`}
+            aria-selected={kind === k}
+            className={`${styles.kindTab} ${kind === k ? styles.kindTabOn : ''}`}
             onClick={() => { setForm({ ...EMPTY_FORM, kind: k, due: form.due }); setError(''); }}
           >
             {t(`classes.kind${k[0].toUpperCase()}${k.slice(1)}`)}
           </button>
         ))}
       </div>
-      {form.kind === 'discussion' && (
+
+      {kind === 'custom' && (
+        <p className={styles.hint}>
+          {bankSize > 0 ? t('classes.customHint', { n: bankSize }) : t('classes.customEmpty')}
+        </p>
+      )}
+
+      {kind === 'map' && <PlacePicker value={form.placeIds} onChange={(ids) => set('placeIds', ids)} />}
+
+      {(kind === 'discussion' || kind === 'map') && (
         <label className={styles.label}>
-          {t('classes.prompt')}
+          {kind === 'discussion' ? t('classes.prompt') : t('classes.mapInstructions')}
           <textarea
             className={styles.input}
-            rows={3}
+            rows={kind === 'discussion' ? 3 : 2}
             maxLength={1000}
             value={form.prompt}
             onChange={(e) => set('prompt', e.target.value)}
-            placeholder={t('classes.promptPlaceholder')}
+            placeholder={kind === 'discussion' ? t('classes.promptPlaceholder') : t('classes.mapInstructionsPlaceholder')}
           />
         </label>
       )}
-      {!isQuiz && (
+
+      {textKind && (
         <div className={styles.row}>
           <label className={styles.label}>
-            {form.kind === 'reading' ? t('classes.book') : t('classes.bookOptional')}
+            {kind === 'reading' ? t('classes.book') : t('classes.bookOptional')}
             <select
               className={styles.input}
               value={form.book}
@@ -138,26 +224,28 @@ function AssignForm({ cls, quizzes, onDone }) {
           )}
         </div>
       )}
+
       <div className={styles.row}>
         {isQuiz && (
-        <label className={styles.label}>
-          {t('classes.assignQuiz')}
-          <select
-            className={styles.input}
-            value={form.quizKey}
-            onChange={(e) => setForm({ ...form, quizKey: e.target.value, book: '', chapters: '' })}
-          >
-            <option value="">—</option>
-            {quizzes.map((q) => <option key={q.key} value={q.key}>{pick(q, 'label', language)}</option>)}
-          </select>
-        </label>
+          <label className={styles.label}>
+            {t('classes.assignQuiz')}
+            <select
+              className={styles.input}
+              value={form.quizKey}
+              onChange={(e) => setForm({ ...form, quizKey: e.target.value, book: '', chapters: '' })}
+            >
+              <option value="">—</option>
+              {quizzes.map((q) => <option key={q.key} value={q.key}>{pick(q, 'label', language)}</option>)}
+            </select>
+          </label>
         )}
         <label className={styles.label}>
           {t('classes.dueDate')}
           <input className={styles.input} type="date" value={form.due} onChange={(e) => set('due', e.target.value)} />
         </label>
       </div>
-      {isQuiz && form.quizKey && (
+
+      {showOptions && (
         <>
           <div className={styles.row}>
             <label className={styles.label}>
@@ -180,33 +268,35 @@ function AssignForm({ cls, quizzes, onDone }) {
               </select>
             </label>
           </div>
-          <div className={styles.row}>
-            {books && (
-              <label className={styles.label}>
-                {t('classes.book')}
-                <select
-                  className={styles.input}
-                  value={form.book}
-                  onChange={(e) => setForm({ ...form, book: e.target.value, chapters: '' })}
-                >
-                  <option value="">{t('classes.allBooks')}</option>
-                  {books.map((b) => <option key={b} value={b}>{bookLabel(b, language)}</option>)}
-                </select>
-              </label>
-            )}
-            {maxChapters && (
-              <label className={styles.label}>
-                {t('classes.chapters')}
-                <input
-                  className={styles.input}
-                  dir="ltr"
-                  value={form.chapters}
-                  onChange={(e) => set('chapters', e.target.value)}
-                  placeholder={t('quiz.chaptersAll', { n: maxChapters })}
-                />
-              </label>
-            )}
-          </div>
+          {isQuiz && (
+            <div className={styles.row}>
+              {books && (
+                <label className={styles.label}>
+                  {t('classes.book')}
+                  <select
+                    className={styles.input}
+                    value={form.book}
+                    onChange={(e) => setForm({ ...form, book: e.target.value, chapters: '' })}
+                  >
+                    <option value="">{t('classes.allBooks')}</option>
+                    {books.map((b) => <option key={b} value={b}>{bookLabel(b, language)}</option>)}
+                  </select>
+                </label>
+              )}
+              {maxChapters && (
+                <label className={styles.label}>
+                  {t('classes.chapters')}
+                  <input
+                    className={styles.input}
+                    dir="ltr"
+                    value={form.chapters}
+                    onChange={(e) => set('chapters', e.target.value)}
+                    placeholder={t('quiz.chaptersAll', { n: maxChapters })}
+                  />
+                </label>
+              )}
+            </div>
+          )}
           <label className={styles.check}>
             <input type="checkbox" checked={form.retries} onChange={(e) => set('retries', e.target.checked)} />
             {t('classes.allowRetries')}
@@ -218,6 +308,111 @@ function AssignForm({ cls, quizzes, onDone }) {
         {busy ? t('login.pleaseWait') : t('classes.assignBtn')}
       </button>
     </form>
+  );
+}
+
+const EMPTY_QUESTION = { question: '', options: ['', '', '', ''], correct: 0 };
+
+// The class's own question bank (assigned with the "Class questions" kind).
+function ClassQuestions({ cls, onChange }) {
+  const { t } = useLanguage();
+  const questions = cls.class_questions || [];
+  const [form, setForm] = useState(EMPTY_QUESTION);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState('');
+
+  async function add(e) {
+    e.preventDefault();
+    setError('');
+    const filled = form.options.map((o, i) => ({ o: o.trim(), i })).filter((x) => x.o);
+    if (!form.question.trim() || filled.length < 2) {
+      setError(t('classes.errQuestion'));
+      return;
+    }
+    const correctIndex = filled.findIndex((x) => x.i === form.correct);
+    if (correctIndex < 0) {
+      setError(t('classes.errCorrect'));
+      return;
+    }
+    setBusy(true);
+    try {
+      await addClassQuestion({
+        classId: cls.id, question: form.question.trim(), options: filled.map((x) => x.o), correctIndex,
+      });
+      setForm(EMPTY_QUESTION);
+      onChange();
+    } catch {
+      setError(t('classes.errGeneric'));
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  return (
+    <details className={styles.bank}>
+      <summary>{t('classes.classQuestions', { n: questions.length })}</summary>
+      {questions.length > 0 && (
+        <ul className={styles.list}>
+          {questions.map((q) => (
+            <li key={q.id} className={styles.item}>
+              <div className={styles.itemMain} dir="auto">
+                <div>{q.question}</div>
+                <div className={styles.meta}>{t('classes.correctAnswer', { a: q.options[q.correct_index] })}</div>
+              </div>
+              <button
+                type="button"
+                className={`${styles.textBtn} ${styles.danger}`}
+                onClick={async () => {
+                  if (!window.confirm(t('classes.deleteQuestionConfirm'))) return;
+                  try { await deleteClassQuestion(q.id); onChange(); } catch { setError(t('classes.errGeneric')); }
+                }}
+              >
+                {t('classes.delete')}
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+      <form className={styles.form} onSubmit={add} style={{ marginTop: 10 }}>
+        <label className={styles.label}>
+          {t('classes.newQuestion')}
+          <textarea
+            className={styles.input}
+            rows={2}
+            maxLength={500}
+            dir="auto"
+            value={form.question}
+            onChange={(e) => setForm({ ...form, question: e.target.value })}
+          />
+        </label>
+        <div className={styles.optionGrid}>
+          {form.options.map((o, i) => (
+            <label key={i} className={styles.optionRow}>
+              <input
+                type="radio"
+                name={`correct-${cls.id}`}
+                checked={form.correct === i}
+                onChange={() => setForm({ ...form, correct: i })}
+                aria-label={t('classes.markCorrect')}
+              />
+              <input
+                className={styles.input}
+                dir="auto"
+                maxLength={200}
+                value={o}
+                onChange={(e) => setForm({ ...form, options: form.options.map((x, j) => (j === i ? e.target.value : x)) })}
+                placeholder={t('classes.optionN', { n: i + 1 })}
+              />
+            </label>
+          ))}
+        </div>
+        <p className={styles.hint}>{t('classes.optionsHint')}</p>
+        {error && <div className={styles.error}>{error}</div>}
+        <button className={styles.secondary} type="submit" disabled={busy} style={{ alignSelf: 'flex-start' }}>
+          {t('classes.addQuestion')}
+        </button>
+      </form>
+    </details>
   );
 }
 
@@ -345,6 +540,7 @@ function ClassCard({ cls, quizzes, onChange }) {
       </div>
 
       <Announcements cls={cls} onChange={onChange} />
+      <ClassQuestions cls={cls} onChange={onChange} />
 
       <p className={styles.sectionLabel}>{t('classes.assignments')}</p>
       <AssignForm cls={cls} quizzes={quizzes} onDone={onChange} />

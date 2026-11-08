@@ -1,5 +1,30 @@
 import { QUIZ_BOOKS, QUIZ_CHAPTERS, bookLabel, getBookById, parseChapters } from '../data/books';
 
+// Assignment kinds students answer with a quiz (their results have scores).
+export const isQuizKind = (a) => !a.kind || a.kind === 'quiz' || a.kind === 'custom';
+
+// A class question (supabase/classes_setup.sql section 13) in the shape
+// QuizPlayer uses for quiz_questions (one language: the teacher's).
+function asPlayerQuestion(q) {
+  return {
+    id: q.id, quiz_key: null, book: null, chapter: null,
+    question_en: q.question, options_en: q.options, correct_index: q.correct_index,
+  };
+}
+
+// The QuizPlayer `quiz` object for a "class questions" assignment.
+export function customQuiz(a, questions, label) {
+  return {
+    label,
+    quizKeys: [],
+    fixedQuestions: questions.map(asPlayerQuestion),
+    count: a.question_count || 10,
+    assignmentId: a.id,
+    mode: a.mode || undefined,
+    noRetry: a.allow_retries === false,
+  };
+}
+
 // The QuizPlayer `quiz` object for a teacher's assignment.
 export function assignmentQuiz(a, label) {
   const quiz = {
@@ -31,6 +56,8 @@ export function assignmentTitle(a, quizzes, t, language) {
     return t('classes.readingTitle', { ref: [bookLabel(a.book, language), a.chapters].filter(Boolean).join(' ') });
   }
   if (a.kind === 'discussion') return a.prompt;
+  if (a.kind === 'custom') return t('classes.kindCustom');
+  if (a.kind === 'map') return t('classes.mapTitle', { n: a.place_ids?.length ?? 0 });
   const quiz = quizzes.find((q) => q.key === a.quiz_key);
   return quiz ? (quiz[`label_${{ english: 'en', spanish: 'es', hebrew: 'he' }[language]}`] || quiz.label_en) : a.quiz_key;
 }
@@ -49,6 +76,7 @@ export function firstChapter(a) {
 // "10 questions · Yona · perakim 1-2 · Multiple choice · One try"
 export function assignmentSummary(a, t, language) {
   if (a.kind === 'reading') return t('classes.kindReading');
+  if (a.kind === 'map') return a.prompt ? `${t('classes.kindMap')} · ${a.prompt}` : t('classes.kindMap');
   if (a.kind === 'discussion') {
     const ref = [a.book && bookLabel(a.book, language), a.chapters].filter(Boolean).join(' ');
     return [t('classes.kindDiscussion'), ref].filter(Boolean).join(' · ');

@@ -1,5 +1,5 @@
-import { useState, useMemo, useRef, useEffect, Component } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useMemo, useRef, useEffect, useCallback, Component } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { MapContainer, TileLayer, useMap } from 'react-leaflet';
 import { createRoot } from 'react-dom/client';
 import L from 'leaflet';
@@ -14,6 +14,8 @@ import {
   torahBooks, neviimRishonimBooks, neviimAjaranimBooks, ketuvimBooks, getBookById,
 } from '../data/books';
 import { useLanguage } from '../context/LanguageContext';
+import { useAuth } from '../context/AuthContext';
+import { getAssignment, getMyResponses, saveResponse } from '../lib/supabaseClient';
 import styles from './MapPage.module.css';
 
 class MapErrorBoundary extends Component {
@@ -182,6 +184,52 @@ function MapPageInner() {
   const [book, setBook] = useState('');
   const [selected, setSelected] = useState(null);
 
+  // ---- Map activity (a teacher's "find these places", ?activity=<assignment id>) ----
+  const [params, setParams] = useSearchParams();
+  const activityId = params.get('activity');
+  const { user, loading: authLoading } = useAuth();
+  const [activity, setActivity] = useState(null); // the assignment, or false if unavailable
+  const [found, setFound] = useState([]);           // place ids found so far
+  const [doneSaved, setDoneSaved] = useState(false);
+  const progressKey = `tanaj-map-activity-${activityId}`;
+
+  useEffect(() => {
+    if (!activityId || authLoading || !user) return;
+    let active = true;
+    Promise.all([getAssignment(activityId), getMyResponses()])
+      .then(([a, responses]) => {
+        if (!active) return;
+        if (!a || a.kind !== 'map') { setActivity(false); return; }
+        const done = responses.some((r) => r.assignment_id === a.id);
+        let saved = [];
+        try { saved = JSON.parse(localStorage.getItem(`tanaj-map-activity-${a.id}`) || '[]'); } catch { /* storage unavailable */ }
+        setActivity(a);
+        setDoneSaved(done);
+        setFound(done ? a.place_ids : saved.filter((id) => a.place_ids.includes(id)));
+      })
+      .catch(() => { if (active) setActivity(false); });
+    return () => { active = false; };
+  }, [activityId, user, authLoading]);
+
+  // Clicking a pin on the map (not a list item) is what counts as finding it.
+  const markerHandler = useRef(setSelected);
+  useEffect(() => {
+    markerHandler.current = (p) => {
+      setSelected(p);
+      if (!activity || !activity.place_ids.includes(p.id) || found.includes(p.id)) return;
+      const next = [...found, p.id];
+      setFound(next);
+      try { localStorage.setItem(progressKey, JSON.stringify(next)); } catch { /* storage unavailable */ }
+      if (next.length === activity.place_ids.length && !doneSaved) {
+        saveResponse(activity.id).then(() => setDoneSaved(true)).catch(() => {});
+      }
+    };
+  }, [activity, found, doneSaved, progressKey]);
+  const onMarkerClick = useCallback((p) => markerHandler.current(p), []);
+  const exitActivity = () => setParams({});
+  // Logged out: the activity can't be loaded (it belongs to a class).
+  const shownActivity = activityId && !authLoading && !user ? false : activity;
+
   useEffect(() => {
     let active = true;
     getPlaces()
@@ -227,6 +275,36 @@ function MapPageInner() {
 
       <div className={styles.body}>
         <aside className={styles.sidebar}>
+          {activityId && shownActivity === false && (
+            <div className={styles.activity}>
+              <p>{t('classes.mapUnavailable')}</p>
+              <button className={styles.clearBtn} onClick={exitActivity}>{t('classes.exitActivity')}</button>
+            </div>
+          )}
+          {activityId && shownActivity && (
+            <div className={styles.activity}>
+              <div className={styles.filterLabel}>{t('classes.mapActivity')}</div>
+              <p className={styles.activityTitle}>{t('classes.findPlaces')}</p>
+              {shownActivity.prompt && <p className={styles.activityPrompt} dir="auto">{shownActivity.prompt}</p>}
+              <p className={styles.activityProgress}>
+                {t('classes.foundOf', { found: found.length, n: shownActivity.place_ids.length })}
+              </p>
+              <ul className={styles.activityList}>
+                {shownActivity.place_ids.map((id) => {
+                  const place = places?.find((p) => p.id === id);
+                  const isFound = found.includes(id);
+                  return (
+                    <li key={id} className={isFound ? styles.activityFound : undefined}>
+                      <span aria-hidden="true">{isFound ? '✓' : '○'}</span> {place?.name ?? id}
+                    </li>
+                  );
+                })}
+              </ul>
+              {doneSaved && <p className={styles.activityDone}>{t('classes.mapDone')}</p>}
+              <button className={styles.clearBtn} onClick={exitActivity}>{t('classes.exitActivity')}</button>
+            </div>
+          )}
+          {!(activityId && shownActivity) && (<>
           <input
             className={styles.searchInput}
             placeholder={t('map.searchPlaceholder')}
@@ -301,6 +379,7 @@ function MapPageInner() {
               </li>
             )}
           </ul>
+          </>)}
         </aside>
 
         <div className={styles.mapWrap}>
@@ -311,7 +390,7 @@ function MapPageInner() {
             <ClusterLayer
               places={filtered}
               selected={selected}
-              onSelect={setSelected}
+              onSelect={onMarkerClick}
               navigate={navigate}
               t={t}
               language={language}

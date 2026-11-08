@@ -449,7 +449,7 @@ export async function getStudentClasses() {
   if (!me) return [];
   const { data } = await authed(
     `class_members?user_id=eq.${me.userId}` +
-    '&select=nickname,joined_at,classes(id,name,archived,class_posts(id,body,created_at),assignments(id,quiz_key,due_at,created_at,question_count,chapters,book,mode,allow_retries,kind,prompt))' +
+    '&select=nickname,joined_at,classes(id,name,archived,class_posts(id,body,created_at),assignments(id,quiz_key,due_at,created_at,question_count,chapters,book,mode,allow_retries,kind,prompt,place_ids))' +
     '&order=joined_at.desc'
   );
   return (data || []).filter((m) => m.classes && !m.classes.archived);
@@ -478,14 +478,14 @@ export async function getTeacherClasses() {
   if (!me) return [];
   const { data } = await authed(
     `classes?teacher_id=eq.${me.userId}&archived=is.false` +
-    '&select=id,name,join_code,created_at,class_members(user_id,nickname,joined_at),class_posts(id,body,created_at),assignments(id,quiz_key,due_at,created_at,question_count,chapters,book,mode,allow_retries,kind,prompt)' +
+    '&select=id,name,join_code,created_at,class_members(user_id,nickname,joined_at),class_posts(id,body,created_at),class_questions(id,question,options,correct_index,created_at),assignments(id,quiz_key,due_at,created_at,question_count,chapters,book,mode,allow_retries,kind,prompt,place_ids)' +
     '&order=created_at.desc'
   );
   return data || [];
 }
 
 export async function addAssignment({
-  classId, kind = 'quiz', quizKey, dueAt, questionCount, chapters, book, mode, allowRetries, prompt,
+  classId, kind = 'quiz', quizKey, dueAt, questionCount, chapters, book, mode, allowRetries, prompt, placeIds,
 }) {
   const { data } = await authed('assignments', {
     method: 'POST',
@@ -494,7 +494,8 @@ export async function addAssignment({
       class_id: classId,
       kind,
       quiz_key: kind === 'quiz' ? quizKey : null,
-      prompt: kind === 'discussion' ? prompt : null,
+      prompt: kind === 'discussion' || (kind === 'map' && prompt) ? prompt : null,
+      place_ids: kind === 'map' ? placeIds : null,
       due_at: dueAt || null,
       question_count: questionCount || 10,
       chapters: chapters || null,
@@ -511,7 +512,7 @@ export async function addAssignment({
 export async function getClassResults(classId) {
   const { data: rows } = await authed(
     `classes?id=eq.${classId}` +
-    '&select=id,name,join_code,created_at,class_members(user_id,nickname,joined_at),class_posts(id,body,created_at),assignments(id,quiz_key,due_at,created_at,question_count,chapters,book,mode,allow_retries,kind,prompt)'
+    '&select=id,name,join_code,created_at,class_members(user_id,nickname,joined_at),class_posts(id,body,created_at),assignments(id,quiz_key,due_at,created_at,question_count,chapters,book,mode,allow_retries,kind,prompt,place_ids)'
   );
   const cls = rows?.[0];
   if (!cls) return null;
@@ -560,6 +561,30 @@ export async function removeResponse(assignmentId) {
   const me = await currentAuth();
   if (!me) throw new Error('Not logged in.');
   await authed(`assignment_responses?assignment_id=eq.${assignmentId}&user_id=eq.${me.userId}`, { method: 'DELETE' });
+}
+
+// ---- Class questions (section 13) ----
+export async function getClassQuestions(classId) {
+  const { data } = await authed(`class_questions?class_id=eq.${classId}&select=id,question,options,correct_index,created_at&order=created_at.asc`);
+  return data || [];
+}
+
+export async function addClassQuestion({ classId, question, options, correctIndex }) {
+  await authed('class_questions', {
+    method: 'POST',
+    body: JSON.stringify({ class_id: classId, question, options, correct_index: correctIndex }),
+  });
+}
+
+export async function deleteClassQuestion(id) {
+  await authed(`class_questions?id=eq.${id}`, { method: 'DELETE' });
+}
+
+// One assignment (a map activity opened from My classes). Row-Level Security
+// only returns it to that class's teacher and students.
+export async function getAssignment(id) {
+  const { data } = await authed(`assignments?id=eq.${id}&select=id,class_id,kind,prompt,place_ids,due_at`);
+  return data?.[0] ?? null;
 }
 
 // ---- Announcements (section 11) ----

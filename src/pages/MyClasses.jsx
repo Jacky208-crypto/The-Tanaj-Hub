@@ -4,12 +4,13 @@ import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import {
   getStudentClasses, getMyAssignmentAttempts, getMyResponses, leaveClass, saveResponse, removeResponse,
+  getClassQuestions,
 } from '../lib/supabaseClient';
 import { getQuizzes, pick } from '../lib/content';
 import { formatScore } from '../components/QuizReport';
 import QuizPlayer from '../components/QuizPlayer';
 import { formatDue } from '../lib/dates';
-import { assignmentQuiz, assignmentSummary, assignmentTitle, firstChapter } from '../lib/assignments';
+import { assignmentQuiz, assignmentSummary, assignmentTitle, customQuiz, firstChapter } from '../lib/assignments';
 import styles from './Classes.module.css';
 
 const POSTS_SHOWN = 2;
@@ -111,7 +112,16 @@ export default function MyClasses() {
     }
   }
 
-  function renderAssignment(a) {
+  async function startCustom(a, classId) {
+    try {
+      const questions = await getClassQuestions(classId);
+      setPlaying(customQuiz(a, questions, 'Class questions'));
+    } catch {
+      setError(t('classes.errGeneric'));
+    }
+  }
+
+  function renderAssignment(a, cls) {
     const kind = a.kind || 'quiz';
     const due = a.due_at && t('classes.due', { date: formatDue(a.due_at, language) });
     const chapter = firstChapter(a);
@@ -119,13 +129,13 @@ export default function MyClasses() {
       <Link className={styles.textLink} to={`/book/${a.book}?chapter=${chapter}`}>{t('classes.openText')}</Link>
     );
 
-    if (kind === 'quiz') {
+    if (kind === 'quiz' || kind === 'custom') {
       const quiz = quizByKey[a.quiz_key];
       const result = best[a.id];
       return (
         <li key={a.id} className={styles.item}>
           <div className={styles.itemMain}>
-            <div>{quiz ? pick(quiz, 'label', language) : a.quiz_key}</div>
+            <div>{kind === 'custom' ? t('classes.kindCustom') : quiz ? pick(quiz, 'label', language) : a.quiz_key}</div>
             <div className={styles.meta}>{assignmentSummary(a, t, language)}</div>
             <div className={styles.meta}>
               {due && <>{due} · </>}
@@ -137,11 +147,32 @@ export default function MyClasses() {
           {!(result && a.allow_retries === false) && (
             <button
               className={result ? styles.secondary : styles.primary}
-              onClick={() => setPlaying(assignmentQuiz(a, quiz ? pick(quiz, 'label', 'english') : a.quiz_key))}
+              onClick={() => (kind === 'custom'
+                ? startCustom(a, cls.id)
+                : setPlaying(assignmentQuiz(a, quiz ? pick(quiz, 'label', 'english') : a.quiz_key)))}
             >
               {result ? t('classes.again') : t('classes.start')}
             </button>
           )}
+        </li>
+      );
+    }
+
+    if (kind === 'map') {
+      const done = responseFor[a.id];
+      return (
+        <li key={a.id} className={styles.item}>
+          <div className={styles.itemMain}>
+            <div>{assignmentTitle(a, quizzes, t, language)}</div>
+            {a.prompt && <div className={styles.meta} dir="auto">{a.prompt}</div>}
+            <div className={styles.meta}>
+              {due && <>{due} · </>}
+              {done ? <span className={styles.done}>{t('classes.doneCheck')}</span> : t('classes.notDone')}
+            </div>
+          </div>
+          <Link className={done ? styles.secondary : styles.primary} to={`/map?activity=${a.id}`}>
+            {done ? t('classes.openMapAgain') : t('classes.openMap')}
+          </Link>
         </li>
       );
     }
@@ -229,7 +260,7 @@ export default function MyClasses() {
               {assignments.length === 0 ? (
                 <p className={styles.empty}>{t('classes.noAssignments')}</p>
               ) : (
-                <ul className={styles.list}>{assignments.map(renderAssignment)}</ul>
+                <ul className={styles.list}>{assignments.map((a) => renderAssignment(a, cls))}</ul>
               )}
               <p className={styles.hint}>
                 <button className={`${styles.textBtn} ${styles.danger}`} onClick={() => handleLeave(cls.id)}>
