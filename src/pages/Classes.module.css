@@ -573,3 +573,76 @@ a.secondary {
   border-radius: 3px;
   background-color: var(--accent);
 }
+
+/* ---- Batch 3: settings, teachers, points ---- */
+.settingsRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 18px;
+  margin-top: 14px;
+}
+.inlineLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.rowActions {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.streak {
+  display: inline-block;
+  background-color: var(--accent-softer);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 4px 12px;
+  margin-bottom: 14px;
+}
+.board { margin-top: 4px; }
+.boardRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 4px 0;
+  border-top: 1px solid var(--border);
+  font-size: 14px;
+}
+.boardMe { font-weight: bold; }
+.boardRank { color: var(--text-muted); display: inline-block; min-width: 1.6em; }
+
+/* ---- Printable worksheet ---- */
+.worksheet {
+  background-color: var(--bg-card);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px var(--shadow);
+  padding: 32px;
+}
+.wsHead {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 12px;
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 12px;
+  margin-bottom: 18px;
+}
+.wsTitle { font-family: Arial; font-size: 26px; font-weight: bolder; margin: 2px 0 0; }
+.wsFields { display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
+.wsQuestions { padding-inline-start: 24px; margin: 0; }
+.wsQuestions > li { margin-bottom: 18px; break-inside: avoid; }
+.wsQuestion { font-size: 15px; font-weight: bold; margin: 0 0 6px; }
+.wsOptions { list-style: none; padding: 0; margin: 0; display: grid; gap: 4px; font-size: 14px; }
+.wsLetter { display: inline-block; min-width: 1.6em; font-weight: bold; }
+.wsKey { margin-top: 28px; padding-top: 14px; border-top: 2px dashed var(--border); }
+.wsKeyTitle { font-size: 15px; margin: 0 0 8px; }
+.wsKeyList { display: flex; flex-wrap: wrap; gap: 6px 22px; padding-inline-start: 22px; margin: 0; font-size: 14px; }
+@media print {
+  .worksheet { box-shadow: none; padding: 0; background: #fff; color: #000; }
+  .wsKey { break-before: page; border-top: none; }
+}

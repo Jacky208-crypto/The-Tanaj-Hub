@@ -70,7 +70,7 @@ export default function ClassVerseNotes({ book, chapter, verse }) {
             {n.classes?.name}
             {' · '}
             {n.verse === null ? t('classes.notePerek') : t('classes.notePasuk')}
-            {n.classes?.teacher_id === user.id && (
+            {teaching.some((c) => c.id === n.class_id) && (
               <button type="button" className={styles.delete} onClick={() => remove(n.id)}>{t('classes.delete')}</button>
             )}
           </div>

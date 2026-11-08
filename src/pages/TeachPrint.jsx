@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import { getClassResults } from '../lib/supabaseClient';
+import { translator } from '../lib/translate';
 import styles from './Classes.module.css';
 
 // A page the teacher prints (or puts on the board): the class code, the
@@ -23,7 +24,10 @@ export default function TeachPrint() {
   }, [classId, isTeacher]);
 
   const joinUrl = `${window.location.host}/join`;
-  const steps = t('classes.printSteps', { url: joinUrl });
+  // The sheet is for students: in the class's language when one is set.
+  const sheetLanguage = cls?.language || language;
+  const ts = translator(sheetLanguage);
+  const steps = ts('classes.printSteps', { url: joinUrl });
 
   return (
     <div className={`${styles.page} ${styles.printPage}`} dir={language === 'hebrew' ? 'rtl' : 'ltr'}>
@@ -34,15 +38,15 @@ export default function TeachPrint() {
         </div>
         {error && <div className={styles.error}>{t('classes.errGeneric')}</div>}
         {cls && (
-          <div className={styles.printSheet}>
+          <div className={styles.printSheet} dir={sheetLanguage === 'hebrew' ? 'rtl' : 'ltr'}>
             <p className={styles.printClass}>{cls.name}</p>
-            <h1 className={styles.printTitle}>{t('classes.joinTitle')}</h1>
+            <h1 className={styles.printTitle}>{ts('classes.joinTitle')}</h1>
             <ol className={styles.printSteps}>
               {steps.map((s) => <li key={s}><span dir="auto">{s}</span></li>)}
             </ol>
             <div className={styles.printCode} dir="ltr">{cls.join_code}</div>
             <p className={styles.printUrl} dir="ltr">{joinUrl}</p>
-            <p className={styles.printNote}>{t('classes.printNote')}</p>
+            <p className={styles.printNote}>{ts('classes.printNote')}</p>
           </div>
         )}
       </div>

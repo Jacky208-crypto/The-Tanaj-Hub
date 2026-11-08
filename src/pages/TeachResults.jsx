@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
-import { getClassResults } from '../lib/supabaseClient';
+import { getClassResults, getLeaderboard } from '../lib/supabaseClient';
 import { getQuizzes } from '../lib/content';
 import { formatDue } from '../lib/dates';
 import { assignmentSummary, assignmentTitle, isQuizKind } from '../lib/assignments';
@@ -138,10 +138,11 @@ export default function TeachResults() {
   const [focus, setFocus] = useState(null); // assignment id shown in the detail section
   const [open, setOpen] = useState(null);   // { student, assignment, attempt } quiz report shown
   const [weakFor, setWeakFor] = useState(''); // '' = whole class, else a student id
+  const [board, setBoard] = useState([]);
 
   const load = useCallback(() => {
-    Promise.all([getClassResults(classId), getQuizzes()])
-      .then(([d, q]) => { setData(d); setQuizzes(q || []); setError(''); })
+    Promise.all([getClassResults(classId), getQuizzes(), getLeaderboard(classId).catch(() => [])])
+      .then(([d, q, b]) => { setData(d); setQuizzes(q || []); setBoard(b || []); setError(''); })
       .catch(() => setError(t('classes.errGeneric')));
   }, [classId, t]);
   useEffect(() => { if (isTeacher) load(); }, [isTeacher, load]);
@@ -454,6 +455,26 @@ export default function TeachResults() {
                         ))}
                       </ul>
                     )}
+                  </div>
+                )}
+
+                {board.length > 0 && (
+                  <div className={styles.card}>
+                    <div className={styles.cardHead}>
+                      <span className={styles.cardTitle}>{t('classes.leaderboard')}</span>
+                      <span className={styles.meta}>
+                        {view.cls.show_leaderboard ? t('classes.boardVisible') : t('classes.boardHidden')}
+                      </span>
+                    </div>
+                    <div className={styles.board}>
+                      {board.map((r, i) => (
+                        <div key={`${r.nickname}-${i}`} className={styles.boardRow}>
+                          <span><span className={styles.boardRank}>{i + 1}.</span> {r.nickname}</span>
+                          <span>{t('classes.points', { n: r.points })}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <p className={styles.hint}>{t('classes.pointsRule')}</p>
                   </div>
                 )}
 

@@ -655,3 +655,175 @@ alter table public.assignments add constraint assignments_kind_check check (
   or (kind = 'map' and cardinality(place_ids) between 1 and 20
       and (prompt is null or length(prompt) <= 1000))
 );
+
+-- ============================================================
+-- 15. CO-TEACHERS
+-- ============================================================
+-- The class's creator (classes.teacher_id) can add other teachers. A
+-- co-teacher can do everything with the class except archive it or manage
+-- the teacher list. owns_class() now counts co-teachers, so every policy
+-- above that uses it (students, assignments, results, notes…) covers them.
+create table if not exists public.class_teachers (
+  class_id  uuid not null references public.classes (id) on delete cascade,
+  user_id   uuid not null references auth.users (id) on delete cascade,
+  added_at  timestamptz default now(),
+  primary key (class_id, user_id)
+);
+alter table public.class_teachers enable row level security;
+
+create or replace function public.owns_class(cid uuid)
+returns boolean
+language sql stable security definer set search_path = public
+as $$
+  select exists (select 1 from public.classes where id = cid and teacher_id = auth.uid())
+      or exists (select 1 from public.class_teachers where class_id = cid and user_id = auth.uid());
+$$;
+
+create or replace function public.owns_assignment(aid uuid)
+returns boolean
+language sql stable security definer set search_path = public
+as $$
+  select exists (select 1 from public.assignments a where a.id = aid and public.owns_class(a.class_id));
+$$;
+
+drop policy if exists "Read co-teachers" on public.class_teachers;
+create policy "Read co-teachers" on public.class_teachers for select
+  using (user_id = auth.uid() or public.owns_class(class_id));
+
+drop policy if exists "Read my classes" on public.classes;
+create policy "Read my classes" on public.classes for select
+  using (public.owns_class(id) or public.in_class(id));
+
+-- Co-teachers can rename and change settings; archiving stays with the creator.
+drop policy if exists "Teachers edit own classes" on public.classes;
+create policy "Teachers edit own classes" on public.classes for update
+  using (public.owns_class(id)) with check (public.owns_class(id));
+
+create or replace function public.add_co_teacher(cid uuid, teacher_email text)
+returns void
+language plpgsql security definer set search_path = public
+as $$
+declare
+  uid uuid;
+begin
+  if not exists (select 1 from public.classes where id = cid and teacher_id = auth.uid()) then
+    raise exception 'Only the teacher who created the class can add teachers.' using errcode = '42501';
+  end if;
+  select u.id into uid from auth.users u
+   where lower(u.email) = lower(btrim(teacher_email)) and u.email_confirmed_at is not null;
+  if uid is null or not (
+       exists (select 1 from public.teacher_emails e where e.email = lower(btrim(teacher_email)))
+       or exists (select 1 from public.teachers t where t.user_id = uid)
+     ) then
+    raise exception 'No teacher account uses that email.' using errcode = 'P0002';
+  end if;
+  if uid = auth.uid() then
+    return;
+  end if;
+  insert into public.class_teachers (class_id, user_id) values (cid, uid)
+  on conflict do nothing;
+end;
+$$;
+
+-- The creator removes anyone; a co-teacher can remove themselves.
+create or replace function public.remove_co_teacher(cid uuid, uid uuid)
+returns void
+language plpgsql security definer set search_path = public
+as $$
+begin
+  if not (uid = auth.uid()
+          or exists (select 1 from public.classes where id = cid and teacher_id = auth.uid())) then
+    raise exception 'Not allowed.' using errcode = '42501';
+  end if;
+  delete from public.class_teachers where class_id = cid and user_id = uid;
+end;
+$$;
+
+-- Everyone teaching the class, for the Teach page.
+create or replace function public.list_class_teachers(cid uuid)
+returns table (user_id uuid, email text, name text, is_creator boolean)
+language plpgsql stable security definer set search_path = public
+as $$
+begin
+  if not public.owns_class(cid) then
+    raise exception 'Not allowed.' using errcode = '42501';
+  end if;
+  return query
+    select u.id, u.email::text, (u.raw_user_meta_data ->> 'name'), true
+      from public.classes c join auth.users u on u.id = c.teacher_id
+     where c.id = cid
+    union all
+    select u.id, u.email::text, (u.raw_user_meta_data ->> 'name'), false
+      from public.class_teachers ct join auth.users u on u.id = ct.user_id
+     where ct.class_id = cid;
+end;
+$$;
+
+revoke all on function public.add_co_teacher(uuid, text) from public, anon;
+revoke all on function public.remove_co_teacher(uuid, uuid) from public, anon;
+revoke all on function public.list_class_teachers(uuid) from public, anon;
+grant execute on function public.add_co_teacher(uuid, text) to authenticated;
+grant execute on function public.remove_co_teacher(uuid, uuid) to authenticated;
+grant execute on function public.list_class_teachers(uuid) to authenticated;
+
+-- ============================================================
+-- 16. CLASS LANGUAGE AND POINTS
+-- ============================================================
+-- language: the site language students start in when they join (and the
+-- language of printed instructions). show_leaderboard: students see the
+-- class's points table (off unless the teacher turns it on).
+alter table public.classes add column if not exists language text;
+alter table public.classes drop constraint if exists classes_language_check;
+alter table public.classes add constraint classes_language_check
+  check (language is null or language in ('english', 'spanish', 'hebrew'));
+alter table public.classes add column if not exists show_leaderboard boolean not null default false;
+
+revoke update on public.classes from anon, authenticated;
+grant update (name, archived, language, show_leaderboard) on public.classes to authenticated;
+
+-- Archiving is for the class's creator only (the update policy above lets
+-- co-teachers edit, so this trigger guards the one column).
+create or replace function public.guard_class_archive()
+returns trigger
+language plpgsql security definer set search_path = public
+as $$
+begin
+  if new.archived is distinct from old.archived and old.teacher_id <> auth.uid() then
+    raise exception 'Only the teacher who created the class can archive it.' using errcode = '42501';
+  end if;
+  return new;
+end;
+$$;
+drop trigger if exists classes_guard_archive on public.classes;
+create trigger classes_guard_archive before update on public.classes
+  for each row execute function public.guard_class_archive();
+
+-- Points per student: 5 for finishing a quiz assignment + up to 10 for the
+-- best score on it, and 10 for each reading / discussion / map done.
+-- Teachers always see it; students only when show_leaderboard is on.
+create or replace function public.class_leaderboard(cid uuid)
+returns table (nickname text, points integer, is_me boolean)
+language sql stable security definer set search_path = public
+as $$
+  select m.nickname,
+         (coalesce((
+            select sum(5 + round(10 * coalesce(b.best, 0)))
+              from (select max(q.score::numeric / nullif(q.total, 0)) as best
+                      from public.quiz_attempts q
+                      join public.assignments a on a.id = q.assignment_id
+                     where a.class_id = cid and q.user_id = m.user_id
+                     group by q.assignment_id) b
+          ), 0)
+          + 10 * (select count(*) from public.assignment_responses r
+                    join public.assignments a on a.id = r.assignment_id
+                   where a.class_id = cid and r.user_id = m.user_id))::integer as points,
+         m.user_id = auth.uid() as is_me
+    from public.class_members m
+   where m.class_id = cid
+     and (public.owns_class(cid)
+          or (public.in_class(cid)
+              and exists (select 1 from public.classes c where c.id = cid and c.show_leaderboard)))
+   order by points desc, m.nickname;
+$$;
+revoke all on function public.class_leaderboard(uuid) from public, anon;
+grant execute on function public.class_leaderboard(uuid) to authenticated;

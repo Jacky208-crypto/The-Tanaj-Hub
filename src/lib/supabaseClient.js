@@ -449,7 +449,7 @@ export async function getStudentClasses() {
   if (!me) return [];
   const { data } = await authed(
     `class_members?user_id=eq.${me.userId}` +
-    '&select=nickname,joined_at,classes(id,name,archived,class_posts(id,body,created_at),assignments(id,quiz_key,due_at,created_at,question_count,chapters,book,mode,allow_retries,kind,prompt,place_ids))' +
+    '&select=nickname,joined_at,classes(id,name,archived,language,show_leaderboard,class_posts(id,body,created_at),assignments(id,quiz_key,due_at,created_at,question_count,chapters,book,mode,allow_retries,kind,prompt,place_ids))' +
     '&order=joined_at.desc'
   );
   return (data || []).filter((m) => m.classes && !m.classes.archived);
@@ -476,12 +476,56 @@ export async function leaveClass(classId) {
 export async function getTeacherClasses() {
   const me = await currentAuth();
   if (!me) return [];
+  // Row-Level Security returns classes I created, co-teach, or am a student
+  // in; keep the ones I teach.
   const { data } = await authed(
-    `classes?teacher_id=eq.${me.userId}&archived=is.false` +
-    '&select=id,name,join_code,created_at,class_members(user_id,nickname,joined_at),class_posts(id,body,created_at),class_questions(id,question,options,correct_index,created_at),assignments(id,quiz_key,due_at,created_at,question_count,chapters,book,mode,allow_retries,kind,prompt,place_ids)' +
+    'classes?archived=is.false' +
+    '&select=id,name,join_code,created_at,teacher_id,language,show_leaderboard,class_teachers(user_id),class_members(user_id,nickname,joined_at),class_posts(id,body,created_at),class_questions(id,question,options,correct_index,created_at),assignments(id,quiz_key,due_at,created_at,question_count,chapters,book,mode,allow_retries,kind,prompt,place_ids)' +
     '&order=created_at.desc'
   );
-  return data || [];
+  return (data || []).filter((c) => teachesIt(c, me.userId));
+}
+
+function teachesIt(cls, userId) {
+  return cls.teacher_id === userId || (cls.class_teachers || []).some((t) => t.user_id === userId);
+}
+
+// Class settings a teacher can change (Row-Level Security + column grants:
+// name, language, show_leaderboard; archiving only by the class's creator).
+export async function updateClass(id, fields) {
+  await authed(`classes?id=eq.${id}`, { method: 'PATCH', body: JSON.stringify(fields) });
+}
+
+// ---- Co-teachers (section 15) ----
+export function listClassTeachers(classId) {
+  return rpc('list_class_teachers', { cid: classId });
+}
+
+// Throws "No teacher account uses that email." when there's no approved teacher.
+export function addCoTeacher(classId, email) {
+  return rpc('add_co_teacher', { cid: classId, teacher_email: email });
+}
+
+export function removeCoTeacher(classId, userId) {
+  return rpc('remove_co_teacher', { cid: classId, uid: userId });
+}
+
+// ---- Points (section 16) ----
+// [{ nickname, points, is_me }], best first. Empty for students unless the
+// teacher turned the leaderboard on.
+export function getLeaderboard(classId) {
+  return rpc('class_leaderboard', { cid: classId });
+}
+
+// Dates I did something (quizzes, readings, answers), newest first, for streaks.
+export async function getMyActivityDates() {
+  const me = await currentAuth();
+  if (!me) return [];
+  const [{ data: attempts }, { data: responses }] = await Promise.all([
+    authed(`quiz_attempts?user_id=eq.${me.userId}&select=created_at&order=created_at.desc&limit=500`),
+    authed(`assignment_responses?user_id=eq.${me.userId}&select=updated_at&order=updated_at.desc&limit=500`),
+  ]);
+  return [...(attempts || []).map((a) => a.created_at), ...(responses || []).map((r) => r.updated_at)];
 }
 
 export async function addAssignment({
@@ -512,7 +556,7 @@ export async function addAssignment({
 export async function getClassResults(classId) {
   const { data: rows } = await authed(
     `classes?id=eq.${classId}` +
-    '&select=id,name,join_code,created_at,class_members(user_id,nickname,joined_at),class_posts(id,body,created_at),assignments(id,quiz_key,due_at,created_at,question_count,chapters,book,mode,allow_retries,kind,prompt,place_ids)'
+    '&select=id,name,join_code,created_at,language,show_leaderboard,class_members(user_id,nickname,joined_at),class_posts(id,body,created_at),assignments(id,quiz_key,due_at,created_at,question_count,chapters,book,mode,allow_retries,kind,prompt,place_ids)'
   );
   const cls = rows?.[0];
   if (!cls) return null;
@@ -583,7 +627,9 @@ export async function deleteClassQuestion(id) {
 // One assignment (a map activity opened from My classes). Row-Level Security
 // only returns it to that class's teacher and students.
 export async function getAssignment(id) {
-  const { data } = await authed(`assignments?id=eq.${id}&select=id,class_id,kind,prompt,place_ids,due_at`);
+  const { data } = await authed(
+    `assignments?id=eq.${id}&select=id,class_id,kind,prompt,place_ids,due_at,quiz_key,question_count,chapters,book,mode,allow_retries,classes(name,language)`
+  );
   return data?.[0] ?? null;
 }
 
@@ -625,8 +671,8 @@ export async function deleteClassNote(id) {
 export async function getMyTeachingClasses() {
   const me = await currentAuth();
   if (!me) return [];
-  const { data } = await authed(`classes?teacher_id=eq.${me.userId}&archived=is.false&select=id,name&order=created_at.desc`);
-  return data || [];
+  const { data } = await authed('classes?archived=is.false&select=id,name,teacher_id,class_teachers(user_id)&order=created_at.desc');
+  return (data || []).filter((c) => teachesIt(c, me.userId));
 }
 
 export async function deleteAssignment(id) {

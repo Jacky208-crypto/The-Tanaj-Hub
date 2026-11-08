@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import {
   getStudentClasses, getMyAssignmentAttempts, getMyResponses, leaveClass, saveResponse, removeResponse,
-  getClassQuestions,
+  getClassQuestions, getLeaderboard, getMyActivityDates,
 } from '../lib/supabaseClient';
 import { getQuizzes, pick } from '../lib/content';
 import { formatScore } from '../components/QuizReport';
@@ -14,6 +14,45 @@ import { assignmentQuiz, assignmentSummary, assignmentTitle, customQuiz, firstCh
 import styles from './Classes.module.css';
 
 const POSTS_SHOWN = 2;
+const BOARD_SHOWN = 5;
+
+// Days in a row (ending today, or yesterday if nothing yet today) with any
+// quiz, reading or answer.
+function streakDays(isoDates) {
+  const days = new Set(isoDates.map((d) => new Date(d).toDateString()));
+  const day = new Date();
+  if (!days.has(day.toDateString())) day.setDate(day.getDate() - 1);
+  let n = 0;
+  while (days.has(day.toDateString())) {
+    n += 1;
+    day.setDate(day.getDate() - 1);
+  }
+  return n;
+}
+
+// The class's points table (only when the teacher turned it on): the top
+// few, plus my own row if I'm further down.
+function Leaderboard({ rows }) {
+  const { t } = useLanguage();
+  if (!rows?.length) return null;
+  const meIndex = rows.findIndex((r) => r.is_me);
+  const shown = rows.slice(0, BOARD_SHOWN);
+  const extra = meIndex >= BOARD_SHOWN ? [rows[meIndex]] : [];
+  const rank = (r) => rows.indexOf(r) + 1;
+  return (
+    <>
+      <p className={styles.sectionLabel}>{t('classes.leaderboard')}</p>
+      <div className={styles.board}>
+        {[...shown, ...extra].map((r) => (
+          <div key={`${r.nickname}-${rank(r)}`} className={`${styles.boardRow} ${r.is_me ? styles.boardMe : ''}`}>
+            <span><span className={styles.boardRank}>{rank(r)}.</span> {r.nickname}{r.is_me && ` (${t('classes.you')})`}</span>
+            <span>{t('classes.points', { n: r.points })}</span>
+          </div>
+        ))}
+      </div>
+    </>
+  );
+}
 
 // A discussion question: the student's answer, saved on demand.
 function DiscussionAnswer({ a, response, onSaved }) {
@@ -67,12 +106,20 @@ export default function MyClasses() {
   const [error, setError] = useState('');
   const [playing, setPlaying] = useState(null); // the quiz object handed to QuizPlayer
   const [allPosts, setAllPosts] = useState({}); // class id → show every announcement
+  const [boards, setBoards] = useState({}); // class id → leaderboard rows
+  const [streak, setStreak] = useState(0);
 
   // Errors clear on success, not up front: load() runs inside an effect.
   const load = useCallback(() => {
     Promise.all([getStudentClasses(), getMyAssignmentAttempts(), getMyResponses(), getQuizzes()])
-      .then(([c, a, r, q]) => { setClasses(c); setAttempts(a); setResponses(r); setQuizzes(q || []); setError(''); })
+      .then(([c, a, r, q]) => {
+        setClasses(c); setAttempts(a); setResponses(r); setQuizzes(q || []); setError('');
+        const withBoard = c.filter((m) => m.classes.show_leaderboard);
+        return Promise.all(withBoard.map((m) => getLeaderboard(m.classes.id).catch(() => [])))
+          .then((lists) => setBoards(Object.fromEntries(withBoard.map((m, i) => [m.classes.id, lists[i]]))));
+      })
       .catch(() => setError(t('classes.errGeneric')));
+    getMyActivityDates().then((dates) => setStreak(streakDays(dates))).catch(() => {});
   }, [t]);
 
   useEffect(() => { if (user) load(); }, [user, load]);
@@ -218,6 +265,7 @@ export default function MyClasses() {
       <div className={styles.inner}>
         <button className={styles.back} onClick={() => navigate('/')}>{t('nav.home')}</button>
         <h1 className={styles.title}>{t('classes.myTitle')}</h1>
+        {streak > 0 && <span className={styles.streak}>{t('classes.streak', { n: streak })}</span>}
         <p className={styles.sub}>
           <button className={styles.textBtn} onClick={() => navigate('/join')}>{t('classes.joinAnother')}</button>
         </p>
@@ -255,6 +303,8 @@ export default function MyClasses() {
                   )}
                 </>
               )}
+
+              <Leaderboard rows={boards[cls.id]} />
 
               <p className={styles.sectionLabel}>{t('classes.assigned')}</p>
               {assignments.length === 0 ? (

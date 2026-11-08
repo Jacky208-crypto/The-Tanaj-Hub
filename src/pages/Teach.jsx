@@ -5,10 +5,11 @@ import { useLanguage } from '../context/LanguageContext';
 import {
   getTeacherClasses, createClass, addAssignment, deleteAssignment, removeStudent, archiveClass,
   addClassPost, deleteClassPost, addClassQuestion, deleteClassQuestion,
+  updateClass, listClassTeachers, addCoTeacher, removeCoTeacher,
 } from '../lib/supabaseClient';
 import { getPlaces, getQuizzes, pick } from '../lib/content';
 import { formatDue } from '../lib/dates';
-import { assignmentSummary, assignmentTitle } from '../lib/assignments';
+import { assignmentSummary, assignmentTitle, isQuizKind } from '../lib/assignments';
 import { QUIZ_BOOKS, QUIZ_CHAPTERS, allBooks, bookLabel, getBookById, parseChapters } from '../data/books';
 import styles from './Classes.module.css';
 
@@ -481,9 +482,97 @@ function Announcements({ cls, onChange }) {
   );
 }
 
+const LANGUAGE_NAMES = { english: 'English', spanish: 'Español', hebrew: 'עברית' };
+
+// Everyone teaching this class. The creator adds and removes co-teachers;
+// a co-teacher can remove themselves.
+function ClassTeachers({ cls, isCreator, onChange }) {
+  const { user } = useAuth();
+  const { t } = useLanguage();
+  const [teachers, setTeachers] = useState(null);
+  const [email, setEmail] = useState('');
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState('');
+
+  const load = useCallback(() => {
+    listClassTeachers(cls.id).then(setTeachers).catch(() => setTeachers([]));
+  }, [cls.id]);
+  useEffect(() => { load(); }, [load]);
+
+  async function add(e) {
+    e.preventDefault();
+    if (!email.trim()) return;
+    setBusy(true);
+    setError('');
+    try {
+      await addCoTeacher(cls.id, email.trim());
+      setEmail('');
+      load();
+    } catch (err) {
+      setError(/no teacher account/i.test(err.message || '') ? t('classes.errNoTeacher') : t('classes.errGeneric'));
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function remove(teacher) {
+    const self = teacher.user_id === user.id;
+    if (!window.confirm(self ? t('classes.leaveTeachingConfirm') : t('classes.removeTeacherConfirm', { name: teacher.name || teacher.email }))) return;
+    try {
+      await removeCoTeacher(cls.id, teacher.user_id);
+      if (self) onChange(); else load();
+    } catch {
+      setError(t('classes.errGeneric'));
+    }
+  }
+
+  return (
+    <details className={styles.bank}>
+      <summary>{t('classes.teachersTitle', { n: teachers?.length ?? 1 })}</summary>
+      <ul className={styles.list}>
+        {(teachers || []).map((tch) => (
+          <li key={tch.user_id} className={styles.item}>
+            <div className={styles.itemMain}>
+              <div>{tch.name || tch.email}</div>
+              <div className={styles.meta}>
+                <span dir="ltr">{tch.email}</span>{tch.is_creator && <> · {t('classes.creator')}</>}
+              </div>
+            </div>
+            {!tch.is_creator && (isCreator || tch.user_id === user.id) && (
+              <button type="button" className={`${styles.textBtn} ${styles.danger}`} onClick={() => remove(tch)}>
+                {tch.user_id === user.id ? t('classes.leaveTeaching') : t('classes.remove')}
+              </button>
+            )}
+          </li>
+        ))}
+      </ul>
+      {isCreator && (
+        <form className={styles.row} onSubmit={add} style={{ marginTop: 8 }}>
+          <label className={styles.label}>
+            {t('classes.addTeacher')}
+            <input
+              className={styles.input}
+              type="email"
+              dir="ltr"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="teacher@school.org"
+            />
+          </label>
+          <button className={styles.secondary} type="submit" disabled={busy || !email.trim()}>{t('classes.addTeacherBtn')}</button>
+        </form>
+      )}
+      {isCreator && <p className={styles.hint}>{t('classes.addTeacherHint')}</p>}
+      {error && <div className={styles.error}>{error}</div>}
+    </details>
+  );
+}
+
 function ClassCard({ cls, quizzes, onChange }) {
   const navigate = useNavigate();
+  const { user } = useAuth();
   const { language, t } = useLanguage();
+  const isCreator = cls.teacher_id === user?.id;
   const [copied, setCopied] = useState(false);
   const [error, setError] = useState('');
   const joinUrl = `${window.location.origin}/join?code=${cls.join_code}`;
@@ -512,12 +601,16 @@ function ClassCard({ cls, quizzes, onChange }) {
     <div className={styles.card}>
       <div className={styles.cardHead}>
         <span className={styles.cardTitle}>{cls.name}</span>
-        <button
-          className={`${styles.textBtn} ${styles.danger}`}
-          onClick={() => window.confirm(t('classes.archiveConfirm')) && run(() => archiveClass(cls.id))}
-        >
-          {t('classes.archive')}
-        </button>
+        {isCreator ? (
+          <button
+            className={`${styles.textBtn} ${styles.danger}`}
+            onClick={() => window.confirm(t('classes.archiveConfirm')) && run(() => archiveClass(cls.id))}
+          >
+            {t('classes.archive')}
+          </button>
+        ) : (
+          <span className={styles.meta}>{t('classes.coTeaching')}</span>
+        )}
       </div>
 
       <div className={styles.codeBox}>
@@ -539,6 +632,29 @@ function ClassCard({ cls, quizzes, onChange }) {
         </button>
       </div>
 
+      <div className={styles.settingsRow}>
+        <label className={styles.inlineLabel}>
+          {t('classes.classLanguage')}
+          <select
+            className={styles.inputSmall}
+            value={cls.language || ''}
+            onChange={(e) => run(() => updateClass(cls.id, { language: e.target.value || null }))}
+          >
+            <option value="">{t('classes.languageNotSet')}</option>
+            {Object.entries(LANGUAGE_NAMES).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
+          </select>
+        </label>
+        <label className={styles.check}>
+          <input
+            type="checkbox"
+            checked={Boolean(cls.show_leaderboard)}
+            onChange={(e) => run(() => updateClass(cls.id, { show_leaderboard: e.target.checked }))}
+          />
+          {t('classes.showLeaderboard')}
+        </label>
+      </div>
+      <ClassTeachers cls={cls} isCreator={isCreator} onChange={onChange} />
+
       <Announcements cls={cls} onChange={onChange} />
       <ClassQuestions cls={cls} onChange={onChange} />
 
@@ -555,12 +671,19 @@ function ClassCard({ cls, quizzes, onChange }) {
                   {assignmentSummary(a, t, language)}
                 </div>
               </div>
-              <button
-                className={`${styles.textBtn} ${styles.danger}`}
-                onClick={() => window.confirm(t('classes.deleteAssignmentConfirm')) && run(() => deleteAssignment(a.id))}
-              >
-                {t('classes.delete')}
-              </button>
+              <div className={styles.rowActions}>
+                {isQuizKind(a) && (
+                  <button className={styles.textBtn} onClick={() => navigate(`/teach/${cls.id}/worksheet/${a.id}`)}>
+                    {t('classes.worksheet')}
+                  </button>
+                )}
+                <button
+                  className={`${styles.textBtn} ${styles.danger}`}
+                  onClick={() => window.confirm(t('classes.deleteAssignmentConfirm')) && run(() => deleteAssignment(a.id))}
+                >
+                  {t('classes.delete')}
+                </button>
+              </div>
             </li>
           ))}
         </ul>

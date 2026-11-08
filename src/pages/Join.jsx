@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
-import { classCodeExists, joinClass } from '../lib/supabaseClient';
+import { classCodeExists, getStudentClasses, joinClass } from '../lib/supabaseClient';
 import Captcha from '../components/Captcha';
 import { captchaEnabled } from '../lib/captcha';
 import styles from './Classes.module.css';
@@ -14,7 +14,7 @@ export default function Join() {
   const navigate = useNavigate();
   const [params] = useSearchParams();
   const { user, loading, signInAnonymously } = useAuth();
-  const { language, t } = useLanguage();
+  const { language, setLanguage, t } = useLanguage();
   const [code, setCode] = useState(params.get('code') || '');
   const [nickname, setNickname] = useState('');
   const [error, setError] = useState('');
@@ -50,13 +50,23 @@ export default function Join() {
         setCaptchaKey((k) => k + 1);
         await signInAnonymously(cleanName, captchaToken);
       }
-      await joinClass(cleanCode, cleanName);
+      const classId = await joinClass(cleanCode, cleanName);
+      // Start in the class's language when the teacher set one.
+      try {
+        const joined = (await getStudentClasses()).find((m) => m.classes.id === classId);
+        if (joined?.classes.language) setLanguage(joined.classes.language);
+      } catch { /* not important enough to stop here */ }
       navigate('/my-classes');
     } catch (err) {
       const msg = err.message || '';
+      // Kept in the console so a teacher (or we) can see the real cause.
+      console.error('Joining a class failed:', msg);
       setError(/no class/i.test(msg) ? t('classes.errCode')
         : /nickname is taken/i.test(msg) ? t('classes.errNickTaken')
-        : t('classes.errGeneric'));
+        : /captcha/i.test(msg) ? t('classes.errSecurityCheck')
+        : /anonymous sign-ins are disabled/i.test(msg) ? t('classes.errJoinOff')
+        : /rate limit|too many/i.test(msg) ? t('classes.errTooMany')
+        : `${t('classes.errGeneric')} (${msg})`);
       setBusy(false);
     }
   }

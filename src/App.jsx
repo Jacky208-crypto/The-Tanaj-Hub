@@ -22,6 +22,7 @@ import MyClasses from './pages/MyClasses';
 import Teach from './pages/Teach';
 import TeachResults from './pages/TeachResults';
 import TeachPrint from './pages/TeachPrint';
+import TeachWorksheet from './pages/TeachWorksheet';
 import Account from './pages/Account';
 import ResetPassword from './pages/ResetPassword';
 
@@ -65,6 +66,7 @@ export default function App() {
             <Route path="/teach" element={<Teach />} />
             <Route path="/teach/:classId" element={<TeachResults />} />
             <Route path="/teach/:classId/print" element={<TeachPrint />} />
+            <Route path="/teach/:classId/worksheet/:assignmentId" element={<TeachWorksheet />} />
             <Route path="/account" element={<Account />} />
             <Route path="/reset-password" element={<ResetPassword />} />
             <Route
