@@ -4,11 +4,12 @@ import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import {
   getTeacherClasses, createClass, addAssignment, deleteAssignment, removeStudent, archiveClass,
+  addClassPost, deleteClassPost,
 } from '../lib/supabaseClient';
 import { getQuizzes, pick } from '../lib/content';
 import { formatDue } from '../lib/dates';
-import { assignmentSummary } from '../lib/assignments';
-import { QUIZ_BOOKS, QUIZ_CHAPTERS, bookLabel, getBookById, parseChapters } from '../data/books';
+import { assignmentSummary, assignmentTitle } from '../lib/assignments';
+import { QUIZ_BOOKS, QUIZ_CHAPTERS, allBooks, bookLabel, getBookById, parseChapters } from '../data/books';
 import styles from './Classes.module.css';
 
 // A due date picked as YYYY-MM-DD means "by the end of that day" locally.
@@ -18,7 +19,7 @@ function endOfDay(dateText) {
   return new Date(y, m - 1, d, 23, 59).toISOString();
 }
 
-const EMPTY_FORM = { quizKey: '', due: '', count: '10', book: '', chapters: '', mode: '', retries: true };
+const EMPTY_FORM = { kind: 'quiz', quizKey: '', due: '', count: '10', book: '', chapters: '', mode: '', retries: true, prompt: '' };
 
 function AssignForm({ cls, quizzes, onDone }) {
   const { language, t } = useLanguage();
@@ -26,16 +27,24 @@ function AssignForm({ cls, quizzes, onDone }) {
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
   const set = (k, v) => setForm((f) => ({ ...f, [k]: v }));
-  const books = QUIZ_BOOKS[form.quizKey];
-  // Chapters can be narrowed for single-book quizzes, or once a book is picked.
-  const maxChapters = books ? (form.book ? getBookById(form.book).chapters : null) : QUIZ_CHAPTERS[form.quizKey];
+  const isQuiz = form.kind === 'quiz';
+  const books = isQuiz ? QUIZ_BOOKS[form.quizKey] : null;
+  // Chapters can be narrowed for single-book quizzes, once a book is picked in
+  // a multi-book quiz, and for any book in a reading or discussion.
+  const maxChapters = isQuiz
+    ? (books ? (form.book ? getBookById(form.book).chapters : null) : QUIZ_CHAPTERS[form.quizKey])
+    : (form.book ? getBookById(form.book).chapters : null);
+  const ready = isQuiz ? Boolean(form.quizKey) : form.kind === 'reading' ? Boolean(form.book) : Boolean(form.prompt.trim());
 
   async function submit(e) {
     e.preventDefault();
     setError('');
-    if (!form.quizKey) return;
+    if (!ready) {
+      setError(form.kind === 'reading' ? t('classes.errBook') : t('classes.errPrompt'));
+      return;
+    }
     const count = Number(form.count);
-    if (!Number.isInteger(count) || count < 1 || count > 50) {
+    if (isQuiz && (!Number.isInteger(count) || count < 1 || count > 50)) {
       setError(t('classes.errCount'));
       return;
     }
@@ -54,13 +63,15 @@ function AssignForm({ cls, quizzes, onDone }) {
     try {
       await addAssignment({
         classId: cls.id,
+        kind: form.kind,
         quizKey: form.quizKey,
         dueAt: endOfDay(form.due),
-        questionCount: count,
+        questionCount: isQuiz ? count : 10,
         chapters,
-        book: books ? form.book : '',
-        mode: form.mode,
-        allowRetries: form.retries,
+        book: isQuiz ? (books ? form.book : '') : form.book,
+        mode: isQuiz ? form.mode : '',
+        allowRetries: isQuiz ? form.retries : true,
+        prompt: form.prompt.trim(),
       });
       setForm(EMPTY_FORM);
       onDone();
@@ -73,7 +84,62 @@ function AssignForm({ cls, quizzes, onDone }) {
 
   return (
     <form className={styles.form} onSubmit={submit}>
+      <div className={styles.kindTabs} role="tablist">
+        {['quiz', 'reading', 'discussion'].map((k) => (
+          <button
+            key={k}
+            type="button"
+            role="tab"
+            aria-selected={form.kind === k}
+            className={`${styles.kindTab} ${form.kind === k ? styles.kindTabOn : ''}`}
+            onClick={() => { setForm({ ...EMPTY_FORM, kind: k, due: form.due }); setError(''); }}
+          >
+            {t(`classes.kind${k[0].toUpperCase()}${k.slice(1)}`)}
+          </button>
+        ))}
+      </div>
+      {form.kind === 'discussion' && (
+        <label className={styles.label}>
+          {t('classes.prompt')}
+          <textarea
+            className={styles.input}
+            rows={3}
+            maxLength={1000}
+            value={form.prompt}
+            onChange={(e) => set('prompt', e.target.value)}
+            placeholder={t('classes.promptPlaceholder')}
+          />
+        </label>
+      )}
+      {!isQuiz && (
+        <div className={styles.row}>
+          <label className={styles.label}>
+            {form.kind === 'reading' ? t('classes.book') : t('classes.bookOptional')}
+            <select
+              className={styles.input}
+              value={form.book}
+              onChange={(e) => setForm({ ...form, book: e.target.value, chapters: '' })}
+            >
+              <option value="">—</option>
+              {allBooks.map((b) => <option key={b.id} value={b.id}>{bookLabel(b.id, language)}</option>)}
+            </select>
+          </label>
+          {maxChapters && (
+            <label className={styles.label}>
+              {t('classes.chapters')}
+              <input
+                className={styles.input}
+                dir="ltr"
+                value={form.chapters}
+                onChange={(e) => set('chapters', e.target.value)}
+                placeholder={t('quiz.chaptersAll', { n: maxChapters })}
+              />
+            </label>
+          )}
+        </div>
+      )}
       <div className={styles.row}>
+        {isQuiz && (
         <label className={styles.label}>
           {t('classes.assignQuiz')}
           <select
@@ -85,12 +151,13 @@ function AssignForm({ cls, quizzes, onDone }) {
             {quizzes.map((q) => <option key={q.key} value={q.key}>{pick(q, 'label', language)}</option>)}
           </select>
         </label>
+        )}
         <label className={styles.label}>
           {t('classes.dueDate')}
           <input className={styles.input} type="date" value={form.due} onChange={(e) => set('due', e.target.value)} />
         </label>
       </div>
-      {form.quizKey && (
+      {isQuiz && form.quizKey && (
         <>
           <div className={styles.row}>
             <label className={styles.label}>
@@ -147,10 +214,75 @@ function AssignForm({ cls, quizzes, onDone }) {
         </>
       )}
       {error && <div className={styles.error}>{error}</div>}
-      <button className={styles.primary} type="submit" disabled={!form.quizKey || busy}>
+      <button className={styles.primary} type="submit" disabled={!ready || busy}>
         {busy ? t('login.pleaseWait') : t('classes.assignBtn')}
       </button>
     </form>
+  );
+}
+
+function Announcements({ cls, onChange }) {
+  const { language, t } = useLanguage();
+  const [text, setText] = useState('');
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState('');
+  const posts = [...(cls.class_posts || [])].sort((a, b) => b.created_at.localeCompare(a.created_at));
+
+  async function post(e) {
+    e.preventDefault();
+    if (!text.trim()) return;
+    setBusy(true);
+    setError('');
+    try {
+      await addClassPost(cls.id, text.trim());
+      setText('');
+      onChange();
+    } catch {
+      setError(t('classes.errGeneric'));
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  return (
+    <>
+      <p className={styles.sectionLabel}>{t('classes.announcements')}</p>
+      <form className={styles.form} onSubmit={post}>
+        <textarea
+          className={styles.input}
+          rows={2}
+          maxLength={2000}
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          placeholder={t('classes.postPlaceholder')}
+        />
+        <button className={styles.secondary} type="submit" disabled={busy || !text.trim()} style={{ alignSelf: 'flex-start' }}>
+          {t('classes.postBtn')}
+        </button>
+      </form>
+      {error && <div className={styles.error}>{error}</div>}
+      {posts.length > 0 && (
+        <ul className={styles.list} style={{ marginTop: 10 }}>
+          {posts.map((p) => (
+            <li key={p.id} className={styles.item}>
+              <div className={styles.itemMain}>
+                <div className={styles.postBody}>{p.body}</div>
+                <div className={styles.meta}>{formatDue(p.created_at, language)}</div>
+              </div>
+              <button
+                className={`${styles.textBtn} ${styles.danger}`}
+                onClick={async () => {
+                  if (!window.confirm(t('classes.deletePostConfirm'))) return;
+                  try { await deleteClassPost(p.id); onChange(); } catch { setError(t('classes.errGeneric')); }
+                }}
+              >
+                {t('classes.delete')}
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+    </>
   );
 }
 
@@ -160,7 +292,6 @@ function ClassCard({ cls, quizzes, onChange }) {
   const [copied, setCopied] = useState(false);
   const [error, setError] = useState('');
   const joinUrl = `${window.location.origin}/join?code=${cls.join_code}`;
-  const quizByKey = Object.fromEntries(quizzes.map((q) => [q.key, q]));
   const students = [...(cls.class_members || [])].sort((a, b) => a.nickname.localeCompare(b.nickname));
   const assignments = [...(cls.assignments || [])].sort((a, b) => b.created_at.localeCompare(a.created_at));
 
@@ -213,6 +344,8 @@ function ClassCard({ cls, quizzes, onChange }) {
         </button>
       </div>
 
+      <Announcements cls={cls} onChange={onChange} />
+
       <p className={styles.sectionLabel}>{t('classes.assignments')}</p>
       <AssignForm cls={cls} quizzes={quizzes} onDone={onChange} />
       {assignments.length > 0 && (
@@ -220,7 +353,7 @@ function ClassCard({ cls, quizzes, onChange }) {
           {assignments.map((a) => (
             <li key={a.id} className={styles.item}>
               <div className={styles.itemMain}>
-                <div>{quizByKey[a.quiz_key] ? pick(quizByKey[a.quiz_key], 'label', language) : a.quiz_key}</div>
+                <div className={styles.clamp}>{assignmentTitle(a, quizzes, t, language)}</div>
                 <div className={styles.meta}>
                   {a.due_at && <>{t('classes.due', { date: formatDue(a.due_at, language) })} · </>}
                   {assignmentSummary(a, t, language)}

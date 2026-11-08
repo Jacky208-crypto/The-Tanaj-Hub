@@ -3,7 +3,7 @@ import QuizPlayer from '../components/QuizPlayer';
 import QuizReport, { formatScore } from '../components/QuizReport';
 import ContentStatus from '../components/ContentStatus';
 import styles from './Quiz.module.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import { getQuizAttempts } from '../lib/supabaseClient';
@@ -49,6 +49,19 @@ export default function Quiz() {
       .catch((e) => { if (active) setQuizzesError(e.message); });
     return () => { active = false; };
   }, [reloadKey]);
+  // "Review my mistakes": questions whose most recent answer wasn't right.
+  // Only attempts saved since reports started recording question ids count.
+  const REVIEW_SIZE = 20;
+  const mistakes = useMemo(() => {
+    const latest = new Map();
+    for (const a of history) { // newest attempt first
+      for (const d of a.details || []) {
+        if (d.question_id && !latest.has(d.question_id)) latest.set(d.question_id, d.result);
+      }
+    }
+    return [...latest].filter(([, result]) => result !== 'right').map(([id]) => id);
+  }, [history]);
+
   const quizzesStatus = !quizzes && (
     <ContentStatus
       error={quizzesError}
@@ -488,6 +501,24 @@ export default function Quiz() {
           </button>{' '}
           {t('quiz.signUpPrompt')}
         </p>
+      )}
+
+      {user && mistakes.length > 0 && (
+        <div className={styles.reviewBox}>
+          <div>
+            <p className={styles.reviewTitle}>{t('quiz.reviewTitle')}</p>
+            <p className={styles.reviewHint}>{t('quiz.reviewHint', { n: Math.min(mistakes.length, REVIEW_SIZE) })}</p>
+          </div>
+          <button
+            className="nav-btn"
+            onClick={() => {
+              setCustomQuiz({ label: 'Review my mistakes', questionIds: mistakes.slice(0, REVIEW_SIZE), count: REVIEW_SIZE });
+              setMode('quiz');
+            }}
+          >
+            {t('quiz.reviewBtn')}
+          </button>
+        </div>
       )}
 
       {user && history.length > 0 && (

@@ -4,6 +4,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { fetchVerseSources, fetchSourceText, fetchTranslation, passagesToTranslate } from '../lib/sefariaCommentary';
 import { getMidrashimForVerse, parseAnchor, localized, useMidrashIndex } from '../lib/midrashim';
 import PassukNotes from './notes/PassukNotes';
+import ClassVerseNotes from './notes/ClassVerseNotes';
 import { noteStrings } from './notes/noteStrings';
 import styles from './CommentaryPanel.module.css';
 import { EditIcon } from './notes/icons';
@@ -408,6 +409,8 @@ export default function CommentaryPanel({
             )}
           </>
         )}
+
+        <ClassVerseNotes book={book} chapter={chapter} verse={verse} />
 
         <PassukNotes
           book={book}

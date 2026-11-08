@@ -79,6 +79,13 @@ export function getRandomQuestions(quizKeys, howMany, chapters, books, types) {
   return request('rpc/random_quiz_questions', { method: 'POST', body: JSON.stringify(body) });
 }
 
+// Specific questions by id (for "Review my mistakes"). Unpublished ones are
+// left out for visitors by Row-Level Security.
+export function getQuestionsByIds(ids) {
+  if (!ids.length) return Promise.resolve([]);
+  return request(`quiz_questions?select=*&id=in.(${ids.join(',')})`);
+}
+
 // ---- Study notes ----
 
 // Topics in order, each with its entries in order.

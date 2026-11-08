@@ -104,3 +104,20 @@
   text-decoration: underline;
   padding: 0;
 }
+
+/* "Review my mistakes" */
+.reviewBox {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  max-width: 640px;
+  margin: 0 auto 16px;
+  padding: 1rem 1.25rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.reviewTitle { font-weight: bold; margin: 0; }
+.reviewHint { color: var(--text-secondary); font-size: 0.9rem; margin: 4px 0 0; }

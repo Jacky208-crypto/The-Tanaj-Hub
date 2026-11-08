@@ -4,7 +4,7 @@ import styles from './QuizPlayer.module.css';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import { saveQuizAttempt } from '../lib/supabaseClient';
-import { getRandomQuestions, pick } from '../lib/content';
+import { getQuestionsByIds, getRandomQuestions, pick } from '../lib/content';
 import ContentStatus from './ContentStatus';
 import QuizReport, { RESULT_POINTS, formatScore } from './QuizReport';
 
@@ -45,7 +45,8 @@ function needsOptions(q) {
 
 // quiz = { label, quizKeys: ['bereshit', …], count, chapters?: { shemot: [1, 2, …] }, books?: { neviimAjaronim: { yona: [] } },
 //          assignmentId?: set when a student plays a quiz their teacher assigned,
-//          mode?: 'choice' | 'free' fixed by the teacher, noRetry?: hide "Play again" }
+//          mode?: 'choice' | 'free' fixed by the teacher, noRetry?: hide "Play again",
+//          questionIds?: play exactly these questions ("Review my mistakes") }
 export default function QuizPlayer({ quiz, onBack }) {
   const navigate = useNavigate();
   const { user } = useAuth();
@@ -69,7 +70,10 @@ export default function QuizPlayer({ quiz, onBack }) {
   // Fresh random questions for every run (first play and each "play again").
   useEffect(() => {
     let active = true;
-    getRandomQuestions(quiz.quizKeys, quiz.count || 5, quiz.chapters, quiz.books, quiz.types)
+    const load = quiz.questionIds
+      ? getQuestionsByIds(quiz.questionIds).then((rows) => shuffled(rows).slice(0, quiz.count || rows.length))
+      : getRandomQuestions(quiz.quizKeys, quiz.count || 5, quiz.chapters, quiz.books, quiz.types);
+    load
       .then((rows) => { if (active) setQuestions(rows.map(shuffleOptions)); })
       .catch((e) => { if (active) setLoadError(e.message); });
     return () => { active = false; };

@@ -511,3 +511,102 @@ begin
   end if;
 end;
 $$;
+
+-- ============================================================
+-- 10. READING AND DISCUSSION ASSIGNMENTS
+-- ============================================================
+-- kind = 'quiz'       → quiz_key (+ the options in section 7)
+--        'reading'    → book + chapters ("Read Bereshit 12-15"); students mark it done
+--        'discussion' → prompt (+ optional book/chapters); students write an answer
+alter table public.assignments add column if not exists kind text not null default 'quiz';
+alter table public.assignments add column if not exists prompt text;
+alter table public.assignments alter column quiz_key drop not null;
+
+alter table public.assignments drop constraint if exists assignments_kind_check;
+alter table public.assignments add constraint assignments_kind_check check (
+  (kind = 'quiz' and quiz_key is not null)
+  or (kind = 'reading' and book is not null)
+  or (kind = 'discussion' and length(btrim(coalesce(prompt, ''))) between 1 and 1000)
+);
+
+-- One row per student per reading/discussion assignment: "done", plus the
+-- written answer for discussions. The student and their teacher can read it.
+create table if not exists public.assignment_responses (
+  assignment_id uuid not null references public.assignments (id) on delete cascade,
+  user_id       uuid not null default auth.uid() references auth.users (id) on delete cascade,
+  answer        text check (answer is null or length(answer) <= 4000),
+  done_at       timestamptz not null default now(),
+  updated_at    timestamptz not null default now(),
+  primary key (assignment_id, user_id)
+);
+alter table public.assignment_responses enable row level security;
+
+drop policy if exists "Read responses" on public.assignment_responses;
+create policy "Read responses" on public.assignment_responses for select
+  using (user_id = auth.uid() or public.owns_assignment(assignment_id));
+
+drop policy if exists "Students respond" on public.assignment_responses;
+create policy "Students respond" on public.assignment_responses for insert
+  with check (user_id = auth.uid() and public.in_assignment_class(assignment_id));
+
+drop policy if exists "Students edit their response" on public.assignment_responses;
+create policy "Students edit their response" on public.assignment_responses for update
+  using (user_id = auth.uid())
+  with check (user_id = auth.uid() and public.in_assignment_class(assignment_id));
+
+drop policy if exists "Students remove their response" on public.assignment_responses;
+create policy "Students remove their response" on public.assignment_responses for delete
+  using (user_id = auth.uid());
+
+drop trigger if exists assignment_responses_touch on public.assignment_responses;
+create trigger assignment_responses_touch before update on public.assignment_responses
+  for each row execute function public.touch_updated_at();
+
+-- ============================================================
+-- 11. ANNOUNCEMENTS
+-- ============================================================
+create table if not exists public.class_posts (
+  id          uuid primary key default gen_random_uuid(),
+  class_id    uuid not null references public.classes (id) on delete cascade,
+  body        text not null check (length(btrim(body)) between 1 and 2000),
+  created_at  timestamptz default now()
+);
+create index if not exists class_posts_class_idx on public.class_posts (class_id, created_at desc);
+alter table public.class_posts enable row level security;
+
+drop policy if exists "Read class posts" on public.class_posts;
+create policy "Read class posts" on public.class_posts for select
+  using (public.owns_class(class_id) or public.in_class(class_id));
+drop policy if exists "Teachers post" on public.class_posts;
+create policy "Teachers post" on public.class_posts for insert
+  with check (public.owns_class(class_id));
+drop policy if exists "Teachers delete posts" on public.class_posts;
+create policy "Teachers delete posts" on public.class_posts for delete
+  using (public.owns_class(class_id));
+
+-- ============================================================
+-- 12. CLASS NOTES ON PESUKIM
+-- ============================================================
+-- A teacher's note on a pasuk (verse) or a whole perek (verse null). Students
+-- in that class see it in the reader's commentary panel.
+create table if not exists public.class_notes (
+  id          uuid primary key default gen_random_uuid(),
+  class_id    uuid not null references public.classes (id) on delete cascade,
+  book_id     text not null,
+  chapter     smallint not null check (chapter >= 1),
+  verse       smallint check (verse >= 1),
+  body        text not null check (length(btrim(body)) between 1 and 2000),
+  created_at  timestamptz default now()
+);
+create index if not exists class_notes_place_idx on public.class_notes (book_id, chapter);
+alter table public.class_notes enable row level security;
+
+drop policy if exists "Read class notes" on public.class_notes;
+create policy "Read class notes" on public.class_notes for select
+  using (public.owns_class(class_id) or public.in_class(class_id));
+drop policy if exists "Teachers add class notes" on public.class_notes;
+create policy "Teachers add class notes" on public.class_notes for insert
+  with check (public.owns_class(class_id));
+drop policy if exists "Teachers delete class notes" on public.class_notes;
+create policy "Teachers delete class notes" on public.class_notes for delete
+  using (public.owns_class(class_id));

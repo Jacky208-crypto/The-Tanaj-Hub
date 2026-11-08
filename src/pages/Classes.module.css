@@ -397,3 +397,64 @@
   font-size: 11px;
   font-weight: normal;
 }
+
+/* ---- Batch 1: assignment kinds, announcements ---- */
+.kindTabs {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 3px;
+  border-radius: 8px;
+  background-color: var(--bg-page);
+  align-self: flex-start;
+}
+.kindTab {
+  background: none;
+  border: none;
+  border-radius: 6px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  padding: 6px 12px;
+}
+.kindTabOn {
+  background-color: var(--bg-card);
+  box-shadow: 0 1px 3px var(--shadow);
+  color: var(--text-primary);
+  font-weight: bold;
+}
+
+.clamp {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.itemStack {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.prompt { font-weight: bold; white-space: pre-wrap; }
+.answerBox { width: 100%; }
+.answerBox textarea { resize: vertical; }
+
+.textLink { color: inherit; text-decoration: underline; }
+.textLink:hover { color: var(--text-primary); }
+
+.post {
+  border-inline-start: 3px solid var(--accent);
+  padding: 6px 10px;
+  margin-bottom: 8px;
+  background-color: var(--bg-page);
+  border-radius: 0 6px 6px 0;
+}
+.postBody { white-space: pre-wrap; font-size: 14px; overflow-wrap: anywhere; }
+
+.answerList { display: flex; flex-direction: column; gap: 10px; }
+.answerItem { border-top: 1px solid var(--border); padding-top: 8px; }
+.answerWho { font-weight: bold; font-size: 13px; }
+.answerText { white-space: pre-wrap; font-size: 14px; overflow-wrap: anywhere; }
+.thTitle { max-width: 180px; white-space: normal; vertical-align: bottom; }

@@ -449,7 +449,7 @@ export async function getStudentClasses() {
   if (!me) return [];
   const { data } = await authed(
     `class_members?user_id=eq.${me.userId}` +
-    '&select=nickname,joined_at,classes(id,name,archived,assignments(id,quiz_key,due_at,created_at,question_count,chapters,book,mode,allow_retries))' +
+    '&select=nickname,joined_at,classes(id,name,archived,class_posts(id,body,created_at),assignments(id,quiz_key,due_at,created_at,question_count,chapters,book,mode,allow_retries,kind,prompt))' +
     '&order=joined_at.desc'
   );
   return (data || []).filter((m) => m.classes && !m.classes.archived);
@@ -478,19 +478,23 @@ export async function getTeacherClasses() {
   if (!me) return [];
   const { data } = await authed(
     `classes?teacher_id=eq.${me.userId}&archived=is.false` +
-    '&select=id,name,join_code,created_at,class_members(user_id,nickname,joined_at),assignments(id,quiz_key,due_at,created_at,question_count,chapters,book,mode,allow_retries)' +
+    '&select=id,name,join_code,created_at,class_members(user_id,nickname,joined_at),class_posts(id,body,created_at),assignments(id,quiz_key,due_at,created_at,question_count,chapters,book,mode,allow_retries,kind,prompt)' +
     '&order=created_at.desc'
   );
   return data || [];
 }
 
-export async function addAssignment({ classId, quizKey, dueAt, questionCount, chapters, book, mode, allowRetries }) {
+export async function addAssignment({
+  classId, kind = 'quiz', quizKey, dueAt, questionCount, chapters, book, mode, allowRetries, prompt,
+}) {
   const { data } = await authed('assignments', {
     method: 'POST',
     headers: { Prefer: 'return=representation' },
     body: JSON.stringify({
       class_id: classId,
-      quiz_key: quizKey,
+      kind,
+      quiz_key: kind === 'quiz' ? quizKey : null,
+      prompt: kind === 'discussion' ? prompt : null,
       due_at: dueAt || null,
       question_count: questionCount || 10,
       chapters: chapters || null,
@@ -507,7 +511,7 @@ export async function addAssignment({ classId, quizKey, dueAt, questionCount, ch
 export async function getClassResults(classId) {
   const { data: rows } = await authed(
     `classes?id=eq.${classId}` +
-    '&select=id,name,join_code,created_at,class_members(user_id,nickname,joined_at),assignments(id,quiz_key,due_at,created_at,question_count,chapters,book,mode,allow_retries)'
+    '&select=id,name,join_code,created_at,class_members(user_id,nickname,joined_at),class_posts(id,body,created_at),assignments(id,quiz_key,due_at,created_at,question_count,chapters,book,mode,allow_retries,kind,prompt)'
   );
   const cls = rows?.[0];
   if (!cls) return null;
@@ -520,7 +524,84 @@ export async function getClassResults(classId) {
     );
     attempts = data || [];
   }
-  return { cls, attempts };
+  let responses = [];
+  if (ids.length) {
+    const { data } = await authed(
+      `assignment_responses?assignment_id=in.(${ids.join(',')})&select=assignment_id,user_id,answer,done_at,updated_at`
+    );
+    responses = data || [];
+  }
+  return { cls, attempts, responses };
+}
+
+// ---- Reading / discussion responses (supabase/classes_setup.sql section 10) ----
+export async function getMyResponses() {
+  const me = await currentAuth();
+  if (!me) return [];
+  const { data } = await authed(
+    `assignment_responses?user_id=eq.${me.userId}&select=assignment_id,answer,done_at,updated_at`
+  );
+  return data || [];
+}
+
+// Marks a reading done, or saves (and replaces) a discussion answer.
+export async function saveResponse(assignmentId, answer = null) {
+  const me = await currentAuth();
+  if (!me) throw new Error('Not logged in.');
+  const { data } = await authed('assignment_responses?on_conflict=assignment_id,user_id', {
+    method: 'POST',
+    headers: { Prefer: 'resolution=merge-duplicates,return=representation' },
+    body: JSON.stringify({ assignment_id: assignmentId, user_id: me.userId, answer }),
+  });
+  return Array.isArray(data) ? data[0] : data;
+}
+
+export async function removeResponse(assignmentId) {
+  const me = await currentAuth();
+  if (!me) throw new Error('Not logged in.');
+  await authed(`assignment_responses?assignment_id=eq.${assignmentId}&user_id=eq.${me.userId}`, { method: 'DELETE' });
+}
+
+// ---- Announcements (section 11) ----
+export async function addClassPost(classId, body) {
+  await authed('class_posts', { method: 'POST', body: JSON.stringify({ class_id: classId, body }) });
+}
+
+export async function deleteClassPost(id) {
+  await authed(`class_posts?id=eq.${id}`, { method: 'DELETE' });
+}
+
+// ---- Class notes on pesukim (section 12) ----
+// Notes from every class this account teaches or is in, for one perek.
+export async function getClassNotes(bookId, chapter) {
+  const me = await currentAuth();
+  if (!me) return [];
+  const { data } = await authed(
+    `class_notes?book_id=eq.${encodeURIComponent(bookId)}&chapter=eq.${chapter}` +
+    '&select=id,class_id,verse,body,created_at,classes(name,teacher_id)&order=created_at.asc'
+  );
+  return data || [];
+}
+
+export async function addClassNote({ classId, bookId, chapter, verse, body }) {
+  const { data } = await authed('class_notes', {
+    method: 'POST',
+    headers: { Prefer: 'return=representation' },
+    body: JSON.stringify({ class_id: classId, book_id: bookId, chapter, verse: verse || null, body }),
+  });
+  return Array.isArray(data) ? data[0] : data;
+}
+
+export async function deleteClassNote(id) {
+  await authed(`class_notes?id=eq.${id}`, { method: 'DELETE' });
+}
+
+// The classes I teach (id + name only), for picking where a note goes.
+export async function getMyTeachingClasses() {
+  const me = await currentAuth();
+  if (!me) return [];
+  const { data } = await authed(`classes?teacher_id=eq.${me.userId}&archived=is.false&select=id,name&order=created_at.desc`);
+  return data || [];
 }
 
 export async function deleteAssignment(id) {

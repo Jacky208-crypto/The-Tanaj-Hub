@@ -24,8 +24,35 @@ export function assignmentQuiz(a, label) {
   return quiz;
 }
 
+// The headline for an assignment of any kind.
+//   quiz → "Bereshit"   reading → "Read Bereshit 12-15"   discussion → the question
+export function assignmentTitle(a, quizzes, t, language) {
+  if (a.kind === 'reading') {
+    return t('classes.readingTitle', { ref: [bookLabel(a.book, language), a.chapters].filter(Boolean).join(' ') });
+  }
+  if (a.kind === 'discussion') return a.prompt;
+  const quiz = quizzes.find((q) => q.key === a.quiz_key);
+  return quiz ? (quiz[`label_${{ english: 'en', spanish: 'es', hebrew: 'he' }[language]}`] || quiz.label_en) : a.quiz_key;
+}
+
+// The first perek a reading/discussion points at (for "Open the text").
+export function firstChapter(a) {
+  const book = a.book && getBookById(a.book);
+  if (!book) return null;
+  try {
+    return (a.chapters && parseChapters(a.chapters, book.chapters)[0]) || 1;
+  } catch {
+    return 1;
+  }
+}
+
 // "10 questions · Yona · perakim 1-2 · Multiple choice · One try"
 export function assignmentSummary(a, t, language) {
+  if (a.kind === 'reading') return t('classes.kindReading');
+  if (a.kind === 'discussion') {
+    const ref = [a.book && bookLabel(a.book, language), a.chapters].filter(Boolean).join(' ');
+    return [t('classes.kindDiscussion'), ref].filter(Boolean).join(' · ');
+  }
   return [
     t('classes.nQuestions', { n: a.question_count || 10 }),
     a.book && bookLabel(a.book, language),
