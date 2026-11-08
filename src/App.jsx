@@ -20,6 +20,8 @@ import Schools from './pages/Schools';
 import Join from './pages/Join';
 import MyClasses from './pages/MyClasses';
 import Teach from './pages/Teach';
+import TeachResults from './pages/TeachResults';
+import TeachPrint from './pages/TeachPrint';
 import Account from './pages/Account';
 import ResetPassword from './pages/ResetPassword';
 
@@ -61,6 +63,8 @@ export default function App() {
             <Route path="/join" element={<Join />} />
             <Route path="/my-classes" element={<MyClasses />} />
             <Route path="/teach" element={<Teach />} />
+            <Route path="/teach/:classId" element={<TeachResults />} />
+            <Route path="/teach/:classId/print" element={<TeachPrint />} />
             <Route path="/account" element={<Account />} />
             <Route path="/reset-password" element={<ResetPassword />} />
             <Route

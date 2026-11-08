@@ -3,6 +3,8 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import { classCodeExists, joinClass } from '../lib/supabaseClient';
+import Captcha from '../components/Captcha';
+import { captchaEnabled } from '../lib/captcha';
 import styles from './Classes.module.css';
 
 // Students join a class with the teacher's code and a nickname. Without an
@@ -17,6 +19,8 @@ export default function Join() {
   const [nickname, setNickname] = useState('');
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState(null);
+  const [captchaKey, setCaptchaKey] = useState(0);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -36,12 +40,23 @@ export default function Join() {
           setBusy(false);
           return;
         }
-        await signInAnonymously(cleanName);
+        if (captchaEnabled && !captchaToken) {
+          setError(t('login.errCaptcha'));
+          setBusy(false);
+          return;
+        }
+        // A token is used once, whatever happens next.
+        setCaptchaToken(null);
+        setCaptchaKey((k) => k + 1);
+        await signInAnonymously(cleanName, captchaToken);
       }
       await joinClass(cleanCode, cleanName);
       navigate('/my-classes');
     } catch (err) {
-      setError(/no class/i.test(err.message || '') ? t('classes.errCode') : t('classes.errGeneric'));
+      const msg = err.message || '';
+      setError(/no class/i.test(msg) ? t('classes.errCode')
+        : /nickname is taken/i.test(msg) ? t('classes.errNickTaken')
+        : t('classes.errGeneric'));
       setBusy(false);
     }
   }
@@ -78,6 +93,7 @@ export default function Join() {
                 placeholder={t('classes.nicknamePlaceholder')}
               />
             </label>
+            {!loading && !user && <Captcha onToken={setCaptchaToken} resetKey={captchaKey} language={language} />}
             {error && <div className={styles.error}>{error}</div>}
             <button className={styles.primary} type="submit" disabled={busy || loading}>
               {busy ? t('login.pleaseWait') : t('classes.joinBtn')}

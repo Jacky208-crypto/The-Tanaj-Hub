@@ -60,13 +60,19 @@ async function parse(res) {
   return body;
 }
 
+// When Supabase's CAPTCHA protection is on, sign-up / log-in / reset calls
+// must carry a Cloudflare Turnstile token (see src/components/Captcha.jsx).
+function security(captchaToken) {
+  return captchaToken ? { gotrue_meta_security: { captcha_token: captchaToken } } : {};
+}
+
 // ---- Auth actions ----
-export async function signUp(email, password, name) {
+export async function signUp(email, password, name, captchaToken) {
   const res = await fetch(`${AUTH_URL}/signup`, {
     method: 'POST',
     headers: headers(),
     // `data` is stored as user_metadata on the Supabase user record.
-    body: JSON.stringify({ email, password, data: { name } }),
+    body: JSON.stringify({ email, password, data: { name }, ...security(captchaToken) }),
   });
   const data = await parse(res);
   // If email confirmation is OFF, signup returns a session with access_token.
@@ -132,11 +138,11 @@ export async function handleOAuthCallback() {
   return session;
 }
 
-export async function signIn(email, password) {
+export async function signIn(email, password, captchaToken) {
   const res = await fetch(`${AUTH_URL}/token?grant_type=password`, {
     method: 'POST',
     headers: headers(),
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify({ email, password, ...security(captchaToken) }),
   });
   const data = await parse(res);
   const session = withExpiry(data);
@@ -146,12 +152,12 @@ export async function signIn(email, password) {
 
 // Emails a password-reset link. Supabase answers the same way whether or not
 // the email has an account, so this can't reveal who is signed up.
-export async function requestPasswordReset(email) {
+export async function requestPasswordReset(email, captchaToken) {
   const redirectTo = `${window.location.origin}/reset-password`;
   const res = await fetch(`${AUTH_URL}/recover?redirect_to=${encodeURIComponent(redirectTo)}`, {
     method: 'POST',
     headers: headers(),
-    body: JSON.stringify({ email }),
+    body: JSON.stringify({ email, ...security(captchaToken) }),
   });
   await parse(res);
 }
@@ -159,11 +165,11 @@ export async function requestPasswordReset(email) {
 // A class account: no email or password (supabase/classes_setup.sql). Needs
 // "Allow anonymous sign-ins" switched on in Supabase. The nickname goes in
 // user_metadata.name so the home page can greet the student.
-export async function signInAnonymously(name) {
+export async function signInAnonymously(name, captchaToken) {
   const res = await fetch(`${AUTH_URL}/signup`, {
     method: 'POST',
     headers: headers(),
-    body: JSON.stringify({ data: name ? { name } : {} }),
+    body: JSON.stringify({ data: name ? { name } : {}, ...security(captchaToken) }),
   });
   const data = await parse(res);
   const session = withExpiry(data);
@@ -443,7 +449,7 @@ export async function getStudentClasses() {
   if (!me) return [];
   const { data } = await authed(
     `class_members?user_id=eq.${me.userId}` +
-    '&select=nickname,joined_at,classes(id,name,archived,assignments(id,quiz_key,due_at,created_at))' +
+    '&select=nickname,joined_at,classes(id,name,archived,assignments(id,quiz_key,due_at,created_at,question_count,chapters,book,mode,allow_retries))' +
     '&order=joined_at.desc'
   );
   return (data || []).filter((m) => m.classes && !m.classes.archived);
@@ -472,19 +478,49 @@ export async function getTeacherClasses() {
   if (!me) return [];
   const { data } = await authed(
     `classes?teacher_id=eq.${me.userId}&archived=is.false` +
-    '&select=id,name,join_code,created_at,class_members(user_id,nickname,joined_at),assignments(id,quiz_key,due_at,created_at)' +
+    '&select=id,name,join_code,created_at,class_members(user_id,nickname,joined_at),assignments(id,quiz_key,due_at,created_at,question_count,chapters,book,mode,allow_retries)' +
     '&order=created_at.desc'
   );
   return data || [];
 }
 
-export async function addAssignment({ classId, quizKey, dueAt }) {
+export async function addAssignment({ classId, quizKey, dueAt, questionCount, chapters, book, mode, allowRetries }) {
   const { data } = await authed('assignments', {
     method: 'POST',
     headers: { Prefer: 'return=representation' },
-    body: JSON.stringify({ class_id: classId, quiz_key: quizKey, due_at: dueAt || null }),
+    body: JSON.stringify({
+      class_id: classId,
+      quiz_key: quizKey,
+      due_at: dueAt || null,
+      question_count: questionCount || 10,
+      chapters: chapters || null,
+      book: book || null,
+      mode: mode || null,
+      allow_retries: allowRetries !== false,
+    }),
   });
   return Array.isArray(data) ? data[0] : data;
+}
+
+// Teacher: one class with its students, assignments and every attempt made
+// on those assignments (Row-Level Security only returns those).
+export async function getClassResults(classId) {
+  const { data: rows } = await authed(
+    `classes?id=eq.${classId}` +
+    '&select=id,name,join_code,created_at,class_members(user_id,nickname,joined_at),assignments(id,quiz_key,due_at,created_at,question_count,chapters,book,mode,allow_retries)'
+  );
+  const cls = rows?.[0];
+  if (!cls) return null;
+  const ids = (cls.assignments || []).map((a) => a.id);
+  let attempts = [];
+  if (ids.length) {
+    const { data } = await authed(
+      `quiz_attempts?assignment_id=in.(${ids.join(',')})` +
+      '&select=id,user_id,assignment_id,score,total,mode,details,created_at&order=created_at.asc'
+    );
+    attempts = data || [];
+  }
+  return { cls, attempts };
 }
 
 export async function deleteAssignment(id) {

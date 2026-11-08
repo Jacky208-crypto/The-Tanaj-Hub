@@ -380,3 +380,134 @@ drop policy if exists "No suggestions from anonymous accounts" on public.questio
 create policy "No suggestions from anonymous accounts" on public.question_submissions
   as restrictive for insert to authenticated
   with check (coalesce((auth.jwt() ->> 'is_anonymous')::boolean, false) = false);
+
+-- ============================================================
+-- 7. ASSIGNMENT OPTIONS
+-- ============================================================
+-- chapters: perakim like '12-15, 20' (single-book quizzes, or the chosen book
+-- of a multi-book quiz). book: one book id for multi-book quizzes
+-- (src/data/books.js QUIZ_BOOKS). mode: null = the student picks.
+alter table public.assignments add column if not exists question_count integer not null default 10;
+alter table public.assignments add column if not exists chapters text;
+alter table public.assignments add column if not exists book text;
+alter table public.assignments add column if not exists mode text;
+alter table public.assignments add column if not exists allow_retries boolean not null default true;
+
+alter table public.assignments drop constraint if exists assignments_question_count_check;
+alter table public.assignments add constraint assignments_question_count_check
+  check (question_count between 1 and 50);
+alter table public.assignments drop constraint if exists assignments_mode_check;
+alter table public.assignments add constraint assignments_mode_check
+  check (mode is null or mode in ('choice', 'free'));
+
+-- A student may save an attempt for an assignment of their own class — and
+-- only once when the teacher turned retries off.
+create or replace function public.can_submit_assignment(aid uuid)
+returns boolean
+language sql stable security definer set search_path = public
+as $$
+  select exists (
+    select 1 from public.assignments a
+    join public.class_members m on m.class_id = a.class_id
+    where a.id = aid and m.user_id = auth.uid()
+      and (a.allow_retries or not exists (
+        select 1 from public.quiz_attempts q where q.assignment_id = aid and q.user_id = auth.uid()
+      ))
+  );
+$$;
+grant execute on function public.can_submit_assignment(uuid) to authenticated;
+
+drop policy if exists "Users insert own attempts" on public.quiz_attempts;
+create policy "Users insert own attempts" on public.quiz_attempts for insert
+  with check (
+    auth.uid() = user_id
+    and (assignment_id is null or public.can_submit_assignment(assignment_id))
+  );
+
+-- ============================================================
+-- 8. ONE NICKNAME PER STUDENT IN A CLASS
+-- ============================================================
+-- Existing duplicates get " (2)", " (3)"… so the unique index can be built.
+with dupes as (
+  select class_id, user_id,
+         row_number() over (partition by class_id, lower(btrim(nickname)) order by joined_at) as n
+    from public.class_members
+)
+update public.class_members m
+   set nickname = left(btrim(m.nickname), 34) || ' (' || d.n || ')'
+  from dupes d
+ where d.class_id = m.class_id and d.user_id = m.user_id and d.n > 1;
+
+create unique index if not exists class_members_nickname_unique
+  on public.class_members (class_id, lower(btrim(nickname)));
+
+-- Same as section 4, plus a clear message when someone else in the class
+-- already uses that nickname (usually the same student on a new device: the
+-- teacher removes the old entry, then they join again).
+create or replace function public.join_class(code text, nick text)
+returns uuid
+language plpgsql
+security definer set search_path = public
+as $$
+declare
+  cid uuid;
+begin
+  if auth.uid() is null then
+    raise exception 'Not logged in.' using errcode = '42501';
+  end if;
+  select id into cid from public.classes
+   where join_code = upper(btrim(code)) and not archived;
+  if cid is null then
+    raise exception 'No class has that code.' using errcode = 'P0002';
+  end if;
+  if exists (
+    select 1 from public.class_members
+     where class_id = cid and user_id <> auth.uid()
+       and lower(btrim(nickname)) = lower(btrim(nick))
+  ) then
+    raise exception 'That nickname is taken in this class.' using errcode = '23505';
+  end if;
+  insert into public.class_members (class_id, user_id, nickname)
+  values (cid, auth.uid(), btrim(nick))
+  on conflict (class_id, user_id) do update set nickname = excluded.nickname;
+  return cid;
+end;
+$$;
+
+-- ============================================================
+-- 9. DELETE CLASS ACCOUNTS UNUSED FOR 12 MONTHS
+-- ============================================================
+-- Anonymous (class-code) accounts nobody has used for a year: no sign-in,
+-- no token refresh, no quiz. Deleting the user removes their memberships and
+-- attempts too (on delete cascade).
+create or replace function public.delete_stale_class_accounts()
+returns integer
+language plpgsql security definer set search_path = public, auth
+as $$
+declare
+  n integer;
+begin
+  delete from auth.users u
+   where u.is_anonymous
+     and greatest(
+           u.created_at,
+           coalesce(u.last_sign_in_at, u.created_at),
+           coalesce((select max(s.updated_at) from auth.sessions s where s.user_id = u.id), u.created_at),
+           coalesce((select max(q.created_at) from public.quiz_attempts q where q.user_id = u.id), u.created_at)
+         ) < now() - interval '12 months';
+  get diagnostics n = row_count;
+  return n;
+end;
+$$;
+revoke all on function public.delete_stale_class_accounts() from public, anon, authenticated;
+
+-- Runs every Sunday at 04:00 UTC — once pg_cron is switched on in
+-- Database → Extensions. Re-run this file after switching it on.
+do $$
+begin
+  if exists (select 1 from pg_extension where extname = 'pg_cron') then
+    perform cron.schedule('delete-stale-class-accounts', '0 4 * * 0',
+                          'select public.delete_stale_class_accounts()');
+  end if;
+end;
+$$;

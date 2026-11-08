@@ -51,14 +51,14 @@ export function AuthProvider({ children }) {
   const teacherChecked = Boolean(user) && teacherCheck?.userId === user.id;
   const isTeacher = teacherChecked && teacherCheck.isTeacher;
 
-  const signIn = useCallback(async (email, password) => {
-    const { user: u } = await auth.signIn(email, password);
+  const signIn = useCallback(async (email, password, captchaToken) => {
+    const { user: u } = await auth.signIn(email, password, captchaToken);
     setUser(u);
     return u;
   }, []);
 
-  const signUp = useCallback(async (email, password, name) => {
-    const result = await auth.signUp(email, password, name);
+  const signUp = useCallback(async (email, password, name, captchaToken) => {
+    const result = await auth.signUp(email, password, name, captchaToken);
     if (result.user && !result.needsConfirmation) setUser(result.user);
     return result;
   }, []);
@@ -74,8 +74,8 @@ export function AuthProvider({ children }) {
   }, []);
 
   // A no-email class account for joining with a code.
-  const signInAnonymously = useCallback(async (name) => {
-    const session = await auth.signInAnonymously(name);
+  const signInAnonymously = useCallback(async (name, captchaToken) => {
+    const session = await auth.signInAnonymously(name, captchaToken);
     setUser(session.user);
     return session.user;
   }, []);

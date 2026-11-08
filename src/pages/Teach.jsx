@@ -7,6 +7,8 @@ import {
 } from '../lib/supabaseClient';
 import { getQuizzes, pick } from '../lib/content';
 import { formatDue } from '../lib/dates';
+import { assignmentSummary } from '../lib/assignments';
+import { QUIZ_BOOKS, QUIZ_CHAPTERS, bookLabel, getBookById, parseChapters } from '../data/books';
 import styles from './Classes.module.css';
 
 // A due date picked as YYYY-MM-DD means "by the end of that day" locally.
@@ -16,10 +18,145 @@ function endOfDay(dateText) {
   return new Date(y, m - 1, d, 23, 59).toISOString();
 }
 
-function ClassCard({ cls, quizzes, onChange }) {
+const EMPTY_FORM = { quizKey: '', due: '', count: '10', book: '', chapters: '', mode: '', retries: true };
+
+function AssignForm({ cls, quizzes, onDone }) {
   const { language, t } = useLanguage();
-  const [quizKey, setQuizKey] = useState('');
-  const [due, setDue] = useState('');
+  const [form, setForm] = useState(EMPTY_FORM);
+  const [error, setError] = useState('');
+  const [busy, setBusy] = useState(false);
+  const set = (k, v) => setForm((f) => ({ ...f, [k]: v }));
+  const books = QUIZ_BOOKS[form.quizKey];
+  // Chapters can be narrowed for single-book quizzes, or once a book is picked.
+  const maxChapters = books ? (form.book ? getBookById(form.book).chapters : null) : QUIZ_CHAPTERS[form.quizKey];
+
+  async function submit(e) {
+    e.preventDefault();
+    setError('');
+    if (!form.quizKey) return;
+    const count = Number(form.count);
+    if (!Number.isInteger(count) || count < 1 || count > 50) {
+      setError(t('classes.errCount'));
+      return;
+    }
+    let chapters = form.chapters.trim();
+    if (chapters && maxChapters) {
+      try {
+        parseChapters(chapters, maxChapters);
+      } catch {
+        setError(t('classes.errChapters', { n: maxChapters }));
+        return;
+      }
+    } else {
+      chapters = '';
+    }
+    setBusy(true);
+    try {
+      await addAssignment({
+        classId: cls.id,
+        quizKey: form.quizKey,
+        dueAt: endOfDay(form.due),
+        questionCount: count,
+        chapters,
+        book: books ? form.book : '',
+        mode: form.mode,
+        allowRetries: form.retries,
+      });
+      setForm(EMPTY_FORM);
+      onDone();
+    } catch {
+      setError(t('classes.errGeneric'));
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  return (
+    <form className={styles.form} onSubmit={submit}>
+      <div className={styles.row}>
+        <label className={styles.label}>
+          {t('classes.assignQuiz')}
+          <select
+            className={styles.input}
+            value={form.quizKey}
+            onChange={(e) => setForm({ ...form, quizKey: e.target.value, book: '', chapters: '' })}
+          >
+            <option value="">—</option>
+            {quizzes.map((q) => <option key={q.key} value={q.key}>{pick(q, 'label', language)}</option>)}
+          </select>
+        </label>
+        <label className={styles.label}>
+          {t('classes.dueDate')}
+          <input className={styles.input} type="date" value={form.due} onChange={(e) => set('due', e.target.value)} />
+        </label>
+      </div>
+      {form.quizKey && (
+        <>
+          <div className={styles.row}>
+            <label className={styles.label}>
+              {t('classes.questionCount')}
+              <input
+                className={styles.input}
+                type="number"
+                min="1"
+                max="50"
+                value={form.count}
+                onChange={(e) => set('count', e.target.value)}
+              />
+            </label>
+            <label className={styles.label}>
+              {t('classes.answerMode')}
+              <select className={styles.input} value={form.mode} onChange={(e) => set('mode', e.target.value)}>
+                <option value="">{t('classes.modeStudentPicks')}</option>
+                <option value="choice">{t('quizPlayer.modeChoice')}</option>
+                <option value="free">{t('quizPlayer.modeFree')}</option>
+              </select>
+            </label>
+          </div>
+          <div className={styles.row}>
+            {books && (
+              <label className={styles.label}>
+                {t('classes.book')}
+                <select
+                  className={styles.input}
+                  value={form.book}
+                  onChange={(e) => setForm({ ...form, book: e.target.value, chapters: '' })}
+                >
+                  <option value="">{t('classes.allBooks')}</option>
+                  {books.map((b) => <option key={b} value={b}>{bookLabel(b, language)}</option>)}
+                </select>
+              </label>
+            )}
+            {maxChapters && (
+              <label className={styles.label}>
+                {t('classes.chapters')}
+                <input
+                  className={styles.input}
+                  dir="ltr"
+                  value={form.chapters}
+                  onChange={(e) => set('chapters', e.target.value)}
+                  placeholder={t('quiz.chaptersAll', { n: maxChapters })}
+                />
+              </label>
+            )}
+          </div>
+          <label className={styles.check}>
+            <input type="checkbox" checked={form.retries} onChange={(e) => set('retries', e.target.checked)} />
+            {t('classes.allowRetries')}
+          </label>
+        </>
+      )}
+      {error && <div className={styles.error}>{error}</div>}
+      <button className={styles.primary} type="submit" disabled={!form.quizKey || busy}>
+        {busy ? t('login.pleaseWait') : t('classes.assignBtn')}
+      </button>
+    </form>
+  );
+}
+
+function ClassCard({ cls, quizzes, onChange }) {
+  const navigate = useNavigate();
+  const { language, t } = useLanguage();
   const [copied, setCopied] = useState(false);
   const [error, setError] = useState('');
   const joinUrl = `${window.location.origin}/join?code=${cls.join_code}`;
@@ -62,44 +199,32 @@ function ClassCard({ cls, quizzes, onChange }) {
         <button className={styles.secondary} onClick={copy}>
           {copied ? t('classes.copied') : t('classes.copyLink')}
         </button>
+        <button className={styles.secondary} onClick={() => navigate(`/teach/${cls.id}/print`)}>
+          {t('classes.printInstructions')}
+        </button>
       </div>
       <p className={styles.hint}>
         {t('classes.shareHint')} <span dir="ltr">{joinUrl}</span>
       </p>
 
+      <div className={styles.buttonRow}>
+        <button className={styles.primary} onClick={() => navigate(`/teach/${cls.id}`)}>
+          {t('classes.viewResults')}
+        </button>
+      </div>
+
       <p className={styles.sectionLabel}>{t('classes.assignments')}</p>
-      <form
-        className={styles.row}
-        onSubmit={(e) => {
-          e.preventDefault();
-          if (!quizKey) return;
-          run(async () => {
-            await addAssignment({ classId: cls.id, quizKey, dueAt: endOfDay(due) });
-            setQuizKey('');
-            setDue('');
-          });
-        }}
-      >
-        <label className={styles.label}>
-          {t('classes.assignQuiz')}
-          <select className={styles.input} value={quizKey} onChange={(e) => setQuizKey(e.target.value)}>
-            <option value="">—</option>
-            {quizzes.map((q) => <option key={q.key} value={q.key}>{pick(q, 'label', language)}</option>)}
-          </select>
-        </label>
-        <label className={styles.label}>
-          {t('classes.dueDate')}
-          <input className={styles.input} type="date" value={due} onChange={(e) => setDue(e.target.value)} />
-        </label>
-        <button className={styles.primary} type="submit" disabled={!quizKey}>{t('classes.assignBtn')}</button>
-      </form>
+      <AssignForm cls={cls} quizzes={quizzes} onDone={onChange} />
       {assignments.length > 0 && (
         <ul className={styles.list} style={{ marginTop: 10 }}>
           {assignments.map((a) => (
             <li key={a.id} className={styles.item}>
               <div className={styles.itemMain}>
                 <div>{quizByKey[a.quiz_key] ? pick(quizByKey[a.quiz_key], 'label', language) : a.quiz_key}</div>
-                {a.due_at && <div className={styles.meta}>{t('classes.due', { date: formatDue(a.due_at, language) })}</div>}
+                <div className={styles.meta}>
+                  {a.due_at && <>{t('classes.due', { date: formatDue(a.due_at, language) })} · </>}
+                  {assignmentSummary(a, t, language)}
+                </div>
               </div>
               <button
                 className={`${styles.textBtn} ${styles.danger}`}
@@ -119,7 +244,10 @@ function ClassCard({ cls, quizzes, onChange }) {
         <ul className={styles.list}>
           {students.map((s) => (
             <li key={s.user_id} className={styles.item}>
-              <span className={styles.itemMain}>{s.nickname}</span>
+              <div className={styles.itemMain}>
+                <div>{s.nickname}</div>
+                <div className={styles.meta}>{t('classes.joined', { date: formatDue(s.joined_at, language) })}</div>
+              </div>
               <button
                 className={`${styles.textBtn} ${styles.danger}`}
                 onClick={() => window.confirm(t('classes.removeConfirm', { name: s.nickname }))
@@ -137,7 +265,7 @@ function ClassCard({ cls, quizzes, onChange }) {
 }
 
 // Teacher view: create classes, share their codes, assign quizzes.
-// Accounts become teachers only when added to public.teachers by the admin.
+// Teachers are added by email in /admin → Teachers.
 export default function Teach() {
   const navigate = useNavigate();
   const { user, loading, isTeacher, teacherChecked } = useAuth();
@@ -175,6 +303,8 @@ export default function Teach() {
     }
   }
 
+  const steps = t('classes.howSteps');
+
   return (
     <div className={styles.page} dir={language === 'hebrew' ? 'rtl' : 'ltr'}>
       <div className={styles.inner}>
@@ -191,6 +321,14 @@ export default function Teach() {
 
         {isTeacher && (
           <>
+            {classes && (
+              <details className={styles.howTo} open={classes.length === 0}>
+                <summary>{t('classes.howTitle')}</summary>
+                <ol>
+                  {steps.map((s) => <li key={s}>{s}</li>)}
+                </ol>
+              </details>
+            )}
             <div className={styles.card}>
               <form className={styles.row} onSubmit={handleCreate}>
                 <label className={styles.label}>

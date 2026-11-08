@@ -2,13 +2,15 @@ import { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
+import Captcha from '../components/Captcha';
+import { captchaEnabled } from '../lib/captcha';
 import styles from './Login.module.css';
 
 export default function Login() {
   const navigate = useNavigate();
   const location = useLocation();
   const { signIn, signUp, signInWithGoogle, requestPasswordReset, isConfigured } = useAuth();
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
 
   // 'login', 'signup' or 'forgot'. Links here can pick one through `state.mode`.
   const [mode, setMode] = useState(location.state?.mode || 'login');
@@ -18,6 +20,9 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [ageConfirmed, setAgeConfirmed] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState(null);
+  const [captchaKey, setCaptchaKey] = useState(0); // bump for a fresh, single-use token
+  const newCaptcha = () => { setCaptchaToken(null); setCaptchaKey((k) => k + 1); };
   const [error, setError] = useState('');
   const [info, setInfo] = useState('');
   const [busy, setBusy] = useState(false);
@@ -37,6 +42,10 @@ export default function Login() {
       setError(t('login.errNotConfigured'));
       return;
     }
+    if (captchaEnabled && !captchaToken) {
+      setError(t('login.errCaptcha'));
+      return;
+    }
     if (mode === 'forgot') {
       if (!email) {
         setError(t('login.errMissingEmail'));
@@ -44,12 +53,13 @@ export default function Login() {
       }
       setBusy(true);
       try {
-        await requestPasswordReset(email);
+        await requestPasswordReset(email, captchaToken);
         setInfo(t('login.resetSent'));
       } catch (err) {
         setError(err.message || t('login.errGeneric'));
       } finally {
         setBusy(false);
+        newCaptcha();
       }
       return;
     }
@@ -73,10 +83,10 @@ export default function Login() {
     setBusy(true);
     try {
       if (mode === 'login') {
-        await signIn(email, password);
+        await signIn(email, password, captchaToken);
         navigate(returnTo);
       } else {
-        const result = await signUp(email, password, name.trim());
+        const result = await signUp(email, password, name.trim(), captchaToken);
         if (result.needsConfirmation) {
           setInfo(t('login.infoConfirmEmail'));
           setMode('login');
@@ -88,6 +98,7 @@ export default function Login() {
       setError(err.message || t('login.errGeneric'));
     } finally {
       setBusy(false);
+      newCaptcha();
     }
   }
 
@@ -158,6 +169,7 @@ export default function Login() {
             </label>
           )}
 
+          <Captcha onToken={setCaptchaToken} resetKey={captchaKey} language={language} />
           {error && <div className={styles.error}>{error}</div>}
           {info && <div className={styles.info}>{info}</div>}
 

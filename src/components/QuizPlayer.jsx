@@ -44,7 +44,8 @@ function needsOptions(q) {
 }
 
 // quiz = { label, quizKeys: ['bereshit', …], count, chapters?: { shemot: [1, 2, …] }, books?: { neviimAjaronim: { yona: [] } },
-//          assignmentId?: set when a student plays a quiz their teacher assigned }
+//          assignmentId?: set when a student plays a quiz their teacher assigned,
+//          mode?: 'choice' | 'free' fixed by the teacher, noRetry?: hide "Play again" }
 export default function QuizPlayer({ quiz, onBack }) {
   const navigate = useNavigate();
   const { user } = useAuth();
@@ -56,7 +57,7 @@ export default function QuizPlayer({ quiz, onBack }) {
   const [flash, setFlash] = useState(null);
   const [flashOption, setFlashOption] = useState(null);
   const [language, setLanguage] = useState(uiLanguage);
-  const [mode, setMode] = useState('choice'); // choice | free
+  const [mode, setMode] = useState(quiz.mode || 'choice'); // choice | free (a teacher's assignment can fix it)
   const [draft, setDraft] = useState(''); // free response: what the player wrote
   const [revealed, setRevealed] = useState(false); // free response: answer shown?
   const [sessionKey, setSessionKey] = useState(0);
@@ -102,6 +103,7 @@ export default function QuizPlayer({ quiz, onBack }) {
 
   // The report item for the current question.
   const record = (answerText, result, itemMode) => ({
+    question_id: current.id,
     quiz_key: current.quiz_key,
     book: current.book || null,
     chapter: current.chapter || null,
@@ -183,7 +185,7 @@ export default function QuizPlayer({ quiz, onBack }) {
         </div>
 
         {/* Answer mode: multiple choice or free response */}
-        {!finished && (
+        {!finished && !quiz.mode && (
           <div className={styles.modeRow}>
             {['choice', 'free'].map((m) => (
               <button
@@ -243,9 +245,11 @@ export default function QuizPlayer({ quiz, onBack }) {
                 {t('quizPlayer.signUpForReportRest')}
               </p>
             )}
-            <button className={styles.restartBtn} onClick={restart}>
-              {t('quizPlayer.playAgain')}
-            </button>
+            {!quiz.noRetry && (
+              <button className={styles.restartBtn} onClick={restart}>
+                {t('quizPlayer.playAgain')}
+              </button>
+            )}
             {onBack && (
               <button className={styles.backLink} onClick={onBack}>
                 {t('quizPlayer.backToQuizzes')}

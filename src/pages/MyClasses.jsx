@@ -7,10 +7,8 @@ import { getQuizzes, pick } from '../lib/content';
 import { formatScore } from '../components/QuizReport';
 import QuizPlayer from '../components/QuizPlayer';
 import { formatDue } from '../lib/dates';
+import { assignmentQuiz, assignmentSummary } from '../lib/assignments';
 import styles from './Classes.module.css';
-
-// How many questions an assigned quiz asks.
-const ASSIGNMENT_QUESTIONS = 10;
 
 // Student view: the classes I'm in and what each one has assigned.
 export default function MyClasses() {
@@ -91,6 +89,7 @@ export default function MyClasses() {
                       <li key={a.id} className={styles.item}>
                         <div className={styles.itemMain}>
                           <div>{quiz ? pick(quiz, 'label', language) : a.quiz_key}</div>
+                          <div className={styles.meta}>{assignmentSummary(a, t, language)}</div>
                           <div className={styles.meta}>
                             {a.due_at && <>{t('classes.due', { date: formatDue(a.due_at, language) })} · </>}
                             {result
@@ -98,17 +97,14 @@ export default function MyClasses() {
                               : t('classes.notStarted')}
                           </div>
                         </div>
-                        <button
-                          className={result ? styles.secondary : styles.primary}
-                          onClick={() => setPlaying({
-                            label: quiz ? pick(quiz, 'label', 'english') : a.quiz_key,
-                            quizKeys: [a.quiz_key],
-                            count: ASSIGNMENT_QUESTIONS,
-                            assignmentId: a.id,
-                          })}
-                        >
-                          {result ? t('classes.again') : t('classes.start')}
-                        </button>
+                        {!(result && a.allow_retries === false) && (
+                          <button
+                            className={result ? styles.secondary : styles.primary}
+                            onClick={() => setPlaying(assignmentQuiz(a, quiz ? pick(quiz, 'label', 'english') : a.quiz_key))}
+                          >
+                            {result ? t('classes.again') : t('classes.start')}
+                          </button>
+                        )}
                       </li>
                     );
                   })}
