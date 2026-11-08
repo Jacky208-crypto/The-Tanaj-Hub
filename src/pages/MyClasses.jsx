@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import {
   getStudentClasses, getMyAssignmentAttempts, getMyResponses, leaveClass, saveResponse, removeResponse,
-  getClassQuestions, getLeaderboard, getMyActivityDates,
+  getClassQuestions, getLeaderboard, getMyActivityDates, activeLiveGame,
 } from '../lib/supabaseClient';
 import { getQuizzes, pick } from '../lib/content';
 import { formatScore } from '../components/QuizReport';
@@ -108,6 +108,7 @@ export default function MyClasses() {
   const [allPosts, setAllPosts] = useState({}); // class id → show every announcement
   const [boards, setBoards] = useState({}); // class id → leaderboard rows
   const [streak, setStreak] = useState(0);
+  const [liveGames, setLiveGames] = useState({}); // class id → game in progress
 
   // Errors clear on success, not up front: load() runs inside an effect.
   const load = useCallback(() => {
@@ -123,6 +124,18 @@ export default function MyClasses() {
   }, [t]);
 
   useEffect(() => { if (user) load(); }, [user, load]);
+
+  // Look for live games now and every 15 s while this page is open.
+  const classIds = (classes || []).map((m) => m.classes.id).join(',');
+  useEffect(() => {
+    if (!classIds) return undefined;
+    const ids = classIds.split(',');
+    const check = () => Promise.all(ids.map((id) => activeLiveGame(id).catch(() => null)))
+      .then((games) => setLiveGames(Object.fromEntries(ids.map((id, i) => [id, games[i]]))));
+    check();
+    const timer = setInterval(check, 15000);
+    return () => clearInterval(timer);
+  }, [classIds]);
 
   if (!loading && !user) return <Navigate to="/join" replace />;
 
@@ -286,6 +299,12 @@ export default function MyClasses() {
                 <span className={styles.cardTitle}>{cls.name}</span>
                 <span className={styles.meta}>{t('classes.youAre', { name: nickname })}</span>
               </div>
+              {liveGames[cls.id] && (
+                <div className={styles.liveBanner}>
+                  <span>{t('live.bannerText')}</span>
+                  <Link className={styles.primary} to={`/live/${liveGames[cls.id]}`}>{t('live.joinGame')}</Link>
+                </div>
+              )}
 
               {posts.length > 0 && (
                 <>

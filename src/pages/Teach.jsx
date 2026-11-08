@@ -630,6 +630,9 @@ function ClassCard({ cls, quizzes, onChange }) {
         <button className={styles.primary} onClick={() => navigate(`/teach/${cls.id}`)}>
           {t('classes.viewResults')}
         </button>
+        <button className={styles.secondary} onClick={() => navigate(`/teach/${cls.id}/live`)}>
+          {t('live.startLive')}
+        </button>
       </div>
 
       <div className={styles.settingsRow}>

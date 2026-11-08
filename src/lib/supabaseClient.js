@@ -510,6 +510,20 @@ export function removeCoTeacher(classId, userId) {
   return rpc('remove_co_teacher', { cid: classId, uid: userId });
 }
 
+// ---- Live games (section 17) ----
+// questions: [{ id, question_en/_es/_he, options_en/_es/_he, correct_index }]
+export function startLiveGame(classId, { title, questions, seconds }) {
+  return rpc('live_start', { cid: classId, game_title: title, qs: questions, secs: seconds });
+}
+export const liveState = (gameId) => rpc('live_game_state', { gid: gameId });
+export const liveJoin = (gameId) => rpc('live_join', { gid: gameId });
+export const liveAnswer = (gameId, option) => rpc('live_answer', { gid: gameId, opt: option });
+export const liveNext = (gameId) => rpc('live_next', { gid: gameId });
+export const liveReveal = (gameId) => rpc('live_reveal', { gid: gameId });
+export const liveEnd = (gameId) => rpc('live_end', { gid: gameId });
+// The class's game in progress, or null.
+export const activeLiveGame = (classId) => rpc('active_live_game', { cid: classId });
+
 // ---- Points (section 16) ----
 // [{ nickname, points, is_me }], best first. Empty for students unless the
 // teacher turned the leaderboard on.

@@ -827,3 +827,308 @@ as $$
 $$;
 revoke all on function public.class_leaderboard(uuid) from public, anon;
 grant execute on function public.class_leaderboard(uuid) to authenticated;
+
+-- ============================================================
+-- 17. LIVE GAME MODE
+-- ============================================================
+-- The teacher shows questions on the board; students answer on their own
+-- devices. Screens ask live_game_state() every ~1.5 s. Students never read
+-- these tables directly: the functions below hide the correct answer until
+-- the teacher reveals it, and time + score answers on the server.
+--
+-- questions: a snapshot made when the game starts, one object per question:
+--   { id, question_en, question_es, question_he, options_en, options_es,
+--     options_he, correct_index }
+create table if not exists public.live_games (
+  id                   uuid primary key default gen_random_uuid(),
+  class_id             uuid not null references public.classes (id) on delete cascade,
+  host_id              uuid not null default auth.uid() references auth.users (id) on delete cascade,
+  title                text not null default '',
+  questions            jsonb not null check (jsonb_typeof(questions) = 'array' and jsonb_array_length(questions) between 1 and 50),
+  seconds              smallint not null default 20 check (seconds between 5 and 120),
+  phase                text not null default 'lobby' check (phase in ('lobby', 'question', 'reveal', 'ended')),
+  current_index        integer not null default -1,
+  question_started_at  timestamptz,
+  created_at           timestamptz default now()
+);
+create index if not exists live_games_class_idx on public.live_games (class_id, created_at desc);
+
+create table if not exists public.live_players (
+  game_id    uuid not null references public.live_games (id) on delete cascade,
+  user_id    uuid not null references auth.users (id) on delete cascade,
+  joined_at  timestamptz default now(),
+  primary key (game_id, user_id)
+);
+
+create table if not exists public.live_answers (
+  game_id         uuid not null references public.live_games (id) on delete cascade,
+  user_id         uuid not null references auth.users (id) on delete cascade,
+  question_index  integer not null,
+  option_index    integer not null,
+  correct         boolean not null,
+  points          integer not null,
+  answered_at     timestamptz default now(),
+  primary key (game_id, user_id, question_index)
+);
+
+-- No direct access for students; teachers may list their classes' games.
+alter table public.live_games   enable row level security;
+alter table public.live_players enable row level security;
+alter table public.live_answers enable row level security;
+drop policy if exists "Teachers read live games" on public.live_games;
+create policy "Teachers read live games" on public.live_games for select
+  using (public.owns_class(class_id));
+
+-- The class's game in progress (started in the last 6 hours), or null.
+create or replace function public.active_live_game(cid uuid)
+returns uuid
+language sql stable security definer set search_path = public
+as $$
+  select g.id from public.live_games g
+   where g.class_id = cid and g.phase <> 'ended' and g.created_at > now() - interval '6 hours'
+     and (public.owns_class(cid) or public.in_class(cid))
+   order by g.created_at desc
+   limit 1;
+$$;
+
+create or replace function public.live_start(cid uuid, game_title text, qs jsonb, secs integer)
+returns uuid
+language plpgsql security definer set search_path = public
+as $$
+declare
+  gid uuid;
+begin
+  if not public.owns_class(cid) then
+    raise exception 'Only the class''s teachers can start a game.' using errcode = '42501';
+  end if;
+  if jsonb_typeof(qs) <> 'array' or exists (
+    select 1 from jsonb_array_elements(qs) e
+     where jsonb_typeof(e -> 'options_en') <> 'array'
+        or jsonb_array_length(e -> 'options_en') < 2
+        or (e ->> 'correct_index')::integer not between 0 and jsonb_array_length(e -> 'options_en') - 1
+  ) then
+    raise exception 'Bad questions.' using errcode = '22023';
+  end if;
+  -- One game at a time per class.
+  update public.live_games set phase = 'ended' where class_id = cid and phase <> 'ended';
+  insert into public.live_games (class_id, host_id, title, questions, seconds)
+  values (cid, auth.uid(), coalesce(game_title, ''), qs, secs)
+  returning id into gid;
+  return gid;
+end;
+$$;
+
+-- Host controls: lobby/reveal → next question (or the end); question → reveal.
+create or replace function public.live_next(gid uuid)
+returns void
+language plpgsql security definer set search_path = public
+as $$
+declare
+  g public.live_games;
+begin
+  select * into g from public.live_games where id = gid;
+  if g.id is null or not public.owns_class(g.class_id) then
+    raise exception 'Not allowed.' using errcode = '42501';
+  end if;
+  if g.phase not in ('lobby', 'reveal') then
+    return;
+  end if;
+  if g.current_index + 1 >= jsonb_array_length(g.questions) then
+    update public.live_games set phase = 'ended' where id = gid;
+  else
+    update public.live_games
+       set phase = 'question', current_index = g.current_index + 1, question_started_at = now()
+     where id = gid;
+  end if;
+end;
+$$;
+
+create or replace function public.live_reveal(gid uuid)
+returns void
+language plpgsql security definer set search_path = public
+as $$
+begin
+  if not exists (select 1 from public.live_games where id = gid and public.owns_class(class_id)) then
+    raise exception 'Not allowed.' using errcode = '42501';
+  end if;
+  update public.live_games set phase = 'reveal' where id = gid and phase = 'question';
+end;
+$$;
+
+create or replace function public.live_end(gid uuid)
+returns void
+language plpgsql security definer set search_path = public
+as $$
+begin
+  if not exists (select 1 from public.live_games where id = gid and public.owns_class(class_id)) then
+    raise exception 'Not allowed.' using errcode = '42501';
+  end if;
+  update public.live_games set phase = 'ended' where id = gid;
+end;
+$$;
+
+-- A student joins the lobby (or a game already running).
+create or replace function public.live_join(gid uuid)
+returns void
+language plpgsql security definer set search_path = public
+as $$
+begin
+  if not exists (select 1 from public.live_games where id = gid and public.in_class(class_id)) then
+    raise exception 'Not allowed.' using errcode = '42501';
+  end if;
+  insert into public.live_players (game_id, user_id) values (gid, auth.uid()) on conflict do nothing;
+end;
+$$;
+
+-- One answer per question. Right answers score 500–1000 (faster = more);
+-- wrong answers 0. A 2-second grace covers slow connections.
+create or replace function public.live_answer(gid uuid, opt integer)
+returns void
+language plpgsql security definer set search_path = public
+as $$
+declare
+  g public.live_games;
+  q jsonb;
+  ok boolean;
+  elapsed double precision;
+  pts integer;
+begin
+  select * into g from public.live_games where id = gid;
+  if g.id is null or not public.in_class(g.class_id) then
+    raise exception 'Not allowed.' using errcode = '42501';
+  end if;
+  if g.phase <> 'question' then
+    raise exception 'Not accepting answers now.' using errcode = 'P0001';
+  end if;
+  elapsed := extract(epoch from now() - g.question_started_at);
+  if elapsed > g.seconds + 2 then
+    raise exception 'Time is up.' using errcode = 'P0001';
+  end if;
+  q := g.questions -> g.current_index;
+  if opt < 0 or opt >= jsonb_array_length(q -> 'options_en') then
+    raise exception 'Bad option.' using errcode = '22023';
+  end if;
+  ok := opt = (q ->> 'correct_index')::integer;
+  pts := case when ok then round(500 + 500 * greatest(0, 1 - elapsed / g.seconds))::integer else 0 end;
+  insert into public.live_players (game_id, user_id) values (gid, auth.uid()) on conflict do nothing;
+  insert into public.live_answers (game_id, user_id, question_index, option_index, correct, points)
+  values (gid, auth.uid(), g.current_index, opt, ok, pts)
+  on conflict do nothing;
+end;
+$$;
+
+-- Everything a screen needs, as JSON. The correct answer, per-option counts,
+-- each player's result and the leaderboard only appear once revealed.
+create or replace function public.live_game_state(gid uuid)
+returns jsonb
+language plpgsql stable security definer set search_path = public
+as $$
+declare
+  g public.live_games;
+  host boolean;
+  shown boolean;
+  q jsonb;
+  mine public.live_answers;
+  my_score integer;
+  my_rank integer;
+  result jsonb;
+begin
+  select * into g from public.live_games where id = gid;
+  if g.id is null then
+    raise exception 'No such game.' using errcode = 'P0002';
+  end if;
+  host := public.owns_class(g.class_id);
+  if not host and not public.in_class(g.class_id) then
+    raise exception 'Not allowed.' using errcode = '42501';
+  end if;
+  shown := g.phase in ('reveal', 'ended');
+  if g.current_index >= 0 then
+    q := g.questions -> g.current_index;
+    if not shown then
+      q := q - 'correct_index';
+    end if;
+  end if;
+
+  select * into mine from public.live_answers
+   where game_id = gid and user_id = auth.uid() and question_index = g.current_index;
+  select coalesce(sum(points), 0)::integer into my_score
+    from public.live_answers where game_id = gid and user_id = auth.uid();
+  select x.r into my_rank from (
+    select p.user_id, rank() over (order by coalesce(sum(a.points), 0) desc) as r
+      from public.live_players p
+      left join public.live_answers a on a.game_id = p.game_id and a.user_id = p.user_id
+     where p.game_id = gid
+     group by p.user_id
+  ) x where x.user_id = auth.uid();
+
+  result := jsonb_build_object(
+    'id', g.id,
+    'title', g.title,
+    'phase', g.phase,
+    'index', g.current_index,
+    'total', jsonb_array_length(g.questions),
+    'seconds', g.seconds,
+    'started_at', g.question_started_at,
+    'now', now(),
+    'is_host', host,
+    'question', q,
+    'players', (select count(*) from public.live_players where game_id = gid),
+    'answered', (select count(*) from public.live_answers where game_id = gid and question_index = g.current_index),
+    'me', jsonb_build_object(
+      'joined', exists (select 1 from public.live_players where game_id = gid and user_id = auth.uid()),
+      'answered', mine.user_id is not null,
+      'option', mine.option_index,
+      'correct', case when shown then mine.correct end,
+      'points', case when shown then mine.points end,
+      'score', my_score,
+      'rank', case when shown then my_rank end
+    )
+  );
+
+  if g.phase = 'lobby' then
+    result := result || jsonb_build_object('nicknames', coalesce((
+      select jsonb_agg(m.nickname order by p.joined_at)
+        from public.live_players p
+        join public.class_members m on m.class_id = g.class_id and m.user_id = p.user_id
+       where p.game_id = gid), '[]'::jsonb));
+  end if;
+
+  if shown then
+    result := result || jsonb_build_object(
+      'counts', (
+        select coalesce(jsonb_agg(c.n order by c.i), '[]'::jsonb)
+          from (select i, (select count(*) from public.live_answers a
+                            where a.game_id = gid and a.question_index = g.current_index and a.option_index = i) as n
+                  from generate_series(0, jsonb_array_length(q -> 'options_en') - 1) as i) c),
+      'leaders', (
+        select coalesce(jsonb_agg(jsonb_build_object('nickname', t.nickname, 'score', t.score) order by t.score desc, t.nickname), '[]'::jsonb)
+          from (select m.nickname, coalesce(sum(a.points), 0)::integer as score
+                  from public.live_players p
+                  join public.class_members m on m.class_id = g.class_id and m.user_id = p.user_id
+                  left join public.live_answers a on a.game_id = p.game_id and a.user_id = p.user_id
+                 where p.game_id = gid
+                 group by m.nickname
+                 order by score desc, m.nickname
+                 limit case when g.phase = 'ended' then 10 else 5 end) t)
+    );
+  end if;
+  return result;
+end;
+$$;
+
+revoke all on function public.active_live_game(uuid) from public, anon;
+revoke all on function public.live_start(uuid, text, jsonb, integer) from public, anon;
+revoke all on function public.live_next(uuid) from public, anon;
+revoke all on function public.live_reveal(uuid) from public, anon;
+revoke all on function public.live_end(uuid) from public, anon;
+revoke all on function public.live_join(uuid) from public, anon;
+revoke all on function public.live_answer(uuid, integer) from public, anon;
+revoke all on function public.live_game_state(uuid) from public, anon;
+grant execute on function public.active_live_game(uuid) to authenticated;
+grant execute on function public.live_start(uuid, text, jsonb, integer) to authenticated;
+grant execute on function public.live_next(uuid) to authenticated;
+grant execute on function public.live_reveal(uuid) to authenticated;
+grant execute on function public.live_end(uuid) to authenticated;
+grant execute on function public.live_join(uuid) to authenticated;
+grant execute on function public.live_answer(uuid, integer) to authenticated;
+grant execute on function public.live_game_state(uuid) to authenticated;
