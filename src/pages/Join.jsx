@@ -63,7 +63,8 @@ export default function Join() {
       console.error('Joining a class failed:', msg);
       setError(/no class/i.test(msg) ? t('classes.errCode')
         : /nickname is taken/i.test(msg) ? t('classes.errNickTaken')
-        : /captcha/i.test(msg) ? t('classes.errSecurityCheck')
+        // Keep Cloudflare's reason code ("invalid-input-response", …) visible.
+        : /captcha/i.test(msg) ? `${t('classes.errSecurityCheck')} (${msg.match(/\(([^)]+)\)/)?.[1] ?? 'captcha'})`
         : /anonymous sign-ins are disabled/i.test(msg) ? t('classes.errJoinOff')
         : /rate limit|too many/i.test(msg) ? t('classes.errTooMany')
         : `${t('classes.errGeneric')} (${msg})`);
