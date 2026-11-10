@@ -32,9 +32,14 @@ export function cleanVerse(text, lang) {
   if (lang === 'spanish') {
     cleaned = cleanSpanishNames(unwrapSpanishBrackets(cleaned));
   }
+  // Hebrew: keep ketiv (written) / qere (read) pairs exactly as Sefaria shows
+  // them, e.g. "(מלך) [הַמֶּֽלֶךְ]" — stripping them drops words from the pasuk.
+  if (lang !== 'hebrew') {
+    cleaned = cleaned
+      .replace(/\([^)]*\)/g, '')
+      .replace(/\[[^\]]*\]/g, '');
+  }
   return cleaned
-    .replace(/\([^)]*\)/g, '')
-    .replace(/\[[^\]]*\]/g, '')
     .replace(/\s+/g, ' ')
     .replace(/\s+([,.;:])/g, '$1')
     .trim();

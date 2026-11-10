@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /account
+Disallow: /teach
+Disallow: /live
+
+Sitemap: https://thetanajhub.com/sitemap.xml

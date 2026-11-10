@@ -19,7 +19,7 @@ export const translations = {
       admin: 'Admin',
       logIn: 'Log in',
       signUp: 'Sign up',
-      subtitle: 'The Tanaj Hub is an interactive platform to learn Tanaj with quizzes and summaries',
+      subtitle: 'The Tanaj Hub is an interactive platform to learn the Tanaj (Tanach / Tanakh) with quizzes and summaries',
       studyTexts: 'Study Texts',
       practiceQuestions: 'Practice Questions',
       helpfulNotes: 'Helpful Notes',
