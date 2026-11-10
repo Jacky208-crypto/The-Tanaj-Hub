@@ -3,6 +3,7 @@ import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import { getClassResults, getLeaderboard } from '../lib/supabaseClient';
+import { usePageTitle } from '../lib/pageTitle';
 import { getQuizzes } from '../lib/content';
 import { formatDue } from '../lib/dates';
 import { assignmentSummary, assignmentTitle, isQuizKind } from '../lib/assignments';
@@ -163,6 +164,8 @@ export default function TeachResults() {
     for (const r of responses) (answers[r.user_id] ??= {})[r.assignment_id] = r;
     return { cls, assignments, students, grid, answers, attempts, responses, memberCount: members.size };
   }, [data]);
+
+  usePageTitle(view ? t('a11y.resultsOf', { name: view.cls.name }) : null);
 
   if (!loading && !user) return <Navigate to="/login" state={{ from: `/teach/${classId}` }} replace />;
 

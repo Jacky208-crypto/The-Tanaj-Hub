@@ -7,6 +7,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import { getQuizAttempts } from '../lib/supabaseClient';
+import { usePageTitle } from '../lib/pageTitle';
 import { getQuizzes, pick } from '../lib/content';
 import { QUIZ_CHAPTERS, QUIZ_BOOKS, getBookById, bookLabel, parseChapters } from '../data/books';
 import { QUESTION_TYPES } from '../data/questionTypes';
@@ -61,6 +62,13 @@ export default function Quiz() {
     }
     return [...latest].filter(([, result]) => result !== 'right').map(([id]) => id);
   }, [history]);
+
+  usePageTitle(mode === 'report' && openReport
+    ? t('a11y.quizReportOn', {
+      name: openReport.quiz_label,
+      date: openReport.created_at ? new Date(openReport.created_at).toLocaleDateString() : '',
+    })
+    : null);
 
   const quizzesStatus = !quizzes && (
     <ContentStatus
@@ -173,6 +181,7 @@ export default function Quiz() {
       setChapterError(null);
       setCustomQuiz({
         label: 'Custom Quiz',
+        displayLabel: t('a11y.customQuiz'),
         quizKeys: selectedBooks,
         count: questionCount,
         chapters,
@@ -515,7 +524,7 @@ export default function Quiz() {
           <button
             className="nav-btn"
             onClick={() => {
-              setCustomQuiz({ label: 'Review my mistakes', questionIds: mistakes.slice(0, REVIEW_SIZE), count: REVIEW_SIZE });
+              setCustomQuiz({ label: 'Review my mistakes', displayLabel: t('quiz.reviewTitle'), questionIds: mistakes.slice(0, REVIEW_SIZE), count: REVIEW_SIZE });
               setMode('quiz');
             }}
           >
@@ -625,7 +634,7 @@ export default function Quiz() {
           <button
             className={styles.goBtn}
             onClick={() => {
-              setCustomQuiz({ label: ALL_BOOKS.label_en, quizKeys: quizzes.map((q) => q.key) });
+              setCustomQuiz({ label: ALL_BOOKS.label_en, displayLabel: pick(ALL_BOOKS, 'label', language), quizKeys: quizzes.map((q) => q.key) });
               setMode('quiz');
             }}
           >
@@ -641,7 +650,7 @@ export default function Quiz() {
               <button
                 className={styles.goBtn}
                 onClick={() => {
-                  setCustomQuiz({ label: q.label_en, quizKeys: [q.key] });
+                  setCustomQuiz({ label: q.label_en, displayLabel: pick(q, 'label', language), quizKeys: [q.key] });
                   setMode('quiz');
                 }}
               >

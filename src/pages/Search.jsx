@@ -6,6 +6,7 @@ import {
   TRANSLATION_LABELS,
 } from '../lib/tanajSearch';
 import { useLanguage } from '../context/LanguageContext';
+import { usePageTitle } from '../lib/pageTitle';
 import styles from './Search.module.css';
 
 const LANGUAGES = ['hebrew', 'english', 'spanish'];
@@ -54,6 +55,7 @@ export default function Search() {
   const [searchedTerm, setSearchedTerm] = useState('');
   const [searchedLang, setSearchedLang] = useState('hebrew');
   const [searchedWhole, setSearchedWhole] = useState(false);
+  usePageTitle(searched && searchedTerm ? t('a11y.searchFor', { q: searchedTerm }) : null);
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState('');
   const [error, setError] = useState(null);

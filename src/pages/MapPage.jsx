@@ -16,6 +16,7 @@ import {
 import { useLanguage } from '../context/LanguageContext';
 import { useAuth } from '../context/AuthContext';
 import { getAssignment, getMyResponses, saveResponse } from '../lib/supabaseClient';
+import { usePageTitle } from '../lib/pageTitle';
 import styles from './MapPage.module.css';
 
 class MapErrorBoundary extends Component {
@@ -230,6 +231,9 @@ function MapPageInner() {
   const exitActivity = () => setParams({});
   // Logged out: the activity can't be loaded (it belongs to a class).
   const shownActivity = activityId && !authLoading && !user ? false : activity;
+  usePageTitle(shownActivity
+    ? t('a11y.mapActivity')
+    : selected ? t('a11y.onMap', { name: selected.name }) : null);
 
   useEffect(() => {
     let active = true;

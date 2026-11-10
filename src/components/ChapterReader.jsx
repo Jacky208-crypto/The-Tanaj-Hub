@@ -1,5 +1,7 @@
 import { useState, useCallback, useRef, useEffect, useMemo } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { bookLabel } from '../data/books';
+import { usePageTitle } from '../lib/pageTitle';
 import { useAuth } from '../context/AuthContext';
 import { getUserNotesForChapter } from '../lib/supabaseClient';
 import { noteStrings } from './notes/noteStrings';
@@ -68,6 +70,14 @@ export default function ChapterReader({ book, initialChapter = null, initialVers
   const pendingMidrashRef = useRef(null);
   const [panelStart, setPanelStart] = useState(null);
   const closeCommentary = useCallback(() => setSelectedVerse(null), []);
+
+  // Tab name: "Shmuel Alef 12", or "Shmuel Alef 12:2 with commentary".
+  const bookName = bookLabel(book.id, uiLanguage);
+  usePageTitle(activeChapter
+    ? (selectedVerse
+      ? t('a11y.withCommentary', { ref: `${bookName} ${activeChapter}:${selectedVerse}` })
+      : `${bookName} ${activeChapter}`)
+    : null);
 
   // The user's notes on the open chapter: shown in the panel, and any pasuk
   // quoted in them is highlighted in the text.

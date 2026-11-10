@@ -4,6 +4,7 @@ import styles from './QuizPlayer.module.css';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import { saveQuizAttempt } from '../lib/supabaseClient';
+import { usePageTitle } from '../lib/pageTitle';
 import { getQuestionsByIds, getRandomQuestions, pick } from '../lib/content';
 import ContentStatus from './ContentStatus';
 import QuizReport, { RESULT_POINTS, formatScore } from './QuizReport';
@@ -87,6 +88,16 @@ export default function QuizPlayer({ quiz, onBack }) {
   const current = questions?.[index];
   const score = answers.reduce((sum, a) => sum + (RESULT_POINTS[a.result] ?? 0), 0);
   const asFree = mode === 'free' && current && !needsOptions(current);
+
+  // Tab name follows the quiz: playing, results, report.
+  const quizName = quiz.displayLabel || quiz.label;
+  usePageTitle(!questions?.length
+    ? t('a11y.quizTitle', { name: quizName })
+    : finished
+      ? (showReport
+        ? t('a11y.quizReport', { name: quizName })
+        : t('a11y.quizResults', { name: quizName, score: `${formatScore(score)}/${questions.length}` }))
+      : t('a11y.quizQuestion', { name: quizName, i: index + 1, n: questions.length }));
 
   // When a quiz finishes, save the attempt (with its report) for logged-in users, once per run.
   useEffect(() => {

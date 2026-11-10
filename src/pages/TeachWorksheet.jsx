@@ -6,6 +6,7 @@ import { getAssignment, getClassQuestions } from '../lib/supabaseClient';
 import { getQuizzes, getRandomQuestions, pick } from '../lib/content';
 import { assignmentQuiz } from '../lib/assignments';
 import { translator } from '../lib/translate';
+import { usePageTitle } from '../lib/pageTitle';
 import styles from './Classes.module.css';
 
 const SUFFIX = { english: 'en', spanish: 'es', hebrew: 'he' };
@@ -58,6 +59,7 @@ export default function TeachWorksheet() {
   const quiz = quizzes.find((q) => q.key === assignment?.quiz_key);
   const title = assignment?.kind === 'custom' ? ts('classes.kindCustom') : quiz ? pick(quiz, 'label', lang) : '';
   const options = (q) => q[`options_${SUFFIX[lang]}`] || q.options_en;
+  usePageTitle(title ? t('a11y.worksheetOf', { name: title }) : null);
 
   return (
     <div className={`${styles.page} ${styles.printPage}`} dir={language === 'hebrew' ? 'rtl' : 'ltr'}>

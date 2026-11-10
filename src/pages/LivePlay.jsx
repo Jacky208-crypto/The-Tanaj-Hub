@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import { liveAnswer, liveJoin } from '../lib/supabaseClient';
 import { LETTERS, optionTexts, questionText, useLiveGame } from '../lib/live';
+import { usePageTitle } from '../lib/pageTitle';
 import styles from './Live.module.css';
 
 // Student: /live/:gameId — answer on your own device.
@@ -15,6 +16,10 @@ export default function LivePlay() {
   const { state, error, remaining, refresh } = useLiveGame(user ? gameId : null);
   const [picked, setPicked] = useState({}); // question index → option chosen here
   const [answerError, setAnswerError] = useState('');
+  usePageTitle(!state ? null
+    : state.phase === 'lobby' ? t('a11y.liveLobby', { name: state.title })
+      : state.phase === 'ended' ? t('a11y.liveFinal')
+        : t('a11y.liveQuestion', { i: state.index + 1, n: state.total }));
 
   useEffect(() => {
     if (!user) return;

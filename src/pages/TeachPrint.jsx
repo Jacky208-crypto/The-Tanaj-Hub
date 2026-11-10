@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import { getClassResults } from '../lib/supabaseClient';
 import { translator } from '../lib/translate';
+import { usePageTitle } from '../lib/pageTitle';
 import styles from './Classes.module.css';
 
 // A page the teacher prints (or puts on the board): the class code, the
@@ -15,6 +16,7 @@ export default function TeachPrint() {
   const { language, t } = useLanguage();
   const [cls, setCls] = useState(null);
   const [error, setError] = useState(false);
+  usePageTitle(cls ? t('a11y.joinSheet', { name: cls.name }) : null);
 
   useEffect(() => {
     if (!isTeacher) return;

@@ -175,7 +175,7 @@ export default function MyClasses() {
   async function startCustom(a, classId) {
     try {
       const questions = await getClassQuestions(classId);
-      setPlaying(customQuiz(a, questions, 'Class questions'));
+      setPlaying({ ...customQuiz(a, questions, 'Class questions'), displayLabel: t('classes.kindCustom') });
     } catch {
       setError(t('classes.errGeneric'));
     }
@@ -209,7 +209,10 @@ export default function MyClasses() {
               className={result ? styles.secondary : styles.primary}
               onClick={() => (kind === 'custom'
                 ? startCustom(a, cls.id)
-                : setPlaying(assignmentQuiz(a, quiz ? pick(quiz, 'label', 'english') : a.quiz_key)))}
+                : setPlaying({
+                  ...assignmentQuiz(a, quiz ? pick(quiz, 'label', 'english') : a.quiz_key),
+                  displayLabel: quiz ? pick(quiz, 'label', language) : a.quiz_key,
+                }))}
             >
               {result ? t('classes.again') : t('classes.start')}
             </button>

@@ -7,6 +7,7 @@ import {
 } from '../lib/supabaseClient';
 import { getQuizzes, getRandomQuestions, pick } from '../lib/content';
 import { LETTERS, optionTexts, pickQuestions, questionText, useLiveGame } from '../lib/live';
+import { usePageTitle } from '../lib/pageTitle';
 import styles from './Live.module.css';
 
 // Teacher: pick questions and start a game for the class.
@@ -117,6 +118,10 @@ function LiveHost({ gameId, onNew }) {
   const { state, error, remaining, refresh } = useLiveGame(gameId);
   const [acting, setActing] = useState(false);
   const autoRevealed = useRef(-1);
+  usePageTitle(!state ? null
+    : state.phase === 'lobby' ? t('a11y.liveLobby', { name: state.title })
+      : state.phase === 'ended' ? t('a11y.liveFinal')
+        : t('a11y.liveQuestion', { i: state.index + 1, n: state.total }));
 
   const act = (fn) => async () => {
     setActing(true);
