@@ -52,7 +52,7 @@
   background: var(--bg-elevated);
   color: var(--text-primary);
 }
-.searchInput:focus { outline: none; border-color: var(--accent); }
+.searchInput:focus { border-color: var(--accent); }
 
 .filterGroup { display: flex; flex-direction: column; gap: 8px; }
 .filterLabel {
@@ -245,4 +245,16 @@
   background: var(--success-bg);
   color: var(--success);
   font-size: 14px;
+}
+
+/* The place list rows are buttons (keyboard + screen readers). */
+button.resultItem {
+  width: 100%;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--accent-softer);
+  color: inherit;
+  font: inherit;
+  font-size: 13px;
+  text-align: start;
 }

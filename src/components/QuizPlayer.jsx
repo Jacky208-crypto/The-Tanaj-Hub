@@ -58,6 +58,7 @@ export default function QuizPlayer({ quiz, onBack }) {
   const [answers, setAnswers] = useState([]); // one report item per answered question
   const [flash, setFlash] = useState(null);
   const [flashOption, setFlashOption] = useState(null);
+  const [announcement, setAnnouncement] = useState(''); // read out by screen readers
   const [language, setLanguage] = useState(uiLanguage);
   const [mode, setMode] = useState(quiz.mode || 'choice'); // choice | free (a teacher's assignment can fix it)
   const [draft, setDraft] = useState(''); // free response: what the player wrote
@@ -129,6 +130,9 @@ export default function QuizPlayer({ quiz, onBack }) {
     setWrongAnswer(isCorrect ? null : current.correct_index);
     setFlash(isCorrect ? 'correct' : 'incorrect');
     setFlashOption(optionIndex);
+    setAnnouncement(isCorrect
+      ? t('quizPlayer.srCorrect')
+      : t('quizPlayer.srWrong', { answer: getOptions(current)[current.correct_index] }));
     setTimeout(() => {
       setFlash(null);
       setFlashOption(null);
@@ -181,6 +185,7 @@ export default function QuizPlayer({ quiz, onBack }) {
   return (
     <div className={styles.wrapper}>
       <div className={styles.card}>
+        <p className="sr-only" aria-live="assertive">{announcement}</p>
 
         {/* Language Toggle - at the top inside the card */}
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginBottom: '0.75rem' }}>

@@ -99,6 +99,8 @@ export const translations = {
       status: { pending: 'Waiting for review', accepted: 'Added ✓', rejected: 'Not added' },
     },
     quizPlayer: {
+      srCorrect: 'Correct.',
+      srWrong: ({ answer }) => `Incorrect. The answer is ${answer}.`,
       finished: 'Quiz Finished!',
       noQuestions: 'There are no questions for those perakim and question types yet. Try a wider range or more types.',
       finalScore: ({ score, total }) => `Final Score: ${score} / ${total}`,
@@ -295,6 +297,9 @@ export const translations = {
       cancel: 'Cancel',
       errEmail: 'That email doesn\'t match your account.',
       errGeneric: 'Something went wrong. Please try again.',
+    },
+    a11y: {
+      skip: 'Skip to content',
     },
     live: {
       startLive: 'Live game',
@@ -736,6 +741,8 @@ export const translations = {
       status: { pending: 'Esperando revisión', accepted: 'Añadida ✓', rejected: 'No añadida' },
     },
     quizPlayer: {
+      srCorrect: 'Correcto.',
+      srWrong: ({ answer }) => `Incorrecto. La respuesta es ${answer}.`,
       finished: '¡Quiz Terminado!',
       noQuestions: 'Todavía no hay preguntas para esos perakim y tipos de pregunta. Prueba con un rango más amplio o más tipos.',
       finalScore: ({ score, total }) => `Puntuación Final: ${score} / ${total}`,
@@ -933,6 +940,9 @@ export const translations = {
       cancel: 'Cancelar',
       errEmail: 'Ese correo no coincide con tu cuenta.',
       errGeneric: 'Algo salió mal. Inténtalo de nuevo.',
+    },
+    a11y: {
+      skip: 'Saltar al contenido',
     },
     live: {
       startLive: 'Juego en vivo',
@@ -1374,6 +1384,8 @@ export const translations = {
       status: { pending: 'ממתינה לבדיקה', accepted: 'נוספה ✓', rejected: 'לא נוספה' },
     },
     quizPlayer: {
+      srCorrect: 'נכון.',
+      srWrong: ({ answer }) => `לא נכון. התשובה היא ${answer}.`,
       finished: '!החידון הסתיים',
       noQuestions: 'עדיין אין שאלות לפרקים ולסוגי השאלות האלה. נסו טווח רחב יותר או יותר סוגים',
       finalScore: ({ score, total }) => `תוצאה סופית: ${score} / ${total}`,
@@ -1571,6 +1583,9 @@ export const translations = {
       cancel: 'ביטול',
       errEmail: 'כתובת המייל לא תואמת לחשבון.',
       errGeneric: 'משהו השתבש. נסו שוב.',
+    },
+    a11y: {
+      skip: 'דילוג לתוכן',
     },
     live: {
       startLive: 'משחק חי',

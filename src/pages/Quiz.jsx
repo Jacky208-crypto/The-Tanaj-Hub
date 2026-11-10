@@ -182,6 +182,9 @@ export default function Quiz() {
       setMode('quiz');
     };
 
+    const toggleBook = (key) => setSelectedBooks((prev) =>
+      (prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key]));
+
     const togglePickedBook = (quizKey, bookId) => {
       setPickedBooks((prev) => {
         const list = prev[quizKey] ?? [];
@@ -209,7 +212,7 @@ export default function Quiz() {
             minWidth: 0,
             padding: '0.45rem 0.75rem',
             borderRadius: '8px',
-            border: '1px solid var(--border)',
+            border: '1px solid var(--border-field)',
             background: 'var(--bg-elevated)',
             color: 'var(--text-primary)',
             font: 'inherit',
@@ -265,12 +268,12 @@ export default function Quiz() {
                   border: selected ? '2px solid var(--accent2)' : 'none',
                   cursor: 'pointer'
                 }}
-                onClick={() => {
-                  setSelectedBooks((prev) =>
-                    prev.includes(key)
-                      ? prev.filter(k => k !== key)
-                      : [...prev, key]
-                  );
+                role="checkbox"
+                aria-checked={selected}
+                tabIndex={0}
+                onClick={() => toggleBook(key)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleBook(key); }
                 }}
               >
                 <p className={styles.cardTitle}>{pick(q, 'label', language)}</p>

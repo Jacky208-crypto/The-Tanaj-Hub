@@ -107,7 +107,8 @@ function ClusterLayer({ places, selected, onSelect, navigate, t, language }) {
     const roots = [];
 
     for (const p of places) {
-      const marker = L.marker([p.lat, p.lng], { icon: pinIcon(p.type) });
+      // title gives each pin a name for screen readers (and a hover tip).
+      const marker = L.marker([p.lat, p.lng], { icon: pinIcon(p.type), title: p.name, alt: p.name });
       marker.on('click', () => onSelect(p));
 
       // Render the React popup into a detached node, bound lazily on open.
@@ -307,6 +308,7 @@ function MapPageInner() {
           {!(activityId && shownActivity) && (<>
           <input
             className={styles.searchInput}
+            aria-label={t('map.searchPlaceholder')}
             placeholder={t('map.searchPlaceholder')}
             value={search}
             onChange={e => setSearch(e.target.value)}
@@ -343,7 +345,7 @@ function MapPageInner() {
 
           <div className={styles.filterGroup}>
             <div className={styles.filterLabel}>{t('map.book')}</div>
-            <select className={styles.select} value={book} onChange={e => setBook(e.target.value)}>
+            <select className={styles.select} value={book} onChange={e => setBook(e.target.value)} aria-label={t('map.book')}>
               <option value="">{t('map.allBooks')}</option>
               {BOOK_GROUPS.map(g => (
                 <optgroup key={g.section} label={g.section}>
@@ -359,14 +361,17 @@ function MapPageInner() {
 
           <ul className={styles.resultList}>
             {filtered.map(p => (
-              <li
-                key={p.id}
-                className={`${styles.resultItem} ${selected?.id === p.id ? styles.resultOn : ''}`}
-                onClick={() => setSelected(p)}
-              >
-                <span className={styles.dot} style={{ background: TYPE_META[p.type].color }} />
-                <span className={styles.resultName}>{p.name}</span>
-                <span className={styles.resultType}>{t(TYPE_META[p.type].labelKey)}</span>
+              <li key={p.id}>
+                <button
+                  type="button"
+                  className={`${styles.resultItem} ${selected?.id === p.id ? styles.resultOn : ''}`}
+                  aria-pressed={selected?.id === p.id}
+                  onClick={() => setSelected(p)}
+                >
+                  <span className={styles.dot} style={{ background: TYPE_META[p.type].color }} />
+                  <span className={styles.resultName}>{p.name}</span>
+                  <span className={styles.resultType}>{t(TYPE_META[p.type].labelKey)}</span>
+                </button>
               </li>
             ))}
             {places && !filtered.length && <li className={styles.empty}>{t('map.noMatches')}</li>}

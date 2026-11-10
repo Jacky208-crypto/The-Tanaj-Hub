@@ -56,7 +56,6 @@
   border: 2px solid var(--border-strong);
   border-radius: 6px;
   font-size: 16px;
-  outline: none;
   background: var(--bg-elevated);
   color: var(--text-primary);
 }

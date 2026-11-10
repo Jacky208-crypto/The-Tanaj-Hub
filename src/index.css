@@ -13,8 +13,8 @@
 
   --text-primary: #111111;
   --text-secondary: rgb(40, 40, 40);
-  --text-muted: #8a8a8a;
-  --text-faint: #9a927e;
+  --text-muted: #6a6a6a;
+  --text-faint: #6f6957;
 
   --accent: rgb(3, 0, 56);
   --accent-text: #ffffff;
@@ -42,6 +42,8 @@
   --quiz-btn-text: rgb(3, 0, 56);
 
   color-scheme: light;
+  --border-field: #8c8c8c;
+  --focus-ring: #1a56b0;
 }
 
 [data-theme='dark-navy'] {
@@ -55,12 +57,12 @@
   --text-muted: #a89c7a;
   --text-faint: #8b8068;
 
-  --accent: #856b17;
+  --accent: #c9a63f;
   --accent-text: #0a0a1f;
   --accent-soft: rgba(212, 175, 55, 0.18);
   --accent-softer: rgba(212, 175, 55, 0.1);
 
-  --accent2: #856b17;
+  --accent2: #c9a63f;
   --accent2-text: #0a0a1f;
 
   --border: #2e2c55;
@@ -81,6 +83,8 @@
   --quiz-btn-text: #0a0a1f;
 
   color-scheme: dark;
+  --border-field: #6c6a9c;
+  --focus-ring: #ffd36b;
 }
 
 [data-theme='dark-charcoal'] {
@@ -92,15 +96,15 @@
   --text-primary: #f5f0e6;
   --text-secondary: #cfc9ba;
   --text-muted: #9a9488;
-  --text-faint: #8a8478;
+  --text-faint: #99938a;
 
-  --accent: #676dbb;
-  --accent-text: #ffffff;
+  --accent: #9ea3f5;
+  --accent-text: #1a1a1a;
   --accent-soft: rgba(139, 147, 255, 0.18);
   --accent-softer: rgba(139, 147, 255, 0.1);
 
-  --accent2: #676dbb;
-  --accent2-text: #ffffff;
+  --accent2: #9ea3f5;
+  --accent2-text: #1a1a1a;
 
   --border: #444444;
   --border-strong: #8b93ff;
@@ -120,6 +124,8 @@
   --quiz-btn-text: #17172b;
 
   color-scheme: dark;
+  --border-field: #7a7a7a;
+  --focus-ring: #ffd36b;
 }
 
 [data-theme='sepia'] {
@@ -130,8 +136,8 @@
 
   --text-primary: #4a3728;
   --text-secondary: #6b5541;
-  --text-muted: #8a7860;
-  --text-faint: #9c8a6e;
+  --text-muted: #6e5c45;
+  --text-faint: #6f5d46;
 
   --accent: #8b5e28;
   --accent-text: #fdf6e8;
@@ -148,7 +154,7 @@
   --danger: #b3452c;
   --danger-bg: rgba(179, 69, 44, 0.12);
   --danger-text: #7a2e1c;
-  --success: #4c7c3f;
+  --success: #3b6330;
   --success-bg: rgba(76, 124, 63, 0.12);
   --highlight: #e2b23a;
 
@@ -159,6 +165,8 @@
   --quiz-btn-text: #fdf6e8;
 
   color-scheme: light;
+  --border-field: #8a7550;
+  --focus-ring: #1d4e89;
 }
 
 body {
@@ -209,3 +217,56 @@ body {
   font-size: 14px;
 }
 .back-btn:hover { opacity: 0.85; }
+
+
+/* ---------- Accessibility ---------- */
+
+/* A clear ring wherever keyboard focus is (mouse clicks don't show it). */
+:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* For screen readers only. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* First Tab on any page: jump past the header to the content. */
+.skip-link {
+  position: absolute;
+  top: 8px;
+  inset-inline-start: 8px;
+  z-index: 10000;
+  padding: 10px 16px;
+  border-radius: 6px;
+  background: var(--accent);
+  color: var(--accent-text);
+  font-weight: bold;
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+.skip-link:focus { transform: none; }
+
+main:focus,
+[data-skip-target]:focus { outline: none; }
+
+/* People who asked their system for less motion get almost none. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

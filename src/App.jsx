@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { LanguageProvider } from './context/LanguageContext';
 import { ThemeProvider } from './context/ThemeContext';
+import { PageTitle, SkipLink } from './components/A11y';
 import Home from './pages/Home';
 import Torah from './pages/Torah';
 import Neviim from './pages/Neviim';
@@ -41,6 +42,9 @@ export default function App() {
       <LanguageProvider>
       <AuthProvider>
         <BrowserRouter>
+          <SkipLink />
+          <PageTitle />
+          <main id="main-content" tabIndex={-1}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/torah" element={<Torah />} />
@@ -82,6 +86,7 @@ export default function App() {
               }
             />
           </Routes>
+          </main>
         </BrowserRouter>
       </AuthProvider>
       </LanguageProvider>

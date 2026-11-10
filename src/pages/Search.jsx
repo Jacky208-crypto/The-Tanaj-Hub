@@ -145,6 +145,7 @@ export default function Search() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={PLACEHOLDERS[language]}
+          aria-label={PLACEHOLDERS[language]}
           dir={language === 'hebrew' ? 'rtl' : 'ltr'}
           autoFocus
         />
