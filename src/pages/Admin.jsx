@@ -7,6 +7,7 @@ import MidrashimAdmin from '../components/admin/MidrashimAdmin';
 import NotesAdmin from '../components/admin/NotesAdmin';
 import SuggestionsAdmin from '../components/admin/SuggestionsAdmin';
 import TeachersAdmin from '../components/admin/TeachersAdmin';
+import ErrorsAdmin from '../components/admin/ErrorsAdmin';
 import styles from './Admin.module.css';
 
 const TABS = [
@@ -16,6 +17,7 @@ const TABS = [
   { id: 'midrashim', label: 'Midrashim', Component: MidrashimAdmin },
   { id: 'notes', label: 'Study notes', Component: NotesAdmin },
   { id: 'teachers', label: 'Teachers', Component: TeachersAdmin },
+  { id: 'errors', label: 'Errors', Component: ErrorsAdmin },
 ];
 
 // Content editor for accounts in public.admins. Loaded lazily from App.jsx,

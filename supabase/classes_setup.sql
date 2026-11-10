@@ -1132,3 +1132,81 @@ grant execute on function public.live_end(uuid) to authenticated;
 grant execute on function public.live_join(uuid) to authenticated;
 grant execute on function public.live_answer(uuid, integer) to authenticated;
 grant execute on function public.live_game_state(uuid) to authenticated;
+
+-- ============================================================
+-- 18. ERROR REPORTS  (so you hear about crashes before a teacher does)
+-- ============================================================
+-- The site sends a short, anonymous report when something breaks: the page
+-- (no query string, no ids), the error message and stack, and the browser.
+-- No name, email, notes or account id. Read in /admin → Errors. Reports are
+-- deleted after 30 days, and at most 300 are stored per hour so nobody can
+-- flood the table.
+create table if not exists public.client_errors (
+  id          bigint generated always as identity primary key,
+  message     text not null,
+  stack       text,
+  page        text,
+  agent       text,
+  created_at  timestamptz not null default now()
+);
+create index if not exists client_errors_created_idx on public.client_errors (created_at desc);
+alter table public.client_errors enable row level security;  -- no policies: functions only
+
+create or replace function public.log_client_error(msg text, stack_text text, page_path text, agent_text text)
+returns void
+language plpgsql security definer set search_path = public
+as $$
+begin
+  if msg is null or btrim(msg) = '' then
+    return;
+  end if;
+  if (select count(*) from public.client_errors where created_at > now() - interval '1 hour') >= 300 then
+    return;
+  end if;
+  insert into public.client_errors (message, stack, page, agent)
+  values (left(msg, 300), left(stack_text, 2000), left(page_path, 200), left(agent_text, 200));
+  -- Tidy up old reports now and then.
+  if random() < 0.02 then
+    delete from public.client_errors where created_at < now() - interval '30 days';
+  end if;
+end;
+$$;
+revoke all on function public.log_client_error(text, text, text, text) from public;
+grant execute on function public.log_client_error(text, text, text, text) to anon, authenticated;
+
+-- Admin: the same error grouped, newest first.
+create or replace function public.admin_list_errors()
+returns table (message text, times bigint, last_seen timestamptz, page text, agent text, stack text)
+language plpgsql stable security definer set search_path = public
+as $$
+begin
+  if not public.is_admin() then
+    raise exception 'Only admins can do this.' using errcode = '42501';
+  end if;
+  return query
+    select e.message, count(*), max(e.created_at),
+           (array_agg(e.page order by e.created_at desc))[1],
+           (array_agg(e.agent order by e.created_at desc))[1],
+           (array_agg(e.stack order by e.created_at desc))[1]
+      from public.client_errors e
+     group by e.message
+     order by max(e.created_at) desc
+     limit 100;
+end;
+$$;
+
+create or replace function public.admin_clear_errors()
+returns void
+language plpgsql security definer set search_path = public
+as $$
+begin
+  if not public.is_admin() then
+    raise exception 'Only admins can do this.' using errcode = '42501';
+  end if;
+  delete from public.client_errors;
+end;
+$$;
+revoke all on function public.admin_list_errors() from public, anon;
+revoke all on function public.admin_clear_errors() from public, anon;
+grant execute on function public.admin_list_errors() to authenticated;
+grant execute on function public.admin_clear_errors() to authenticated;

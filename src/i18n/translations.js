@@ -298,6 +298,12 @@ export const translations = {
       errEmail: 'That email doesn\'t match your account.',
       errGeneric: 'Something went wrong. Please try again.',
     },
+    errors: {
+      title: 'Something broke on this page',
+      body: "We've been told about it. Reload the page to try again.",
+      reload: 'Reload',
+      home: 'Go to the home page',
+    },
     a11y: {
       withCommentary: ({ ref }) => `${ref} with commentary`,
       quizTitle: ({ name }) => `${name} quiz`,
@@ -602,7 +608,7 @@ export const translations = {
     },
     privacy: {
       title: 'Privacy & Terms',
-      updated: 'Last updated: November 6, 2026',
+      updated: 'Last updated: November 9, 2026',
       intro: 'The Tanaj Hub is a free learning site. It collects as little as it can, and this page explains what that is.',
       sections: [
         {
@@ -613,7 +619,9 @@ export const translations = {
             'Your quiz results.',
             'Your personal notes. Other visitors can\'t see them.',
             'Questions you suggest, along with your name and email.',
-          'If you join a class with a code: your nickname, your classes, and your results on assigned quizzes, which the teacher can see. No name or email.',
+          'If you join a class with a code: your nickname, and your results, answers and progress on the work your teacher assigns. Your teacher can see these. No name or email.',
+          'If you use class features: your points and streak, and your scores in live games. Other students only see nicknames, and class points only if your teacher turns them on.',
+          'If you are a teacher: your name and email, your classes, and the announcements, notes and questions you write for them.',
           ],
         },
         {
@@ -625,6 +633,10 @@ export const translations = {
           body: 'The site doesn\'t use advertising or tracking cookies. Your browser\'s storage remembers your theme, your language, your panel size and that you are logged in. Visit statistics come from Vercel Analytics, which counts page views without cookies.',
         },
         {
+          heading: 'When something breaks',
+          body: 'If a page crashes, the site sends a short error report to our own database so we can fix it: the page address, the error message and your browser type. It holds no name, email, notes or account details, and is deleted after 30 days.',
+        },
+        {
           heading: 'Services the site uses',
           body: 'These services help run the site. Some of them can see basic technical information, such as your IP address, when your browser connects to them.',
           items: [
@@ -634,11 +646,12 @@ export const translations = {
             'Google: only if you sign in with Google',
             'Sefaria: Tanaj texts and commentary',
             'OpenStreetMap, OpenTopoMap and Esri: map images',
+            'Cloudflare: a security check when you sign up, log in or join a class',
           ],
         },
         {
           heading: 'Your data',
-          body: 'You can delete your notes at any time. You can download your data or delete your account on your account page, which you open by clicking your name on the home page. You can also email the address below. Deleting your account removes your notes, quiz results and suggestions. Questions that were already published stay in the quizzes, without your name.',
+          body: 'You can delete your notes at any time. You can download your data or delete your account on your account page, which you open by clicking your name on the home page. You can also email the address below. Deleting your account removes your notes, quiz results and suggestions. Questions that were already published stay in the quizzes, without your name. If you are a teacher and delete your account, the classes you created are deleted with it. Class accounts with no activity for 12 months are deleted automatically.',
         },
         {
           heading: 'Terms of use',
@@ -957,6 +970,12 @@ export const translations = {
       errEmail: 'Ese correo no coincide con tu cuenta.',
       errGeneric: 'Algo salió mal. Inténtalo de nuevo.',
     },
+    errors: {
+      title: 'Algo falló en esta página',
+      body: 'Ya nos enteramos. Recarga la página para intentarlo de nuevo.',
+      reload: 'Recargar',
+      home: 'Ir a la página de inicio',
+    },
     a11y: {
       withCommentary: ({ ref }) => `${ref} con comentarios`,
       quizTitle: ({ name }) => `Cuestionario: ${name}`,
@@ -1261,7 +1280,7 @@ export const translations = {
     },
     privacy: {
       title: 'Privacidad y términos',
-      updated: 'Última actualización: 6 de noviembre de 2026',
+      updated: 'Última actualización: 9 de noviembre de 2026',
       intro: 'The Tanaj Hub es un sitio gratuito para aprender. Recopila lo mínimo posible, y esta página explica qué es.',
       sections: [
         {
@@ -1272,7 +1291,9 @@ export const translations = {
             'Tus resultados de los cuestionarios.',
             'Tus notas personales. Los demás visitantes no pueden verlas.',
             'Las preguntas que sugieres, junto con tu nombre y correo.',
-          'Si te unes a una clase con un código: tu apodo, tus clases y tus resultados en los cuestionarios asignados, que el docente puede ver. Sin nombre ni correo.',
+          'Si te unes a una clase con un código: tu apodo, y tus resultados, respuestas y avances en el trabajo que asigna tu docente. Tu docente puede verlos. Sin nombre ni correo.',
+          'Si usas las funciones de clase: tus puntos y tu racha, y tus puntajes en los juegos en vivo. Los demás estudiantes solo ven apodos, y los puntos de la clase solo si tu docente los activa.',
+          'Si eres docente: tu nombre y correo, tus clases, y los anuncios, notas y preguntas que escribes para ellas.',
           ],
         },
         {
@@ -1284,6 +1305,10 @@ export const translations = {
           body: 'El sitio no usa cookies de publicidad ni de seguimiento. El almacenamiento de tu navegador recuerda tu tema, tu idioma, el tamaño del panel y que has iniciado sesión. Las estadísticas de visitas vienen de Vercel Analytics, que cuenta las páginas vistas sin cookies.',
         },
         {
+          heading: 'Cuando algo falla',
+          body: 'Si una página falla, el sitio envía un breve informe de error a nuestra propia base de datos para poder arreglarlo: la dirección de la página, el mensaje de error y el tipo de navegador. No contiene nombre, correo, notas ni datos de la cuenta, y se borra a los 30 días.',
+        },
+        {
           heading: 'Servicios que usa el sitio',
           body: 'Estos servicios ayudan a hacer funcionar el sitio. Algunos pueden ver información técnica básica, como tu dirección IP, cuando tu navegador se conecta a ellos.',
           items: [
@@ -1293,11 +1318,12 @@ export const translations = {
             'Google: solo si inicias sesión con Google',
             'Sefaria: textos del Tanaj y comentarios',
             'OpenStreetMap, OpenTopoMap y Esri: imágenes del mapa',
+            'Cloudflare: una verificación de seguridad al registrarte, iniciar sesión o unirte a una clase',
           ],
         },
         {
           heading: 'Tus datos',
-          body: 'Puedes borrar tus notas en cualquier momento. Puedes descargar tus datos o eliminar tu cuenta en la página de tu cuenta, que se abre al hacer clic en tu nombre en la página de inicio. También puedes escribir a la dirección de abajo. Al eliminar tu cuenta se borran tus notas, resultados y sugerencias. Las preguntas ya publicadas permanecen en los cuestionarios, sin tu nombre.',
+          body: 'Puedes borrar tus notas en cualquier momento. Puedes descargar tus datos o eliminar tu cuenta en la página de tu cuenta, que se abre al hacer clic en tu nombre en la página de inicio. También puedes escribir a la dirección de abajo. Al eliminar tu cuenta se borran tus notas, resultados y sugerencias. Las preguntas ya publicadas permanecen en los cuestionarios, sin tu nombre. Si eres docente y eliminas tu cuenta, las clases que creaste se eliminan con ella. Las cuentas de clase sin actividad durante 12 meses se eliminan automáticamente.',
         },
         {
           heading: 'Términos de uso',
@@ -1616,6 +1642,12 @@ export const translations = {
       errEmail: 'כתובת המייל לא תואמת לחשבון.',
       errGeneric: 'משהו השתבש. נסו שוב.',
     },
+    errors: {
+      title: 'משהו השתבש בעמוד הזה',
+      body: 'קיבלנו על כך דיווח. טענו מחדש את העמוד כדי לנסות שוב.',
+      reload: 'טעינה מחדש',
+      home: 'לעמוד הבית',
+    },
     a11y: {
       withCommentary: ({ ref }) => `${ref} עם פירושים`,
       quizTitle: ({ name }) => `חידון: ${name}`,
@@ -1920,7 +1952,7 @@ export const translations = {
     },
     privacy: {
       title: 'פרטיות ותנאים',
-      updated: 'עדכון אחרון: 6 בנובמבר 2026',
+      updated: 'עדכון אחרון: 9 בנובמבר 2026',
       intro: 'The Tanaj Hub הוא אתר לימוד חינמי. האתר אוסף כמה שפחות מידע, והעמוד הזה מסביר איזה מידע.',
       sections: [
         {
@@ -1931,7 +1963,9 @@ export const translations = {
             'תוצאות חידונים.',
             'הערות אישיות. מבקרים אחרים לא יכולים לראות אותן.',
             'שאלות שהצעתם, יחד עם השם וכתובת המייל שלכם.',
-          'אם מצטרפים לכיתה עם קוד: הכינוי, הכיתות והתוצאות בחידונים שהוקצו, שהמורה יכול לראות. בלי שם ובלי מייל.',
+          'אם מצטרפים לכיתה עם קוד: הכינוי, והתוצאות, התשובות וההתקדמות שלכם בעבודה שהמורה מקצה. המורה יכול לראות אותם. בלי שם ובלי מייל.',
+          'אם משתמשים בכלי הכיתה: הנקודות והרצף, והציונים במשחקים חיים. תלמידים אחרים רואים רק כינויים, ואת נקודות הכיתה רק אם המורה הפעיל אותן.',
+          'אם אתם מורים: השם והמייל, הכיתות, וההודעות, ההערות והשאלות שאתם כותבים להן.',
           ],
         },
         {
@@ -1943,6 +1977,10 @@ export const translations = {
           body: 'האתר לא משתמש בעוגיות פרסום או מעקב. האחסון של הדפדפן זוכר את ערכת הנושא, השפה, גודל החלונית ואת ההתחברות שלכם. נתוני הביקורים מגיעים מ-Vercel Analytics, שסופר צפיות בעמודים בלי עוגיות.',
         },
         {
+          heading: 'כשמשהו מתקלקל',
+          body: 'אם עמוד קורס, האתר שולח דיווח שגיאה קצר למסד הנתונים שלנו כדי שנוכל לתקן: כתובת העמוד, הודעת השגיאה וסוג הדפדפן. אין בו שם, מייל, הערות או פרטי חשבון, והוא נמחק אחרי 30 יום.',
+        },
+        {
           heading: 'שירותים שהאתר משתמש בהם',
           body: 'השירותים האלה עוזרים להפעיל את האתר. חלקם יכולים לראות מידע טכני בסיסי, כמו כתובת ה-IP שלכם, כשהדפדפן מתחבר אליהם.',
           items: [
@@ -1952,11 +1990,12 @@ export const translations = {
             'Google: רק אם מתחברים דרך Google',
             'Sefaria: טקסטים של התנ״ך ופירושים',
             'OpenStreetMap, OpenTopoMap ו-Esri: תמונות המפה',
+            'Cloudflare: בדיקת אבטחה בהרשמה, בהתחברות ובהצטרפות לכיתה',
           ],
         },
         {
           heading: 'המידע שלכם',
-          body: 'אפשר למחוק את ההערות שלכם בכל זמן. אפשר להוריד את המידע שלכם או למחוק את החשבון בעמוד החשבון, שנפתח בלחיצה על השם שלכם בעמוד הבית. אפשר גם לכתוב לכתובת שלמטה. מחיקת החשבון מוחקת את ההערות, התוצאות וההצעות שלכם. שאלות שכבר פורסמו נשארות בחידונים, בלי השם שלכם.',
+          body: 'אפשר למחוק את ההערות שלכם בכל זמן. אפשר להוריד את המידע שלכם או למחוק את החשבון בעמוד החשבון, שנפתח בלחיצה על השם שלכם בעמוד הבית. אפשר גם לכתוב לכתובת שלמטה. מחיקת החשבון מוחקת את ההערות, התוצאות וההצעות שלכם. שאלות שכבר פורסמו נשארות בחידונים, בלי השם שלכם. אם אתם מורים ומוחקים את החשבון, הכיתות שיצרתם נמחקות איתו. חשבונות כיתה ללא פעילות במשך 12 חודשים נמחקים אוטומטית.',
         },
         {
           heading: 'תנאי שימוש',

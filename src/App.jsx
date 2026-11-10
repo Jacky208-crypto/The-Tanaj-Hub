@@ -5,6 +5,10 @@ import { AuthProvider } from './context/AuthContext';
 import { LanguageProvider } from './context/LanguageContext';
 import { ThemeProvider } from './context/ThemeContext';
 import { PageTitle, SkipLink } from './components/A11y';
+import ErrorBoundary from './components/ErrorBoundary';
+import { startErrorReporting } from './lib/errorReport';
+
+startErrorReporting();
 import Home from './pages/Home';
 import Torah from './pages/Torah';
 import Neviim from './pages/Neviim';
@@ -45,6 +49,7 @@ export default function App() {
           <SkipLink />
           <PageTitle />
           <main id="main-content" tabIndex={-1}>
+          <ErrorBoundary>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/torah" element={<Torah />} />
@@ -86,6 +91,7 @@ export default function App() {
               }
             />
           </Routes>
+          </ErrorBoundary>
           </main>
         </BrowserRouter>
       </AuthProvider>
