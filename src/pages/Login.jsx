@@ -197,6 +197,10 @@ export default function Login() {
                   setError(t('login.errNotConfigured'));
                   return;
                 }
+                if (mode === 'signup' && !ageConfirmed) {
+                  setError(t('login.errAge'));
+                  return;
+                }
                 signInWithGoogle();
               }}
             >

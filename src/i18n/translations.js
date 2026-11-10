@@ -657,6 +657,7 @@ export const translations = {
           heading: 'Terms of use',
           items: [
             'The site is free and provided as it is. Summaries, quizzes and translations can contain mistakes.',
+            'The site is for learning. It is not a substitute for a teacher or for religious guidance.',
             'Questions you suggest may be edited, translated and published on the site.',
             'Please don\'t misuse the site or try to break it.',
             'If this page changes, the date at the top will change too.',
@@ -1329,6 +1330,7 @@ export const translations = {
           heading: 'Términos de uso',
           items: [
             'El sitio es gratuito y se ofrece tal como está. Los resúmenes, cuestionarios y traducciones pueden contener errores.',
+            'El sitio es para aprender. No sustituye a un maestro ni a una guía religiosa.',
             'Las preguntas que sugieres pueden editarse, traducirse y publicarse en el sitio.',
             'Por favor, no hagas un mal uso del sitio ni intentes dañarlo.',
             'Si esta página cambia, la fecha de arriba también cambiará.',
@@ -2001,6 +2003,7 @@ export const translations = {
           heading: 'תנאי שימוש',
           items: [
             'האתר חינמי ומוצע כפי שהוא. סיכומים, חידונים ותרגומים עלולים לכלול טעויות.',
+            'האתר נועד ללמידה. הוא אינו תחליף למורה או להכוונה דתית.',
             'שאלות שאתם מציעים עשויות להיערך, להיות מתורגמות ולהתפרסם באתר.',
             'נא לא לעשות שימוש לרעה באתר או לנסות לפגוע בו.',
             'אם העמוד הזה ישתנה, גם התאריך למעלה ישתנה.',

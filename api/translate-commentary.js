@@ -37,6 +37,25 @@ const TARGETS = {
 // saying anything more.
 const NIQQUD = /[\u0591-\u05BD\u05BF\u05C1\u05C2\u05C4\u05C5\u05C7]/g;
 
+// Best-effort limit on NEW translations per visitor (cache hits are free and
+// don't count). Memory is per serverless instance, so this is a speed bump,
+// not a guarantee: also set a monthly character cap in the DeepL dashboard.
+const WINDOW_MS = 60_000;
+const MAX_NEW_PER_WINDOW = 20;
+const recent = new Map();
+
+function tooMany(request) {
+  const ip = (request.headers.get('x-forwarded-for') || 'unknown').split(',')[0].trim();
+  const now = Date.now();
+  const hits = (recent.get(ip) || []).filter((t) => now - t < WINDOW_MS);
+  hits.push(now);
+  recent.set(ip, hits);
+  if (recent.size > 5000) {
+    for (const [k, v] of recent) if (now - v[v.length - 1] > WINDOW_MS) recent.delete(k);
+  }
+  return hits.length > MAX_NEW_PER_WINDOW;
+}
+
 const json = (body, status = 200) =>
   new Response(JSON.stringify(body), {
     status,
@@ -153,6 +172,8 @@ export async function POST(request) {
   try {
     const saved = await readSaved(ref, target.column);
     if (saved) return json(saved);
+
+    if (tooMany(request)) return json({ error: 'Too many requests. Try again in a minute.' }, 429);
 
     const source = await fetchSource(ref);
     if (!source.segments.length) return json({ error: 'No text to translate.' }, 404);
