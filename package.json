@@ -7,6 +7,7 @@
     "predev": "lsof -ti:3000 | xargs kill -9 2>/dev/null; true",
     "dev": "vite",
     "build": "vite build",
+    "postbuild": "node scripts/prerender-meta.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "validate:midrash": "node --env-file-if-exists=.env scripts/validate-midrashim.mjs",
