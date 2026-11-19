@@ -56,7 +56,9 @@ export default function Join() {
         const joined = (await getStudentClasses()).find((m) => m.classes.id === classId);
         if (joined?.classes.language) setLanguage(joined.classes.language);
       } catch { /* not important enough to stop here */ }
-      navigate('/my-classes');
+      // A live game's QR code sends students on to the game.
+      const next = params.get('next');
+      navigate(next && /^\/live\/[\w-]+$/.test(next) ? `${next}?code=${encodeURIComponent(cleanCode)}` : '/my-classes');
     } catch (err) {
       const msg = err.message || '';
       // Kept in the console so a teacher (or we) can see the real cause.

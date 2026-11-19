@@ -1,0 +1,70 @@
+/* Shared by the live game's host and player screens. Always drawn for a dark stage. */
+
+.confetti {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Timer ring */
+.ring { position: relative; display: inline-flex; align-items: center; justify-content: center; flex: none; }
+.ringNum { display: inline-flex; align-items: center; justify-content: center; position: absolute; font-weight: 800; color: #fff; font-variant-numeric: tabular-nums; }
+.ringLow { animation: ringPulse 0.6s ease-in-out infinite; }
+@keyframes ringPulse { 50% { transform: scale(1.12); } }
+
+/* QR */
+.qr { display: block; width: 100%; height: auto; border-radius: 12px; }
+
+/* Leaderboard */
+.lb { list-style: none; margin: 0 auto; padding: 0; position: relative; width: 100%; max-width: 760px; }
+.lbRow {
+  position: absolute;
+  inset-inline: 0;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  font-size: 20px;
+  font-weight: 700;
+  transform: translateY(var(--to));
+  animation: lbSlide 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.lbBig .lbRow { font-size: clamp(20px, 2.6vw, 30px); }
+.lbRow:nth-child(1) { background: linear-gradient(90deg, rgba(250, 204, 21, 0.35), rgba(255, 255, 255, 0.1)); border-color: rgba(250, 204, 21, 0.6); }
+@keyframes lbSlide {
+  from { transform: translateY(var(--from)); opacity: 0.6; }
+  to { transform: translateY(var(--to)); opacity: 1; }
+}
+.lbRank { min-width: 1.6em; opacity: 0.7; font-variant-numeric: tabular-nums; }
+.lbName { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lbScore { font-variant-numeric: tabular-nums; min-width: 3.2em; text-align: end; }
+.lbDelta { color: #86efac; font-size: 0.8em; animation: pop 0.5s 0.4s both; }
+.lbUp { color: #86efac; font-size: 0.75em; display: inline-flex; align-items: center; }
+.lbStreak { display: inline-flex; align-items: center; gap: 2px; color: #fdba74; font-size: 0.7em; background: rgba(251, 146, 60, 0.25); border-radius: 999px; padding: 2px 8px; white-space: nowrap; }
+.lbTeam { width: 14px; height: 14px; border-radius: 50%; flex: none; }
+@keyframes pop { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+/* Podium */
+.podiumWrap { position: relative; padding-top: 12px; }
+.podium { display: flex; align-items: flex-end; justify-content: center; gap: clamp(8px, 2vw, 20px); min-height: 290px; }
+.podiumCol { flex: 0 1 220px; min-width: 0; display: flex; flex-direction: column; align-items: center; text-align: center; animation: riseUp 0.9s var(--delay, 0s) cubic-bezier(0.22, 1, 0.36, 1) both; }
+@keyframes riseUp { from { opacity: 0; transform: translateY(80px); } to { opacity: 1; transform: none; } }
+.podiumName { font-size: clamp(16px, 2.4vw, 26px); font-weight: 800; max-width: 100%; overflow-wrap: anywhere; display: flex; align-items: center; gap: 6px; justify-content: center; flex-wrap: wrap; }
+.podiumScore { font-size: clamp(14px, 1.8vw, 20px); opacity: 0.85; margin: 2px 0 8px; font-variant-numeric: tabular-nums; }
+.crown { display: inline-flex; color: #facc15;  animation: bob 1.2s ease-in-out infinite; }
+@keyframes bob { 50% { transform: translateY(-6px) rotate(-6deg); } }
+.podiumBlock { width: 100%; border-radius: 12px 12px 0 0; display: flex; align-items: flex-start; justify-content: center; padding-top: 10px; font-size: clamp(28px, 4vw, 48px); font-weight: 900; color: rgba(0, 0, 0, 0.55); }
+.place1 { height: 190px; background: linear-gradient(#fde047, #eab308); }
+.place2 { height: 135px; background: linear-gradient(#e5e7eb, #9ca3af); }
+.place3 { height: 95px; background: linear-gradient(#fdba74, #c2762f); }
+
+@media (prefers-reduced-motion: reduce) {
+  .ringLow, .crown, .lbRow, .lbDelta, .podiumCol { animation: none; }
+}
