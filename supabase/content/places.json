@@ -2836,26 +2836,7 @@
     "lng": 44.42222,
     "type": "city",
     "books": [
-      "bereshit"
-    ],
-    "periods": [
-      "Patriarchs"
-    ],
-    "aliases": [
-      "Babylon"
-    ],
-    "description_en": null,
-    "description_es": null,
-    "description_he": null,
-    "published": true
-  },
-  {
-    "id": "bavel-1",
-    "name": "Bavel 1",
-    "lat": 32.54333,
-    "lng": 44.42222,
-    "type": "city",
-    "books": [
+      "bereshit",
       "daniel",
       "divre-hayamim-a",
       "divre-hayamim-b",
@@ -2871,11 +2852,14 @@
       "zejaria"
     ],
     "periods": [
+      "Patriarchs",
       "Kingdom Era",
       "The Prophets",
       "Return & Second Temple"
     ],
-    "aliases": [],
+    "aliases": [
+      "Babylon"
+    ],
     "description_en": null,
     "description_es": null,
     "description_he": null,
