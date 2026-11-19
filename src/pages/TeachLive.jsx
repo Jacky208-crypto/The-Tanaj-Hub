@@ -7,6 +7,7 @@ import {
   liveReveal, startLiveGame,
 } from '../lib/supabaseClient';
 import { getQuizzes, getRandomQuestions, pick } from '../lib/content';
+import { QUIZ_BOOKS, QUIZ_CHAPTERS, bookLabel, getBookById, parseChapters } from '../data/books';
 import {
   TEAM_COLORS, TEAM_NAMES, downloadText, optionTexts, pickQuestions, questionText, reportCsv, useLiveGame,
 } from '../lib/live';
@@ -27,7 +28,7 @@ function LiveSetup({ classId, onStarted }) {
   const [quizzes, setQuizzes] = useState([]);
   const [bank, setBank] = useState([]);
   const [running, setRunning] = useState(null);
-  const [form, setForm] = useState({ source: '', count: '10', seconds: '20', teams: 0 });
+  const [form, setForm] = useState({ source: '', count: '10', seconds: '20', teams: 0, book: '', chapters: '' });
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
 
@@ -36,6 +37,10 @@ function LiveSetup({ classId, onStarted }) {
     getClassQuestions(classId).then(setBank).catch(() => {});
     activeLiveGame(classId).then(setRunning).catch(() => {});
   }, [classId]);
+
+  // Quizzes about one book let you pick perakim; multi-book quizzes pick a book first.
+  const bookIds = QUIZ_BOOKS[form.source] || null;
+  const maxChapters = bookIds ? (form.book ? getBookById(form.book).chapters : null) : QUIZ_CHAPTERS[form.source] || null;
 
   async function start(e) {
     e.preventDefault();
@@ -50,7 +55,23 @@ function LiveSetup({ classId, onStarted }) {
         rows = bank.map((q) => ({ id: q.id, question_en: q.question, options_en: q.options, correct_index: q.correct_index }));
         title = t('classes.kindCustom');
       } else {
-        rows = await getRandomQuestions([form.source], count);
+        // Same perakim rules as practice questions and assignments.
+        let chapters;
+        let books;
+        if (form.chapters.trim() && maxChapters) {
+          try {
+            const list = parseChapters(form.chapters, maxChapters);
+            if (bookIds) books = { [form.source]: { [form.book]: list } };
+            else chapters = { [form.source]: list };
+          } catch {
+            setError(t('classes.errChapters', { n: maxChapters }));
+            setBusy(false);
+            return;
+          }
+        } else if (bookIds && form.book) {
+          books = { [form.source]: { [form.book]: [] } };
+        }
+        rows = await getRandomQuestions([form.source], count, chapters, books);
         title = quizzes.find((q) => q.key === form.source)?.label_en ?? form.source;
       }
       const questions = pickQuestions(rows, count);
@@ -78,12 +99,37 @@ function LiveSetup({ classId, onStarted }) {
         <form className={styles.form} onSubmit={start}>
           <label className={styles.label}>
             {t('live.questionsFrom')}
-            <select className={styles.input} value={form.source} onChange={(e) => setForm({ ...form, source: e.target.value })}>
+            <select className={styles.input} value={form.source} onChange={(e) => setForm({ ...form, source: e.target.value, book: '', chapters: '' })}>
               <option value="">—</option>
               {bank.length > 0 && <option value="custom">{t('classes.kindCustom')} ({bank.length})</option>}
               {quizzes.map((q) => <option key={q.key} value={q.key}>{pick(q, 'label', language)}</option>)}
             </select>
           </label>
+          {(bookIds || maxChapters) && (
+            <div className={styles.row}>
+              {bookIds && (
+                <label className={styles.label}>
+                  {t('classes.book')}
+                  <select className={styles.input} value={form.book} onChange={(e) => setForm({ ...form, book: e.target.value, chapters: '' })}>
+                    <option value="">{t('classes.allBooks')}</option>
+                    {bookIds.map((b) => <option key={b} value={b}>{bookLabel(b, language)}</option>)}
+                  </select>
+                </label>
+              )}
+              {maxChapters && (
+                <label className={styles.label}>
+                  {t('classes.chapters')}
+                  <input
+                    className={styles.input}
+                    dir="ltr"
+                    value={form.chapters}
+                    onChange={(e) => setForm({ ...form, chapters: e.target.value })}
+                    placeholder={t('quiz.chaptersAll', { n: maxChapters })}
+                  />
+                </label>
+              )}
+            </div>
+          )}
           <div className={styles.row}>
             <label className={styles.label}>
               {t('classes.questionCount')}
