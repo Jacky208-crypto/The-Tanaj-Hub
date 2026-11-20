@@ -28,7 +28,10 @@ function LiveSetup({ classId, onStarted }) {
   const [quizzes, setQuizzes] = useState([]);
   const [bank, setBank] = useState([]);
   const [running, setRunning] = useState(null);
-  const [form, setForm] = useState({ source: '', count: '10', seconds: '20', teams: 0, books: [], chapters: '' });
+  // sources: quiz keys (and 'custom'), any number. chapters: perakim text per
+  // single-book quiz (key) or per book of a multi-book quiz (`quiz/book`).
+  // bookSel: the books picked inside each multi-book quiz.
+  const [form, setForm] = useState({ sources: [], chapters: {}, bookSel: {}, count: '10', seconds: '20', teams: 0 });
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
 
@@ -38,57 +41,70 @@ function LiveSetup({ classId, onStarted }) {
     activeLiveGame(classId).then(setRunning).catch(() => {});
   }, [classId]);
 
-  // Quizzes about one book let you pick perakim; multi-book quizzes pick a book first.
-  const bookIds = QUIZ_BOOKS[form.source] || null;
-  // Perakim only make sense for one book at a time.
-  const maxChapters = bookIds ? (form.books.length === 1 ? getBookById(form.books[0]).chapters : null) : QUIZ_CHAPTERS[form.source] || null;
-  const toggleBook = (b) => setForm({
-    ...form, chapters: '', books: form.books.includes(b) ? form.books.filter((x) => x !== b) : [...form.books, b],
-  });
+  const toggle = (list, v) => (list.includes(v) ? list.filter((x) => x !== v) : [...list, v]);
+  const setChapters = (key, text) => setForm((f) => ({ ...f, chapters: { ...f.chapters, [key]: text } }));
+  const toggleBook = (quiz, b) => setForm((f) => ({ ...f, bookSel: { ...f.bookSel, [quiz]: toggle(f.bookSel[quiz] || [], b) } }));
+  const labelOf = (key) => (key === 'custom' ? t('classes.kindCustom') : quizzes.find((q) => q.key === key)?.label_en ?? key);
 
   async function start(e) {
     e.preventDefault();
-    if (!form.source) return;
+    if (!form.sources.length) return;
     setBusy(true);
     setError('');
     try {
       const count = Number(form.count);
-      let rows;
-      let title;
-      if (form.source === 'custom') {
-        rows = bank.map((q) => ({ id: q.id, question_en: q.question, options_en: q.options, correct_index: q.correct_index }));
-        title = t('classes.kindCustom');
-      } else {
+      const rows = [];
+      const quizKeys = form.sources.filter((k) => k !== 'custom');
+      if (form.sources.includes('custom')) {
+        rows.push(...bank.map((q) => ({ id: q.id, question_en: q.question, options_en: q.options, correct_index: q.correct_index })));
+      }
+      if (quizKeys.length) {
         // Same perakim rules as practice questions and assignments.
-        let chapters;
-        let books;
-        if (form.chapters.trim() && maxChapters) {
-          try {
-            const list = parseChapters(form.chapters, maxChapters);
-            if (bookIds) books = { [form.source]: { [form.books[0]]: list } };
-            else chapters = { [form.source]: list };
-          } catch {
-            setError(t('classes.errChapters', { n: maxChapters }));
-            setBusy(false);
-            return;
+        const chapters = {};
+        const books = {};
+        for (const key of quizKeys) {
+          if (QUIZ_CHAPTERS[key]) {
+            const text = (form.chapters[key] || '').trim();
+            if (text) chapters[key] = parseOrFail(text, QUIZ_CHAPTERS[key]);
+          } else if (QUIZ_BOOKS[key]) {
+            const picked = form.bookSel[key] || [];
+            if (picked.length) {
+              books[key] = {};
+              for (const b of picked) {
+                const text = (form.chapters[`${key}/${b}`] || '').trim();
+                books[key][b] = text ? parseOrFail(text, getBookById(b).chapters) : [];
+              }
+            }
           }
-        } else if (bookIds && form.books.length) {
-          books = { [form.source]: Object.fromEntries(form.books.map((b) => [b, []])) };
         }
-        rows = await getRandomQuestions([form.source], count, chapters, books);
-        title = quizzes.find((q) => q.key === form.source)?.label_en ?? form.source;
+        rows.push(...await getRandomQuestions(quizKeys, count, chapters, books));
       }
       const questions = pickQuestions(rows, count);
       if (!questions.length) throw new Error('none');
+      const names = form.sources.map(labelOf);
+      const title = names.length > 2 ? `${names.slice(0, 2).join(', ')} +${names.length - 2}` : names.join(', ');
       onStarted(await startLiveGame(classId, { title, questions, seconds: Number(form.seconds), teams: form.teams }));
-    } catch {
-      setError(t('live.errStart'));
+    } catch (err) {
+      setError(err.perakim ? t('classes.errChapters', { n: err.perakim }) : t('live.errStart'));
       setBusy(false);
     }
   }
 
+  const chapterBox = (key, max, label) => (
+    <label className={styles.label} key={key}>
+      {label}
+      <input
+        className={styles.input}
+        dir="ltr"
+        value={form.chapters[key] || ''}
+        onChange={(e) => setChapters(key, e.target.value)}
+        placeholder={t('quiz.chaptersAll', { n: max })}
+      />
+    </label>
+  );
+
   return (
-    <div className={`${styles.inner} ${styles.narrow}`}>
+    <div className={styles.inner} style={{ maxWidth: 680 }}>
       <div className={styles.topRow}>
         <button className={styles.back} onClick={() => navigate('/teach')}>{t('classes.backToClasses')}</button>
       </div>
@@ -101,46 +117,52 @@ function LiveSetup({ classId, onStarted }) {
           </div>
         )}
         <form className={styles.form} onSubmit={start}>
-          <label className={styles.label}>
+          <div className={styles.label} role="group" aria-label={t('live.questionsFrom')}>
             {t('live.questionsFrom')}
-            <select className={styles.input} value={form.source} onChange={(e) => setForm({ ...form, source: e.target.value, books: [], chapters: '' })}>
-              <option value="">—</option>
-              {bank.length > 0 && <option value="custom">{t('classes.kindCustom')} ({bank.length})</option>}
-              {quizzes.map((q) => <option key={q.key} value={q.key}>{pick(q, 'label', language)}</option>)}
-            </select>
-          </label>
-          {(bookIds || maxChapters) && (
-            <div className={styles.row}>
-              {bookIds && (
-                <div className={styles.label} role="group" aria-label={t('classes.book')}>
-                  {t('classes.book')}
-                  <div className={styles.teamPick}>
-                    {bookIds.map((b) => (
-                      <button
-                        key={b} type="button" className={styles.teamOpt} aria-pressed={form.books.includes(b)}
-                        onClick={() => toggleBook(b)}
-                      >
-                        {bookLabel(b, language)}
-                      </button>
-                    ))}
-                  </div>
-                  <span style={{ fontWeight: 'normal', color: 'var(--text-secondary)' }}>{t('live.booksHint')}</span>
-                </div>
+            <div className={styles.teamPick}>
+              {bank.length > 0 && (
+                <button type="button" className={styles.teamOpt} aria-pressed={form.sources.includes('custom')}
+                  onClick={() => setForm({ ...form, sources: toggle(form.sources, 'custom') })}>
+                  {t('classes.kindCustom')} ({bank.length})
+                </button>
               )}
-              {maxChapters && (
-                <label className={styles.label}>
-                  {t('classes.chapters')}
-                  <input
-                    className={styles.input}
-                    dir="ltr"
-                    value={form.chapters}
-                    onChange={(e) => setForm({ ...form, chapters: e.target.value })}
-                    placeholder={t('quiz.chaptersAll', { n: maxChapters })}
-                  />
-                </label>
-              )}
+              {quizzes.map((q) => (
+                <button key={q.key} type="button" className={styles.teamOpt} aria-pressed={form.sources.includes(q.key)}
+                  onClick={() => setForm({ ...form, sources: toggle(form.sources, q.key) })}>
+                  {pick(q, 'label', language)}
+                </button>
+              ))}
             </div>
-          )}
+            <span style={{ fontWeight: 'normal', color: 'var(--text-secondary)' }}>{t('live.sourcesHint')}</span>
+          </div>
+
+          {form.sources.filter((k) => k !== 'custom' && (QUIZ_CHAPTERS[k] || QUIZ_BOOKS[k])).map((key) => {
+            const name = pick(quizzes.find((q) => q.key === key) || {}, 'label', language) || key;
+            return (
+              <fieldset key={key} className={styles.optBox}>
+                <legend>{name}</legend>
+                {QUIZ_CHAPTERS[key] && chapterBox(key, QUIZ_CHAPTERS[key], t('classes.chapters'))}
+                {QUIZ_BOOKS[key] && (
+                  <>
+                    <div className={styles.label}>
+                      {t('classes.book')}
+                      <div className={styles.teamPick}>
+                        {QUIZ_BOOKS[key].map((b) => (
+                          <button key={b} type="button" className={styles.teamOpt} aria-pressed={(form.bookSel[key] || []).includes(b)}
+                            onClick={() => toggleBook(key, b)}>
+                            {bookLabel(b, language)}
+                          </button>
+                        ))}
+                      </div>
+                      <span style={{ fontWeight: 'normal', color: 'var(--text-secondary)' }}>{t('live.booksHint')}</span>
+                    </div>
+                    {(form.bookSel[key] || []).map((b) => chapterBox(`${key}/${b}`, getBookById(b).chapters, `${bookLabel(b, language)} — ${t('classes.chapters')}`))}
+                  </>
+                )}
+              </fieldset>
+            );
+          })}
+
           <div className={styles.row}>
             <label className={styles.label}>
               {t('classes.questionCount')}
@@ -169,13 +191,22 @@ function LiveSetup({ classId, onStarted }) {
             </div>
           </div>
           {error && <div className={styles.error}>{error}</div>}
-          <button className={styles.primary} type="submit" disabled={!form.source || busy}>
+          <button className={styles.primary} type="submit" disabled={!form.sources.length || busy}>
             {busy ? t('login.pleaseWait') : t('live.createGame')}
           </button>
         </form>
       </div>
     </div>
   );
+}
+
+// "1-5, 8" → [1..5, 8]; a bad range throws an error carrying the book's perakim count.
+function parseOrFail(text, max) {
+  try {
+    return parseChapters(text, max);
+  } catch {
+    throw Object.assign(new Error('perakim'), { perakim: max });
+  }
 }
 
 const useSound = () => useSyncExternalStore(onSoundChange, soundOn, () => false);
