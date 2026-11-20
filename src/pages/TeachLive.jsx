@@ -28,7 +28,7 @@ function LiveSetup({ classId, onStarted }) {
   const [quizzes, setQuizzes] = useState([]);
   const [bank, setBank] = useState([]);
   const [running, setRunning] = useState(null);
-  const [form, setForm] = useState({ source: '', count: '10', seconds: '20', teams: 0, book: '', chapters: '' });
+  const [form, setForm] = useState({ source: '', count: '10', seconds: '20', teams: 0, books: [], chapters: '' });
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
 
@@ -40,7 +40,11 @@ function LiveSetup({ classId, onStarted }) {
 
   // Quizzes about one book let you pick perakim; multi-book quizzes pick a book first.
   const bookIds = QUIZ_BOOKS[form.source] || null;
-  const maxChapters = bookIds ? (form.book ? getBookById(form.book).chapters : null) : QUIZ_CHAPTERS[form.source] || null;
+  // Perakim only make sense for one book at a time.
+  const maxChapters = bookIds ? (form.books.length === 1 ? getBookById(form.books[0]).chapters : null) : QUIZ_CHAPTERS[form.source] || null;
+  const toggleBook = (b) => setForm({
+    ...form, chapters: '', books: form.books.includes(b) ? form.books.filter((x) => x !== b) : [...form.books, b],
+  });
 
   async function start(e) {
     e.preventDefault();
@@ -61,15 +65,15 @@ function LiveSetup({ classId, onStarted }) {
         if (form.chapters.trim() && maxChapters) {
           try {
             const list = parseChapters(form.chapters, maxChapters);
-            if (bookIds) books = { [form.source]: { [form.book]: list } };
+            if (bookIds) books = { [form.source]: { [form.books[0]]: list } };
             else chapters = { [form.source]: list };
           } catch {
             setError(t('classes.errChapters', { n: maxChapters }));
             setBusy(false);
             return;
           }
-        } else if (bookIds && form.book) {
-          books = { [form.source]: { [form.book]: [] } };
+        } else if (bookIds && form.books.length) {
+          books = { [form.source]: Object.fromEntries(form.books.map((b) => [b, []])) };
         }
         rows = await getRandomQuestions([form.source], count, chapters, books);
         title = quizzes.find((q) => q.key === form.source)?.label_en ?? form.source;
@@ -99,7 +103,7 @@ function LiveSetup({ classId, onStarted }) {
         <form className={styles.form} onSubmit={start}>
           <label className={styles.label}>
             {t('live.questionsFrom')}
-            <select className={styles.input} value={form.source} onChange={(e) => setForm({ ...form, source: e.target.value, book: '', chapters: '' })}>
+            <select className={styles.input} value={form.source} onChange={(e) => setForm({ ...form, source: e.target.value, books: [], chapters: '' })}>
               <option value="">—</option>
               {bank.length > 0 && <option value="custom">{t('classes.kindCustom')} ({bank.length})</option>}
               {quizzes.map((q) => <option key={q.key} value={q.key}>{pick(q, 'label', language)}</option>)}
@@ -108,13 +112,20 @@ function LiveSetup({ classId, onStarted }) {
           {(bookIds || maxChapters) && (
             <div className={styles.row}>
               {bookIds && (
-                <label className={styles.label}>
+                <div className={styles.label} role="group" aria-label={t('classes.book')}>
                   {t('classes.book')}
-                  <select className={styles.input} value={form.book} onChange={(e) => setForm({ ...form, book: e.target.value, chapters: '' })}>
-                    <option value="">{t('classes.allBooks')}</option>
-                    {bookIds.map((b) => <option key={b} value={b}>{bookLabel(b, language)}</option>)}
-                  </select>
-                </label>
+                  <div className={styles.teamPick}>
+                    {bookIds.map((b) => (
+                      <button
+                        key={b} type="button" className={styles.teamOpt} aria-pressed={form.books.includes(b)}
+                        onClick={() => toggleBook(b)}
+                      >
+                        {bookLabel(b, language)}
+                      </button>
+                    ))}
+                  </div>
+                  <span style={{ fontWeight: 'normal', color: 'var(--text-secondary)' }}>{t('live.booksHint')}</span>
+                </div>
               )}
               {maxChapters && (
                 <label className={styles.label}>

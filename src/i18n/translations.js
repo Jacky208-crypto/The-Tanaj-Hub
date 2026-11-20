@@ -406,6 +406,7 @@ export const translations = {
       onTeam: ({ name }) => `Team ${name}`,
       kicked: 'You were removed from this game.',
       joinClassFirst: 'Join the class first',
+      booksHint: 'Tap one or more books. None selected means all of them. Pick just one to choose its perakim.',
     },
     classes: {
       errNoTeacher: 'No approved teacher account uses that email. They need to sign up, and be added as a teacher in Admin → Teachers.',
@@ -1121,6 +1122,7 @@ export const translations = {
       onTeam: ({ name }) => `Equipo ${name}`,
       kicked: 'Te quitaron de este juego.',
       joinClassFirst: 'Primero únete a la clase',
+      booksHint: 'Toca uno o más libros. Sin selección se usan todos. Elige uno solo para escoger sus perakim.',
     },
     classes: {
       errNoTeacher: 'Ninguna cuenta de docente aprobada usa ese correo. Debe registrarse y ser agregada como docente en Admin → Teachers.',
@@ -1836,6 +1838,7 @@ export const translations = {
       onTeam: ({ name }) => `קבוצה ${name}`,
       kicked: 'הוסרתם מהמשחק הזה.',
       joinClassFirst: 'קודם מצטרפים לכיתה',
+      booksHint: 'לחצו על ספר אחד או יותר. בלי בחירה – כל הספרים. בחרו ספר אחד כדי לבחור את הפרקים שלו.',
     },
     classes: {
       errNoTeacher: 'אין חשבון מורה מאושר עם המייל הזה. צריך להירשם ולהיות מוגדר כמורה ב-Admin → Teachers.',
