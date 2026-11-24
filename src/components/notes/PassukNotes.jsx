@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useLanguage } from '../../context/LanguageContext';
 import { bookLabel } from '../../data/books';
 import { createUserNote, updateUserNote, deleteUserNote } from '../../lib/supabaseClient';
-import RichNoteEditor from './RichNoteEditor';
+// The editor is the biggest dependency on the page, so it downloads only for signed-in users.
+const RichNoteEditor = lazy(() => import('./RichNoteEditor'));
 import { noteStrings } from './noteStrings';
 import { PASSUK_COLORS, anchorRef, isEmptyHtml } from './noteUtils';
 import styles from './PassukNotes.module.css';
@@ -227,6 +228,7 @@ export default function PassukNotes({
             </p>
           )}
 
+          <Suspense fallback={null}>
           <RichNoteEditor
             key={slotKey}
             content={activeNote?.body || ''}
@@ -236,6 +238,7 @@ export default function PassukNotes({
             onReady={setEditor}
             compact
           />
+          </Suspense>
         </>
       )}
 

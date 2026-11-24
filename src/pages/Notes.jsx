@@ -97,6 +97,10 @@ function NoteEditor({ s, language, title, body, onTitle, onBody, onSave, onCance
   );
 }
 
+// Notes shown before the server has saved them carry this id prefix.
+const PENDING = 'pending-';
+const isPending = (id) => String(id).startsWith(PENDING);
+
 export default function Notes() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -122,7 +126,7 @@ export default function Notes() {
   const [draftBody, setDraftBody] = useState('');
   const [editingId, setEditingId] = useState(null);
   const [adding, setAdding] = useState(false);
-  const [busy, setBusy] = useState(false);
+  const [listError, setListError] = useState('');
   const [noteError, setNoteError] = useState('');
   const [filter, setFilter] = useState('all'); // 'all' | 'anchored' | 'questions'
 
@@ -165,33 +169,53 @@ export default function Notes() {
     setAdding(true);
   }
 
+  // Notes appear on screen right away; the save runs in the background. If it
+  // fails the note goes back to how it was and the editor reopens with the text.
   async function handleSaveNote() {
     if (!draftTitle.trim() && isEmptyHtml(draftBody)) return;
-    setBusy(true);
+    const title = draftTitle.trim();
+    const body = draftBody;
+    const now = new Date().toISOString();
     setNoteError('');
-    try {
-      if (editingId) {
-        const updated = await updateUserNote(editingId, {
-          title: draftTitle.trim(),
-          body: draftBody,
-        });
-        setMyNotes((prev) => prev.map((n) => (n.id === editingId ? updated : n)));
-      } else {
-        const created = await createUserNote({
-          title: draftTitle.trim(),
-          body: draftBody,
-        });
-        setMyNotes((prev) => [created, ...prev]);
-      }
+    setListError('');
+
+    if (editingId) {
+      const id = editingId;
+      const before = myNotes.find((n) => n.id === id);
+      setMyNotes((prev) => prev.map((n) => (n.id === id ? { ...n, title, body, updated_at: now } : n)));
       resetDraft();
+      try {
+        const updated = await updateUserNote(id, { title, body });
+        setMyNotes((prev) => prev.map((n) => (n.id === id ? updated : n)));
+      } catch (err) {
+        if (before) setMyNotes((prev) => prev.map((n) => (n.id === id ? before : n)));
+        setAdding(false);
+        setEditingId(id);
+        setDraftTitle(title);
+        setDraftBody(body);
+        setNoteError(err.message || s.saveError);
+      }
+      return;
+    }
+
+    const tempId = `${PENDING}${Date.now()}`;
+    setMyNotes((prev) => [{ id: tempId, title, body, created_at: now, updated_at: now }, ...prev]);
+    resetDraft();
+    try {
+      const created = await createUserNote({ title, body });
+      setMyNotes((prev) => prev.map((n) => (n.id === tempId ? created : n)));
     } catch (err) {
+      setMyNotes((prev) => prev.filter((n) => n.id !== tempId));
+      setEditingId(null);
+      setAdding(true);
+      setDraftTitle(title);
+      setDraftBody(body);
       setNoteError(err.message || s.saveError);
-    } finally {
-      setBusy(false);
     }
   }
 
   function startEdit(note) {
+    if (isPending(note.id)) return;
     setAdding(false);
     setEditingId(note.id);
     setDraftTitle(note.title || '');
@@ -200,24 +224,36 @@ export default function Notes() {
   }
 
   async function handleDeleteNote(id) {
-    setBusy(true);
+    if (isPending(id)) return;
+    const index = myNotes.findIndex((n) => n.id === id);
+    const removed = myNotes[index];
+    setListError('');
+    setMyNotes((prev) => prev.filter((n) => n.id !== id));
+    if (editingId === id) resetDraft();
     try {
       await deleteUserNote(id);
-      setMyNotes((prev) => prev.filter((n) => n.id !== id));
-      if (editingId === id) resetDraft();
     } catch (err) {
-      setNoteError(err.message || s.deleteError);
-    } finally {
-      setBusy(false);
+      setMyNotes((prev) => {
+        if (!removed || prev.some((n) => n.id === id)) return prev;
+        const next = [...prev];
+        next.splice(Math.min(index, next.length), 0, removed);
+        return next;
+      });
+      setListError(err.message || s.deleteError);
     }
   }
 
   async function handleToggleQuestion(note, index) {
+    if (isPending(note.id)) return;
+    setListError('');
+    const body = toggleQuestionInHtml(note.body, index);
+    setMyNotes((prev) => prev.map((n) => (n.id === note.id ? { ...n, body } : n)));
     try {
-      const updated = await updateUserNote(note.id, { body: toggleQuestionInHtml(note.body, index) });
+      const updated = await updateUserNote(note.id, { body });
       setMyNotes((prev) => prev.map((n) => (n.id === note.id ? updated : n)));
     } catch (err) {
-      setNoteError(err.message || s.saveError);
+      setMyNotes((prev) => prev.map((n) => (n.id === note.id ? { ...n, body: note.body } : n)));
+      setListError(err.message || s.saveError);
     }
   }
 
@@ -290,6 +326,9 @@ export default function Notes() {
             </div>
           ) : (
             <>
+              {listError && (
+                <p role="alert" style={{ color: 'var(--danger)', fontSize: '0.9rem', marginBottom: '0.5rem' }}>{listError}</p>
+              )}
               {/* Add a note: a button that reveals the editor when clicked */}
               {adding ? (
                 <div className={styles.card}>
@@ -305,7 +344,7 @@ export default function Notes() {
                     onBody={setDraftBody}
                     onSave={handleSaveNote}
                     onCancel={resetDraft}
-                    busy={busy}
+                    busy={false}
                     error={noteError}
                     saveLabel={s.saveNote}
                   />
@@ -380,7 +419,7 @@ export default function Notes() {
                         onBody={setDraftBody}
                         onSave={handleSaveNote}
                         onCancel={resetDraft}
-                        busy={busy}
+                        busy={false}
                         error={noteError}
                         saveLabel={s.saveChanges}
                       />

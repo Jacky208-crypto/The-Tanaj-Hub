@@ -7,37 +7,49 @@ import { ThemeProvider } from './context/ThemeContext';
 import { PageTitle, SkipLink } from './components/A11y';
 import ErrorBoundary from './components/ErrorBoundary';
 import { startErrorReporting } from './lib/errorReport';
+import { whenIdle } from './lib/cache';
 
 startErrorReporting();
+
+// Every page is its own download, so the first visit only loads the page it opens.
+// (Home stays in the main file: it's what most visitors land on.)
 import Home from './pages/Home';
-import Torah from './pages/Torah';
-import Neviim from './pages/Neviim';
-import Ketuvim from './pages/Ketuvim';
-import BookPage from './pages/BookPage';
-import Quiz from './pages/Quiz';
-import Summaries from './pages/Summaries';
-import Notes from './pages/Notes';
-import Search from './pages/Search';
-import Login from './pages/Login';
-import Suggest from './pages/Suggest';
-import Privacy from './pages/Privacy';
-import Schools from './pages/Schools';
-import Join from './pages/Join';
-import MyClasses from './pages/MyClasses';
-import Teach from './pages/Teach';
-import TeachResults from './pages/TeachResults';
-import TeachPrint from './pages/TeachPrint';
-import TeachWorksheet from './pages/TeachWorksheet';
-import TeachLive from './pages/TeachLive';
-import LivePlay from './pages/LivePlay';
-import Account from './pages/Account';
-import ResetPassword from './pages/ResetPassword';
+const Torah = lazy(() => import('./pages/Torah'));
+const Neviim = lazy(() => import('./pages/Neviim'));
+const Ketuvim = lazy(() => import('./pages/Ketuvim'));
+const BookPage = lazy(() => import('./pages/BookPage'));
+const Quiz = lazy(() => import('./pages/Quiz'));
+const Summaries = lazy(() => import('./pages/Summaries'));
+const Notes = lazy(() => import('./pages/Notes'));
+const Search = lazy(() => import('./pages/Search'));
+const Login = lazy(() => import('./pages/Login'));
+const Suggest = lazy(() => import('./pages/Suggest'));
+const Privacy = lazy(() => import('./pages/Privacy'));
+const Schools = lazy(() => import('./pages/Schools'));
+const Join = lazy(() => import('./pages/Join'));
+const MyClasses = lazy(() => import('./pages/MyClasses'));
+const Teach = lazy(() => import('./pages/Teach'));
+const TeachResults = lazy(() => import('./pages/TeachResults'));
+const TeachPrint = lazy(() => import('./pages/TeachPrint'));
+const TeachWorksheet = lazy(() => import('./pages/TeachWorksheet'));
+const TeachLive = lazy(() => import('./pages/TeachLive'));
+const LivePlay = lazy(() => import('./pages/LivePlay'));
+const Account = lazy(() => import('./pages/Account'));
+const ResetPassword = lazy(() => import('./pages/ResetPassword'));
 
 // Lazy-loaded so Leaflet + the places dataset only download when the map is opened.
 const MapPage = lazy(() => import('./pages/MapPage'));
 // Admin-only content editor; lazy so visitors never download it.
 const Admin = lazy(() => import('./pages/Admin'));
 
+
+// Once the first page is up, quietly download the pages people go to next so
+// clicking through feels instant.
+whenIdle(() => {
+  import('./pages/BookPage');
+  import('./pages/Torah');
+  import('./pages/Quiz');
+});
 
 export default function App() {
   return (
@@ -50,6 +62,7 @@ export default function App() {
           <PageTitle />
           <main id="main-content" tabIndex={-1}>
           <ErrorBoundary>
+          <Suspense fallback={null}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/torah" element={<Torah />} />
@@ -91,6 +104,7 @@ export default function App() {
               }
             />
           </Routes>
+          </Suspense>
           </ErrorBoundary>
           </main>
         </BrowserRouter>

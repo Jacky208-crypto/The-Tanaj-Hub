@@ -1,3 +1,4 @@
+import { cached, prefetch, DAY } from './cache';
 import { applySpanishFixes, cleanSpanishNames, unwrapSpanishBrackets } from './spanishText';
 
 // Fetching and cleaning Sefaria verse text, shared by the chapter reader and
@@ -48,7 +49,14 @@ export function cleanVerse(text, lang) {
 // Sefaria's newly-added Spanish translation of the whole Tanakh.
 const SPANISH_VERSION = 'spanish|Tanaj Español, trans. Rav Yehuda Ribco, 2026 [es]';
 
-export async function fetchSpanishFromSefaria(sefariaBookName, chapterNum) {
+// Sefaria's text of a perek never changes under us, so it is kept for a month.
+const TEXT_MAX_AGE = 30 * DAY;
+
+export function fetchSpanishFromSefaria(sefariaBookName, chapterNum) {
+  return cached(`text:es:${sefariaBookName}.${chapterNum}`, () => loadSpanish(sefariaBookName, chapterNum), { maxAge: TEXT_MAX_AGE });
+}
+
+async function loadSpanish(sefariaBookName, chapterNum) {
   const url =
     `https://www.sefaria.org/api/v3/texts/${encodeURIComponent(sefariaBookName)}.${chapterNum}` +
     `?version=${encodeURIComponent(SPANISH_VERSION)}`;
@@ -63,7 +71,11 @@ export async function fetchSpanishFromSefaria(sefariaBookName, chapterNum) {
 }
 
 // Hebrew + JPS English for a whole chapter.
-export async function fetchChapterText(sefariaBookName, chapterNum) {
+export function fetchChapterText(sefariaBookName, chapterNum) {
+  return cached(`text:he-en:${sefariaBookName}.${chapterNum}`, () => loadChapterText(sefariaBookName, chapterNum), { maxAge: TEXT_MAX_AGE });
+}
+
+async function loadChapterText(sefariaBookName, chapterNum) {
   const res = await fetch(
     `https://www.sefaria.org/api/texts/${encodeURIComponent(sefariaBookName)}.${chapterNum}?commentary=0&context=0&pad=0&ven=Tanakh:%20The%20Holy%20Scriptures,%20published%20by%20JPS`
   );
@@ -80,4 +92,14 @@ export async function fetchChapterVerses(sefariaBookName, chapterNum, lang) {
   if (lang === 'spanish') return fetchSpanishFromSefaria(sefariaBookName, chapterNum);
   const text = await fetchChapterText(sefariaBookName, chapterNum);
   return text[lang] || text.hebrew;
+}
+
+// Quietly fetch a perek the reader is likely to open next. `lang` is the
+// language being read: Hebrew and English arrive in one request, Spanish is a
+// second one, fetched only when Spanish is the language in use.
+export function prefetchChapter(sefariaBookName, chapterNum, lang) {
+  prefetch(`text:he-en:${sefariaBookName}.${chapterNum}`, () => loadChapterText(sefariaBookName, chapterNum), { maxAge: TEXT_MAX_AGE });
+  if (lang === 'spanish') {
+    prefetch(`text:es:${sefariaBookName}.${chapterNum}`, () => loadSpanish(sefariaBookName, chapterNum), { maxAge: TEXT_MAX_AGE });
+  }
 }

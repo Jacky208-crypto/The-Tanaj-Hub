@@ -8,7 +8,8 @@ import { noteStrings } from './notes/noteStrings';
 import { quotedVerses } from './notes/noteUtils';
 import CommentaryPanel from './CommentaryPanel';
 import { getMidrashVersesInChapter, useMidrashIndex } from '../lib/midrashim';
-import { fetchChapterText, fetchSpanishFromSefaria } from '../lib/verseText';
+import { fetchChapterText, fetchSpanishFromSefaria, prefetchChapter } from '../lib/verseText';
+import { whenIdle } from '../lib/cache';
 import styles from './ChapterReader.module.css';
 import { EditIcon, HighlighterIcon, QuestionIcon } from './notes/icons';
 
@@ -42,6 +43,10 @@ function selectedPart(range, verse, verseTo) {
   if (start === 0 && end >= last.textContent.length) return null;
   return { start, end };
 }
+
+// The user's notes per perek, kept for this visit so reopening a perek shows
+// them at once while the fresh copy loads in the background.
+const notesCache = new Map();
 
 const MIN_PANEL_WIDTH = 420;
 const PANEL_WIDTH_KEY = 'tanaj-commentary-width';
@@ -191,16 +196,41 @@ export default function ChapterReader({ book, initialChapter = null, initialVers
     return () => clearTimeout(timer);
   }, [activeLoading, activeError, currentVerses]);
 
+  const notesKey = useRef(null);
   useEffect(() => {
-    setChapterNotes([]);
     setNotesError(null);
-    if (!user || !activeChapter) return;
+    if (!user || !activeChapter) {
+      notesKey.current = null;
+      setChapterNotes([]);
+      return;
+    }
+    const key = `${user.id}:${book.id}:${activeChapter}`;
+    notesKey.current = key;
+    setChapterNotes(notesCache.get(key) || []);
     let active = true;
     getUserNotesForChapter(book.id, activeChapter)
-      .then((rows) => { if (active) setChapterNotes(rows); })
+      .then((rows) => {
+        notesCache.set(key, rows);
+        if (active) setChapterNotes(rows);
+      })
       .catch((e) => { if (active) setNotesError(e.message); });
     return () => { active = false; };
   }, [user, book.id, activeChapter]);
+
+  // Edits made in the panel are kept in the cache too.
+  const updateChapterNotes = useCallback((update) => {
+    setChapterNotes((prev) => {
+      const next = typeof update === 'function' ? update(prev) : update;
+      if (notesKey.current) notesCache.set(notesKey.current, next);
+      return next;
+    });
+  }, []);
+
+  // Fetch the next perek while this one is being read, so "next" is instant.
+  useEffect(() => {
+    if (!activeChapter || loading || activeChapter >= book.chapters) return;
+    whenIdle(() => prefetchChapter(book.sefaria, activeChapter + 1, language));
+  }, [activeChapter, loading, book, language]);
 
   const highlighted = useMemo(
     () => (activeChapter ? quotedVerses(chapterNotes, book.id, activeChapter) : new Map()),
@@ -337,6 +367,8 @@ export default function ChapterReader({ book, initialChapter = null, initialVers
             key={num}
             className={`chapter-btn ${activeChapter === num ? 'active' : ''}`}
             onClick={() => handleSelectChapter(num)}
+            onPointerEnter={() => prefetchChapter(book.sefaria, num, language)}
+            onFocus={() => prefetchChapter(book.sefaria, num, language)}
           >
             {num}
           </button>
@@ -435,7 +467,7 @@ export default function ChapterReader({ book, initialChapter = null, initialVers
           initialSelected={panelStart}
           onClose={closeCommentary}
           notes={chapterNotes}
-          setNotes={setChapterNotes}
+          setNotes={updateChapterNotes}
           notesError={notesError}
           pendingAction={pendingAction}
           onActionDone={clearPendingAction}

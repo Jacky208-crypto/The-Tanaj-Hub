@@ -1,3 +1,5 @@
+import { cached, lookup, store, DAY } from './cache';
+
 // Commentary for a single verse, pulled from Sefaria.
 //
 // Two steps, both lazy and cached in memory:
@@ -27,8 +29,9 @@ const FEATURED_COMMENTATORS = [
 // Midrash texts are whole passages, so cap how many we fetch per collection.
 const MAX_REFS_PER_GROUP = 8;
 
-const linksCache = new Map();
-const textCache = new Map();
+// Commentary on a verse is old and fixed, so each lookup is kept for a month
+// (in memory and in IndexedDB): opening the same verse again needs no network.
+const MAX_AGE = 30 * DAY;
 
 // "Rashi on Genesis 1:2:3" → "Rashi on Genesis 1:2", so one request returns
 // every comment the commentator made on the verse.
@@ -37,9 +40,12 @@ function collapseCommentaryRef(ref) {
   return m ? m[1] : ref;
 }
 
-export async function fetchVerseSources(sefariaBook, chapter, verse) {
+export function fetchVerseSources(sefariaBook, chapter, verse) {
   const key = `${sefariaBook}.${chapter}.${verse}`;
-  if (linksCache.has(key)) return linksCache.get(key);
+  return cached(`links:${key}`, () => loadVerseSources(key), { maxAge: MAX_AGE });
+}
+
+async function loadVerseSources(key) {
 
   const res = await fetch(
     `https://www.sefaria.org/api/links/${encodeURIComponent(key)}?with_text=0`
@@ -81,9 +87,7 @@ export async function fetchVerseSources(sefariaBook, chapter, verse) {
 
   // Rashi doesn't comment on every verse; the panel still lists him so his
   // absence is explained rather than looking like a bug.
-  const result = { featured, otherCommentary, midrash, hasRashi: groups.has('Rashi') };
-  linksCache.set(key, result);
-  return result;
+  return { featured, otherCommentary, midrash, hasRashi: groups.has('Rashi') };
 }
 
 // Keep Sefaria's light formatting (bold headwords, italics) but nothing else,
@@ -115,7 +119,11 @@ function flatten(text) {
   return text ? [text] : [];
 }
 
-async function fetchRef(ref) {
+function fetchRef(ref) {
+  return cached(`ref:${ref}`, () => loadRef(ref), { maxAge: MAX_AGE });
+}
+
+async function loadRef(ref) {
   const res = await fetch(
     `https://www.sefaria.org/api/v3/texts/${encodeURIComponent(ref)}?version=english&version=hebrew`
   );
@@ -138,9 +146,8 @@ async function fetchRef(ref) {
 // Returns an array of passages: [{ ref, heRef, en: [html], he: [html], ... }]
 export async function fetchSourceText(group) {
   const refs = group.refs.slice(0, MAX_REFS_PER_GROUP);
-  const key = refs.join('|');
-  if (textCache.has(key)) return textCache.get(key);
-
+  // Each passage is cached on its own, so a group that shares passages with
+  // one opened before only fetches the new ones.
   const settled = await Promise.allSettled(refs.map(fetchRef));
   const passages = settled
     .filter((s) => s.status === 'fulfilled')
@@ -148,9 +155,7 @@ export async function fetchSourceText(group) {
     .filter((p) => p.en.length || p.he.length);
   if (!passages.length) throw new Error('No text available for this source.');
 
-  const result = { passages, truncated: group.refs.length > refs.length };
-  textCache.set(key, result);
-  return result;
+  return { passages, truncated: group.refs.length > refs.length };
 }
 
 // ---- Machine translations --------------------------------------------------
@@ -162,7 +167,8 @@ export async function fetchSourceText(group) {
 
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
 const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_KEY;
-const translationCache = new Map(); // `${lang}:${ref}` → [html]
+const translationCache = new Map(); // `${lang}:${ref}` → [html], this visit only
+const TRANSLATION_PREFIX = 'translation:';
 
 async function readSavedTranslations(refs, lang) {
   if (!SUPABASE_URL || !SUPABASE_KEY) return [];
@@ -199,16 +205,26 @@ export function passagesToTranslate(passages, lang) {
 export async function fetchTranslation(passages, lang) {
   const refs = passagesToTranslate(passages, lang).map((p) => p.ref);
   const cacheKey = (ref) => `${lang}:${ref}`;
+  const remember = (ref, segments) => {
+    translationCache.set(cacheKey(ref), segments);
+    store(TRANSLATION_PREFIX + cacheKey(ref), segments);
+  };
+
+  // Translations kept from earlier visits need no request at all.
+  await Promise.all(refs.filter((r) => !translationCache.has(cacheKey(r))).map(async (r) => {
+    const kept = await lookup(TRANSLATION_PREFIX + cacheKey(r), { maxAge: MAX_AGE });
+    if (kept) translationCache.set(cacheKey(r), kept);
+  }));
   const missing = refs.filter((r) => !translationCache.has(cacheKey(r)));
 
   if (missing.length) {
     for (const row of await readSavedTranslations(missing, lang)) {
-      translationCache.set(cacheKey(row.ref), row.segments.map(sanitize).filter(Boolean));
+      remember(row.ref, row.segments.map(sanitize).filter(Boolean));
     }
     const toTranslate = missing.filter((r) => !translationCache.has(cacheKey(r)));
     const settled = await Promise.allSettled(toTranslate.map((r) => translateRef(r, lang)));
     settled.forEach((s, i) => {
-      if (s.status === 'fulfilled') translationCache.set(cacheKey(toTranslate[i]), s.value.map(sanitize).filter(Boolean));
+      if (s.status === 'fulfilled') remember(toTranslate[i], s.value.map(sanitize).filter(Boolean));
     });
     if (!refs.some((r) => translationCache.has(cacheKey(r)))) {
       throw settled.find((s) => s.status === 'rejected')?.reason || new Error('No translation available.');

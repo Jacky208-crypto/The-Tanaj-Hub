@@ -531,11 +531,49 @@ export const liveReport = (gameId) => rpc('live_report', { gid: gameId });
 // The class's game in progress, or null.
 export const activeLiveGame = (classId) => rpc('active_live_game', { cid: classId });
 
+// Games in progress for many classes at once: { [classId]: gameId | null }.
+// One request instead of one per class (supabase/performance_setup.sql); until
+// that file has been run it falls back to asking class by class.
+let batchRpcMissing = false;
+async function batched(name, args, classIds, one, fold, empty) {
+  const out = Object.fromEntries(classIds.map((id) => [id, empty()]));
+  if (!classIds.length) return out;
+  if (!batchRpcMissing) {
+    try {
+      fold(out, await rpc(name, args));
+      return out;
+    } catch (e) {
+      if (!/could not find the function|does not exist/i.test(e.message)) throw e;
+      batchRpcMissing = true;
+    }
+  }
+  const each = await Promise.all(classIds.map((id) => one(id).catch(() => empty())));
+  classIds.forEach((id, i) => { out[id] = each[i]; });
+  return out;
+}
+
+export function activeLiveGames(classIds) {
+  return batched(
+    'active_live_games', { cids: classIds }, classIds, activeLiveGame,
+    (out, rows) => { for (const r of rows || []) out[r.class_id] = r.game_id; },
+    () => null,
+  );
+}
+
 // ---- Points (section 16) ----
 // [{ nickname, points, is_me }], best first. Empty for students unless the
 // teacher turned the leaderboard on.
 export function getLeaderboard(classId) {
   return rpc('class_leaderboard', { cid: classId });
+}
+
+// Several classes' tables at once: { [classId]: rows }.
+export function getLeaderboards(classIds) {
+  return batched(
+    'class_leaderboards', { cids: classIds }, classIds, getLeaderboard,
+    (out, rows) => { for (const r of rows || []) out[r.class_id].push({ nickname: r.nickname, points: r.points, is_me: r.is_me }); },
+    () => [],
+  );
 }
 
 // Dates I did something (quizzes, readings, answers), newest first, for streaks.
@@ -582,22 +620,18 @@ export async function getClassResults(classId) {
   const cls = rows?.[0];
   if (!cls) return null;
   const ids = (cls.assignments || []).map((a) => a.id);
-  let attempts = [];
-  if (ids.length) {
-    const { data } = await authed(
+  if (!ids.length) return { cls, attempts: [], responses: [] };
+  // Both depend only on the assignment ids, so they go out together.
+  const [{ data: attempts }, { data: responses }] = await Promise.all([
+    authed(
       `quiz_attempts?assignment_id=in.(${ids.join(',')})` +
       '&select=id,user_id,assignment_id,score,total,mode,details,created_at&order=created_at.asc'
-    );
-    attempts = data || [];
-  }
-  let responses = [];
-  if (ids.length) {
-    const { data } = await authed(
+    ),
+    authed(
       `assignment_responses?assignment_id=in.(${ids.join(',')})&select=assignment_id,user_id,answer,done_at,updated_at`
-    );
-    responses = data || [];
-  }
-  return { cls, attempts, responses };
+    ),
+  ]);
+  return { cls, attempts: attempts || [], responses: responses || [] };
 }
 
 // ---- Reading / discussion responses (supabase/classes_setup.sql section 10) ----

@@ -51,11 +51,14 @@ export default function Join() {
         await signInAnonymously(cleanName, captchaToken);
       }
       const classId = await joinClass(cleanCode, cleanName);
-      // Start in the class's language when the teacher set one.
-      try {
-        const joined = (await getStudentClasses()).find((m) => m.classes.id === classId);
-        if (joined?.classes.language) setLanguage(joined.classes.language);
-      } catch { /* not important enough to stop here */ }
+      // Start in the class's language when the teacher set one. Looked up in
+      // the background so the student reaches their class without waiting.
+      getStudentClasses()
+        .then((all) => {
+          const joined = all.find((m) => m.classes.id === classId);
+          if (joined?.classes.language) setLanguage(joined.classes.language);
+        })
+        .catch(() => { /* not important enough to stop here */ });
       // A live game's QR code sends students on to the game.
       const next = params.get('next');
       navigate(next && /^\/live\/[\w-]+$/.test(next) ? `${next}?code=${encodeURIComponent(cleanCode)}` : '/my-classes');

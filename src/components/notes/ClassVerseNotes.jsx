@@ -14,7 +14,6 @@ export default function ClassVerseNotes({ book, chapter, verse }) {
   const [notes, setNotes] = useState([]);
   const [teaching, setTeaching] = useState([]);
   const [form, setForm] = useState({ classId: '', scope: 'pasuk', body: '' });
-  const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
 
   const load = useCallback(() => {
@@ -32,30 +31,37 @@ export default function ClassVerseNotes({ book, chapter, verse }) {
   if (!here.length && !(isTeacher && teaching.length)) return null;
   const classId = form.classId || teaching[0]?.id;
 
+  // The note appears at once; if saving fails it is taken back out and the
+  // text returns to the box.
   async function add(e) {
     e.preventDefault();
-    if (!form.body.trim() || !classId) return;
-    setBusy(true);
+    const body = form.body.trim();
+    if (!body || !classId) return;
+    const scopeVerse = form.scope === 'pasuk' ? verse : null;
+    const tempId = `pending-${Date.now()}`;
+    const className = teaching.find((c) => c.id === classId)?.name;
     setError('');
+    setNotes((prev) => [...prev, { id: tempId, class_id: classId, verse: scopeVerse, body, classes: { name: className } }]);
+    setForm((f) => ({ ...f, body: '' }));
     try {
-      await addClassNote({
-        classId, bookId: book.id, chapter, verse: form.scope === 'pasuk' ? verse : null, body: form.body.trim(),
-      });
-      setForm((f) => ({ ...f, body: '' }));
+      await addClassNote({ classId, bookId: book.id, chapter, verse: scopeVerse, body });
       load();
     } catch {
+      setNotes((prev) => prev.filter((n) => n.id !== tempId));
+      setForm((f) => ({ ...f, body: f.body || body }));
       setError(t('classes.errGeneric'));
-    } finally {
-      setBusy(false);
     }
   }
 
   async function remove(id) {
+    if (String(id).startsWith('pending-')) return;
     if (!window.confirm(t('classes.deleteNoteConfirm'))) return;
+    setError('');
+    setNotes((prev) => prev.filter((n) => n.id !== id));
     try {
       await deleteClassNote(id);
-      load();
     } catch {
+      load();
       setError(t('classes.errGeneric'));
     }
   }
@@ -109,7 +115,7 @@ export default function ClassVerseNotes({ book, chapter, verse }) {
             dir="auto"
           />
           {error && <div className={styles.error}>{error}</div>}
-          <button className={styles.add} type="submit" disabled={busy || !form.body.trim()}>
+          <button className={styles.add} type="submit" disabled={!form.body.trim()}>
             {t('classes.addNoteBtn')}
           </button>
         </form>

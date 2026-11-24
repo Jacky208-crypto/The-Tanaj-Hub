@@ -6,11 +6,12 @@
 //   • English — Sefaria JPS (Tanakh: The Holy Scriptures, published by JPS)
 //   • Spanish — Sefaria "Tanaj Español", trans. Rav Yehuda Ribco, 2026
 //
-// All three are fetched whole-book from Sefaria (once, then cached in memory)
+// All three are fetched whole-book from Sefaria (once, then cached in memory and IndexedDB)
 // and scanned client-side, which lets us ignore vowel points, be case-insensitive
 // and highlight matches ourselves with the same logic for every language.
 
 import { allBooks } from '../data/books';
+import { cached, DAY } from './cache';
 import { applySpanishFixes, cleanSpanishNames, unwrapSpanishBrackets } from './spanishText';
 
 // The exact JPS English edition the reader requests.
@@ -152,7 +153,7 @@ async function fetchSpanishBook(book, signal) {
   );
 }
 
-async function fetchBook(book, signal) {
+async function downloadBook(book, signal) {
   const url =
     `https://www.sefaria.org/api/texts/${encodeURIComponent(book.sefaria)}` +
     `?context=0&pad=0&commentary=0&ven=${encodeURIComponent(JPS_VERSION)}`;
@@ -169,7 +170,13 @@ async function fetchBook(book, signal) {
   const enChapters = (Array.isArray(data.text) ? data.text : []).map((ch) =>
     (Array.isArray(ch) ? ch : [ch]).map((v) => cleanVerse(flatten(v), 'english'))
   );
-  bookCache[book.id] = { he: heChapters, en: enChapters, es: esChapters };
+  return { he: heChapters, en: enChapters, es: esChapters };
+}
+
+// A book's whole text is kept on this device for a month, so searching again
+// (even after closing the tab) doesn't re-download the Tanakh.
+async function fetchBook(book, signal) {
+  bookCache[book.id] = await cached(`search-book:${book.id}`, () => downloadBook(book, signal), { maxAge: 30 * DAY });
 }
 
 // Fetch every uncached book, a few at a time. onProgress(loaded, total).

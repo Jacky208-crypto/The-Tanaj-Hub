@@ -2,10 +2,11 @@
 // quizzes, study notes, midrashim and map places. Anyone can read published
 // rows; signed-in admins also see unpublished ones / midrash drafts.
 //
-// Each loader caches its result for the rest of the visit, and forgets a
-// failed request so the next call retries.
+// Each loader caches its result (see below), and forgets a failed request so
+// the next call retries.
 
-import { getFreshSession } from './supabaseClient';
+import { getFreshSession, loadSession } from './supabaseClient';
+import { cached as cachedLoad, clearCache } from './cache';
 
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
 const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_KEY;
@@ -37,19 +38,19 @@ async function selectAll(table, query) {
   }
 }
 
-const caches = [];
-function cached(load) {
-  let promise = null;
-  caches.push(() => { promise = null; });
-  return () => {
-    if (!promise) promise = load().catch((e) => { promise = null; throw e; });
-    return promise;
-  };
+// Content changes rarely, so each loader keeps its result in memory and in
+// IndexedDB: a repeat visit shows it with no request, and anything older than
+// CONTENT_MAX_AGE is refreshed quietly in the background. Admins also receive
+// drafts, so what is stored is kept per account.
+const CONTENT_MAX_AGE = 6 * 60 * 60 * 1000;
+const CONTENT_PREFIX = 'content:';
+function cached(name, load) {
+  return () => cachedLoad(`${CONTENT_PREFIX}${loadSession()?.user?.id || 'anon'}:${name}`, load, { maxAge: CONTENT_MAX_AGE });
 }
 
 // After an admin edit, so the next visit to a page loads the new content.
 export function clearContentCache() {
-  caches.forEach((clear) => clear());
+  clearCache(CONTENT_PREFIX);
 }
 
 // Columns are one per language (label_en, label_es, label_he); the site's
@@ -62,7 +63,7 @@ export function pick(row, field, language) {
 
 // ---- Quizzes ----
 
-export const getQuizzes = cached(() =>
+export const getQuizzes = cached('quizzes', () =>
   request('quizzes?select=key,label_en,label_es,label_he,description_en,description_es,description_he&order=sort_order')
 );
 
@@ -81,22 +82,28 @@ export function getRandomQuestions(quizKeys, howMany, chapters, books, types) {
 
 // Specific questions by id (for "Review my mistakes"). Unpublished ones are
 // left out for visitors by Row-Level Security.
-export function getQuestionsByIds(ids) {
-  if (!ids.length) return Promise.resolve([]);
-  return request(`quiz_questions?select=*&id=in.(${ids.join(',')})`);
+const questionsById = new Map(); // questions already fetched this visit
+export async function getQuestionsByIds(ids) {
+  if (!ids.length) return [];
+  const missing = ids.filter((id) => !questionsById.has(id));
+  if (missing.length) {
+    const rows = await request(`quiz_questions?select=*&id=in.(${missing.join(',')})`);
+    for (const row of rows) questionsById.set(row.id, row);
+  }
+  return ids.map((id) => questionsById.get(id)).filter(Boolean);
 }
 
 // ---- Study notes ----
 
 // Topics in order, each with its entries in order.
-export const getNoteTopics = cached(() =>
+export const getNoteTopics = cached('note-topics', () =>
   request('note_topics?select=*,note_entries(*)&order=sort_order&note_entries.order=sort_order')
 );
 
 // ---- Midrashim ----
 
-export const getMidrashimRows = cached(() => selectAll('midrashim', 'select=*&order=sort_order'));
+export const getMidrashimRows = cached('midrashim', () => selectAll('midrashim', 'select=*&order=sort_order'));
 
 // ---- Map places ----
 
-export const getPlaces = cached(() => selectAll('places', 'select=*&order=id'));
+export const getPlaces = cached('places', () => selectAll('places', 'select=*&order=id'));

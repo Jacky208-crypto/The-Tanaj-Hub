@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import {
   getStudentClasses, getMyAssignmentAttempts, getMyResponses, leaveClass, saveResponse, removeResponse,
-  getClassQuestions, getLeaderboard, getMyActivityDates, activeLiveGame,
+  getClassQuestions, getLeaderboards, getMyActivityDates, activeLiveGames,
 } from '../lib/supabaseClient';
 import { getQuizzes, pick } from '../lib/content';
 import { formatScore } from '../components/QuizReport';
@@ -55,18 +55,18 @@ function Leaderboard({ rows }) {
 }
 
 // A discussion question: the student's answer, saved on demand.
-function DiscussionAnswer({ a, response, onSaved }) {
+function DiscussionAnswer({ a, response, onSave }) {
   const { t } = useLanguage();
   const [text, setText] = useState(response?.answer ?? '');
   const [state, setState] = useState('idle'); // idle | saving | saved | error
   const changed = text.trim() !== (response?.answer ?? '').trim();
 
+  // The answer shows as saved straight away; if the save fails, the parent
+  // puts the old answer back and this shows the error.
   async function save() {
-    setState('saving');
+    setState('saved');
     try {
-      await saveResponse(a.id, text.trim());
-      setState('saved');
-      onSaved();
+      await onSave(a, text.trim());
     } catch {
       setState('error');
     }
@@ -84,8 +84,8 @@ function DiscussionAnswer({ a, response, onSaved }) {
         dir="auto"
       />
       <div className={styles.buttonRow} style={{ marginTop: 6 }}>
-        <button className={styles.primary} onClick={save} disabled={!text.trim() || !changed || state === 'saving'}>
-          {state === 'saving' ? t('login.pleaseWait') : t('classes.saveAnswer')}
+        <button className={styles.primary} onClick={save} disabled={!text.trim() || !changed}>
+          {t('classes.saveAnswer')}
         </button>
         {state === 'saved' && <span className={styles.done}>{t('classes.answerSaved')}</span>}
         {state === 'error' && <span className={styles.danger}>{t('classes.errGeneric')}</span>}
@@ -116,8 +116,7 @@ export default function MyClasses() {
       .then(([c, a, r, q]) => {
         setClasses(c); setAttempts(a); setResponses(r); setQuizzes(q || []); setError('');
         const withBoard = c.filter((m) => m.classes.show_leaderboard);
-        return Promise.all(withBoard.map((m) => getLeaderboard(m.classes.id).catch(() => [])))
-          .then((lists) => setBoards(Object.fromEntries(withBoard.map((m, i) => [m.classes.id, lists[i]]))));
+        return getLeaderboards(withBoard.map((m) => m.classes.id)).then(setBoards);
       })
       .catch(() => setError(t('classes.errGeneric')));
     getMyActivityDates().then((dates) => setStreak(streakDays(dates))).catch(() => {});
@@ -130,8 +129,7 @@ export default function MyClasses() {
   useEffect(() => {
     if (!classIds) return undefined;
     const ids = classIds.split(',');
-    const check = () => Promise.all(ids.map((id) => activeLiveGame(id).catch(() => null)))
-      .then((games) => setLiveGames(Object.fromEntries(ids.map((id, i) => [id, games[i]]))));
+    const check = () => activeLiveGames(ids).then(setLiveGames).catch(() => {});
     check();
     const timer = setInterval(check, 15000);
     return () => clearInterval(timer);
@@ -162,15 +160,42 @@ export default function MyClasses() {
     }
   }
 
-  async function toggleRead(a) {
+  // Points and streak change when something is marked done; refresh just those.
+  function refreshProgress() {
+    const ids = (classes || []).filter((m) => m.classes.show_leaderboard).map((m) => m.classes.id);
+    getLeaderboards(ids).then((b) => setBoards((prev) => ({ ...prev, ...b }))).catch(() => {});
+    getMyActivityDates().then((dates) => setStreak(streakDays(dates))).catch(() => {});
+  }
+
+  // Shows the new state at once, saves in the background, and puts things
+  // back with an error message if the save fails.
+  async function changeResponse(assignmentId, answer, save) {
+    const before = responses.find((r) => r.assignment_id === assignmentId) || null;
+    const now = new Date().toISOString();
+    setResponses((prev) => {
+      const rest = prev.filter((r) => r.assignment_id !== assignmentId);
+      return answer === undefined ? rest : [...rest, { assignment_id: assignmentId, answer, done_at: before?.done_at ?? now, updated_at: now }];
+    });
     try {
-      if (responseFor[a.id]) await removeResponse(a.id);
-      else await saveResponse(a.id);
-      load();
-    } catch {
+      await save();
+      setError('');
+      refreshProgress();
+    } catch (e) {
+      setResponses((prev) => {
+        const rest = prev.filter((r) => r.assignment_id !== assignmentId);
+        return before ? [...rest, before] : rest;
+      });
       setError(t('classes.errGeneric'));
+      throw e;
     }
   }
+
+  function toggleRead(a) {
+    const done = Boolean(responseFor[a.id]);
+    return changeResponse(a.id, done ? undefined : null, () => (done ? removeResponse(a.id) : saveResponse(a.id))).catch(() => {});
+  }
+
+  const saveAnswer = (a, text) => changeResponse(a.id, text, () => saveResponse(a.id, text));
 
   async function startCustom(a, classId) {
     try {
@@ -271,7 +296,7 @@ export default function MyClasses() {
             {openText && <> · {openText}</>}
           </div>
         </div>
-        <DiscussionAnswer key={response?.updated_at ?? 'new'} a={a} response={response} onSaved={load} />
+        <DiscussionAnswer key={a.id} a={a} response={response} onSave={saveAnswer} />
       </li>
     );
   }

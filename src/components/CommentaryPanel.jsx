@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { fetchVerseSources, fetchSourceText, fetchTranslation, passagesToTranslate } from '../lib/sefariaCommentary';
 import { getMidrashimForVerse, parseAnchor, localized, useMidrashIndex } from '../lib/midrashim';
-import PassukNotes from './notes/PassukNotes';
+// The rich-text editor behind "My note" is a large download; fetch it only when the panel opens.
+const PassukNotes = lazy(() => import('./notes/PassukNotes'));
 import ClassVerseNotes from './notes/ClassVerseNotes';
 import { noteStrings } from './notes/noteStrings';
 import styles from './CommentaryPanel.module.css';
@@ -412,6 +413,7 @@ export default function CommentaryPanel({
 
         <ClassVerseNotes book={book} chapter={chapter} verse={verse} />
 
+        <Suspense fallback={null}>
         <PassukNotes
           book={book}
           chapter={chapter}
@@ -424,6 +426,7 @@ export default function CommentaryPanel({
           pendingAction={pendingAction}
           onActionDone={onActionDone}
         />
+        </Suspense>
       </div>
     </aside>
   );
